@@ -1,0 +1,4 @@
+# Remove these root files after applying the Mission-1 affected overlay.
+# Their current versions are archived under archive/runtime-hotfix/.
+NEXT-SESSION-RUNTIME-HOTFIX-RETEST.md
+RUNTIME-HOTFIX-APPLY-RUNBOOK.md

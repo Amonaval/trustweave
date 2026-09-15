@@ -19,7 +19,7 @@ This report does **not** mark TrustWeave launch-ready yet. The mission Definitio
 | HS0→HS6 | PASS |
 | FCA0 | 27/27 PASS |
 | TS/TSX syntax scan | 344 files / 0 syntax errors |
-| Migration static audit | 112 SQL files / PASS |
+| Migration static audit | 113 SQL files / PASS |
 
 ## Environment-blocked evidence — must be completed before go-live
 | Gate | Current state | Required next result |
@@ -67,7 +67,7 @@ Some source rows describe synthetic directory people participating in product su
 ## Go / no-go rule
 **NO-GO for uncontrolled production launch until every mandatory item in `RUNTIME-VERIFICATION-CHECKLIST.md` is PASS.**
 
-A controlled showcase may proceed only in an approved environment after migrations through 114 are applied and the demo networks have been seeded/verified using `DATA-SEED-RUNBOOK.md`.
+A controlled showcase may proceed only in an approved environment after migrations through 115 are applied and the demo networks have been seeded/verified using `DATA-SEED-RUNBOOK.md`.
 
 ## Real seeded-network rehearsal findings — 2026-09-15
 The seed workflow completed successfully and real interaction exposed launch blockers that are now fixed in source but require database/runtime retest:
@@ -78,7 +78,7 @@ The seed workflow completed successfully and real interaction exposed launch blo
 - Storage authorization was too coupled to active-network profile state and client membership fallback was ambiguous;
 - Dense operational/admin pages relied too heavily on continuation scrolling; the problem was visible first in Housing but also existed in shared Family, Community, Alumni and productized Network OS surfaces.
 
-Repair baseline: migration 114 + a cross-vertical progressive-disclosure UX closure + three-theme selector. **Decision remains NO-GO / runtime retest required** until the same seeded environment proves the reported paths clean. See `RUNTIME-HOTFIX-APPLY-RUNBOOK.md`.
+Repair baseline: migrations 114–115 + cross-vertical progressive-disclosure UX closure + Mission 1 seed integrity/diagnostics. **Decision remains NO-GO / runtime retest required** until Community photo upload and both seeded verticals pass the Mission 1 two-run proof. See `MISSION-1-APPLY-RETEST-RUNBOOK.md`.
 
 ## Cross-vertical progressive-disclosure closure — 2026-09-15
 The launch UX rule is now product-wide, not Housing-specific. Family, Family Community / Association, Alumni, Housing Society and shared productized Network OS shells must not grow by appending peer operational blocks indefinitely down the page. The shared implementation now uses desktop tabs / mobile selectors, task workspaces, card-grid entry points and accordions for secondary/advanced content.

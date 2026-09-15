@@ -1,6 +1,6 @@
 import type {LaunchDataset,LaunchSeedCommitResult,LaunchSeedContext,LaunchSeedDryRun,LaunchSeedKind,LaunchSeedOptions} from "../../core/launch-seed/contracts";
 import {BUNDLED_LAUNCH_DATASETS,buildLaunchDryRun,loadBundledLaunchDataset,parseLaunchDatasetFile,validateDatasetShape} from "./dataset";
-import {authorizeLaunchDemoSeed,fetchLaunchSeedContext,fetchLaunchSeedLineage} from "./remote";
+import {authorizeLaunchDemoSeed,fetchLaunchSeedContext,fetchLaunchSeedLineage,fetchLaunchSeedRunReport,finishLaunchSeedRun,startLaunchSeedRun} from "./remote";
 import {seedHousingLaunchDataset} from "./housing";
 import {seedFamilyCommunityLaunchDataset} from "./family-community";
 
@@ -29,5 +29,15 @@ export async function commitLaunchDataset(data:LaunchDataset,kind:LaunchSeedKind
  const lineage=await fetchLaunchSeedLineage(data.version);
  const dryRun=buildLaunchDryRun(data,kind,lineage);
  if(!dryRun.valid)throw new Error(`Launch dataset validation failed with ${dryRun.totals.errors} reference error${dryRun.totals.errors===1?"":"s"}.`);
- return kind==="housing-society"?seedHousingLaunchDataset(data,lineage,options):seedFamilyCommunityLaunchDataset(data,lineage,networkId,options);
+ const runId=await startLaunchSeedRun(data.version,kind,dryRun.totals.rows);
+ try{
+  const merged:LaunchSeedOptions={paceMs:20,...options,runId};
+  const result=kind==="housing-society"?await seedHousingLaunchDataset(data,lineage,merged):await seedFamilyCommunityLaunchDataset(data,lineage,networkId,merged);
+  await finishLaunchSeedRun(runId,{created:result.created,updated:result.updated,skipped:result.skipped,errors:result.errors,warnings:result.diagnostics.filter(x=>x.severity==="warning").length});
+  const report=await fetchLaunchSeedRunReport(runId).catch(()=>null);
+  return {...result,runId,report};
+ }catch(error){
+  await finishLaunchSeedRun(runId,{created:0,updated:0,skipped:0,errors:1,warnings:0},"failed").catch(()=>{});
+  throw error;
+ }
 }

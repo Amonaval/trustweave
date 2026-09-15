@@ -36,7 +36,7 @@ Family Community guided import now commits annual Association Membership through
 - Launch Control continues to control discover/create/playground exposure without hiding existing memberships or deleting vertical capability.
 
 ## QA / validation status
-**Green in this environment:** final-launch 24/24, Showcase stabilization 14/14, Residential flagship 12/12, E10→E1 chain, HS0→HS6, FCA0 27/27, syntax 344/0, migration audit 112 SQL PASS.
+**Green in this environment:** final-launch 24/24, Showcase stabilization 14/14, Residential flagship 12/12, E10→E1 chain, HS0→HS6, FCA0 27/27, syntax 344/0, migration audit 113 SQL PASS.
 
 **Environment-blocked, not waived:** lint, full TypeScript/static gate, Next production build, headed/mobile Playwright, and staging persisted seed proof. Dependency restoration fails because npm package tarballs cannot be fetched from `registry.npmjs.org` (`EAI_AGAIN`).
 
@@ -44,7 +44,7 @@ Family Community guided import now commits annual Association Membership through
 The engineering mission is packaged as a launch candidate, but the original Definition of DONE remains binding: **launch-ready is not claimed until dependency-backed build/lint and persisted headed/mobile runtime certification pass.**
 
 ## Next mission
-`NEXT-SESSION-RUNTIME-HOTFIX-RETEST.md` — certification and go/no-go only; no unrelated feature expansion.
+`MISSION-1-APPLY-RETEST-RUNBOOK.md` is the immediate persisted retest. After it is green, `NEXT-SESSION-MISSION-2-SLOW-USER-REGRESSION.md` is the next engineering mission.
 
 ## 2026-09-15 — Seeded-network rehearsal hotfix
 The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
@@ -57,3 +57,10 @@ Housing Society UX was also restructured after real laptop use showed unacceptab
 
 ## 2026-09-15 — Cross-vertical progressive-disclosure closure
 The runtime hotfix UX lesson is now a permanent product-wide rule, not a Housing exception. Family, Family Community / Association, Alumni, Housing and shared productized Network OS surfaces use focused workspaces (desktop tabs / mobile selectors), card-grid entry points and accordions instead of indefinitely appending peer operational sections. Shared Funds, Voting, Activity/Groups, Media Management, Family Participation and multi-network tools are included. `npm run validate:ux-progressive` passes **23/23** and is a release source gate.
+
+## 2026-09-15 — Mission 1 runtime + seed integrity closure
+Mission 1 is **implemented in source and awaiting persisted retest**. Migration `115_mission1_runtime_seed_integrity.sql` adds recoverable `partial/error` lineage, persistent seed runs/issues, downloadable diagnostics, launch-authorized relationship seeding without the interactive 40/min HTTP burst limiter, ballot option-before-open ordering and a narrow demo eligibility fallback for synthetic family-representative ballots.
+
+Community photo upload SQLSTATE `22023` is repaired by making Storage byte extraction tolerant of supported metadata shapes while revalidating path, membership, concrete/fallback byte size, per-file limit and quota at media registration. The four reported duplicate English keys now have exactly one definition each.
+
+**Source evidence:** Mission 1 22/22, final-launch 24/24, Showcase 14/14, Residential 12/12, E1→E10 PASS, HS0→HS6 PASS, FCA0 27/27, syntax 344/0, migration audit 113 SQL PASS. Dependency-backed lint/build and real Supabase retest remain runtime gates, not waived checks.

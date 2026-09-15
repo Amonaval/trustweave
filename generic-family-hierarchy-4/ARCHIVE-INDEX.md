@@ -83,3 +83,7 @@ The immediately superseded pre-orchestration living docs are preserved at:
 - `archive/docs/missions/launch/NEXT-SESSION-FINAL-LAUNCH-MISSION.md` — binding final pre-launch engineering brief.
 - `archive/docs/missions/launch/NEXT-MISSION-DISCOVERY-PRODUCT-EXPLORATION.md` and `NEXT-SESSION-DISCOVERY-PRODUCT-EXPLORATION.md` — superseded Discovery handoffs preserved as historical evidence.
 - `archive/final-launch/NEXT-SESSION-FINAL-RUNTIME-CERTIFICATION-pre-hotfix.md` — superseded by the seeded-network runtime-hotfix retest handoff.
+
+## 2026-09-15 — Mission 1 superseded runtime-hotfix handoffs
+- `archive/runtime-hotfix/NEXT-SESSION-RUNTIME-HOTFIX-RETEST.md` — superseded by Mission 1 apply/retest + Mission 2 slow-regression handoff.
+- `archive/runtime-hotfix/RUNTIME-HOTFIX-APPLY-RUNBOOK.md` — migration-114 runbook retained as historical evidence; current apply path is migration 115.

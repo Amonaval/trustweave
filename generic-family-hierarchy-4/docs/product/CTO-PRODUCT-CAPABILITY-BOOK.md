@@ -324,7 +324,7 @@ The launch-data system is deliberately an orchestration layer, not a new domain 
 
 Idempotency is source-row based: each dataset version, section and stable row reference stores a deterministic payload hash and remote record ID. Unchanged rows skip; mutable rows can update through product APIs; historical/immutable rows are not duplicated. The design intentionally does not create a destructive reset RPC or insert notification rows merely for visual density.
 
-The remaining release gate is environmental/runtime, not an architectural waiver: install from the lockfile in a network-enabled environment, run lint/type/build, apply migrations through 114 to approved staging, and execute headed/mobile persisted-network certification.
+The remaining release gate is environmental/runtime, not an architectural waiver: install from the lockfile in a network-enabled environment, run lint/type/build, apply migrations through 115 to approved staging, and execute headed/mobile persisted-network certification.
 
 ## 2026-09-15 — Seeded-network rehearsal hotfix
 The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
@@ -333,3 +333,5 @@ Housing Society UX was also restructured after real laptop use showed unacceptab
 
 **Runtime status:** source gates are green, but this hotfix is not considered proven until migration 114 is applied to the real/staging database and the reported operations/funds/voting/mentions/media paths are retested.
 
+### Mission 1 — runtime and seed observability
+Launch seeding now treats execution state as a recoverable workflow rather than a fire-and-forget bulk script. Persistent run/issue records expose row-level operation and database/API diagnostics; lineage distinguishes terminal rows from `partial`/`error` rows; and remote ids are checkpointed before state transitions. Authorized synthetic relationship seeding bypasses only the interactive HTTP burst limiter while still delegating to the secured domain RPC. Ballot state transitions occur after option persistence. Storage/media registration now performs tolerant object-size extraction plus authoritative path/membership/quota revalidation. These changes improve operational correctness without introducing a parallel domain subsystem.

@@ -1,0 +1,16 @@
+TrustWeave Mission 1 — source certification evidence
+Date: 2026-09-15
+
+PASS npm run validate:mission1 — 22/22
+PASS npm run validate:final-launch — complete source chain, including:
+  - final launch source 24/24
+  - Showcase stabilization 14/14
+  - Residential flagship 12/12
+  - E10 closure + E1→E10
+  - HS0→HS6
+  - FCA0 27/27
+PASS node scripts/static-syntax-scan.mjs — 344 TS/TSX, 0 syntax errors
+PASS node qa/db/migration-static-audit.mjs — 113 SQL files
+
+Environment limitation:
+Dependency-backed lint/full TypeScript/Next build and persisted Supabase/browser runtime certification require a dependency-enabled/staging environment and are not claimed here.

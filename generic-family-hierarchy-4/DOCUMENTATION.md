@@ -9,9 +9,10 @@ Use this page for current launch truth. Historical mission evidence remains unde
 - `PILOT-DEMO-RUNBOOK.md` — showcase sequence for anonymous visitor, Residential and Family Community.
 - `DATA-SEED-RUNBOOK.md` — safe persisted launch-data workflow.
 - `RUNTIME-VERIFICATION-CHECKLIST.md` — binding final go/no-go checklist.
-- `RUNTIME-HOTFIX-APPLY-RUNBOOK.md` — apply migration 114 and retest the real rehearsal failures.
+- `MISSION-1-RUNTIME-SEED-INTEGRITY-CLOSURE.md` — root-cause and implementation record for Mission 1.
+- `MISSION-1-APPLY-RETEST-RUNBOOK.md` — apply migration 115 and perform Community-photo + two-run seed integrity proof.
 - `FINAL-RELEASE-MANIFEST.md` — candidate contents and affected-file scope.
-- `NEXT-SESSION-RUNTIME-HOTFIX-RETEST.md` — next-session handoff; certification only.
+- `NEXT-SESSION-MISSION-2-SLOW-USER-REGRESSION.md` — next engineering mission after Mission 1 persisted retest.
 
 ## Executive / product views
 - `CEO-PRODUCT-BRIEF.md`

@@ -89,3 +89,14 @@
 - [ ] Manage Society renders one workspace area at a time on desktop and mobile.
 - [ ] Finance/Governance/Security subsections prevent extreme all-module vertical scrolling.
 - [ ] Appearance is a single Classic/Modern/Dark selector and all three are visibly distinct.
+
+## Mission 1 seed/media retest — mandatory
+- [ ] Apply migrations through `115_mission1_runtime_seed_integrity.sql` to the same Supabase project.
+- [ ] Community post + photo succeeds without SQLSTATE `22023`; media survives refresh and remains tenant-private.
+- [ ] Family Community seed completes with 0 unexplained errors; download report if not.
+- [ ] Family Community unchanged rerun produces no accidental duplicate creates.
+- [ ] Housing seed completes with 0 unexplained errors; download report if not.
+- [ ] Housing unchanged rerun produces no accidental duplicate creates.
+- [ ] Migration-114 operations/funds/voting/mentions/media paths remain green.
+
+Known Family Community constraints (113 for the supplied full dataset) must be shown as warnings, not mixed into the error count.

@@ -1,6 +1,6 @@
 # TrustWeave — Pilot / Showcase Demo Runbook
 
-> **Hotfix prerequisite:** before using this runbook after the first seeded rehearsal, apply migrations through **114_final_launch_runtime_contract_repair.sql** and use the runtime-hotfix FULL baseline.
+> **Mission 1 prerequisite:** before using this runbook, apply migrations through **115_mission1_runtime_seed_integrity.sql** and use the Mission 1 FULL baseline. Complete the Community photo-post and two-run seed idempotency proof in `MISSION-1-APPLY-RETEST-RUNBOOK.md`.
 ## Goal
 Demonstrate a coherent story, not a module checklist. Use Playground for fast read-only discovery and seeded real networks for persisted proof.
 
