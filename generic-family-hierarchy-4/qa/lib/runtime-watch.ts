@@ -1,6 +1,5 @@
 import type {Page,TestInfo} from '@playwright/test';
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from 'node:fs';import path from 'node:path';
 export type RuntimeIssue={type:'console'|'pageerror'|'requestfailed'|'http'|'ui';message:string;url?:string;status?:number;test:string;at:string};
 const noise=[/favicon/i,/ResizeObserver loop/i];
 const apiLike=/\/rest\/v1\/|\/storage\/v1\/|\/functions\/v1\/|\/api\/v1\//i;

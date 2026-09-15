@@ -6,7 +6,7 @@ const posts=read('components/shared/NetworkPostsPanel.tsx'),funds=read('componen
 ok('Mission 2 package script exists',pkg.scripts?.['qa:mission2']==='node qa/run-mission2-regression.mjs');
 ok('Mission 2 source gate package script exists',pkg.scripts?.['validate:mission2']==='node scripts/mission2-slow-user-regression-gate.mjs');
 ok('Mission 2 closure and automation runbook exist',fs.existsSync('MISSION-2-SLOW-USER-REGRESSION-CLOSURE.md')&&fs.existsSync('MISSION-2-AUTOMATION-RUNBOOK.md'));
-ok('Mission 3 handoff is recorded but gated on Mission 2 runtime',fs.existsSync('NEXT-SESSION-MISSION-3-SHARED-COMPONENT-ARCHITECTURE.md')&&read('NEXT-SESSION-MISSION-3-SHARED-COMPONENT-ARCHITECTURE.md').includes('Mission 2 has been executed'));
+ok('Mission 2 closure is recorded and Mission 3 is explicitly authorized',fs.existsSync('MISSION-2-CLOSURE-HANDOFF.md')&&read('MISSION-2-CLOSURE-HANDOFF.md').includes('paused/concluded for now')&&fs.existsSync('NEXT-SESSION-MISSION-3-SHARED-COMPONENT-ARCHITECTURE.md')&&read('NEXT-SESSION-MISSION-3-SHARED-COMPONENT-ARCHITECTURE.md').includes('Do **not** wait for the entire historical regression suite'));
 ok('roadmap records Mission 2 implementation before Mission 3',read('ROADMAP.md').includes('Mission 2 — Slow Full Product User Regression — IMPLEMENTED IN SOURCE')&&read('ROADMAP.md').includes('Mission 3 — Shared UI / Business / Technical Component Architecture — NEXT'));
 ok('Playwright remains globally serial',cfg.includes('fullyParallel:false')&&cfg.includes('workers:1'));
 ok('certification does not silently reuse a stale dev server',cfg.includes("reuseExistingServer:process.env.QA_REUSE_SERVER==='true'"));
