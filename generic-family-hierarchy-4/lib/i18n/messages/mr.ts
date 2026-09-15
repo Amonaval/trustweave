@@ -1312,4 +1312,8 @@ export const mr:LocaleCatalog={
   E10HideMutedTxt:'म्यूट लपवा',
   E10PreferencesLoadFailedTxt:'सूचना सेटिंग्स लोड करता आल्या नाहीत.',
   E10PreferencesSaveFailedTxt:'सूचना सेटिंग्स जतन करता आल्या नाहीत.',
+
+  NotificationInboxTxt:'सूचना इनबॉक्स',
+  E10EnablingPushTxt:'सक्षम करत आहे…',
+  E10DisablingPushTxt:'अक्षम करत आहे…',
 };

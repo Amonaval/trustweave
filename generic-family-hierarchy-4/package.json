@@ -182,7 +182,8 @@
     "check:types:app": "tsc -p tsconfig.static.json --noEmit",
     "validate:static": "npm run check:syntax:app && npm run lint:trustweave && npm run check:types:app",
     "check:syntax:app": "node scripts/static-syntax-scan.mjs",
-    "lint:trustweave:strict": "eslint --no-eslintrc --config eslint.trustweave.cjs --ext .ts,.tsx --max-warnings=0 app app-shell capabilities components core lib templates verticals TemplateNetworkApp.tsx"
+    "lint:trustweave:strict": "eslint --no-eslintrc --config eslint.trustweave.cjs --ext .ts,.tsx --max-warnings=0 app app-shell capabilities components core lib templates verticals TemplateNetworkApp.tsx",
+    "validate:e10-closure": "node scripts/e10-stability-closure-gate.mjs && npm run validate:engage-e10"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.54.0",

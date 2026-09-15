@@ -3894,6 +3894,10 @@ export const en={
   E10HideMutedTxt:"Hide muted",
   E10PreferencesLoadFailedTxt:"Notification preferences could not be loaded.",
   E10PreferencesSaveFailedTxt:"Notification preferences could not be saved.",
+  NotificationInboxTxt:'Notification inbox',
+  E10EnablingPushTxt:'Enabling…',
+  E10DisablingPushTxt:'Disabling…',
 } as const;
 export type MessageToken=keyof typeof en;
 export type MessageCatalog=Record<MessageToken,string>;
+

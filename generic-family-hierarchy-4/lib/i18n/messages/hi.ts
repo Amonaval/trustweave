@@ -1312,4 +1312,8 @@ export const hi:LocaleCatalog={
   E10HideMutedTxt:'म्यूट छिपाएं',
   E10PreferencesLoadFailedTxt:'सूचना सेटिंग्स लोड नहीं हो सकीं।',
   E10PreferencesSaveFailedTxt:'सूचना सेटिंग्स सेव नहीं हो सकीं।',
+
+  NotificationInboxTxt:'सूचना इनबॉक्स',
+  E10EnablingPushTxt:'सक्षम किया जा रहा है…',
+  E10DisablingPushTxt:'अक्षम किया जा रहा है…',
 };
