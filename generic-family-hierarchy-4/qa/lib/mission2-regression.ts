@@ -69,7 +69,7 @@ export async function expectPersistedText(page:Page,text:string){
  await expect(page.getByText(text,{exact:false}).first()).toBeVisible({timeout:20_000});
 }
 
-export const TINY_PNG={name:'mission2-photo.png',mimeType:'image/png',buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZQWQAAAAASUVORK5CYII=','base64')};
+export const TINY_PNG={name:'mission2-photo.png',mimeType:'image/png',buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAFklEQVR4nGP8z8DAwMDAxMDAwMDAAAANHQEDasKb6QAAAABJRU5ErkJggg==','base64')};
 
 export async function waitForPersistedOrMessage(page:Page,locator:any,label:string,timeout=25_000){
  const message=page.getByTestId('qa-product-message');

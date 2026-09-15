@@ -1,9 +1,14 @@
-# Mission 2 QA Harness Correction — Apply Note
+# Mission 2 final cleanup — apply note
 
-Baseline: `TRUSTWEAVE-MISSION-2-QA-MEDIA-CORRECTION-FULL.zip`.
+Apply this overlay to the latest tree that already includes the Mission-2 two-vertical resume patch.
 
-Overlay all files from this affected package, then remove any paths listed in `REMOVED-FILES.txt` (none in this correction).
+Then apply Supabase migrations through **118**. Migration 118 reasserts both the notification preference contract and the Housing complaint-routes RPC, and reloads PostgREST.
 
-No new database migration is introduced. The environment must already include migrations through 116.
+Mission 2 regression is intentionally **paused** after this cleanup. Do not continue the broad automated regression now. Preserve current QA evidence for later resumption.
 
-After applying, stop any stale dev server unless you intentionally set `QA_REUSE_SERVER=true`, then run `npm run qa:mission2:headed`.
+Closed by this patch:
+- corrupt Playwright PNG fixture replaced with a valid browser-decodable PNG;
+- media compression gets an `<img>` fallback when `createImageBitmap()` rejects a valid image;
+- `get_my_notification_preferences()` live schema drift repaired;
+- `hs4_get_complaint_routes()` reasserted;
+- crawler exits on a time budget instead of reaching the Playwright hard timeout.

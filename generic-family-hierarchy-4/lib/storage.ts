@@ -47,23 +47,39 @@ async function activeStoragePolicy(){
   return {networkId,enabled:!!policy.photo_upload_enabled,maxBytes:Number(policy.photo_max_bytes||n.photo_max_bytes||DEFAULT_MAX_BYTES)};
 }
 
+async function decodeBrowserImage(file:File):Promise<{source:CanvasImageSource;width:number;height:number;close:()=>void}>{
+  try{
+    const bitmap=await createImageBitmap(file);
+    return {source:bitmap,width:bitmap.width,height:bitmap.height,close:()=>bitmap.close()};
+  }catch{
+    const url=URL.createObjectURL(file),image=new Image();
+    try{
+      image.src=url;
+      if(typeof image.decode==='function')await image.decode();
+      else await new Promise<void>((resolve,reject)=>{image.onload=()=>resolve();image.onerror=()=>reject(new Error('The source image could not be decoded.'));});
+      if(!image.naturalWidth||!image.naturalHeight)throw new Error('The source image could not be decoded.');
+      return {source:image,width:image.naturalWidth,height:image.naturalHeight,close:()=>URL.revokeObjectURL(url)};
+    }catch(error){URL.revokeObjectURL(url);throw error;}
+  }
+}
+
 async function imageToWebp(file:File,maxBytes:number,maxDimension:number):Promise<{file:File;width:number;height:number}> {
   if(!ALLOWED.has(file.type)) throw new Error('Please upload a JPG, PNG or WebP image.');
-  const bitmap=await createImageBitmap(file);
-  let width=bitmap.width,height=bitmap.height;
+  const decoded=await decodeBrowserImage(file);
+  let width=decoded.width,height=decoded.height;
   if(Math.max(width,height)>maxDimension){const scale=maxDimension/Math.max(width,height);width=Math.max(1,Math.round(width*scale));height=Math.max(1,Math.round(height*scale));}
   const canvas=document.createElement('canvas');
   let last:Blob|null=null,lastWidth=width,lastHeight=height;
   for(let attempt=0;attempt<10;attempt++){
     canvas.width=Math.max(72,Math.round(width));canvas.height=Math.max(72,Math.round(height));
-    const ctx=canvas.getContext('2d',{alpha:false});if(!ctx){bitmap.close();throw new Error('Image compression is unavailable in this browser.');}
-    ctx.drawImage(bitmap,0,0,canvas.width,canvas.height);
+    const ctx=canvas.getContext('2d',{alpha:false});if(!ctx){decoded.close();throw new Error('Image compression is unavailable in this browser.');}
+    ctx.drawImage(decoded.source,0,0,canvas.width,canvas.height);
     const quality=Math.max(.38,.88-attempt*.055);
     const blob=await new Promise<Blob|null>(resolve=>canvas.toBlob(resolve,'image/webp',quality));
-    if(blob){last=blob;lastWidth=canvas.width;lastHeight=canvas.height;if(blob.size<=maxBytes){bitmap.close();return {file:new File([blob],file.name.replace(/\.[^.]+$/,'.webp'),{type:'image/webp'}),width:canvas.width,height:canvas.height};}}
+    if(blob){last=blob;lastWidth=canvas.width;lastHeight=canvas.height;if(blob.size<=maxBytes){decoded.close();return {file:new File([blob],file.name.replace(/\.[^.]+$/,'.webp'),{type:'image/webp'}),width:canvas.width,height:canvas.height};}}
     width*=.84;height*=.84;
   }
-  bitmap.close();
+  decoded.close();
   if(last&&last.size<=Math.max(maxBytes,16*1024))return {file:new File([last],file.name.replace(/\.[^.]+$/,'.webp'),{type:'image/webp'}),width:lastWidth,height:lastHeight};
   throw new Error(`Image is still larger than ${Math.ceil(maxBytes/1024)} KB after compression. Choose a smaller image.`);
 }
