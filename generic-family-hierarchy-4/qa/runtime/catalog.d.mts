@@ -1,5 +1,4 @@
-//export type QaVerticalKind='family'|'housing-society'|'family-association'|'association'|'alumni'|'organization'|'business-trust'|'franchise'|'professional';
-export type QaVerticalKind='housing-society'|'family-association';
+export type QaVerticalKind='family'|'housing-society'|'family-association'|'association'|'alumni'|'organization'|'business-trust'|'franchise'|'professional';
 export type QaRole='owner'|'admin'|'member'|'invitee'|'tenantB';
 export interface QaVertical{kind:QaVerticalKind;label:string;context:string;entityKind:string;marker:string}
 export const VERTICALS:QaVertical[];

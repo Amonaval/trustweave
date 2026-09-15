@@ -72,3 +72,12 @@ Mission 2 is **implemented in source; staging execution pending**. It adds stric
 **Source evidence:** Mission 2 38/38, Mission 1 22/22, UX 23/23, runtime-hotfix 18/18, final-launch 24/24, Showcase 14/14, Residential 12/12, FCA0 27/27, E1→E10 PASS, HS0→HS6 PASS, syntax 344/0, migration audit 113 SQL PASS.
 
 A source audit during Mission 2 fixed the shared Activity composer member-type filter to use stable IDs (`memory`, `milestone`) instead of translated labels, and corrected the mobile surface helper to navigate via the actual mobile bottom bar/More sheet. The full browser run remains an environment gate, not waived.
+---
+
+## 2026-09-16 — Mission 2 handoff / Mission 3 authorized
+- Mission 2 slow regression is intentionally paused/concluded for now; evidence and tooling are preserved but full historical runtime certification is not a prerequisite for Mission 3.
+- Current launch focus is `housing-society` + `family-association` only.
+- Housing complaint runtime contract repair chronology now extends through migration 121.
+- Latest Housing UX follow-up exposes vendor complaint navigation and admin-visible committee/meeting state.
+- Next active mission: **Mission 3 — Shared Component / CSS Architecture**.
+- Mission 4 remains reserved for plugin/lazy-load/bundle architecture.

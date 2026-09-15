@@ -1,14 +1,20 @@
-# Mission 2 final cleanup — apply note
+# Housing minor UX follow-up
 
-Apply this overlay to the latest tree that already includes the Mission-2 two-vertical resume patch.
+Apply these files over the latest TrustWeave source tree.
 
-Then apply Supabase migrations through **118**. Migration 118 reasserts both the notification preference contract and the Housing complaint-routes RPC, and reloads PostgREST.
+## Changes
+- Service desk health now shows up to 3 open complaint titles and includes a **View complaints** action.
+- Housing admin Operations passes navigation into the service-desk card.
+- Governance admin Committee & Meetings now immediately shows:
+  - current/active committee term and assignments,
+  - scheduled meetings,
+  - empty-state guidance when a term exists but roles are not assigned.
+- Active/latest committee term auto-selects for role assignment after load/save.
 
-Mission 2 regression is intentionally **paused** after this cleanup. Do not continue the broad automated regression now. Preserve current QA evidence for later resumption.
+No database migration is required.
+Regression Mission 2 remains paused.
 
-Closed by this patch:
-- corrupt Playwright PNG fixture replaced with a valid browser-decodable PNG;
-- media compression gets an `<img>` fallback when `createImageBitmap()` rejects a valid image;
-- `get_my_notification_preferences()` live schema drift repaired;
-- `hs4_get_complaint_routes()` reasserted;
-- crawler exits on a time budget instead of reaching the Playwright hard timeout.
+Validation:
+- static syntax scan: 344 TS/TSX, 0 syntax errors
+- HS-4 governance gate: 28/28 PASS
+- residential flagship gate: 12/12 PASS
