@@ -1288,5 +1288,6 @@ export const hi:LocaleCatalog={
   E9CommentTxt:'टिप्पणी',
   E9NoPostsTxt:'अभी कोई समुदाय पोस्ट नहीं',
   E9NoPostsDescTxt:'उपयोगी अपडेट, फोटो और महत्वपूर्ण प्रसारण यहाँ दिखेंगे।',
-  AllCaughtUpTxt:"सब कुछ देखा जा चुका है"
+  AllCaughtUpTxt:"सब कुछ देखा जा चुका है",
+  AmenitiesTxt: "Amenities",
 };

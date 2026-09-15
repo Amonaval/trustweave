@@ -167,6 +167,7 @@ export default function NetworkApp() {
     [demoViewerId,setDemoViewerId]=useState<string | undefined>(undefined),
     [editingMember, setEditingMember] = useState<Member | undefined>();
   const [shellBusy,setShellBusy]=useState("");
+  const [desktopMoreOpen,setDesktopMoreOpen]=useState(false);
   const [platformFeatures,setPlatformFeatures]=useState<EffectiveFeatureMap>(()=>defaultFeatureMap(!isSupabaseConfigured)),
     [playgroundFeatures,setPlaygroundFeatures]=useState<EffectiveFeatureMap>(()=>defaultFeatureMap(true)),
     [experiencePreview,setExperiencePreview]=useState<ExperienceLevel|null>(null),
@@ -1328,7 +1329,7 @@ export default function NetworkApp() {
             onClick={() => navView === "tree" ? openFamilyView() : setView(navView)}
           >{icon} {label}</button>)}
           {(!demoPreview || !!auth) && hasFeature("core.profile") && <button className={`nav-btn ${selected?.id===auth?.member_id ? "active" : ""}`} onClick={openMyProfile}><UserRoundPen size={17}/> {tr("MeTxt")}</button>}
-          {desktopMoreSurfaces.length>0&&<details className={`family-nav-more ${desktopMoreSurfaces.some(surface=>surface.viewId===view)?"active":""}`}><summary><Layers3 size={17}/><span>{tr("MoreTxt")}</span></summary><div>{desktopMoreSurfaces.map(surface=><button data-testid={`qa-nav-${surface.viewId}`} key={surface.viewId} className={`nav-btn ${view===surface.viewId?"active":""}`} onClick={()=>setView(surface.viewId as View)}>{surfaceIcon(surface.iconToken)} {localizedSurfaceLabel(surface,appLocale)}</button>)}</div></details>}
+          {desktopMoreSurfaces.length>0&&<details open={desktopMoreOpen||desktopMoreSurfaces.some(surface=>surface.viewId===view)} onToggle={e=>setDesktopMoreOpen(e.currentTarget.open)} className={`family-nav-more ${desktopMoreSurfaces.some(surface=>surface.viewId===view)?"active":""}`}><summary><Layers3 size={17}/><span>{tr("MoreTxt")}</span></summary><div>{desktopMoreSurfaces.map(surface=><button data-testid={`qa-nav-${surface.viewId}`} key={surface.viewId} className={`nav-btn ${view===surface.viewId?"active":""}`} onClick={()=>setView(surface.viewId as View)}>{surfaceIcon(surface.iconToken)} {localizedSurfaceLabel(surface,appLocale)}</button>)}</div></details>}
           {hasFeature("core.guide")&&<button className={`nav-btn guide-nav ${view === "guide" ? "active" : ""}`} onClick={() => {setGuideKey("");setView("guide")}}><BookOpen size={17}/> {tr("ExploreGuideTxt")}</button>}
           {canAdmin && hasFeature("admin.center") && <div className="admin-nav-separator">
             <div className="sidebar-section-label">{tr("FamilyManagementTxt")}</div>
