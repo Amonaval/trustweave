@@ -176,7 +176,13 @@
     "validate:engage-e8": "node scripts/engagement-e8-media-lifecycle-gate.mjs && npm run validate:engage-e7",
     "validate:engage-e9": "node scripts/engagement-e9-community-posts-gate.mjs && npm run validate:engage-e8",
     "validate:stability-anonymous-login": "node scripts/stability-anonymous-login-gate.mjs",
-    "validate:engage-e10": "node scripts/engagement-e10-control-center-gate.mjs && npm run validate:engage-e9"
+    "validate:engage-e10": "node scripts/engagement-e10-control-center-gate.mjs && npm run validate:engage-e9",
+    "lint:trustweave:setup": "npm install --no-save --package-lock=false eslint@8.57.1 @typescript-eslint/parser@8 @typescript-eslint/eslint-plugin@8 eslint-plugin-react-hooks@5 @next/eslint-plugin-next@14.2.35",
+    "lint:trustweave": "eslint --no-eslintrc --config eslint.trustweave.cjs --ext .ts,.tsx app app-shell capabilities components core lib templates verticals TemplateNetworkApp.tsx",
+    "check:types:app": "tsc -p tsconfig.static.json --noEmit",
+    "validate:static": "npm run check:syntax:app && npm run lint:trustweave && npm run check:types:app",
+    "check:syntax:app": "node scripts/static-syntax-scan.mjs",
+    "lint:trustweave:strict": "eslint --no-eslintrc --config eslint.trustweave.cjs --ext .ts,.tsx --max-warnings=0 app app-shell capabilities components core lib templates verticals TemplateNetworkApp.tsx"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.54.0",
