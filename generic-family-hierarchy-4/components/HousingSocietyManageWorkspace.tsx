@@ -18,7 +18,7 @@ const SECTIONS:SectionDef[]=[
 
 export default function HousingSocietyManageWorkspace({active,onChange,content}:{active:HousingManageSection;onChange:(section:HousingManageSection)=>void;content:Record<HousingManageSection,ReactNode>}){
  const {t}=useLanguage();
- return <div className="hs-manage-workspace" data-testid="qa-hs-manage-workspace">
+ return <div className="hs-manage-workspace" data-testid="qa-hs-manage-workspace" data-qa-workspace="admin">
   <NetworkSectionHead kicker={<><Settings2 size={13}/> {t("HsManageWorkspaceTxt")}</>} title={t("HsManageWorkspaceTxt")} description={t("HsManageWorkspaceDescTxt")}/>
   <div className="hs-manage-tabs" role="tablist" aria-label={t("HsManageWorkspaceTxt")}>
    {SECTIONS.map(({id,label,icon:Icon})=><button key={id} role="tab" aria-selected={active===id} className={active===id?"active":""} onClick={()=>onChange(id)}><Icon size={15}/><span>{t(label)}</span></button>)}

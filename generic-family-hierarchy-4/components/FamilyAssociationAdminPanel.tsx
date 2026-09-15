@@ -33,7 +33,7 @@ export default function FamilyAssociationAdminPanel({entities,onNotify}:{entitie
   {id:"leadership" as const,label:"Leadership",description:"Committee roles and historical assignments.",icon:<History size={14}/>,badge:data.role_history.length},
   {id:"finance" as const,label:"Finance",description:"Collections, allocations and community entries.",icon:<BadgeIndianRupee size={14}/>,badge:data.finance.length},
  ];
- return <div data-testid="qa-fca-admin-panel" className="fca-admin-panel section-workspace" data-ui-progressive="workspace">
+ return <div data-testid="qa-fca-admin-panel" data-qa-workspace="admin" className="fca-admin-panel section-workspace" data-ui-progressive="workspace">
   <NetworkSectionHead kicker={<><ShieldCheck size={12}/> {xp2t("XP2Visible0056Txt")}</>} title={xp2t("XP2Visible0057Txt")} description={xp2t("XP2Visible0058Txt")}/>
   <div className="network-metric-grid"><NetworkMetric value={families.length} label={xp2t("XP2Visible0059Txt")}/><NetworkMetric value={people.length} label={xp2t("XP2Visible0060Txt")}/><NetworkMetric value={data.memberships.filter((m:any)=>m.status==="active").length} label={xp2t("XP2Visible0030Txt")}/><NetworkMetric value={`₹${totalCollected.toLocaleString("en-IN")}`} label={xp2t("XP2Visible0061Txt")}/></div>
   <ResponsiveSectionTabs options={sections} active={section} onChange={setSection} label="Community administration"/>

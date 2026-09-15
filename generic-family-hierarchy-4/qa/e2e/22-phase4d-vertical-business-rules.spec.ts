@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {login} from '../lib/login';
+import {expectAdminWorkspace,openSurface} from '../lib/mission2-regression';
 import {activate,authenticatedClient,seedState} from '../lib/role-client';
 
 const fatal=/application error|unhandled runtime error|internal server error|typeerror:|referenceerror:/i;
@@ -15,15 +16,15 @@ test.describe.serial('Phase-4D vertical-specific workflow and business-rule cert
   });
 
   test('Housing Society is unit/resident-centric and exposes official property operations only through its society admin surface',async({page})=>{
-    await ownerOpen(page,'housing-society');await page.getByTestId('qa-nav-directory').click();await expect(page.getByTestId('qa-hs-directory-controls')).toBeVisible();await expect(page.getByTestId('qa-fca-directory-controls')).toHaveCount(0);await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-hs-core-admin')).toBeVisible({timeout:20_000});await expect(page.getByTestId('qa-fca-admin-panel')).toHaveCount(0);await expect(page.locator('body')).not.toContainText(fatal);
+    await ownerOpen(page,'housing-society');await page.getByTestId('qa-nav-directory').click();await expect(page.getByTestId('qa-hs-directory-controls')).toBeVisible();await expect(page.getByTestId('qa-fca-directory-controls')).toHaveCount(0);await openSurface(page,'admin');await expect(page.getByTestId('qa-hs-core-admin')).toBeVisible({timeout:20_000});await expect(page.getByTestId('qa-fca-admin-panel')).toHaveCount(0);await expect(page.locator('body')).not.toContainText(fatal);
   });
 
   test('Family Association keeps Family/Representative/Member directory modes and annual community administration distinct',async({page})=>{
-    await ownerOpen(page,'family-association');await page.getByTestId('qa-nav-directory').click();await expect(page.getByTestId('qa-fca-directory-controls')).toBeVisible();for(const mode of ['all','families','representatives','members'])await expect(page.getByTestId(`qa-fca-directory-mode-${mode}`)).toBeVisible();await expect(page.getByTestId('qa-hs-directory-controls')).toHaveCount(0);await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-fca-admin-panel')).toBeVisible({timeout:20_000});await expect(page.getByTestId('qa-hs-core-admin')).toHaveCount(0);await expect(page.locator('body')).not.toContainText(fatal);
+    await ownerOpen(page,'family-association');await page.getByTestId('qa-nav-directory').click();await expect(page.getByTestId('qa-fca-directory-controls')).toBeVisible();for(const mode of ['all','families','representatives','members'])await expect(page.getByTestId(`qa-fca-directory-mode-${mode}`)).toBeVisible();await expect(page.getByTestId('qa-hs-directory-controls')).toHaveCount(0);await openSurface(page,'admin');await expect(page.getByTestId('qa-fca-admin-panel')).toBeVisible({timeout:20_000});await expect(page.getByTestId('qa-hs-core-admin')).toHaveCount(0);await expect(page.locator('body')).not.toContainText(fatal);
   });
 
   test('generic Association remains household-centric and does not inherit Family Association operating controls',async({page})=>{
-    const s=await ownerOpen(page,'association');await page.getByTestId('qa-nav-directory').click();await expect(page.getByTestId('qa-fca-directory-controls')).toHaveCount(0);await expect(page.getByTestId('qa-hs-directory-controls')).toHaveCount(0);await expect(page.locator('.entity-kind-pill').filter({hasText:'household'}).first()).toBeVisible({timeout:20_000});await expect(page.locator('body')).toContainText(s.networks.association.marker);await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-fca-admin-panel')).toHaveCount(0);await expect(page.locator('body')).not.toContainText(fatal);
+    const s=await ownerOpen(page,'association');await page.getByTestId('qa-nav-directory').click();await expect(page.getByTestId('qa-fca-directory-controls')).toHaveCount(0);await expect(page.getByTestId('qa-hs-directory-controls')).toHaveCount(0);await expect(page.locator('.entity-kind-pill').filter({hasText:'household'}).first()).toBeVisible({timeout:20_000});await expect(page.locator('body')).toContainText(s.networks.association.marker);await openSurface(page,'admin');await expect(page.getByTestId('qa-fca-admin-panel')).toHaveCount(0);await expect(page.locator('body')).not.toContainText(fatal);
   });
 
   test('Alumni retains cohort/program directory semantics and no Family tree navigation',async({page})=>{

@@ -57,6 +57,12 @@ export async function openSurface(page:Page,id:string){
  await expect(page.locator(`[data-testid="qa-nav-${id}"]:visible`).first(),`surface ${id} should be reachable`).toBeVisible({timeout:10_000});
 }
 
+export async function expectAdminWorkspace(page:Page){
+ const workspace=page.locator('[data-qa-workspace="admin"]:visible').first();
+ await expect(workspace,'active vertical should expose its admin workspace').toBeVisible({timeout:15_000});
+ return workspace;
+}
+
 export async function expectPersistedText(page:Page,text:string){
  await expect(page.getByText(text,{exact:false}).first()).toBeVisible({timeout:20_000});
  await page.reload({waitUntil:'domcontentloaded'});await userPause(page,1.2);

@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {createClient} from '@supabase/supabase-js';
 import {login} from '../lib/login';
+import {expectAdminWorkspace,openSurface} from '../lib/mission2-regression';
 import {activate,authenticatedClient,seedState} from '../lib/role-client';
 import {assertMutationAllowed} from '../lib/safety';
 
@@ -121,7 +122,7 @@ test.describe.serial('Phase-2 representative capability certification',()=>{
 
   test('accessibility baseline: Family owner admin has no serious/critical axe findings',async({page})=>{
     const s=seedState();await activate('owner',s.networks.family.id);await login(page,'owner');
-    await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-admin-center')).toBeVisible();
+    await openSurface(page,'admin');await expectAdminWorkspace(page);
     const result=await axe(page);expect(seriousOrCritical(result),JSON.stringify(result.violations,null,2)).toEqual([]);
   });
 

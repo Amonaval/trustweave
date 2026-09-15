@@ -1,14 +1,15 @@
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';import path from 'node:path';import * as XLSX from 'xlsx';
-import {login} from '../lib/login';import {activate,authenticatedClient,seedState} from '../lib/role-client';
+import {login} from '../lib/login';
+import {expectAdminWorkspace,openSurface} from '../lib/mission2-regression';import {activate,authenticatedClient,seedState} from '../lib/role-client';
 import {isNetworkBackup} from '../../core/export/contracts';
 import {getImportSchema} from '../../core/import/registry';
 import {createImportWorkbook} from '../../core/import/workbook';
 
 const fatal=/application error|unhandled runtime error|internal server error/i;
 
-async function openFamilyAdmin(page:any){await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-admin-center')).toBeVisible({timeout:20_000})}
-async function openOrganizationAdmin(page:any){await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-guided-import-organization').first()).toBeVisible({timeout:20_000})}
+async function openFamilyAdmin(page:any){await openSurface(page,'admin');await expectAdminWorkspace(page)}
+async function openOrganizationAdmin(page:any){await openSurface(page,'admin');await expect(page.getByTestId('qa-guided-import-organization').first()).toBeVisible({timeout:20_000})}
 async function expectImportReviewOrThrow(root:any){const review=root.getByTestId('qa-guided-import-review'),message=root.getByTestId('qa-guided-import-message');await expect.poll(async()=>await review.count()||await message.count(),{timeout:20_000,message:'guided import must produce review or an explicit read/parser error'}).toBeGreaterThan(0);if(await message.count())throw new Error(`Guided import read/parser error: ${await message.first().innerText()}`);await expect(review).toBeVisible();return review}
 
 test.describe('Phase-4B data integrity, import/export and recovery certification',()=>{

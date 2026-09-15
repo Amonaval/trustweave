@@ -9,6 +9,13 @@ ok('Mission 2 closure and automation runbook exist',fs.existsSync('MISSION-2-SLO
 ok('Mission 3 handoff is recorded but gated on Mission 2 runtime',fs.existsSync('NEXT-SESSION-MISSION-3-SHARED-COMPONENT-ARCHITECTURE.md')&&read('NEXT-SESSION-MISSION-3-SHARED-COMPONENT-ARCHITECTURE.md').includes('Mission 2 has been executed'));
 ok('roadmap records Mission 2 implementation before Mission 3',read('ROADMAP.md').includes('Mission 2 — Slow Full Product User Regression — IMPLEMENTED IN SOURCE')&&read('ROADMAP.md').includes('Mission 3 — Shared UI / Business / Technical Component Architecture — NEXT'));
 ok('Playwright remains globally serial',cfg.includes('fullyParallel:false')&&cfg.includes('workers:1'));
+ok('certification does not silently reuse a stale dev server',cfg.includes("reuseExistingServer:process.env.QA_REUSE_SERVER==='true'"));
+ok('all vertical admin workspaces expose one shared QA contract',[read('components/FamilyAdminCenter.tsx'),read('components/HousingSocietyManageWorkspace.tsx'),read('components/FamilyAssociationAdminPanel.tsx'),read('components/AlumniNetworkApp.tsx'),read('components/TemplateNetworkApp.tsx')].every(x=>x.includes('data-qa-workspace="admin"')));
+ok('shared QA admin helper targets the cross-vertical workspace contract',helper.includes('expectAdminWorkspace')&&helper.includes('[data-qa-workspace="admin"]:visible'));
+ok('historical QA no longer clicks hidden admin navigation directly',!fs.readdirSync('qa/e2e').filter(f=>f.endsWith('.ts')).some(f=>read(`qa/e2e/${f}`).includes("getByTestId('qa-nav-admin').click()")));
+ok('historical cross-vertical QA no longer assumes Family-only qa-admin-center',!['20-vertical-smoke-matrix.spec.ts','30-authorization-matrix.spec.ts','55-vertical-capability-matrix.spec.ts'].some(f=>read(`qa/e2e/${f}`).includes('qa-admin-center')));
+ok('login helper keeps the simple proven auth flow',read('qa/lib/login.ts').includes("waitUntil:'commit'")&&read('qa/lib/login.ts').includes("getByTestId('qa-open-auth')")&&!read('qa/lib/login.ts').includes('ensureAuthForm'));
+
 ok('dedicated mobile Chromium project exists',cfg.includes("name:'chromium-mobile'")&&cfg.includes("devices['Pixel 5']"));
 ok('slow user pace defaults to 700ms',helper.includes("QA_USER_PACE_MS||700"));
 ok('slow crawler pace is configurable',crawler.includes('QA_CRAWL_PACE_MS')&&crawler.includes('waitForTimeout(pace)'));

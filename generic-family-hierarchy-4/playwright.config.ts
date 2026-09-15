@@ -13,5 +13,5 @@ export default defineConfig({
   {name:'firefox-smoke',testMatch:/90-cross-browser-smoke\.spec\.ts/,use:{...devices['Desktop Firefox']}},
   {name:'webkit-smoke',testMatch:/90-cross-browser-smoke\.spec\.ts/,use:{...devices['Desktop Safari']}}
  ],
- webServer:process.env.QA_EXTERNAL_SERVER==='true'?undefined:{command:'npm run dev',url:baseURL,reuseExistingServer:true,timeout:120_000}
+ webServer:process.env.QA_EXTERNAL_SERVER==='true'?undefined:{command:'npm run dev',url:baseURL,reuseExistingServer:process.env.QA_REUSE_SERVER==='true',timeout:120_000}
 });

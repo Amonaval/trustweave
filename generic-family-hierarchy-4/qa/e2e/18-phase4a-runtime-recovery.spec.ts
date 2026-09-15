@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {login} from '../lib/login';
+import {expectAdminWorkspace,openSurface} from '../lib/mission2-regression';
 import {activate,seedState} from '../lib/role-client';
 
 const rawLeak=/Unhandled Runtime Error|Application error|SQLSTATE|postgres(?:ql)? error|stack trace|TypeError:|ReferenceError:/i;
@@ -31,7 +32,7 @@ test.describe.serial('Phase-4A runtime robustness, recovery and failure handling
     const s=seedState();const issues=watchFatalRuntime(page);
     await activate('owner',s.networks.family.id);await login(page,'owner');
     await expectHealthyShell(page,'family');
-    await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-admin-center')).toBeVisible();
+    await openSurface(page,'admin');await expectAdminWorkspace(page);
     await page.reload({waitUntil:'commit'});
     await expectHealthyShell(page,'family');
     await expect(page.getByTestId('qa-nav-admin')).toBeVisible();

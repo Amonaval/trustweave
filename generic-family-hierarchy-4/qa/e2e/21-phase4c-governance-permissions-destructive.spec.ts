@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {login} from '../lib/login';
+import {expectAdminWorkspace,openSurface} from '../lib/mission2-regression';
 import {activate,authenticatedClient,seedState} from '../lib/role-client';
 import {assertMutationAllowed} from '../lib/safety';
 
@@ -24,7 +25,7 @@ async function assertNetworkStillActive(client:any,networkId:string){
 test.describe.serial('Phase-4C governance, permissions and destructive-action safety certification',()=>{
   test('Family destructive controls require owner + exact name and confirmation cancellation performs zero mutation',async({page})=>{
     const s=seedState(),family=s.networks.family;const owner=await authenticatedClient('owner');await setActive(owner.client,family.id);await login(page,'owner');
-    await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-admin-center')).toBeVisible();await page.getByTestId('qa-admin-tab-danger').click();
+    await openSurface(page,'admin');await expectAdminWorkspace(page);await page.getByTestId('qa-admin-tab-danger').click();
     const input=page.getByTestId('qa-admin-danger-confirm'),archive=page.getByTestId('qa-admin-archive'),del=page.getByTestId('qa-admin-delete');
     await expect(archive).toBeDisabled();await expect(del).toBeDisabled();await input.fill(`${family.name} wrong`);await expect(archive).toBeDisabled();await expect(del).toBeDisabled();await input.fill(family.name);await expect(archive).toBeEnabled();await expect(del).toBeEnabled();
     let archiveCalls=0,purgeCalls=0;page.on('request',r=>{if(r.url().includes('/rest/v1/rpc/archive_owned_network'))archiveCalls++;if(r.url().includes(`/api/v1/networks/${family.id}/purge`))purgeCalls++});
@@ -33,17 +34,17 @@ test.describe.serial('Phase-4C governance, permissions and destructive-action sa
   });
 
   test('Family admin can enter danger zone but can never enable owner-only archive/delete controls',async({page})=>{
-    const s=seedState(),family=s.networks.family;await activate('admin',family.id);await login(page,'admin');await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-admin-center')).toBeVisible();await page.getByTestId('qa-admin-tab-danger').click();
+    const s=seedState(),family=s.networks.family;await activate('admin',family.id);await login(page,'admin');await openSurface(page,'admin');await expectAdminWorkspace(page);await page.getByTestId('qa-admin-tab-danger').click();
     await page.getByTestId('qa-admin-danger-confirm').fill(family.name);await expect(page.getByTestId('qa-admin-archive')).toBeDisabled();await expect(page.getByTestId('qa-admin-delete')).toBeDisabled();await expect(page.locator('body')).not.toContainText(fatal);
   });
 
   test('Organization owner sees role-management plus exact-name guarded destructive controls',async({page})=>{
-    const s=seedState(),org=s.networks.organization;await activate('owner',org.id);await login(page,'owner');await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-product-lifecycle')).toBeVisible();
+    const s=seedState(),org=s.networks.organization;await activate('owner',org.id);await login(page,'owner');await openSurface(page,'admin');await expect(page.getByTestId('qa-product-lifecycle')).toBeVisible();
     const confirm=page.getByTestId('qa-product-lifecycle-confirm');await confirm.fill(`${org.name} wrong`);await expect(page.getByTestId('qa-product-archive')).toBeDisabled();await expect(page.getByTestId('qa-product-delete')).toBeDisabled();await confirm.fill(org.name);await expect(page.getByTestId('qa-product-archive')).toBeEnabled();await expect(page.getByTestId('qa-product-delete')).toBeEnabled();await expect(page.getByTestId(`qa-product-member-role-${s.users.admin.id}`)).toBeVisible();await expect(page.getByTestId(`qa-product-member-role-${s.users.member.id}`)).toBeVisible();await expect(page.locator('body')).not.toContainText(fatal);
   });
 
   test('Organization admin gets scoped governance but no owner-only role/archive/delete controls',async({page})=>{
-    const s=seedState(),org=s.networks.organization;await activate('admin',org.id);await login(page,'admin');await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-product-lifecycle')).toBeVisible();await expect(page.getByTestId('qa-product-leave')).toBeVisible();await expect(page.getByTestId('qa-product-archive')).toHaveCount(0);await expect(page.getByTestId('qa-product-delete')).toHaveCount(0);await expect(page.getByTestId(`qa-product-member-role-${s.users.member.id}`)).toHaveCount(0);await expect(page.getByTestId(`qa-product-member-remove-${s.users.member.id}`)).toBeVisible();await expect(page.getByTestId(`qa-product-member-remove-${s.users.owner.id}`)).toHaveCount(0);await expect(page.locator('body')).not.toContainText(fatal);
+    const s=seedState(),org=s.networks.organization;await activate('admin',org.id);await login(page,'admin');await openSurface(page,'admin');await expect(page.getByTestId('qa-product-lifecycle')).toBeVisible();await expect(page.getByTestId('qa-product-leave')).toBeVisible();await expect(page.getByTestId('qa-product-archive')).toHaveCount(0);await expect(page.getByTestId('qa-product-delete')).toHaveCount(0);await expect(page.getByTestId(`qa-product-member-role-${s.users.member.id}`)).toHaveCount(0);await expect(page.getByTestId(`qa-product-member-remove-${s.users.member.id}`)).toBeVisible();await expect(page.getByTestId(`qa-product-member-remove-${s.users.owner.id}`)).toHaveCount(0);await expect(page.locator('body')).not.toContainText(fatal);
   });
 
   test('Organization member receives no admin governance surface',async({page})=>{
@@ -80,7 +81,7 @@ test.describe.serial('Phase-4C governance, permissions and destructive-action sa
   });
 
   test('member-removal action disables while pending and emits only one governed mutation request',async({page})=>{
-    const s=seedState(),org=s.networks.organization;const owner=await authenticatedClient('owner');await setActive(owner.client,org.id);await login(page,'owner');await page.getByTestId('qa-nav-admin').click();await expect(page.getByTestId('qa-product-lifecycle')).toBeVisible();
+    const s=seedState(),org=s.networks.organization;const owner=await authenticatedClient('owner');await setActive(owner.client,org.id);await login(page,'owner');await openSurface(page,'admin');await expect(page.getByTestId('qa-product-lifecycle')).toBeVisible();
     const row=page.getByTestId(`qa-product-member-${s.users.member.id}`),remove=page.getByTestId(`qa-product-member-remove-${s.users.member.id}`);await expect(row).toBeVisible();await expect(remove).toBeVisible();
     let calls=0;const pattern='**/rest/v1/rpc/remove_productized_network_member';await page.route(pattern,async route=>{calls++;await new Promise(r=>setTimeout(r,500));await route.fulfill({status:200,contentType:'application/json',body:'null'})});
     page.once('dialog',d=>d.accept());await remove.click();await expect.poll(()=>calls,{timeout:2_000}).toBe(1);await expect(remove).toBeDisabled();await page.waitForTimeout(650);expect(calls).toBe(1);await page.unroute(pattern);await expect(row).toBeVisible();await expect(remove).toBeEnabled();

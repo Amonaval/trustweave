@@ -1,5 +1,6 @@
 import {test,expect,Page} from '@playwright/test';
 import {login} from '../lib/login';
+import {expectAdminWorkspace} from '../lib/mission2-regression';
 import {seedState} from '../lib/role-client';
 
 const fatal=/Unhandled Runtime Error|Application error|TypeError:|ReferenceError:/i;
@@ -26,7 +27,7 @@ test('Free-tier owner POC: Family admin + Housing Society shell with one login',
   const admin=page.getByTestId('qa-nav-admin');
   await expect(admin).toBeVisible();
   await admin.click();
-  await expect(page.getByTestId('qa-admin-center')).toBeVisible();
+  await expectAdminWorkspace(page);
 
   await openSeededNetwork(page,'housing-society',s.networks['housing-society'].id);
   await expect(page.locator('body')).not.toContainText(fatal);
