@@ -82,3 +82,4 @@ The immediately superseded pre-orchestration living docs are preserved at:
 ## Final launch mission archive
 - `archive/docs/missions/launch/NEXT-SESSION-FINAL-LAUNCH-MISSION.md` — binding final pre-launch engineering brief.
 - `archive/docs/missions/launch/NEXT-MISSION-DISCOVERY-PRODUCT-EXPLORATION.md` and `NEXT-SESSION-DISCOVERY-PRODUCT-EXPLORATION.md` — superseded Discovery handoffs preserved as historical evidence.
+- `archive/final-launch/NEXT-SESSION-FINAL-RUNTIME-CERTIFICATION-pre-hotfix.md` — superseded by the seeded-network runtime-hotfix retest handoff.

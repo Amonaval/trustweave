@@ -2,7 +2,7 @@
 
 **Updated:** 2026-09-15
 
-TrustWeave is now in **final launch-candidate closure** for controlled real-world showcase. The product has three strongest flagship experiences — Family, Family Community / Cultural Association, and Residential / Housing Society — on top of the shared private Network OS and E1–E10 engagement stack.
+TrustWeave is now in **launch runtime-hotfix closure** after the first real persisted seeded-network rehearsal. The product has three strongest flagship experiences — Family, Family Community / Cultural Association, and Residential / Housing Society — on top of the shared private Network OS and E1–E10 engagement stack.
 
 ## Launch-candidate state
 - **Anonymous Discovery / Product Exploration:** implemented. A visitor can understand TrustWeave before sign-in, choose Housing Society / Family Community / member-oriented journeys, open Playground, and use a public-safe Product Guide with Simple / Detailed / Deep disclosure.
@@ -19,8 +19,8 @@ TrustWeave is now in **final launch-candidate closure** for controlled real-worl
 - E10 closure + E1→E10 source chain — **PASS**.
 - HS0→HS6 — **PASS**.
 - FCA0 — **27/27 PASS**.
-- Static syntax scan — **341 TS/TSX files, 0 syntax errors**.
-- Database migration static audit — **111 SQL files, PASS**.
+- Static syntax scan — **344 TS/TSX files, 0 syntax errors**.
+- Database migration static audit — **112 SQL files, PASS**.
 
 ## Not yet certified in this environment
 This candidate is **source-closed but not yet runtime-certified for launch**. The supplied FULL baseline intentionally contains no `node_modules`, and this execution environment cannot resolve `registry.npmjs.org` (`EAI_AGAIN`), so the required dependency-backed checks cannot be honestly marked PASS here:
@@ -29,10 +29,22 @@ This candidate is **source-closed but not yet runtime-certified for launch**. Th
 - `npm run build`
 - headed Playwright flagship walkthroughs
 - mobile viewport flagship walkthroughs
-- fresh persisted Residential + Family Community seed certification against an approved staging Supabase project with migration 113 applied
+- fresh persisted Residential + Family Community seed certification against an approved staging Supabase project with migrations through 114 applied
 
 ## Release decision
-The repository may be used as the **exact launch-candidate baseline** for final runtime certification. Do not call it production-launch-ready until the checklist in `RUNTIME-VERIFICATION-CHECKLIST.md` is fully green.
+The new runtime-hotfix FULL ZIP is the **exact baseline** for targeted retest and final runtime certification. Do not call it production-launch-ready until the checklist in `RUNTIME-VERIFICATION-CHECKLIST.md` is fully green.
 
 ## Next mission
-Run **Final Runtime Certification & Pilot Go/No-Go** only. Do not add unrelated features. See `NEXT-SESSION-FINAL-RUNTIME-CERTIFICATION.md`.
+Run **Final Runtime Certification & Pilot Go/No-Go** only. Do not add unrelated features. See `NEXT-SESSION-RUNTIME-HOTFIX-RETEST.md`.
+
+## 2026-09-15 — Seeded-network rehearsal hotfix
+The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
+
+Housing Society UX was also restructured after real laptop use showed unacceptable information density: Manage Society now renders one categorized workspace at a time; Finance, Governance and Security have focused subsections; Housing More is grouped; and Appearance is reduced to a single **Classic / Modern / Dark** selector. These are launch-hardening changes, not new product scope.
+
+**Runtime status:** source gates are green, but this hotfix is not considered proven until migration 114 is applied to the real/staging database and the reported operations/funds/voting/mentions/media paths are retested.
+
+
+
+## 2026-09-15 — Cross-vertical progressive-disclosure closure
+The runtime hotfix UX lesson is now a permanent product-wide rule, not a Housing exception. Family, Family Community / Association, Alumni, Housing and shared productized Network OS surfaces use focused workspaces (desktop tabs / mobile selectors), card-grid entry points and accordions instead of indefinitely appending peer operational sections. Shared Funds, Voting, Activity/Groups, Media Management, Family Participation and multi-network tools are included. `npm run validate:ux-progressive` passes **23/23** and is a release source gate.

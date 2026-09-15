@@ -404,3 +404,14 @@ A new released vertical is not UX-complete merely because the domain workflow wo
 
 ## Permanent mission DOCX rule
 Every major mission (or intentionally grouped small-mission batch) must include a human-readable `.docx` mission document before closure. Follow `MISSION-DOCUMENTATION-RULE.md`. Markdown remains the technical source of truth; the DOCX is the durable human-readable record.
+
+## Permanent UI density rule
+
+1. Do not implement product breadth by continuously appending large sibling blocks down one page.
+2. When a route contains more than three substantial peer work areas, introduce progressive disclosure before adding another: **tabs / mobile selector**, a focused submenu/workspace, accordions for optional detail, or a card-grid entry layer.
+3. Admin/Manage surfaces must be task-oriented workspaces. Only the active work area should render when inactive areas contain forms, tables or complex controls.
+4. Desktop tabs must wrap or remain contained; never require a horizontal scrollbar for core navigation. On narrow/mobile layouts, use a selector, sheet or equivalent compact control.
+5. Card grids are for summaries and entry points. Do not make each card expand into another uncontrolled vertical stack on the same page.
+6. Long data collections should use filtering, caps/pagination or contained table/list regions. Do not confuse data scrolling with feature navigation.
+7. This rule is cross-vertical: Family, Family Community / Association, Housing Society, Alumni and every current/future productized vertical must follow it.
+8. `npm run validate:ux-progressive` is a release source gate. New shared or vertical UX work must preserve it.

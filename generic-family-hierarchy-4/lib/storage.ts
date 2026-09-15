@@ -35,8 +35,8 @@ async function activeStoragePolicy(){
   if(!supabase) throw new Error('Photo storage is available only in shared mode.');
   const {data,error}=await supabase.rpc('get_my_networks');
   if(error) throw error;
-  const n=(data||[]).find((x:any)=>x.is_active) || (data||[])[0];
-  if(!n) throw new Error('Choose an active network before uploading media.');
+  const n=(data||[]).find((x:any)=>x.is_active);
+  if(!n) throw new Error('Select the network you are working in before uploading media.');
   return {networkId:String(n.network_id),enabled:!!n.photo_upload_enabled,maxBytes:Number(n.photo_max_bytes||DEFAULT_MAX_BYTES)};
 }
 

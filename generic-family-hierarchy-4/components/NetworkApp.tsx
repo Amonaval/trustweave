@@ -95,6 +95,7 @@ import NxReviewPanel from "./NxReviewPanel";
 import {useNxEnabled} from "../lib/nx-review";
 import MyNetworksHome from "./MyNetworksHome";
 import NetworkSwitcher from "./shared/NetworkSwitcher";
+import ResponsiveSectionTabs from "./shared/ResponsiveSectionTabs";
 import FamilyAdminCenter from "./FamilyAdminCenter";
 import FamilyIntakeAdmin from "./FamilyIntakeAdmin";
 import QuickFamilyStart from "./QuickFamilyStart";
@@ -125,6 +126,7 @@ const ImportModal = dynamic(() => import("./ImportModal"), { ssr: false });
 const repository = getNetworkRepository();
 type View = "home" | "intelligence" | "tree" | "directory" | "map" | "community" | "umbrella" | "timeline" | "participation" | "admin" | "founder" | "guide";
 type Visibility = "public" | "member" | "admin";
+type FamilyAdvancedSection = "health" | "privacy" | "governance" | "data";
 const esc = (v: string) => `"${String(v ?? "").replaceAll('"', '""')}"`;
 const uuid = () =>
   globalThis.crypto?.randomUUID?.() ||
@@ -168,6 +170,7 @@ export default function NetworkApp() {
     [demoViewerId,setDemoViewerId]=useState<string | undefined>(undefined),
     [editingMember, setEditingMember] = useState<Member | undefined>();
   const [shellBusy,setShellBusy]=useState("");
+  const [familyAdvancedSection,setFamilyAdvancedSection]=useState<FamilyAdvancedSection>("health");
   const [desktopMoreOpen,setDesktopMoreOpen]=useState(false);
   const [platformFeatures,setPlatformFeatures]=useState<EffectiveFeatureMap>(()=>defaultFeatureMap(!isSupabaseConfigured)),
     [playgroundFeatures,setPlaygroundFeatures]=useState<EffectiveFeatureMap>(()=>defaultFeatureMap(true)),
@@ -1679,6 +1682,13 @@ export default function NetworkApp() {
               </div>
               {network && <FamilyAdminCenter network={network} members={members} relationships={relationships} memberCount={members.length} relationshipCount={relationships.length} changeRequests={changeRequests} onSaveSettings={updateLivingSetting} onOpenInvitations={()=>setShowInvitation(true)} onOpenParticipation={()=>setView("participation")} onOpenFamilyIntake={hasFeature("contribute.branch_intake")?()=>setShowFamilyIntake(true):undefined} onExportCsv={exportCsv} onExportJson={exportJson} onPrint={()=>window.print()} onNotify={notify} onFeatureSettingsChanged={refreshFeatureState}/>}
               <details className="legacy-admin-details"><summary>{tr("AdvancedAdministrationAndDiagnosticsTxt")}</summary>
+              <ResponsiveSectionTabs label="Advanced family administration" active={familyAdvancedSection} onChange={setFamilyAdvancedSection} options={[
+                {id:"health",label:"Health & settings",description:"Family health, integrity settings and living-network controls.",icon:<ShieldCheck size={14}/>},
+                {id:"privacy",label:"Privacy & integrity",description:"Public-page controls and data-integrity diagnostics.",icon:<Eye size={14}/>},
+                {id:"governance",label:"Governance",description:"Change requests, audit history and invitations.",icon:<ClipboardCheck size={14}/>,badge:changeRequests.length},
+                {id:"data",label:"Data & submissions",description:"Analytics, import/export and pending profile submissions.",icon:<Database size={14}/>,badge:submissions.filter(s=>s.status==="pending").length},
+              ]}/>
+              {familyAdvancedSection==="health"&&<>
               <div className="admin-grid">
                 <div className="card stat">
                   <div className="stat-label">{tr("MembersTxt")}</div>
@@ -1753,6 +1763,8 @@ export default function NetworkApp() {
                   </label>
                 )}
               </div>
+              </>}
+              {familyAdvancedSection==="privacy"&&<>
               <div className="card governance-card">
                 <div className="governance-head">
                   <div>
@@ -1847,6 +1859,8 @@ export default function NetworkApp() {
                     {tr("TheCurrentHierarchyPassedTheP41Txt")}{" "}</div>
                 )}
               </div>
+              </>}
+              {familyAdvancedSection==="governance"&&<>
               <div className="card governance-card">
                 <div className="governance-head">
                   <div>
@@ -1910,6 +1924,8 @@ export default function NetworkApp() {
                     {tr("CreateInvitationLinkTxt")}{" "}</button>
                 </div>
               </div>
+              </>}
+              {familyAdvancedSection==="data"&&<>
               <AnalyticsPanel onNotify={notify} />
               <div className="card governance-card">
                 <h3 style={{ marginTop: 0 }}>{tr("SharedDataTxt")}</h3>
@@ -1972,6 +1988,7 @@ export default function NetworkApp() {
                   </div>
                 ))}
               </div>
+              </>}
               </details>
             </section>
           )}

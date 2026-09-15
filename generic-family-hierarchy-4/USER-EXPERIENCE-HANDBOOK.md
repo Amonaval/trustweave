@@ -457,3 +457,34 @@ The anonymous first experience now follows **Understand → choose a situation �
 The persisted demo-data experience is intentionally an Admin operation, not a public shortcut. It exposes source, dry-run counts, reference errors, exact-network confirmation, authorization state, commit progress and completion result. Safety is visible rather than hidden in implementation.
 
 Runtime rehearsal must still cover desktop and mobile, topbar/More behavior, loading/close/back interactions, exact notification deep links, role permissions, private media and cross-network isolation before launch is declared.
+
+## 2026-09-15 — Seeded-network rehearsal hotfix
+The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
+
+Housing Society UX was also restructured after real laptop use showed unacceptable information density: Manage Society now renders one categorized workspace at a time; Finance, Governance and Security have focused subsections; Housing More is grouped; and Appearance is reduced to a single **Classic / Modern / Dark** selector. These are launch-hardening changes, not new product scope.
+
+**Runtime status:** source gates are green, but this hotfix is not considered proven until migration 114 is applied to the real/staging database and the reported operations/funds/voting/mentions/media paths are retested.
+
+### Housing Society density rule
+Administrative capability must not be expressed as one endlessly stacked page. On Housing Society surfaces, use task-oriented workspaces/subsections and render only the selected area. Desktop may use compact tabs; mobile should use a selector/sheet where that reduces horizontal pressure. A user should be able to answer “where do I go for this task?” before seeing individual forms.
+
+Appearance is a preference, not a product module. Keep the selector compact and limit it to clearly differentiated themes rather than several near-identical variants.
+
+
+## Cross-vertical progressive-disclosure rule — permanent
+
+The Housing rehearsal exposed a general product rule, not a Housing-only exception. **Family, Family Community / Association, Alumni, Housing Society and every productized Network OS vertical must avoid presenting peer capabilities as an endlessly appended vertical stack.** The objective is not to eliminate natural page scrolling; it is to keep a user oriented and to avoid making navigation depend on scrolling through unrelated operational blocks.
+
+Use this hierarchy by default:
+
+- **Tabs on desktop / selector on mobile** for peer work areas that a user switches between frequently.
+- **Accordions / details** for advanced, optional, explanatory or rarely used material.
+- **Card grids** for overview, summaries and entry points; a card should open a focused work area rather than reveal another long stack below it.
+- **Submenus / workspaces** for Admin, Manage, Finance, Governance, Security, Data, Settings and other capability-dense surfaces.
+- **Contained lists/tables** with focused filters, limits or pagination when data volume—not feature count—is the source of length.
+
+A single screen should normally expose **one primary operational task area at a time**. More than three substantial sibling modules on the same route is a trigger to introduce a workspace/navigation layer. Mobile must not replace vertical-scroll overload with horizontal-scroll overload; peer tabs collapse to a select/sheet when space is constrained.
+
+**Do not append a new peer block to the bottom of an already long operational page.** First decide whether the capability belongs in an existing workspace section, a new tab/submenu, an accordion, or a separate focused route. This rule applies to new feature work and to all verticals, not only Housing Society.
+
+The reusable `ResponsiveSectionTabs` primitive and `section-workspace` layout are the default implementation for shared/productized surfaces. Vertical-specific primitives are allowed when domain interaction genuinely differs, but they must preserve the same progressive-disclosure outcome.

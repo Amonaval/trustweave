@@ -210,6 +210,7 @@ ${n.name}`);if(typed!==n.name)return;if(!window.confirm(`Permanently delete arch
   </>}
 
   {section!=="overview"&&<section className="nx8-journey-shell">
+   <label className="nx8-tool-select"><span>{tr("NX8ChooseStepTxt")}</span><select value={activeTool||""} onChange={e=>setActiveTool(e.target.value as AdvancedNetworkFeatureSuffix)}>{enabledTools(section).map(item=><option key={item.key} value={item.key}>{item.label}</option>)}</select></label>
    <aside className="nx8-tool-rail">
     <div className="nx8-tool-rail-head"><small>{tr("NX8ChooseStepTxt")}</small><b>{currentMeta.label}</b><span>{enabledTools(section).length} {tr("NX7EnabledTxt")}</span></div>
     {enabledTools(section).map(item=><button key={item.key} className={activeTool===item.key?"active":""} onClick={()=>setActiveTool(item.key)}>{item.step&&<span className="nx8-tool-step">{item.step}</span>}<span className="nx8-tool-icon">{item.icon}</span><span><b>{item.label}</b><small>{item.description}</small></span><ChevronRight size={16}/></button>)}

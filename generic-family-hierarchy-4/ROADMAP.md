@@ -22,7 +22,7 @@ No unrelated engineering work should start before these pass:
 - `lint:trustweave` — 0 errors;
 - `validate:static` — PASS;
 - `npm run build` — PASS;
-- apply migration 113 to approved staging;
+- apply migrations through 114 to approved staging;
 - seed one fresh Residential network and rerun idempotently;
 - seed one fresh Family Community network and rerun idempotently;
 - headed desktop walkthroughs for Chairman/admin/resident and President/admin/representative/member;
@@ -44,3 +44,11 @@ Use the MPF-style pilot to measure family onboarding, annual membership/renewal,
 - new finance/social/voting/media subsystems parallel to existing shared capabilities.
 
 The next product decision should come from **real pilot evidence**, not another broad feature mission.
+
+## 2026-09-15 — Seeded-network rehearsal hotfix
+The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
+
+Housing Society UX was also restructured after real laptop use showed unacceptable information density: Manage Society now renders one categorized workspace at a time; Finance, Governance and Security have focused subsections; Housing More is grouped; and Appearance is reduced to a single **Classic / Modern / Dark** selector. These are launch-hardening changes, not new product scope.
+
+**Runtime status:** source gates are green, but this hotfix is not considered proven until migration 114 is applied to the real/staging database and the reported operations/funds/voting/mentions/media paths are retested.
+

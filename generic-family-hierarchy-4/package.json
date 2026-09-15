@@ -186,7 +186,9 @@
     "validate:e10-closure": "node scripts/e10-stability-closure-gate.mjs && npm run validate:engage-e10",
     "validate:final-launch-source": "node scripts/final-launch-source-gate.mjs",
     "validate:final-launch": "npm run validate:final-launch-source && npm run validate:showcase-stabilization && npm run validate:showcase-residential && npm run validate:e10-closure && npm run validate:hs6 && npm run validate:fca0",
-    "qa:final-launch": "playwright test qa/e2e/25-final-launch-discovery.spec.ts qa/e2e/26-final-launch-seed-runtime.spec.ts --project=chromium-desktop --workers=1"
+    "qa:final-launch": "playwright test qa/e2e/25-final-launch-discovery.spec.ts qa/e2e/26-final-launch-seed-runtime.spec.ts --project=chromium-desktop --workers=1",
+    "validate:launch-runtime-hotfix": "node scripts/final-launch-runtime-hotfix-gate.mjs",
+    "validate:ux-progressive": "node scripts/progressive-disclosure-ux-gate.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.54.0",

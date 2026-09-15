@@ -25,7 +25,7 @@ ok('dedicated society invitation page',hasCopy(invite,'acceptHsInvitation')&&has
 ok('runtime adapter covers HS1',remote.includes('fetchHsMyFlat')&&remote.includes('importHsResidentRows')&&remote.includes('allocateHsParking'));
 ok('My Home is a real navigation surface',comp.includes('featureKey:"housing-society.core.my-flat"')&&comp.includes('label("My Home"'));
 ok('HS1 features catalogued',cat.includes('housing-society.core.occupancy-history')&&cat.includes('housing-society.admin.bulk-onboarding'));
-ok('generic import hidden for housing',hasCopy(app,'kind!=="housing-society"&&<><InstitutionalBootstrapPanel'));
+ok('generic import hidden for housing',hasCopy(app,'tab==="admin"&&isAdmin&&privacyPreview==="admin"&&!demo&&kind!=="housing-society"')&&hasCopy(app,'<GuidedWorkbookImport kind={kind}'));
 ok('template truth updated to HS1',template.includes('HS-1 adds append-only ownership'));
 ok('migration rerunnable table/index patterns',sql.includes('create table if not exists')&&sql.includes('create index if not exists'));
 ok('migration post assertions',sql.includes('HS-1 compatibility check failed'));

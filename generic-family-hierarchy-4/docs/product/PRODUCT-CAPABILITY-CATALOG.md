@@ -176,3 +176,11 @@
 - **Family Community Launch Seed Adapter** — composes guided import, FCA annual membership/roles, shared funds, events, elections, posts, groups, invitations/contribution and E5 media APIs.
 - **FCA Association Membership guided-import commit** — closes the prior domain-sheet persistence gap.
 - **Final Launch E2E Specs** — anonymous desktop/mobile Discovery plus opt-in staging persisted-seed/idempotency certification.
+
+## 2026-09-15 — Seeded-network rehearsal hotfix
+The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
+
+Housing Society UX was also restructured after real laptop use showed unacceptable information density: Manage Society now renders one categorized workspace at a time; Finance, Governance and Security have focused subsections; Housing More is grouped; and Appearance is reduced to a single **Classic / Modern / Dark** selector. These are launch-hardening changes, not new product scope.
+
+**Runtime status:** source gates are green, but this hotfix is not considered proven until migration 114 is applied to the real/staging database and the reported operations/funds/voting/mentions/media paths are retested.
+

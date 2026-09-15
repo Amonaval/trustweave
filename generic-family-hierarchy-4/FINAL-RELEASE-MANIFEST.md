@@ -1,83 +1,57 @@
-# TrustWeave — Final Release Manifest
+# TrustWeave — Runtime Contract + Cross-Vertical UX Closure Manifest
 
 **Candidate date:** 2026-09-15  
-**Baseline input:** `TRUSTWEAVE-E10-STABILITY-ESLINT-CLOSURE-FULL.zip`  
-**Release candidate outputs:** `TRUSTWEAVE-LAUNCH-CANDIDATE-FULL.zip` and `TRUSTWEAVE-LAUNCH-CANDIDATE-AFFECTED.zip`
+**Release state:** **SOURCE-CLOSED / LIVE RUNTIME RETEST REQUIRED**
 
-## Release state
-**SOURCE-CLOSED / FINAL RUNTIME CERTIFICATION REQUIRED.**
+This baseline supersedes `TRUSTWEAVE-LAUNCH-CANDIDATE-FULL.zip`. It combines the real seeded-network runtime repairs with the product-wide progressive-disclosure UX closure requested after rehearsal. It is not production GO until migration 114 and the dependency-backed/live runtime checklist pass in the real/staging environment.
 
-The exact candidate source contains the final pre-launch Discovery/Product Exploration work, guarded persisted launch-data orchestration, FCA annual-membership import closure, launch E2E specifications and synchronized living documentation. Source/regression gates are green. Dependency-backed lint/build/headed/mobile staging proof remains the mandatory final GO/NO-GO gate and is intentionally not represented as passed.
+## Runtime defects repaired in source
+- restores `public.hs4_get_operations_snapshot()` and PostgREST schema reload;
+- fixes funds snapshot `a.type` → `a.activity_type`;
+- explicit **Open Voting** opens immediately instead of preserving a future `opens_at`;
+- restores typed `public.route_network_mentions(...)`;
+- repairs private media network authorization and removes ambiguous first-membership client fallback.
 
-## Source delta from supplied FULL baseline
-- Added/relocated release files: **35**
-- Modified existing files: **25**
-- Removed from root/source path: **2** (superseded Discovery handoffs archived)
-- Present files carried by AFFECTED package: **60**
-- Total source-path delta including removals: **62**
-- Present affected path list: `FINAL-LAUNCH-AFFECTED-FILES.txt`
-- Removed-path list for affected-patch consumers: `FINAL-LAUNCH-REMOVED-FILES.txt`
+Database repair is additive migration `supabase/migrations/114_final_launch_runtime_contract_repair.sql`. **Frontend deployment alone is insufficient.**
+
+## Cross-vertical UX closure
+The permanent rule is no longer Housing-specific: substantial peer operational areas must not be appended indefinitely down one page. Prefer focused workspaces, desktop tabs/mobile selectors, card-grid entry points and accordions for advanced detail.
+
+Implemented across Housing, Family, Family Community / Association, Alumni and shared productized Network OS surfaces, including Admin/Manage, Community, Contributions, Product Guide, Funds, Voting, Activity/Groups, Media Management, Family Participation and multi-network tool navigation. Appearance is reduced to **Classic / Modern / Dark**.
+
+Permanent guard: `npm run validate:ux-progressive` — **23/23 PASS**.
+
+## Delta from previous launch candidate
+- Added / relocated paths: **14**
+- Modified paths: **51**
+- Removed / archived paths: **1**
+- Present files in affected overlay: **65**
+- Total path delta: **66**
+- Present path list: `RUNTIME-UX-CLOSURE-AFFECTED-FILES.txt`
+- Removal list: `RUNTIME-UX-CLOSURE-REMOVED-FILES.txt`
+
+## Source validation evidence
+- Progressive-disclosure UX gate: **23/23 PASS**
+- Runtime hotfix gate: **18/18 PASS**
+- Final launch source gate: **24/24 PASS**
+- Showcase stabilization: **14/14 PASS**
+- Residential flagship: **12/12 PASS**
+- FCA0: **27/27 PASS**
+- HS0→HS6: **PASS**
+- E10 closure + E1→E10: **PASS**
+- Static syntax: **344 TS/TSX / 0 syntax errors**
+- Migration static audit: **112 SQL / PASS**
+- Evidence: `release-evidence/RUNTIME-UX-CLOSURE-SOURCE-GATES.txt`
 
 ## Candidate tree fingerprint
-SHA-256 over sorted `relative/path + file SHA-256` entries for the candidate tree, excluding the self-referential `FINAL-RELEASE-MANIFEST.md`, `FINAL-LAUNCH-AFFECTED-FILES.txt` and `FINAL-LAUNCH-REMOVED-FILES.txt`:
+SHA-256 over sorted `relative/path + file SHA-256` entries, excluding this manifest and the two self-referential runtime-UX path-list files:
 
-`18fa8bbee502e1ca909e26dadccd9aa5bcece575b9fd795899b26230e9e593fb`
+`9b997e26868def59d7bd01b1583278225f8aa08701b7403158eece2f7fd9ea18`
 
-## Final launch datasets
-| File | SHA-256 | Bytes |
-| --- | --- | ---: |
-| `public/launch-demo/residential-25-flats.json` | `7849ca0ca4abda3287f7f77b7c0954b52aa0caff9d90552c597b8518b63ac9ee` | 106,367 |
-| `public/launch-demo/residential-25-flats.xlsx` | `7d182ef304a7132e6c2c2990b73aeb7dd9ddf82ddd07ad1aa9c722028e2a1104` | 87,818 |
-| `public/launch-demo/family-community-20-families.json` | `a4c06b20fe9d52f0f8e4d83c6bddc14bcb032a0e87bcfe05215d3fd76cb9c1d7` | 114,630 |
-| `public/launch-demo/family-community-20-families.xlsx` | `5e704f567e63d9401cfa65a285190ff01430cb078e3d07dceeb8cf80ee69fb55` | 60,355 |
+## Mandatory live/dependency proof still pending
+The packaging environment has no installed dependency tree and npm restoration previously failed against `registry.npmjs.org` with `EAI_AGAIN`. Therefore this manifest does **not** claim PASS for `lint:trustweave`, complete TypeScript/static validation, Next production build, headed/mobile Playwright, or the live migration-114 retest.
 
-
-## Major implementation files
-- `components/PublicDiscoveryPortal.tsx`
-- `components/shared/LaunchDemoDataLoader.tsx`
-- `core/launch-seed/contracts.ts`
-- `capabilities/launch-seed/*`
-- `supabase/migrations/113_final_launch_demo_seed_lineage.sql`
-- `capabilities/import/productized-workbook.ts`
-- `qa/e2e/25-final-launch-discovery.spec.ts`
-- `qa/e2e/26-final-launch-seed-runtime.spec.ts`
-- `scripts/final-launch-source-gate.mjs`
-
-## Release closure documents
-- `LAUNCH-READINESS-REPORT.md`
-- `PILOT-DEMO-RUNBOOK.md`
-- `DATA-SEED-RUNBOOK.md`
-- `RUNTIME-VERIFICATION-CHECKLIST.md`
-- `NEXT-SESSION-FINAL-RUNTIME-CERTIFICATION.md`
-
-## Evidence captured in candidate
-- `release-evidence/FINAL-LAUNCH-SOURCE-GATES.txt`
-- `release-evidence/STATIC-EXTRA-GATES.txt`
-- `release-evidence/NPM-DEPENDENCY-BLOCKER.txt`
-
-## Validation snapshot before packaging
-- Final launch source gate: **24/24 PASS**.
-- Showcase stabilization: **14/14 PASS**.
-- Residential flagship: **12/12 PASS**.
-- E10 closure + E1→E10 chain: **PASS**.
-- HS0→HS6: **PASS**.
-- FCA0: **27/27 PASS**.
-- Syntax: **341 TS/TSX files, 0 syntax errors**.
-- Migration static audit: **111 SQL files, PASS**.
-
-## Runtime certification state
-The supplied baseline did not contain `node_modules`. Dependency restoration was attempted, but this execution environment could not resolve `registry.npmjs.org` (`EAI_AGAIN`), so the following are **not certified here**:
-- `npm run lint:trustweave`
-- complete `npm run validate:static` / TypeScript gate
-- `npm run build`
-- headed desktop Playwright launch walkthroughs
-- mobile viewport launch walkthroughs
-- staging execution of the fresh persisted Residential + Family Community seed/idempotency test
-
-See `release-evidence/NPM-DEPENDENCY-BLOCKER.txt` and `RUNTIME-VERIFICATION-CHECKLIST.md`.
-
-## Mandatory pending certification
-Do not mark production launch GO until `RUNTIME-VERIFICATION-CHECKLIST.md` is fully complete: 0-error lint, full static/type check, Next build, migration 113 on the intended staging project, fresh persisted Residential and Family Community seed/idempotency proof, headed desktop, mobile viewport, notification/deep-link, push, private-media, role-permission and cross-network-isolation checks.
+Apply migration 114 to the same Supabase project used for the seeded rehearsal and follow `RUNTIME-HOTFIX-APPLY-RUNBOOK.md` plus `RUNTIME-VERIFICATION-CHECKLIST.md`.
 
 ## Baseline rule
-After the pending runtime checklist passes without a launch blocker, `TRUSTWEAVE-LAUNCH-CANDIDATE-FULL.zip` is the exact source baseline to promote. If runtime certification requires code changes, do **not** silently patch this ZIP; make the fixes from this candidate, rerun the complete closure gates, and issue a new candidate ZIP + manifest.
+`TRUSTWEAVE-LAUNCH-RUNTIME-UX-CLOSURE-FULL.zip` becomes the only source of truth for the next runtime retest. Do not merge older launch/E-mission ZIPs into it.

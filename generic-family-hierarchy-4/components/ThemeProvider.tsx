@@ -1,12 +1,17 @@
 "use client";
 import {createContext,useContext,useEffect,useMemo,useState,type ReactNode} from "react";
 
-export type AppTheme="light"|"warm"|"modern"|"aurora"|"dark";
+export type AppTheme="light"|"modern"|"dark";
 type ThemeContextValue={theme:AppTheme;setTheme:(theme:AppTheme)=>void};
 const ThemeContext=createContext<ThemeContextValue|undefined>(undefined);
 const STORAGE_KEY="network-os-theme";
-const THEMES:AppTheme[]=["light","warm","modern","aurora","dark"];
+const THEMES:AppTheme[]=["light","modern","dark"];
 
+function normalizeTheme(value:string|null):AppTheme{
+ if(value==="warm")return "light";
+ if(value==="aurora")return "modern";
+ return value&&THEMES.includes(value as AppTheme)?value as AppTheme:"light";
+}
 function applyTheme(theme:AppTheme){
  if(typeof document==="undefined")return;
  document.documentElement.dataset.theme=theme;
@@ -16,9 +21,10 @@ function applyTheme(theme:AppTheme){
 export function ThemeProvider({children}:{children:ReactNode}){
  const [theme,setThemeState]=useState<AppTheme>("light");
  useEffect(()=>{
-  const stored=typeof window!=="undefined"?window.localStorage.getItem(STORAGE_KEY) as AppTheme|null:null;
-  const initial=stored&&THEMES.includes(stored)?stored:"light";
+  const stored=typeof window!=="undefined"?window.localStorage.getItem(STORAGE_KEY):null;
+  const initial=normalizeTheme(stored);
   setThemeState(initial);applyTheme(initial);
+  if(stored!==initial){try{window.localStorage.setItem(STORAGE_KEY,initial)}catch{}}
  },[]);
  const setTheme=(next:AppTheme)=>{setThemeState(next);applyTheme(next);try{if(typeof window!=="undefined")window.localStorage.setItem(STORAGE_KEY,next)}catch{}};
  const value=useMemo(()=>({theme,setTheme}),[theme]);

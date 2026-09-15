@@ -71,12 +71,12 @@ test('Showcase certification: mobile create flow keeps Choose how to start reach
   await healthy(page);
 });
 
-test('Showcase certification: five appearance themes remain switchable',async({page})=>{
+test('Showcase certification: three appearance themes remain switchable',async({page})=>{
   await login(page,'admin');
-  for(const theme of ['light','warm','modern','aurora','dark'] as const){
-    const button=page.getByTestId(`qa-theme-${theme}`).first();
-    await expect(button).toBeVisible();
-    await button.click();
+  const selector=page.getByTestId('qa-theme-select').first();
+  await expect(selector).toBeVisible();
+  for(const theme of ['light','modern','dark'] as const){
+    await selector.selectOption(theme);
     await expect.poll(()=>page.evaluate(()=>document.documentElement.dataset.theme)).toBe(theme);
   }
   await healthy(page);

@@ -457,3 +457,16 @@ The anonymous first experience now follows **Understand → choose a situation �
 The persisted demo-data experience is intentionally an Admin operation, not a public shortcut. It exposes source, dry-run counts, reference errors, exact-network confirmation, authorization state, commit progress and completion result. Safety is visible rather than hidden in implementation.
 
 Runtime rehearsal must still cover desktop and mobile, topbar/More behavior, loading/close/back interactions, exact notification deep links, role permissions, private media and cross-network isolation before launch is declared.
+
+## 2026-09-15 — Seeded-network rehearsal hotfix
+The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
+
+Housing Society UX was also restructured after real laptop use showed unacceptable information density: Manage Society now renders one categorized workspace at a time; Finance, Governance and Security have focused subsections; Housing More is grouped; and Appearance is reduced to a single **Classic / Modern / Dark** selector. These are launch-hardening changes, not new product scope.
+
+**Runtime status:** source gates are green, but this hotfix is not considered proven until migration 114 is applied to the real/staging database and the reported operations/funds/voting/mentions/media paths are retested.
+
+### Housing Society density rule
+Administrative capability must not be expressed as one endlessly stacked page. On Housing Society surfaces, use task-oriented workspaces/subsections and render only the selected area. Desktop may use compact tabs; mobile should use a selector/sheet where that reduces horizontal pressure. A user should be able to answer “where do I go for this task?” before seeing individual forms.
+
+Appearance is a preference, not a product module. Keep the selector compact and limit it to clearly differentiated themes rather than several near-identical variants.
+

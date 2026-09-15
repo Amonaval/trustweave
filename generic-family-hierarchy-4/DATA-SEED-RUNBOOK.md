@@ -1,11 +1,12 @@
 # TrustWeave — Final Launch Data Seed Runbook
 
+> **Hotfix prerequisite:** before using this runbook after the first seeded rehearsal, apply migrations through **114_final_launch_runtime_contract_repair.sql** and use the runtime-hotfix FULL baseline.
 Use this only for the supplied synthetic final-launch datasets. The workflow persists through real product APIs and is intentionally guarded.
 
 ## Prerequisites
 1. Deploy the exact launch-candidate FULL ZIP.
 2. Restore dependencies from `package-lock.json` and pass lint/static/build.
-3. Apply all migrations through `113_final_launch_demo_seed_lineage.sql` to the approved staging/pilot Supabase project.
+3. Apply all migrations through `114_final_launch_runtime_contract_repair.sql` to the approved staging/pilot Supabase project.
 4. Sign in as network admin/owner or platform owner.
 5. Create/select a **fresh** `housing-society` or `family-association` network. Prefer names containing `Demo`, `Pilot`, `Sample`, `Sandbox` or `Test`.
 

@@ -21,10 +21,10 @@ const checks=[
  ['sign-in dialog has close/backdrop/Escape behavior',auth.includes('auth-modal-close')&&auth.includes('event.key==="Escape"')&&auth.includes('event.target===event.currentTarget')],
  ['account menu closes on Escape',account.includes('event.key==="Escape"')&&account.includes('qa-account-menu')],
  ['product mobile More closes on backdrop and Escape',template.includes('product-mobile-more-backdrop')&&template.includes('event.key==="Escape"')],
- ['five appearance themes remain available',...(()=>{const themes=['light','warm','modern','aurora','dark'];return [themes.every(x=>theme.includes(`value:"${x}"`)&&theme.includes('qa-theme-'))]})()],
+ ['three distinct appearance themes remain available in one selector',...(()=>{const themes=['light','modern','dark'];return [themes.every(x=>theme.includes(`value:"${x}"`))&&theme.includes('qa-theme-select')&&!theme.includes('value:"warm"')&&!theme.includes('value:"aurora"')]})()],
  ['Community flagship has certification anchor',assoc.includes('qa-fca-flagship-home')],
  ['Residential flagship has certification anchor',housing.includes('qa-hs-flagship-home')],
- ['read-only showcase browser certification exists',e2e.includes('three flagship verticals')&&e2e.includes('Playground back')&&e2e.includes('mobile create flow')&&e2e.includes('five appearance themes')],
+ ['read-only showcase browser certification exists',e2e.includes('three flagship verticals')&&e2e.includes('Playground back')&&e2e.includes('mobile create flow')&&e2e.includes('three appearance themes')],
  ['mobile safe-area hardening is present',css.includes('env(safe-area-inset-bottom)')],
 ];
 let failed=0;for(const [name,ok] of checks){console.log(`${ok?'PASS':'FAIL'} ${name}`);if(!ok)failed++;}

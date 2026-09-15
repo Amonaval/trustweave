@@ -18,8 +18,8 @@ This report does **not** mark TrustWeave launch-ready yet. The mission Definitio
 | E1→E10 engagement chain | PASS |
 | HS0→HS6 | PASS |
 | FCA0 | 27/27 PASS |
-| TS/TSX syntax scan | 341 files / 0 syntax errors |
-| Migration static audit | 111 SQL files / PASS |
+| TS/TSX syntax scan | 344 files / 0 syntax errors |
+| Migration static audit | 112 SQL files / PASS |
 
 ## Environment-blocked evidence — must be completed before go-live
 | Gate | Current state | Required next result |
@@ -67,4 +67,29 @@ Some source rows describe synthetic directory people participating in product su
 ## Go / no-go rule
 **NO-GO for uncontrolled production launch until every mandatory item in `RUNTIME-VERIFICATION-CHECKLIST.md` is PASS.**
 
-A controlled showcase may proceed only in an approved environment after migration 113 is applied and the demo networks have been seeded/verified using `DATA-SEED-RUNBOOK.md`.
+A controlled showcase may proceed only in an approved environment after migrations through 114 are applied and the demo networks have been seeded/verified using `DATA-SEED-RUNBOOK.md`.
+
+## Real seeded-network rehearsal findings — 2026-09-15
+The seed workflow completed successfully and real interaction exposed launch blockers that are now fixed in source but require database/runtime retest:
+- missing `hs4_get_operations_snapshot()` in live PostgREST schema;
+- funds snapshot referenced non-existent `network_activities.type`;
+- explicit Open Voting could preserve a future `opens_at` and remain unvotable;
+- `route_network_mentions(...)` missing from live PostgREST schema;
+- Storage authorization was too coupled to active-network profile state and client membership fallback was ambiguous;
+- Dense operational/admin pages relied too heavily on continuation scrolling; the problem was visible first in Housing but also existed in shared Family, Community, Alumni and productized Network OS surfaces.
+
+Repair baseline: migration 114 + a cross-vertical progressive-disclosure UX closure + three-theme selector. **Decision remains NO-GO / runtime retest required** until the same seeded environment proves the reported paths clean. See `RUNTIME-HOTFIX-APPLY-RUNBOOK.md`.
+
+## Cross-vertical progressive-disclosure closure — 2026-09-15
+The launch UX rule is now product-wide, not Housing-specific. Family, Family Community / Association, Alumni, Housing Society and shared productized Network OS shells must not grow by appending peer operational blocks indefinitely down the page. The shared implementation now uses desktop tabs / mobile selectors, task workspaces, card-grid entry points and accordions for secondary/advanced content.
+
+Applied in this closure:
+- productized Admin and Community / Contributions / Product Guide workspaces;
+- Family advanced administration, Family Admin Center, Family Guide and Participation Center;
+- Family Community annual membership/leadership/finance administration;
+- Alumni administration;
+- shared Funds, Voting, Activity/Groups and Media Management surfaces;
+- multi-network tool navigation on mobile;
+- Housing Manage Society, Finance, Governance and Security workspaces.
+
+Permanent source guard: `npm run validate:ux-progressive` — **23/23 PASS**. The UX handbook and development rules now explicitly prohibit adding another substantial peer block to an already long operational page without a navigation/disclosure layer.

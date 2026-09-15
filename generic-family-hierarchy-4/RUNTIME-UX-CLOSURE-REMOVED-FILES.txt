@@ -1,0 +1,2 @@
+# Paths present in TRUSTWEAVE-LAUNCH-CANDIDATE-FULL.zip that are intentionally absent now.
+NEXT-SESSION-FINAL-RUNTIME-CERTIFICATION.md

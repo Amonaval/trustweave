@@ -1,20 +1,24 @@
 "use client";
+import {Moon,Palette,Sun} from "lucide-react";
 import {useLanguage,type MessageToken} from "../lib/i18n";
-import {Heart,Moon,Palette,Sparkles,Sun} from "lucide-react";
 import {useTheme,type AppTheme} from "./ThemeProvider";
 
-const OPTIONS:{value:AppTheme;labelKey:MessageToken;icon:typeof Sun}[]=[
- {value:"light",labelKey:"LightTxt",icon:Sun},
- {value:"warm",labelKey:"WarmThemeTxt",icon:Heart},
- {value:"modern",labelKey:"ModernThemeTxt",icon:Palette},
- {value:"aurora",labelKey:"AuroraTxt",icon:Sparkles},
- {value:"dark",labelKey:"DarkTxt",icon:Moon},
+const OPTIONS:{value:AppTheme;label:MessageToken;icon:typeof Sun}[]=[
+ {value:"light",label:"ThemeClassicTxt",icon:Sun},
+ {value:"modern",label:"ThemeModernTxt",icon:Palette},
+ {value:"dark",label:"ThemeDarkTxt",icon:Moon},
 ];
 
 export default function ThemeSwitcher({compact=false}:{compact?:boolean}){
  const {t:tr}=useLanguage();
  const {theme,setTheme}=useTheme();
- return <div className={`theme-switcher ${compact?"compact":""}`} role="group" aria-label={tr("AppearanceTxt")}>
-  {OPTIONS.map(({value,labelKey,icon:Icon})=>{const label=tr(labelKey);return <button data-testid={`qa-theme-${value}`} key={value} type="button" className={theme===value?"active":""} onClick={()=>setTheme(value)} title={`${label} · ${tr("AppearanceTxt")}`} aria-label={`${label} · ${tr("AppearanceTxt")}`} aria-pressed={theme===value}><Icon size={14}/>{!compact&&<span>{label}</span>}</button>})}
- </div>;
+ const current=OPTIONS.find(x=>x.value===theme)||OPTIONS[0];
+ const Icon=current.icon;
+ return <label className={`theme-select ${compact?"compact":""}`} title={tr("AppearanceTxt")}>
+  <Icon size={14}/>
+  {!compact&&<span>{tr("AppearanceTxt")}</span>}
+  <select data-testid="qa-theme-select" aria-label={tr("AppearanceTxt")} value={theme} onChange={e=>setTheme(e.target.value as AppTheme)}>
+   {OPTIONS.map(o=><option key={o.value} value={o.value}>{tr(o.label)}</option>)}
+  </select>
+ </label>;
 }

@@ -1,0 +1,9 @@
+# Runtime hotfix dependency-backed certification blocker
+
+Packaging environment: source-only, no node_modules.
+
+Observed 2026-09-15:
+- `npm run lint:trustweave` -> `sh: 1: eslint: not found`
+- `npm run build` -> `sh: 1: next: not found`
+
+The previous dependency restoration attempt could not reach registry.npmjs.org (EAI_AGAIN). Therefore lint/full type/build/Playwright are not claimed PASS in this environment. They remain mandatory in the normal/staging environment after migration 114 is applied.

@@ -79,3 +79,13 @@
 - [ ] `LAUNCH-READINESS-REPORT.md` updated with runtime evidence/date/environment.
 - [ ] No known launch-blocking defect remains.
 - [ ] Final decision recorded: **GO** or **NO-GO**.
+
+## Hotfix 114 targeted retest — mandatory
+- [ ] `hs4_get_operations_snapshot()` resolves in PostgREST and Housing operations render.
+- [ ] Funds snapshot opens without `column a.type does not exist`.
+- [ ] Explicit Open Voting makes a future-scheduled draft ballot votable immediately by an eligible member.
+- [ ] `route_network_mentions(...)` resolves and a real mention routes a notification.
+- [ ] Creator/admin can upload private media after explicitly selecting the network; another network cannot read it.
+- [ ] Manage Society renders one workspace area at a time on desktop and mobile.
+- [ ] Finance/Governance/Security subsections prevent extreme all-module vertical scrolling.
+- [ ] Appearance is a single Classic/Modern/Dark selector and all three are visibly distinct.

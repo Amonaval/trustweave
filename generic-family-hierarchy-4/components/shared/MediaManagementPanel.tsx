@@ -4,6 +4,7 @@ import {Archive,HardDrive,Image as ImageIcon,RotateCcw,Trash2} from "lucide-reac
 import {fetchMediaManagementSnapshot,permanentlyDeleteManagedMedia,setMediaArchived,type ManagedMediaAsset,type MediaManagementSnapshot} from "../../lib/storage";
 import {useLanguage} from "../../lib/i18n";
 import {NetworkEmpty,NetworkMetric,NetworkSectionHead} from "./NetworkUi";
+import ResponsiveSectionTabs from "./ResponsiveSectionTabs";
 const mb=(n:number)=>(n/1048576).toFixed(n>=10*1048576?0:1);
 export default function MediaManagementPanel({onNotify}:{onNotify:(s:string)=>void}){
  const {t}=useLanguage();const [data,setData]=useState<MediaManagementSnapshot|null>(null),[busy,setBusy]=useState<string|null>(null),[filter,setFilter]=useState<'all'|'active'|'archived'|'unbound'>('all');
@@ -15,7 +16,7 @@ export default function MediaManagementPanel({onNotify}:{onNotify:(s:string)=>vo
  return <div className="media-management-panel" data-testid="qa-media-management-panel"><NetworkSectionHead kicker={<><HardDrive size={13}/> {t("E8StorageLifecycleTxt")}</>} title={t("E8MediaStorageTxt")} description={t("E8MediaStorageDescTxt")}/>
   <div className="network-metric-grid"><NetworkMetric value={`${mb(data.media_usage_bytes)} MB`} label={t("E8UsedTxt")}/><NetworkMetric value={`${mb(data.storage_limit_bytes)} MB`} label={t("E8AllowanceTxt")}/><NetworkMetric value={archived} label={t("E8ArchivedTxt")}/><NetworkMetric value={unbound} label={t("E8UnboundTxt")}/></div>
   <section className="card media-storage-meter"><div><b>{t("E8StorageUsageTxt")}</b><span>{pct}% · {mb(Math.max(0,data.storage_limit_bytes-data.media_usage_bytes))} MB {t("E8RemainingTxt")}</span></div><div className="usage-bar large"><i style={{width:`${pct}%`}}/></div>{pct>=80&&<p className="admin-storage-warning"><b>{t("E8StorageAttentionTxt")}</b><span>{t("E8StorageAttentionDescTxt")}</span></p>}</section>
-  <div className="media-filter-tabs">{(['all','active','archived','unbound'] as const).map(x=><button className={filter===x?'active':''} onClick={()=>setFilter(x)} key={x}>{x==='all'?t("E8AllMediaTxt"):x==='active'?t("E8ActiveTxt"):x==='archived'?t("E8ArchivedTxt"):t("E8UnboundTxt")}</button>)}</div>
+  <ResponsiveSectionTabs active={filter} onChange={setFilter} label="Media filter" options={(['all','active','archived','unbound'] as const).map(x=>({id:x,label:x==='all'?t("E8AllMediaTxt"):x==='active'?t("E8ActiveTxt"):x==='archived'?t("E8ArchivedTxt"):t("E8UnboundTxt")}))}/>
   {assets.length===0?<NetworkEmpty icon={<ImageIcon/>} title={t("E8NoMediaTxt")} description={t("E8NoMediaDescTxt")}/>:<div className="media-management-grid">{assets.map(a=><MediaCard key={a.id} a={a} busy={busy===a.id} admin={data.is_admin} t={t} archive={()=>action(a.id,()=>setMediaArchived(a.id,true),t("E8ArchivedDoneTxt"))} restore={()=>action(a.id,()=>setMediaArchived(a.id,false),t("E8RestoredDoneTxt"))} remove={()=>{if(!confirm(t("E8DeleteConfirmTxt")))return;void action(a.id,()=>permanentlyDeleteManagedMedia(a.id,t("E8DeleteReasonTxt")),t("E8DeletedDoneTxt"))}}/>)}</div>}
  </div>;
 }
