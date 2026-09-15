@@ -1,0 +1,2 @@
+# Remove these paths when applying the AFFECTED overlay
+NEXT-SESSION-MISSION-2-SLOW-USER-REGRESSION.md

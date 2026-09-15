@@ -66,10 +66,12 @@ The remaining pre-launch work is intentionally split rather than attempted as on
 
 Runtime proof remains required after migration **115** is applied to the same Supabase project: post a Community photo, rerun Family Community seeding to stable completion, and rerun Housing seeding to stable completion.
 
-### Mission 2 — Slow Full Product User Regression — NEXT
-Build a low-concurrency, deliberately paced Playwright regression suite over compact 3–5-family / 3–5-unit certification networks. Exercise real user CRUD, posts/media, complaints, notices, finance, events, memberships, voting, visitors/security, governance, notifications/deep links, role boundaries, mobile behavior and cross-network isolation. Every runtime defect found becomes a permanent regression test.
+### Mission 2 — Slow Full Product User Regression — IMPLEMENTED IN SOURCE / STAGING RUN REQUIRED
+The one-worker Playwright regression layer is implemented. It runs the Mission-1 full persisted seed/idempotency proof first, then slow deterministic user journeys and owner/admin/member crawls across Family, Family Community and Housing, plus mobile navigation and direct cross-network isolation. Unexpected REST/Storage/Functions/app API 4xx/5xx responses are now release failures with structured evidence. Default user/crawler pacing is 700 ms and deterministic QA fixtures are reused to minimize Auth/API writes.
 
-### Mission 3 — Shared UI / Business / Technical Component Architecture
+Source contract: **38/38 PASS**. Runtime certification requires `npm run qa:mission2` against staging with migrations through 115 applied.
+
+### Mission 3 — Shared UI / Business / Technical Component Architecture — NEXT AFTER MISSION-2 RUNTIME GREEN
 Formalize layered reusable components and shared CSS ownership: platform → vertical plugins → reusable business components → technical/UI components → design tokens/primitives. Expand component/use-case documentation and evaluate Storybook for isolated component/use-case development. Preserve the progressive-disclosure rule: feature growth must not default to appending endless blocks down a page.
 
 ### Mission 4 — Plugin Architecture, Vertical Lazy Loading & SQL Modularization

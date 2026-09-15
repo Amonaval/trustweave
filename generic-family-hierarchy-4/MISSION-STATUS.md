@@ -44,7 +44,7 @@ Family Community guided import now commits annual Association Membership through
 The engineering mission is packaged as a launch candidate, but the original Definition of DONE remains binding: **launch-ready is not claimed until dependency-backed build/lint and persisted headed/mobile runtime certification pass.**
 
 ## Next mission
-`MISSION-1-APPLY-RETEST-RUNBOOK.md` is the immediate persisted retest. After it is green, `NEXT-SESSION-MISSION-2-SLOW-USER-REGRESSION.md` is the next engineering mission.
+Mission 2 is now implemented in source. Run `npm run qa:mission2` against approved staging with migrations through 115 applied; fix all real failures and keep permanent regression assertions. Mission 3 (`NEXT-SESSION-MISSION-3-SHARED-COMPONENT-ARCHITECTURE.md`) starts only after that runtime run is green.
 
 ## 2026-09-15 — Seeded-network rehearsal hotfix
 The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
@@ -64,3 +64,11 @@ Mission 1 is **implemented in source and awaiting persisted retest**. Migration 
 Community photo upload SQLSTATE `22023` is repaired by making Storage byte extraction tolerant of supported metadata shapes while revalidating path, membership, concrete/fallback byte size, per-file limit and quota at media registration. The four reported duplicate English keys now have exactly one definition each.
 
 **Source evidence:** Mission 1 22/22, final-launch 24/24, Showcase 14/14, Residential 12/12, E1→E10 PASS, HS0→HS6 PASS, FCA0 27/27, syntax 344/0, migration audit 113 SQL PASS. Dependency-backed lint/build and real Supabase retest remain runtime gates, not waived checks.
+
+
+## 2026-09-15 — Mission 2 slow user-regression automation
+Mission 2 is **implemented in source; staging execution pending**. It adds strict 4xx/5xx API observation, 700 ms default pacing, one-worker execution, Mission-1 full seed/idempotency retest as the first runtime gate, deterministic desktop user journeys, owner/admin/member cross-vertical crawls, mobile progressive-navigation proof and direct tenant isolation.
+
+**Source evidence:** Mission 2 38/38, Mission 1 22/22, UX 23/23, runtime-hotfix 18/18, final-launch 24/24, Showcase 14/14, Residential 12/12, FCA0 27/27, E1→E10 PASS, HS0→HS6 PASS, syntax 344/0, migration audit 113 SQL PASS.
+
+A source audit during Mission 2 fixed the shared Activity composer member-type filter to use stable IDs (`memory`, `milestone`) instead of translated labels, and corrected the mobile surface helper to navigate via the actual mobile bottom bar/More sheet. The full browser run remains an environment gate, not waived.

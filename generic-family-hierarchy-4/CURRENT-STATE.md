@@ -2,7 +2,7 @@
 
 **Updated:** 2026-09-15
 
-TrustWeave is now in **Mission 1 runtime + seed-integrity closure** after the first real persisted seeded-network rehearsal. The product has three strongest flagship experiences — Family, Family Community / Cultural Association, and Residential / Housing Society — on top of the shared private Network OS and E1–E10 engagement stack.
+TrustWeave is now in **Mission 2 slow automated user-regression closure**. Mission 1 runtime/seed repairs are preserved, and Mission 2 adds strict low-concurrency browser journeys designed to expose remaining ordinary-user API/database failures. The product has three strongest flagship experiences — Family, Family Community / Cultural Association, and Residential / Housing Society — on top of the shared private Network OS and E1–E10 engagement stack.
 
 ## Launch-candidate state
 - **Anonymous Discovery / Product Exploration:** implemented. A visitor can understand TrustWeave before sign-in, choose Housing Society / Family Community / member-oriented journeys, open Playground, and use a public-safe Product Guide with Simple / Detailed / Deep disclosure.
@@ -35,7 +35,7 @@ This candidate is **source-closed but not yet runtime-certified for launch**. Th
 The Mission 1 FULL ZIP is the **exact baseline** for targeted seed/media retest and subsequent user-regression certification. Do not call it production-launch-ready until the checklist in `RUNTIME-VERIFICATION-CHECKLIST.md` is fully green.
 
 ## Next mission
-Complete `MISSION-1-APPLY-RETEST-RUNBOOK.md`; then proceed to `NEXT-SESSION-MISSION-2-SLOW-USER-REGRESSION.md`. Do not start the larger component/plugin refactors before the slow user-regression protection exists.
+Execute `npm run qa:mission2` in the approved staging/QA environment with migrations through 115 applied. Fix every real defect it finds and keep its regression assertion. Only after Mission 2 is runtime-green proceed to `NEXT-SESSION-MISSION-3-SHARED-COMPONENT-ARCHITECTURE.md`.
 
 ## 2026-09-15 — Seeded-network rehearsal hotfix
 The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
@@ -55,3 +55,11 @@ The current baseline includes migration **115** and structured launch-seed obser
 The supplied Family Community dataset has 113 known constrained first-run warnings (54 inverse Child edges, 39 auth-account RSVP constraints, 20 auth-account group-membership constraints). These are separated from actual seed errors. Community post-with-photo SQLSTATE `22023` has a database-contract repair in migration 115.
 
 This is still **runtime retest required**, not production GO: apply migration 115 to the seeded Supabase project, verify a Community photo post, rerun both Family Community and Housing seeds, download any remaining error report, and prove a second rerun is stable/idempotent.
+
+
+## 2026-09-15 — Mission 2 slow automation regression
+Mission 2 is implemented in source. The suite is serial (`workers=1`), defaults to 700 ms user/crawler pacing, reuses deterministic fixtures, runs the full Mission-1 fresh launch-seed/idempotency proof first, and then exercises Community post+photo+comment, funds/transactions, Open Voting + cast vote, Housing notice/complaint-photo/finance/governance/visitor flows, FCA annual membership, Family and cross-vertical role crawls, mobile progressive navigation, and cross-tenant isolation.
+
+The strict watcher now fails unexpected REST/Storage/Functions/app API HTTP 4xx/5xx rather than treating only 500s/page crashes as failures. Source audit also fixed a shared Activity composer bug where internal activity IDs were incorrectly compared with translated labels. Mission-2 source gate: **38/38 PASS**.
+
+Runtime execution is not claimed in this sandbox: `.env.qa` is absent and offline dependency restoration stops on an uncached `zustand-4.5.7.tgz`.

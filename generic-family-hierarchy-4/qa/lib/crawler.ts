@@ -1,4 +1,5 @@
-import {expect,type Page,type TestInfo} from '@playwright/test';
+import {expect} from '@playwright/test';
+import type {Page,TestInfo} from '@playwright/test';
 import fs from 'node:fs';import path from 'node:path';
 import {attachRuntimeWatch} from './runtime-watch';
 import {mutationAllowed} from './safety';
@@ -10,16 +11,16 @@ type Edge={from:string;to:string;action:string;testId:string|null;outcome:'navig
 function slug(x:string){return x.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)||'action'}
 async function inventory(page:Page):Promise<NodeRec[]>{return await page.locator('a:visible,button:visible,[role=tab]:visible,[role=menuitem]:visible,[data-testid]:visible').evaluateAll((els:any[])=>els.slice(0,300).map((el:any,i)=>({id:String(i),url:location.href,text:(el.innerText||el.getAttribute('aria-label')||el.getAttribute('title')||'').trim(),tag:el.tagName.toLowerCase(),role:el.getAttribute('role'),testId:el.getAttribute('data-testid'),href:el.getAttribute('href'),disabled:!!el.disabled||el.getAttribute('aria-disabled')==='true'})))}
 export async function expertCrawl(page:Page,testInfo:TestInfo,{maxActions=60,role='unknown',scope='app',expectedTestIds=[]}:{maxActions?:number;role?:string;scope?:string;expectedTestIds?:string[]}={}){
- const watch=attachRuntimeWatch(page,testInfo),visited=new Set<string>(),nodes=new Map<string,NodeRec>(),edges:Edge[]=[];let current=`page:${page.url()}`;
+ const watch=attachRuntimeWatch(page,testInfo),visited=new Set<string>(),nodes=new Map<string,NodeRec>(),edges:Edge[]=[];let current=`page:${page.url()}`;const pace=Math.max(100,Number(process.env.QA_CRAWL_PACE_MS||300));
  for(let n=0;n<maxActions;n++){
-  await page.waitForLoadState('domcontentloaded');await page.waitForTimeout(120);
+  await page.waitForLoadState('domcontentloaded');await page.waitForTimeout(Math.max(100,Math.round(pace*.5)));
   for(const item of await inventory(page)){const k=`${item.url}|${item.testId||item.text}|${item.href||''}`;nodes.set(k,{...item,id:k})}
   const candidates=page.locator('a:visible,button:visible,[role=tab]:visible,[role=menuitem]:visible');const count=Math.min(await candidates.count(),180);let acted=false;
   for(let i=0;i<count;i++){
    const el=candidates.nth(i);let text='',testId:string|null=null,href:string|null=null,disabled=false;try{text=((await el.innerText())||await el.getAttribute('aria-label')||await el.getAttribute('title')||'').trim();testId=await el.getAttribute('data-testid');href=await el.getAttribute('href');disabled=await el.isDisabled().catch(()=>false)}catch{continue}
    if(disabled||(!text&&!testId))continue;const label=testId||text;if(external.test(label))continue;if(destructive.test(label)&&!mutationAllowed())continue;
    const key=`${page.url()}|${testId||text}|${href||''}`;if(visited.has(key))continue;visited.add(key);const before=page.url();const beforeSig=await page.locator('body').innerText().then(x=>x.slice(0,3500)).catch(()=> '');
-   try{await el.click({timeout:3500});await page.waitForTimeout(300);const after=page.url(),afterSig=await page.locator('body').innerText().then(x=>x.slice(0,3500)).catch(()=> '');const outcome=after!==before?'navigated':afterSig!==beforeSig?'state-change':'blocked';const to=`page:${after}#${slug(label)}`;edges.push({from:current,to,action:text||testId||'',testId,outcome});current=to;acted=true;break}catch(e:any){edges.push({from:current,to:current,action:text||testId||'',testId,outcome:'error',error:e.message});}
+   try{await el.click({timeout:3500});await page.waitForTimeout(pace);const after=page.url(),afterSig=await page.locator('body').innerText().then(x=>x.slice(0,3500)).catch(()=> '');const outcome=after!==before?'navigated':afterSig!==beforeSig?'state-change':'blocked';const to=`page:${after}#${slug(label)}`;edges.push({from:current,to,action:text||testId||'',testId,outcome});current=to;acted=true;break}catch(e:any){edges.push({from:current,to:current,action:text||testId||'',testId,outcome:'error',error:e.message});}
   }
   const body=await page.locator('body').innerText();expect(body).not.toMatch(fatal);if(!acted)break;
  }

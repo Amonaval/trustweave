@@ -100,3 +100,22 @@
 - [ ] Migration-114 operations/funds/voting/mentions/media paths remain green.
 
 Known Family Community constraints (113 for the supplied full dataset) must be shown as warnings, not mixed into the error count.
+
+
+## Mission 2 slow automated user regression — mandatory before Mission 3
+- [ ] Migrations through 115 are applied to approved staging/QA.
+- [ ] `.env.qa` points only to staging/QA and `QA_ALLOW_MUTATION=true` is explicitly enabled.
+- [ ] `npm run qa:mission2` executes with one worker.
+- [ ] Mission-1 fresh Residential + Family Community seed/idempotency retest passes first.
+- [ ] Community post + real photo + comment persists across reload with no unexpected API 4xx/5xx.
+- [ ] Funds + transaction normal UI flow passes.
+- [ ] Ballot create → 2 options → Open Voting → cast vote passes.
+- [ ] Housing notice + complaint photo + charge head + committee meeting + visitor preapproval pass.
+- [ ] Housing normal member complaint succeeds and admin workspace remains inaccessible.
+- [ ] Family Community membership year + annual family membership persist.
+- [ ] Family, Family Community and Housing owner/admin/member slow crawls have zero unexplained runtime/API failures.
+- [ ] Mobile Family Community progressive navigation passes.
+- [ ] Cross-tenant negative isolation proof passes.
+- [ ] `qa-results/mission2/runtime-issues.ndjson` contains no unexplained issue.
+- [ ] `qa-results/BUG-REPORT.md` has no unresolved launch-blocking finding.
+- [ ] Runner result is **MISSION2_CERTIFIED**.
