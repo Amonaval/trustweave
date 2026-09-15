@@ -42,6 +42,7 @@ import TreeView from "./TreeView";
 import ProfileDrawer from "./ProfileDrawer";
 import ProfileForm from "./ProfileForm";
 import AuthPanel from "./AuthPanel";
+import PublicDiscoveryPortal from "./PublicDiscoveryPortal";
 import RelationshipModal from "./RelationshipModal";
 import SetupScreen from "./SetupScreen";
 import AlumniNetworkApp from "./AlumniNetworkApp";
@@ -1106,27 +1107,8 @@ export default function NetworkApp() {
     );
   if (isSupabaseConfigured && !auth && !demoPreview)
     return (
-      <div className="landing family-signin-page showcase-signin-page">
-        <div className="landing-card family-signin-card showcase-signin-card">
-          <div className="showcase-signin-brand"><div className="brand-mark"><TreePine size={24} /></div><div><span>{tr("TrustWeaveTxt")}</span><small>{tr("ShowcasePrivateNetworkOsTxt")}</small></div></div>
-          <span className="warm-kicker"><ShieldCheck size={13}/>{tr("ShowcaseWelcomeKickerTxt")}</span>
-          <h1>{tr("ShowcaseWelcomeTitleTxt")}</h1>
-          <p className="showcase-signin-lead">{tr("ShowcaseWelcomeDescTxt")}</p>
-          <div className="showcase-signin-types" aria-label={tr("ShowcaseWhatCanBuildTxt")}>
-            <article><span className="showcase-type-icon family"><TreePine size={18}/></span><div><b>{tr("ShowcaseFamilyTitleTxt")}</b><small>{tr("ShowcaseFamilyDescTxt")}</small></div></article>
-            <article><span className="showcase-type-icon community"><UsersRound size={18}/></span><div><b>{tr("ShowcaseCommunityTitleTxt")}</b><small>{tr("ShowcaseCommunityDescTxt")}</small></div></article>
-            <article><span className="showcase-type-icon residential"><Building2 size={18}/></span><div><b>{tr("ShowcaseResidentialTitleTxt")}</b><small>{tr("ShowcaseResidentialDescTxt")}</small></div></article>
-          </div>
-          <div className="family-signin-actions showcase-signin-actions">
-            <button className="btn primary" data-testid="qa-open-auth" onClick={() => setShowAuth(true)}>
-              {tr("ShowcaseSignInTxt")} <ArrowRight size={16} />
-            </button>
-            <button className="btn" onClick={()=>void openNetworkPlayground("family","public")}>
-              <PlayCircle size={16} /> {tr("ShowcaseTryFamilySampleTxt")}</button>
-          </div>
-          <p className="playground-note"><ShieldCheck size={13}/>{tr("PlaygroundIsReadOnlyAndTemporaryNothingTxt")}</p>
-          <LanguageSwitcher />
-        </div>
+      <div className="public-discovery-shell">
+        <PublicDiscoveryPortal onSignIn={()=>setShowAuth(true)} onExplore={openNetworkPlayground}/>
         {showAuth && (
           <AuthPanel
             onClose={()=>setShowAuth(false)}

@@ -1,0 +1,4256 @@
+{
+  "version": "trustweave-launch-family-community.v1",
+  "synthetic": true,
+  "network_settings": [
+    {
+      "Setting": "Network Name",
+      "Value": "MPF Pune East — Launch Demo"
+    },
+    {
+      "Setting": "Vertical",
+      "Value": "family-association"
+    },
+    {
+      "Setting": "Membership Cycle",
+      "Value": "April–March"
+    },
+    {
+      "Setting": "Current Family Fee",
+      "Value": "5100"
+    },
+    {
+      "Setting": "Grace Period Days",
+      "Value": "30"
+    },
+    {
+      "Setting": "Dependent Age Limit",
+      "Value": "21"
+    },
+    {
+      "Setting": "Finance Visibility",
+      "Value": "members"
+    },
+    {
+      "Setting": "Synthetic Demo Data",
+      "Value": "true"
+    }
+  ],
+  "core_import": {
+    "families": [
+      {
+        "Family ID": "F001",
+        "Family / Household Name": "Bajaj Family",
+        "Area": "Kharadi",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F002",
+        "Family / Household Name": "Rathi Family",
+        "Area": "Viman Nagar",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F003",
+        "Family / Household Name": "Shah Family",
+        "Area": "Kalyani Nagar",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F004",
+        "Family / Household Name": "Maheshwari Family",
+        "Area": "Wagholi",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F005",
+        "Family / Household Name": "Jain Family",
+        "Area": "Hadapsar",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F006",
+        "Family / Household Name": "Lodha Family",
+        "Area": "Kharadi",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F007",
+        "Family / Household Name": "Soni Family",
+        "Area": "Viman Nagar",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F008",
+        "Family / Household Name": "Malpani Family",
+        "Area": "Kalyani Nagar",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F009",
+        "Family / Household Name": "Chandak Family",
+        "Area": "Wagholi",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F010",
+        "Family / Household Name": "Kabrai Family",
+        "Area": "Hadapsar",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F011",
+        "Family / Household Name": "Somani Family",
+        "Area": "Kharadi",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F012",
+        "Family / Household Name": "Bhutada Family",
+        "Area": "Viman Nagar",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F013",
+        "Family / Household Name": "Kasat Family",
+        "Area": "Kalyani Nagar",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F014",
+        "Family / Household Name": "Lahoti Family",
+        "Area": "Wagholi",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F015",
+        "Family / Household Name": "Mantri Family",
+        "Area": "Hadapsar",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F016",
+        "Family / Household Name": "Agarwal Family",
+        "Area": "Kharadi",
+        "Membership Status": "Active"
+      },
+      {
+        "Family ID": "F017",
+        "Family / Household Name": "Kothari Family",
+        "Area": "Viman Nagar",
+        "Membership Status": "Grace"
+      },
+      {
+        "Family ID": "F018",
+        "Family / Household Name": "Bansal Family",
+        "Area": "Kalyani Nagar",
+        "Membership Status": "Grace"
+      },
+      {
+        "Family ID": "F019",
+        "Family / Household Name": "Gandhi Family",
+        "Area": "Wagholi",
+        "Membership Status": "Pending"
+      },
+      {
+        "Family ID": "F020",
+        "Family / Household Name": "Mehta Family",
+        "Area": "Hadapsar",
+        "Membership Status": "Inactive"
+      }
+    ],
+    "people": [
+      {
+        "Person ID": "P001",
+        "Full Name": "Aarav Bajaj",
+        "Email": "mpf1@example.com",
+        "Profession": "Software Engineer",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P002",
+        "Full Name": "Neha Bajaj",
+        "Email": "mpf2@example.com",
+        "Profession": "Entrepreneur",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P003",
+        "Full Name": "Child 1 Bajaj",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P004",
+        "Full Name": "Child 2 Bajaj",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P005",
+        "Full Name": "Rohan Rathi",
+        "Email": "mpf5@example.com",
+        "Profession": "Architect",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P006",
+        "Full Name": "Kavya Rathi",
+        "Email": "mpf6@example.com",
+        "Profession": "Banker",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P007",
+        "Full Name": "Child 1 Rathi",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P008",
+        "Full Name": "Vivek Shah",
+        "Email": "mpf8@example.com",
+        "Profession": "Doctor",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P009",
+        "Full Name": "Ananya Shah",
+        "Email": "mpf9@example.com",
+        "Profession": "Product Manager",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P010",
+        "Full Name": "Child 1 Shah",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P011",
+        "Full Name": "Siddharth Maheshwari",
+        "Email": "mpf11@example.com",
+        "Profession": "Chartered Accountant",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P012",
+        "Full Name": "Meera Maheshwari",
+        "Email": "mpf12@example.com",
+        "Profession": "Designer",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P013",
+        "Full Name": "Child 1 Maheshwari",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P014",
+        "Full Name": "Child 2 Maheshwari",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P015",
+        "Full Name": "Kunal Jain",
+        "Email": "mpf15@example.com",
+        "Profession": "Teacher",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P016",
+        "Full Name": "Isha Jain",
+        "Email": "mpf16@example.com",
+        "Profession": "Lawyer",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P017",
+        "Full Name": "Child 1 Jain",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P018",
+        "Full Name": "Nikhil Lodha",
+        "Email": "mpf18@example.com",
+        "Profession": "Entrepreneur",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P019",
+        "Full Name": "Pooja Lodha",
+        "Email": "mpf19@example.com",
+        "Profession": "Consultant",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P020",
+        "Full Name": "Child 1 Lodha",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P021",
+        "Full Name": "Rahul Soni",
+        "Email": "mpf21@example.com",
+        "Profession": "Banker",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P022",
+        "Full Name": "Sneha Soni",
+        "Email": "mpf22@example.com",
+        "Profession": "Pharmacist",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P023",
+        "Full Name": "Child 1 Soni",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P024",
+        "Full Name": "Child 2 Soni",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P025",
+        "Full Name": "Aditya Malpani",
+        "Email": "mpf25@example.com",
+        "Profession": "Product Manager",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P026",
+        "Full Name": "Ritu Malpani",
+        "Email": "mpf26@example.com",
+        "Profession": "Operations Manager",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P027",
+        "Full Name": "Child 1 Malpani",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P028",
+        "Full Name": "Manish Chandak",
+        "Email": "mpf28@example.com",
+        "Profession": "Designer",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P029",
+        "Full Name": "Shreya Chandak",
+        "Email": "mpf29@example.com",
+        "Profession": "Sales Leader",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P030",
+        "Full Name": "Child 1 Chandak",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P031",
+        "Full Name": "Varun Kabrai",
+        "Email": "mpf31@example.com",
+        "Profession": "Lawyer",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P032",
+        "Full Name": "Nisha Kabrai",
+        "Email": "mpf32@example.com",
+        "Profession": "Data Analyst",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P033",
+        "Full Name": "Child 1 Kabrai",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P034",
+        "Full Name": "Child 2 Kabrai",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P035",
+        "Full Name": "Amit Somani",
+        "Email": "mpf35@example.com",
+        "Profession": "Consultant",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P036",
+        "Full Name": "Priya Somani",
+        "Email": "mpf36@example.com",
+        "Profession": "Civil Engineer",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P037",
+        "Full Name": "Child 1 Somani",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P038",
+        "Full Name": "Sameer Bhutada",
+        "Email": "mpf38@example.com",
+        "Profession": "Pharmacist",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P039",
+        "Full Name": "Rashmi Bhutada",
+        "Email": "mpf39@example.com",
+        "Profession": "Interior Designer",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P040",
+        "Full Name": "Child 1 Bhutada",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P041",
+        "Full Name": "Deepak Kasat",
+        "Email": "mpf41@example.com",
+        "Profession": "Operations Manager",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P042",
+        "Full Name": "Swati Kasat",
+        "Email": "mpf42@example.com",
+        "Profession": "HR Manager",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P043",
+        "Full Name": "Child 1 Kasat",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P044",
+        "Full Name": "Child 2 Kasat",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P045",
+        "Full Name": "Harsh Lahoti",
+        "Email": "mpf45@example.com",
+        "Profession": "Sales Leader",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P046",
+        "Full Name": "Tanvi Lahoti",
+        "Email": "mpf46@example.com",
+        "Profession": "Marketing Manager",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P047",
+        "Full Name": "Child 1 Lahoti",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P048",
+        "Full Name": "Yash Mantri",
+        "Email": "mpf48@example.com",
+        "Profession": "Data Analyst",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P049",
+        "Full Name": "Mitali Mantri",
+        "Email": "mpf49@example.com",
+        "Profession": "Business Owner",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P050",
+        "Full Name": "Child 1 Mantri",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P051",
+        "Full Name": "Arjun Agarwal",
+        "Email": "mpf51@example.com",
+        "Profession": "Civil Engineer",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P052",
+        "Full Name": "Rhea Agarwal",
+        "Email": "mpf52@example.com",
+        "Profession": "Software Engineer",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P053",
+        "Full Name": "Child 1 Agarwal",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P054",
+        "Full Name": "Child 2 Agarwal",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P055",
+        "Full Name": "Sanjay Kothari",
+        "Email": "mpf55@example.com",
+        "Profession": "Interior Designer",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P056",
+        "Full Name": "Radhika Kothari",
+        "Email": "mpf56@example.com",
+        "Profession": "Architect",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P057",
+        "Full Name": "Child 1 Kothari",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P058",
+        "Full Name": "Nitin Bansal",
+        "Email": "mpf58@example.com",
+        "Profession": "HR Manager",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P059",
+        "Full Name": "Sonal Bansal",
+        "Email": "mpf59@example.com",
+        "Profession": "Doctor",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P060",
+        "Full Name": "Child 1 Bansal",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P061",
+        "Full Name": "Abhishek Gandhi",
+        "Email": "mpf61@example.com",
+        "Profession": "Marketing Manager",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P062",
+        "Full Name": "Divya Gandhi",
+        "Email": "mpf62@example.com",
+        "Profession": "Chartered Accountant",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P063",
+        "Full Name": "Child 1 Gandhi",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P064",
+        "Full Name": "Child 2 Gandhi",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P065",
+        "Full Name": "Gaurav Mehta",
+        "Email": "mpf65@example.com",
+        "Profession": "Business Owner",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P066",
+        "Full Name": "Aditi Mehta",
+        "Email": "mpf66@example.com",
+        "Profession": "Teacher",
+        "City": "Pune"
+      },
+      {
+        "Person ID": "P067",
+        "Full Name": "Child 1 Mehta",
+        "Email": "",
+        "Profession": "Student",
+        "City": "Pune"
+      }
+    ],
+    "household_membership": [
+      {
+        "Person ID": "P001",
+        "Family ID": "F001",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P002",
+        "Family ID": "F001",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P003",
+        "Family ID": "F001",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P004",
+        "Family ID": "F001",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P005",
+        "Family ID": "F002",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P006",
+        "Family ID": "F002",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P007",
+        "Family ID": "F002",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P008",
+        "Family ID": "F003",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P009",
+        "Family ID": "F003",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P010",
+        "Family ID": "F003",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P011",
+        "Family ID": "F004",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P012",
+        "Family ID": "F004",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P013",
+        "Family ID": "F004",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P014",
+        "Family ID": "F004",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P015",
+        "Family ID": "F005",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P016",
+        "Family ID": "F005",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P017",
+        "Family ID": "F005",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P018",
+        "Family ID": "F006",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P019",
+        "Family ID": "F006",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P020",
+        "Family ID": "F006",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P021",
+        "Family ID": "F007",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P022",
+        "Family ID": "F007",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P023",
+        "Family ID": "F007",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P024",
+        "Family ID": "F007",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P025",
+        "Family ID": "F008",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P026",
+        "Family ID": "F008",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P027",
+        "Family ID": "F008",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P028",
+        "Family ID": "F009",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P029",
+        "Family ID": "F009",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P030",
+        "Family ID": "F009",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P031",
+        "Family ID": "F010",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P032",
+        "Family ID": "F010",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P033",
+        "Family ID": "F010",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P034",
+        "Family ID": "F010",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P035",
+        "Family ID": "F011",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P036",
+        "Family ID": "F011",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P037",
+        "Family ID": "F011",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P038",
+        "Family ID": "F012",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P039",
+        "Family ID": "F012",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P040",
+        "Family ID": "F012",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P041",
+        "Family ID": "F013",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P042",
+        "Family ID": "F013",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P043",
+        "Family ID": "F013",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P044",
+        "Family ID": "F013",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P045",
+        "Family ID": "F014",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P046",
+        "Family ID": "F014",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P047",
+        "Family ID": "F014",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P048",
+        "Family ID": "F015",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P049",
+        "Family ID": "F015",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P050",
+        "Family ID": "F015",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P051",
+        "Family ID": "F016",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P052",
+        "Family ID": "F016",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P053",
+        "Family ID": "F016",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P054",
+        "Family ID": "F016",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P055",
+        "Family ID": "F017",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P056",
+        "Family ID": "F017",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P057",
+        "Family ID": "F017",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P058",
+        "Family ID": "F018",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P059",
+        "Family ID": "F018",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P060",
+        "Family ID": "F018",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P061",
+        "Family ID": "F019",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P062",
+        "Family ID": "F019",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P063",
+        "Family ID": "F019",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P064",
+        "Family ID": "F019",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P065",
+        "Family ID": "F020",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P066",
+        "Family ID": "F020",
+        "Household Relationship": "member_of_family"
+      },
+      {
+        "Person ID": "P067",
+        "Family ID": "F020",
+        "Household Relationship": "member_of_family"
+      }
+    ],
+    "association_membership": [
+      {
+        "Family ID": "F001",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F002",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F003",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F004",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F005",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F006",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F007",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F008",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F009",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F010",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F011",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F012",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F013",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F014",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F015",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F016",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F017",
+        "Membership Year": "2026-27",
+        "Status": "grace",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F018",
+        "Membership Year": "2026-27",
+        "Status": "grace",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F019",
+        "Membership Year": "2026-27",
+        "Status": "active",
+        "Notes": "Synthetic launch-demo annual membership"
+      },
+      {
+        "Family ID": "F020",
+        "Membership Year": "2026-27",
+        "Status": "inactive",
+        "Notes": "Synthetic launch-demo annual membership"
+      }
+    ]
+  },
+  "family_detail": {
+    "people_extended": [
+      {
+        "Person ID": "P001",
+        "Date of Birth": "1980-01-01",
+        "Phone": "9555500001",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P002",
+        "Date of Birth": "1982-05-08",
+        "Phone": "9555500002",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P003",
+        "Date of Birth": "2020-08-11",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P004",
+        "Date of Birth": "2017-09-12",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P005",
+        "Date of Birth": "1981-02-02",
+        "Phone": "9555500005",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P006",
+        "Date of Birth": "1983-06-09",
+        "Phone": "9555500006",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P007",
+        "Date of Birth": "2019-09-12",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P008",
+        "Date of Birth": "1982-03-03",
+        "Phone": "9555500008",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P009",
+        "Date of Birth": "1984-07-10",
+        "Phone": "9555500009",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P010",
+        "Date of Birth": "2018-10-13",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P011",
+        "Date of Birth": "1983-04-04",
+        "Phone": "9555500011",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P012",
+        "Date of Birth": "1985-08-11",
+        "Phone": "9555500012",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P013",
+        "Date of Birth": "2017-11-14",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P014",
+        "Date of Birth": "2014-12-15",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P015",
+        "Date of Birth": "1984-05-05",
+        "Phone": "9555500015",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P016",
+        "Date of Birth": "1986-09-12",
+        "Phone": "9555500016",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P017",
+        "Date of Birth": "2016-12-15",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P018",
+        "Date of Birth": "1985-06-06",
+        "Phone": "9555500018",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P019",
+        "Date of Birth": "1987-10-13",
+        "Phone": "9555500019",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P020",
+        "Date of Birth": "2015-01-16",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P021",
+        "Date of Birth": "1986-07-07",
+        "Phone": "9555500021",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P022",
+        "Date of Birth": "1988-11-14",
+        "Phone": "9555500022",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P023",
+        "Date of Birth": "2014-02-17",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P024",
+        "Date of Birth": "2011-03-18",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P025",
+        "Date of Birth": "1987-08-08",
+        "Phone": "9555500025",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P026",
+        "Date of Birth": "1989-12-15",
+        "Phone": "9555500026",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P027",
+        "Date of Birth": "2013-03-18",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P028",
+        "Date of Birth": "1988-09-09",
+        "Phone": "9555500028",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P029",
+        "Date of Birth": "1990-01-16",
+        "Phone": "9555500029",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P030",
+        "Date of Birth": "2012-04-19",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P031",
+        "Date of Birth": "1989-10-10",
+        "Phone": "9555500031",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P032",
+        "Date of Birth": "1991-02-17",
+        "Phone": "9555500032",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P033",
+        "Date of Birth": "2011-05-20",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P034",
+        "Date of Birth": "2008-06-21",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P035",
+        "Date of Birth": "1990-11-11",
+        "Phone": "9555500035",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P036",
+        "Date of Birth": "1992-03-18",
+        "Phone": "9555500036",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P037",
+        "Date of Birth": "2010-06-21",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P038",
+        "Date of Birth": "1991-12-12",
+        "Phone": "9555500038",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P039",
+        "Date of Birth": "1993-04-19",
+        "Phone": "9555500039",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P040",
+        "Date of Birth": "2009-07-22",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P041",
+        "Date of Birth": "1992-01-13",
+        "Phone": "9555500041",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P042",
+        "Date of Birth": "1994-05-20",
+        "Phone": "9555500042",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P043",
+        "Date of Birth": "2008-08-23",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P044",
+        "Date of Birth": "2020-09-24",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P045",
+        "Date of Birth": "1993-02-14",
+        "Phone": "9555500045",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P046",
+        "Date of Birth": "1995-06-21",
+        "Phone": "9555500046",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P047",
+        "Date of Birth": "2007-09-24",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P048",
+        "Date of Birth": "1994-03-15",
+        "Phone": "9555500048",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P049",
+        "Date of Birth": "1996-07-22",
+        "Phone": "9555500049",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P050",
+        "Date of Birth": "2006-10-25",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P051",
+        "Date of Birth": "1980-04-16",
+        "Phone": "9555500051",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P052",
+        "Date of Birth": "1982-08-23",
+        "Phone": "9555500052",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P053",
+        "Date of Birth": "2020-11-26",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P054",
+        "Date of Birth": "2017-12-01",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P055",
+        "Date of Birth": "1981-05-17",
+        "Phone": "9555500055",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P056",
+        "Date of Birth": "1983-09-24",
+        "Phone": "9555500056",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P057",
+        "Date of Birth": "2019-12-01",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P058",
+        "Date of Birth": "1982-06-18",
+        "Phone": "9555500058",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P059",
+        "Date of Birth": "1984-10-25",
+        "Phone": "9555500059",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P060",
+        "Date of Birth": "2018-01-02",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P061",
+        "Date of Birth": "1983-07-19",
+        "Phone": "9555500061",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P062",
+        "Date of Birth": "1985-11-26",
+        "Phone": "9555500062",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P063",
+        "Date of Birth": "2017-02-03",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P064",
+        "Date of Birth": "2014-03-04",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      },
+      {
+        "Person ID": "P065",
+        "Date of Birth": "1984-08-20",
+        "Phone": "9555500065",
+        "Family Role": "representative",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Mentoring; Professional Connect"
+      },
+      {
+        "Person ID": "P066",
+        "Date of Birth": "1986-12-01",
+        "Phone": "9555500066",
+        "Family Role": "spouse",
+        "Profile Visibility": "members",
+        "Contact Visibility": "members",
+        "Interests": "Community Events; Wellness"
+      },
+      {
+        "Person ID": "P067",
+        "Date of Birth": "2016-03-04",
+        "Phone": "",
+        "Family Role": "child",
+        "Profile Visibility": "members",
+        "Contact Visibility": "private",
+        "Interests": "Sports; Arts"
+      }
+    ],
+    "family_relationships": [
+      {
+        "Relationship Ref": "FR001A",
+        "From Person ID": "P001",
+        "To Person ID": "P002",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR001B",
+        "From Person ID": "P002",
+        "To Person ID": "P001",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR001C1",
+        "From Person ID": "P001",
+        "To Person ID": "P003",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR001D1",
+        "From Person ID": "P002",
+        "To Person ID": "P003",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR001E1",
+        "From Person ID": "P003",
+        "To Person ID": "P001",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR001F1",
+        "From Person ID": "P003",
+        "To Person ID": "P002",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR001C2",
+        "From Person ID": "P001",
+        "To Person ID": "P004",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR001D2",
+        "From Person ID": "P002",
+        "To Person ID": "P004",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR001E2",
+        "From Person ID": "P004",
+        "To Person ID": "P001",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR001F2",
+        "From Person ID": "P004",
+        "To Person ID": "P002",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR002A",
+        "From Person ID": "P005",
+        "To Person ID": "P006",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR002B",
+        "From Person ID": "P006",
+        "To Person ID": "P005",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR002C1",
+        "From Person ID": "P005",
+        "To Person ID": "P007",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR002D1",
+        "From Person ID": "P006",
+        "To Person ID": "P007",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR002E1",
+        "From Person ID": "P007",
+        "To Person ID": "P005",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR002F1",
+        "From Person ID": "P007",
+        "To Person ID": "P006",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR003A",
+        "From Person ID": "P008",
+        "To Person ID": "P009",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR003B",
+        "From Person ID": "P009",
+        "To Person ID": "P008",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR003C1",
+        "From Person ID": "P008",
+        "To Person ID": "P010",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR003D1",
+        "From Person ID": "P009",
+        "To Person ID": "P010",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR003E1",
+        "From Person ID": "P010",
+        "To Person ID": "P008",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR003F1",
+        "From Person ID": "P010",
+        "To Person ID": "P009",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR004A",
+        "From Person ID": "P011",
+        "To Person ID": "P012",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR004B",
+        "From Person ID": "P012",
+        "To Person ID": "P011",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR004C1",
+        "From Person ID": "P011",
+        "To Person ID": "P013",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR004D1",
+        "From Person ID": "P012",
+        "To Person ID": "P013",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR004E1",
+        "From Person ID": "P013",
+        "To Person ID": "P011",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR004F1",
+        "From Person ID": "P013",
+        "To Person ID": "P012",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR004C2",
+        "From Person ID": "P011",
+        "To Person ID": "P014",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR004D2",
+        "From Person ID": "P012",
+        "To Person ID": "P014",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR004E2",
+        "From Person ID": "P014",
+        "To Person ID": "P011",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR004F2",
+        "From Person ID": "P014",
+        "To Person ID": "P012",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR005A",
+        "From Person ID": "P015",
+        "To Person ID": "P016",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR005B",
+        "From Person ID": "P016",
+        "To Person ID": "P015",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR005C1",
+        "From Person ID": "P015",
+        "To Person ID": "P017",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR005D1",
+        "From Person ID": "P016",
+        "To Person ID": "P017",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR005E1",
+        "From Person ID": "P017",
+        "To Person ID": "P015",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR005F1",
+        "From Person ID": "P017",
+        "To Person ID": "P016",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR006A",
+        "From Person ID": "P018",
+        "To Person ID": "P019",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR006B",
+        "From Person ID": "P019",
+        "To Person ID": "P018",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR006C1",
+        "From Person ID": "P018",
+        "To Person ID": "P020",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR006D1",
+        "From Person ID": "P019",
+        "To Person ID": "P020",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR006E1",
+        "From Person ID": "P020",
+        "To Person ID": "P018",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR006F1",
+        "From Person ID": "P020",
+        "To Person ID": "P019",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR007A",
+        "From Person ID": "P021",
+        "To Person ID": "P022",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR007B",
+        "From Person ID": "P022",
+        "To Person ID": "P021",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR007C1",
+        "From Person ID": "P021",
+        "To Person ID": "P023",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR007D1",
+        "From Person ID": "P022",
+        "To Person ID": "P023",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR007E1",
+        "From Person ID": "P023",
+        "To Person ID": "P021",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR007F1",
+        "From Person ID": "P023",
+        "To Person ID": "P022",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR007C2",
+        "From Person ID": "P021",
+        "To Person ID": "P024",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR007D2",
+        "From Person ID": "P022",
+        "To Person ID": "P024",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR007E2",
+        "From Person ID": "P024",
+        "To Person ID": "P021",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR007F2",
+        "From Person ID": "P024",
+        "To Person ID": "P022",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR008A",
+        "From Person ID": "P025",
+        "To Person ID": "P026",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR008B",
+        "From Person ID": "P026",
+        "To Person ID": "P025",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR008C1",
+        "From Person ID": "P025",
+        "To Person ID": "P027",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR008D1",
+        "From Person ID": "P026",
+        "To Person ID": "P027",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR008E1",
+        "From Person ID": "P027",
+        "To Person ID": "P025",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR008F1",
+        "From Person ID": "P027",
+        "To Person ID": "P026",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR009A",
+        "From Person ID": "P028",
+        "To Person ID": "P029",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR009B",
+        "From Person ID": "P029",
+        "To Person ID": "P028",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR009C1",
+        "From Person ID": "P028",
+        "To Person ID": "P030",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR009D1",
+        "From Person ID": "P029",
+        "To Person ID": "P030",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR009E1",
+        "From Person ID": "P030",
+        "To Person ID": "P028",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR009F1",
+        "From Person ID": "P030",
+        "To Person ID": "P029",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR010A",
+        "From Person ID": "P031",
+        "To Person ID": "P032",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR010B",
+        "From Person ID": "P032",
+        "To Person ID": "P031",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR010C1",
+        "From Person ID": "P031",
+        "To Person ID": "P033",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR010D1",
+        "From Person ID": "P032",
+        "To Person ID": "P033",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR010E1",
+        "From Person ID": "P033",
+        "To Person ID": "P031",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR010F1",
+        "From Person ID": "P033",
+        "To Person ID": "P032",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR010C2",
+        "From Person ID": "P031",
+        "To Person ID": "P034",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR010D2",
+        "From Person ID": "P032",
+        "To Person ID": "P034",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR010E2",
+        "From Person ID": "P034",
+        "To Person ID": "P031",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR010F2",
+        "From Person ID": "P034",
+        "To Person ID": "P032",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR011A",
+        "From Person ID": "P035",
+        "To Person ID": "P036",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR011B",
+        "From Person ID": "P036",
+        "To Person ID": "P035",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR011C1",
+        "From Person ID": "P035",
+        "To Person ID": "P037",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR011D1",
+        "From Person ID": "P036",
+        "To Person ID": "P037",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR011E1",
+        "From Person ID": "P037",
+        "To Person ID": "P035",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR011F1",
+        "From Person ID": "P037",
+        "To Person ID": "P036",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR012A",
+        "From Person ID": "P038",
+        "To Person ID": "P039",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR012B",
+        "From Person ID": "P039",
+        "To Person ID": "P038",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR012C1",
+        "From Person ID": "P038",
+        "To Person ID": "P040",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR012D1",
+        "From Person ID": "P039",
+        "To Person ID": "P040",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR012E1",
+        "From Person ID": "P040",
+        "To Person ID": "P038",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR012F1",
+        "From Person ID": "P040",
+        "To Person ID": "P039",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR013A",
+        "From Person ID": "P041",
+        "To Person ID": "P042",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR013B",
+        "From Person ID": "P042",
+        "To Person ID": "P041",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR013C1",
+        "From Person ID": "P041",
+        "To Person ID": "P043",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR013D1",
+        "From Person ID": "P042",
+        "To Person ID": "P043",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR013E1",
+        "From Person ID": "P043",
+        "To Person ID": "P041",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR013F1",
+        "From Person ID": "P043",
+        "To Person ID": "P042",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR013C2",
+        "From Person ID": "P041",
+        "To Person ID": "P044",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR013D2",
+        "From Person ID": "P042",
+        "To Person ID": "P044",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR013E2",
+        "From Person ID": "P044",
+        "To Person ID": "P041",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR013F2",
+        "From Person ID": "P044",
+        "To Person ID": "P042",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR014A",
+        "From Person ID": "P045",
+        "To Person ID": "P046",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR014B",
+        "From Person ID": "P046",
+        "To Person ID": "P045",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR014C1",
+        "From Person ID": "P045",
+        "To Person ID": "P047",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR014D1",
+        "From Person ID": "P046",
+        "To Person ID": "P047",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR014E1",
+        "From Person ID": "P047",
+        "To Person ID": "P045",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR014F1",
+        "From Person ID": "P047",
+        "To Person ID": "P046",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR015A",
+        "From Person ID": "P048",
+        "To Person ID": "P049",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR015B",
+        "From Person ID": "P049",
+        "To Person ID": "P048",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR015C1",
+        "From Person ID": "P048",
+        "To Person ID": "P050",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR015D1",
+        "From Person ID": "P049",
+        "To Person ID": "P050",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR015E1",
+        "From Person ID": "P050",
+        "To Person ID": "P048",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR015F1",
+        "From Person ID": "P050",
+        "To Person ID": "P049",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR016A",
+        "From Person ID": "P051",
+        "To Person ID": "P052",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR016B",
+        "From Person ID": "P052",
+        "To Person ID": "P051",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR016C1",
+        "From Person ID": "P051",
+        "To Person ID": "P053",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR016D1",
+        "From Person ID": "P052",
+        "To Person ID": "P053",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR016E1",
+        "From Person ID": "P053",
+        "To Person ID": "P051",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR016F1",
+        "From Person ID": "P053",
+        "To Person ID": "P052",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR016C2",
+        "From Person ID": "P051",
+        "To Person ID": "P054",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR016D2",
+        "From Person ID": "P052",
+        "To Person ID": "P054",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR016E2",
+        "From Person ID": "P054",
+        "To Person ID": "P051",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR016F2",
+        "From Person ID": "P054",
+        "To Person ID": "P052",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR017A",
+        "From Person ID": "P055",
+        "To Person ID": "P056",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR017B",
+        "From Person ID": "P056",
+        "To Person ID": "P055",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR017C1",
+        "From Person ID": "P055",
+        "To Person ID": "P057",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR017D1",
+        "From Person ID": "P056",
+        "To Person ID": "P057",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR017E1",
+        "From Person ID": "P057",
+        "To Person ID": "P055",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR017F1",
+        "From Person ID": "P057",
+        "To Person ID": "P056",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR018A",
+        "From Person ID": "P058",
+        "To Person ID": "P059",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR018B",
+        "From Person ID": "P059",
+        "To Person ID": "P058",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR018C1",
+        "From Person ID": "P058",
+        "To Person ID": "P060",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR018D1",
+        "From Person ID": "P059",
+        "To Person ID": "P060",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR018E1",
+        "From Person ID": "P060",
+        "To Person ID": "P058",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR018F1",
+        "From Person ID": "P060",
+        "To Person ID": "P059",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR019A",
+        "From Person ID": "P061",
+        "To Person ID": "P062",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR019B",
+        "From Person ID": "P062",
+        "To Person ID": "P061",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR019C1",
+        "From Person ID": "P061",
+        "To Person ID": "P063",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR019D1",
+        "From Person ID": "P062",
+        "To Person ID": "P063",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR019E1",
+        "From Person ID": "P063",
+        "To Person ID": "P061",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR019F1",
+        "From Person ID": "P063",
+        "To Person ID": "P062",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR019C2",
+        "From Person ID": "P061",
+        "To Person ID": "P064",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR019D2",
+        "From Person ID": "P062",
+        "To Person ID": "P064",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR019E2",
+        "From Person ID": "P064",
+        "To Person ID": "P061",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR019F2",
+        "From Person ID": "P064",
+        "To Person ID": "P062",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR020A",
+        "From Person ID": "P065",
+        "To Person ID": "P066",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR020B",
+        "From Person ID": "P066",
+        "To Person ID": "P065",
+        "Relationship": "Spouse"
+      },
+      {
+        "Relationship Ref": "FR020C1",
+        "From Person ID": "P065",
+        "To Person ID": "P067",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR020D1",
+        "From Person ID": "P066",
+        "To Person ID": "P067",
+        "Relationship": "Parent"
+      },
+      {
+        "Relationship Ref": "FR020E1",
+        "From Person ID": "P067",
+        "To Person ID": "P065",
+        "Relationship": "Child"
+      },
+      {
+        "Relationship Ref": "FR020F1",
+        "From Person ID": "P067",
+        "To Person ID": "P066",
+        "Relationship": "Child"
+      }
+    ]
+  },
+  "membership": {
+    "years": [
+      {
+        "Year Ref": "MY2024",
+        "Label": "2024-25",
+        "Start Date": "2024-04-01",
+        "End Date": "2025-03-31",
+        "Family Fee": 4500,
+        "Grace Days": 20,
+        "Status": "archived"
+      },
+      {
+        "Year Ref": "MY2025",
+        "Label": "2025-26",
+        "Start Date": "2025-04-01",
+        "End Date": "2026-03-31",
+        "Family Fee": 4800,
+        "Grace Days": 20,
+        "Status": "archived"
+      },
+      {
+        "Year Ref": "MY2026",
+        "Label": "2026-27",
+        "Start Date": "2026-04-01",
+        "End Date": "2027-03-31",
+        "Family Fee": 5100,
+        "Grace Days": 30,
+        "Status": "active"
+      }
+    ],
+    "family_membership": [
+      {
+        "Membership Ref": "FM001",
+        "Year Ref": "MY2026",
+        "Family ID": "F001",
+        "Representative Person ID": "P001",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO001"
+      },
+      {
+        "Membership Ref": "FM002",
+        "Year Ref": "MY2026",
+        "Family ID": "F002",
+        "Representative Person ID": "P005",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO002"
+      },
+      {
+        "Membership Ref": "FM003",
+        "Year Ref": "MY2026",
+        "Family ID": "F003",
+        "Representative Person ID": "P008",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO003"
+      },
+      {
+        "Membership Ref": "FM004",
+        "Year Ref": "MY2026",
+        "Family ID": "F004",
+        "Representative Person ID": "P011",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO004"
+      },
+      {
+        "Membership Ref": "FM005",
+        "Year Ref": "MY2026",
+        "Family ID": "F005",
+        "Representative Person ID": "P015",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO005"
+      },
+      {
+        "Membership Ref": "FM006",
+        "Year Ref": "MY2026",
+        "Family ID": "F006",
+        "Representative Person ID": "P018",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO006"
+      },
+      {
+        "Membership Ref": "FM007",
+        "Year Ref": "MY2026",
+        "Family ID": "F007",
+        "Representative Person ID": "P021",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO007"
+      },
+      {
+        "Membership Ref": "FM008",
+        "Year Ref": "MY2026",
+        "Family ID": "F008",
+        "Representative Person ID": "P025",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO008"
+      },
+      {
+        "Membership Ref": "FM009",
+        "Year Ref": "MY2026",
+        "Family ID": "F009",
+        "Representative Person ID": "P028",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO009"
+      },
+      {
+        "Membership Ref": "FM010",
+        "Year Ref": "MY2026",
+        "Family ID": "F010",
+        "Representative Person ID": "P031",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO010"
+      },
+      {
+        "Membership Ref": "FM011",
+        "Year Ref": "MY2026",
+        "Family ID": "F011",
+        "Representative Person ID": "P035",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO011"
+      },
+      {
+        "Membership Ref": "FM012",
+        "Year Ref": "MY2026",
+        "Family ID": "F012",
+        "Representative Person ID": "P038",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO012"
+      },
+      {
+        "Membership Ref": "FM013",
+        "Year Ref": "MY2026",
+        "Family ID": "F013",
+        "Representative Person ID": "P041",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO013"
+      },
+      {
+        "Membership Ref": "FM014",
+        "Year Ref": "MY2026",
+        "Family ID": "F014",
+        "Representative Person ID": "P045",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO014"
+      },
+      {
+        "Membership Ref": "FM015",
+        "Year Ref": "MY2026",
+        "Family ID": "F015",
+        "Representative Person ID": "P048",
+        "Status": "active",
+        "Payment Status": "paid",
+        "Amount Due": 5100,
+        "Amount Paid": 5100,
+        "Payment Reference": "MPFDEMO015"
+      },
+      {
+        "Membership Ref": "FM016",
+        "Year Ref": "MY2026",
+        "Family ID": "F016",
+        "Representative Person ID": "P051",
+        "Status": "active",
+        "Payment Status": "partial",
+        "Amount Due": 5100,
+        "Amount Paid": 2500,
+        "Payment Reference": "MPFDEMO016"
+      },
+      {
+        "Membership Ref": "FM017",
+        "Year Ref": "MY2026",
+        "Family ID": "F017",
+        "Representative Person ID": "P055",
+        "Status": "active",
+        "Payment Status": "partial",
+        "Amount Due": 5100,
+        "Amount Paid": 2500,
+        "Payment Reference": "MPFDEMO017"
+      },
+      {
+        "Membership Ref": "FM018",
+        "Year Ref": "MY2026",
+        "Family ID": "F018",
+        "Representative Person ID": "P058",
+        "Status": "grace",
+        "Payment Status": "unpaid",
+        "Amount Due": 5100,
+        "Amount Paid": 0,
+        "Payment Reference": ""
+      },
+      {
+        "Membership Ref": "FM019",
+        "Year Ref": "MY2026",
+        "Family ID": "F019",
+        "Representative Person ID": "P061",
+        "Status": "pending",
+        "Payment Status": "unpaid",
+        "Amount Due": 5100,
+        "Amount Paid": 0,
+        "Payment Reference": ""
+      },
+      {
+        "Membership Ref": "FM020",
+        "Year Ref": "MY2026",
+        "Family ID": "F020",
+        "Representative Person ID": "P065",
+        "Status": "pending",
+        "Payment Status": "waived",
+        "Amount Due": 5100,
+        "Amount Paid": 0,
+        "Payment Reference": ""
+      }
+    ],
+    "role_catalog": [
+      {
+        "Role Ref": "ROLE01",
+        "Role Key": "president",
+        "Label": "President",
+        "Portfolio": "Chapter Leadership"
+      },
+      {
+        "Role Ref": "ROLE02",
+        "Role Key": "secretary",
+        "Label": "Secretary",
+        "Portfolio": "Administration"
+      },
+      {
+        "Role Ref": "ROLE03",
+        "Role Key": "treasurer",
+        "Label": "Treasurer",
+        "Portfolio": "Finance"
+      },
+      {
+        "Role Ref": "ROLE04",
+        "Role Key": "events",
+        "Label": "Events",
+        "Portfolio": "Community Events"
+      },
+      {
+        "Role Ref": "ROLE05",
+        "Role Key": "membership",
+        "Label": "Membership",
+        "Portfolio": "Renewals & Onboarding"
+      },
+      {
+        "Role Ref": "ROLE06",
+        "Role Key": "professional_connect",
+        "Label": "Professional Connect",
+        "Portfolio": "Professional Networking"
+      },
+      {
+        "Role Ref": "ROLE07",
+        "Role Key": "youth",
+        "Label": "Youth Coordinator",
+        "Portfolio": "Youth"
+      },
+      {
+        "Role Ref": "ROLE08",
+        "Role Key": "culture",
+        "Label": "Cultural Coordinator",
+        "Portfolio": "Culture"
+      }
+    ],
+    "role_assignments": [
+      {
+        "Assignment Ref": "RA001",
+        "Year Ref": "MY2026",
+        "Person ID": "P001",
+        "Role Ref": "ROLE01",
+        "Starts On": "2026-04-01",
+        "Ends On": "",
+        "Notes": "Synthetic current committee"
+      },
+      {
+        "Assignment Ref": "RA002",
+        "Year Ref": "MY2026",
+        "Person ID": "P005",
+        "Role Ref": "ROLE02",
+        "Starts On": "2026-04-01",
+        "Ends On": "",
+        "Notes": "Synthetic current committee"
+      },
+      {
+        "Assignment Ref": "RA003",
+        "Year Ref": "MY2026",
+        "Person ID": "P008",
+        "Role Ref": "ROLE03",
+        "Starts On": "2026-04-01",
+        "Ends On": "",
+        "Notes": "Synthetic current committee"
+      },
+      {
+        "Assignment Ref": "RA004",
+        "Year Ref": "MY2026",
+        "Person ID": "P011",
+        "Role Ref": "ROLE04",
+        "Starts On": "2026-04-01",
+        "Ends On": "",
+        "Notes": "Synthetic current committee"
+      },
+      {
+        "Assignment Ref": "RA005",
+        "Year Ref": "MY2026",
+        "Person ID": "P015",
+        "Role Ref": "ROLE05",
+        "Starts On": "2026-04-01",
+        "Ends On": "",
+        "Notes": "Synthetic current committee"
+      },
+      {
+        "Assignment Ref": "RA006",
+        "Year Ref": "MY2026",
+        "Person ID": "P018",
+        "Role Ref": "ROLE06",
+        "Starts On": "2026-04-01",
+        "Ends On": "",
+        "Notes": "Synthetic current committee"
+      },
+      {
+        "Assignment Ref": "RA007",
+        "Year Ref": "MY2026",
+        "Person ID": "P021",
+        "Role Ref": "ROLE07",
+        "Starts On": "2026-04-01",
+        "Ends On": "",
+        "Notes": "Synthetic current committee"
+      },
+      {
+        "Assignment Ref": "RA008",
+        "Year Ref": "MY2026",
+        "Person ID": "P025",
+        "Role Ref": "ROLE08",
+        "Starts On": "2026-04-01",
+        "Ends On": "",
+        "Notes": "Synthetic current committee"
+      }
+    ]
+  },
+  "community": {
+    "events": [
+      {
+        "Event Ref": "EV001",
+        "Title": "Ashirwad Samaroh 2026",
+        "Date": "2026-04-19",
+        "Venue": "Boat Club, Pune",
+        "Status": "completed",
+        "Description": "New-family welcome and senior-member recognition"
+      },
+      {
+        "Event Ref": "EV002",
+        "Title": "Professional Connect Evening",
+        "Date": "2026-06-14",
+        "Venue": "Kalyani Nagar",
+        "Status": "completed",
+        "Description": "Member introductions and referral networking"
+      },
+      {
+        "Event Ref": "EV003",
+        "Title": "Monsoon Family Picnic",
+        "Date": "2026-07-26",
+        "Venue": "Mulshi",
+        "Status": "completed",
+        "Description": "Family day and games"
+      },
+      {
+        "Event Ref": "EV004",
+        "Title": "Ganesh Utsav Community Evening",
+        "Date": "2026-09-20",
+        "Venue": "Kharadi Community Hall",
+        "Status": "upcoming",
+        "Description": "Aarti, cultural activities and dinner"
+      },
+      {
+        "Event Ref": "EV005",
+        "Title": "Diwali Milan 2026",
+        "Date": "2026-11-01",
+        "Venue": "Pune East",
+        "Status": "upcoming",
+        "Description": "Annual cultural evening"
+      },
+      {
+        "Event Ref": "EV006",
+        "Title": "Youth Career Mentoring",
+        "Date": "2026-10-11",
+        "Venue": "Online + Pune",
+        "Status": "upcoming",
+        "Description": "Career mentoring by senior professionals"
+      }
+    ],
+    "rsvps": [
+      {
+        "RSVP Ref": "RS001",
+        "Event Ref": "EV001",
+        "Family ID": "F001",
+        "Person ID": "P001",
+        "Response": "maybe",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS002",
+        "Event Ref": "EV002",
+        "Family ID": "F002",
+        "Person ID": "P005",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS003",
+        "Event Ref": "EV003",
+        "Family ID": "F003",
+        "Person ID": "P008",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS004",
+        "Event Ref": "EV004",
+        "Family ID": "F004",
+        "Person ID": "P011",
+        "Response": "yes",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS005",
+        "Event Ref": "EV005",
+        "Family ID": "F005",
+        "Person ID": "P015",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS006",
+        "Event Ref": "EV006",
+        "Family ID": "F006",
+        "Person ID": "P018",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS007",
+        "Event Ref": "EV001",
+        "Family ID": "F007",
+        "Person ID": "P021",
+        "Response": "maybe",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS008",
+        "Event Ref": "EV002",
+        "Family ID": "F008",
+        "Person ID": "P025",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS009",
+        "Event Ref": "EV003",
+        "Family ID": "F009",
+        "Person ID": "P028",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS010",
+        "Event Ref": "EV004",
+        "Family ID": "F010",
+        "Person ID": "P031",
+        "Response": "yes",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS011",
+        "Event Ref": "EV005",
+        "Family ID": "F011",
+        "Person ID": "P035",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS012",
+        "Event Ref": "EV006",
+        "Family ID": "F012",
+        "Person ID": "P038",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS013",
+        "Event Ref": "EV001",
+        "Family ID": "F013",
+        "Person ID": "P041",
+        "Response": "maybe",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS014",
+        "Event Ref": "EV002",
+        "Family ID": "F014",
+        "Person ID": "P045",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS015",
+        "Event Ref": "EV003",
+        "Family ID": "F015",
+        "Person ID": "P048",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS016",
+        "Event Ref": "EV004",
+        "Family ID": "F016",
+        "Person ID": "P051",
+        "Response": "yes",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS017",
+        "Event Ref": "EV005",
+        "Family ID": "F017",
+        "Person ID": "P055",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS018",
+        "Event Ref": "EV006",
+        "Family ID": "F018",
+        "Person ID": "P058",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS019",
+        "Event Ref": "EV001",
+        "Family ID": "F019",
+        "Person ID": "P061",
+        "Response": "maybe",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS020",
+        "Event Ref": "EV002",
+        "Family ID": "F020",
+        "Person ID": "P065",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS021",
+        "Event Ref": "EV003",
+        "Family ID": "F001",
+        "Person ID": "P001",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS022",
+        "Event Ref": "EV004",
+        "Family ID": "F002",
+        "Person ID": "P005",
+        "Response": "yes",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS023",
+        "Event Ref": "EV005",
+        "Family ID": "F003",
+        "Person ID": "P008",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS024",
+        "Event Ref": "EV006",
+        "Family ID": "F004",
+        "Person ID": "P011",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS025",
+        "Event Ref": "EV001",
+        "Family ID": "F005",
+        "Person ID": "P015",
+        "Response": "maybe",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS026",
+        "Event Ref": "EV002",
+        "Family ID": "F006",
+        "Person ID": "P018",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS027",
+        "Event Ref": "EV003",
+        "Family ID": "F007",
+        "Person ID": "P021",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS028",
+        "Event Ref": "EV004",
+        "Family ID": "F008",
+        "Person ID": "P025",
+        "Response": "yes",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS029",
+        "Event Ref": "EV005",
+        "Family ID": "F009",
+        "Person ID": "P028",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS030",
+        "Event Ref": "EV006",
+        "Family ID": "F010",
+        "Person ID": "P031",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS031",
+        "Event Ref": "EV001",
+        "Family ID": "F011",
+        "Person ID": "P035",
+        "Response": "maybe",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS032",
+        "Event Ref": "EV002",
+        "Family ID": "F012",
+        "Person ID": "P038",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS033",
+        "Event Ref": "EV003",
+        "Family ID": "F013",
+        "Person ID": "P041",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS034",
+        "Event Ref": "EV004",
+        "Family ID": "F014",
+        "Person ID": "P045",
+        "Response": "yes",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS035",
+        "Event Ref": "EV005",
+        "Family ID": "F015",
+        "Person ID": "P048",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS036",
+        "Event Ref": "EV006",
+        "Family ID": "F016",
+        "Person ID": "P051",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS037",
+        "Event Ref": "EV001",
+        "Family ID": "F017",
+        "Person ID": "P055",
+        "Response": "maybe",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS038",
+        "Event Ref": "EV002",
+        "Family ID": "F018",
+        "Person ID": "P058",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS039",
+        "Event Ref": "EV003",
+        "Family ID": "F019",
+        "Person ID": "P061",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS040",
+        "Event Ref": "EV004",
+        "Family ID": "F020",
+        "Person ID": "P065",
+        "Response": "yes",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS041",
+        "Event Ref": "EV005",
+        "Family ID": "F001",
+        "Person ID": "P001",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS042",
+        "Event Ref": "EV006",
+        "Family ID": "F002",
+        "Person ID": "P005",
+        "Response": "yes",
+        "Guest Count": 3
+      },
+      {
+        "RSVP Ref": "RS043",
+        "Event Ref": "EV001",
+        "Family ID": "F003",
+        "Person ID": "P008",
+        "Response": "maybe",
+        "Guest Count": 1
+      },
+      {
+        "RSVP Ref": "RS044",
+        "Event Ref": "EV002",
+        "Family ID": "F004",
+        "Person ID": "P011",
+        "Response": "yes",
+        "Guest Count": 2
+      },
+      {
+        "RSVP Ref": "RS045",
+        "Event Ref": "EV003",
+        "Family ID": "F005",
+        "Person ID": "P015",
+        "Response": "yes",
+        "Guest Count": 3
+      }
+    ],
+    "announcements": [
+      {
+        "Announcement Ref": "ANN001",
+        "Title": "2026-27 membership renewal is open",
+        "Priority": "high",
+        "Audience": "All families",
+        "Body": "Please complete renewal and confirm family profile details."
+      },
+      {
+        "Announcement Ref": "ANN002",
+        "Title": "Ganesh Utsav registrations",
+        "Priority": "normal",
+        "Audience": "All families",
+        "Body": "RSVP for dinner and volunteer slots."
+      },
+      {
+        "Announcement Ref": "ANN003",
+        "Title": "Professional profile update week",
+        "Priority": "normal",
+        "Audience": "Professionals",
+        "Body": "Keep profession, skills and contact visibility up to date."
+      },
+      {
+        "Announcement Ref": "ANN004",
+        "Title": "Committee meeting summary",
+        "Priority": "important",
+        "Audience": "All families",
+        "Body": "Key decisions and upcoming activities are now available."
+      }
+    ],
+    "posts": [
+      {
+        "Post Ref": "CPOST001",
+        "Category": "announcement",
+        "Importance": "important",
+        "Title": "Renewal reminder for 2026-27",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": true,
+        "Pinned": true,
+        "Author Person ID": "P001"
+      },
+      {
+        "Post Ref": "CPOST002",
+        "Category": "event",
+        "Importance": "normal",
+        "Title": "Ganesh Utsav volunteer slots",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Person ID": "P005"
+      },
+      {
+        "Post Ref": "CPOST003",
+        "Category": "help",
+        "Importance": "normal",
+        "Title": "Looking for CA guidance",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Person ID": "P008"
+      },
+      {
+        "Post Ref": "CPOST004",
+        "Category": "professional",
+        "Importance": "normal",
+        "Title": "Member business introduction",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Person ID": "P011"
+      },
+      {
+        "Post Ref": "CPOST005",
+        "Category": "announcement",
+        "Importance": "normal",
+        "Title": "Youth mentoring sign-ups",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Person ID": "P015"
+      },
+      {
+        "Post Ref": "CPOST006",
+        "Category": "event",
+        "Importance": "normal",
+        "Title": "Birthday wishes this week",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Person ID": "P018"
+      },
+      {
+        "Post Ref": "CPOST007",
+        "Category": "help",
+        "Importance": "important",
+        "Title": "Diwali Milan planning update",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": true,
+        "Pinned": false,
+        "Author Person ID": "P021"
+      },
+      {
+        "Post Ref": "CPOST008",
+        "Category": "professional",
+        "Importance": "normal",
+        "Title": "Need venue suggestion",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Person ID": "P025"
+      },
+      {
+        "Post Ref": "CPOST009",
+        "Category": "announcement",
+        "Importance": "normal",
+        "Title": "Professional referral request",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Person ID": "P028"
+      },
+      {
+        "Post Ref": "CPOST010",
+        "Category": "event",
+        "Importance": "normal",
+        "Title": "Community history photo collection",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Person ID": "P031"
+      },
+      {
+        "Post Ref": "CPOST011",
+        "Category": "help",
+        "Importance": "normal",
+        "Title": "Welcome new family",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Person ID": "P035"
+      },
+      {
+        "Post Ref": "CPOST012",
+        "Category": "professional",
+        "Importance": "normal",
+        "Title": "Committee office hours",
+        "Body": "Synthetic community post designed to exercise comments, mentions, important broadcasts and engagement notifications.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Person ID": "P038"
+      }
+    ],
+    "post_comments": [
+      {
+        "Comment Ref": "CPC001",
+        "Post Ref": "CPOST001",
+        "Author Person ID": "P018",
+        "Body": "Happy to volunteer."
+      },
+      {
+        "Comment Ref": "CPC002",
+        "Post Ref": "CPOST002",
+        "Author Person ID": "P021",
+        "Body": "Please share more details."
+      },
+      {
+        "Comment Ref": "CPC003",
+        "Post Ref": "CPOST003",
+        "Author Person ID": "P025",
+        "Body": "I can connect you with someone."
+      },
+      {
+        "Comment Ref": "CPC004",
+        "Post Ref": "CPOST004",
+        "Author Person ID": "P028",
+        "Body": "Thanks for the update."
+      },
+      {
+        "Comment Ref": "CPC005",
+        "Post Ref": "CPOST005",
+        "Author Person ID": "P031",
+        "Body": "Count our family in."
+      },
+      {
+        "Comment Ref": "CPC006",
+        "Post Ref": "CPOST006",
+        "Author Person ID": "P035",
+        "Body": "Happy to volunteer."
+      },
+      {
+        "Comment Ref": "CPC007",
+        "Post Ref": "CPOST007",
+        "Author Person ID": "P038",
+        "Body": "Please share more details."
+      },
+      {
+        "Comment Ref": "CPC008",
+        "Post Ref": "CPOST008",
+        "Author Person ID": "P041",
+        "Body": "I can connect you with someone."
+      },
+      {
+        "Comment Ref": "CPC009",
+        "Post Ref": "CPOST009",
+        "Author Person ID": "P045",
+        "Body": "Thanks for the update."
+      },
+      {
+        "Comment Ref": "CPC010",
+        "Post Ref": "CPOST010",
+        "Author Person ID": "P048",
+        "Body": "Count our family in."
+      },
+      {
+        "Comment Ref": "CPC011",
+        "Post Ref": "CPOST011",
+        "Author Person ID": "P051",
+        "Body": "Happy to volunteer."
+      },
+      {
+        "Comment Ref": "CPC012",
+        "Post Ref": "CPOST012",
+        "Author Person ID": "P055",
+        "Body": "Please share more details."
+      },
+      {
+        "Comment Ref": "CPC013",
+        "Post Ref": "CPOST001",
+        "Author Person ID": "P058",
+        "Body": "I can connect you with someone."
+      },
+      {
+        "Comment Ref": "CPC014",
+        "Post Ref": "CPOST002",
+        "Author Person ID": "P061",
+        "Body": "Thanks for the update."
+      },
+      {
+        "Comment Ref": "CPC015",
+        "Post Ref": "CPOST003",
+        "Author Person ID": "P065",
+        "Body": "Count our family in."
+      },
+      {
+        "Comment Ref": "CPC016",
+        "Post Ref": "CPOST004",
+        "Author Person ID": "P001",
+        "Body": "Happy to volunteer."
+      },
+      {
+        "Comment Ref": "CPC017",
+        "Post Ref": "CPOST005",
+        "Author Person ID": "P005",
+        "Body": "Please share more details."
+      },
+      {
+        "Comment Ref": "CPC018",
+        "Post Ref": "CPOST006",
+        "Author Person ID": "P008",
+        "Body": "I can connect you with someone."
+      },
+      {
+        "Comment Ref": "CPC019",
+        "Post Ref": "CPOST007",
+        "Author Person ID": "P011",
+        "Body": "Thanks for the update."
+      },
+      {
+        "Comment Ref": "CPC020",
+        "Post Ref": "CPOST008",
+        "Author Person ID": "P015",
+        "Body": "Count our family in."
+      }
+    ],
+    "memories": [
+      {
+        "Memory Ref": "MEM001",
+        "Title": "Diwali Milan 2025",
+        "Type": "album",
+        "Date": "2025-10-25",
+        "Caption": "Performances, awards and family moments",
+        "Photo Count": 42
+      },
+      {
+        "Memory Ref": "MEM002",
+        "Title": "Ashirwad Samaroh 2025",
+        "Type": "album",
+        "Date": "2025-04-20",
+        "Caption": "Welcoming new families",
+        "Photo Count": 28
+      },
+      {
+        "Memory Ref": "MEM003",
+        "Title": "Community Service Drive",
+        "Type": "story",
+        "Date": "2026-01-12",
+        "Caption": "Families volunteered together",
+        "Photo Count": 18
+      },
+      {
+        "Memory Ref": "MEM004",
+        "Title": "Monsoon Picnic 2026",
+        "Type": "album",
+        "Date": "2026-07-26",
+        "Caption": "Family games and outdoor moments",
+        "Photo Count": 36
+      }
+    ],
+    "groups": [
+      {
+        "Group Ref": "GRP001",
+        "Name": "Managing Committee",
+        "Type": "committee",
+        "Description": "Current elected chapter committee"
+      },
+      {
+        "Group Ref": "GRP002",
+        "Name": "Youth Circle",
+        "Type": "interest",
+        "Description": "Youth activities and mentoring"
+      },
+      {
+        "Group Ref": "GRP003",
+        "Name": "Professional Connect",
+        "Type": "professional",
+        "Description": "Member referrals and business/professional networking"
+      },
+      {
+        "Group Ref": "GRP004",
+        "Name": "Cultural Team",
+        "Type": "committee",
+        "Description": "Festivals and community cultural activities"
+      }
+    ],
+    "group_membership": [
+      {
+        "Membership Ref": "GM001",
+        "Group Ref": "GRP001",
+        "Person ID": "P001",
+        "Role": "coordinator"
+      },
+      {
+        "Membership Ref": "GM002",
+        "Group Ref": "GRP002",
+        "Person ID": "P005",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM003",
+        "Group Ref": "GRP003",
+        "Person ID": "P008",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM004",
+        "Group Ref": "GRP004",
+        "Person ID": "P011",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM005",
+        "Group Ref": "GRP001",
+        "Person ID": "P015",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM006",
+        "Group Ref": "GRP002",
+        "Person ID": "P018",
+        "Role": "coordinator"
+      },
+      {
+        "Membership Ref": "GM007",
+        "Group Ref": "GRP003",
+        "Person ID": "P021",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM008",
+        "Group Ref": "GRP004",
+        "Person ID": "P025",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM009",
+        "Group Ref": "GRP001",
+        "Person ID": "P028",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM010",
+        "Group Ref": "GRP002",
+        "Person ID": "P031",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM011",
+        "Group Ref": "GRP003",
+        "Person ID": "P035",
+        "Role": "coordinator"
+      },
+      {
+        "Membership Ref": "GM012",
+        "Group Ref": "GRP004",
+        "Person ID": "P038",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM013",
+        "Group Ref": "GRP001",
+        "Person ID": "P041",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM014",
+        "Group Ref": "GRP002",
+        "Person ID": "P045",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM015",
+        "Group Ref": "GRP003",
+        "Person ID": "P048",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM016",
+        "Group Ref": "GRP004",
+        "Person ID": "P051",
+        "Role": "coordinator"
+      },
+      {
+        "Membership Ref": "GM017",
+        "Group Ref": "GRP001",
+        "Person ID": "P055",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM018",
+        "Group Ref": "GRP002",
+        "Person ID": "P058",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM019",
+        "Group Ref": "GRP003",
+        "Person ID": "P061",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM020",
+        "Group Ref": "GRP004",
+        "Person ID": "P065",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM021",
+        "Group Ref": "GRP001",
+        "Person ID": "P001",
+        "Role": "coordinator"
+      },
+      {
+        "Membership Ref": "GM022",
+        "Group Ref": "GRP002",
+        "Person ID": "P005",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM023",
+        "Group Ref": "GRP003",
+        "Person ID": "P008",
+        "Role": "member"
+      },
+      {
+        "Membership Ref": "GM024",
+        "Group Ref": "GRP004",
+        "Person ID": "P011",
+        "Role": "member"
+      }
+    ]
+  },
+  "finance": {
+    "funds": [
+      {
+        "Fund Ref": "CF001",
+        "Name": "Annual Membership Fund",
+        "Fund Kind": "membership",
+        "Purpose": "Annual chapter operations",
+        "Target Amount": 102000,
+        "Opening Balance": 185000,
+        "Visibility": "members",
+        "Year Ref": "MY2026",
+        "Event Ref": ""
+      },
+      {
+        "Fund Ref": "CF002",
+        "Name": "Ganesh Utsav Collection",
+        "Fund Kind": "event",
+        "Purpose": "Festival venue and dinner",
+        "Target Amount": 75000,
+        "Opening Balance": 0,
+        "Visibility": "members",
+        "Year Ref": "MY2026",
+        "Event Ref": "EV004"
+      },
+      {
+        "Fund Ref": "CF003",
+        "Name": "Good Cause Fund",
+        "Fund Kind": "donation",
+        "Purpose": "Community support initiatives",
+        "Target Amount": 100000,
+        "Opening Balance": 42000,
+        "Visibility": "highlighted",
+        "Year Ref": "MY2026",
+        "Event Ref": ""
+      },
+      {
+        "Fund Ref": "CF004",
+        "Name": "Reserve Fund",
+        "Fund Kind": "reserve",
+        "Purpose": "Carry-forward operational reserve",
+        "Target Amount": "",
+        "Opening Balance": 95000,
+        "Visibility": "admins",
+        "Year Ref": "MY2026",
+        "Event Ref": ""
+      }
+    ],
+    "transactions": [
+      {
+        "Transaction Ref": "FT001",
+        "Fund Ref": "CF001",
+        "Transaction Kind": "collection",
+        "Amount": 5100,
+        "Source Family ID": "F001",
+        "Year Ref": "MY2026",
+        "Payment Method": "upi",
+        "Reference": "CTX001",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT002",
+        "Fund Ref": "CF002",
+        "Transaction Kind": "collection",
+        "Amount": 2500,
+        "Source Family ID": "F002",
+        "Year Ref": "MY2026",
+        "Payment Method": "bank",
+        "Reference": "CTX002",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT003",
+        "Fund Ref": "CF003",
+        "Transaction Kind": "collection",
+        "Amount": 3000,
+        "Source Family ID": "F003",
+        "Year Ref": "MY2026",
+        "Payment Method": "cash",
+        "Reference": "CTX003",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT004",
+        "Fund Ref": "CF004",
+        "Transaction Kind": "expense",
+        "Amount": 12000,
+        "Source Family ID": "F004",
+        "Year Ref": "MY2026",
+        "Payment Method": "upi",
+        "Reference": "CTX004",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT005",
+        "Fund Ref": "CF001",
+        "Transaction Kind": "collection",
+        "Amount": 5100,
+        "Source Family ID": "F005",
+        "Year Ref": "MY2026",
+        "Payment Method": "bank",
+        "Reference": "CTX005",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT006",
+        "Fund Ref": "CF002",
+        "Transaction Kind": "collection",
+        "Amount": 2500,
+        "Source Family ID": "F006",
+        "Year Ref": "MY2026",
+        "Payment Method": "cash",
+        "Reference": "CTX006",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT007",
+        "Fund Ref": "CF003",
+        "Transaction Kind": "collection",
+        "Amount": 3000,
+        "Source Family ID": "F007",
+        "Year Ref": "MY2026",
+        "Payment Method": "upi",
+        "Reference": "CTX007",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT008",
+        "Fund Ref": "CF004",
+        "Transaction Kind": "expense",
+        "Amount": 12000,
+        "Source Family ID": "F008",
+        "Year Ref": "MY2026",
+        "Payment Method": "bank",
+        "Reference": "CTX008",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT009",
+        "Fund Ref": "CF001",
+        "Transaction Kind": "collection",
+        "Amount": 5100,
+        "Source Family ID": "F009",
+        "Year Ref": "MY2026",
+        "Payment Method": "cash",
+        "Reference": "CTX009",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT010",
+        "Fund Ref": "CF002",
+        "Transaction Kind": "collection",
+        "Amount": 2500,
+        "Source Family ID": "F010",
+        "Year Ref": "MY2026",
+        "Payment Method": "upi",
+        "Reference": "CTX010",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT011",
+        "Fund Ref": "CF003",
+        "Transaction Kind": "collection",
+        "Amount": 3000,
+        "Source Family ID": "F011",
+        "Year Ref": "MY2026",
+        "Payment Method": "bank",
+        "Reference": "CTX011",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT012",
+        "Fund Ref": "CF004",
+        "Transaction Kind": "expense",
+        "Amount": 12000,
+        "Source Family ID": "F012",
+        "Year Ref": "MY2026",
+        "Payment Method": "cash",
+        "Reference": "CTX012",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT013",
+        "Fund Ref": "CF001",
+        "Transaction Kind": "collection",
+        "Amount": 5100,
+        "Source Family ID": "F013",
+        "Year Ref": "MY2026",
+        "Payment Method": "upi",
+        "Reference": "CTX013",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT014",
+        "Fund Ref": "CF002",
+        "Transaction Kind": "collection",
+        "Amount": 2500,
+        "Source Family ID": "F014",
+        "Year Ref": "MY2026",
+        "Payment Method": "bank",
+        "Reference": "CTX014",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT015",
+        "Fund Ref": "CF003",
+        "Transaction Kind": "collection",
+        "Amount": 3000,
+        "Source Family ID": "F015",
+        "Year Ref": "MY2026",
+        "Payment Method": "cash",
+        "Reference": "CTX015",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT016",
+        "Fund Ref": "CF004",
+        "Transaction Kind": "expense",
+        "Amount": 12000,
+        "Source Family ID": "F016",
+        "Year Ref": "MY2026",
+        "Payment Method": "upi",
+        "Reference": "CTX016",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT017",
+        "Fund Ref": "CF001",
+        "Transaction Kind": "collection",
+        "Amount": 5100,
+        "Source Family ID": "F017",
+        "Year Ref": "MY2026",
+        "Payment Method": "bank",
+        "Reference": "CTX017",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      },
+      {
+        "Transaction Ref": "FT018",
+        "Fund Ref": "CF002",
+        "Transaction Kind": "collection",
+        "Amount": 2500,
+        "Source Family ID": "F018",
+        "Year Ref": "MY2026",
+        "Payment Method": "cash",
+        "Reference": "CTX018",
+        "Note": "Synthetic fund transaction",
+        "Visibility": "members"
+      }
+    ]
+  },
+  "governance": {
+    "ballots": [
+      {
+        "Ballot Ref": "CBAL001",
+        "Ballot Type": "election",
+        "Title": "President Election 2027-28",
+        "Description": "Upcoming chapter election",
+        "Eligibility Mode": "family_representatives",
+        "Max Choices": 1,
+        "Secret Ballot": true,
+        "Allow Nominations": true,
+        "Opens At": "2027-03-01T09:00:00+05:30",
+        "Closes At": "2027-03-03T20:00:00+05:30",
+        "Desired Status": "draft"
+      },
+      {
+        "Ballot Ref": "CBAL002",
+        "Ballot Type": "poll",
+        "Title": "Preferred date for family picnic",
+        "Description": "Informal member decision",
+        "Eligibility Mode": "family_representatives",
+        "Max Choices": 1,
+        "Secret Ballot": false,
+        "Allow Nominations": false,
+        "Opens At": "2026-09-17T09:00:00+05:30",
+        "Closes At": "2026-09-20T20:00:00+05:30",
+        "Desired Status": "open"
+      }
+    ],
+    "ballot_options": [
+      {
+        "Option Ref": "CBO001",
+        "Ballot Ref": "CBAL001",
+        "Label": "Candidate 1",
+        "Description": "President candidate",
+        "Candidate Person ID": "P001"
+      },
+      {
+        "Option Ref": "CBO002",
+        "Ballot Ref": "CBAL001",
+        "Label": "Candidate 2",
+        "Description": "President candidate",
+        "Candidate Person ID": "P015"
+      },
+      {
+        "Option Ref": "CBO003",
+        "Ballot Ref": "CBAL002",
+        "Label": "Sunday 11 October",
+        "Description": "",
+        "Candidate Person ID": ""
+      },
+      {
+        "Option Ref": "CBO004",
+        "Ballot Ref": "CBAL002",
+        "Label": "Sunday 18 October",
+        "Description": "",
+        "Candidate Person ID": ""
+      }
+    ]
+  },
+  "build_together": {
+    "invitations": [
+      {
+        "Invitation Ref": "INV001",
+        "Email": "newfamily1@example.com",
+        "Target Role": "member",
+        "Family ID": "F019",
+        "Status": "pending"
+      },
+      {
+        "Invitation Ref": "INV002",
+        "Email": "newfamily2@example.com",
+        "Target Role": "member",
+        "Family ID": "F020",
+        "Status": "pending"
+      }
+    ],
+    "contribution_prompts": [
+      {
+        "Prompt Ref": "CPR001",
+        "Type": "missing_profile",
+        "Target Person ID": "P006",
+        "Message": "Add profession and contact visibility",
+        "Status": "open"
+      },
+      {
+        "Prompt Ref": "CPR002",
+        "Type": "family_structure",
+        "Target Person ID": "P013",
+        "Message": "Confirm spouse/child relationships",
+        "Status": "open"
+      },
+      {
+        "Prompt Ref": "CPR003",
+        "Type": "renewal",
+        "Target Person ID": "P058",
+        "Message": "Complete annual renewal",
+        "Status": "open"
+      }
+    ]
+  },
+  "media": [
+    {
+      "Media Ref": "CMED001",
+      "Entity Type": "event",
+      "Entity Ref": "EV004",
+      "Media Kind": "event",
+      "File Name": "ganesh-utsav.jpg",
+      "Caption": "Ganesh Utsav demo image",
+      "Visibility": "members"
+    },
+    {
+      "Media Ref": "CMED002",
+      "Entity Type": "memory",
+      "Entity Ref": "MEM001",
+      "Media Kind": "memory",
+      "File Name": "diwali-2025.jpg",
+      "Caption": "Diwali Milan demo image",
+      "Visibility": "members"
+    },
+    {
+      "Media Ref": "CMED003",
+      "Entity Type": "network_post",
+      "Entity Ref": "CPOST007",
+      "Media Kind": "post",
+      "File Name": "diwali-planning.jpg",
+      "Caption": "Planning demo image",
+      "Visibility": "members"
+    }
+  ]
+}

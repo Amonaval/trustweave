@@ -1,59 +1,46 @@
 # TrustWeave — Product Roadmap
 
-**Updated:** 2026-09-13
+**Updated:** 2026-09-15
 
-TrustWeave now has sufficient flagship vertical depth for controlled pilots. The roadmap therefore moves from broad feature construction to **adoption, discovery and real-world evidence**.
+The roadmap has moved from capability construction to **proof, pilot and adoption**. Broad feature expansion is intentionally paused until the final launch candidate passes runtime certification.
 
-## Closed — Engagement E1–E10
+## Closed in source — final pre-launch engineering
+1. Anonymous Discovery / product front door.
+2. Role-oriented Housing Society, Family Community and member/resident exploration.
+3. Public-safe Product Guide with progressive disclosure.
+4. Guarded, network-scoped Launch Demo Data Loader.
+5. Residential 25-flat final synthetic dataset bundled as JSON + XLSX.
+6. Family Community 20-family final synthetic dataset bundled as JSON + XLSX.
+7. Annual FCA Association Membership guided-import persistence.
+8. Seed authorization + lineage/idempotency migration.
+9. Launch-specific source gate and persisted runtime E2E specifications.
+10. Release documentation, runbooks, manifest and runtime checklist.
 
-The completed engagement stack now provides:
-- persistent notification inbox + exact deep links,
-- browser Push foundation,
-- named/role mentions and responsibility routing,
-- Residential complaint routing + private photos,
-- shared compressed media pipeline,
-- Community funds/collections,
-- elections/voting/polls,
-- media lifecycle/quota/cleanup,
-- community posts/broadcasts/comments/reactions,
-- per-user Engagement Control Center with category Push/Inbox preferences and quiet hours.
+## Now — Final Runtime Certification & Pilot Go/No-Go
+No unrelated engineering work should start before these pass:
+- restore packages from the lockfile in a network-enabled environment;
+- `lint:trustweave` — 0 errors;
+- `validate:static` — PASS;
+- `npm run build` — PASS;
+- apply migration 113 to approved staging;
+- seed one fresh Residential network and rerun idempotently;
+- seed one fresh Family Community network and rerun idempotently;
+- headed desktop walkthroughs for Chairman/admin/resident and President/admin/representative/member;
+- mobile viewport walkthroughs;
+- verify exact notification deep links, Push controls, private media and cross-network isolation;
+- record go/no-go evidence in `LAUNCH-READINESS-REPORT.md`.
 
-## Now — Discovery & Product Exploration
+## After runtime certification — controlled pilots
+### Residential / Housing Society
+Use one real pilot society to measure onboarding completion, notice readership, complaint resolution, maintenance visibility, governance/security usefulness and administrator willingness to continue.
 
-Goal: make TrustWeave understandable and compelling **before login**.
+### Family Community / Cultural Association
+Use the MPF-style pilot to measure family onboarding, annual membership/renewal, events, funds/collections, committee operations, voting, posts/notifications and representative/member return loops.
 
-Priority work:
-1. Anonymous landing information architecture.
-2. Chairman / President / Director value journeys.
-3. Capability explorer organized around real jobs/outcomes.
-4. Prominent Playground paths for Community and Residential.
-5. Public-safe Product Knowledge / Doc Center.
-6. Progressive depth: 10-second summary → 2-minute role story → detailed product/technical proof.
-7. Clear conversion: Explore → Try Playground → Understand onboarding/import → Sign in/Create.
-8. Public/private documentation separation so founder/security-sensitive material never ships merely hidden.
-9. Lightweight product-discovery analytics that do not collect private network content.
+## Explicitly deferred
+- unrelated new verticals;
+- broad intelligence expansion;
+- speculative federation UX expansion;
+- new finance/social/voting/media subsystems parallel to existing shared capabilities.
 
-## Then — Controlled pilot evidence
-
-### MPF / Community pilot
-Measure:
-- onboarding completion,
-- membership/renewal usage,
-- event participation,
-- collections/funds usage,
-- posts/mentions/notification-driven return,
-- committee operational value.
-
-### Residential pilot
-Measure:
-- complaint resolution loop,
-- notices/operations usage,
-- amenities/maintenance/visitor workflows,
-- committee adoption,
-- notification-driven return,
-- admin/member onboarding friction.
-
-## Only after pilot evidence
-Evaluate payment/accounting integrations, stronger operational reports, native/mobile packaging, additional vertical-specific features and broader commercialization.
-
-Full history: `docs/product/TRUSTWEAVE-MISSION-JOURNEY.md`.
+The next product decision should come from **real pilot evidence**, not another broad feature mission.

@@ -585,3 +585,13 @@ The product did **not** jump from “family tree” directly to “huge platform
 **Family product → multi-family tenancy → reusable architecture → multiple vertical proofs → Network OS → intelligence experiments → product/runtime hardening → multi-network/federation → vertical specialization → cross-vertical parity → QA certification → showcase readiness → engagement/notification/media infrastructure.**
 
 The next phase should therefore build on the engagement foundation, not start another parallel architecture.
+<!-- FINAL-LAUNCH-CLOSURE -->
+## Final pre-launch closure — Discovery, realistic data and launch certification
+
+### 134. Discovery / Product Exploration transformation
+**Outcome:** Replaced the anonymous sign-in-first impression with a public-safe product front door. Visitors can understand TrustWeave as a private multi-network OS, choose Housing Society / Family Community / member journeys, enter Playground, open a progressive Product Guide and then sign in when ready.
+
+### 135. Final launch data + certification foundation
+**Outcome:** Added bundled 25-flat Residential and 20-family Family Community datasets, a guarded network-scoped launch loader, lineage/idempotency migration, FCA annual-membership import closure, launch-specific source gate and staging runtime E2E specifications. Source closure is green; final dependency-backed lint/build and headed/mobile persisted-network certification remain the required go/no-go gate.
+
+**Release artifacts:** `LAUNCH-READINESS-REPORT.md`, `PILOT-DEMO-RUNBOOK.md`, `DATA-SEED-RUNBOOK.md`, `RUNTIME-VERIFICATION-CHECKLIST.md`, `FINAL-RELEASE-MANIFEST.md`.

@@ -107,3 +107,14 @@ Open the notification bell and choose the settings icon. Preferences apply to th
 You can control Posts, Mentions, Complaints, Funds, Elections, Events/Membership and General activity independently for Inbox emphasis and Push delivery. Muted Inbox categories remain persisted and can be opened using **Show muted**. Quiet hours can be configured with timezone and an optional urgent-alert bypass.
 
 The in-app notification record remains authoritative even when Push is disabled or suppressed.
+<!-- FINAL-LAUNCH-CLOSURE -->
+## Final launch discovery and demo-data workflow
+
+### Before signing in
+A visitor can now use the public Discovery front door to understand TrustWeave, explore Housing Society or Family Community journeys, view member/resident value, open Playground, and read the Product Guide. Sign In remains visible but is not required to understand the product.
+
+### Populating a real pilot/demo network
+For Residential or Family Community, an admin/platform owner opens the network Admin surface and uses **Final launch data**. Choose the bundled dataset (or upload the matching launch JSON/XLSX), review the dry-run counts, type the exact active network name, confirm synthetic-data intent, authorize the dataset, and then persist it. Re-running the same version is lineage/idempotency aware. See `DATA-SEED-RUNBOOK.md`.
+
+### Safety
+The launch loader does not reset a network globally. A production-looking network name requires a separate explicit override. Use this capability only for synthetic launch/pilot datasets.

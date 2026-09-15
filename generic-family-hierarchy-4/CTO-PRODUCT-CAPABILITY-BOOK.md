@@ -317,3 +317,11 @@
 - E8 adds explicit media lifecycle state and storage-management controls.
 - E9 reuses the shared activity model for community posts/broadcasts rather than introducing a second feed architecture.
 - **E10 Engagement Control Center** stores per-user/per-network delivery preferences and evaluates them server-side before Web Push. Quiet-hours suppression and category muting do not mutate notification source records.
+<!-- FINAL-LAUNCH-CLOSURE -->
+## Final launch architecture closure
+
+The launch-data system is deliberately an orchestration layer, not a new domain platform. Residential seeding composes the HS1–HS5/engagement remotes; Family Community seeding composes generic import, FCA governed membership/role APIs, shared funds/voting/activity/media/invitation capabilities. A narrow migration stores authorization and lineage only. Direct access to the lineage tables is revoked from normal client roles and all write/read operations are exposed through network-scoped security-definer RPCs requiring admin/platform-owner access.
+
+Idempotency is source-row based: each dataset version, section and stable row reference stores a deterministic payload hash and remote record ID. Unchanged rows skip; mutable rows can update through product APIs; historical/immutable rows are not duplicated. The design intentionally does not create a destructive reset RPC or insert notification rows merely for visual density.
+
+The remaining release gate is environmental/runtime, not an architectural waiver: install from the lockfile in a network-enabled environment, run lint/type/build, apply migration 113 to approved staging, and execute headed/mobile persisted-network certification.

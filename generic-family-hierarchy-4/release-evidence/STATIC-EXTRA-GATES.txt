@@ -1,0 +1,10 @@
+
+> xyz-hierarchy-network@0.2.0 check:syntax:app
+> node scripts/static-syntax-scan.mjs
+
+Static syntax scan: 341 TS/TSX files, 0 file(s) with syntax errors.
+
+> xyz-hierarchy-network@0.2.0 qa:db-static
+> node qa/db/migration-static-audit.mjs
+
+Migration static audit PASS (111 SQL files)

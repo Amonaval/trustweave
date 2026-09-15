@@ -449,3 +449,11 @@ These should reuse notifications, deep links, role routing and the shared media 
 Community and Residential networks now share a post/broadcast surface with media, comments, reactions, mentions and admin-only important/urgent controls. The notification drawer also contains an Engagement Control Center for per-network category preferences, Push delivery, quiet hours, timezone and urgent-bypass behavior. Muted Inbox categories remain stored and revealable.
 
 The next UX mission moves outward to the anonymous product front door: explain value before login, expose role-specific journeys and make Playground + public-safe product documentation first-class discovery tools.
+<!-- FINAL-LAUNCH-CLOSURE -->
+## Final launch UX layer — Discovery first, commitment second
+
+The anonymous first experience now follows **Understand → choose a situation → see connected outcomes → try Playground / Product Guide → sign in when ready**. Housing Society and Family Community are explained through role stories rather than module dumps. The Product Guide uses Simple, Detailed and Deep disclosure so a resident/member can stay at plain-language depth while a Chairman/President or technical evaluator can go deeper.
+
+The persisted demo-data experience is intentionally an Admin operation, not a public shortcut. It exposes source, dry-run counts, reference errors, exact-network confirmation, authorization state, commit progress and completion result. Safety is visible rather than hidden in implementation.
+
+Runtime rehearsal must still cover desktop and mobile, topbar/More behavior, loading/close/back interactions, exact notification deep links, role permissions, private media and cross-network isolation before launch is declared.

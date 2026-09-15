@@ -1,51 +1,47 @@
 # TrustWeave — Mission Status
 
-**Updated:** 2026-09-13
+**Updated:** 2026-09-15
 
-## Current status
+## Final pre-launch mission
 
-**Engagement E1–E10:** IMPLEMENTED / SOURCE-GATED. Runtime/browser verification should follow `docs/engagement/E1-E10-VERIFICATION-GUIDE.md`.
+**Discovery / Product Exploration + Complete Demo Data + Launch Closure:** **IMPLEMENTED / SOURCE-CLOSED / RUNTIME-CERTIFICATION PENDING**.
 
-### Engagement closure
-- **E1** Notification Core, Inbox & Deep Links — implemented.
-- **E2** PWA / Web Push — implemented; deployment requires VAPID configuration.
-- **E3** Mentions & Responsibility Routing — implemented.
-- **E4** Residential Complaint Assignment + Photos — implemented.
-- **E5** Shared Media Pipeline — implemented.
-- **E6** Membership Funds / Pool & Event Collections — implemented.
-- **E7** Elections, Nominations, Voting & Polls — implemented.
-- **E8** Media Archive, Quota & Selective Cleanup — implemented.
-- **E9** Community Posts & Important Broadcasts — implemented and rewired after stability hardening.
-- **E10** Engagement Control Center — implemented with per-network category preferences, Push controls, quiet hours, timezone and urgent-bypass behavior.
+### Mission A — Discovery / Product Exploration
+- Anonymous product front door implemented.
+- Housing Society, Family Community and member/resident role stories implemented.
+- Playground and Sign In remain reachable without making authentication the emotional center.
+- Product Guide supports Simple / Detailed / Deep disclosure.
+- Public copy explicitly excludes founder-private strategy, confidential architecture, anti-abuse internals and unreleased IP material.
+- Existing signed-in memberships and Launch Control semantics remain preserved.
 
-### Stability hardening included before E10 closure
-- Restored the E9 `NetworkPostsPanel` wiring and fixed the illegal `await` inside the synchronous state updater.
-- Preserved E9 post CSS.
-- Reconciled Housing Society booking contract drift.
-- Kept desktop **More** expanded in both Family and productized real networks.
-- Missing anonymous Sign in was traced to absent `.env.local` Supabase variables rather than an auth-architecture defect.
+### Mission B — Launch Demo Data Loader
+- Bundled Residential 25-flat JSON/XLSX and Family Community 20-family JSON/XLSX included.
+- Network-scoped seed authorization and lineage migration added as migration `113_final_launch_demo_seed_lineage.sql`.
+- Exact active-network-name confirmation required.
+- Only Residential and Family Community networks are accepted.
+- Real-looking network names require an explicit override.
+- Re-runs use stable references + payload hashes to skip/update rather than duplicate.
+- No global reset or notification-row fabrication was added.
+- Existing vertical/domain RPCs are used for operational persistence.
+- Synthetic directory people are not fabricated as authentication accounts merely to fake account-only RSVP/group membership counts; constrained source intent is recorded as a seed warning instead.
 
-## Flagship vertical readiness
+### Import closure
+Family Community guided import now commits annual Association Membership through existing FCA annual membership APIs. This closes the previous `recordType: "domain"` gap for `association_membership`.
 
-### Family Community / Cultural Association / MPF
-**Controlled pilot/adoption ready.** Strong coverage now includes households, representatives, profiles, memberships/renewals, directory, events, funds, elections, posts, media, notifications and President-first operations.
+## Preserved flagship baseline
+- Family — preserved.
+- Family Community / Cultural Association — preserved.
+- Residential / Housing Society — preserved.
+- Engagement E1–E10 — preserved.
+- Launch Control continues to control discover/create/playground exposure without hiding existing memberships or deleting vertical capability.
 
-### Residential / Housing Society
-**Controlled pilot/adoption ready.** Strong coverage includes society structure, units/residents, Chairman-first operations, complaints/routing/media, notices, amenities, maintenance, visitors/security, governance, elections, posts, storage and notifications.
+## QA / validation status
+**Green in this environment:** final-launch 24/24, Showcase stabilization 14/14, Residential flagship 12/12, E10→E1 chain, HS0→HS6, FCA0 27/27, syntax 341/0, migration audit 111 SQL PASS.
 
-The dominant remaining risk is no longer core vertical capability. It is **discoverability, self-explanation, onboarding and conversion**.
+**Environment-blocked, not waived:** lint, full TypeScript/static gate, Next production build, headed/mobile Playwright, and staging persisted seed proof. Dependency restoration fails because npm package tarballs cannot be fetched from `registry.npmjs.org` (`EAI_AGAIN`).
 
-## QA status
-- Phase 2 — certified.
-- Phase 4A — certified.
-- Phase 4B — certified.
-- Phase 4C — certified.
-- Phase 4D — certified.
-- Phase 5A/5B/5C — intentionally not claimed fully closed.
-- Engagement E1–E10 source-gate chain — PASS.
+## Mission closure rule
+The engineering mission is packaged as a launch candidate, but the original Definition of DONE remains binding: **launch-ready is not claimed until dependency-backed build/lint and persisted headed/mobile runtime certification pass.**
 
-## Next major mission
-
-**Discovery & Product Exploration Transformation** — redesign the anonymous front door around value discovery for Chairmen, Presidents, Directors, committee members and ordinary users. Login stays available but no longer dominates the first impression.
-
-Handover: `NEXT-MISSION-DISCOVERY-PRODUCT-EXPLORATION.md`.
+## Next mission
+`NEXT-SESSION-FINAL-RUNTIME-CERTIFICATION.md` — certification and go/no-go only; no unrelated feature expansion.

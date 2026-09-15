@@ -1,0 +1,579 @@
+
+> xyz-hierarchy-network@0.2.0 validate:final-launch
+> npm run validate:final-launch-source && npm run validate:showcase-stabilization && npm run validate:showcase-residential && npm run validate:e10-closure && npm run validate:hs6 && npm run validate:fca0
+
+
+> xyz-hierarchy-network@0.2.0 validate:final-launch-source
+> node scripts/final-launch-source-gate.mjs
+
+PASS anonymous shell delegates to public Discovery portal
+PASS public front door exposes Housing, Community, Playground, Guide and sign-in anchors
+PASS public guide has Simple/Detailed/Deep progressive depth
+PASS public guide explicitly excludes confidential/unreleased material
+PASS bundled residential and family-community JSON/XLSX datasets exist
+PASS dataset parser requires exact version + synthetic=true
+PASS cross-reference dry run is wired before commit
+PASS seed authorization is active-network scoped and exact-name confirmed
+PASS real-looking networks require explicit override
+PASS direct seed lineage table access is closed
+PASS lineage stores stable row reference + payload hash
+PASS loader requires explicit synthetic confirmation and exact network name
+PASS loader exposes pre-commit create/update/skip/errors dry run
+PASS loader is only attached to persisted Residential / Family Community admin
+PASS FCA guided importer persists annual association membership
+PASS Residential adapter uses guided core and real domain APIs
+PASS Family Community adapter uses guided core and real domain APIs
+PASS seed adapters do not insert notification rows directly
+PASS account-only RSVP/group intent is constrained instead of fabricating auth users
+PASS no destructive launch reset RPC exists
+PASS launch closure documentation exists
+PASS launch-specific runtime certification specs exist
+PASS release evidence directory exists
+PASS superseded discovery handoffs archived
+Final launch source gate: 24/24
+
+> xyz-hierarchy-network@0.2.0 validate:showcase-stabilization
+> node scripts/showcase-stabilization-certification-gate.mjs
+
+PASS shell transitions expose loader
+PASS My Networks switching exposes loader and error state
+PASS existing memberships are not filtered by showcase settings
+PASS Playground remains Launch-Control filtered
+PASS setup async operations expose loader
+PASS mobile Choose how to start has stable test target
+PASS sign-in dialog has close/backdrop/Escape behavior
+PASS account menu closes on Escape
+PASS product mobile More closes on backdrop and Escape
+PASS five appearance themes remain available
+PASS Community flagship has certification anchor
+PASS Residential flagship has certification anchor
+PASS read-only showcase browser certification exists
+PASS mobile safe-area hardening is present
+Showcase stabilization/certification gate: 14/14
+
+> xyz-hierarchy-network@0.2.0 validate:showcase-residential
+> node scripts/showcase-residential-flagship-gate.mjs
+
+PASS dedicated residential flagship home
+PASS live operations snapshot used
+PASS live finance snapshot used
+PASS live governance snapshot used
+PASS live security snapshot used
+PASS housing home integrated only for housing
+PASS complaints module preserved
+PASS finance module preserved
+PASS governance module preserved
+PASS security module preserved
+PASS advanced residential surfaces remain in More
+PASS responsive flagship styling
+Residential flagship source gate passed (12 checks).
+
+> xyz-hierarchy-network@0.2.0 validate:e10-closure
+> node scripts/e10-stability-closure-gate.mjs && npm run validate:engage-e10
+
+PASS historical partial notification links are enriched
+PASS complaints route to complaints surface
+PASS posts route to community surface
+PASS funds route to funds surface
+PASS elections route to elections surface
+PASS notification center uses resolver
+PASS push toggle persists actual subscribed state
+PASS push button has transitional state
+PASS drawer is explicitly notification inbox
+PASS mark all read is visibly labelled
+PASS exact post deep link scrolls into view
+PASS lint keeps correctness failures blocking
+PASS legacy debt is warnings not release blockers
+PASS family playground expression cleanup
+PASS participation expression cleanup
+PASS productized group toggle expression cleanup
+E10 stability closure gate: 16/16
+
+> xyz-hierarchy-network@0.2.0 validate:engage-e10
+> node scripts/engagement-e10-control-center-gate.mjs && npm run validate:engage-e9
+
+PASS 1: E10 migration exists
+PASS 2: category JSON persisted per network
+PASS 3: preference read RPC exists
+PASS 4: E2 push upsert now creates preference row
+PASS 5: shared category mapper exists
+PASS 6: remote preference load/save exist
+PASS 7: control center is wired into notification drawer
+PASS 8: category inbox and push controls are visible
+PASS 9: muted notifications remain revealable
+PASS 10: quiet hours and timezone controls exist
+PASS 11: urgent bypass control exists
+PASS 12: push API enforces push preference
+PASS 13: push API enforces category mute
+PASS 14: push API enforces quiet hours
+PASS 15: urgent bypass is evaluated
+PASS 16: E10 styling is present
+PASS 17: E10 English copy is present
+E10 gate complete: 17/17 PASS
+
+> xyz-hierarchy-network@0.2.0 validate:engage-e9
+> node scripts/engagement-e9-community-posts-gate.mjs && npm run validate:engage-e8
+
+PASS E9 reuses network activities
+PASS E9 member post RPC
+PASS E9 admin-only important broadcast
+PASS E9 broadcast creates deep-linked notifications
+PASS E9 post comment notifies author
+PASS E9 pinning audited
+PASS E9 social metadata merged
+PASS E9 push handoff for broadcasts/comments
+PASS E9 shared media post preset
+PASS E9 post UI exists
+PASS E9 mentions route to exact post
+PASS E9 photo binding uses shared media registry
+PASS E9 comments and reactions exposed
+PASS E9 community surface wired
+PASS E9 showcase has MPF post
+PASS E9 showcase has Residential post
+E9 16/16 PASS
+
+> xyz-hierarchy-network@0.2.0 validate:engage-e8
+> node scripts/engagement-e8-media-lifecycle-gate.mjs && npm run validate:engage-e7
+
+PASS E8 lifecycle columns and constraint
+PASS E8 archive is reversible and audited
+PASS E8 bound media requires archive before delete
+PASS E8 delete uses request/finalize contract
+PASS E8 deleted registry history preserved
+PASS E8 normal hydration shows only active media
+PASS E8 deleted media cannot authorize storage reads
+PASS E8 complaint authorization remains explicit
+PASS E8 management snapshot is tenant scoped
+PASS E8 storage client deletes main and thumbnail
+PASS E8 failed physical deletion cancels pending state
+PASS E8 media management UI exists
+PASS E8 archive then explicit delete UX
+PASS E8 family storage embeds lifecycle manager
+PASS E8 productized media route wired
+PASS E8 community media surface admin-only
+PASS E8 housing media surface admin-only
+PASS E8 no automatic deletion job
+E8 18/18 PASS
+
+> xyz-hierarchy-network@0.2.0 validate:engage-e7
+> node scripts/engagement-e7-voting-gate.mjs && npm run validate:engage-e6
+
+PASS E7 six governance tables
+PASS E7 RLS on governance tables
+PASS E7 direct table access revoked
+PASS E7 eligibility snapshot
+PASS E7 family representative eligibility
+PASS E7 participation separate from vote choices
+PASS E7 secret choices omit voter id
+PASS E7 one vote enforced
+PASS E7 audit omits choice identifiers
+PASS E7 aggregate result counts only
+PASS E7 notification deep links elections
+PASS E7 member nominations can see draft election
+PASS E7 remote contract
+PASS E7 voting UI
+PASS E7 app route wired
+PASS E7 association navigation
+PASS E7 housing navigation
+PASS E7 no capability deletion sentinel
+E7 18/18 PASS
+
+> xyz-hierarchy-network@0.2.0 validate:engage-e6
+> node scripts/engagement-e6-funds-gate.mjs && npm run validate:engage-e5
+
+✓ generic network funds table exists
+✓ auditable fund transaction table exists
+✓ fund and transaction constraints are explicit
+✓ direct table access remains closed
+✓ admin-only fund creation RPC exists
+✓ transaction RPC creates receipts and audit events
+✓ membership collections synchronize FCA dues
+✓ finance activity notifies treasurer/president
+✓ member/family payment notification is deep linked
+✓ snapshot respects finance visibility
+✓ remote exposes fund snapshot
+✓ remote exposes fund creation/transaction commands
+✓ member-facing funds panel exists
+✓ admin can create funds and record transactions
+✓ membership dues table is visible to admin
+✓ family association navigation exposes funds without removing old surfaces
+✓ notification deep link surface is routable
+✓ responsive fund UI styles exist
+E6 PASS 18/18
+
+> xyz-hierarchy-network@0.2.0 validate:engage-e5
+> node scripts/engagement-e5-shared-media-gate.mjs && npm run validate:engage-e4
+
+✓ shared media registry migration exists
+✓ registry bind and summary RPCs exist
+✓ flagship community and housing media enabled
+✓ complaint media remains resolver/private-authorized
+✓ shared presets cover profile memory event announcement complaint
+✓ all images are re-encoded to WebP and camera metadata stripped
+✓ main image and thumbnail are generated and registered
+✓ family profile uses shared profile pipeline
+✓ family memory binds shared media asset
+✓ residential complaint binds shared media asset
+✓ productized member profile uses shared media
+✓ productized activities support photo upload and binding
+✓ alumni activities support shared media too
+✓ activity UI renders lazy thumbnails
+✓ activity and directory remotes hydrate signed thumbnails
+✓ notification drawer escapes shell stacking context
+✓ notification drawer has top-layer z-index and usable desktop/mobile height
+E5 PASS 17/17
+
+> xyz-hierarchy-network@0.2.0 validate:engage-e4
+> node scripts/engagement-e4-residential-complaints-gate.mjs && npm run validate:engage-e3
+
+✓ housing photo uploads enabled with compressed limit
+✓ complaint category routing table exists
+✓ complaint routes use notification responsibility roles
+✓ new complaint notifies resolver
+✓ status updates notify complaint raiser
+✓ comments notify workflow participants
+✓ assigned resolver can see complaint
+✓ private media read includes complaint authorization
+✓ complaint upload uses existing compression pipeline
+✓ UI accepts file instead of photo URL
+✓ UI renders private signed complaint photos
+✓ exact complaint deep-link scroll exists
+✓ remote hands push IDs to web push
+✓ admin routing UI exists
+E4 PASS 14/14
+
+> xyz-hierarchy-network@0.2.0 validate:engage-e3
+> node scripts/engagement-e3-mentions-routing-gate.mjs && npm run validate:engage-e2
+
+✓ network scoped responsibility roles
+✓ role assignments require network admin
+✓ mention resolver stays in active network
+✓ mentions resolve owner/admin aliases
+✓ named member mention resolution exists
+✓ shared mention extractor exists
+✓ activity composer explains mentions
+✓ activity posts route mentions
+✓ admin responsibility assignment UI exists
+✓ admin UI wired into productized networks
+E3 PASS 10/10
+
+> xyz-hierarchy-network@0.2.0 validate:engage-e2
+> node scripts/engagement-e2-web-push-gate.mjs && npm run validate:engage-e1
+
+✓ private push subscription table
+✓ own subscription RPC
+✓ service worker shows notification
+✓ notification click deep links
+✓ PWA runtime registers service worker
+✓ browser subscription uses VAPID public key
+✓ push API authenticates caller
+✓ push API uses server service role
+✓ push API expires dead subscriptions
+✓ notification drawer exposes opt-in control
+E2 PASS 10/10
+
+> xyz-hierarchy-network@0.2.0 validate:engage-e1
+> node scripts/engagement-e1-notification-core-gate.mjs
+
+✓ notifications are network aware
+✓ persisted network notification RPC exists
+✓ role notification RPC exists
+✓ inbox rechecks membership
+✓ deep link contract exists
+✓ shared notification center exists
+✓ notification click activates network
+✓ productized shell consumes deep link
+✓ family shell consumes deep link
+✓ family topbar has inbox
+✓ productized topbar has inbox
+E1 PASS 11/11
+
+> xyz-hierarchy-network@0.2.0 validate:hs6
+> node scripts/hs6-founder-pilot-commercialization-gate.mjs && npm run validate:hs5
+
+PASS pilot runs model
+PASS weekly checkpoints model
+PASS willingness and renewal evidence
+PASS repeatability evidence
+PASS pricing experiments evidence first
+PASS usage events
+PASS notice readership evidence
+PASS objective unit activation metrics
+PASS complaint resolution metric
+PASS maintenance visibility metric
+PASS governance and security evidence
+PASS mapped import readiness signal
+PASS second society readiness signal
+PASS admin-only pilot controls
+PASS member usage scoped to current flat
+PASS remote snapshot adapter
+PASS pricing remote adapter
+PASS pilot UI
+PASS pilot phases surfaced
+PASS operator value checkpoint UI
+PASS pricing experiment UI
+PASS evidence export
+PASS import kit link
+PASS admin app integration
+PASS housing navigation tab contract stays exhaustive
+PASS feature flags catalogued
+PASS launch composition updated
+PASS template closes HS6
+PASS migration rerunnable
+PASS migration assertions
+HS-6 source gate passed (30 checks).
+
+> xyz-hierarchy-network@0.2.0 validate:hs5
+> node scripts/hs5-security-compliance-assets-gate.mjs && npm run validate:hs4
+
+PASS HS5 capability ids typed
+PASS template declares HS5 capabilities
+PASS scoped security grants
+PASS visitor lifecycle
+PASS resident visitor flat scope
+PASS security operator check in out
+PASS domestic staff + flat permission
+PASS move in out requests
+PASS renovation NOC flow
+PASS asset registry
+PASS asset service AMC history
+PASS compliance calendar
+PASS emergency contacts
+PASS RLS boundaries
+PASS snapshot privacy masks visitor phone
+PASS remote adapter
+PASS resident security surface
+PASS template renders security panel
+PASS admin includes HS5
+PASS visitor UI
+PASS move renovation UI
+PASS staff UI
+PASS assets UI
+PASS compliance UI
+PASS emergency UI
+PASS feature flags catalogued
+PASS migration rerunnable
+PASS migration assertions
+HS-5 source gate passed (28 checks).
+
+> xyz-hierarchy-network@0.2.0 validate:hs4
+> node scripts/hs4-governance-decisions-gate.mjs && npm run validate:hs3
+
+PASS HS4 capability ids typed
+PASS housing template declares governance capabilities
+PASS committee term history persistence
+PASS controlled role catalog
+PASS meeting persistence
+PASS agenda and minutes
+PASS action register
+PASS resolution persistence
+PASS one member one vote
+PASS vote choices controlled
+PASS not election grade
+PASS governance documents
+PASS member read RLS
+PASS official governance admin writes
+PASS member voting allowed via rpc
+PASS snapshot includes committee meetings actions resolutions
+PASS remote adapter
+PASS resident governance surface
+PASS template renders governance panel
+PASS admin governance panel included
+PASS committee UI
+PASS meeting UI
+PASS resolution UI
+PASS member vote UI
+PASS feature flags catalogued
+PASS migration feature flags
+PASS migration rerunnable
+PASS migration assertions
+HS-4 source gate passed (28 checks).
+
+> xyz-hierarchy-network@0.2.0 validate:hs3
+> node scripts/hs3-maintenance-finance-gate.mjs && npm run validate:hs2
+
+PASS HS2 capability contract build fix
+PASS HS3 capability ids typed
+PASS housing template capabilities compile against shared contract
+PASS charge heads persistence
+PASS billing cycle persistence
+PASS flat ledger persistence
+PASS immutable bill lines
+PASS adjustment waiver history
+PASS payments and receipt references
+PASS fund persistence
+PASS budget vs actual persistence
+PASS resident bill RLS is current-flat scoped
+PASS admin-only official finance writes
+PASS generate complete cycle for units
+PASS payment recalculates bill status
+PASS finance snapshot member safe
+PASS payment gateway deferred
+PASS finance remote adapter
+PASS maintenance resident surface
+PASS template renders finance panel
+PASS member flat ledger UI
+PASS admin charge catalog UI
+PASS admin flat ledger UI
+PASS budget and funds UI
+PASS arrears watch UI
+PASS feature flags catalogued
+PASS migration rerunnable structures
+PASS migration assertions
+HS-3 source gate passed (28 checks).
+
+> xyz-hierarchy-network@0.2.0 validate:hs2
+> node scripts/hs2-daily-operations-gate.mjs && npm run validate:hs1
+
+PASS unknown feature probes are non-fatal
+PASS housing intelligence kind type is exhaustive
+PASS housing intelligence copy is exhaustive
+PASS notices persistence + expiry
+PASS complaint service desk persistence
+PASS complaint comments retained
+PASS admin complaint lifecycle + SLA
+PASS vendor and contract persistence
+PASS amenity and booking persistence
+PASS booking overlap protection
+PASS member/admin authorization boundaries
+PASS operations snapshot is society-scoped
+PASS feature flags catalogued
+PASS resident nav exposes daily ops
+PASS template renders HS2 surfaces
+PASS admin includes HS1 + HS2
+PASS resident notice UI
+PASS resident complaint UI
+PASS amenity booking UI
+PASS vendor/contract admin UI
+PASS shared event engine reused
+PASS Coming Up implemented
+PASS HS3 billing excluded
+PASS migration rerunnable structures
+PASS migration post assertions
+PASS runtime adapter covers daily ops
+HS-2 source gate passed (26 checks).
+
+> xyz-hierarchy-network@0.2.0 validate:hs1
+> node scripts/hs1-property-resident-core-gate.mjs && npm run validate:hs0
+
+PASS temporal occupancy table
+PASS history never modeled as overwrite-only metadata
+PASS parking and vehicle tables
+PASS parking allocation preserves history
+PASS resident invitation persistence
+PASS invitation preview and acceptance
+PASS invite claims only matching email
+PASS my flat RPC is identity scoped
+PASS resident vehicle write checks current flat
+PASS official occupancy is admin governed
+PASS bulk import mapper backend
+PASS bulk import creates units residents household links
+PASS bulk import can seed invitations vehicles parking
+PASS mapped onboarding UI
+PASS my flat UI
+PASS admin lifecycle UI
+PASS housing directory filters and thumbnails
+PASS direct parking allocation UI
+PASS resident invitation link UI
+PASS dedicated society invitation page
+PASS runtime adapter covers HS1
+PASS My Home is a real navigation surface
+PASS HS1 features catalogued
+PASS generic import hidden for housing
+PASS template truth updated to HS1
+PASS migration rerunnable table/index patterns
+PASS migration post assertions
+HS-1 source gate passed (27 checks).
+
+> xyz-hierarchy-network@0.2.0 validate:hs0
+> node scripts/hs0-housing-society-gate.mjs && npm run validate:fca0
+
+PASS typed vertical kind
+PASS domain capability declared
+PASS registry and runtime registered
+PASS capability runtime fails closed as productized template
+PASS unit is primary operating entity
+PASS property dimensions include building wing floor
+PASS ownership and occupancy semantics explicit
+PASS setup exposes create and playground
+PASS productized config has synthetic society
+PASS resident UX hides platform intelligence
+PASS resident directory includes unit household person
+PASS distinct civic theme
+PASS guide truth distinguishes current vs future
+PASS rerun-safe constraints
+PASS database productized contract includes housing
+PASS database allowed entities include unit household person
+PASS database relationship contract includes ownership tenancy occupancy
+PASS database hierarchy seeded
+PASS launch control recognizes housing
+PASS post-migration assertions included
+PASS global network home surfaces housing
+PASS network switcher uses society icon
+PASS founder launch control includes housing
+PASS housing home cannot open hidden generic contribute/outcome surfaces
+HS-0 source gate passed (24 checks).
+
+> xyz-hierarchy-network@0.2.0 validate:fca0
+> node scripts/fca0-family-association-gate.mjs
+
+PASS new vertical kind registered
+PASS generic association remains separate
+PASS family-association template exists
+PASS Pune city and area semantics
+PASS creation/playground exposed
+PASS runtime registered
+PASS advanced intelligence hidden from composition
+PASS directory includes families and people
+PASS explicit add family/member flows
+PASS member can be linked to family
+PASS profile reuses rich family/professional fields
+PASS relationship DB contract complete
+PASS temporal annual membership foundation
+PASS controlled role catalog/history
+PASS finance/carry-forward foundation
+PASS awards history foundation
+PASS co-admin scope reused safely
+PASS Mahesh-inspired theme isolated
+PASS directory modes and filters visible
+PASS profile thumbnails supported
+PASS official membership fields admin governed
+PASS dedicated annual operations panel
+PASS governed annual operating RPCs
+PASS safe lifecycle operations
+PASS shared activity likes and comments
+PASS generic outcome/pulse hidden from family community home
+PASS shared productized seeding preserved
+FCA-0 source gate passed (27 checks).
+
+> xyz-hierarchy-network@0.2.0 validate:fca0
+> node scripts/fca0-family-association-gate.mjs
+
+PASS new vertical kind registered
+PASS generic association remains separate
+PASS family-association template exists
+PASS Pune city and area semantics
+PASS creation/playground exposed
+PASS runtime registered
+PASS advanced intelligence hidden from composition
+PASS directory includes families and people
+PASS explicit add family/member flows
+PASS member can be linked to family
+PASS profile reuses rich family/professional fields
+PASS relationship DB contract complete
+PASS temporal annual membership foundation
+PASS controlled role catalog/history
+PASS finance/carry-forward foundation
+PASS awards history foundation
+PASS co-admin scope reused safely
+PASS Mahesh-inspired theme isolated
+PASS directory modes and filters visible
+PASS profile thumbnails supported
+PASS official membership fields admin governed
+PASS dedicated annual operations panel
+PASS governed annual operating RPCs
+PASS safe lifecycle operations
+PASS shared activity likes and comments
+PASS generic outcome/pulse hidden from family community home
+PASS shared productized seeding preserved
+FCA-0 source gate passed (27 checks).

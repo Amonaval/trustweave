@@ -15,3 +15,11 @@ The latest engagement layer addresses a fundamental adoption problem: **people d
 TrustWeave’s strategic differentiation is not “another directory” or “another social feed.” It is **governed network context + operational workflows + trusted relationships + reusable multi-network infrastructure**. The long-term network effect comes from people participating in multiple isolated networks that can selectively interoperate through explicit trust, federation and consent.
 
 Near-term priority is not more verticals. It is proving repeated real-world usage in MPF/community and residential pilots, running controlled MPF and Residential pilots, improving product discovery/onboarding, and validating notification-driven return, and measuring whether TrustWeave reduces administrative friction and improves member participation.
+<!-- FINAL-LAUNCH-CLOSURE -->
+## Final launch-candidate update — 15 Sep 2026
+
+TrustWeave now explains itself before login and can demonstrate its two strongest organizational verticals with coherent persisted synthetic data rather than tiny hard-coded samples. A Chairman can understand the Housing Society story; a President/Director can understand the Family Community story; ordinary members/residents can see daily value without admin language. The same product can then move from Playground into a real persisted pilot network.
+
+The new launch seeding path is intentionally guarded: it is network-scoped, admin-controlled, exact-name confirmed, synthetic-marked, non-destructive and idempotent. It reuses existing Housing, membership, funds, voting, posts, media and governance capabilities rather than creating demo-only parallel systems.
+
+Source and architecture gates are green. Final go/no-go still requires a network-enabled/staging environment to pass lint, production build and headed/mobile persisted-network walkthroughs. No new broad feature mission should begin before that proof.

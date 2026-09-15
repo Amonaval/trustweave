@@ -77,3 +77,8 @@ The immediately superseded pre-orchestration living docs are preserved at:
 ## Rule
 
 **Archiving is not deletion.** Historical documents may be outdated as current product truth, but remain valuable evidence of why the system evolved as it did.
+
+<!-- FINAL-LAUNCH-ARCHIVE -->
+## Final launch mission archive
+- `archive/docs/missions/launch/NEXT-SESSION-FINAL-LAUNCH-MISSION.md` — binding final pre-launch engineering brief.
+- `archive/docs/missions/launch/NEXT-MISSION-DISCOVERY-PRODUCT-EXPLORATION.md` and `NEXT-SESSION-DISCOVERY-PRODUCT-EXPLORATION.md` — superseded Discovery handoffs preserved as historical evidence.

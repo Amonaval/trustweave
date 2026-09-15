@@ -1,0 +1,936 @@
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\app\api\health\route.ts
+  3:8  warning  Async function 'GET' has no 'await' expression  @typescript-eslint/require-await
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\app\api\v1\identities\claim\route.ts
+  7:310  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\app\api\v1\institutional\bootstrap\route.ts
+  7:783  error  This assertion is unnecessary since the receiver accepts the original type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\app\api\v1\networks\[networkId]\invitations\route.ts
+  19:54  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\app\api\v1\networks\create\route.ts
+  8:236  error  This assertion is unnecessary since the receiver accepts the original type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  8:413  error  This assertion is unnecessary since the receiver accepts the original type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\app\api\v1\networks\join\route.ts
+  7:290  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\app\api\v1\trust-bridges\code\route.ts
+  6:138  error  This assertion is unnecessary since the receiver accepts the original type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\app\api\v1\trust-bridges\review\route.ts
+  6:140  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\app\api\v1\trust-bridges\revoke\route.ts
+  6:140  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\app\invite\[token]\page.tsx
+  14:17   warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  14:688  warning  React Hook useEffect has a missing dependency: 'tr'. Either include it or remove the dependency array                                                               react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\affiliation\runtime.ts
+   3:78  warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+  27:51  warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\graph-aware-intelligence\orchestrator.ts
+   6:32   error    'v??""' will use Object's default stringification format ('[object Object]') when stringified                                                 @typescript-eslint/no-base-to-string
+  32:70   error    'v?.label||v?.value||v?.candidateKey||v?.entityId||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  49:48   warning  Unnecessary conditional, value is always truthy                                                                                               @typescript-eslint/no-unnecessary-condition
+  50:9    warning  Unnecessary conditional, value is always truthy                                                                                               @typescript-eslint/no-unnecessary-condition
+  67:55   warning  Unnecessary conditional, value is always truthy                                                                                               @typescript-eslint/no-unnecessary-condition
+  68:163  warning  Unnecessary conditional, value is always truthy                                                                                               @typescript-eslint/no-unnecessary-condition
+  71:5    warning  Unnecessary conditional, value is always falsy                                                                                                @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\import\alumni-workbook.ts
+   7:239  error  'r.values.name||""' will use Object's default stringification format ('[object Object]') when stringified             @typescript-eslint/no-base-to-string
+   7:271  error  'r.values.email||""' will use Object's default stringification format ('[object Object]') when stringified            @typescript-eslint/no-base-to-string
+   7:401  error  'r.values.program||""' will use Object's default stringification format ('[object Object]') when stringified          @typescript-eslint/no-base-to-string
+   7:452  error  'r.values.department||""' will use Object's default stringification format ('[object Object]') when stringified       @typescript-eslint/no-base-to-string
+   7:500  error  'r.values.city||""' will use Object's default stringification format ('[object Object]') when stringified             @typescript-eslint/no-base-to-string
+   7:545  error  'r.values.company||""' will use Object's default stringification format ('[object Object]') when stringified          @typescript-eslint/no-base-to-string
+   7:595  error  'r.values.job_title||""' will use Object's default stringification format ('[object Object]') when stringified        @typescript-eslint/no-base-to-string
+   8:135  error  'row.values.stable_id||""' will use Object's default stringification format ('[object Object]') when stringified      @typescript-eslint/no-base-to-string
+   8:221  error  'row.values.name||""' will use Object's default stringification format ('[object Object]') when stringified           @typescript-eslint/no-base-to-string
+   9:137  error  'row.values.stable_id||""' will use Object's default stringification format ('[object Object]') when stringified      @typescript-eslint/no-base-to-string
+   9:196  error  'row.values.email||""' will use Object's default stringification format ('[object Object]') when stringified          @typescript-eslint/no-base-to-string
+   9:250  error  'row.values.name||""' will use Object's default stringification format ('[object Object]') when stringified           @typescript-eslint/no-base-to-string
+   9:330  error  'e.entity.metadata?.email||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  10:322  error  'row.values.from_id||""' will use Object's default stringification format ('[object Object]') when stringified        @typescript-eslint/no-base-to-string
+  10:380  error  'row.values.to_id||""' will use Object's default stringification format ('[object Object]') when stringified          @typescript-eslint/no-base-to-string
+  10:428  error  'row.values.relationship||""' will use Object's default stringification format ('[object Object]') when stringified   @typescript-eslint/no-base-to-string
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\import\housing-workbook.ts
+  5:1045  error  'p.values.vehicle_id' will use Object's default stringification format ('[object Object]') when stringified     @typescript-eslint/no-base-to-string
+  5:1089  error  'vehicle?.stable_id||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\import\productized-workbook.ts
+   6:325  error  'v' will use Object's default stringification format ('[object Object]') when stringified                                                          @typescript-eslint/no-base-to-string
+   6:376  error  'v' will use Object's default stringification format ('[object Object]') when stringified                                                          @typescript-eslint/no-base-to-string
+   6:542  error  'v' will use Object's default stringification format ('[object Object]') when stringified                                                          @typescript-eslint/no-base-to-string
+   8:231  error  'e.entity.metadata?.importStableId||""' will use Object's default stringification format ('[object Object]') when stringified                      @typescript-eslint/no-base-to-string
+  10:355  error  'row.values.from_id||""' will use Object's default stringification format ('[object Object]') when stringified                                     @typescript-eslint/no-base-to-string
+  10:413  error  'row.values.fromRef||""' will use Object's default stringification format ('[object Object]') when stringified                                     @typescript-eslint/no-base-to-string
+  10:479  error  'row.values.to_id||""' will use Object's default stringification format ('[object Object]') when stringified                                       @typescript-eslint/no-base-to-string
+  10:535  error  'row.values.toRef||""' will use Object's default stringification format ('[object Object]') when stringified                                       @typescript-eslint/no-base-to-string
+  10:589  error  'row.values.relationship||row.values.relationship_type||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\intelligence-adapter\contracts.ts
+  43:23  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\intelligence-adapter\runtime.ts
+  5:2  warning  Async method 'retrieve' has no 'await' expression  @typescript-eslint/require-await
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\organization-knowledge\reconcile.ts
+  5:32  error  'v??""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\organization-risk\remote.ts
+  9:114  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\participation\voting-remote.ts
+  7:156  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  7:181  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\capabilities\template-product\remote.ts
+  54:160  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  54:185  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\AdminPilotLaunchConsole.tsx
+  9:2174  warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\AlumniNetworkApp.tsx
+    5:96    warning  'FileSpreadsheet' is defined but never used. Allowed unused vars must match /^_/u                                                                                   @typescript-eslint/no-unused-vars
+   49:7     warning  'runtime' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                  @typescript-eslint/no-unused-vars
+  105:205   error    This assertion is unnecessary since it does not change the type of the expression                                                                                   @typescript-eslint/no-unnecessary-type-assertion
+  108:17    warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  108:33    warning  React Hook useEffect has a missing dependency: 'loadFeatures'. Either include it or remove the dependency array                                                     react-hooks/exhaustive-deps
+  109:17    warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  109:25    warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                             react-hooks/exhaustive-deps
+  114:300   error    This assertion is unnecessary since it does not change the type of the expression                                                                                   @typescript-eslint/no-unnecessary-type-assertion
+  114:368   warning  React Hook useMemo has a missing dependency: 'hasFeature'. Either include it or remove the dependency array                                                         react-hooks/exhaustive-deps
+  117:110   warning  Unnecessary conditional, value is always truthy                                                                                                                     @typescript-eslint/no-unnecessary-condition
+  121:216   warning  Unnecessary optional chain on a non-nullish value                                                                                                                   @typescript-eslint/no-unnecessary-condition
+  122:55    warning  Async arrow function 'quickStartAction' has no 'await' expression                                                                                                   @typescript-eslint/require-await
+  149:223   error    This assertion is unnecessary since it does not change the type of the expression                                                                                   @typescript-eslint/no-unnecessary-type-assertion
+  149:228   warning  Unnecessary optional chain on a non-nullish value                                                                                                                   @typescript-eslint/no-unnecessary-condition
+  149:388   warning  Unnecessary conditional, value is always truthy                                                                                                                     @typescript-eslint/no-unnecessary-condition
+  158:278   error    This assertion is unnecessary since it does not change the type of the expression                                                                                   @typescript-eslint/no-unnecessary-type-assertion
+  161:175   error    This assertion is unnecessary since it does not change the type of the expression                                                                                   @typescript-eslint/no-unnecessary-type-assertion
+  161:180   warning  Unnecessary optional chain on a non-nullish value                                                                                                                   @typescript-eslint/no-unnecessary-condition
+  163:67    warning  Unnecessary optional chain on a non-nullish value                                                                                                                   @typescript-eslint/no-unnecessary-condition
+  164:2286  error    This assertion is unnecessary since it does not change the type of the expression                                                                                   @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\AnalyticsPanel.tsx
+  11:17   warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                            @typescript-eslint/no-floating-promises
+  11:207  warning  React Hook useEffect has missing dependencies: 'onNotify' and 'repo'. Either include them or remove the dependency array. If 'onNotify' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\AssociationHome.tsx
+   9:59  error    'value' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  13:97  warning  Unnecessary optional chain on a non-nullish value                                              @typescript-eslint/no-unnecessary-condition
+  19:37  warning  Unnecessary conditional, value is always truthy                                                @typescript-eslint/no-unnecessary-condition
+  25:42  warning  Unnecessary conditional, value is always truthy                                                @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\CommunityHub.tsx
+   3:20   warning  'ImagePlus' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+  12:60   warning  'onSelect' is defined but never used. Allowed unused args must match /^_/u                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  22:17   warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+  22:115  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                                                                                                                         react-hooks/exhaustive-deps
+  26:451  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  31:584  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\CommunityNetwork.tsx
+  40:17    warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                                    @typescript-eslint/no-floating-promises
+  40:25    warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                                                                                                                               react-hooks/exhaustive-deps
+  41:3613  warning  React Hook useEffect has missing dependencies: 'familyName', 'members', 'onNotify', and 'tr'. Either include them or remove the dependency array. If 'onNotify' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+  43:59    error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                                @typescript-eslint/no-confusing-void-expression
+  43:124   error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                                @typescript-eslint/no-confusing-void-expression
+  44:88    error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                                @typescript-eslint/no-confusing-void-expression
+  50:919   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element        @next/next/no-img-element
+  51:564   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                                     @typescript-eslint/no-unnecessary-condition
+  51:856   error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                                @typescript-eslint/no-confusing-void-expression
+  51:1126  error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                                @typescript-eslint/no-confusing-void-expression
+  51:1447  error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                                @typescript-eslint/no-confusing-void-expression
+  52:663   error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                                @typescript-eslint/no-confusing-void-expression
+  52:927   error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                                @typescript-eslint/no-confusing-void-expression
+  52:1240  error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                                @typescript-eslint/no-confusing-void-expression
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\CrossNetworkDiscovery.tsx
+  3:709  error  Empty block statement  no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilyAdminCenter.tsx
+   4:43  warning  'Settings2' is defined but never used. Allowed unused vars must match /^_/u                                                                                         @typescript-eslint/no-unused-vars
+  14:86  warning  'relationshipCount' is defined but never used. Allowed unused args must match /^_/u                                                                                 @typescript-eslint/no-unused-vars
+  19:17  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  19:25  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                             react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilyAssociationAdminPanel.tsx
+  12:176  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+  20:30   warning  Unnecessary optional chain on a non-nullish value                                                              @typescript-eslint/no-unnecessary-condition
+  20:77   warning  Unnecessary optional chain on a non-nullish value                                                              @typescript-eslint/no-unnecessary-condition
+  21:199  warning  React Hook useEffect has a missing dependency: 'activeYear'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilyBelonging.tsx
+   74:17   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   78:14   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   81:5    warning  React Hook useMemo has a missing dependency: 'tr'. Either include it or remove the dependency array                                                                                                                                                             react-hooks/exhaustive-deps
+  106:43   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  136:282  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilyBranchIntakeForm.tsx
+  9:32  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  9:44  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilyDigest.tsx
+  22:4     warning  React Hook useEffect has a missing dependency: 'tr'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  23:193   error    'next' is never reassigned. Use 'const' instead                                                        prefer-const
+  32:22    warning  Async arrow function 'toggle' has no 'await' expression                                                @typescript-eslint/require-await
+  33:1177  warning  Unnecessary optional chain on a non-nullish value                                                      @typescript-eslint/no-unnecessary-condition
+  33:1309  error    Empty block statement                                                                                  no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilyGrowthRelay.tsx
+  30:254  warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+  30:389  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  33:4    warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+  34:251  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilyHome.tsx
+  29:144  warning  React Hook useEffect has a missing dependency: 'repo'. Either include it or remove the dependency array                                                                                                                                                         react-hooks/exhaustive-deps
+  39:137  error    'next' is never reassigned. Use 'const' instead                                                                                                                                                                                                                 prefer-const
+  47:168  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  63:23   warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+  64:130  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  64:142  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  64:249  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  64:311  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilyIntakeAdmin.tsx
+  13:17    warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  18:32    warning  Unnecessary conditional, value is always falsy                                                                                                                      @typescript-eslint/no-unnecessary-condition
+  24:5     warning  Unnecessary conditional, value is always falsy                                                                                                                      @typescript-eslint/no-unnecessary-condition
+  26:1560  warning  Unnecessary optional chain on a non-nullish value                                                                                                                   @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilySignatureExperience.tsx
+   59:91   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+   71:73   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+   83:135  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+   90:173  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  106:373  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilySwitcher.tsx
+  13:6  warning  Unnecessary conditional, value is always falsy  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FamilyTimeMachine.tsx
+  100:27   error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                          @typescript-eslint/no-confusing-void-expression
+  101:36   error    Returning a void expression from a function is forbidden. Please move it before the `return` statement                                                                                                                                                          @typescript-eslint/no-confusing-void-expression
+  102:12   error    Returning a void expression from a function is forbidden. Please remove the `return` statement                                                                                                                                                                  @typescript-eslint/no-confusing-void-expression
+  115:8    warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+  136:171  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  141:12   warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FeatureGuide.tsx
+  12:74   error  Empty block statement  no-empty
+  14:120  error  Empty block statement  no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FederatedDirectoryDiscovery.tsx
+  12:29  warning  React Hook useEffect has a missing dependency: 'run'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FederatedOutcomeTrustReceipt.tsx
+  12:30  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FederatedPurposeScopeFramework.tsx
+  13:30  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FederationUmbrellaRuntime.tsx
+  13:101  warning  React Hook useEffect has a missing dependency: 'tr'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  14:203  warning  React Hook useEffect has a missing dependency: 'tr'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\FounderLaunchConsole.tsx
+   27:36    error    This assertion is unnecessary since it does not change the type of the expression                        @typescript-eslint/no-unnecessary-type-assertion
+   33:30    warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  108:144   warning  Unnecessary conditional, value is always truthy                                                          @typescript-eslint/no-unnecessary-condition
+  108:156   warning  Unnecessary optional chain on a non-nullish value                                                        @typescript-eslint/no-unnecessary-condition
+  108:1155  warning  Unnecessary conditional, value is always truthy                                                          @typescript-eslint/no-unnecessary-condition
+  108:1158  warning  Unnecessary optional chain on a non-nullish value                                                        @typescript-eslint/no-unnecessary-condition
+  108:1911  warning  Unnecessary conditional, value is always truthy                                                          @typescript-eslint/no-unnecessary-condition
+  108:1914  warning  Unnecessary optional chain on a non-nullish value                                                        @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\GovernedFederatedIntroductions.tsx
+  14:30  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\GuidePortal.tsx
+  4:93  warning  'ShieldCheck' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\HousingSocietyCorePanel.tsx
+   3:23    warning  'FileSpreadsheet' is defined but never used. Allowed unused vars must match /^_/u                                                                                   @typescript-eslint/no-unused-vars
+   3:72    warning  'UsersRound' is defined but never used. Allowed unused vars must match /^_/u                                                                                        @typescript-eslint/no-unused-vars
+  13:64    warning  'isAdmin' is defined but never used. Allowed unused args must match /^_/u                                                                                           @typescript-eslint/no-unused-vars
+  18:105   warning  'vehicleUnit' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                              @typescript-eslint/no-unused-vars
+  18:117   warning  'setVehicleUnit' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                           @typescript-eslint/no-unused-vars
+  21:17    warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  21:25    warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                             react-hooks/exhaustive-deps
+  26:295   error    'p?.entity.metadata?.email||""' will use Object's default stringification format ('[object Object]') when stringified                                               @typescript-eslint/no-base-to-string
+  26:1415  warning  Unnecessary optional chain on a non-nullish value                                                                                                                   @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\HousingSocietyFinancePanel.tsx
+  24:17  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  24:25  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                             react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\HousingSocietyGovernancePanel.tsx
+  20:17  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  20:25  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                             react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\HousingSocietyHome.tsx
+  45:177  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  83:409  warning  Unnecessary optional chain on a non-nullish value                                                                                                                   @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\HousingSocietyOperationsPanel.tsx
+   3:100   warning  'UsersRound' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+  28:17    warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+  28:25    warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                                                                                                                         react-hooks/exhaustive-deps
+  30:68    warning  React Hook useEffect has a missing dependency: 'loadComplaintRoutes'. Either include it or remove the dependency array                                                                                                                                          react-hooks/exhaustive-deps
+  33:724   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  38:3747  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  40:2027  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\HousingSocietyPilotPanel.tsx
+   3:91  warning  'UsersRound' is defined but never used. Allowed unused vars must match /^_/u                             @typescript-eslint/no-unused-vars
+  17:30  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\HousingSocietySecurityPanel.tsx
+   3:91  warning  'UsersRound' is defined but never used. Allowed unused vars must match /^_/u                                                                                        @typescript-eslint/no-unused-vars
+  21:17  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  21:25  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                             react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\ImportModal.tsx
+  19:37   warning  Unnecessary optional chain on a non-nullish value                                                    @typescript-eslint/no-unnecessary-condition
+  19:49   warning  Unnecessary optional chain on a non-nullish value                                                    @typescript-eslint/no-unnecessary-condition
+  20:125  error    'value || ""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  21:41   error    'value ?? ""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\InvitationModal.tsx
+  19:220  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  23:73   warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  24:174  warning  Unnecessary conditional, value is always truthy    @typescript-eslint/no-unnecessary-condition
+  24:279  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  24:334  error    Empty block statement                              no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\LifeEventEditor.tsx
+   3:10   warning  'useEffect' is defined but never used. Allowed unused vars must match /^_/u                   @typescript-eslint/no-unused-vars
+  20:145  error    This assertion is unnecessary since the receiver accepts the original type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\LivingFamilyLoop.tsx
+   54:59   error    'next' is never reassigned. Use 'const' instead                                                         prefer-const
+   87:19   warning  Unnecessary conditional, value is always truthy                                                         @typescript-eslint/no-unnecessary-condition
+   87:30   warning  Unnecessary conditional, value is always truthy                                                         @typescript-eslint/no-unnecessary-condition
+   88:10   warning  Unnecessary conditional, value is always truthy                                                         @typescript-eslint/no-unnecessary-condition
+   89:75   error    This assertion is unnecessary since it does not change the type of the expression                       @typescript-eslint/no-unnecessary-type-assertion
+   89:121  error    This assertion is unnecessary since it does not change the type of the expression                       @typescript-eslint/no-unnecessary-type-assertion
+   89:299  error    This assertion is unnecessary since it does not change the type of the expression                       @typescript-eslint/no-unnecessary-type-assertion
+   91:8    warning  Unnecessary conditional, value is always truthy                                                         @typescript-eslint/no-unnecessary-condition
+   94:5    warning  React Hook useMemo has a missing dependency: 'tr'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+  105:55   error    Returning a void expression from a function is forbidden. Please move it before the `return` statement  @typescript-eslint/no-confusing-void-expression
+  106:54   error    Returning a void expression from a function is forbidden. Please move it before the `return` statement  @typescript-eslint/no-confusing-void-expression
+  107:39   error    Returning a void expression from a function is forbidden. Please move it before the `return` statement  @typescript-eslint/no-confusing-void-expression
+  108:39   error    Returning a void expression from a function is forbidden. Please move it before the `return` statement  @typescript-eslint/no-confusing-void-expression
+  108:44   warning  Unnecessary conditional, value is always truthy                                                         @typescript-eslint/no-unnecessary-condition
+  125:10   warning  Unnecessary conditional, value is always truthy                                                         @typescript-eslint/no-unnecessary-condition
+  125:18   warning  Unnecessary conditional, value is always truthy                                                         @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\MyNetworksHome.tsx
+   49:291  error    'unknown' overrides all other types in this union type                                                  @typescript-eslint/no-redundant-type-constituents
+   55:20   error    This assertion is unnecessary since it does not change the type of the expression                       @typescript-eslint/no-unnecessary-type-assertion
+   56:35   error    This assertion is unnecessary since it does not change the type of the expression                       @typescript-eslint/no-unnecessary-type-assertion
+   78:143  warning  React Hook useMemo has a missing dependency: 'kinds'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  111:175  warning  Unnecessary conditional, value is always truthy                                                         @typescript-eslint/no-unnecessary-condition
+  178:490  warning  'def' is assigned a value but never used. Allowed unused vars must match /^_/u                          @typescript-eslint/no-unused-vars
+  200:124  warning  'def' is assigned a value but never used. Allowed unused vars must match /^_/u                          @typescript-eslint/no-unused-vars
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\NetworkApp.tsx
+    58:3    warning  'loadState' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   110:179  warning  'requestFamilyCreation' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   127:39   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined                                                                                                                                                              @typescript-eslint/no-unnecessary-condition
+   129:20   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   129:32   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   135:9    warning  'nx1' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+   143:9    warning  'helpCopy' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                                                                                             @typescript-eslint/no-unused-vars
+   193:6    warning  'showGuide' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                                                                                            @typescript-eslint/no-unused-vars
+   193:17   warning  'setShowGuide' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   211:6    warning  'notifications' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                                                                                        @typescript-eslint/no-unused-vars
+   223:84   error    Empty block statement                                                                                                                                                                                                                                           no-empty
+   233:80   error    Empty block statement                                                                                                                                                                                                                                           no-empty
+   247:42   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+   254:21   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+   289:35   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   289:69   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   298:15   error    Empty block statement                                                                                                                                                                                                                                           no-empty
+   302:5    warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+   350:13   error    Empty block statement                                                                                                                                                                                                                                           no-empty
+   358:6    warning  React Hook useEffect has missing dependencies: 'refresh' and 'tr'. Either include them or remove the dependency array                                                                                                                                           react-hooks/exhaustive-deps
+   364:5    warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+   463:70   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   479:73   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   479:85   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   480:76   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   480:88   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   481:87   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   481:99   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   482:87   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   482:99   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   507:15   error    Empty block statement                                                                                                                                                                                                                                           no-empty
+   515:15   error    Empty block statement                                                                                                                                                                                                                                           no-empty
+   630:9    warning  'deceased' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                                                                                             @typescript-eslint/no-unused-vars
+   650:13   error    This assertion is unnecessary since the receiver accepts the original type of the expression                                                                                                                                                                    @typescript-eslint/no-unnecessary-type-assertion
+   678:6    warning  React Hook useMemo has a missing dependency: 'tr'. Either include it or remove the dependency array                                                                                                                                                             react-hooks/exhaustive-deps
+   691:11   warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+   705:72   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   845:27   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   886:22   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   903:27   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+   918:22   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  1018:29   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:35   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:40   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:46   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:81   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:90   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:100  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:109  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:121  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:132  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:137  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:148  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:163  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:181  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:218  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:227  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:350  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:361  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:366  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:377  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:392  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:410  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:431  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:440  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:473  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:484  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:489  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:500  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:515  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:533  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:554  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1018:563  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:29   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:57   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:66   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:76   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:86   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:97   error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:108  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:132  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:147  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:153  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:163  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:169  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:177  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:186  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:198  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:202  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:207  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:211  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:226  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:244  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:281  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1021:290  error    Unnecessary escape character: \"                                                                                                                                                                                                                                no-useless-escape
+  1060:27   error    Expected an assignment or function call and instead saw an expression                                                                                                                                                                                           @typescript-eslint/no-unused-expressions
+  1175:36   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  1177:77   error    Empty block statement                                                                                                                                                                                                                                           no-empty
+  1180:71   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  1189:98   error    Empty block statement                                                                                                                                                                                                                                           no-empty
+  1244:40   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  1318:120  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+  1359:239  error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  1359:284  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  1359:355  error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  1359:400  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  1359:577  error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  1359:623  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+  1361:43   warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+  1381:126  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  1437:206  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  1586:25   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  1636:159  error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  1811:25   warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+  1812:27   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  1999:83   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  2015:99   warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+  2046:40   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\NetworkBridgeManager.tsx
+  15:30   warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  27:579  warning  Unnecessary optional chain on a non-nullish value                                                        @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\NetworkEffectShowcase.tsx
+   6:34   warning  'ShowcaseScenario' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  16:66   warning  Unnecessary optional chain on a non-nullish value                                   @typescript-eslint/no-unnecessary-condition
+  18:5    warning  Unnecessary conditional, value is always falsy                                      @typescript-eslint/no-unnecessary-condition
+  30:106  warning  Unnecessary optional chain on a non-nullish value                                   @typescript-eslint/no-unnecessary-condition
+  31:179  warning  Unnecessary optional chain on a non-nullish value                                   @typescript-eslint/no-unnecessary-condition
+  32:208  warning  Unnecessary optional chain on a non-nullish value                                   @typescript-eslint/no-unnecessary-condition
+  34:180  warning  Unnecessary optional chain on a non-nullish value                                   @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\NetworkFederationAffiliationManager.tsx
+  21:92   warning  React Hook useEffect has a missing dependency: 'tr'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  26:197  warning  Unnecessary conditional, value is always falsy                                                         @typescript-eslint/no-unnecessary-condition
+  33:194  warning  Unnecessary optional chain on a non-nullish value                                                      @typescript-eslint/no-unnecessary-condition
+  33:220  warning  Unnecessary optional chain on a non-nullish value                                                      @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\NetworkLaunchActivation.tsx
+  14:78   warning  Unnecessary optional chain on a non-nullish value                                  @typescript-eslint/no-unnecessary-condition
+  17:14   warning  Unnecessary conditional, value is always truthy                                    @typescript-eslint/no-unnecessary-condition
+  18:20   warning  Unnecessary conditional, value is always falsy                                     @typescript-eslint/no-unnecessary-condition
+  20:186  warning  Unnecessary conditional, value is always truthy                                    @typescript-eslint/no-unnecessary-condition
+  22:118  warning  Unnecessary optional chain on a non-nullish value                                  @typescript-eslint/no-unnecessary-condition
+  22:289  error    This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  24:94   error    This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  24:204  error    This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\NetworkPassportManager.tsx
+  16:8    warning  'current' is assigned a value but never used. Allowed unused vars must match /^_/u                       @typescript-eslint/no-unused-vars
+  19:30   warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  36:458  warning  Unnecessary optional chain on a non-nullish value                                                        @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\ParticipationCenter.tsx
+   3:19   warning  'useMemo' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   5:65   warning  'Mail' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  13:39   error    'x??""' will use Object's default stringification format ('[object Object]') when stringified                                                                                                                                                                   @typescript-eslint/no-base-to-string
+  39:51   error    This assertion is unnecessary since the receiver accepts the original type of the expression                                                                                                                                                                    @typescript-eslint/no-unnecessary-type-assertion
+  40:17   warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+  40:25   warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                                                                                                                         react-hooks/exhaustive-deps
+  44:77   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  45:196  warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+  51:113  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+  65:509  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  65:930  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+  65:930  error    Expected an assignment or function call and instead saw an expression                                                                                                                                                                                           @typescript-eslint/no-unused-expressions
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\PilotEvidenceDecisionGate.tsx
+  18:150  warning  Unnecessary optional chain on a non-nullish value                                                        @typescript-eslint/no-unnecessary-condition
+  19:30   warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\PilotFeedbackLearningLoop.tsx
+  17:25  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\ProfileDrawer.tsx
+   21:10  warning  'initials' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   92:69  warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+   93:73  warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+  278:31  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\ProfileForm.tsx
+   59:6   warning  React Hook useEffect has a missing dependency: 'member'. Either include it or remove the dependency array                                                                                                                                                       react-hooks/exhaustive-deps
+   80:45  error    'r.result || ""' may use Object's default stringification format ('[object Object]') when stringified                                                                                                                                                           @typescript-eslint/no-base-to-string
+   90:25  error    Placing a void expression inside another expression is forbidden. Move it to its own statement instead                                                                                                                                                          @typescript-eslint/no-confusing-void-expression
+   99:27  error    This assertion is unnecessary since the receiver accepts the original type of the expression                                                                                                                                                                    @typescript-eslint/no-unnecessary-type-assertion
+  111:36  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  117:30  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  117:42  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  126:31  error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  127:31  error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  202:43  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\PublicMemberPage.tsx
+  11:7   warning  'initials' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                 @typescript-eslint/no-unused-vars
+  15:17  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\PublicPage.tsx
+  30:10  warning  'initials' is defined but never used. Allowed unused vars must match /^_/u                                                                                          @typescript-eslint/no-unused-vars
+  45:5   warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  65:6   warning  React Hook useEffect has a missing dependency: 'tr'. Either include it or remove the dependency array                                                               react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\QuickFamilyStart.tsx
+  20:223  error  This assertion is unnecessary since the receiver accepts the original type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\RelationshipModal.tsx
+  14:78  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  14:90  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\SetupScreen.tsx
+  130:1921  warning  Unnecessary conditional, value is always falsy                                                                                                                      @typescript-eslint/no-unnecessary-condition
+  203:123   warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\ShowcaseRuntimeCertification.tsx
+  11:22  error    Placing a void expression inside another expression is forbidden. Move it to its own statement instead   @typescript-eslint/no-confusing-void-expression
+  11:30  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\TemplateNetworkApp.tsx
+    4:106   warning  'FileSpreadsheet' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                       @typescript-eslint/no-unused-vars
+    4:164   warning  'Link2' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                                 @typescript-eslint/no-unused-vars
+   77:96    error    'm.role||m.manager||m.contact||m.description||m.website||""' will use Object's default stringification format ('[object Object]') when stringified                                                      @typescript-eslint/no-base-to-string
+  105:22    warning  'setRelationFrom' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                              @typescript-eslint/no-unused-vars
+  105:64    warning  'setRelationTo' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                                @typescript-eslint/no-unused-vars
+  105:106   warning  'setRelationType' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                              @typescript-eslint/no-unused-vars
+  107:73    error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                       @typescript-eslint/no-unnecessary-type-assertion
+  108:132   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                       @typescript-eslint/no-unnecessary-type-assertion
+  108:414   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                       @typescript-eslint/no-unnecessary-type-assertion
+  109:67    error    This assertion is unnecessary since the receiver accepts the original type of the expression                                                                                                            @typescript-eslint/no-unnecessary-type-assertion
+  109:78    error    This assertion is unnecessary since the receiver accepts the original type of the expression                                                                                                            @typescript-eslint/no-unnecessary-type-assertion
+  109:94    error    This assertion is unnecessary since the receiver accepts the original type of the expression                                                                                                            @typescript-eslint/no-unnecessary-type-assertion
+  113:17    warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                      @typescript-eslint/no-floating-promises
+  113:33    warning  React Hook useEffect has a missing dependency: 'loadFeatures'. Either include it or remove the dependency array                                                                                         react-hooks/exhaustive-deps
+  113:72    warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                      @typescript-eslint/no-floating-promises
+  113:80    warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                                                                 react-hooks/exhaustive-deps
+  114:95    warning  React Hook useMemo has a missing dependency: 'cfg.template.primaryEntityKind'. Either include it or remove the dependency array                                                                         react-hooks/exhaustive-deps
+  117:314   warning  React Hook useMemo has a missing dependency: 'kind'. Either include it or remove the dependency array                                                                                                   react-hooks/exhaustive-deps
+  119:67    warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  120:117   error    'e.entity.metadata?.profession||""' will use Object's default stringification format ('[object Object]') when stringified                                                                               @typescript-eslint/no-base-to-string
+  120:156   warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  121:69    warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  122:73    warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  123:402   warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  123:456   error    'x.entity.metadata?.area||""' will use Object's default stringification format ('[object Object]') when stringified                                                                                     @typescript-eslint/no-base-to-string
+  123:535   error    'x.entity.metadata?.profession||""' will use Object's default stringification format ('[object Object]') when stringified                                                                               @typescript-eslint/no-base-to-string
+  123:624   warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  123:822   warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  123:928   warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  124:107   warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  124:215   warning  React Hook useMemo has a missing dependency: 'cfg.template.dimensions'. Either include it or remove the dependency array                                                                                react-hooks/exhaustive-deps
+  125:118   warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  125:248   warning  React Hook useMemo has a missing dependency: 'cfg.locationDimension'. Either include it or remove the dependency array                                                                                  react-hooks/exhaustive-deps
+  127:199   warning  React Hook useMemo has missing dependencies: 'composition.primaryNavigation' and 'hasFeature'. Either include them or remove the dependency array                                                       react-hooks/exhaustive-deps
+  128:263   warning  React Hook useMemo has missing dependencies: 'composition.mobileMoreNavigation' and 'hasFeature'. Either include them or remove the dependency array                                                    react-hooks/exhaustive-deps
+  131:264   warning  React Hook useMemo has a missing dependency: 'cfg.template.dimensions'. Either include it or remove the dependency array                                                                                react-hooks/exhaustive-deps
+  132:308   error    'v??""' will use Object's default stringification format ('[object Object]') when stringified                                                                                                           @typescript-eslint/no-base-to-string
+  132:389   warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  135:8     warning  'addRelationship' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                                              @typescript-eslint/no-unused-vars
+  139:55    warning  Async arrow function 'quickStartAction' has no 'await' expression                                                                                                                                       @typescript-eslint/require-await
+  172:199   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                       @typescript-eslint/no-unnecessary-type-assertion
+  172:204   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                       @typescript-eslint/no-unnecessary-condition
+  174:526   error    'myEntity.entity.metadata?.profession||myEntity.entity.metadata?.role||"Association member"' will use Object's default stringification format ('[object Object]') when stringified                      @typescript-eslint/no-base-to-string
+  174:1479  error    'myHousehold.entity.metadata?.representative||""' will use Object's default stringification format ('[object Object]') when stringified                                                                 @typescript-eslint/no-base-to-string
+  174:1533  warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  174:2037  error    'person!.entity.metadata?.relation||"Member"' will use Object's default stringification format ('[object Object]') when stringified                                                                     @typescript-eslint/no-base-to-string
+  184:460   error    This assertion is unnecessary since the receiver accepts the original type of the expression                                                                                                            @typescript-eslint/no-unnecessary-type-assertion
+  186:3608  error    'item.entity.metadata?.photo_display_url||item.entity.metadata?.photo_url||item.entity.metadata?.avatar_url||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  186:3961  warning  Unnecessary conditional, value is always truthy                                                                                                                                                         @typescript-eslint/no-unnecessary-condition
+  187:1379  error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                       @typescript-eslint/no-unnecessary-type-assertion
+  187:2086  error    Expected an assignment or function call and instead saw an expression                                                                                                                                   @typescript-eslint/no-unused-expressions
+  191:172   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                       @typescript-eslint/no-unnecessary-type-assertion
+  191:177   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                       @typescript-eslint/no-unnecessary-condition
+  191:4340  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                       @typescript-eslint/no-unnecessary-condition
+  191:6014  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                       @typescript-eslint/no-unnecessary-condition
+  191:6102  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                       @typescript-eslint/no-unnecessary-condition
+  191:6689  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                       @typescript-eslint/no-unnecessary-condition
+  191:6700  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                       @typescript-eslint/no-unnecessary-condition
+  191:6734  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                       @typescript-eslint/no-unnecessary-condition
+  193:2393  error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                       @typescript-eslint/no-unnecessary-type-assertion
+  193:2511  error    This assertion is unnecessary since the receiver accepts the original type of the expression                                                                                                            @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\ThemeProvider.tsx
+  23:158  error  Empty block statement  no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\TimelineView.tsx
+  170:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\TreeView.tsx
+   45:11   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  173:16   error    This assertion is unnecessary since the receiver accepts the original type of the expression                                                                                                                                                                    @typescript-eslint/no-unnecessary-type-assertion
+  233:367  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  259:42   warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\TrustedRequestRouting.tsx
+  15:30  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\UpcomingWidget.tsx
+  41:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\InstitutionalBootstrapPanel.tsx
+  12:66   warning  React Hook useMemo has a missing dependency: 'snapshot'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  15:167  warning  Unnecessary conditional, value is always truthy                                                            @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\MediaManagementPanel.tsx
+  10:160  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array                                                                                                                                                         react-hooks/exhaustive-deps
+  22:281  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkActivityHub.tsx
+  20:119   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  20:1261  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+  20:1436  warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+  20:1526  warning  Unnecessary optional chain on a non-nullish value                                                                                                                                                                                                               @typescript-eslint/no-unnecessary-condition
+  20:1549  error    Empty block statement                                                                                                                                                                                                                                           no-empty
+  21:828   warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator                                                                                              @typescript-eslint/no-floating-promises
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkBackupExport.tsx
+  2:40  warning  'Download' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkEntityDetail.tsx
+  15:513   error    'm.role||m.contact||m.description||m.manager||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  15:1624  warning  Unnecessary conditional, value is always truthy                                                                                          @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkFundsPanel.tsx
+   3:9   warning  'BadgeIndianRupee' is defined but never used. Allowed unused vars must match /^_/u                       @typescript-eslint/no-unused-vars
+  15:30  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkGeography.tsx
+  13:152  error    This assertion is unnecessary since the receiver accepts the original type of the expression                    @typescript-eslint/no-unnecessary-type-assertion
+  16:199  warning  Unnecessary conditional, value is always truthy                                                                 @typescript-eslint/no-unnecessary-condition
+  16:249  error    'm.city||m.location||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  17:164  warning  Unnecessary conditional, value is always truthy                                                                 @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkNotificationRoleAdmin.tsx
+  8:11  error  "family-association" is overridden by string in this union type  @typescript-eslint/no-redundant-type-constituents
+  8:32  error  "housing-society" is overridden by string in this union type     @typescript-eslint/no-redundant-type-constituents
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkParticipationAdmin.tsx
+  14:30   warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  15:136  warning  Unnecessary optional chain on a non-nullish value                                                        @typescript-eslint/no-unnecessary-condition
+  16:158  warning  Unnecessary optional chain on a non-nullish value                                                        @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkPostsPanel.tsx
+  27:73  error    'post.metadata?.importance||"normal"' will use Object's default stringification format ('[object Object]') when stringified                                                                                                                                     @typescript-eslint/no-base-to-string
+  29:86  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  31:71  warning  Unnecessary conditional, value is always truthy                                                                                                                                                                                                                 @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkProjectionExplorer.tsx
+  15:67  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  18:25  warning  Unnecessary conditional, value is always truthy    @typescript-eslint/no-unnecessary-condition
+  22:5   warning  Unnecessary conditional, value is always falsy     @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkQuickStart.tsx
+  15:229  error  Empty block statement  no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkStructureView.tsx
+  12:834  error    'item.entity.metadata?.role||item.entity.metadata?.description||item.entity.kind' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  18:67   warning  Unnecessary optional chain on a non-nullish value                                                                                                                        @typescript-eslint/no-unnecessary-condition
+  20:25   warning  Unnecessary conditional, value is always truthy                                                                                                                          @typescript-eslint/no-unnecessary-condition
+  21:5    warning  Unnecessary conditional, value is always falsy                                                                                                                           @typescript-eslint/no-unnecessary-condition
+  22:579  warning  Unnecessary optional chain on a non-nullish value                                                                                                                        @typescript-eslint/no-unnecessary-condition
+  22:663  warning  Unnecessary optional chain on a non-nullish value                                                                                                                        @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkSwitcher.tsx
+  14:17  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+  16:5   warning  Unnecessary conditional, value is always falsy                                                                                                                      @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkUi.tsx
+  6:252  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkVotingPanel.tsx
+  16:30   warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  20:75   warning  Unnecessary conditional, value is always truthy                                                          @typescript-eslint/no-unnecessary-condition
+  25:222  warning  Unnecessary conditional, value is always truthy                                                          @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NetworkWhatsNew.tsx
+  13:27   warning  Unnecessary conditional, value is always falsy  @typescript-eslint/no-unnecessary-condition
+  14:242  error    Empty block statement                           no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\NotificationCenter.tsx
+  24:243  error  'n.metadata?.surface||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\OrganizationGraphAwareIntelligence.tsx
+  24:158  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\components\shared\OrganizationKnowledgeDiscoveryInbox.tsx
+  13:17  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\construction\contracts.ts
+   5:41  error  "draft" is overridden by string in this union type       @typescript-eslint/no-redundant-type-constituents
+   5:51  error  "collecting" is overridden by string in this union type  @typescript-eslint/no-redundant-type-constituents
+   5:66  error  "review" is overridden by string in this union type      @typescript-eslint/no-redundant-type-constituents
+   5:77  error  "closed" is overridden by string in this union type      @typescript-eslint/no-redundant-type-constituents
+   6:40  error  "active" is overridden by string in this union type      @typescript-eslint/no-redundant-type-constituents
+   6:51  error  "submitted" is overridden by string in this union type   @typescript-eslint/no-redundant-type-constituents
+   6:65  error  "committed" is overridden by string in this union type   @typescript-eslint/no-redundant-type-constituents
+   6:79  error  "revoked" is overridden by string in this union type     @typescript-eslint/no-redundant-type-constituents
+   6:91  error  "expired" is overridden by string in this union type     @typescript-eslint/no-redundant-type-constituents
+   7:34  error  "staged" is overridden by string in this union type      @typescript-eslint/no-redundant-type-constituents
+   7:45  error  "matched" is overridden by string in this union type     @typescript-eslint/no-redundant-type-constituents
+   7:57  error  "new" is overridden by string in this union type         @typescript-eslint/no-redundant-type-constituents
+   7:65  error  "ambiguous" is overridden by string in this union type   @typescript-eslint/no-redundant-type-constituents
+   7:79  error  "committed" is overridden by string in this union type   @typescript-eslint/no-redundant-type-constituents
+   7:93  error  "rejected" is overridden by string in this union type    @typescript-eslint/no-redundant-type-constituents
+   8:32  error  "staged" is overridden by string in this union type      @typescript-eslint/no-redundant-type-constituents
+   8:43  error  "committed" is overridden by string in this union type   @typescript-eslint/no-redundant-type-constituents
+   8:57  error  "rejected" is overridden by string in this union type    @typescript-eslint/no-redundant-type-constituents
+  12:35  error  "automatic" is overridden by string in this union type   @typescript-eslint/no-redundant-type-constituents
+  12:49  error  "operator" is overridden by string in this union type    @typescript-eslint/no-redundant-type-constituents
+  12:62  error  "system" is overridden by string in this union type      @typescript-eslint/no-redundant-type-constituents
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\evidence\contracts.ts
+  43:41  error  "skill" is overridden by string in this union type            @typescript-eslint/no-redundant-type-constituents
+  43:49  error  "owns" is overridden by string in this union type             @typescript-eslint/no-redundant-type-constituents
+  43:56  error  "depends_on" is overridden by string in this union type       @typescript-eslint/no-redundant-type-constituents
+  43:69  error  "reports_to" is overridden by string in this union type       @typescript-eslint/no-redundant-type-constituents
+  43:82  error  "works_with" is overridden by string in this union type       @typescript-eslint/no-redundant-type-constituents
+  43:95  error  "participates_in" is overridden by string in this union type  @typescript-eslint/no-redundant-type-constituents
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\export\workbook.ts
+  3:48   error    'base' is never reassigned. Use 'const' instead                                                                   prefer-const
+  3:73   error    Unnecessary escape character: \[                                                                                  no-useless-escape
+  4:277  error    'backup.network?.name||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  4:291  warning  Unnecessary optional chain on a non-nullish value                                                                 @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\features\runtime.ts
+  36:7  warning  Unnecessary conditional, value is always falsy  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\federation\application-scopes.ts
+  13:42  error  "expertise" | "business" | "events" | "jobs" | "mentoring" | "matrimony" | "relocation" | "volunteering" | "community-help" is overridden by string in this union type  @typescript-eslint/no-redundant-type-constituents
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\federation\federated-discovery.ts
+  1:39   error  "all" is overridden by string in this union type             @typescript-eslint/no-redundant-type-constituents
+  1:45   error  "jobs" is overridden by string in this union type            @typescript-eslint/no-redundant-type-constituents
+  1:52   error  "business" is overridden by string in this union type        @typescript-eslint/no-redundant-type-constituents
+  1:63   error  "mentoring" is overridden by string in this union type       @typescript-eslint/no-redundant-type-constituents
+  1:75   error  "matrimony" is overridden by string in this union type       @typescript-eslint/no-redundant-type-constituents
+  1:87   error  "events" is overridden by string in this union type          @typescript-eslint/no-redundant-type-constituents
+  1:96   error  "volunteering" is overridden by string in this union type    @typescript-eslint/no-redundant-type-constituents
+  1:111  error  "community-help" is overridden by string in this union type  @typescript-eslint/no-redundant-type-constituents
+  1:128  error  "expertise" is overridden by string in this union type       @typescript-eslint/no-redundant-type-constituents
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\graph\contracts.ts
+  6:159  error  "organization" | "location" | "branch" | "program" | "person" | "team" | "project" | "product" | "institution" | "subject" | "account" | "custom" is overridden by string in this union type  @typescript-eslint/no-redundant-type-constituents
+  6:206  error  "organization" | "location" | "branch" | "program" | "person" | "team" | "project" | "product" | "institution" | "subject" | "account" | "custom" is overridden by string in this union type  @typescript-eslint/no-redundant-type-constituents
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\import\parser.ts
+   5:32  error    'v??""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  12:8   warning  Async function 'parseImportWorkbook' has no 'await' expression                                 @typescript-eslint/require-await
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\import\sheet-names.ts
+  4:41  error  Unnecessary escape character: \[  no-useless-escape
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\import\workbook.ts
+  17:231  error  This assertion is unnecessary since the receiver accepts the original type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\intelligence\engine.ts
+  7:197   warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+  8:1259  warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\core\network-os\contracts.ts
+  6:7  error  "organization" | "location" | "branch" | "program" | "person" | "team" | "project" | "product" | "institution" | "subject" | "account" | "custom" is overridden by string in this union type  @typescript-eslint/no-redundant-type-constituents
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\api-client.ts
+  16:114  error  Empty block statement  no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\auth.ts
+   7:26  error  'profileError' is never reassigned. Use 'const' instead  prefer-const
+  16:85  error  Empty block statement                                    no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\family-signature.ts
+  75:7  warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+  78:7  warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\i18n.tsx
+  14:71   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined            @typescript-eslint/no-unnecessary-condition
+  14:108  warning  React Hook useMemo has a missing dependency: 'setLanguage'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\identity.tsx
+  10:14   error    This assertion is unnecessary since it does not change the type of the expression                                                                                                                                                                               @typescript-eslint/no-unnecessary-type-assertion
+  11:132  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  14:211  error    Unnecessary semicolon                                                                                                                                                                                                                                           no-extra-semi
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\network-lifecycle.ts
+  15:16  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\network.ts
+  200:19  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  201:26  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  202:18  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  203:25  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  204:19  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  205:18  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  206:17  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  207:23  warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\nx-review.tsx
+  17:128  error  Empty block statement  no-empty
+  17:130  error  Unnecessary semicolon  no-extra-semi
+  18:159  error  Empty block statement  no-empty
+  18:161  error  Unnecessary semicolon  no-extra-semi
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\relationship-intelligence.ts
+  39:16  warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\remote.ts
+   46:130  error    'value || ""' will use Object's default stringification format ('[object Object]') when stringified                          @typescript-eslint/no-base-to-string
+  201:21   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined                           @typescript-eslint/no-unnecessary-condition
+  202:28   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined                           @typescript-eslint/no-unnecessary-condition
+  203:20   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined                           @typescript-eslint/no-unnecessary-condition
+  204:27   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined                           @typescript-eslint/no-unnecessary-condition
+  205:21   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined                           @typescript-eslint/no-unnecessary-condition
+  206:20   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined                           @typescript-eslint/no-unnecessary-condition
+  207:19   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined                           @typescript-eslint/no-unnecessary-condition
+  208:25   warning  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined                           @typescript-eslint/no-unnecessary-condition
+  217:3    warning  'role' is assigned a value but never used. Allowed unused args must match /^_/u                                              @typescript-eslint/no-unused-vars
+  235:19   error    This assertion is unnecessary since it does not change the type of the expression                                            @typescript-eslint/no-unnecessary-type-assertion
+  241:21   warning  Unnecessary conditional, value is always truthy                                                                              @typescript-eslint/no-unnecessary-condition
+  242:19   warning  Unnecessary conditional, value is always truthy                                                                              @typescript-eslint/no-unnecessary-condition
+  262:22   warning  Unnecessary conditional, value is always truthy                                                                              @typescript-eslint/no-unnecessary-condition
+  263:16   warning  Unnecessary conditional, value is always truthy                                                                              @typescript-eslint/no-unnecessary-condition
+  456:252  warning  Unnecessary conditional, value is always truthy                                                                              @typescript-eslint/no-unnecessary-condition
+  622:28   error    'notification.metadata?.category||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+  777:679  error    Empty block statement                                                                                                        no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\repository.ts
+  277:7   warning  Unnecessary conditional, value is always truthy    @typescript-eslint/no-unnecessary-condition
+  277:29  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  289:26  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  289:38  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  333:33  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  333:45  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  399:33  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  431:41  warning  Unnecessary conditional, value is always truthy    @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\lib\storage.ts
+  103:163  error    Empty block statement                                                              no-empty
+  146:229  error    Empty block statement                                                              no-empty
+  148:106  error    Empty block statement                                                              no-empty
+  152:304  error    Empty block statement                                                              no-empty
+  156:167  warning  Unnecessary optional chain on a non-nullish value                                  @typescript-eslint/no-unnecessary-condition
+  164:167  error    This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  167:284  error    This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  167:677  error    Empty block statement                                                              no-empty
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\templates\productized\config.ts
+   83:142  warning  Unnecessary optional chain on a non-nullish value                                                                             @typescript-eslint/no-unnecessary-condition
+  107:303  warning  Unnecessary conditional, value is always truthy                                                                               @typescript-eslint/no-unnecessary-condition
+  162:89   warning  'i' is defined but never used. Allowed unused args must match /^_/u                                                           @typescript-eslint/no-unused-vars
+  165:459  error    'item.entity.metadata?.profession||""' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\verticals\alumni\construction\adapter.ts
+   7:2    warning  Async method 'createSession' has no 'await' expression                             @typescript-eslint/require-await
+   7:55   warning  Async method 'createAccess' has no 'await' expression                              @typescript-eslint/require-await
+   7:107  warning  Async method 'previewAccess' has no 'await' expression                             @typescript-eslint/require-await
+   8:2    warning  Async method 'submit' has no 'await' expression                                    @typescript-eslint/require-await
+   9:2    warning  Async method 'getDashboard' has no 'await' expression                              @typescript-eslint/require-await
+   9:254  warning  Async method 'decideMatch' has no 'await' expression                               @typescript-eslint/require-await
+  10:2    warning  Async method 'validateAccess' has no 'await' expression                            @typescript-eslint/require-await
+  12:371  error    This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  12:428  error    This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  12:481  error    This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  12:531  error    This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  13:2    warning  Async method 'revokeAccess' has no 'await' expression                              @typescript-eslint/require-await
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\verticals\alumni\data\remote.ts
+  34:189  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\verticals\alumni\participation\adapter.ts
+  6:2    warning  Async method 'listInvitations' has no 'await' expression           @typescript-eslint/require-await
+  6:37   warning  Async method 'revokeInvitation' has no 'await' expression          @typescript-eslint/require-await
+  6:154  warning  Async method 'resendInvitation' has no 'await' expression          @typescript-eslint/require-await
+  9:2    warning  Async method 'listContributionPrompts' has no 'await' expression   @typescript-eslint/require-await
+  9:45   warning  Async method 'actOnContributionPrompt' has no 'await' expression   @typescript-eslint/require-await
+  9:86   warning  Async method 'getMetrics' has no 'await' expression                @typescript-eslint/require-await
+  9:119  warning  Async method 'trackPublicParticipation' has no 'await' expression  @typescript-eslint/require-await
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\verticals\family\construction\adapter.ts
+  113:122  warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\verticals\family\participation\adapter.ts
+  33:34  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+  33:46  warning  Unnecessary optional chain on a non-nullish value  @typescript-eslint/no-unnecessary-condition
+
+D:\AI\AI_Learning_Projects\xyz-hierarchy-network-p0\latest_chat_gpt\generic-hierarchy-family-5.3\global-network-os\generic-family-hierarchy-4\verticals\housing-society\runtime\operations-remote.ts
+  13:286  warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+  13:414  warning  Unnecessary conditional, value is always truthy  @typescript-eslint/no-unnecessary-condition
+
+✖ 668 problems (282 errors, 386 warnings)
+  94 errors and 0 warnings potentially fixable with the `--fix` option.

@@ -165,3 +165,14 @@
 | Media lifecycle | Implemented | Archive, restore, quota visibility, explicit deletion |
 | Community posts / broadcasts | Implemented | Media, comments, reactions, mentions, pin/important/urgent |
 | Engagement Control Center | Implemented | Category Inbox/Push preferences, quiet hours, timezone, urgent bypass |
+<!-- FINAL-LAUNCH-CLOSURE -->
+## Launch-candidate capabilities added in final pre-launch closure
+
+- **Public Discovery Portal** — pre-login, role-oriented explanation of the private multi-network OS.
+- **Progressive Product Guide** — Simple / Detailed / Deep disclosure with public/private documentation boundaries.
+- **Launch Demo Data Loader** — Residential and Family Community only; network-scoped admin/platform-owner workflow with dry run, confirmation, authorization, progress and completion reporting.
+- **Launch Seed Lineage** — stable source-row reference + payload hash + remote record mapping for idempotent reruns.
+- **Residential Launch Seed Adapter** — composes HS import, operations, finance, governance, elections, security, community posts and E5 media APIs.
+- **Family Community Launch Seed Adapter** — composes guided import, FCA annual membership/roles, shared funds, events, elections, posts, groups, invitations/contribution and E5 media APIs.
+- **FCA Association Membership guided-import commit** — closes the prior domain-sheet persistence gap.
+- **Final Launch E2E Specs** — anonymous desktop/mobile Discovery plus opt-in staging persisted-seed/idempotency certification.

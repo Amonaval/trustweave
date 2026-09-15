@@ -1,0 +1,3807 @@
+{
+  "version": "trustweave-launch-residential.v1",
+  "synthetic": true,
+  "network_settings": [
+    {
+      "Setting": "Network Name",
+      "Value": "Maple Grove Residency — Launch Demo"
+    },
+    {
+      "Setting": "Vertical",
+      "Value": "housing-society"
+    },
+    {
+      "Setting": "Location",
+      "Value": "Kharadi, Pune"
+    },
+    {
+      "Setting": "Synthetic Demo Data",
+      "Value": "true"
+    },
+    {
+      "Setting": "Enable Demo Seed",
+      "Value": "true"
+    }
+  ],
+  "core_import": {
+    "units": [
+      {
+        "Unit ID": "U001",
+        "Unit / Flat": "A-101",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "1",
+        "Unit Type": "3 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U002",
+        "Unit / Flat": "A-102",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "1",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U003",
+        "Unit / Flat": "A-103",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "1",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U004",
+        "Unit / Flat": "A-104",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "1",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U005",
+        "Unit / Flat": "A-201",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "2",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U006",
+        "Unit / Flat": "A-202",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "2",
+        "Unit Type": "3 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U007",
+        "Unit / Flat": "A-203",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "2",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U008",
+        "Unit / Flat": "A-204",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "2",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U009",
+        "Unit / Flat": "A-301",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "3",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U010",
+        "Unit / Flat": "A-302",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "3",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U011",
+        "Unit / Flat": "A-303",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "3",
+        "Unit Type": "3 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U012",
+        "Unit / Flat": "A-304",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "3",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U013",
+        "Unit / Flat": "A-401",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "4",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U014",
+        "Unit / Flat": "A-402",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "4",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U015",
+        "Unit / Flat": "A-403",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "4",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U016",
+        "Unit / Flat": "A-404",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "4",
+        "Unit Type": "3 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U017",
+        "Unit / Flat": "A-501",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "5",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U018",
+        "Unit / Flat": "A-502",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "5",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U019",
+        "Unit / Flat": "A-503",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "5",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U020",
+        "Unit / Flat": "A-504",
+        "Building / Tower": "Aster",
+        "Wing": "A",
+        "Floor": "5",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U021",
+        "Unit / Flat": "B-101",
+        "Building / Tower": "Cedar",
+        "Wing": "B",
+        "Floor": "1",
+        "Unit Type": "3 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U022",
+        "Unit / Flat": "B-102",
+        "Building / Tower": "Cedar",
+        "Wing": "B",
+        "Floor": "1",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U023",
+        "Unit / Flat": "B-103",
+        "Building / Tower": "Cedar",
+        "Wing": "B",
+        "Floor": "1",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U024",
+        "Unit / Flat": "B-104",
+        "Building / Tower": "Cedar",
+        "Wing": "B",
+        "Floor": "1",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      },
+      {
+        "Unit ID": "U025",
+        "Unit / Flat": "B-105",
+        "Building / Tower": "Cedar",
+        "Wing": "B",
+        "Floor": "1",
+        "Unit Type": "2 BHK",
+        "Area": "Kharadi, Pune"
+      }
+    ],
+    "residents": [
+      {
+        "Resident ID": "R001",
+        "Resident Name": "Aarav Mehta",
+        "Email": "resident1@example.com",
+        "Phone": "9000000001",
+        "Profession": "Software Engineer"
+      },
+      {
+        "Resident ID": "R002",
+        "Resident Name": "Neha Mehta",
+        "Email": "resident2@example.com",
+        "Phone": "9000000002",
+        "Profession": "Product Manager"
+      },
+      {
+        "Resident ID": "R003",
+        "Resident Name": "Child 1 Mehta",
+        "Email": "",
+        "Phone": "",
+        "Profession": "Student"
+      },
+      {
+        "Resident ID": "R004",
+        "Resident Name": "Rohan Kulkarni",
+        "Email": "resident4@example.com",
+        "Phone": "9000000004",
+        "Profession": "Architect"
+      },
+      {
+        "Resident ID": "R005",
+        "Resident Name": "Kavya Kulkarni",
+        "Email": "resident5@example.com",
+        "Phone": "9000000005",
+        "Profession": "Designer"
+      },
+      {
+        "Resident ID": "R006",
+        "Resident Name": "Vivek Jain",
+        "Email": "resident6@example.com",
+        "Phone": "9000000006",
+        "Profession": "Doctor"
+      },
+      {
+        "Resident ID": "R007",
+        "Resident Name": "Ananya Jain",
+        "Email": "resident7@example.com",
+        "Phone": "9000000007",
+        "Profession": "Lawyer"
+      },
+      {
+        "Resident ID": "R008",
+        "Resident Name": "Siddharth Shah",
+        "Email": "resident8@example.com",
+        "Phone": "9000000008",
+        "Profession": "Chartered Accountant"
+      },
+      {
+        "Resident ID": "R009",
+        "Resident Name": "Meera Shah",
+        "Email": "resident9@example.com",
+        "Phone": "9000000009",
+        "Profession": "Consultant"
+      },
+      {
+        "Resident ID": "R010",
+        "Resident Name": "Kunal Deshmukh",
+        "Email": "resident10@example.com",
+        "Phone": "9000000010",
+        "Profession": "Teacher"
+      },
+      {
+        "Resident ID": "R011",
+        "Resident Name": "Isha Deshmukh",
+        "Email": "resident11@example.com",
+        "Phone": "9000000011",
+        "Profession": "Pharmacist"
+      },
+      {
+        "Resident ID": "R012",
+        "Resident Name": "Child 2 Deshmukh",
+        "Email": "",
+        "Phone": "",
+        "Profession": "Student"
+      },
+      {
+        "Resident ID": "R013",
+        "Resident Name": "Nikhil Joshi",
+        "Email": "resident13@example.com",
+        "Phone": "9000000013",
+        "Profession": "Entrepreneur"
+      },
+      {
+        "Resident ID": "R014",
+        "Resident Name": "Pooja Joshi",
+        "Email": "resident14@example.com",
+        "Phone": "9000000014",
+        "Profession": "Operations Manager"
+      },
+      {
+        "Resident ID": "R015",
+        "Resident Name": "Rahul Bajaj",
+        "Email": "resident15@example.com",
+        "Phone": "9000000015",
+        "Profession": "Banker"
+      },
+      {
+        "Resident ID": "R016",
+        "Resident Name": "Sneha Bajaj",
+        "Email": "resident16@example.com",
+        "Phone": "9000000016",
+        "Profession": "Sales Leader"
+      },
+      {
+        "Resident ID": "R017",
+        "Resident Name": "Aditya Rathi",
+        "Email": "resident17@example.com",
+        "Phone": "9000000017",
+        "Profession": "Product Manager"
+      },
+      {
+        "Resident ID": "R018",
+        "Resident Name": "Ritu Rathi",
+        "Email": "resident18@example.com",
+        "Phone": "9000000018",
+        "Profession": "Data Analyst"
+      },
+      {
+        "Resident ID": "R019",
+        "Resident Name": "Manish Agarwal",
+        "Email": "resident19@example.com",
+        "Phone": "9000000019",
+        "Profession": "Designer"
+      },
+      {
+        "Resident ID": "R020",
+        "Resident Name": "Shreya Agarwal",
+        "Email": "resident20@example.com",
+        "Phone": "9000000020",
+        "Profession": "Civil Engineer"
+      },
+      {
+        "Resident ID": "R021",
+        "Resident Name": "Child 3 Agarwal",
+        "Email": "",
+        "Phone": "",
+        "Profession": "Student"
+      },
+      {
+        "Resident ID": "R022",
+        "Resident Name": "Varun Patil",
+        "Email": "resident22@example.com",
+        "Phone": "9000000022",
+        "Profession": "Lawyer"
+      },
+      {
+        "Resident ID": "R023",
+        "Resident Name": "Nisha Patil",
+        "Email": "resident23@example.com",
+        "Phone": "9000000023",
+        "Profession": "Interior Designer"
+      },
+      {
+        "Resident ID": "R024",
+        "Resident Name": "Amit Kothari",
+        "Email": "resident24@example.com",
+        "Phone": "9000000024",
+        "Profession": "Consultant"
+      },
+      {
+        "Resident ID": "R025",
+        "Resident Name": "Priya Kothari",
+        "Email": "resident25@example.com",
+        "Phone": "9000000025",
+        "Profession": "HR Manager"
+      },
+      {
+        "Resident ID": "R026",
+        "Resident Name": "Sameer Gandhi",
+        "Email": "resident26@example.com",
+        "Phone": "9000000026",
+        "Profession": "Pharmacist"
+      },
+      {
+        "Resident ID": "R027",
+        "Resident Name": "Rashmi Gandhi",
+        "Email": "resident27@example.com",
+        "Phone": "9000000027",
+        "Profession": "Marketing Manager"
+      },
+      {
+        "Resident ID": "R028",
+        "Resident Name": "Deepak Gupta",
+        "Email": "resident28@example.com",
+        "Phone": "9000000028",
+        "Profession": "Operations Manager"
+      },
+      {
+        "Resident ID": "R029",
+        "Resident Name": "Swati Gupta",
+        "Email": "resident29@example.com",
+        "Phone": "9000000029",
+        "Profession": "Business Owner"
+      },
+      {
+        "Resident ID": "R030",
+        "Resident Name": "Child 4 Gupta",
+        "Email": "",
+        "Phone": "",
+        "Profession": "Student"
+      },
+      {
+        "Resident ID": "R031",
+        "Resident Name": "Harsh Maheshwari",
+        "Email": "resident31@example.com",
+        "Phone": "9000000031",
+        "Profession": "Sales Leader"
+      },
+      {
+        "Resident ID": "R032",
+        "Resident Name": "Tanvi Maheshwari",
+        "Email": "resident32@example.com",
+        "Phone": "9000000032",
+        "Profession": "Software Engineer"
+      },
+      {
+        "Resident ID": "R033",
+        "Resident Name": "Yash Bansal",
+        "Email": "resident33@example.com",
+        "Phone": "9000000033",
+        "Profession": "Data Analyst"
+      },
+      {
+        "Resident ID": "R034",
+        "Resident Name": "Mitali Bansal",
+        "Email": "resident34@example.com",
+        "Phone": "9000000034",
+        "Profession": "Architect"
+      },
+      {
+        "Resident ID": "R035",
+        "Resident Name": "Arjun Lodha",
+        "Email": "resident35@example.com",
+        "Phone": "9000000035",
+        "Profession": "Civil Engineer"
+      },
+      {
+        "Resident ID": "R036",
+        "Resident Name": "Rhea Lodha",
+        "Email": "resident36@example.com",
+        "Phone": "9000000036",
+        "Profession": "Doctor"
+      },
+      {
+        "Resident ID": "R037",
+        "Resident Name": "Sanjay Soni",
+        "Email": "resident37@example.com",
+        "Phone": "9000000037",
+        "Profession": "Interior Designer"
+      },
+      {
+        "Resident ID": "R038",
+        "Resident Name": "Radhika Soni",
+        "Email": "resident38@example.com",
+        "Phone": "9000000038",
+        "Profession": "Chartered Accountant"
+      },
+      {
+        "Resident ID": "R039",
+        "Resident Name": "Child 5 Soni",
+        "Email": "",
+        "Phone": "",
+        "Profession": "Student"
+      },
+      {
+        "Resident ID": "R040",
+        "Resident Name": "Nitin Malpani",
+        "Email": "resident40@example.com",
+        "Phone": "9000000040",
+        "Profession": "HR Manager"
+      },
+      {
+        "Resident ID": "R041",
+        "Resident Name": "Sonal Malpani",
+        "Email": "resident41@example.com",
+        "Phone": "9000000041",
+        "Profession": "Teacher"
+      },
+      {
+        "Resident ID": "R042",
+        "Resident Name": "Abhishek Chandak",
+        "Email": "resident42@example.com",
+        "Phone": "9000000042",
+        "Profession": "Marketing Manager"
+      },
+      {
+        "Resident ID": "R043",
+        "Resident Name": "Gaurav Kabrai",
+        "Email": "resident43@example.com",
+        "Phone": "9000000043",
+        "Profession": "Business Owner"
+      },
+      {
+        "Resident ID": "R044",
+        "Resident Name": "Pranav Somani",
+        "Email": "resident44@example.com",
+        "Phone": "9000000044",
+        "Profession": "Software Engineer"
+      },
+      {
+        "Resident ID": "R045",
+        "Resident Name": "Child 6 Somani",
+        "Email": "",
+        "Phone": "",
+        "Profession": "Student"
+      },
+      {
+        "Resident ID": "R046",
+        "Resident Name": "Rakesh Bhutada",
+        "Email": "resident46@example.com",
+        "Phone": "9000000046",
+        "Profession": "Architect"
+      },
+      {
+        "Resident ID": "R047",
+        "Resident Name": "Dhruv Kasat",
+        "Email": "resident47@example.com",
+        "Phone": "9000000047",
+        "Profession": "Doctor"
+      },
+      {
+        "Resident ID": "R048",
+        "Resident Name": "Akash Lahoti",
+        "Email": "resident48@example.com",
+        "Phone": "9000000048",
+        "Profession": "Chartered Accountant"
+      },
+      {
+        "Resident ID": "R049",
+        "Resident Name": "Hemant Mantri",
+        "Email": "resident49@example.com",
+        "Phone": "9000000049",
+        "Profession": "Teacher"
+      },
+      {
+        "Resident ID": "R050",
+        "Resident Name": "Child 7 Mantri",
+        "Email": "",
+        "Phone": "",
+        "Profession": "Student"
+      }
+    ],
+    "occupancy": [
+      {
+        "Resident ID": "R001",
+        "Unit ID": "U001",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Mehta Household"
+      },
+      {
+        "Resident ID": "R002",
+        "Unit ID": "U001",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Mehta Household"
+      },
+      {
+        "Resident ID": "R003",
+        "Unit ID": "U001",
+        "Role": "occupant",
+        "Starts On": "2026-04-01",
+        "Household": "Mehta Household"
+      },
+      {
+        "Resident ID": "R004",
+        "Unit ID": "U002",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Kulkarni Household"
+      },
+      {
+        "Resident ID": "R005",
+        "Unit ID": "U002",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Kulkarni Household"
+      },
+      {
+        "Resident ID": "R006",
+        "Unit ID": "U003",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Jain Household"
+      },
+      {
+        "Resident ID": "R007",
+        "Unit ID": "U003",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Jain Household"
+      },
+      {
+        "Resident ID": "R008",
+        "Unit ID": "U004",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Shah Household"
+      },
+      {
+        "Resident ID": "R009",
+        "Unit ID": "U004",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Shah Household"
+      },
+      {
+        "Resident ID": "R010",
+        "Unit ID": "U005",
+        "Role": "tenant",
+        "Starts On": "2026-04-01",
+        "Household": "Deshmukh Household"
+      },
+      {
+        "Resident ID": "R011",
+        "Unit ID": "U005",
+        "Role": "occupant",
+        "Starts On": "2026-04-01",
+        "Household": "Deshmukh Household"
+      },
+      {
+        "Resident ID": "R012",
+        "Unit ID": "U005",
+        "Role": "occupant",
+        "Starts On": "2026-04-01",
+        "Household": "Deshmukh Household"
+      },
+      {
+        "Resident ID": "R013",
+        "Unit ID": "U006",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Joshi Household"
+      },
+      {
+        "Resident ID": "R014",
+        "Unit ID": "U006",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Joshi Household"
+      },
+      {
+        "Resident ID": "R015",
+        "Unit ID": "U007",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Bajaj Household"
+      },
+      {
+        "Resident ID": "R016",
+        "Unit ID": "U007",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Bajaj Household"
+      },
+      {
+        "Resident ID": "R017",
+        "Unit ID": "U008",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Rathi Household"
+      },
+      {
+        "Resident ID": "R018",
+        "Unit ID": "U008",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Rathi Household"
+      },
+      {
+        "Resident ID": "R019",
+        "Unit ID": "U009",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Agarwal Household"
+      },
+      {
+        "Resident ID": "R020",
+        "Unit ID": "U009",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Agarwal Household"
+      },
+      {
+        "Resident ID": "R021",
+        "Unit ID": "U009",
+        "Role": "occupant",
+        "Starts On": "2026-04-01",
+        "Household": "Agarwal Household"
+      },
+      {
+        "Resident ID": "R022",
+        "Unit ID": "U010",
+        "Role": "tenant",
+        "Starts On": "2026-04-01",
+        "Household": "Patil Household"
+      },
+      {
+        "Resident ID": "R023",
+        "Unit ID": "U010",
+        "Role": "occupant",
+        "Starts On": "2026-04-01",
+        "Household": "Patil Household"
+      },
+      {
+        "Resident ID": "R024",
+        "Unit ID": "U011",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Kothari Household"
+      },
+      {
+        "Resident ID": "R025",
+        "Unit ID": "U011",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Kothari Household"
+      },
+      {
+        "Resident ID": "R026",
+        "Unit ID": "U012",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Gandhi Household"
+      },
+      {
+        "Resident ID": "R027",
+        "Unit ID": "U012",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Gandhi Household"
+      },
+      {
+        "Resident ID": "R028",
+        "Unit ID": "U013",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Gupta Household"
+      },
+      {
+        "Resident ID": "R029",
+        "Unit ID": "U013",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Gupta Household"
+      },
+      {
+        "Resident ID": "R030",
+        "Unit ID": "U013",
+        "Role": "occupant",
+        "Starts On": "2026-04-01",
+        "Household": "Gupta Household"
+      },
+      {
+        "Resident ID": "R031",
+        "Unit ID": "U014",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Maheshwari Household"
+      },
+      {
+        "Resident ID": "R032",
+        "Unit ID": "U014",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Maheshwari Household"
+      },
+      {
+        "Resident ID": "R033",
+        "Unit ID": "U015",
+        "Role": "tenant",
+        "Starts On": "2026-04-01",
+        "Household": "Bansal Household"
+      },
+      {
+        "Resident ID": "R034",
+        "Unit ID": "U015",
+        "Role": "occupant",
+        "Starts On": "2026-04-01",
+        "Household": "Bansal Household"
+      },
+      {
+        "Resident ID": "R035",
+        "Unit ID": "U016",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Lodha Household"
+      },
+      {
+        "Resident ID": "R036",
+        "Unit ID": "U016",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Lodha Household"
+      },
+      {
+        "Resident ID": "R037",
+        "Unit ID": "U017",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Soni Household"
+      },
+      {
+        "Resident ID": "R038",
+        "Unit ID": "U017",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Soni Household"
+      },
+      {
+        "Resident ID": "R039",
+        "Unit ID": "U017",
+        "Role": "occupant",
+        "Starts On": "2026-04-01",
+        "Household": "Soni Household"
+      },
+      {
+        "Resident ID": "R040",
+        "Unit ID": "U018",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Malpani Household"
+      },
+      {
+        "Resident ID": "R041",
+        "Unit ID": "U018",
+        "Role": "co-owner",
+        "Starts On": "2026-04-01",
+        "Household": "Malpani Household"
+      },
+      {
+        "Resident ID": "R042",
+        "Unit ID": "U019",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Chandak Household"
+      },
+      {
+        "Resident ID": "R043",
+        "Unit ID": "U020",
+        "Role": "tenant",
+        "Starts On": "2026-04-01",
+        "Household": "Kabrai Household"
+      },
+      {
+        "Resident ID": "R044",
+        "Unit ID": "U021",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Somani Household"
+      },
+      {
+        "Resident ID": "R045",
+        "Unit ID": "U021",
+        "Role": "occupant",
+        "Starts On": "2026-04-01",
+        "Household": "Somani Household"
+      },
+      {
+        "Resident ID": "R046",
+        "Unit ID": "U022",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Bhutada Household"
+      },
+      {
+        "Resident ID": "R047",
+        "Unit ID": "U023",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Kasat Household"
+      },
+      {
+        "Resident ID": "R048",
+        "Unit ID": "U024",
+        "Role": "owner",
+        "Starts On": "2026-04-01",
+        "Household": "Lahoti Household"
+      },
+      {
+        "Resident ID": "R049",
+        "Unit ID": "U025",
+        "Role": "tenant",
+        "Starts On": "2026-04-01",
+        "Household": "Mantri Household"
+      },
+      {
+        "Resident ID": "R050",
+        "Unit ID": "U025",
+        "Role": "occupant",
+        "Starts On": "2026-04-01",
+        "Household": "Mantri Household"
+      }
+    ],
+    "vehicles": [
+      {
+        "Vehicle ID": "V001",
+        "Resident ID": "R001",
+        "Unit ID": "U001",
+        "Registration": "MH12TW1001",
+        "Vehicle Type": "car",
+        "EV?": "Yes"
+      },
+      {
+        "Vehicle ID": "V002",
+        "Resident ID": "R001",
+        "Unit ID": "U001",
+        "Registration": "MH12TW1002",
+        "Vehicle Type": "two-wheeler",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V003",
+        "Resident ID": "R004",
+        "Unit ID": "U002",
+        "Registration": "MH12TW1003",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V004",
+        "Resident ID": "R006",
+        "Unit ID": "U003",
+        "Registration": "MH12TW1004",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V005",
+        "Resident ID": "R008",
+        "Unit ID": "U004",
+        "Registration": "MH12TW1005",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V006",
+        "Resident ID": "R010",
+        "Unit ID": "U005",
+        "Registration": "MH12TW1006",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V007",
+        "Resident ID": "R013",
+        "Unit ID": "U006",
+        "Registration": "MH12TW1007",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V008",
+        "Resident ID": "R013",
+        "Unit ID": "U006",
+        "Registration": "MH12TW1008",
+        "Vehicle Type": "two-wheeler",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V009",
+        "Resident ID": "R015",
+        "Unit ID": "U007",
+        "Registration": "MH12TW1009",
+        "Vehicle Type": "car",
+        "EV?": "Yes"
+      },
+      {
+        "Vehicle ID": "V010",
+        "Resident ID": "R017",
+        "Unit ID": "U008",
+        "Registration": "MH12TW1010",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V011",
+        "Resident ID": "R019",
+        "Unit ID": "U009",
+        "Registration": "MH12TW1011",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V012",
+        "Resident ID": "R022",
+        "Unit ID": "U010",
+        "Registration": "MH12TW1012",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V013",
+        "Resident ID": "R024",
+        "Unit ID": "U011",
+        "Registration": "MH12TW1013",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V014",
+        "Resident ID": "R024",
+        "Unit ID": "U011",
+        "Registration": "MH12TW1014",
+        "Vehicle Type": "two-wheeler",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V015",
+        "Resident ID": "R026",
+        "Unit ID": "U012",
+        "Registration": "MH12TW1015",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V016",
+        "Resident ID": "R028",
+        "Unit ID": "U013",
+        "Registration": "MH12TW1016",
+        "Vehicle Type": "car",
+        "EV?": "Yes"
+      },
+      {
+        "Vehicle ID": "V017",
+        "Resident ID": "R031",
+        "Unit ID": "U014",
+        "Registration": "MH12TW1017",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V018",
+        "Resident ID": "R033",
+        "Unit ID": "U015",
+        "Registration": "MH12TW1018",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V019",
+        "Resident ID": "R035",
+        "Unit ID": "U016",
+        "Registration": "MH12TW1019",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V020",
+        "Resident ID": "R035",
+        "Unit ID": "U016",
+        "Registration": "MH12TW1020",
+        "Vehicle Type": "two-wheeler",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V021",
+        "Resident ID": "R037",
+        "Unit ID": "U017",
+        "Registration": "MH12TW1021",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V022",
+        "Resident ID": "R040",
+        "Unit ID": "U018",
+        "Registration": "MH12TW1022",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V023",
+        "Resident ID": "R042",
+        "Unit ID": "U019",
+        "Registration": "MH12TW1023",
+        "Vehicle Type": "car",
+        "EV?": "Yes"
+      },
+      {
+        "Vehicle ID": "V024",
+        "Resident ID": "R043",
+        "Unit ID": "U020",
+        "Registration": "MH12TW1024",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V025",
+        "Resident ID": "R044",
+        "Unit ID": "U021",
+        "Registration": "MH12TW1025",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V026",
+        "Resident ID": "R044",
+        "Unit ID": "U021",
+        "Registration": "MH12TW1026",
+        "Vehicle Type": "two-wheeler",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V027",
+        "Resident ID": "R046",
+        "Unit ID": "U022",
+        "Registration": "MH12TW1027",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V028",
+        "Resident ID": "R047",
+        "Unit ID": "U023",
+        "Registration": "MH12TW1028",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V029",
+        "Resident ID": "R048",
+        "Unit ID": "U024",
+        "Registration": "MH12TW1029",
+        "Vehicle Type": "car",
+        "EV?": "No"
+      },
+      {
+        "Vehicle ID": "V030",
+        "Resident ID": "R049",
+        "Unit ID": "U025",
+        "Registration": "MH12TW1030",
+        "Vehicle Type": "car",
+        "EV?": "Yes"
+      }
+    ],
+    "parking": [
+      {
+        "Parking ID": "PK001",
+        "Parking Slot": "P-001",
+        "Zone / Basement": "B1",
+        "Unit ID": "U001",
+        "Vehicle ID": "V001"
+      },
+      {
+        "Parking ID": "PK002",
+        "Parking Slot": "P-002",
+        "Zone / Basement": "B1",
+        "Unit ID": "U002",
+        "Vehicle ID": "V003"
+      },
+      {
+        "Parking ID": "PK003",
+        "Parking Slot": "P-003",
+        "Zone / Basement": "B1",
+        "Unit ID": "U003",
+        "Vehicle ID": "V004"
+      },
+      {
+        "Parking ID": "PK004",
+        "Parking Slot": "P-004",
+        "Zone / Basement": "B1",
+        "Unit ID": "U004",
+        "Vehicle ID": "V005"
+      },
+      {
+        "Parking ID": "PK005",
+        "Parking Slot": "P-005",
+        "Zone / Basement": "B1",
+        "Unit ID": "U005",
+        "Vehicle ID": "V006"
+      },
+      {
+        "Parking ID": "PK006",
+        "Parking Slot": "P-006",
+        "Zone / Basement": "B1",
+        "Unit ID": "U006",
+        "Vehicle ID": "V007"
+      },
+      {
+        "Parking ID": "PK007",
+        "Parking Slot": "P-007",
+        "Zone / Basement": "B1",
+        "Unit ID": "U007",
+        "Vehicle ID": "V009"
+      },
+      {
+        "Parking ID": "PK008",
+        "Parking Slot": "P-008",
+        "Zone / Basement": "B1",
+        "Unit ID": "U008",
+        "Vehicle ID": "V010"
+      },
+      {
+        "Parking ID": "PK009",
+        "Parking Slot": "P-009",
+        "Zone / Basement": "B1",
+        "Unit ID": "U009",
+        "Vehicle ID": "V011"
+      },
+      {
+        "Parking ID": "PK010",
+        "Parking Slot": "P-010",
+        "Zone / Basement": "B1",
+        "Unit ID": "U010",
+        "Vehicle ID": "V012"
+      },
+      {
+        "Parking ID": "PK011",
+        "Parking Slot": "P-011",
+        "Zone / Basement": "B1",
+        "Unit ID": "U011",
+        "Vehicle ID": "V013"
+      },
+      {
+        "Parking ID": "PK012",
+        "Parking Slot": "P-012",
+        "Zone / Basement": "B1",
+        "Unit ID": "U012",
+        "Vehicle ID": "V015"
+      },
+      {
+        "Parking ID": "PK013",
+        "Parking Slot": "P-013",
+        "Zone / Basement": "B1",
+        "Unit ID": "U013",
+        "Vehicle ID": "V016"
+      },
+      {
+        "Parking ID": "PK014",
+        "Parking Slot": "P-014",
+        "Zone / Basement": "B1",
+        "Unit ID": "U014",
+        "Vehicle ID": "V017"
+      },
+      {
+        "Parking ID": "PK015",
+        "Parking Slot": "P-015",
+        "Zone / Basement": "B1",
+        "Unit ID": "U015",
+        "Vehicle ID": "V018"
+      },
+      {
+        "Parking ID": "PK016",
+        "Parking Slot": "P-016",
+        "Zone / Basement": "Podium",
+        "Unit ID": "U016",
+        "Vehicle ID": "V019"
+      },
+      {
+        "Parking ID": "PK017",
+        "Parking Slot": "P-017",
+        "Zone / Basement": "Podium",
+        "Unit ID": "U017",
+        "Vehicle ID": "V021"
+      },
+      {
+        "Parking ID": "PK018",
+        "Parking Slot": "P-018",
+        "Zone / Basement": "Podium",
+        "Unit ID": "U018",
+        "Vehicle ID": "V022"
+      },
+      {
+        "Parking ID": "PK019",
+        "Parking Slot": "P-019",
+        "Zone / Basement": "Podium",
+        "Unit ID": "U019",
+        "Vehicle ID": "V023"
+      },
+      {
+        "Parking ID": "PK020",
+        "Parking Slot": "P-020",
+        "Zone / Basement": "Podium",
+        "Unit ID": "U020",
+        "Vehicle ID": "V024"
+      },
+      {
+        "Parking ID": "PK021",
+        "Parking Slot": "P-021",
+        "Zone / Basement": "Podium",
+        "Unit ID": "U021",
+        "Vehicle ID": "V025"
+      },
+      {
+        "Parking ID": "PK022",
+        "Parking Slot": "P-022",
+        "Zone / Basement": "Podium",
+        "Unit ID": "U022",
+        "Vehicle ID": "V027"
+      },
+      {
+        "Parking ID": "PK023",
+        "Parking Slot": "P-023",
+        "Zone / Basement": "Podium",
+        "Unit ID": "U023",
+        "Vehicle ID": "V028"
+      },
+      {
+        "Parking ID": "PK024",
+        "Parking Slot": "P-024",
+        "Zone / Basement": "Podium",
+        "Unit ID": "U024",
+        "Vehicle ID": "V029"
+      },
+      {
+        "Parking ID": "PK025",
+        "Parking Slot": "P-025",
+        "Zone / Basement": "Podium",
+        "Unit ID": "U025",
+        "Vehicle ID": "V030"
+      }
+    ]
+  },
+  "operations": {
+    "notices": [
+      {
+        "Notice ID": "NT001",
+        "Title": "Water tank cleaning — Sunday",
+        "Body": "Water supply will pause from 10:00 AM to 2:00 PM while tanks are cleaned.",
+        "Notice Type": "urgent",
+        "Pinned": true,
+        "Expires At": "2026-09-21"
+      },
+      {
+        "Notice ID": "NT002",
+        "Title": "Ganesh festival volunteering",
+        "Body": "Volunteer desk is open for decoration, prasad and cultural coordination.",
+        "Notice Type": "community",
+        "Pinned": true,
+        "Expires At": "2026-09-25"
+      },
+      {
+        "Notice ID": "NT003",
+        "Title": "Quarterly pest control schedule",
+        "Body": "Common-area pest control will be carried out tower-wise this Saturday.",
+        "Notice Type": "maintenance",
+        "Pinned": false,
+        "Expires At": "2026-09-20"
+      },
+      {
+        "Notice ID": "NT004",
+        "Title": "Parking line repainting",
+        "Body": "Basement B1 parking markings will be repainted. Please move vehicles during the slot.",
+        "Notice Type": "parking",
+        "Pinned": false,
+        "Expires At": "2026-09-23"
+      },
+      {
+        "Notice ID": "NT005",
+        "Title": "Fire drill next weekend",
+        "Body": "Residents are requested to join the 30-minute evacuation drill.",
+        "Notice Type": "safety",
+        "Pinned": true,
+        "Expires At": "2026-09-27"
+      },
+      {
+        "Notice ID": "NT006",
+        "Title": "Clubhouse AC servicing",
+        "Body": "Clubhouse hall AC will be unavailable for two hours.",
+        "Notice Type": "amenity",
+        "Pinned": false,
+        "Expires At": "2026-09-19"
+      },
+      {
+        "Notice ID": "NT007",
+        "Title": "Maintenance due reminder",
+        "Body": "September maintenance is due by 20 September.",
+        "Notice Type": "finance",
+        "Pinned": false,
+        "Expires At": "2026-09-22"
+      },
+      {
+        "Notice ID": "NT008",
+        "Title": "New newspaper vendor",
+        "Body": "Morning newspaper delivery can be opted into at the security desk.",
+        "Notice Type": "general",
+        "Pinned": false,
+        "Expires At": "2026-10-01"
+      }
+    ],
+    "complaints": [
+      {
+        "Complaint Ref": "CMP101",
+        "Unit ID": "U001",
+        "Category": "Lift",
+        "Title": "Lift vibration noticed",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "high",
+        "Status": "open",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "VEN001",
+        "SLA Due At": "2026-09-17T12:00:00",
+        "Resolution Note": ""
+      },
+      {
+        "Complaint Ref": "CMP102",
+        "Unit ID": "U003",
+        "Category": "Plumbing",
+        "Title": "Water seepage near shaft",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "normal",
+        "Status": "assigned",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "",
+        "SLA Due At": "2026-09-18T12:00:00",
+        "Resolution Note": ""
+      },
+      {
+        "Complaint Ref": "CMP103",
+        "Unit ID": "U005",
+        "Category": "Electrical",
+        "Title": "Corridor light not working",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "normal",
+        "Status": "in_progress",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "",
+        "SLA Due At": "2026-09-19T12:00:00",
+        "Resolution Note": ""
+      },
+      {
+        "Complaint Ref": "CMP104",
+        "Unit ID": "U007",
+        "Category": "Housekeeping",
+        "Title": "Garbage pickup missed",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "normal",
+        "Status": "resolved",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "VEN004",
+        "SLA Due At": "2026-09-20T12:00:00",
+        "Resolution Note": "Resolved and verified by resident."
+      },
+      {
+        "Complaint Ref": "CMP105",
+        "Unit ID": "U009",
+        "Category": "Security",
+        "Title": "Visitor entry delay",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "high",
+        "Status": "closed",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "",
+        "SLA Due At": "2026-09-17T12:00:00",
+        "Resolution Note": "Resolved and verified by resident."
+      },
+      {
+        "Complaint Ref": "CMP106",
+        "Unit ID": "U011",
+        "Category": "Parking",
+        "Title": "Parking obstruction",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "normal",
+        "Status": "open",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "",
+        "SLA Due At": "2026-09-18T12:00:00",
+        "Resolution Note": ""
+      },
+      {
+        "Complaint Ref": "CMP107",
+        "Unit ID": "U013",
+        "Category": "Water",
+        "Title": "Low water pressure",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "normal",
+        "Status": "assigned",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "VEN002",
+        "SLA Due At": "2026-09-19T12:00:00",
+        "Resolution Note": ""
+      },
+      {
+        "Complaint Ref": "CMP108",
+        "Unit ID": "U015",
+        "Category": "Common Area",
+        "Title": "Garden light damaged",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "urgent",
+        "Status": "in_progress",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "",
+        "SLA Due At": "2026-09-20T12:00:00",
+        "Resolution Note": ""
+      },
+      {
+        "Complaint Ref": "CMP109",
+        "Unit ID": "U017",
+        "Category": "Lift",
+        "Title": "Lift vibration noticed",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "high",
+        "Status": "resolved",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "",
+        "SLA Due At": "2026-09-17T12:00:00",
+        "Resolution Note": "Resolved and verified by resident."
+      },
+      {
+        "Complaint Ref": "CMP110",
+        "Unit ID": "U019",
+        "Category": "Plumbing",
+        "Title": "Water seepage near shaft",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "normal",
+        "Status": "closed",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "VEN005",
+        "SLA Due At": "2026-09-18T12:00:00",
+        "Resolution Note": "Resolved and verified by resident."
+      },
+      {
+        "Complaint Ref": "CMP111",
+        "Unit ID": "U021",
+        "Category": "Electrical",
+        "Title": "Corridor light not working",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "normal",
+        "Status": "open",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "",
+        "SLA Due At": "2026-09-19T12:00:00",
+        "Resolution Note": ""
+      },
+      {
+        "Complaint Ref": "CMP112",
+        "Unit ID": "U023",
+        "Category": "Housekeeping",
+        "Title": "Garbage pickup missed",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "normal",
+        "Status": "assigned",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "",
+        "SLA Due At": "2026-09-20T12:00:00",
+        "Resolution Note": ""
+      },
+      {
+        "Complaint Ref": "CMP113",
+        "Unit ID": "U025",
+        "Category": "Security",
+        "Title": "Visitor entry delay",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "high",
+        "Status": "in_progress",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "VEN003",
+        "SLA Due At": "2026-09-17T12:00:00",
+        "Resolution Note": ""
+      },
+      {
+        "Complaint Ref": "CMP114",
+        "Unit ID": "U002",
+        "Category": "Parking",
+        "Title": "Parking obstruction",
+        "Description": "Synthetic launch-demo complaint with enough detail to exercise assignment, SLA, comments and resolution.",
+        "Priority": "normal",
+        "Status": "resolved",
+        "Assigned Role": "complaint_resolver",
+        "Assigned Vendor Ref": "",
+        "SLA Due At": "2026-09-18T12:00:00",
+        "Resolution Note": "Resolved and verified by resident."
+      }
+    ],
+    "complaint_comments": [
+      {
+        "Comment Ref": "CC001",
+        "Complaint Ref": "CMP101",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T09:00:00"
+      },
+      {
+        "Comment Ref": "CC051",
+        "Complaint Ref": "CMP101",
+        "Author Type": "committee",
+        "Body": "Acknowledged. Assigned for inspection and follow-up.",
+        "Created At": "2026-09-15T12:00:00"
+      },
+      {
+        "Comment Ref": "CC002",
+        "Complaint Ref": "CMP102",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T10:00:00"
+      },
+      {
+        "Comment Ref": "CC003",
+        "Complaint Ref": "CMP103",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T11:00:00"
+      },
+      {
+        "Comment Ref": "CC053",
+        "Complaint Ref": "CMP103",
+        "Author Type": "committee",
+        "Body": "Acknowledged. Assigned for inspection and follow-up.",
+        "Created At": "2026-09-15T14:00:00"
+      },
+      {
+        "Comment Ref": "CC004",
+        "Complaint Ref": "CMP104",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T12:00:00"
+      },
+      {
+        "Comment Ref": "CC005",
+        "Complaint Ref": "CMP105",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T13:00:00"
+      },
+      {
+        "Comment Ref": "CC055",
+        "Complaint Ref": "CMP105",
+        "Author Type": "committee",
+        "Body": "Acknowledged. Assigned for inspection and follow-up.",
+        "Created At": "2026-09-15T16:00:00"
+      },
+      {
+        "Comment Ref": "CC006",
+        "Complaint Ref": "CMP106",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T14:00:00"
+      },
+      {
+        "Comment Ref": "CC007",
+        "Complaint Ref": "CMP107",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T15:00:00"
+      },
+      {
+        "Comment Ref": "CC057",
+        "Complaint Ref": "CMP107",
+        "Author Type": "committee",
+        "Body": "Acknowledged. Assigned for inspection and follow-up.",
+        "Created At": "2026-09-15T18:00:00"
+      },
+      {
+        "Comment Ref": "CC008",
+        "Complaint Ref": "CMP108",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T16:00:00"
+      },
+      {
+        "Comment Ref": "CC009",
+        "Complaint Ref": "CMP109",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T17:00:00"
+      },
+      {
+        "Comment Ref": "CC059",
+        "Complaint Ref": "CMP109",
+        "Author Type": "committee",
+        "Body": "Acknowledged. Assigned for inspection and follow-up.",
+        "Created At": "2026-09-15T20:00:00"
+      },
+      {
+        "Comment Ref": "CC010",
+        "Complaint Ref": "CMP110",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T18:00:00"
+      },
+      {
+        "Comment Ref": "CC011",
+        "Complaint Ref": "CMP111",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T19:00:00"
+      },
+      {
+        "Comment Ref": "CC061",
+        "Complaint Ref": "CMP111",
+        "Author Type": "committee",
+        "Body": "Acknowledged. Assigned for inspection and follow-up.",
+        "Created At": "2026-09-15T22:00:00"
+      },
+      {
+        "Comment Ref": "CC012",
+        "Complaint Ref": "CMP112",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T20:00:00"
+      },
+      {
+        "Comment Ref": "CC013",
+        "Complaint Ref": "CMP113",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T21:00:00"
+      },
+      {
+        "Comment Ref": "CC063",
+        "Complaint Ref": "CMP113",
+        "Author Type": "committee",
+        "Body": "Acknowledged. Assigned for inspection and follow-up.",
+        "Created At": "2026-09-16T00:00:00"
+      },
+      {
+        "Comment Ref": "CC014",
+        "Complaint Ref": "CMP114",
+        "Author Type": "resident",
+        "Body": "Please share an update when the assigned team inspects this.",
+        "Created At": "2026-09-15T22:00:00"
+      }
+    ],
+    "vendors": [
+      {
+        "Vendor Ref": "VEN001",
+        "Name": "SecureGate Services",
+        "Category": "Security",
+        "Contact Name": "Nilesh Pawar",
+        "Phone": "9111100001",
+        "Email": "securegate@example.com",
+        "Status": "active"
+      },
+      {
+        "Vendor Ref": "VEN002",
+        "Name": "Kone Elevators Demo",
+        "Category": "Lift Maintenance",
+        "Contact Name": "Ramesh Kale",
+        "Phone": "9111100002",
+        "Email": "lift@example.com",
+        "Status": "active"
+      },
+      {
+        "Vendor Ref": "VEN003",
+        "Name": "GreenLeaf Facility Management",
+        "Category": "Housekeeping",
+        "Contact Name": "Seema Patil",
+        "Phone": "9111100003",
+        "Email": "greenleaf@example.com",
+        "Status": "active"
+      },
+      {
+        "Vendor Ref": "VEN004",
+        "Name": "AquaPure Systems",
+        "Category": "Water Treatment",
+        "Contact Name": "Raj More",
+        "Phone": "9111100004",
+        "Email": "aqua@example.com",
+        "Status": "active"
+      },
+      {
+        "Vendor Ref": "VEN005",
+        "Name": "SparkSafe Electricals",
+        "Category": "Electrical",
+        "Contact Name": "Mahesh Nair",
+        "Phone": "9111100005",
+        "Email": "spark@example.com",
+        "Status": "active"
+      }
+    ],
+    "vendor_contracts": [
+      {
+        "Contract Ref": "VC001",
+        "Vendor Ref": "VEN001",
+        "Title": "Annual security services",
+        "Starts On": "2026-04-01",
+        "Ends On": "2027-03-31",
+        "SLA": "24x7 guards + supervisor",
+        "Amount": 720000
+      },
+      {
+        "Contract Ref": "VC002",
+        "Vendor Ref": "VEN002",
+        "Title": "Lift AMC",
+        "Starts On": "2026-04-01",
+        "Ends On": "2027-03-31",
+        "SLA": "4-hour critical response",
+        "Amount": 240000
+      },
+      {
+        "Contract Ref": "VC003",
+        "Vendor Ref": "VEN003",
+        "Title": "Housekeeping annual contract",
+        "Starts On": "2026-04-01",
+        "Ends On": "2027-03-31",
+        "SLA": "Daily common-area cleaning",
+        "Amount": 480000
+      },
+      {
+        "Contract Ref": "VC004",
+        "Vendor Ref": "VEN004",
+        "Title": "STP & water treatment AMC",
+        "Starts On": "2026-04-01",
+        "Ends On": "2027-03-31",
+        "SLA": "Monthly preventive visit",
+        "Amount": 180000
+      },
+      {
+        "Contract Ref": "VC005",
+        "Vendor Ref": "VEN005",
+        "Title": "Electrical maintenance",
+        "Starts On": "2026-04-01",
+        "Ends On": "2027-03-31",
+        "SLA": "Same-day non-critical response",
+        "Amount": 150000
+      }
+    ],
+    "amenities": [
+      {
+        "Amenity Ref": "AM001",
+        "Name": "Clubhouse Hall",
+        "Description": "Air-conditioned multipurpose hall",
+        "Location": "Clubhouse",
+        "Capacity": 80,
+        "Booking Mode": "approval",
+        "Status": "active"
+      },
+      {
+        "Amenity Ref": "AM002",
+        "Name": "Badminton Court",
+        "Description": "Indoor court",
+        "Location": "Sports Zone",
+        "Capacity": 8,
+        "Booking Mode": "instant",
+        "Status": "active"
+      },
+      {
+        "Amenity Ref": "AM003",
+        "Name": "Guest Room 1",
+        "Description": "Guest accommodation",
+        "Location": "Clubhouse",
+        "Capacity": 4,
+        "Booking Mode": "approval",
+        "Status": "active"
+      },
+      {
+        "Amenity Ref": "AM004",
+        "Name": "Terrace Party Deck",
+        "Description": "Open terrace celebration area",
+        "Location": "Aster Terrace",
+        "Capacity": 50,
+        "Booking Mode": "approval",
+        "Status": "active"
+      },
+      {
+        "Amenity Ref": "AM005",
+        "Name": "Kids Play Zone",
+        "Description": "Children play area",
+        "Location": "Garden",
+        "Capacity": 30,
+        "Booking Mode": "instant",
+        "Status": "active"
+      },
+      {
+        "Amenity Ref": "AM006",
+        "Name": "Yoga Room",
+        "Description": "Quiet indoor wellness room",
+        "Location": "Clubhouse",
+        "Capacity": 25,
+        "Booking Mode": "instant",
+        "Status": "active"
+      }
+    ],
+    "bookings": [
+      {
+        "Booking Ref": "BK001",
+        "Amenity Ref": "AM001",
+        "Unit ID": "U001",
+        "Starts At": "2026-09-16T18:00:00",
+        "Ends At": "2026-09-16T20:00:00",
+        "Purpose": "Birthday celebration",
+        "Expected Status": "approved"
+      },
+      {
+        "Booking Ref": "BK002",
+        "Amenity Ref": "AM002",
+        "Unit ID": "U004",
+        "Starts At": "2026-09-17T19:00:00",
+        "Ends At": "2026-09-17T21:00:00",
+        "Purpose": "Family gathering",
+        "Expected Status": "approved"
+      },
+      {
+        "Booking Ref": "BK003",
+        "Amenity Ref": "AM003",
+        "Unit ID": "U007",
+        "Starts At": "2026-09-18T20:00:00",
+        "Ends At": "2026-09-18T22:00:00",
+        "Purpose": "Practice session",
+        "Expected Status": "approved"
+      },
+      {
+        "Booking Ref": "BK004",
+        "Amenity Ref": "AM004",
+        "Unit ID": "U010",
+        "Starts At": "2026-09-19T18:00:00",
+        "Ends At": "2026-09-19T20:00:00",
+        "Purpose": "Committee meetup",
+        "Expected Status": "pending"
+      },
+      {
+        "Booking Ref": "BK005",
+        "Amenity Ref": "AM005",
+        "Unit ID": "U013",
+        "Starts At": "2026-09-20T19:00:00",
+        "Ends At": "2026-09-20T21:00:00",
+        "Purpose": "Yoga group",
+        "Expected Status": "approved"
+      },
+      {
+        "Booking Ref": "BK006",
+        "Amenity Ref": "AM006",
+        "Unit ID": "U016",
+        "Starts At": "2026-09-21T20:00:00",
+        "Ends At": "2026-09-21T22:00:00",
+        "Purpose": "Children activity",
+        "Expected Status": "approved"
+      },
+      {
+        "Booking Ref": "BK007",
+        "Amenity Ref": "AM001",
+        "Unit ID": "U019",
+        "Starts At": "2026-09-22T18:00:00",
+        "Ends At": "2026-09-22T20:00:00",
+        "Purpose": "Birthday celebration",
+        "Expected Status": "approved"
+      },
+      {
+        "Booking Ref": "BK008",
+        "Amenity Ref": "AM002",
+        "Unit ID": "U022",
+        "Starts At": "2026-09-16T19:00:00",
+        "Ends At": "2026-09-16T21:00:00",
+        "Purpose": "Family gathering",
+        "Expected Status": "approved"
+      },
+      {
+        "Booking Ref": "BK009",
+        "Amenity Ref": "AM003",
+        "Unit ID": "U025",
+        "Starts At": "2026-09-17T20:00:00",
+        "Ends At": "2026-09-17T22:00:00",
+        "Purpose": "Practice session",
+        "Expected Status": "pending"
+      },
+      {
+        "Booking Ref": "BK010",
+        "Amenity Ref": "AM004",
+        "Unit ID": "U003",
+        "Starts At": "2026-09-18T18:00:00",
+        "Ends At": "2026-09-18T20:00:00",
+        "Purpose": "Committee meetup",
+        "Expected Status": "approved"
+      }
+    ]
+  },
+  "finance": {
+    "charge_heads": [
+      {
+        "Charge Head Ref": "CH001",
+        "Code": "MAINT",
+        "Label": "Monthly Maintenance",
+        "Category": "maintenance",
+        "Amount": 3500,
+        "Active": true
+      },
+      {
+        "Charge Head Ref": "CH002",
+        "Code": "SINK",
+        "Label": "Sinking Fund",
+        "Category": "reserve",
+        "Amount": 500,
+        "Active": true
+      },
+      {
+        "Charge Head Ref": "CH003",
+        "Code": "WATER",
+        "Label": "Water Charges",
+        "Category": "utilities",
+        "Amount": 600,
+        "Active": true
+      },
+      {
+        "Charge Head Ref": "CH004",
+        "Code": "PARK",
+        "Label": "Second Parking",
+        "Category": "parking",
+        "Amount": 300,
+        "Active": true
+      },
+      {
+        "Charge Head Ref": "CH005",
+        "Code": "CULT",
+        "Label": "Cultural Contribution",
+        "Category": "community",
+        "Amount": 250,
+        "Active": true
+      }
+    ],
+    "billing_cycles": [
+      {
+        "Cycle Ref": "CY001",
+        "Label": "September 2026",
+        "Period Start": "2026-09-01",
+        "Period End": "2026-09-30",
+        "Due On": "2026-09-20",
+        "Grace Days": 5,
+        "Penalty Rate Monthly": 1.5,
+        "Generate Bills": true
+      },
+      {
+        "Cycle Ref": "CY002",
+        "Label": "October 2026",
+        "Period Start": "2026-10-01",
+        "Period End": "2026-10-31",
+        "Due On": "2026-10-20",
+        "Grace Days": 5,
+        "Penalty Rate Monthly": 1.5,
+        "Generate Bills": false
+      }
+    ],
+    "bill_expectations": [
+      {
+        "Bill Ref": "BILL001",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U001",
+        "Expected Total": 4600,
+        "Expected Paid": 4600,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL002",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U002",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL003",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U003",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL004",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U004",
+        "Expected Total": 4300,
+        "Expected Paid": 0,
+        "Expected Balance": 4300,
+        "Expected Status": "due"
+      },
+      {
+        "Bill Ref": "BILL005",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U005",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL006",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U006",
+        "Expected Total": 4600,
+        "Expected Paid": 4600,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL007",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U007",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL008",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U008",
+        "Expected Total": 4300,
+        "Expected Paid": 2200,
+        "Expected Balance": 2100,
+        "Expected Status": "partial"
+      },
+      {
+        "Bill Ref": "BILL009",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U009",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL010",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U010",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL011",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U011",
+        "Expected Total": 4600,
+        "Expected Paid": 4600,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL012",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U012",
+        "Expected Total": 4300,
+        "Expected Paid": 0,
+        "Expected Balance": 4300,
+        "Expected Status": "due"
+      },
+      {
+        "Bill Ref": "BILL013",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U013",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL014",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U014",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL015",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U015",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL016",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U016",
+        "Expected Total": 4600,
+        "Expected Paid": 4600,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL017",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U017",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL018",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U018",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL019",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U019",
+        "Expected Total": 4300,
+        "Expected Paid": 2200,
+        "Expected Balance": 2100,
+        "Expected Status": "partial"
+      },
+      {
+        "Bill Ref": "BILL020",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U020",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL021",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U021",
+        "Expected Total": 4600,
+        "Expected Paid": 4600,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL022",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U022",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL023",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U023",
+        "Expected Total": 4300,
+        "Expected Paid": 0,
+        "Expected Balance": 4300,
+        "Expected Status": "due"
+      },
+      {
+        "Bill Ref": "BILL024",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U024",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      },
+      {
+        "Bill Ref": "BILL025",
+        "Cycle Ref": "CY001",
+        "Unit ID": "U025",
+        "Expected Total": 4300,
+        "Expected Paid": 4300,
+        "Expected Balance": 0,
+        "Expected Status": "paid"
+      }
+    ],
+    "payments": [
+      {
+        "Payment Ref": "PAY001",
+        "Bill Ref": "BILL001",
+        "Amount": 4600,
+        "Paid On": "2026-09-05",
+        "Payment Mode": "upi",
+        "Reference": "DEMOREF0001",
+        "Receipt Number": "RCP-2026-001"
+      },
+      {
+        "Payment Ref": "PAY002",
+        "Bill Ref": "BILL002",
+        "Amount": 4300,
+        "Paid On": "2026-09-06",
+        "Payment Mode": "bank",
+        "Reference": "DEMOREF0002",
+        "Receipt Number": "RCP-2026-002"
+      },
+      {
+        "Payment Ref": "PAY003",
+        "Bill Ref": "BILL003",
+        "Amount": 4300,
+        "Paid On": "2026-09-07",
+        "Payment Mode": "cheque",
+        "Reference": "DEMOREF0003",
+        "Receipt Number": "RCP-2026-003"
+      },
+      {
+        "Payment Ref": "PAY005",
+        "Bill Ref": "BILL005",
+        "Amount": 4300,
+        "Paid On": "2026-09-09",
+        "Payment Mode": "bank",
+        "Reference": "DEMOREF0005",
+        "Receipt Number": "RCP-2026-005"
+      },
+      {
+        "Payment Ref": "PAY006",
+        "Bill Ref": "BILL006",
+        "Amount": 4600,
+        "Paid On": "2026-09-10",
+        "Payment Mode": "cheque",
+        "Reference": "DEMOREF0006",
+        "Receipt Number": "RCP-2026-006"
+      },
+      {
+        "Payment Ref": "PAY007",
+        "Bill Ref": "BILL007",
+        "Amount": 4300,
+        "Paid On": "2026-09-11",
+        "Payment Mode": "upi",
+        "Reference": "DEMOREF0007",
+        "Receipt Number": "RCP-2026-007"
+      },
+      {
+        "Payment Ref": "PAY008",
+        "Bill Ref": "BILL008",
+        "Amount": 2200,
+        "Paid On": "2026-09-12",
+        "Payment Mode": "bank",
+        "Reference": "DEMOREF0008",
+        "Receipt Number": "RCP-2026-008"
+      },
+      {
+        "Payment Ref": "PAY009",
+        "Bill Ref": "BILL009",
+        "Amount": 4300,
+        "Paid On": "2026-09-13",
+        "Payment Mode": "cheque",
+        "Reference": "DEMOREF0009",
+        "Receipt Number": "RCP-2026-009"
+      },
+      {
+        "Payment Ref": "PAY010",
+        "Bill Ref": "BILL010",
+        "Amount": 4300,
+        "Paid On": "2026-09-14",
+        "Payment Mode": "upi",
+        "Reference": "DEMOREF0010",
+        "Receipt Number": "RCP-2026-010"
+      },
+      {
+        "Payment Ref": "PAY011",
+        "Bill Ref": "BILL011",
+        "Amount": 4600,
+        "Paid On": "2026-09-05",
+        "Payment Mode": "bank",
+        "Reference": "DEMOREF0011",
+        "Receipt Number": "RCP-2026-011"
+      },
+      {
+        "Payment Ref": "PAY013",
+        "Bill Ref": "BILL013",
+        "Amount": 4300,
+        "Paid On": "2026-09-07",
+        "Payment Mode": "upi",
+        "Reference": "DEMOREF0013",
+        "Receipt Number": "RCP-2026-013"
+      },
+      {
+        "Payment Ref": "PAY014",
+        "Bill Ref": "BILL014",
+        "Amount": 4300,
+        "Paid On": "2026-09-08",
+        "Payment Mode": "bank",
+        "Reference": "DEMOREF0014",
+        "Receipt Number": "RCP-2026-014"
+      },
+      {
+        "Payment Ref": "PAY015",
+        "Bill Ref": "BILL015",
+        "Amount": 4300,
+        "Paid On": "2026-09-09",
+        "Payment Mode": "cheque",
+        "Reference": "DEMOREF0015",
+        "Receipt Number": "RCP-2026-015"
+      },
+      {
+        "Payment Ref": "PAY016",
+        "Bill Ref": "BILL016",
+        "Amount": 4600,
+        "Paid On": "2026-09-10",
+        "Payment Mode": "upi",
+        "Reference": "DEMOREF0016",
+        "Receipt Number": "RCP-2026-016"
+      },
+      {
+        "Payment Ref": "PAY017",
+        "Bill Ref": "BILL017",
+        "Amount": 4300,
+        "Paid On": "2026-09-11",
+        "Payment Mode": "bank",
+        "Reference": "DEMOREF0017",
+        "Receipt Number": "RCP-2026-017"
+      },
+      {
+        "Payment Ref": "PAY018",
+        "Bill Ref": "BILL018",
+        "Amount": 4300,
+        "Paid On": "2026-09-12",
+        "Payment Mode": "cheque",
+        "Reference": "DEMOREF0018",
+        "Receipt Number": "RCP-2026-018"
+      },
+      {
+        "Payment Ref": "PAY019",
+        "Bill Ref": "BILL019",
+        "Amount": 2200,
+        "Paid On": "2026-09-13",
+        "Payment Mode": "upi",
+        "Reference": "DEMOREF0019",
+        "Receipt Number": "RCP-2026-019"
+      },
+      {
+        "Payment Ref": "PAY020",
+        "Bill Ref": "BILL020",
+        "Amount": 4300,
+        "Paid On": "2026-09-14",
+        "Payment Mode": "bank",
+        "Reference": "DEMOREF0020",
+        "Receipt Number": "RCP-2026-020"
+      },
+      {
+        "Payment Ref": "PAY021",
+        "Bill Ref": "BILL021",
+        "Amount": 4600,
+        "Paid On": "2026-09-05",
+        "Payment Mode": "cheque",
+        "Reference": "DEMOREF0021",
+        "Receipt Number": "RCP-2026-021"
+      },
+      {
+        "Payment Ref": "PAY022",
+        "Bill Ref": "BILL022",
+        "Amount": 4300,
+        "Paid On": "2026-09-06",
+        "Payment Mode": "upi",
+        "Reference": "DEMOREF0022",
+        "Receipt Number": "RCP-2026-022"
+      },
+      {
+        "Payment Ref": "PAY024",
+        "Bill Ref": "BILL024",
+        "Amount": 4300,
+        "Paid On": "2026-09-08",
+        "Payment Mode": "cheque",
+        "Reference": "DEMOREF0024",
+        "Receipt Number": "RCP-2026-024"
+      },
+      {
+        "Payment Ref": "PAY025",
+        "Bill Ref": "BILL025",
+        "Amount": 4300,
+        "Paid On": "2026-09-09",
+        "Payment Mode": "upi",
+        "Reference": "DEMOREF0025",
+        "Receipt Number": "RCP-2026-025"
+      }
+    ],
+    "adjustments": [
+      {
+        "Adjustment Ref": "ADJ001",
+        "Bill Ref": "BILL004",
+        "Type": "waiver",
+        "Amount": 300,
+        "Reason": "Committee-approved one-time waiver"
+      },
+      {
+        "Adjustment Ref": "ADJ002",
+        "Bill Ref": "BILL008",
+        "Type": "credit",
+        "Amount": 200,
+        "Reason": "Prior excess payment credit"
+      },
+      {
+        "Adjustment Ref": "ADJ003",
+        "Bill Ref": "BILL012",
+        "Type": "penalty",
+        "Amount": 150,
+        "Reason": "Late payment penalty"
+      },
+      {
+        "Adjustment Ref": "ADJ004",
+        "Bill Ref": "BILL019",
+        "Type": "debit",
+        "Amount": 250,
+        "Reason": "Second parking correction"
+      }
+    ],
+    "funds": [
+      {
+        "Fund Ref": "FND001",
+        "Code": "GENERAL",
+        "Label": "General Fund",
+        "Opening Balance": 180000,
+        "Visibility": "members"
+      },
+      {
+        "Fund Ref": "FND002",
+        "Code": "SINKING",
+        "Label": "Sinking Fund",
+        "Opening Balance": 520000,
+        "Visibility": "members"
+      },
+      {
+        "Fund Ref": "FND003",
+        "Code": "CULTURAL",
+        "Label": "Cultural Fund",
+        "Opening Balance": 65000,
+        "Visibility": "members"
+      }
+    ],
+    "budget": [
+      {
+        "Financial Year": "2026-27",
+        "Category": "Security",
+        "Label": "Security services",
+        "Budget Amount": 780000,
+        "Visibility": "members"
+      },
+      {
+        "Financial Year": "2026-27",
+        "Category": "Housekeeping",
+        "Label": "Housekeeping services",
+        "Budget Amount": 520000,
+        "Visibility": "members"
+      },
+      {
+        "Financial Year": "2026-27",
+        "Category": "Repairs",
+        "Label": "Repairs & maintenance",
+        "Budget Amount": 450000,
+        "Visibility": "members"
+      },
+      {
+        "Financial Year": "2026-27",
+        "Category": "Utilities",
+        "Label": "Common electricity & water",
+        "Budget Amount": 600000,
+        "Visibility": "members"
+      },
+      {
+        "Financial Year": "2026-27",
+        "Category": "Compliance",
+        "Label": "Statutory & safety",
+        "Budget Amount": 120000,
+        "Visibility": "members"
+      },
+      {
+        "Financial Year": "2026-27",
+        "Category": "Community",
+        "Label": "Festivals & community events",
+        "Budget Amount": 180000,
+        "Visibility": "members"
+      },
+      {
+        "Financial Year": "2026-27",
+        "Category": "Capital",
+        "Label": "Lift modernization reserve",
+        "Budget Amount": 900000,
+        "Visibility": "admins"
+      },
+      {
+        "Financial Year": "2026-27",
+        "Category": "Landscaping",
+        "Label": "Garden & landscaping",
+        "Budget Amount": 150000,
+        "Visibility": "members"
+      }
+    ],
+    "expenses": [
+      {
+        "Expense Ref": "EXP001",
+        "Category": "Security",
+        "Description": "September security invoice",
+        "Amount": 60000,
+        "Incurred On": "2026-09-02",
+        "Fund Ref": "FND003",
+        "Vendor Ref": "VEN001",
+        "Payment Reference": "EXPREF001",
+        "Visibility": "members"
+      },
+      {
+        "Expense Ref": "EXP002",
+        "Category": "Housekeeping",
+        "Description": "Housekeeping supplies",
+        "Amount": 38000,
+        "Incurred On": "2026-09-03",
+        "Fund Ref": "FND001",
+        "Vendor Ref": "VEN002",
+        "Payment Reference": "EXPREF002",
+        "Visibility": "members"
+      },
+      {
+        "Expense Ref": "EXP003",
+        "Category": "Repairs",
+        "Description": "Pump repair",
+        "Amount": 12500,
+        "Incurred On": "2026-09-04",
+        "Fund Ref": "FND001",
+        "Vendor Ref": "VEN003",
+        "Payment Reference": "EXPREF003",
+        "Visibility": "members"
+      },
+      {
+        "Expense Ref": "EXP004",
+        "Category": "Utilities",
+        "Description": "Common electricity bill",
+        "Amount": 47000,
+        "Incurred On": "2026-09-05",
+        "Fund Ref": "FND003",
+        "Vendor Ref": "VEN004",
+        "Payment Reference": "EXPREF004",
+        "Visibility": "members"
+      },
+      {
+        "Expense Ref": "EXP005",
+        "Category": "Community",
+        "Description": "Festival decoration",
+        "Amount": 22000,
+        "Incurred On": "2026-09-06",
+        "Fund Ref": "FND001",
+        "Vendor Ref": "VEN005",
+        "Payment Reference": "EXPREF005",
+        "Visibility": "members"
+      },
+      {
+        "Expense Ref": "EXP006",
+        "Category": "Security",
+        "Description": "September security invoice",
+        "Amount": 60000,
+        "Incurred On": "2026-09-07",
+        "Fund Ref": "FND001",
+        "Vendor Ref": "VEN001",
+        "Payment Reference": "EXPREF006",
+        "Visibility": "members"
+      },
+      {
+        "Expense Ref": "EXP007",
+        "Category": "Housekeeping",
+        "Description": "Housekeeping supplies",
+        "Amount": 38000,
+        "Incurred On": "2026-09-08",
+        "Fund Ref": "FND003",
+        "Vendor Ref": "VEN002",
+        "Payment Reference": "EXPREF007",
+        "Visibility": "members"
+      },
+      {
+        "Expense Ref": "EXP008",
+        "Category": "Repairs",
+        "Description": "Pump repair",
+        "Amount": 12500,
+        "Incurred On": "2026-09-09",
+        "Fund Ref": "FND001",
+        "Vendor Ref": "VEN003",
+        "Payment Reference": "EXPREF008",
+        "Visibility": "members"
+      },
+      {
+        "Expense Ref": "EXP009",
+        "Category": "Utilities",
+        "Description": "Common electricity bill",
+        "Amount": 47000,
+        "Incurred On": "2026-09-10",
+        "Fund Ref": "FND001",
+        "Vendor Ref": "VEN004",
+        "Payment Reference": "EXPREF009",
+        "Visibility": "members"
+      },
+      {
+        "Expense Ref": "EXP010",
+        "Category": "Community",
+        "Description": "Festival decoration",
+        "Amount": 22000,
+        "Incurred On": "2026-09-11",
+        "Fund Ref": "FND003",
+        "Vendor Ref": "VEN005",
+        "Payment Reference": "EXPREF010",
+        "Visibility": "members"
+      }
+    ]
+  },
+  "governance": {
+    "committee_terms": [
+      {
+        "Term Ref": "TERM2026",
+        "Label": "Managing Committee 2026-27",
+        "Starts On": "2026-04-01",
+        "Ends On": "2027-03-31",
+        "Notes": "Current elected committee"
+      }
+    ],
+    "committee_assignments": [
+      {
+        "Assignment Ref": "CA001",
+        "Term Ref": "TERM2026",
+        "Resident ID": "R001",
+        "Role Key": "chairman",
+        "Role Label": "Chairman",
+        "Starts On": "2026-04-01",
+        "Ends On": ""
+      },
+      {
+        "Assignment Ref": "CA002",
+        "Term Ref": "TERM2026",
+        "Resident ID": "R004",
+        "Role Key": "secretary",
+        "Role Label": "Secretary",
+        "Starts On": "2026-04-01",
+        "Ends On": ""
+      },
+      {
+        "Assignment Ref": "CA003",
+        "Term Ref": "TERM2026",
+        "Resident ID": "R006",
+        "Role Key": "treasurer",
+        "Role Label": "Treasurer",
+        "Starts On": "2026-04-01",
+        "Ends On": ""
+      },
+      {
+        "Assignment Ref": "CA004",
+        "Term Ref": "TERM2026",
+        "Resident ID": "R008",
+        "Role Key": "complaint_resolver",
+        "Role Label": "Complaint Resolver",
+        "Starts On": "2026-04-01",
+        "Ends On": ""
+      },
+      {
+        "Assignment Ref": "CA005",
+        "Term Ref": "TERM2026",
+        "Resident ID": "R013",
+        "Role Key": "facilities",
+        "Role Label": "Facilities",
+        "Starts On": "2026-04-01",
+        "Ends On": ""
+      },
+      {
+        "Assignment Ref": "CA006",
+        "Term Ref": "TERM2026",
+        "Resident ID": "R015",
+        "Role Key": "security",
+        "Role Label": "Security",
+        "Starts On": "2026-04-01",
+        "Ends On": ""
+      },
+      {
+        "Assignment Ref": "CA007",
+        "Term Ref": "TERM2026",
+        "Resident ID": "R019",
+        "Role Key": "events",
+        "Role Label": "Events",
+        "Starts On": "2026-04-01",
+        "Ends On": ""
+      }
+    ],
+    "meetings": [
+      {
+        "Meeting Ref": "MTG001",
+        "Meeting Type": "committee",
+        "Title": "September Managing Committee Meeting",
+        "Scheduled At": "2026-09-18T20:00:00+05:30",
+        "Location": "Clubhouse Meeting Room",
+        "Quorum Required": 5,
+        "Desired Status": "scheduled"
+      },
+      {
+        "Meeting Ref": "MTG002",
+        "Meeting Type": "general_body",
+        "Title": "Special General Body — Lift Modernization",
+        "Scheduled At": "2026-09-28T18:00:00+05:30",
+        "Location": "Clubhouse Hall",
+        "Quorum Required": 18,
+        "Desired Status": "scheduled"
+      },
+      {
+        "Meeting Ref": "MTG003",
+        "Meeting Type": "committee",
+        "Title": "August Committee Review",
+        "Scheduled At": "2026-08-21T20:00:00+05:30",
+        "Location": "Clubhouse Meeting Room",
+        "Quorum Required": 5,
+        "Desired Status": "completed"
+      }
+    ],
+    "agenda": [
+      {
+        "Agenda Ref": "AG001",
+        "Meeting Ref": "MTG001",
+        "Order": 1,
+        "Title": "Open complaint SLA review",
+        "Description": "Review unresolved high-priority complaints"
+      },
+      {
+        "Agenda Ref": "AG002",
+        "Meeting Ref": "MTG001",
+        "Order": 2,
+        "Title": "September collections",
+        "Description": "Review dues and follow-up"
+      },
+      {
+        "Agenda Ref": "AG003",
+        "Meeting Ref": "MTG001",
+        "Order": 3,
+        "Title": "Festival readiness",
+        "Description": "Final volunteer and security plan"
+      },
+      {
+        "Agenda Ref": "AG004",
+        "Meeting Ref": "MTG002",
+        "Order": 1,
+        "Title": "Lift modernization proposal",
+        "Description": "Vendor comparison and funding plan"
+      },
+      {
+        "Agenda Ref": "AG005",
+        "Meeting Ref": "MTG002",
+        "Order": 2,
+        "Title": "Resolution vote",
+        "Description": "Member approval for modernization reserve"
+      },
+      {
+        "Agenda Ref": "AG006",
+        "Meeting Ref": "MTG003",
+        "Order": 1,
+        "Title": "Water pump repair",
+        "Description": "Completed repair review"
+      }
+    ],
+    "minutes": [
+      {
+        "Meeting Ref": "MTG003",
+        "Minutes": "Committee reviewed water pump repair, visitor-management changes and August collections. All assigned actions were recorded.",
+        "Attendee Count": 7
+      }
+    ],
+    "actions": [
+      {
+        "Action Ref": "ACT001",
+        "Meeting Ref": "MTG001",
+        "Title": "Get revised lift vibration report",
+        "Owner Label": "Facilities",
+        "Due On": "2026-09-20",
+        "Status": "open"
+      },
+      {
+        "Action Ref": "ACT002",
+        "Meeting Ref": "MTG001",
+        "Title": "Contact overdue units",
+        "Owner Label": "Treasurer",
+        "Due On": "2026-09-19",
+        "Status": "in_progress"
+      },
+      {
+        "Action Ref": "ACT003",
+        "Meeting Ref": "MTG001",
+        "Title": "Publish festival security plan",
+        "Owner Label": "Secretary",
+        "Due On": "2026-09-18",
+        "Status": "open"
+      },
+      {
+        "Action Ref": "ACT004",
+        "Meeting Ref": "MTG003",
+        "Title": "Close pump repair invoice",
+        "Owner Label": "Treasurer",
+        "Due On": "2026-08-25",
+        "Status": "done"
+      }
+    ],
+    "resolutions": [
+      {
+        "Resolution Ref": "RES001",
+        "Meeting Ref": "MTG002",
+        "Resolution Number": "RES-2026-09-01",
+        "Title": "Lift modernization reserve",
+        "Body": "Approve creation of a dedicated lift modernization reserve up to ₹9,00,000.",
+        "Vote Mode": "approval",
+        "Status": "open",
+        "Opens At": "2026-09-28T18:30:00+05:30",
+        "Closes At": "2026-09-29T20:00:00+05:30",
+        "Quorum Percent": 50
+      },
+      {
+        "Resolution Ref": "RES002",
+        "Meeting Ref": "MTG003",
+        "Resolution Number": "RES-2026-08-02",
+        "Title": "Visitor QR pilot",
+        "Body": "Approve a three-month digital visitor-entry pilot.",
+        "Vote Mode": "approval",
+        "Status": "approved",
+        "Opens At": "2026-08-21T20:30:00+05:30",
+        "Closes At": "2026-08-22T20:30:00+05:30",
+        "Quorum Percent": 40
+      }
+    ],
+    "documents": [
+      {
+        "Document Ref": "DOC001",
+        "Meeting Ref": "MTG003",
+        "Resolution Ref": "",
+        "Document Type": "minutes",
+        "Title": "August Committee Minutes",
+        "Version Label": "v1",
+        "Document URL": "",
+        "Visibility": "members"
+      },
+      {
+        "Document Ref": "DOC002",
+        "Meeting Ref": "MTG002",
+        "Resolution Ref": "RES001",
+        "Document Type": "proposal",
+        "Title": "Lift Modernization Comparative Proposal",
+        "Version Label": "v1",
+        "Document URL": "",
+        "Visibility": "members"
+      }
+    ],
+    "ballots": [
+      {
+        "Ballot Ref": "BAL001",
+        "Ballot Type": "election",
+        "Title": "Managing Committee Election 2027-28",
+        "Description": "Synthetic upcoming committee election",
+        "Eligibility Mode": "members",
+        "Max Choices": 1,
+        "Secret Ballot": true,
+        "Allow Nominations": true,
+        "Opens At": "2027-03-10T09:00:00+05:30",
+        "Closes At": "2027-03-12T20:00:00+05:30",
+        "Desired Status": "draft"
+      },
+      {
+        "Ballot Ref": "BAL002",
+        "Ballot Type": "poll",
+        "Title": "Preferred weekend for annual picnic",
+        "Description": "Member preference poll",
+        "Eligibility Mode": "members",
+        "Max Choices": 1,
+        "Secret Ballot": false,
+        "Allow Nominations": false,
+        "Opens At": "2026-09-17T09:00:00+05:30",
+        "Closes At": "2026-09-20T20:00:00+05:30",
+        "Desired Status": "open"
+      }
+    ],
+    "ballot_options": [
+      {
+        "Option Ref": "BO001",
+        "Ballot Ref": "BAL001",
+        "Label": "Candidate A",
+        "Description": "Chairman candidate",
+        "Candidate Resident ID": "R001"
+      },
+      {
+        "Option Ref": "BO002",
+        "Ballot Ref": "BAL001",
+        "Label": "Candidate B",
+        "Description": "Chairman candidate",
+        "Candidate Resident ID": "R010"
+      },
+      {
+        "Option Ref": "BO003",
+        "Ballot Ref": "BAL002",
+        "Label": "Saturday 3 October",
+        "Description": "",
+        "Candidate Resident ID": ""
+      },
+      {
+        "Option Ref": "BO004",
+        "Ballot Ref": "BAL002",
+        "Label": "Sunday 4 October",
+        "Description": "",
+        "Candidate Resident ID": ""
+      }
+    ]
+  },
+  "security": {
+    "visitors": [
+      {
+        "Visitor Ref": "VIS001",
+        "Unit ID": "U001",
+        "Visitor Name": "Guest 1",
+        "Visit Type": "guest",
+        "Expected At": "2026-09-16T09:00:00",
+        "Purpose": "Family visit",
+        "Phone": "9222200001",
+        "Vehicle Number": "MH12GV0500",
+        "Desired Status": "expected"
+      },
+      {
+        "Visitor Ref": "VIS002",
+        "Unit ID": "U003",
+        "Visitor Name": "Guest 2",
+        "Visit Type": "delivery",
+        "Expected At": "2026-09-16T11:00:00",
+        "Purpose": "Courier delivery",
+        "Phone": "9222200002",
+        "Vehicle Number": "",
+        "Desired Status": "checked_in"
+      },
+      {
+        "Visitor Ref": "VIS003",
+        "Unit ID": "U005",
+        "Visitor Name": "Guest 3",
+        "Visit Type": "service",
+        "Expected At": "2026-09-16T13:00:00",
+        "Purpose": "Appliance service",
+        "Phone": "9222200003",
+        "Vehicle Number": "MH12GV0502",
+        "Desired Status": "checked_out"
+      },
+      {
+        "Visitor Ref": "VIS004",
+        "Unit ID": "U007",
+        "Visitor Name": "Guest 4",
+        "Visit Type": "guest",
+        "Expected At": "2026-09-16T15:00:00",
+        "Purpose": "Family visit",
+        "Phone": "9222200004",
+        "Vehicle Number": "",
+        "Desired Status": "expected"
+      },
+      {
+        "Visitor Ref": "VIS005",
+        "Unit ID": "U009",
+        "Visitor Name": "Guest 5",
+        "Visit Type": "delivery",
+        "Expected At": "2026-09-16T17:00:00",
+        "Purpose": "Courier delivery",
+        "Phone": "9222200005",
+        "Vehicle Number": "MH12GV0504",
+        "Desired Status": "checked_in"
+      },
+      {
+        "Visitor Ref": "VIS006",
+        "Unit ID": "U011",
+        "Visitor Name": "Guest 6",
+        "Visit Type": "service",
+        "Expected At": "2026-09-16T19:00:00",
+        "Purpose": "Appliance service",
+        "Phone": "9222200006",
+        "Vehicle Number": "",
+        "Desired Status": "checked_out"
+      },
+      {
+        "Visitor Ref": "VIS007",
+        "Unit ID": "U013",
+        "Visitor Name": "Guest 7",
+        "Visit Type": "guest",
+        "Expected At": "2026-09-16T21:00:00",
+        "Purpose": "Family visit",
+        "Phone": "9222200007",
+        "Vehicle Number": "MH12GV0506",
+        "Desired Status": "expected"
+      },
+      {
+        "Visitor Ref": "VIS008",
+        "Unit ID": "U015",
+        "Visitor Name": "Guest 8",
+        "Visit Type": "delivery",
+        "Expected At": "2026-09-16T23:00:00",
+        "Purpose": "Courier delivery",
+        "Phone": "9222200008",
+        "Vehicle Number": "",
+        "Desired Status": "checked_in"
+      },
+      {
+        "Visitor Ref": "VIS009",
+        "Unit ID": "U017",
+        "Visitor Name": "Guest 9",
+        "Visit Type": "service",
+        "Expected At": "2026-09-17T01:00:00",
+        "Purpose": "Appliance service",
+        "Phone": "9222200009",
+        "Vehicle Number": "MH12GV0508",
+        "Desired Status": "checked_out"
+      },
+      {
+        "Visitor Ref": "VIS010",
+        "Unit ID": "U019",
+        "Visitor Name": "Guest 10",
+        "Visit Type": "guest",
+        "Expected At": "2026-09-17T03:00:00",
+        "Purpose": "Family visit",
+        "Phone": "9222200010",
+        "Vehicle Number": "",
+        "Desired Status": "expected"
+      },
+      {
+        "Visitor Ref": "VIS011",
+        "Unit ID": "U021",
+        "Visitor Name": "Guest 11",
+        "Visit Type": "delivery",
+        "Expected At": "2026-09-17T05:00:00",
+        "Purpose": "Courier delivery",
+        "Phone": "9222200011",
+        "Vehicle Number": "MH12GV0510",
+        "Desired Status": "checked_in"
+      },
+      {
+        "Visitor Ref": "VIS012",
+        "Unit ID": "U023",
+        "Visitor Name": "Guest 12",
+        "Visit Type": "service",
+        "Expected At": "2026-09-17T07:00:00",
+        "Purpose": "Appliance service",
+        "Phone": "9222200012",
+        "Vehicle Number": "",
+        "Desired Status": "checked_out"
+      }
+    ],
+    "staff": [
+      {
+        "Staff Ref": "ST001",
+        "Name": "Ramesh Jadhav",
+        "Staff Type": "housekeeping",
+        "Phone": "9333300001",
+        "Identity Last4": "1122",
+        "Verification Status": "verified"
+      },
+      {
+        "Staff Ref": "ST002",
+        "Name": "Sunita More",
+        "Staff Type": "domestic_help",
+        "Phone": "9333300002",
+        "Identity Last4": "2233",
+        "Verification Status": "verified"
+      },
+      {
+        "Staff Ref": "ST003",
+        "Name": "Mahesh Pawar",
+        "Staff Type": "electrician",
+        "Phone": "9333300003",
+        "Identity Last4": "3344",
+        "Verification Status": "verified"
+      },
+      {
+        "Staff Ref": "ST004",
+        "Name": "Ganesh Kale",
+        "Staff Type": "plumber",
+        "Phone": "9333300004",
+        "Identity Last4": "4455",
+        "Verification Status": "verified"
+      },
+      {
+        "Staff Ref": "ST005",
+        "Name": "Rekha Shinde",
+        "Staff Type": "domestic_help",
+        "Phone": "9333300005",
+        "Identity Last4": "5566",
+        "Verification Status": "verified"
+      },
+      {
+        "Staff Ref": "ST006",
+        "Name": "Iqbal Shaikh",
+        "Staff Type": "driver",
+        "Phone": "9333300006",
+        "Identity Last4": "6677",
+        "Verification Status": "verified"
+      }
+    ],
+    "staff_access": [
+      {
+        "Access Ref": "SA001",
+        "Staff Ref": "ST001",
+        "Unit ID": "U001",
+        "Starts On": "2026-09-01",
+        "Ends On": ""
+      },
+      {
+        "Access Ref": "SA002",
+        "Staff Ref": "ST002",
+        "Unit ID": "U005",
+        "Starts On": "2026-09-01",
+        "Ends On": ""
+      },
+      {
+        "Access Ref": "SA003",
+        "Staff Ref": "ST003",
+        "Unit ID": "U009",
+        "Starts On": "2026-09-01",
+        "Ends On": ""
+      },
+      {
+        "Access Ref": "SA004",
+        "Staff Ref": "ST004",
+        "Unit ID": "U013",
+        "Starts On": "2026-09-01",
+        "Ends On": ""
+      },
+      {
+        "Access Ref": "SA005",
+        "Staff Ref": "ST005",
+        "Unit ID": "U017",
+        "Starts On": "2026-09-01",
+        "Ends On": ""
+      },
+      {
+        "Access Ref": "SA006",
+        "Staff Ref": "ST006",
+        "Unit ID": "U021",
+        "Starts On": "2026-09-01",
+        "Ends On": ""
+      }
+    ],
+    "move_requests": [
+      {
+        "Move Ref": "MV001",
+        "Unit ID": "U021",
+        "Move Type": "move_in",
+        "Scheduled On": "2026-09-22",
+        "Contact Name": "Demo Tenant 21",
+        "Notes": "Lift protection required",
+        "Desired Status": "pending"
+      },
+      {
+        "Move Ref": "MV002",
+        "Unit ID": "U010",
+        "Move Type": "move_out",
+        "Scheduled On": "2026-09-29",
+        "Contact Name": "Demo Tenant 10",
+        "Notes": "Truck expected 9 AM",
+        "Desired Status": "approved"
+      }
+    ],
+    "renovations": [
+      {
+        "Renovation Ref": "RN001",
+        "Unit ID": "U003",
+        "Title": "Kitchen renovation",
+        "Description": "Cabinet and countertop replacement",
+        "Contractor Name": "BuildRight Demo",
+        "Starts On": "2026-09-18",
+        "Ends On": "2026-10-02",
+        "Desired Status": "approved"
+      },
+      {
+        "Renovation Ref": "RN002",
+        "Unit ID": "U011",
+        "Title": "Bathroom repair",
+        "Description": "Waterproofing and tiles",
+        "Contractor Name": "AquaFix Demo",
+        "Starts On": "2026-09-20",
+        "Ends On": "2026-09-27",
+        "Desired Status": "pending"
+      },
+      {
+        "Renovation Ref": "RN003",
+        "Unit ID": "U018",
+        "Title": "Interior painting",
+        "Description": "Low-noise painting work",
+        "Contractor Name": "ColourHouse Demo",
+        "Starts On": "2026-09-25",
+        "Ends On": "2026-09-30",
+        "Desired Status": "approved"
+      }
+    ],
+    "assets": [
+      {
+        "Asset Ref": "AS001",
+        "Asset Code": "LIFT-A1",
+        "Name": "Aster Lift 1",
+        "Category": "Lift",
+        "Location": "Aster A",
+        "Warranty Until": "2028-03-31"
+      },
+      {
+        "Asset Ref": "AS002",
+        "Asset Code": "LIFT-B1",
+        "Name": "Cedar Lift 1",
+        "Category": "Lift",
+        "Location": "Cedar B",
+        "Warranty Until": "2028-03-31"
+      },
+      {
+        "Asset Ref": "AS003",
+        "Asset Code": "PUMP-01",
+        "Name": "Main Water Pump",
+        "Category": "Water",
+        "Location": "Pump Room",
+        "Warranty Until": "2027-06-30"
+      },
+      {
+        "Asset Ref": "AS004",
+        "Asset Code": "DG-01",
+        "Name": "Diesel Generator",
+        "Category": "Power",
+        "Location": "Utility Block",
+        "Warranty Until": "2027-12-31"
+      },
+      {
+        "Asset Ref": "AS005",
+        "Asset Code": "STP-01",
+        "Name": "STP Plant",
+        "Category": "Water Treatment",
+        "Location": "Rear Utility Zone",
+        "Warranty Until": "2029-03-31"
+      },
+      {
+        "Asset Ref": "AS006",
+        "Asset Code": "CCTV-01",
+        "Name": "CCTV Recorder",
+        "Category": "Security",
+        "Location": "Security Office",
+        "Warranty Until": "2027-08-31"
+      },
+      {
+        "Asset Ref": "AS007",
+        "Asset Code": "FIRE-01",
+        "Name": "Fire Pump",
+        "Category": "Fire Safety",
+        "Location": "Fire Control Room",
+        "Warranty Until": "2027-05-31"
+      },
+      {
+        "Asset Ref": "AS008",
+        "Asset Code": "CLUB-AC",
+        "Name": "Clubhouse AC",
+        "Category": "Amenity",
+        "Location": "Clubhouse",
+        "Warranty Until": "2027-01-31"
+      }
+    ],
+    "asset_service": [
+      {
+        "Service Ref": "SV001",
+        "Asset Ref": "AS001",
+        "Service Type": "preventive",
+        "Serviced On": "2026-08-10",
+        "Next Due On": "2026-11-10",
+        "Notes": "Routine preventive service completed.",
+        "Cost": 5000
+      },
+      {
+        "Service Ref": "SV002",
+        "Asset Ref": "AS002",
+        "Service Type": "preventive",
+        "Serviced On": "2026-08-11",
+        "Next Due On": "2026-11-11",
+        "Notes": "Routine preventive service completed.",
+        "Cost": 5750
+      },
+      {
+        "Service Ref": "SV003",
+        "Asset Ref": "AS003",
+        "Service Type": "preventive",
+        "Serviced On": "2026-08-12",
+        "Next Due On": "2026-11-12",
+        "Notes": "Routine preventive service completed.",
+        "Cost": 6500
+      },
+      {
+        "Service Ref": "SV004",
+        "Asset Ref": "AS004",
+        "Service Type": "preventive",
+        "Serviced On": "2026-08-13",
+        "Next Due On": "2026-11-13",
+        "Notes": "Routine preventive service completed.",
+        "Cost": 7250
+      },
+      {
+        "Service Ref": "SV005",
+        "Asset Ref": "AS005",
+        "Service Type": "preventive",
+        "Serviced On": "2026-08-14",
+        "Next Due On": "2026-12-14",
+        "Notes": "Routine preventive service completed.",
+        "Cost": 8000
+      },
+      {
+        "Service Ref": "SV006",
+        "Asset Ref": "AS006",
+        "Service Type": "preventive",
+        "Serviced On": "2026-08-15",
+        "Next Due On": "2026-12-15",
+        "Notes": "Routine preventive service completed.",
+        "Cost": 8750
+      },
+      {
+        "Service Ref": "SV007",
+        "Asset Ref": "AS007",
+        "Service Type": "preventive",
+        "Serviced On": "2026-08-16",
+        "Next Due On": "2026-12-16",
+        "Notes": "Routine preventive service completed.",
+        "Cost": 9500
+      },
+      {
+        "Service Ref": "SV008",
+        "Asset Ref": "AS008",
+        "Service Type": "preventive",
+        "Serviced On": "2026-08-17",
+        "Next Due On": "2026-12-17",
+        "Notes": "Routine preventive service completed.",
+        "Cost": 10250
+      }
+    ],
+    "compliance": [
+      {
+        "Compliance Ref": "CP001",
+        "Category": "Fire Safety",
+        "Title": "Annual fire audit",
+        "Due On": "2026-10-15",
+        "Owner Label": "Secretary",
+        "Document URL": "",
+        "Visibility": "members"
+      },
+      {
+        "Compliance Ref": "CP002",
+        "Category": "Lift",
+        "Title": "Lift fitness certificate renewal",
+        "Due On": "2026-11-10",
+        "Owner Label": "Facilities",
+        "Document URL": "",
+        "Visibility": "members"
+      },
+      {
+        "Compliance Ref": "CP003",
+        "Category": "Water",
+        "Title": "Water quality laboratory test",
+        "Due On": "2026-09-30",
+        "Owner Label": "Facilities",
+        "Document URL": "",
+        "Visibility": "members"
+      },
+      {
+        "Compliance Ref": "CP004",
+        "Category": "Insurance",
+        "Title": "Society insurance renewal",
+        "Due On": "2026-12-01",
+        "Owner Label": "Treasurer",
+        "Document URL": "",
+        "Visibility": "admins"
+      },
+      {
+        "Compliance Ref": "CP005",
+        "Category": "Electrical",
+        "Title": "Common electrical safety inspection",
+        "Due On": "2026-10-05",
+        "Owner Label": "Facilities",
+        "Document URL": "",
+        "Visibility": "members"
+      }
+    ],
+    "emergency_contacts": [
+      {
+        "Category": "security",
+        "Label": "Main Gate Security",
+        "Phone": "9444400001",
+        "Notes": "24x7",
+        "Priority": 1
+      },
+      {
+        "Category": "fire",
+        "Label": "Fire Brigade",
+        "Phone": "101",
+        "Notes": "Emergency",
+        "Priority": 2
+      },
+      {
+        "Category": "ambulance",
+        "Label": "Ambulance",
+        "Phone": "108",
+        "Notes": "Emergency",
+        "Priority": 3
+      },
+      {
+        "Category": "electrician",
+        "Label": "Emergency Electrician",
+        "Phone": "9444400004",
+        "Notes": "Vendor on call",
+        "Priority": 4
+      },
+      {
+        "Category": "plumber",
+        "Label": "Emergency Plumber",
+        "Phone": "9444400005",
+        "Notes": "Vendor on call",
+        "Priority": 5
+      }
+    ]
+  },
+  "community": {
+    "events": [
+      {
+        "Activity Ref": "EVT001",
+        "Type": "event",
+        "Title": "Ganesh Festival 2026",
+        "Date": "2026-09-19",
+        "Description": "Community aarti, cultural program and dinner",
+        "Expected Participants": 120
+      },
+      {
+        "Activity Ref": "EVT002",
+        "Type": "event",
+        "Title": "Children Art Workshop",
+        "Date": "2026-09-27",
+        "Description": "Weekend art session in clubhouse",
+        "Expected Participants": 28
+      },
+      {
+        "Activity Ref": "EVT003",
+        "Type": "event",
+        "Title": "Senior Citizens Tea Evening",
+        "Date": "2026-10-02",
+        "Description": "Informal meet and health talk",
+        "Expected Participants": 22
+      },
+      {
+        "Activity Ref": "EVT004",
+        "Type": "event",
+        "Title": "Annual Sports Day",
+        "Date": "2026-10-18",
+        "Description": "Badminton, chess and kids races",
+        "Expected Participants": 90
+      }
+    ],
+    "posts": [
+      {
+        "Post Ref": "POST001",
+        "Category": "general",
+        "Importance": "important",
+        "Title": "Festival volunteer update",
+        "Body": "Synthetic community post created to exercise posts, comments, mentions, notifications and moderation.",
+        "Notify All": true,
+        "Pinned": true,
+        "Author Resident ID": "R001"
+      },
+      {
+        "Post Ref": "POST002",
+        "Category": "event",
+        "Importance": "normal",
+        "Title": "Looking for a reliable carpenter",
+        "Body": "Synthetic community post created to exercise posts, comments, mentions, notifications and moderation.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Resident ID": "R004"
+      },
+      {
+        "Post Ref": "POST003",
+        "Category": "help",
+        "Importance": "normal",
+        "Title": "Weekend badminton group",
+        "Body": "Synthetic community post created to exercise posts, comments, mentions, notifications and moderation.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Resident ID": "R006"
+      },
+      {
+        "Post Ref": "POST004",
+        "Category": "announcement",
+        "Importance": "normal",
+        "Title": "Water-saving reminder",
+        "Body": "Synthetic community post created to exercise posts, comments, mentions, notifications and moderation.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Resident ID": "R008"
+      },
+      {
+        "Post Ref": "POST005",
+        "Category": "general",
+        "Importance": "important",
+        "Title": "Fire drill participation",
+        "Body": "Synthetic community post created to exercise posts, comments, mentions, notifications and moderation.",
+        "Notify All": true,
+        "Pinned": false,
+        "Author Resident ID": "R010"
+      },
+      {
+        "Post Ref": "POST006",
+        "Category": "event",
+        "Importance": "normal",
+        "Title": "Lost water bottle near play area",
+        "Body": "Synthetic community post created to exercise posts, comments, mentions, notifications and moderation.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Resident ID": "R013"
+      },
+      {
+        "Post Ref": "POST007",
+        "Category": "help",
+        "Importance": "normal",
+        "Title": "Senior citizen health camp",
+        "Body": "Synthetic community post created to exercise posts, comments, mentions, notifications and moderation.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Resident ID": "R015"
+      },
+      {
+        "Post Ref": "POST008",
+        "Category": "announcement",
+        "Importance": "normal",
+        "Title": "Carpool to airport",
+        "Body": "Synthetic community post created to exercise posts, comments, mentions, notifications and moderation.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Resident ID": "R017"
+      },
+      {
+        "Post Ref": "POST009",
+        "Category": "general",
+        "Importance": "normal",
+        "Title": "Clubhouse library book drive",
+        "Body": "Synthetic community post created to exercise posts, comments, mentions, notifications and moderation.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Resident ID": "R019"
+      },
+      {
+        "Post Ref": "POST010",
+        "Category": "event",
+        "Importance": "normal",
+        "Title": "Welcome new Cedar residents",
+        "Body": "Synthetic community post created to exercise posts, comments, mentions, notifications and moderation.",
+        "Notify All": false,
+        "Pinned": false,
+        "Author Resident ID": "R022"
+      }
+    ],
+    "post_comments": [
+      {
+        "Comment Ref": "PC001",
+        "Post Ref": "POST001",
+        "Author Resident ID": "R008",
+        "Body": "Count me in."
+      },
+      {
+        "Comment Ref": "PC002",
+        "Post Ref": "POST002",
+        "Author Resident ID": "R010",
+        "Body": "Thanks for sharing."
+      },
+      {
+        "Comment Ref": "PC003",
+        "Post Ref": "POST003",
+        "Author Resident ID": "R013",
+        "Body": "I can help with this."
+      },
+      {
+        "Comment Ref": "PC004",
+        "Post Ref": "POST004",
+        "Author Resident ID": "R015",
+        "Body": "Please share timing details."
+      },
+      {
+        "Comment Ref": "PC005",
+        "Post Ref": "POST005",
+        "Author Resident ID": "R017",
+        "Body": "Useful update."
+      },
+      {
+        "Comment Ref": "PC006",
+        "Post Ref": "POST006",
+        "Author Resident ID": "R019",
+        "Body": "Count me in."
+      },
+      {
+        "Comment Ref": "PC007",
+        "Post Ref": "POST007",
+        "Author Resident ID": "R022",
+        "Body": "Thanks for sharing."
+      },
+      {
+        "Comment Ref": "PC008",
+        "Post Ref": "POST008",
+        "Author Resident ID": "R024",
+        "Body": "I can help with this."
+      },
+      {
+        "Comment Ref": "PC009",
+        "Post Ref": "POST009",
+        "Author Resident ID": "R026",
+        "Body": "Please share timing details."
+      },
+      {
+        "Comment Ref": "PC010",
+        "Post Ref": "POST010",
+        "Author Resident ID": "R028",
+        "Body": "Useful update."
+      },
+      {
+        "Comment Ref": "PC011",
+        "Post Ref": "POST001",
+        "Author Resident ID": "R031",
+        "Body": "Count me in."
+      },
+      {
+        "Comment Ref": "PC012",
+        "Post Ref": "POST002",
+        "Author Resident ID": "R033",
+        "Body": "Thanks for sharing."
+      },
+      {
+        "Comment Ref": "PC013",
+        "Post Ref": "POST003",
+        "Author Resident ID": "R035",
+        "Body": "I can help with this."
+      },
+      {
+        "Comment Ref": "PC014",
+        "Post Ref": "POST004",
+        "Author Resident ID": "R037",
+        "Body": "Please share timing details."
+      },
+      {
+        "Comment Ref": "PC015",
+        "Post Ref": "POST005",
+        "Author Resident ID": "R040",
+        "Body": "Useful update."
+      }
+    ],
+    "media": [
+      {
+        "Media Ref": "MED001",
+        "Entity Type": "network_post",
+        "Entity Ref": "POST001",
+        "Media Kind": "post",
+        "File Name": "festival-volunteers.jpg",
+        "Caption": "Volunteer team demo image",
+        "Visibility": "members"
+      },
+      {
+        "Media Ref": "MED002",
+        "Entity Type": "hs_complaint",
+        "Entity Ref": "CMP101",
+        "Media Kind": "complaint",
+        "File Name": "lift-inspection.jpg",
+        "Caption": "Lift inspection demo image",
+        "Visibility": "workflow"
+      },
+      {
+        "Media Ref": "MED003",
+        "Entity Type": "event",
+        "Entity Ref": "EVT001",
+        "Media Kind": "event",
+        "File Name": "ganesh-festival.jpg",
+        "Caption": "Festival demo image",
+        "Visibility": "members"
+      },
+      {
+        "Media Ref": "MED004",
+        "Entity Type": "network_post",
+        "Entity Ref": "POST007",
+        "Media Kind": "post",
+        "File Name": "health-camp.jpg",
+        "Caption": "Health camp demo image",
+        "Visibility": "members"
+      }
+    ]
+  }
+}
