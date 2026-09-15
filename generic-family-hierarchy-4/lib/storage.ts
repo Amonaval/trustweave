@@ -37,7 +37,14 @@ async function activeStoragePolicy(){
   if(error) throw error;
   const n=(data||[]).find((x:any)=>x.is_active);
   if(!n) throw new Error('Select the network you are working in before uploading media.');
-  return {networkId:String(n.network_id),enabled:!!n.photo_upload_enabled,maxBytes:Number(n.photo_max_bytes||DEFAULT_MAX_BYTES)};
+  const networkId=String(n.network_id);
+  const prepared=await supabase.rpc('prepare_network_media_upload',{p_network_id:networkId});
+  if(prepared.error){
+    if(prepared.error.code==='PGRST202'||/prepare_network_media_upload/i.test(prepared.error.message||''))throw new Error('Media database contract is out of date. Apply migration 116 and reload the app.');
+    throw prepared.error;
+  }
+  const policy=(prepared.data||{}) as any;
+  return {networkId,enabled:!!policy.photo_upload_enabled,maxBytes:Number(policy.photo_max_bytes||n.photo_max_bytes||DEFAULT_MAX_BYTES)};
 }
 
 async function imageToWebp(file:File,maxBytes:number,maxDimension:number):Promise<{file:File;width:number;height:number}> {

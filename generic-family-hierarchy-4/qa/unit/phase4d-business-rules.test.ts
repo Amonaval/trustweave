@@ -49,7 +49,7 @@ test('Phase 4D Family Association uses family as the paid membership unit and pr
   assert.deepEqual(relKeys(FAMILY_ASSOCIATION_TEMPLATE).slice(0,5),['represented_by','member_of_family','spouse_of','parent_of','serves_on']);
   assert.equal(validateGraphRelationship(entity('family','f'),entity('person','p'),rule(FAMILY_ASSOCIATION_TEMPLATE,'represented_by')).valid,true);
   assert.equal(validateGraphRelationship(entity('household','h'),entity('person','p'),rule(FAMILY_ASSOCIATION_TEMPLATE,'represented_by')).valid,false);
-  assert.match(FAMILY_ASSOCIATION_TEMPLATE.notes.join(' '),/Family is the annual paid membership unit/i);
+  assert.match((FAMILY_ASSOCIATION_TEMPLATE.notes??[]).join(' '),/Family is the annual paid membership unit/i);
 });
 
 test('Phase 4D generic Association stays household-based and does not collapse into Family Association semantics',()=>{
@@ -58,7 +58,7 @@ test('Phase 4D generic Association stays household-based and does not collapse i
   assert.equal(relKeys(ASSOCIATION_TEMPLATE).includes('member_of_family'),false);
   assert.equal(validateGraphRelationship(entity('household','h'),entity('person','p'),rule(ASSOCIATION_TEMPLATE,'represented_by')).valid,true);
   assert.equal(validateGraphRelationship(entity('family','f'),entity('person','p'),rule(ASSOCIATION_TEMPLATE,'represented_by')).valid,false);
-  assert.match(ASSOCIATION_TEMPLATE.notes.join(' '),/Formal elections are a governed extension/i);
+  assert.match((ASSOCIATION_TEMPLATE.notes??[]).join(' '),/Formal elections are a governed extension/i);
 });
 
 test('Phase 4D Alumni stays cohort/institutional and does not inherit Family kinship semantics',()=>{
@@ -95,5 +95,5 @@ test('Phase 4D Professional network preserves expertise/referral/mentoring rules
   assert.deepEqual(relKeys(PROFESSIONAL_TEMPLATE),['worked_with','referred_by','collaborates_with','mentors']);
   assert.equal(validateGraphRelationship(entity('person','mentor'),entity('person','mentee'),rule(PROFESSIONAL_TEMPLATE,'mentors')).valid,true);
   assert.equal(validateGraphRelationship(entity('organization','org'),entity('person','mentee'),rule(PROFESSIONAL_TEMPLATE,'mentors')).valid,false);
-  assert.match(PROFESSIONAL_TEMPLATE.notes.join(' '),/Healthcare patient data and regulated clinical workflows are explicitly out of scope/i);
+  assert.match((PROFESSIONAL_TEMPLATE.notes??[]).join(' '),/Healthcare patient data and regulated clinical workflows are explicitly out of scope/i);
 });

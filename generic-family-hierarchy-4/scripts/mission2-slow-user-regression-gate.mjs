@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 const read=p=>fs.readFileSync(p,'utf8');const checks=[];const ok=(name,pass)=>checks.push([name,!!pass]);
 const pkg=JSON.parse(read('package.json')),cfg=read('playwright.config.ts'),helper=read('qa/lib/mission2-regression.ts'),runner=read('qa/run-mission2-regression.mjs'),watch=read('qa/lib/runtime-watch.ts'),crawler=read('qa/lib/crawler.ts');
-const shared=read('qa/e2e/27-mission2-shared-user-journeys.spec.ts'),housing=read('qa/e2e/28-mission2-housing-user-journeys.spec.ts'),community=read('qa/e2e/29-mission2-family-community-admin.spec.ts'),family=read('qa/e2e/30-mission2-family-and-mobile.spec.ts'),isolation=read('qa/e2e/31-mission2-isolation-permissions.spec.ts'),roleCrawl=read('qa/e2e/32-mission2-role-crawl.spec.ts');
+const shared=read('qa/e2e/27-mission2-shared-user-journeys.spec.ts'),housing=read('qa/e2e/28-mission2-housing-user-journeys.spec.ts'),community=read('qa/e2e/29-mission2-family-community-admin.spec.ts'),family=read('qa/e2e/30-mission2-family-and-mobile.spec.ts'),isolation=read('qa/e2e/31-mission2-isolation-permissions.spec.ts'),roleCrawl=read('qa/e2e/32-mission2-role-crawl.spec.ts'),surfaceInventory=read('qa/e2e/33-mission2-all-surface-inventory.spec.ts'),mediaRepair=read('supabase/migrations/116_mission2_media_membership_runtime_repair.sql'),storage=read('lib/storage.ts');
 const posts=read('components/shared/NetworkPostsPanel.tsx'),funds=read('components/shared/NetworkFundsPanel.tsx'),voting=read('components/shared/NetworkVotingPanel.tsx'),activity=read('components/shared/NetworkActivityHub.tsx'),tabs=read('components/shared/ResponsiveSectionTabs.tsx'),hsOps=read('components/HousingSocietyOperationsPanel.tsx'),hsFin=read('components/HousingSocietyFinancePanel.tsx'),hsGov=read('components/HousingSocietyGovernancePanel.tsx'),hsSec=read('components/HousingSocietySecurityPanel.tsx'),fca=read('components/FamilyAssociationAdminPanel.tsx');
 ok('Mission 2 package script exists',pkg.scripts?.['qa:mission2']==='node qa/run-mission2-regression.mjs');
 ok('Mission 2 source gate package script exists',pkg.scripts?.['validate:mission2']==='node scripts/mission2-slow-user-regression-gate.mjs');
@@ -35,7 +35,15 @@ ok('Family slow crawl is strict-runtime watched',family.includes('expertCrawl')&
 ok('mobile progressive navigation uses responsive selector',family.includes("project.name!=='chromium-mobile'")&&family.includes('qa-section-select'));
 ok('mobile surface helper uses bottom-nav and More sheet',helper.includes('qa-mobile-nav-${id}')&&helper.includes('qa-mobile-nav-more')&&helper.includes('qa-mobile-more-${id}'));
 ok('tenant isolation has direct negative proof',isolation.includes('tenantB')&&isolation.includes('set_active_network')&&isolation.includes('not.toBeNull'));
-ok('owner/admin/member crawls cover all three flagship verticals',roleCrawl.includes("['family','family-association','housing-society']")&&roleCrawl.includes("['owner','admin','member']")&&roleCrawl.includes('expectedCrawlerTestIds(kind,role)'));
+ok('owner/admin/member crawls cover every released vertical',roleCrawl.includes('VERTICALS.map(v=>v.kind)')&&roleCrawl.includes("['owner','admin','member']")&&roleCrawl.includes('expectedCrawlerTestIds(kind,role)'));
+ok('every released owner surface gets an interactive inventory',surfaceInventory.includes('for(const vertical of VERTICALS)')&&surfaceInventory.includes('qa-nav-')&&surfaceInventory.includes('interactive-inventory'));
+ok('Mission 2 runner executes broad historical regression backfill',runner.includes('mission2-existing-product-regression')&&runner.includes('70-destructive-lifecycle-import.spec.ts')&&runner.includes('81-resilience-runtime.spec.ts'));
+ok('Windows-safe headed and slow Mission 2 scripts exist',pkg.scripts?.['qa:mission2:headed']==='node qa/run-mission2-regression.mjs --headed'&&pkg.scripts?.['qa:mission2:slow']==='node qa/run-mission2-regression.mjs --pace=1000');
+ok('seed runtime uses responsive openSurface instead of hidden admin click',read('qa/e2e/26-final-launch-seed-runtime.spec.ts').includes("openSurface(page,'admin')"));
+ok('malformed testInfo callback pattern removed from QA',!fs.readdirSync('qa/e2e').some(f=>f.endsWith('.ts')&&read(`qa/e2e/${f}`).includes('testInfo})')));
+ok('accidental root Phase2 spec duplicate removed',!fs.existsSync('16-phase2-representative-capabilities.spec.ts'));
+ok('media repair uses explicit path actor + membership contract',mediaRepair.includes('storage_path_owner_user_id')&&mediaRepair.includes('has_active_network_membership')&&mediaRepair.includes('prepare_network_media_upload'));
+ok('client preflights media membership before Storage upload',storage.includes("supabase.rpc('prepare_network_media_upload'"));
 ok('responsive shared tabs expose stable QA hooks',tabs.includes('qa-section-${option.id}')&&tabs.includes('qa-section-select'));
 ok('shared post controls expose stable QA hooks',posts.includes('qa-post-create')&&posts.includes('qa-post-photo')&&posts.includes('qa-post-comment-submit'));
 ok('shared funds controls expose stable QA hooks',funds.includes('qa-fund-create')&&funds.includes('qa-fund-tx-record'));

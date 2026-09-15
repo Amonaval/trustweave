@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {login} from '../lib/login';
 import {authenticatedClient} from '../lib/role-client';
+import {openSurface} from '../lib/mission2-regression';
 
 const enabled=process.env.TW_QA_FINAL_LAUNCH_SEED==='1';
 
@@ -19,7 +20,7 @@ test.describe('Final launch persisted synthetic seed runtime',()=>{
     expect((await owner.client.rpc('set_active_network',{p_network_id:networkId})).error).toBeNull();
     await login(page,'owner');
     await expect(page.getByTestId(`qa-vertical-shell-${spec.kind}`)).toBeVisible({timeout:30_000});
-    await page.getByTestId('qa-nav-admin').click();
+    await openSurface(page,'admin');
     const loader=page.getByTestId('qa-launch-data-loader');await expect(loader).toBeVisible({timeout:20_000});
     await loader.getByTestId('qa-launch-confirm-name').fill(name);await loader.getByTestId('qa-launch-synthetic-confirm').check();
     await loader.getByTestId('qa-launch-authorize').click();await expect(loader.getByText('Authorized')).toBeVisible({timeout:20_000});

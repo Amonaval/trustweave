@@ -1,4 +1,5 @@
-import {expect,type Page,type TestInfo,type Locator} from '@playwright/test';
+import {expect} from '@playwright/test';
+import type {Page,TestInfo,Locator} from '@playwright/test';
 import fs from 'node:fs';import path from 'node:path';
 
 export type Mission2Issue={kind:'console'|'pageerror'|'requestfailed'|'http';message:string;url?:string;status?:number;body?:string;at:string};
@@ -35,23 +36,25 @@ export function mission2Watch(page:Page,testInfo:TestInfo){
 
 
 export async function openSurface(page:Page,id:string){
- const desktop=page.getByTestId(`qa-nav-${id}`).first();
- if(await desktop.isVisible().catch(()=>false)){await userClick(page,desktop);return}
- const mobilePrimary=page.getByTestId(`qa-mobile-nav-${id}`).first();
- if(await mobilePrimary.isVisible().catch(()=>false)){await userClick(page,mobilePrimary);return}
- const desktopMore=page.locator('.product-nav-more summary').first();
- if(await desktopMore.isVisible().catch(()=>false)){
+ const visible=async(testId:string)=>page.locator(`[data-testid="${testId}"]:visible`).first();
+ let target=await visible(`qa-nav-${id}`);
+ if(await target.count()){await userClick(page,target);return}
+ target=await visible(`qa-mobile-nav-${id}`);
+ if(await target.count()){await userClick(page,target);return}
+ const desktopMore=page.locator('.product-nav-more:visible summary, .family-nav-more:visible summary').first();
+ if(await desktopMore.count()){
   await desktopMore.click();await userPause(page,.4);
-  if(await desktop.isVisible().catch(()=>false)){await userClick(page,desktop);return}
+  target=await visible(`qa-nav-${id}`);
+  if(await target.count()){await userClick(page,target);return}
  }
- const mobileMore=page.getByTestId('qa-mobile-nav-more').first();
- if(await mobileMore.isVisible().catch(()=>false)){
+ const mobileMore=await visible('qa-mobile-nav-more');
+ if(await mobileMore.count()){
   await userClick(page,mobileMore,.35);
-  const item=page.getByTestId(`qa-mobile-more-${id}`).first();
-  await expect(item,`mobile surface ${id} should be reachable`).toBeVisible({timeout:10_000});
-  await userClick(page,item);return;
+  target=await visible(`qa-mobile-more-${id}`);
+  await expect(target,`mobile surface ${id} should be reachable`).toBeVisible({timeout:10_000});
+  await userClick(page,target);return;
  }
- await expect(desktop,`surface ${id} should be reachable`).toBeVisible({timeout:10_000});
+ await expect(page.locator(`[data-testid="qa-nav-${id}"]:visible`).first(),`surface ${id} should be reachable`).toBeVisible({timeout:10_000});
 }
 
 export async function expectPersistedText(page:Page,text:string){

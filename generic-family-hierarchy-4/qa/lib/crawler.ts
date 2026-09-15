@@ -9,11 +9,12 @@ const fatal=/Unhandled Runtime Error|Application error|column reference .* ambig
 type NodeRec={id:string;url:string;text:string;tag:string;role:string|null;testId:string|null;href:string|null;disabled:boolean};
 type Edge={from:string;to:string;action:string;testId:string|null;outcome:'navigated'|'state-change'|'blocked'|'error';error?:string};
 function slug(x:string){return x.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)||'action'}
-async function inventory(page:Page):Promise<NodeRec[]>{return await page.locator('a:visible,button:visible,[role=tab]:visible,[role=menuitem]:visible,[data-testid]:visible').evaluateAll((els:any[])=>els.slice(0,300).map((el:any,i)=>({id:String(i),url:location.href,text:(el.innerText||el.getAttribute('aria-label')||el.getAttribute('title')||'').trim(),tag:el.tagName.toLowerCase(),role:el.getAttribute('role'),testId:el.getAttribute('data-testid'),href:el.getAttribute('href'),disabled:!!el.disabled||el.getAttribute('aria-disabled')==='true'})))}
+async function inventory(page:Page):Promise<NodeRec[]>{return await page.locator('a:visible,button:visible,input:visible,select:visible,textarea:visible,summary:visible,[role=tab]:visible,[role=menuitem]:visible,[role=button]:visible,[data-testid]:visible').evaluateAll((els:any[])=>els.slice(0,300).map((el:any,i)=>({id:String(i),url:location.href,text:(el.innerText||el.getAttribute('aria-label')||el.getAttribute('title')||'').trim(),tag:el.tagName.toLowerCase(),role:el.getAttribute('role'),testId:el.getAttribute('data-testid'),href:el.getAttribute('href'),disabled:!!el.disabled||el.getAttribute('aria-disabled')==='true'})))}
 export async function expertCrawl(page:Page,testInfo:TestInfo,{maxActions=60,role='unknown',scope='app',expectedTestIds=[]}:{maxActions?:number;role?:string;scope?:string;expectedTestIds?:string[]}={}){
  const watch=attachRuntimeWatch(page,testInfo),visited=new Set<string>(),nodes=new Map<string,NodeRec>(),edges:Edge[]=[];let current=`page:${page.url()}`;const pace=Math.max(100,Number(process.env.QA_CRAWL_PACE_MS||300));
  for(let n=0;n<maxActions;n++){
   await page.waitForLoadState('domcontentloaded');await page.waitForTimeout(Math.max(100,Math.round(pace*.5)));
+  await page.locator('details:visible').evaluateAll((els:any[])=>els.forEach((el:any)=>{el.open=true})).catch(()=>{});
   for(const item of await inventory(page)){const k=`${item.url}|${item.testId||item.text}|${item.href||''}`;nodes.set(k,{...item,id:k})}
   const candidates=page.locator('a:visible,button:visible,[role=tab]:visible,[role=menuitem]:visible');const count=Math.min(await candidates.count(),180);let acted=false;
   for(let i=0;i<count;i++){

@@ -1,4 +1,5 @@
-import {expect,type Page} from '@playwright/test';
+import {expect} from '@playwright/test';
+import type {Page} from '@playwright/test';
 const keys={owner:['QA_OWNER_EMAIL','QA_OWNER_PASSWORD'],admin:['QA_ADMIN_EMAIL','QA_ADMIN_PASSWORD'],member:['QA_MEMBER_EMAIL','QA_MEMBER_PASSWORD'],invitee:['QA_INVITEE_EMAIL','QA_INVITEE_PASSWORD']} as const;
 export async function login(page:Page,role:keyof typeof keys){
  const [ek,pk]=keys[role],email=process.env[ek],password=process.env[pk];

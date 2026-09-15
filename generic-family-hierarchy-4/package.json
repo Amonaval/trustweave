@@ -194,7 +194,10 @@
     "qa:mission2": "node qa/run-mission2-regression.mjs",
     "qa:mission2:desktop": "playwright test qa/e2e/27-mission2-shared-user-journeys.spec.ts qa/e2e/28-mission2-housing-user-journeys.spec.ts qa/e2e/29-mission2-family-community-admin.spec.ts qa/e2e/30-mission2-family-and-mobile.spec.ts qa/e2e/31-mission2-isolation-permissions.spec.ts qa/e2e/32-mission2-role-crawl.spec.ts --project=chromium-desktop --workers=1",
     "qa:mission2:mobile": "playwright test qa/e2e/30-mission2-family-and-mobile.spec.ts --project=chromium-mobile --workers=1",
-    "qa:mission2:mission1-retest": "playwright test qa/e2e/26-final-launch-seed-runtime.spec.ts --project=chromium-desktop --workers=1"
+    "qa:mission2:mission1-retest": "playwright test qa/e2e/26-final-launch-seed-runtime.spec.ts --project=chromium-desktop --workers=1",
+    "qa:mission2:headed": "node qa/run-mission2-regression.mjs --headed",
+    "qa:mission2:slow": "node qa/run-mission2-regression.mjs --pace=1000",
+    "qa:mission2:surface-inventory": "playwright test qa/e2e/33-mission2-all-surface-inventory.spec.ts --project=chromium-desktop --workers=1"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.54.0",

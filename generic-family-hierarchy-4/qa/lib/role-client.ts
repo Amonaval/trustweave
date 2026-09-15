@@ -1,4 +1,5 @@
-import fs from 'node:fs';import path from 'node:path';import {createClient,type SupabaseClient} from '@supabase/supabase-js';
+import fs from 'node:fs';import path from 'node:path';import {createClient} from '@supabase/supabase-js';
+import type {SupabaseClient} from '@supabase/supabase-js';
 type Role='owner'|'admin'|'member'|'invitee'|'tenantB';
 const map:Record<Role,string>={owner:'QA_OWNER',admin:'QA_ADMIN',member:'QA_MEMBER',invitee:'QA_INVITEE',tenantB:'QA_TENANT_B_OWNER'};
 function loadGenerated(){const file=path.resolve('qa-results/fixtures/generated.env');if(!fs.existsSync(file))return;for(const raw of fs.readFileSync(file,'utf8').split(/\r?\n/)){const i=raw.indexOf('=');if(i<1)continue;const k=raw.slice(0,i),v=raw.slice(i+1);if(!process.env[k])process.env[k]=v}}

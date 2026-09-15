@@ -5,7 +5,7 @@ Run broad real-user regression slowly enough for the Supabase Free Tier while tr
 
 ## Prerequisites
 1. Use the Mission-2 FULL ZIP as the source tree.
-2. Apply Supabase migrations through **115** to an approved staging/QA project.
+2. Apply Supabase migrations through **116** to an approved staging/QA project.
 3. Create `.env.qa` from the existing QA example/guidance with staging credentials and test users.
 4. Set `QA_MODE=staging` and `QA_ALLOW_MUTATION=true`.
 5. Restore dependencies from the committed `package-lock.json`.
@@ -16,18 +16,20 @@ Run broad real-user regression slowly enough for the Supabase Free Tier while tr
 npm run qa:mission2
 ```
 
-For visual observation:
+For visual observation on Windows/macOS/Linux:
 ```bash
-QA_M2_HEADED=true npm run qa:mission2
+npm run qa:mission2:headed
 ```
 
-For a slower project:
+For a slower 1-second pace on Windows/macOS/Linux:
 ```bash
-QA_USER_PACE_MS=1000 QA_CRAWL_PACE_MS=1000 npm run qa:mission2
+npm run qa:mission2:slow
 ```
+
+The raw environment-variable form remains valid in Bash/PowerShell when set using that shell's syntax, but the npm scripts are preferred because they are cross-platform.
 
 ## Expected execution
-The runner is one-worker serial. It first runs the full Mission-1 fresh-seed/idempotency proof, then the normal-user journeys, role crawls, isolation test and mobile test.
+The runner is one-worker serial. It first runs the full Mission-1 fresh-seed/idempotency proof, then deterministic user journeys, owner/admin/member crawls across every released vertical, a complete instrumented surface/control inventory, the historical vertical/auth/API/workbook/accessibility/lifecycle/resilience regression pack, isolation proof and mobile test.
 
 Do not rerun by repeatedly clicking if the first run reports an error. Inspect:
 - `qa-results/mission2/SUMMARY.md`
@@ -54,6 +56,7 @@ Expected authorization denials are allowed only when explicitly declared by the 
 npm run qa:mission2:mission1-retest
 npm run qa:mission2:desktop
 npm run qa:mission2:mobile
+npm run qa:mission2:surface-inventory
 npm run validate:mission2
 ```
 

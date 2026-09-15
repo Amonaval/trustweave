@@ -1,5 +1,6 @@
 import fs from 'node:fs';import {spawn} from 'node:child_process';import {loadQaEnv,isStaging,mutationAllowed,writeJson} from './runtime/env.mjs';
 loadQaEnv();fs.mkdirSync('qa-results/mission2',{recursive:true});
+const cli=process.argv.slice(2);if(cli.includes('--headed'))process.env.QA_M2_HEADED='true';const paceArg=cli.find(x=>x.startsWith('--pace='));if(paceArg){const pace=paceArg.split('=')[1];process.env.QA_USER_PACE_MS=pace;process.env.QA_CRAWL_PACE_MS=pace;}
 process.env.QA_USER_PACE_MS=process.env.QA_USER_PACE_MS||'700';process.env.QA_CRAWL_PACE_MS=process.env.QA_CRAWL_PACE_MS||'700';process.env.QA_M2_CRAWL_ACTIONS=process.env.QA_M2_CRAWL_ACTIONS||'22';
 const steps=[];
 async function run(name,cmd,args,{required=true,env={}}={}){const started=Date.now();const result=await new Promise(resolve=>{const c=spawn(cmd,args,{stdio:'inherit',env:{...process.env,...env},shell:process.platform==='win32'});c.on('close',code=>resolve({code:code??1}));c.on('error',e=>resolve({code:127,error:e.message}))});const row={name,status:result.code===0?'passed':'failed',exitCode:result.code,durationMs:Date.now()-started,required,error:result.error||null};steps.push(row);return row.status==='passed'}
@@ -20,7 +21,21 @@ if(!isStaging()||!mutationAllowed()){
   'qa/e2e/29-mission2-family-community-admin.spec.ts',
   'qa/e2e/30-mission2-family-and-mobile.spec.ts',
   'qa/e2e/31-mission2-isolation-permissions.spec.ts',
-  'qa/e2e/32-mission2-role-crawl.spec.ts'
+  'qa/e2e/32-mission2-role-crawl.spec.ts',
+  'qa/e2e/33-mission2-all-surface-inventory.spec.ts'
+ ]));
+ await run('mission2-existing-product-regression','npx',pw([
+  'qa/e2e/20-vertical-smoke-matrix.spec.ts',
+  'qa/e2e/30-authorization-matrix.spec.ts',
+  'qa/e2e/35-api-integration.spec.ts',
+  'qa/e2e/40-golden-shared-flows.spec.ts',
+  'qa/e2e/45-guided-workbook-roundtrip.spec.ts',
+  'qa/e2e/50-vertical-deep-flows.spec.ts',
+  'qa/e2e/55-vertical-capability-matrix.spec.ts',
+  'qa/e2e/60-accessibility-responsive.spec.ts',
+  'qa/e2e/70-destructive-lifecycle-import.spec.ts',
+  'qa/e2e/80-data-volume-resilience.spec.ts',
+  'qa/e2e/81-resilience-runtime.spec.ts'
  ]));
  await run('mission2-mobile-user-journey','npx',pw(['qa/e2e/30-mission2-family-and-mobile.spec.ts'],'chromium-mobile'));
 }

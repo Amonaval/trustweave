@@ -1,4 +1,5 @@
-import {test,expect,type Page} from '@playwright/test';
+import {test,expect} from '@playwright/test';
+import type {Page} from '@playwright/test';
 import {createClient} from '@supabase/supabase-js';
 import {login} from '../lib/login';
 import {authenticatedClient,seedState} from '../lib/role-client';

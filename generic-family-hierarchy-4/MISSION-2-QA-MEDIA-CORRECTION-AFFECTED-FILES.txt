@@ -1,0 +1,40 @@
+# Mission 2 QA + Media Correction affected files
+# Baseline: TRUSTWEAVE-MISSION-2-SLOW-USER-REGRESSION-FULL.zip
+# Added: 7 | Modified: 30 | Removed: 1
+
+MISSION-2-QA-MEDIA-CORRECTION-APPLY-NOTE.md
+MISSION-2-QA-MEDIA-CORRECTION-REMOVED-FILES.txt
+MISSION-2-RUNTIME-QA-CORRECTION.md
+TRUSTWEAVE-MISSION-2-QA-MEDIA-CORRECTION-RELEASE-MANIFEST.md
+qa/e2e/33-mission2-all-surface-inventory.spec.ts
+supabase/migrations/116_mission2_media_membership_runtime_repair.sql
+MISSION-2-AUTOMATION-RUNBOOK.md
+MISSION-2-SLOW-USER-REGRESSION-CLOSURE.md
+lib/storage.ts
+package.json
+qa/e2e/16-phase2-representative-capabilities.spec.ts
+qa/e2e/17-phase3-expanded-parity-roles.spec.ts
+qa/e2e/18-phase4a-runtime-recovery.spec.ts
+qa/e2e/19-phase4b-data-integrity-recovery.spec.ts
+qa/e2e/20-vertical-smoke-matrix.spec.ts
+qa/e2e/21-phase4c-governance-permissions-destructive.spec.ts
+qa/e2e/22-phase4d-vertical-business-rules.spec.ts
+qa/e2e/24-showcase-stabilization-certification.spec.ts
+qa/e2e/26-final-launch-seed-runtime.spec.ts
+qa/e2e/30-authorization-matrix.spec.ts
+qa/e2e/30-mission2-family-and-mobile.spec.ts
+qa/e2e/32-mission2-role-crawl.spec.ts
+qa/e2e/40-golden-shared-flows.spec.ts
+qa/e2e/45-guided-workbook-roundtrip.spec.ts
+qa/e2e/50-vertical-deep-flows.spec.ts
+qa/e2e/55-vertical-capability-matrix.spec.ts
+qa/e2e/60-accessibility-responsive.spec.ts
+qa/fixtures/roles.ts
+qa/lib/crawler.ts
+qa/lib/login.ts
+qa/lib/mission2-regression.ts
+qa/lib/role-client.ts
+qa/run-mission2-regression.mjs
+qa/unit/phase4d-business-rules.test.ts
+scripts/final-launch-source-gate.mjs
+scripts/mission2-slow-user-regression-gate.mjs
