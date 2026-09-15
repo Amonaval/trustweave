@@ -597,6 +597,31 @@ export async function createNetworkNotification(input:{networkId:string;userId:s
   if(!supabase)return;const {data,error}=await supabase.rpc("create_network_notification",{p_network_id:input.networkId,p_user_id:input.userId,p_type:input.type,p_title:input.title,p_body:input.body||null,p_surface:input.surface||null,p_entity_type:input.entityType||null,p_entity_id:input.entityId||null,p_priority:input.priority||"normal",p_metadata:input.metadata||{}});if(error)throw error;return data as string;
 }
 
+
+export type EngagementNotificationCategory="posts"|"mentions"|"complaints"|"funds"|"elections"|"events_membership"|"general";
+export type EngagementCategoryPreference={inbox:boolean;push:boolean};
+export type EngagementNotificationPreferences={
+ push_enabled:boolean;quiet_start:string|null;quiet_end:string|null;timezone:string;urgent_bypass_quiet:boolean;
+ categories:Record<EngagementNotificationCategory,EngagementCategoryPreference>;
+};
+const defaultEngagementCategories:EngagementNotificationPreferences["categories"]={
+ posts:{inbox:true,push:true},mentions:{inbox:true,push:true},complaints:{inbox:true,push:true},funds:{inbox:true,push:true},
+ elections:{inbox:true,push:true},events_membership:{inbox:true,push:true},general:{inbox:true,push:true},
+};
+export async function fetchEngagementNotificationPreferences():Promise<EngagementNotificationPreferences>{
+ const fallback:EngagementNotificationPreferences={push_enabled:false,quiet_start:null,quiet_end:null,timezone:Intl.DateTimeFormat().resolvedOptions().timeZone||"Asia/Kolkata",urgent_bypass_quiet:true,categories:structuredClone(defaultEngagementCategories)};
+ if(!supabase)return fallback;
+ const {data,error}=await supabase.rpc("get_my_engagement_notification_preferences");if(error)throw error;
+ const value=(data||{}) as Partial<EngagementNotificationPreferences>;const raw=(value.categories||{}) as Partial<Record<EngagementNotificationCategory,Partial<EngagementCategoryPreference>>>;
+ return {...fallback,...value,categories:(Object.keys(defaultEngagementCategories) as EngagementNotificationCategory[]).reduce((acc,key)=>{acc[key]={inbox:raw[key]?.inbox!==false,push:raw[key]?.push!==false};return acc},{...defaultEngagementCategories})};
+}
+export async function saveEngagementNotificationPreferences(input:EngagementNotificationPreferences){
+ if(!supabase)return;const {error}=await supabase.rpc("save_my_engagement_notification_preferences",{p_push_enabled:input.push_enabled,p_quiet_start:input.quiet_start||null,p_quiet_end:input.quiet_end||null,p_timezone:input.timezone||"Asia/Kolkata",p_urgent_bypass_quiet:input.urgent_bypass_quiet,p_categories:input.categories});if(error)throw error;
+}
+export function notificationEngagementCategory(notification:Pick<Notification,"type"|"metadata">):EngagementNotificationCategory{
+ const metaCategory=String(notification.metadata?.category||"") as EngagementNotificationCategory;if(["posts","mentions","complaints","funds","elections","events_membership","general"].includes(metaCategory))return metaCategory;const type=String(notification.type||"");if(type==="mention"||type==="role_mention")return "mentions";if(type.startsWith("complaint"))return "complaints";if(type.startsWith("fund_")||type==="payment_recorded"||type==="collection_due")return "funds";if(type.startsWith("ballot_")||type.startsWith("election")||type.startsWith("poll"))return "elections";if(type.startsWith("community_post")||type==="community_broadcast"||type==="post_mention"||type==="post_comment")return "posts";if(type.startsWith("event")||type.startsWith("membership")||type.startsWith("renewal"))return "events_membership";return "general";
+}
+
 export async function searchRemoteMembers(input: {
   query?: string;
   profession?: string;

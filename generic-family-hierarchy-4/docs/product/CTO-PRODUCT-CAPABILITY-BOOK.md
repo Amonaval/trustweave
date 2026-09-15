@@ -309,3 +309,11 @@
 251. E6–E8 should reuse the E1–E5 notification/media foundations rather than introduce parallel systems.
 252. Real-world MPF/community and Residential usage should drive the next product decisions.
 253. No major new vertical should be prioritized ahead of engagement/pilot proof unless strategy changes explicitly.
+
+
+## Engagement closure E6–E10
+- E6 adds auditable network funds/collection primitives.
+- E7 separates participation identity from secret vote choice and snapshots eligibility.
+- E8 adds explicit media lifecycle state and storage-management controls.
+- E9 reuses the shared activity model for community posts/broadcasts rather than introducing a second feed architecture.
+- **E10 Engagement Control Center** stores per-user/per-network delivery preferences and evaluates them server-side before Web Push. Quiet-hours suppression and category muting do not mutate notification source records.

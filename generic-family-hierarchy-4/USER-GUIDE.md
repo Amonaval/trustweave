@@ -1,6 +1,6 @@
 # TrustWeave — Current User & Admin Guide
 
-**Updated:** 2026-09-12
+**Updated:** 2026-09-13
 
 This is the short operational guide. For the complete user-experience behavior, see `docs/product/USER-EXPERIENCE-HANDBOOK.md`.
 
@@ -81,4 +81,29 @@ Create/Playground visibility controls discovery only; it must not remove valid e
 
 ## Verification
 
-For E1–E5 validation use `docs/engagement/E1-E5-VERIFICATION-GUIDE.md`.
+For E1–E10 validation use `docs/engagement/E1-E10-VERIFICATION-GUIDE.md`.
+
+
+## Community posts & broadcasts
+
+Community and Residential networks can use the shared Posts & Updates surface for member posts, photos, comments, reactions and mentions. Network admins can additionally mark important/urgent updates, pin posts and notify all eligible members.
+
+## Funds / collections
+
+Community leaders can manage membership-year funds, pooled/community funds and event-specific collections with receipts, transactions and relevant notifications.
+
+## Elections / voting
+
+Formal elections and polls support eligibility snapshots, nominations, voting windows, one-submission enforcement and controlled result publication. Secret ballots separate participation identity from vote choice.
+
+## Media & Storage
+
+Admins can review storage usage, archive/restores and explicitly delete archived media. TrustWeave does not automatically destructively clean old media.
+
+## Engagement Control Center
+
+Open the notification bell and choose the settings icon. Preferences apply to the **current network**.
+
+You can control Posts, Mentions, Complaints, Funds, Elections, Events/Membership and General activity independently for Inbox emphasis and Push delivery. Muted Inbox categories remain persisted and can be opened using **Show muted**. Quiet hours can be configured with timezone and an optional urgent-alert bypass.
+
+The in-app notification record remains authoritative even when Push is disabled or suppressed.

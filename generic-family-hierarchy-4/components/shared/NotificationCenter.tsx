@@ -1,44 +1,44 @@
 "use client";
 import {useCallback,useEffect,useMemo,useState} from "react";
 import {createPortal} from "react-dom";
-import {Bell,CheckCheck,ChevronRight,LoaderCircle,X,Smartphone} from "lucide-react";
+import {Bell,CheckCheck,ChevronRight,LoaderCircle,Settings2,Smartphone,X} from "lucide-react";
 import type {Notification} from "../../lib/types";
-import {fetchNotifications,fetchNotificationUnreadCount,markAllNotificationsRead,markNotificationRead,setActiveNetwork} from "../../lib/remote";
+import {fetchEngagementNotificationPreferences,fetchNotifications,fetchNotificationUnreadCount,markAllNotificationsRead,markNotificationRead,notificationEngagementCategory,saveEngagementNotificationPreferences,setActiveNetwork,type EngagementNotificationCategory,type EngagementNotificationPreferences} from "../../lib/remote";
 import {buildNotificationDeepLink} from "../../lib/notification-routing";
 import {disableWebPush,enableWebPush,getWebPushState} from "../../lib/push";
 import {useLanguage} from "../../lib/i18n";
 
-function relativeTime(value:string,locale:string){
- const seconds=Math.round((new Date(value).getTime()-Date.now())/1000),abs=Math.abs(seconds);
- const rtf=new Intl.RelativeTimeFormat(locale,{numeric:"auto"});
- if(abs<60)return rtf.format(seconds,"second");
- if(abs<3600)return rtf.format(Math.round(seconds/60),"minute");
- if(abs<86400)return rtf.format(Math.round(seconds/3600),"hour");
- return rtf.format(Math.round(seconds/86400),"day");
-}
+function relativeTime(value:string,locale:string){const seconds=Math.round((new Date(value).getTime()-Date.now())/1000),abs=Math.abs(seconds);const rtf=new Intl.RelativeTimeFormat(locale,{numeric:"auto"});if(abs<60)return rtf.format(seconds,"second");if(abs<3600)return rtf.format(Math.round(seconds/60),"minute");if(abs<86400)return rtf.format(Math.round(seconds/3600),"hour");return rtf.format(Math.round(seconds/86400),"day")}
+const categoryOrder:EngagementNotificationCategory[]=["posts","mentions","complaints","funds","elections","events_membership","general"];
+const categoryToken:Record<EngagementNotificationCategory,string>={posts:"E10PostsTxt",mentions:"E10MentionsTxt",complaints:"E10ComplaintsTxt",funds:"E10FundsTxt",elections:"E10ElectionsTxt",events_membership:"E10EventsMembershipTxt",general:"E10GeneralTxt"};
 
 export default function NotificationCenter({disabled=false}:{disabled?:boolean}){
- const {language,t}=useLanguage();
- const locale=language==="hi"?"hi-IN":language==="mr"?"mr-IN":"en-IN";
- const [open,setOpen]=useState(false),[items,setItems]=useState<Notification[]>([]),[unread,setUnread]=useState(0),[busy,setBusy]=useState(false),[error,setError]=useState(""),[pushState,setPushState]=useState<{supported:boolean;permission:string;subscribed:boolean}>({supported:false,permission:"default",subscribed:false});
+ const {language,t}=useLanguage();const locale=language==="hi"?"hi-IN":language==="mr"?"mr-IN":"en-IN";
+ const [open,setOpen]=useState(false),[settingsOpen,setSettingsOpen]=useState(false),[showMuted,setShowMuted]=useState(false),[items,setItems]=useState<Notification[]>([]),[unread,setUnread]=useState(0),[busy,setBusy]=useState(false),[error,setError]=useState(""),[prefs,setPrefs]=useState<EngagementNotificationPreferences|null>(null),[pushState,setPushState]=useState<{supported:boolean;permission:string;subscribed:boolean}>({supported:false,permission:"default",subscribed:false});
  const load=useCallback(async()=>{if(disabled)return;try{setError("");const [rows,count]=await Promise.all([fetchNotifications({limit:80}),fetchNotificationUnreadCount()]);setItems(rows);setUnread(count)}catch(e:any){setError(e.message||t("NotificationsCouldNotLoadTxt"))}},[disabled,t]);
+ const loadPrefs=useCallback(async()=>{try{setPrefs(await fetchEngagementNotificationPreferences())}catch(e:any){setError(e.message||t("E10PreferencesLoadFailedTxt"))}},[t]);
  useEffect(()=>{void load();void getWebPushState().then(setPushState).catch(()=>{});const onFocus=()=>void load();window.addEventListener("focus",onFocus);return()=>window.removeEventListener("focus",onFocus)},[load]);
- useEffect(()=>{if(!open)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setOpen(false)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[open]);
- const grouped=useMemo(()=>items,[items]);
+ useEffect(()=>{if(!open)return;void loadPrefs();const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setOpen(false)};window.addEventListener("keydown",onKey);return()=>window.removeEventListener("keydown",onKey)},[open,loadPrefs]);
+ const mutedCount=useMemo(()=>prefs?items.filter(n=>n.priority!=="urgent"&&!prefs.categories[notificationEngagementCategory(n)].inbox).length:0,[items,prefs]);
+ const grouped=useMemo(()=>!prefs||showMuted?items:items.filter(n=>n.priority==="urgent"||prefs.categories[notificationEngagementCategory(n)].inbox),[items,prefs,showMuted]);
  const openItem=async(n:Notification)=>{setBusy(true);try{if(!n.read_at)await markNotificationRead(n.id);if(n.network_id)await setActiveNetwork(n.network_id);const href=n.href||buildNotificationDeepLink({networkId:n.network_id,surface:String(n.metadata?.surface||"")||undefined,itemId:n.entity_id});window.location.assign(href)}catch(e:any){setError(e.message||t("NotificationCouldNotOpenTxt"));setBusy(false)}};
  const markAll=async()=>{setBusy(true);try{await markAllNotificationsRead();setItems(x=>x.map(n=>({...n,read_at:n.read_at||new Date().toISOString()})));setUnread(0)}catch(e:any){setError(e.message||t("NotificationsCouldNotUpdateTxt"))}finally{setBusy(false)}};
+ const changeCategory=(key:EngagementNotificationCategory,field:"inbox"|"push",value:boolean)=>setPrefs(current=>current?{...current,categories:{...current.categories,[key]:{...current.categories[key],[field]:value}}}:current);
+ const savePrefs=async()=>{if(!prefs)return;setBusy(true);setError("");try{await saveEngagementNotificationPreferences(prefs);setPrefs(await fetchEngagementNotificationPreferences());setSettingsOpen(false)}catch(e:any){setError(e.message||t("E10PreferencesSaveFailedTxt"))}finally{setBusy(false)}};
  if(disabled)return null;
  const drawer=open&&typeof document!=="undefined"?createPortal(<div className="notification-drawer-backdrop" data-testid="qa-notification-drawer" onMouseDown={e=>{if(e.target===e.currentTarget)setOpen(false)}}><aside className="notification-drawer" role="dialog" aria-modal="true" aria-label={t("NotificationsTxt")}>
-   <header><div><small>{t("YourUpdatesTxt")}</small><h2>{t("NotificationsTxt")}</h2></div><div><button className="icon-button" disabled={busy||unread===0} title={t("MarkAllReadTxt")} onClick={markAll}><CheckCheck size={18}/></button><button className="icon-button" aria-label={t("CloseTxt")} onClick={()=>setOpen(false)}><X size={18}/></button></div></header>
-   <div className="notification-push-control"><Smartphone size={17}/><span><b>{t("DeviceNotificationsTxt")}</b><small>{pushState.subscribed?t("PushEnabledTxt"):t("PushEnableHelpTxt")}</small></span>{pushState.supported?<button className="btn small" disabled={busy} onClick={async()=>{setBusy(true);setError("");try{if(pushState.subscribed)await disableWebPush();else await enableWebPush();setPushState(await getWebPushState())}catch(e:any){setError(e.message||t("PushCouldNotChangeTxt"))}finally{setBusy(false)}}}>{pushState.subscribed?t("DisableTxt"):t("EnableTxt")}</button>:<em>{t("NotSupportedTxt")}</em>}</div>
-   {error&&<div className="notification-error">{error}</div>}
-   {busy&&<div className="notification-busy"><LoaderCircle className="spin" size={18}/>{t("OpeningTxt")}</div>}
-   <div className="notification-list">{grouped.length===0?<div className="notification-empty"><Bell size={24}/><b>{t("NoNotificationsYetTxt")}</b><span>{t("NotificationsWillAppearHereTxt")}</span></div>:grouped.map(n=><button key={n.id} className={`notification-card ${n.read_at?"read":"unread"} priority-${n.priority||"normal"}`} onClick={()=>void openItem(n)}>
-    <span className="notification-card-dot"/><span className="notification-card-copy"><small>{n.network_name||"TrustWeave"} · {relativeTime(n.created_at,locale)}</small><b>{n.title}</b>{n.body&&<p>{n.body}</p>}<em>{(n.priority==="urgent"||n.priority==="high")?t(n.priority==="urgent"?"UrgentTxt":"ImportantTxt"):""}</em></span><ChevronRight size={16}/>
-   </button>)}</div>
+   <header><div><small>{t("YourUpdatesTxt")}</small><h2>{t("NotificationsTxt")}</h2></div><div><button className="icon-button" title={t("E10EngagementControlCenterTxt")} onClick={()=>setSettingsOpen(x=>!x)}><Settings2 size={18}/></button><button className="icon-button" disabled={busy||unread===0} title={t("MarkAllReadTxt")} onClick={markAll}><CheckCheck size={18}/></button><button className="icon-button" aria-label={t("CloseTxt")} onClick={()=>setOpen(false)}><X size={18}/></button></div></header>
+   {settingsOpen&&prefs&&<section className="e10-control-center" data-testid="qa-engagement-control-center"><div className="e10-control-head"><div><small>{t("E10CurrentNetworkTxt")}</small><h3>{t("E10EngagementControlCenterTxt")}</h3><p>{t("E10ControlCenterDescTxt")}</p></div></div>
+    <div className="e10-device-row"><Smartphone size={18}/><span><b>{t("DeviceNotificationsTxt")}</b><small>{pushState.subscribed?t("PushEnabledTxt"):t("PushEnableHelpTxt")}</small></span>{pushState.supported?<button className="btn small" disabled={busy} onClick={async()=>{setBusy(true);setError("");try{if(pushState.subscribed){await disableWebPush();setPrefs(p=>p?{...p,push_enabled:false}:p)}else{await enableWebPush();setPrefs(p=>p?{...p,push_enabled:true}:p)}setPushState(await getWebPushState())}catch(e:any){setError(e.message||t("PushCouldNotChangeTxt"))}finally{setBusy(false)}}}>{pushState.subscribed?t("DisableTxt"):t("EnableTxt")}</button>:<em>{t("NotSupportedTxt")}</em>}</div>
+    <div className="e10-category-grid"><div className="e10-category-head"><span>{t("E10CategoryTxt")}</span><span>{t("E10InboxTxt")}</span><span>{t("E10PushTxt")}</span></div>{categoryOrder.map(key=><div className="e10-category-row" key={key}><b>{t(categoryToken[key] as any)}</b><label><input type="checkbox" checked={prefs.categories[key].inbox} onChange={e=>changeCategory(key,"inbox",e.target.checked)}/><span className="sr-only">{t("E10InboxTxt")}</span></label><label><input type="checkbox" checked={prefs.categories[key].push} onChange={e=>changeCategory(key,"push",e.target.checked)}/><span className="sr-only">{t("E10PushTxt")}</span></label></div>)}</div>
+    <div className="e10-quiet-grid"><label><span>{t("E10QuietStartsTxt")}</span><input type="time" value={prefs.quiet_start||""} onChange={e=>setPrefs({...prefs,quiet_start:e.target.value||null})}/></label><label><span>{t("E10QuietEndsTxt")}</span><input type="time" value={prefs.quiet_end||""} onChange={e=>setPrefs({...prefs,quiet_end:e.target.value||null})}/></label><label><span>{t("E10TimezoneTxt")}</span><input value={prefs.timezone} onChange={e=>setPrefs({...prefs,timezone:e.target.value})} placeholder="Asia/Kolkata"/></label></div>
+    <label className="e10-urgent-toggle"><input type="checkbox" checked={prefs.urgent_bypass_quiet} onChange={e=>setPrefs({...prefs,urgent_bypass_quiet:e.target.checked})}/><span><b>{t("E10UrgentBypassTxt")}</b><small>{t("E10UrgentBypassDescTxt")}</small></span></label>
+    <div className="e10-control-note">{t("E10SourceTruthTxt")}</div><div className="e10-control-actions"><button className="btn small" onClick={()=>setSettingsOpen(false)}>{t("CancelTxt")}</button><button className="btn primary small" disabled={busy} onClick={()=>void savePrefs()}>{t("SavePreferencesTxt")}</button></div>
+   </section>}
+   {!settingsOpen&&<div className="notification-push-control"><Smartphone size={17}/><span><b>{t("DeviceNotificationsTxt")}</b><small>{pushState.subscribed?t("PushEnabledTxt"):t("PushEnableHelpTxt")}</small></span>{pushState.supported?<button className="btn small" disabled={busy} onClick={async()=>{setBusy(true);setError("");try{if(pushState.subscribed)await disableWebPush();else await enableWebPush();setPushState(await getWebPushState());void loadPrefs()}catch(e:any){setError(e.message||t("PushCouldNotChangeTxt"))}finally{setBusy(false)}}}>{pushState.subscribed?t("DisableTxt"):t("EnableTxt")}</button>:<em>{t("NotSupportedTxt")}</em>}</div>}
+   {error&&<div className="notification-error">{error}</div>}{busy&&<div className="notification-busy"><LoaderCircle className="spin" size={18}/>{t("OpeningTxt")}</div>}
+   {!settingsOpen&&mutedCount>0&&<button className="e10-muted-toggle" onClick={()=>setShowMuted(x=>!x)}>{showMuted?t("E10HideMutedTxt"):t("E10ShowMutedTxt")} · {mutedCount}</button>}
+   {!settingsOpen&&<div className="notification-list">{grouped.length===0?<div className="notification-empty"><Bell size={24}/><b>{t("NoNotificationsYetTxt")}</b><span>{t("NotificationsWillAppearHereTxt")}</span></div>:grouped.map(n=><button key={n.id} className={`notification-card ${n.read_at?"read":"unread"} priority-${n.priority||"normal"}`} onClick={()=>void openItem(n)}><span className="notification-card-dot"/><span className="notification-card-copy"><small>{n.network_name||"TrustWeave"} · {relativeTime(n.created_at,locale)}</small><b>{n.title}</b>{n.body&&<p>{n.body}</p>}<em>{(n.priority==="urgent"||n.priority==="high")?t(n.priority==="urgent"?"UrgentTxt":"ImportantTxt"):""}</em></span><ChevronRight size={16}/></button>)}</div>}
   </aside></div>,document.body):null;
- return <>
-  <button data-testid="qa-notification-bell" className="notification-bell-button" aria-label={t("NotificationsTxt")} onClick={()=>{setOpen(true);void load()}}><Bell size={18}/>{unread>0&&<span>{unread>99?"99+":unread}</span>}</button>
-  {drawer}
- </>;
+ return <><button data-testid="qa-notification-bell" className="notification-bell-button" aria-label={t("NotificationsTxt")} onClick={()=>{setOpen(true);void load()}}><Bell size={18}/>{unread>0&&<span>{unread>99?"99+":unread}</span>}</button>{drawer}</>;
 }

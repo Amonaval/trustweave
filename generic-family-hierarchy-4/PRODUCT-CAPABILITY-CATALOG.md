@@ -155,3 +155,13 @@
 | Graph-aware RAG | 🧪 experiment |
 | Knowledge-risk loop | 🧪 experiment |
 | Mandatory AI dependency | ⏸ explicitly avoided |
+
+
+## Engagement E6–E10
+| Capability | Status | Notes |
+|---|---|---|
+| Funds / collections | Implemented | Membership, pooled and event funds with transactions/receipts |
+| Elections / voting | Implemented | Eligibility, nominations, voting windows, secret-ballot separation |
+| Media lifecycle | Implemented | Archive, restore, quota visibility, explicit deletion |
+| Community posts / broadcasts | Implemented | Media, comments, reactions, mentions, pin/important/urgent |
+| Engagement Control Center | Implemented | Category Inbox/Push preferences, quiet hours, timezone, urgent bypass |

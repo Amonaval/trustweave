@@ -39,3 +39,9 @@ The repository contains a large preserved engineering history. Use this page to 
 - `archive/DOCUMENTATION-ROOT-CLEANUP-2026-09-12.md`
 
 Historical mission files are preserved by mission family under `archive/docs/missions/`. Archiving means **preserved but no longer the primary source of current product truth**.
+
+
+## Latest engagement closure
+- `docs/engagement/E1-E10-VERIFICATION-GUIDE.md` — combined E1–E10 validation.
+- `docs/engagement/E10-ENGAGEMENT-CONTROL-CENTER.md` — final engagement mission.
+- `NEXT-MISSION-DISCOVERY-PRODUCT-EXPLORATION.md` — next-session product transformation handoff.

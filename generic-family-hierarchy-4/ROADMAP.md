@@ -1,86 +1,59 @@
 # TrustWeave — Product Roadmap
 
-**Updated:** 2026-09-12
+**Updated:** 2026-09-13
 
-The roadmap is now intentionally evidence-driven. TrustWeave already has a large capability surface; near-term value comes from engagement, operational depth and real pilot usage rather than adding another broad vertical.
+TrustWeave now has sufficient flagship vertical depth for controlled pilots. The roadmap therefore moves from broad feature construction to **adoption, discovery and real-world evidence**.
 
-## Now — Engagement Program
+## Closed — Engagement E1–E10
 
-### E5 — Shared Media Pipeline — IMPLEMENTED / VERIFY
-- shared media registry,
-- WebP compression,
-- thumbnail generation,
-- private signed media,
-- profile/memory/event/announcement/activity/complaint presets,
-- complaint-specific privacy,
-- notification drawer layering/height repair.
+The completed engagement stack now provides:
+- persistent notification inbox + exact deep links,
+- browser Push foundation,
+- named/role mentions and responsibility routing,
+- Residential complaint routing + private photos,
+- shared compressed media pipeline,
+- Community funds/collections,
+- elections/voting/polls,
+- media lifecycle/quota/cleanup,
+- community posts/broadcasts/comments/reactions,
+- per-user Engagement Control Center with category Push/Inbox preferences and quiet hours.
 
-### E6 — Membership Funds / Pool Funds / Event Collections — NEXT
-Goals:
-- annual membership ledger,
-- household/family dues,
-- pooled/community funds,
-- event collections,
-- receipts/expenses,
-- fund/event balance summaries,
-- Treasurer/President notifications,
-- deep links into the relevant ledger/event.
+## Now — Discovery & Product Exploration
 
-### E7 — Elections / Nominations / Voting / Polls
-Goals:
-- distinguish casual polls from formal elections,
-- eligibility rules,
-- nominations/candidate approval,
-- voting windows,
-- one-person/household policy,
-- atomic vote submission,
-- participation/audit trail,
-- controlled result publication,
-- stronger privacy model for secret ballots.
+Goal: make TrustWeave understandable and compelling **before login**.
 
-### E8 — Media Archive / Quota / Cleanup
-Goals:
-- active/archive lifecycle,
-- network storage dashboard,
-- media inventory,
-- selective archive/unarchive/delete,
-- old-event-photo management,
-- orphan candidate detection,
-- explicit/auditable cleanup rather than automatic destructive deletion.
+Priority work:
+1. Anonymous landing information architecture.
+2. Chairman / President / Director value journeys.
+3. Capability explorer organized around real jobs/outcomes.
+4. Prominent Playground paths for Community and Residential.
+5. Public-safe Product Knowledge / Doc Center.
+6. Progressive depth: 10-second summary → 2-minute role story → detailed product/technical proof.
+7. Clear conversion: Explore → Try Playground → Understand onboarding/import → Sign in/Create.
+8. Public/private documentation separation so founder/security-sensitive material never ships merely hidden.
+9. Lightweight product-discovery analytics that do not collect private network content.
 
-## Then — Pilot evidence
+## Then — Controlled pilot evidence
 
-1. MPF/community pilot: repeated usage, membership operations, events, funds and notifications.
-2. Residential pilot: complaints, notices, dues, committee workflow and notification-driven return.
-3. Measure whether members actually return through notifications and useful network activity.
-4. Review storage/quota economics under real photo behavior.
-5. Decide which capabilities deserve commercialization/deeper hardening.
+### MPF / Community pilot
+Measure:
+- onboarding completion,
+- membership/renewal usage,
+- event participation,
+- collections/funds usage,
+- posts/mentions/notification-driven return,
+- committee operational value.
 
-## Preserve, do not reopen casually
+### Residential pilot
+Measure:
+- complaint resolution loop,
+- notices/operations usage,
+- amenities/maintenance/visitor workflows,
+- committee adoption,
+- notification-driven return,
+- admin/member onboarding friction.
 
-- Family depth and simple/explore presentation.
-- Federation/network-of-networks foundations.
-- Network Intelligence/RAG experiments.
-- Professional/Organization/Business Trust/Franchise proofs.
-- Existing QA certification evidence.
-
-These remain available but are not current priority unless pilot evidence changes direction.
-
-## Historical productization milestones
-
-The roadmap retains the earlier progression:
-
-- **G8.5-A** baseline cleanup/capability audit,
-- **G8.5-B** generic capability parity,
-- **G8.5-C — Five-Vertical Product Showcase**,
-- **G9** Network Intelligence,
-- Mission 1–7F product/runtime/pilot series,
-- NF0A–NF8 federation,
-- NX1–NX9 product unification,
-- FCA/MPF and HS vertical deepening,
-- XP0–XP7 cross-vertical parity,
-- QA phases,
-- Showcase S0–S5 + repair/stabilization,
-- Engagement E1–E5.
+## Only after pilot evidence
+Evaluate payment/accounting integrations, stronger operational reports, native/mobile packaging, additional vertical-specific features and broader commercialization.
 
 Full history: `docs/product/TRUSTWEAVE-MISSION-JOURNEY.md`.

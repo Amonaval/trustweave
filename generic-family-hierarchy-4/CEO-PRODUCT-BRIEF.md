@@ -1,6 +1,6 @@
 # TrustWeave — CEO Product Brief
 
-**Current product stage:** Multi-vertical private Network OS with showcase-ready Family, Community/Association and Residential products; cross-vertical engagement stack implemented through E5.
+**Current product stage:** Multi-vertical private Network OS with showcase-ready Family, Community/Association and Residential products; cross-vertical engagement stack implemented through E10.
 
 TrustWeave is a **private operating system for real-world networks**. It began as a family relationship product and evolved into a reusable platform for independently governed networks: families, cultural/community associations, housing societies, alumni groups, professional networks, organizations, business-trust ecosystems and franchise networks.
 
@@ -14,4 +14,4 @@ The latest engagement layer addresses a fundamental adoption problem: **people d
 
 TrustWeave’s strategic differentiation is not “another directory” or “another social feed.” It is **governed network context + operational workflows + trusted relationships + reusable multi-network infrastructure**. The long-term network effect comes from people participating in multiple isolated networks that can selectively interoperate through explicit trust, federation and consent.
 
-Near-term priority is not more verticals. It is proving repeated real-world usage in MPF/community and residential pilots, finishing funds/elections/media lifecycle, validating notifications and push delivery, and measuring whether TrustWeave reduces administrative friction and improves member participation.
+Near-term priority is not more verticals. It is proving repeated real-world usage in MPF/community and residential pilots, running controlled MPF and Residential pilots, improving product discovery/onboarding, and validating notification-driven return, and measuring whether TrustWeave reduces administrative friction and improves member participation.

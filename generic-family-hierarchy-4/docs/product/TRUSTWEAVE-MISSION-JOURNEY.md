@@ -1,6 +1,6 @@
 # TrustWeave — Complete Mission Journey
 
-**Canonical sequence through E5**  
+**Canonical sequence through E10**  
 **Updated:** 2026-09-12
 
 This is the centralized historical ledger requested for TrustWeave. It is **append-only**. Closed mission evidence is preserved in `archive/`; current product truth lives in `CURRENT-STATE.md`, `ROADMAP.md` and the product documentation under `docs/product/`.
@@ -541,16 +541,40 @@ Documentation: `docs/engagement/E5-SHARED-MEDIA-PIPELINE.md`
 
 ---
 
-## Current frontier — intentionally next, not yet claimed complete
+## Engagement closure — E6 through E10
 
-### 129. E6 — MPF Membership Funds + Pool/Event Collections
-**Planned:** membership ledger, pooled/community funds, event collections, receipts/expenses and notification integration.
+### 129. E6 — Membership Funds, Pool Funds & Event Collections
+**Outcome:** Added auditable community funds, membership/event collections, receipts/transactions, member visibility and finance-role notifications without replacing existing membership operations.
 
-### 130. E7 — Elections, nominations, voting & polls
-**Planned:** eligibility, nomination/approval, voting windows, one-person/household rules, auditability, controlled results and stronger privacy for secret ballots.
+Documentation: `docs/engagement/E6-FUNDS-COLLECTIONS.md`
 
-### 131. E8 — Media Archive, Quota & Cleanup
-**Planned:** active/archive states, storage dashboard, selective deletion, old-event media management, orphan cleanup and auditable lifecycle controls.
+### 130. E7 — Elections, Nominations, Voting & Polls
+**Outcome:** Added formal governance with eligibility snapshots, nominations, voting windows, one-submission enforcement, controlled result publication and secret-ballot identity separation.
+
+Documentation: `docs/engagement/E7-ELECTIONS-VOTING.md`
+
+### 131. E8 — Media Archive, Quota & Selective Cleanup
+**Outcome:** Added reversible archive, storage visibility, selective permanent deletion, orphan awareness and auditable media lifecycle controls.
+
+Documentation: `docs/engagement/E8-MEDIA-LIFECYCLE.md`
+
+### 132. E9 — Community Posts & Important Broadcasts
+**Outcome:** Extended the shared activity engine with posts, compressed photos, comments, reactions, mentions, important/urgent broadcasts, pinning and exact-post notification deep links.
+
+Documentation: `docs/engagement/E9-COMMUNITY-POSTS-BROADCASTS.md`
+
+### 133. E10 — Engagement Control Center
+**Outcome:** Closed the engagement stack with per-user/per-network category preferences, Push control, quiet hours, timezone, urgent-bypass rules and revealable muted inbox categories while keeping persisted notifications authoritative.
+
+Documentation: `docs/engagement/E10-ENGAGEMENT-CONTROL-CENTER.md`
+
+---
+
+## Current frontier — Discovery & Product Exploration
+
+**Outcome sought:** reveal TrustWeave’s existing power before asking users to sign in. Build a self-explaining anonymous landing, Chairman/President journeys, capability explorer, Playground-first proof and curated public-safe Doc Center.
+
+Handover: `NEXT-MISSION-DISCOVERY-PRODUCT-EXPLORATION.md`
 
 ---
 

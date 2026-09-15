@@ -442,3 +442,10 @@ Planned, not yet claimed complete:
 - E8 archive / storage / selective media cleanup.
 
 These should reuse notifications, deep links, role routing and the shared media pipeline.
+
+
+## E9–E10 engagement experience
+
+Community and Residential networks now share a post/broadcast surface with media, comments, reactions, mentions and admin-only important/urgent controls. The notification drawer also contains an Engagement Control Center for per-network category preferences, Push delivery, quiet hours, timezone and urgent-bypass behavior. Muted Inbox categories remain stored and revealable.
+
+The next UX mission moves outward to the anonymous product front door: explain value before login, expose role-specific journeys and make Playground + public-safe product documentation first-class discovery tools.
