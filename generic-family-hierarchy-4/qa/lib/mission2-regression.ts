@@ -70,3 +70,14 @@ export async function expectPersistedText(page:Page,text:string){
 }
 
 export const TINY_PNG={name:'mission2-photo.png',mimeType:'image/png',buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZQWQAAAAASUVORK5CYII=','base64')};
+
+export async function waitForPersistedOrMessage(page:Page,locator:any,label:string,timeout=25_000){
+ const message=page.getByTestId('qa-product-message');
+ const result=await Promise.race([
+  locator.waitFor({state:'visible',timeout}).then(()=>({kind:'persisted' as const})),
+  message.waitFor({state:'visible',timeout}).then(async()=>({kind:'message' as const,text:(await message.innerText()).trim()}))
+ ]).catch(()=>null);
+ if(result?.kind==='persisted')return;
+ if(result?.kind==='message')throw new Error(`${label} did not persist. UI message: ${result.text}`);
+ throw new Error(`${label} did not persist within ${timeout}ms and no product error message became visible.`);
+}

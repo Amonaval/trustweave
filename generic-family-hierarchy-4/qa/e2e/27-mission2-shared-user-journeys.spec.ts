@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {login} from '../lib/login';
 import {activate,seedState} from '../lib/role-client';
-import {mission2Watch,TINY_PNG,userClick,userFill,userPause,openSurface} from '../lib/mission2-regression';
+import {mission2Watch,waitForPersistedOrMessage,TINY_PNG,userClick,userFill,userPause,openSurface} from '../lib/mission2-regression';
 
 const stamp=()=>Date.now().toString(36);
 
@@ -16,7 +16,7 @@ test.describe.serial('Mission 2 — shared real-user journeys',()=>{
   await userFill(page,page.getByTestId('qa-post-body'),'Mission 2 persisted post with a real Storage upload.');
   await page.getByTestId('qa-post-photo').setInputFiles(TINY_PNG);await userPause(page);
   await userClick(page,page.getByTestId('qa-post-publish'),1.5);
-  const card=page.getByTestId('qa-post-card').filter({hasText:title});await expect(card).toBeVisible({timeout:25_000});
+  const card=page.getByTestId('qa-post-card').filter({hasText:title});await waitForPersistedOrMessage(page,card,'Family Community photo post');
   await userClick(page,card.getByTestId('qa-post-comments'));
   await userFill(page,card.getByTestId('qa-post-comment-input'),'Mission 2 persisted comment');
   await userClick(page,card.getByTestId('qa-post-comment-submit'));

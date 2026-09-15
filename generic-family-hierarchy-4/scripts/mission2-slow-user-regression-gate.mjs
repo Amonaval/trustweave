@@ -46,6 +46,8 @@ ok('owner/admin/member crawls cover every released vertical',roleCrawl.includes(
 ok('every released owner surface gets an interactive inventory',surfaceInventory.includes('for(const vertical of VERTICALS)')&&surfaceInventory.includes('qa-nav-')&&surfaceInventory.includes('interactive-inventory'));
 ok('Mission 2 runner executes broad historical regression backfill',runner.includes('mission2-existing-product-regression')&&runner.includes('70-destructive-lifecycle-import.spec.ts')&&runner.includes('81-resilience-runtime.spec.ts'));
 ok('Windows-safe headed and slow Mission 2 scripts exist',pkg.scripts?.['qa:mission2:headed']==='node qa/run-mission2-regression.mjs --headed'&&pkg.scripts?.['qa:mission2:slow']==='node qa/run-mission2-regression.mjs --pace=1000');
+ok('Playwright-only rerun scripts skip build/source preflight',pkg.scripts?.['qa:mission2:playwright']==='node qa/run-mission2-regression.mjs --playwright-only'&&pkg.scripts?.['qa:mission2:playwright:headed']==='node qa/run-mission2-regression.mjs --playwright-only --headed');
+ok('Mission 2 waits 50s after localhost readiness before first browser test',runner.includes("QA_M2_SERVER_WARMUP_MS||'50000'")&&cfg.includes('mission2-global-setup.ts')&&fs.existsSync('qa/mission2-global-setup.ts'));
 ok('seed runtime uses responsive openSurface instead of hidden admin click',read('qa/e2e/26-final-launch-seed-runtime.spec.ts').includes("openSurface(page,'admin')"));
 ok('malformed testInfo callback pattern removed from QA',!fs.readdirSync('qa/e2e').some(f=>f.endsWith('.ts')&&read(`qa/e2e/${f}`).includes('testInfo})')));
 ok('accidental root Phase2 spec duplicate removed',!fs.existsSync('16-phase2-representative-capabilities.spec.ts'));
