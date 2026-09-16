@@ -603,3 +603,19 @@ Housing Society UX was also restructured after real laptop use showed unacceptab
 
 **Runtime status:** source gates are green, but this hotfix is not considered proven until migration 114 is applied to the real/staging database and the reported operations/funds/voting/mentions/media paths are retested.
 
+### 136. Mission 3 M3-A — Shared Component / CSS Architecture Inventory
+**Outcome:** Mapped launch-critical duplication between Housing Society, Family Community and the shared Network OS layer before refactoring. Established canonical ownership for progressive section navigation, workspace shells, async panel lifecycle and CSS mechanics; explicitly preserved domain-specific Housing finance/resolution/complaint semantics instead of collapsing them into misleading universal panels.
+
+**Decision artifact:** `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`
+
+**Next (superseded):** this workload was moved to M3-B6 so M3-B1–B5 could establish the governing Agentic Company OS first.
+
+
+
+### 137. Mission 3 M3-B1–B5 — Agentic Company & Engineering OS
+**Outcome:** Converted Mission 3 governance from chat/session convention into repository contracts: binding architecture/product authority, six accountable roles with independent-review separation, a canonical mission state machine, documentation authority/drift control, risk-scoped quality gates, evidence schemas, failure classification, and a Git/worktree/CI/evidence execution harness. The design deliberately reuses existing TrustWeave QA/security/migration machinery instead of adding a speculative multi-agent framework.
+
+### 138. Mission 3 M3-B6 — First agent-governed workload
+**Outcome:** Converged Housing Finance, Governance and Security onto the canonical `ResponsiveSectionTabs` while preserving vertical business logic. Removed the lower-capability `HousingSectionTabs` implementation and its duplicate responsive CSS. A dedicated deterministic source gate, desktop/mobile Playwright contract, migration-tree hash guard and mission evidence trail now prove the intended boundary.
+
+**Certification status:** source-gated and syntax-gated; dependency-backed type/lint, approved-runtime desktop/mobile proof and independent review remain mandatory before mission CLOSE. No unavailable proof is represented as PASS.

@@ -18,7 +18,7 @@ const housingManage=read('components/HousingSocietyManageWorkspace.tsx');
 const finance=read('components/HousingSocietyFinancePanel.tsx');
 const governance=read('components/HousingSocietyGovernancePanel.tsx');
 const security=read('components/HousingSocietySecurityPanel.tsx');
-const handbook=read('USER-EXPERIENCE-HANDBOOK.md');
+const handbook=read('docs/product/USER-EXPERIENCE-HANDBOOK.md');
 const rules=read('DEVELOPMENT-RULES.md');
 const checks=[
  ['shared responsive section primitive exists',responsive.includes('data-ui-progressive="tabs"')&&responsive.includes('responsive-section-tab-select')],
@@ -40,8 +40,8 @@ const checks=[
  ['Family participation center uses responsive section navigation',participation.includes('ResponsiveSectionTabs')&&!participation.includes('className="participation-tabs"')],
  ['shared media management uses responsive filters',media.includes('ResponsiveSectionTabs')&&!media.includes('className="media-filter-tabs"')],
  ['network tool navigation switches to a mobile selector',networksHome.includes('className="nx8-tool-select"')&&css.includes('.nx8-tool-rail{display:none}.nx8-tool-select{display:grid')],
- ['Housing Manage Society is sectioned',housingManage.includes('ResponsiveSectionTabs')||housingManage.includes('HousingSectionTabs')||housingManage.includes('content[active]')],
- ['Housing Finance/Governance/Security remain sectioned',[finance,governance,security].every(x=>x.includes('HousingSectionTabs'))],
+ ['Housing Manage Society is sectioned',housingManage.includes('ResponsiveSectionTabs')||housingManage.includes('content[active]')],
+ ['Housing Finance/Governance/Security use canonical responsive sections',[finance,governance,security].every(x=>x.includes('ResponsiveSectionTabs')&&!x.includes('HousingSectionTabs'))],
  ['UX handbook contains cross-vertical density rule',handbook.includes('Cross-vertical progressive-disclosure rule')&&handbook.includes('Do not append a new peer block to the bottom of an already long operational page')],
  ['development rules make progressive disclosure permanent',rules.includes('Permanent UI density rule')&&rules.includes('tabs / mobile selector')],
 ];

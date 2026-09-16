@@ -1,0 +1,63 @@
+{
+  "version": "2026-09-16.m3-b3",
+  "status": "BINDING",
+  "authority": "DOCUMENTATION-GOVERNANCE.md",
+  "canonicalRoot": [
+    "AI-START-HERE.md",
+    "PRODUCT-CONSTITUTION.md",
+    "ARCHITECTURE-CONSTITUTION.md",
+    "AGENTIC-COMPANY-OS.md",
+    "MISSION-LIFECYCLE.md",
+    "CURRENT-STATE.md",
+    "MISSION-STATUS.md",
+    "ROADMAP.md",
+    "DOCUMENTATION-GOVERNANCE.md",
+    "DEVELOPMENT-RULES.md"
+  ],
+  "rootIndexes": ["README.md", "DOCUMENTATION.md", "ARCHIVE-INDEX.md"],
+  "canonicalProductDirectory": "docs/product",
+  "canonicalMissionDirectory": "missions",
+  "historicalDirectory": "archive",
+  "generatedEvidenceDirectory": "release-evidence",
+  "statusVocabulary": ["PLANNED","ACTIVE","IMPLEMENTED","SOURCE-GATED","RUNTIME-VERIFIED","PILOT-VALIDATED","RELEASED","PAUSED","SUPERSEDED"],
+  "forbiddenRootPatterns": [
+    "^NEXT-SESSION-.*\\.md$",
+    "^STABILITY-HOTFIX-.*\\.md$",
+    ".*-APPLY-NOTE\\.md$",
+    ".*-AFFECTED-MANIFEST\\.md$"
+  ],
+  "legacyRootCompatibility": [
+    "AIDLC-OPERATING-RULE.md",
+    "CODEBASE-UPDATE-RULE.md",
+    "CODEBASE.md",
+    "DATA-SEED-RUNBOOK.md",
+    "DEPLOY.md",
+    "FINAL-RELEASE-MANIFEST.md",
+    "GENERIC-CAPABILITY-UTILIZATION-RULE.md",
+    "LAUNCH-READINESS-REPORT.md",
+    "MISSION-1-APPLY-RETEST-RUNBOOK.md",
+    "MISSION-1-RUNTIME-SEED-INTEGRITY-CLOSURE.md",
+    "MISSION-2-AUTOMATION-RUNBOOK.md",
+    "MISSION-2-CLOSURE-HANDOFF.md",
+    "MISSION-2-SLOW-USER-REGRESSION-CLOSURE.md",
+    "MISSION-DOCUMENTATION-RULE.md",
+    "MODEL-SELECTION-RULE.md",
+    "PILOT-DEMO-RUNBOOK.md",
+    "RUNTIME-VERIFICATION-CHECKLIST.md",
+    "STATIC-ANALYSIS-HARDENING.md",
+    "SUPABASE-SETUP-GUIDE.md",
+    "VALIDATION.md",
+    "VERCEL-SETUP-GUIDE.md"
+  ],
+  "singleCopyBasenames": [
+    "CEO-PRODUCT-BRIEF.md",
+    "CTO-PRODUCT-CAPABILITY-BOOK.md",
+    "PRODUCT-CAPABILITY-CATALOG.md",
+    "USER-EXPERIENCE-HANDBOOK.md",
+    "TRUSTWEAVE-MISSION-JOURNEY.md",
+    "PROJECT-VISION.md",
+    "FOUNDER-COMPASS.md",
+    "USER-GUIDE.md"
+  ],
+  "activeMission": "missions/mission-003/mission.json"
+}

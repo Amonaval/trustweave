@@ -1,60 +1,33 @@
-# TrustWeave Documentation — Start Here
+# TrustWeave Documentation — Current Map
 
-Use this page for current launch truth. Historical mission evidence remains under `archive/`.
+TrustWeave uses a two-axis authority model: constitutions/mission contracts govern **what is allowed**, while runtime/source/evidence govern **what is actually true**. See `DOCUMENTATION-GOVERNANCE.md`.
 
-## Mission 3 strategic reset
-- `PRODUCT-CONSTITUTION.md` — product priorities and product-model invariants.
-- `ARCHITECTURE-CONSTITUTION.md` — architecture boundaries, ownership and forbidden dependencies.
-- `AGENTIC-COMPANY-OS.md` — minimal agent organization, approval matrix, maturity model and scorecard.
-- `MISSION-LIFECYCLE.md` — state machine, evidence contract and first agent-governed experiment.
-- `DOCUMENTATION-GOVERNANCE.md` — normative/descriptive authority and single-copy policy.
+## Governing documents
 
-## Final launch closure
-- `CURRENT-STATE.md` — exact current product/release state.
-- `MISSION-STATUS.md` — final pre-launch mission status.
-- `LAUNCH-READINESS-REPORT.md` — green gates, blocked gates and launch decision.
-- `PILOT-DEMO-RUNBOOK.md` — showcase sequence for anonymous visitor, Residential and Family Community.
-- `DATA-SEED-RUNBOOK.md` — safe persisted launch-data workflow.
-- `RUNTIME-VERIFICATION-CHECKLIST.md` — binding final go/no-go checklist.
-- `MISSION-1-RUNTIME-SEED-INTEGRITY-CLOSURE.md` — root-cause and implementation record for Mission 1.
-- `MISSION-1-APPLY-RETEST-RUNBOOK.md` — apply migration 115 and perform Community-photo + two-run seed integrity proof.
-- `FINAL-RELEASE-MANIFEST.md` — candidate contents and affected-file scope.
-- `NEXT-SESSION-MISSION-2-SLOW-USER-REGRESSION.md` — next engineering mission after Mission 1 persisted retest.
+- `PRODUCT-CONSTITUTION.md`
+- `ARCHITECTURE-CONSTITUTION.md`
+- `AGENTIC-COMPANY-OS.md`
+- `MISSION-LIFECYCLE.md`
+- `DOCUMENTATION-GOVERNANCE.md`
+- `DEVELOPMENT-RULES.md`
 
-## Executive / product views
-- `CEO-PRODUCT-BRIEF.md`
-- `CTO-PRODUCT-CAPABILITY-BOOK.md`
-- `TRUSTWEAVE-MISSION-JOURNEY.md`
-- `USER-EXPERIENCE-HANDBOOK.md`
-- `PRODUCT-CAPABILITY-CATALOG.md`
-- `TRUSTWEAVE-PRODUCT-FEATURE-HANDBOOK.html`
-- `TRUSTWEAVE-PUBLIC-PRODUCT-PROFILE.html`
-- `TRUSTWEAVE-PRODUCT-EVOLUTION-JOURNEY.html`
+## Current operational truth
 
-Canonical mirrored Markdown copies also live under `docs/product/` where applicable.
-
-## Operational truth
+- `CURRENT-STATE.md`
+- `MISSION-STATUS.md`
 - `ROADMAP.md`
-- `USER-GUIDE.md`
-- `VALIDATION.md`
-- `CODEBASE.md`
-- `PROJECT-VISION.md`
+- `missions/mission-003/`
 
-## Engagement closure
-- `docs/engagement/E1-E10-VERIFICATION-GUIDE.md`
-- `docs/engagement/E10-ENGAGEMENT-CONTROL-CENTER.md`
+## Product narrative
 
-## Historical evidence
-- `ARCHIVE-INDEX.md`
-- `archive/docs/archive-map.json`
-- `archive/docs/missions/`
+Canonical product narrative lives under `docs/product/`; root mirrors are not maintained.
 
-Do not infer launch readiness from source gates alone. The runtime checklist is the final authority for go/no-go.
+## Machine governance and evidence
 
-## 2026-09-15 — Seeded-network rehearsal hotfix
-The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
+- `governance/` — machine-readable policy/schema.
+- `scripts/agentic/` — deterministic policy/gate/execution tooling.
+- `release-evidence/` — generated and mission release evidence.
 
-Housing Society UX was also restructured after real laptop use showed unacceptable information density: Manage Society now renders one categorized workspace at a time; Finance, Governance and Security have focused subsections; Housing More is grouped; and Appearance is reduced to a single **Classic / Modern / Dark** selector. These are launch-hardening changes, not new product scope.
+## History
 
-**Runtime status:** source gates are green, but this hotfix is not considered proven until migration 114 is applied to the real/staging database and the reported operations/funds/voting/mentions/media paths are retested.
-
+Closed mission evidence and superseded handoffs live under `archive/`. Historical documents cannot override current constitutions, current source/runtime, or current mission evidence.

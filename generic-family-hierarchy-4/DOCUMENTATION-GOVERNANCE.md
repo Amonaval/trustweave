@@ -1,6 +1,6 @@
 # TrustWeave Documentation Governance
 
-**Status:** PROPOSED AUTHORITY — M3-B strategic reset
+**Status:** BINDING — M3-B3 Knowledge OS authority
 
 ## 1. Goal
 

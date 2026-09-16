@@ -1,18 +1,14 @@
 # TrustWeave Product Documentation
 
-Use these files as the current product narrative:
+This directory owns the canonical product narrative. Do not maintain manual root mirrors.
 
-- `CEO-PRODUCT-BRIEF.md` — under-500-word executive explanation.
+- `CEO-PRODUCT-BRIEF.md` — executive explanation.
 - `CTO-PRODUCT-CAPABILITY-BOOK.md` — architecture/capability overview.
-- `TRUSTWEAVE-MISSION-JOURNEY.md` — append-only ordered mission history.
-- `USER-EXPERIENCE-HANDBOOK.md` — current intended user/admin behavior.
+- `TRUSTWEAVE-MISSION-JOURNEY.md` — ordered product/mission history.
+- `USER-EXPERIENCE-HANDBOOK.md` — intended user/admin behavior.
 - `PRODUCT-CAPABILITY-CATALOG.md` — implementation/status matrix.
-- `DOCUMENTATION-GOVERNANCE.md` — where docs belong and what must update after a mission.
+- `PROJECT-VISION.md` — long-form product vision.
+- `FOUNDER-COMPASS.md` — founder/product principles and constraints.
+- `USER-GUIDE.md` — user-facing guide.
 
-Visual artifacts live at repository root:
-
-- `TRUSTWEAVE-PUBLIC-PRODUCT-PROFILE.html`
-- `TRUSTWEAVE-PRODUCT-EVOLUTION-JOURNEY.html`
-- `TRUSTWEAVE-PRODUCT-FEATURE-HANDBOOK.html`
-
-For engineering history, use `ARCHIVE-INDEX.md` and `archive/docs/archive-map.json`.
+Normative governance lives at repository root (`PRODUCT-CONSTITUTION.md`, `ARCHITECTURE-CONSTITUTION.md`, `DOCUMENTATION-GOVERNANCE.md`). Engineering history belongs in `archive/`; active mission evidence belongs in `missions/` and `release-evidence/`.

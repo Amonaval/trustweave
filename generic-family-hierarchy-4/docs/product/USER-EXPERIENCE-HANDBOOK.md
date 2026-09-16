@@ -470,3 +470,21 @@ Administrative capability must not be expressed as one endlessly stacked page. O
 
 Appearance is a preference, not a product module. Keep the selector compact and limit it to clearly differentiated themes rather than several near-identical variants.
 
+
+## Cross-vertical progressive-disclosure rule — permanent
+
+The Housing rehearsal exposed a general product rule, not a Housing-only exception. **Family, Family Community / Association, Alumni, Housing Society and every productized Network OS vertical must avoid presenting peer capabilities as an endlessly appended vertical stack.** The objective is not to eliminate natural page scrolling; it is to keep a user oriented and to avoid making navigation depend on scrolling through unrelated operational blocks.
+
+Use this hierarchy by default:
+
+- **Tabs on desktop / selector on mobile** for peer work areas that a user switches between frequently.
+- **Accordions / details** for advanced, optional, explanatory or rarely used material.
+- **Card grids** for overview, summaries and entry points; a card should open a focused work area rather than reveal another long stack below it.
+- **Submenus / workspaces** for Admin, Manage, Finance, Governance, Security, Data, Settings and other capability-dense surfaces.
+- **Contained lists/tables** with focused filters, limits or pagination when data volume—not feature count—is the source of length.
+
+A single screen should normally expose **one primary operational task area at a time**. More than three substantial sibling modules on the same route is a trigger to introduce a workspace/navigation layer. Mobile must not replace vertical-scroll overload with horizontal-scroll overload; peer tabs collapse to a select/sheet when space is constrained.
+
+**Do not append a new peer block to the bottom of an already long operational page.** First decide whether the capability belongs in an existing workspace section, a new tab/submenu, an accordion, or a separate focused route. This rule applies to new feature work and to all verticals, not only Housing Society.
+
+The reusable `ResponsiveSectionTabs` primitive and `section-workspace` layout are the default implementation for shared/productized surfaces. Vertical-specific primitives are allowed when domain interaction genuinely differs, but they must preserve the same progressive-disclosure outcome.
