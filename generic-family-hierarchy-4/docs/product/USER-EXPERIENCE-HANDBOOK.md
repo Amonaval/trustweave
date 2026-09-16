@@ -488,3 +488,7 @@ A single screen should normally expose **one primary operational task area at a 
 **Do not append a new peer block to the bottom of an already long operational page.** First decide whether the capability belongs in an existing workspace section, a new tab/submenu, an accordion, or a separate focused route. This rule applies to new feature work and to all verticals, not only Housing Society.
 
 The reusable `ResponsiveSectionTabs` primitive and `section-workspace` layout are the default implementation for shared/productized surfaces. Vertical-specific primitives are allowed when domain interaction genuinely differs, but they must preserve the same progressive-disclosure outcome.
+
+## Autonomous UX evidence rule
+
+From M3-C onward, usability claims must identify a persona, route, viewport, reproducible observation and evidence artifact. Automated criticism may rank opportunities, but it must not call source inspection a user journey or replace missing runtime proof with a PASS. C5 operationalizes this rule for Chairmen, Presidents, committee members, admins, residents/members, mobile-only users, elderly/non-technical users and first-time visitors.

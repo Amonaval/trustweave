@@ -27,3 +27,14 @@ Reach **Founder Spectator Mode**: AI performs routine discovery, debate, plannin
 - Independent review cannot be self-certified.
 - D3 irreversible/privacy/security/legal/financial/constitution decisions remain founder gates until explicitly delegated.
 - B6 certification blockers remain visible while M3-C advances.
+
+## M3-C checkpoint 1
+
+| Mission | Status | Proof |
+| --- | --- | --- |
+| C1 Company Brain | CLOSE | Fresh-process interruption/resume and candidate-bound closure |
+| C2 Executive Council | CLOSE | Five competing roles, durable dissent, D3 held |
+| C3 Environment Manager | CLOSE | Locked dependency recovery, real Next preview and Chromium proof |
+| C4 Self-Healing Swarm | CLOSE | Seeded defect repaired within scope and retry budget |
+
+Founder interventions: **0**. Manual error relays: **0**. Production/database effects: **0**.

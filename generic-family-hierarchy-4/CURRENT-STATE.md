@@ -58,3 +58,9 @@ The system does not yet continuously own long-running work across environment pr
 4. Continue through C4→C11 until a meaningful mission executes end-to-end with zero manual error relay.
 
 Use `ROADMAP.md` for the staged program and `missions/mission-003/m3-c/mission-set.json` for the machine-readable mission set.
+
+## 2026-09-16 — Autonomous Company Generation 1
+
+M3-C1 through M3-C4 are implemented and candidate-certified. TrustWeave now has a crash-safe mission governor, structured executive disagreement with D3 enforcement, autonomous dependency/preview/browser recovery, and bounded self-healing with conflict and scope controls. The real Next application was exercised in locked Chromium without Founder error relay. Supabase migrations remain byte-identical to the M3-C0 baseline.
+
+The next active generation is C5–C7: realistic user/pilot criticism, an expanded independent risk board, and release/rollback/incident rehearsal.

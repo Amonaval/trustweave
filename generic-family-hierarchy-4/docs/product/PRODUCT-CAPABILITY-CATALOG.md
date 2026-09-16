@@ -184,3 +184,9 @@ Housing Society UX was also restructured after real laptop use showed unacceptab
 
 **Runtime status:** source gates are green, but this hotfix is not considered proven until migration 114 is applied to the real/staging database and the reported operations/funds/voting/mentions/media paths are retested.
 
+## Autonomous Company Runtime — Generation 1
+
+- **Company Brain:** durable create, plan, run, resume, next and close flows.
+- **Executive Council:** CEO, Chief of Staff, CTO/Architect, Product/User Advocate and Critic recommendations with explicit dissent.
+- **Environment Manager:** lockfile recovery, preconditions, Next preview, real Chromium verification and cleanup.
+- **Self-Healing Engineering:** bounded decomposition, classification, targeted repair, conflict detection and independent verification.

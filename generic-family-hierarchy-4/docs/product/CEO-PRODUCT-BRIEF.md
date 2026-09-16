@@ -31,3 +31,6 @@ Housing Society UX was also restructured after real laptop use showed unacceptab
 
 **Runtime status:** source gates are green, but this hotfix is not considered proven until migration 114 is applied to the real/staging database and the reported operations/funds/voting/mentions/media paths are retested.
 
+## 2026-09-16 — Founder Spectator Mode, Generation 1
+
+TrustWeave can now preserve and resume company missions, force multi-role executive debate, recover its local toolchain and browser runtime, and repair bounded engineering defects without Founder coordination. D3 choices remain Founder-owned. This generation changes the operating model rather than customer-visible product scope; C5 begins evidence-backed pilot/user criticism before further product work.

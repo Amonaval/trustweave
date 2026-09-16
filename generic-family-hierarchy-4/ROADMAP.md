@@ -71,3 +71,10 @@ Once C1–C4 are working, use the autonomous runtime on meaningful M3-A backlog 
 These exact historical labels remain only for accepted source-gate compatibility; the active program above is authoritative.
 - Mission 2 — Slow Full Product User Regression — IMPLEMENTED IN SOURCE
 - Mission 3 — Agentic Company & Engineering OS + architecture convergence
+
+## Autonomous Company progress — 2026-09-16
+
+- **Generation 1 complete (C1–C4):** durable governor, executive council, environment manager, self-healing engineering.
+- **Generation 2 next (C5–C7):** autonomous user/pilot critic, independent risk board, release/rollback/incident loop.
+- **Generation 3 (C8–C10):** durable learning, Founder cockpit, zero-touch product mission.
+- **Later C11:** continuous portfolio selection only after C10 demonstrates bounded end-to-end autonomy.

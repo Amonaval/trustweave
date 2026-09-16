@@ -220,7 +220,8 @@
     "company:verify": "node scripts/company/company-cli.mjs verify",
     "validate:m3c1": "node scripts/company/c1-gate.mjs",
     "validate:m3c2": "node scripts/company/c2-gate.mjs",
-    "validate:m3c3": "node scripts/company/c3-gate.mjs"
+    "validate:m3c3": "node scripts/company/c3-gate.mjs",
+    "validate:m3c4": "node scripts/company/c4-gate.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.54.0",

@@ -335,3 +335,12 @@ Housing Society UX was also restructured after real laptop use showed unacceptab
 
 ### Mission 1 — runtime and seed observability
 Launch seeding now treats execution state as a recoverable workflow rather than a fire-and-forget bulk script. Persistent run/issue records expose row-level operation and database/API diagnostics; lineage distinguishes terminal rows from `partial`/`error` rows; and remote ids are checkpointed before state transitions. Authorized synthetic relationship seeding bypasses only the interactive HTTP burst limiter while still delegating to the secured domain RPC. Ballot state transitions occur after option persistence. Storage/media registration now performs tolerant object-size extraction plus authoritative path/membership/quota revalidation. These changes improve operational correctness without introducing a parallel domain subsystem.
+
+### M3-C Generation 1 — autonomous operating capabilities
+
+- Atomic JSON company state plus append-only journal; fresh-process resume and dependency graph.
+- Candidate-bound close semantics and isolated review process.
+- Deterministic executive council records with decision classes, dissent and delegated-authority checks.
+- Lockfile repair, preview readiness, locked Chromium selection, DOM/runtime evidence and cleanup.
+- Failure classification, bounded targeted repair, write-set conflict detection and scope-drift proof.
+- Migration tree invariant preserved at `33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46`.
