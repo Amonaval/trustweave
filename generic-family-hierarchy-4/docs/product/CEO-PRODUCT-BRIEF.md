@@ -34,3 +34,7 @@ Housing Society UX was also restructured after real laptop use showed unacceptab
 ## 2026-09-16 — Founder Spectator Mode, Generation 1
 
 TrustWeave can now preserve and resume company missions, force multi-role executive debate, recover its local toolchain and browser runtime, and repair bounded engineering defects without Founder coordination. D3 choices remain Founder-owned. This generation changes the operating model rather than customer-visible product scope; C5 begins evidence-backed pilot/user criticism before further product work.
+
+## 2026-09-16 — Founder Spectator Mode, Generation 2
+
+Product criticism now comes from seven repeatable browser personas and creates a ranked opportunity backlog. Release confidence no longer rests on the builder: an independent board covers eleven risk dimensions, and a complete local release/rollback/incident rehearsal demonstrates operational continuity. Five current public-journey friction findings are evidence for C10 prioritization, not automatic permission to change the product.

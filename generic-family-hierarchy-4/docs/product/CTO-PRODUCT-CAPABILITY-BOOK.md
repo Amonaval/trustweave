@@ -344,3 +344,11 @@ Launch seeding now treats execution state as a recoverable workflow rather than 
 - Lockfile repair, preview readiness, locked Chromium selection, DOM/runtime evidence and cleanup.
 - Failure classification, bounded targeted repair, write-set conflict detection and scope-drift proof.
 - Migration tree invariant preserved at `33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46`.
+
+### M3-C Generation 2 — independent product and release control
+
+- Browser persona runner stores route, viewport, selector, errors, text and layout measurements.
+- Opportunity intake is reproducible and deterministic rather than an ungrounded LLM opinion.
+- Risk Board covers architecture, security, privacy, data integrity, accessibility, UX, maintainability, performance, regression, evidence and scope.
+- Candidate approval is process-isolated and SHA-bound; a builder identity cannot approve.
+- Local release slots exercise preview, checks, promotion, smoke, rollback, incident, postmortem and knowledge update without production effects.

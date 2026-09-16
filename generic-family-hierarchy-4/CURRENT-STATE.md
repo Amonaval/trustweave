@@ -64,3 +64,9 @@ Use `ROADMAP.md` for the staged program and `missions/mission-003/m3-c/mission-s
 M3-C1 through M3-C4 are implemented and candidate-certified. TrustWeave now has a crash-safe mission governor, structured executive disagreement with D3 enforcement, autonomous dependency/preview/browser recovery, and bounded self-healing with conflict and scope controls. The real Next application was exercised in locked Chromium without Founder error relay. Supabase migrations remain byte-identical to the M3-C0 baseline.
 
 The next active generation is C5–C7: realistic user/pilot criticism, an expanded independent risk board, and release/rollback/incident rehearsal.
+
+## 2026-09-16 — Autonomous Company Generation 2
+
+M3-C5 through M3-C7 are implemented and candidate-certified. Seven personas now exercise the real product front door; measurable friction becomes a ranked company opportunity feed. The review board independently evaluates eleven risk dimensions and demonstrated that seeded violations block approval. The release loop rehearses candidate preview, checks, promotion, smoke, automatic rollback, incident triage, postmortem and learning without touching production.
+
+The next active generation is C8–C10: memory that automatically informs planning, the Founder Spectator Cockpit and a substantial zero-touch product/architecture mission.

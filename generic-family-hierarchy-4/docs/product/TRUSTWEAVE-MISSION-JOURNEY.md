@@ -625,3 +625,9 @@ Housing Society UX was also restructured after real laptop use showed unacceptab
 **Outcome:** Added a durable mission governor, structured multi-role executive deliberation, autonomous local environment/browser management and a bounded self-healing engineering loop. C1 proved crash-safe fresh-process resume; C2 preserved alternatives and dissent while blocking D3; C3 launched the real Next application in locked Chromium; C4 repaired a seeded defect without scope drift. Every mission was bound to a committed candidate and separately reviewed.
 
 **Operating result:** zero Founder interventions, zero manual error relay and no migration or production effects.
+
+### 140. Mission 3 M3-C5–C7 — Autonomous Company Generation 2
+
+**Outcome:** Added repeatable real-browser product criticism for seven personas, an isolated eleven-dimension risk board and an executable local release/rollback/incident loop. C5 generated five evidence-backed opportunities; C6 preserved and repaired a real candidate rejection rather than waiving it; C7 proved both a healthy ready path and exact last-known-good rollback with postmortem learning.
+
+**Operating result:** zero Founder interventions, zero manual error relay and zero external/production effects.

@@ -1,0 +1,85 @@
+{
+  "id": "M3-C7",
+  "title": "Autonomous Release, Rollback & Incident Loop",
+  "risk": "R1",
+  "state": "CLOSE",
+  "scope": {
+    "include": [
+      "candidate preview",
+      "release checks",
+      "local promotion rehearsal",
+      "smoke",
+      "automatic rollback",
+      "incident postmortem knowledge"
+    ],
+    "exclude": [
+      "production deployment",
+      "external effects",
+      "database migration"
+    ],
+    "allowedWrites": [
+      "scripts/company/**",
+      "company-state/**",
+      "missions/mission-003/m3-c/**",
+      "missions/registry.json",
+      "governance/documentation-policy.json",
+      "governance/quality-policy.json",
+      "package.json",
+      "release-evidence/M3-C7/**",
+      "CURRENT-STATE.md",
+      "MISSION-STATUS.md",
+      "ROADMAP.md",
+      "docs/product/**",
+      "TRUSTWEAVE-PUBLIC-PRODUCT-PROFILE.html",
+      "TRUSTWEAVE-PRODUCT-EVOLUTION-JOURNEY.html"
+    ],
+    "forbiddenWrites": [
+      "supabase/migrations/**"
+    ]
+  },
+  "acceptance": [
+    "candidate previews before promotion",
+    "healthy rehearsal becomes ready",
+    "smoke failure restores exact last-known-good",
+    "incident postmortem updates knowledge"
+  ],
+  "gates": [
+    "mission-contract",
+    "control-plane",
+    "scope",
+    "architecture",
+    "documentation",
+    "mission-source",
+    "static-syntax",
+    "runtime-company-release",
+    "independent-review",
+    "evidence"
+  ],
+  "sourceValidation": {
+    "commands": [
+      {
+        "name": "M3-C7 release loop source",
+        "command": "node --check scripts/company/release-loop.mjs && node --check scripts/company/c7-gate.mjs"
+      }
+    ]
+  },
+  "runtimeEvidenceRequired": true,
+  "rollback": "Remove the local release rehearsal package; no external release occurred.",
+  "humanInterventionBudget": 0,
+  "repair": {
+    "maxAttempts": 3,
+    "sameFailureMaxRepeats": 2
+  },
+  "execution": {
+    "baseRef": "main",
+    "branch": "agent/m3-c7-release-loop",
+    "worktree": ".agent-worktrees/m3-c7"
+  },
+  "baseline": {
+    "protectedTreeHashes": {
+      "supabase/migrations": "33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46"
+    }
+  },
+  "reviewArtifact": "missions/mission-003/m3-c/c07/review.json",
+  "candidateSha": "25f5a7d39f61a248f831361366a8d2f68fbe6629"
+}

@@ -1,0 +1,30 @@
+M3-C7 affected files
+
+CURRENT-STATE.md
+MISSION-STATUS.md
+ROADMAP.md
+TRUSTWEAVE-PRODUCT-EVOLUTION-JOURNEY.html
+TRUSTWEAVE-PUBLIC-PRODUCT-PROFILE.html
+docs/product/CEO-PRODUCT-BRIEF.md
+docs/product/CTO-PRODUCT-CAPABILITY-BOOK.md
+docs/product/PRODUCT-CAPABILITY-CATALOG.md
+docs/product/TRUSTWEAVE-MISSION-JOURNEY.md
+docs/product/USER-EXPERIENCE-HANDBOOK.md
+governance/documentation-policy.json
+governance/quality-policy.json
+missions/mission-003/m3-c/c06/mission.json
+missions/mission-003/m3-c/c06/review.json
+missions/mission-003/m3-c/c07/AFFECTED-FILES.txt
+missions/mission-003/m3-c/c07/EVIDENCE.md
+missions/mission-003/m3-c/c07/mission.json
+missions/mission-003/m3-c/c07/review.json
+missions/mission-003/m3-c/checkpoints/GENERATION-2-REPORT.md
+missions/registry.json
+package.json
+release-evidence/M3-C6/**
+release-evidence/M3-C7/**
+scripts/company/c7-gate.mjs
+scripts/company/release-loop.mjs
+
+Removed files: none.
+Supabase migrations changed: none.

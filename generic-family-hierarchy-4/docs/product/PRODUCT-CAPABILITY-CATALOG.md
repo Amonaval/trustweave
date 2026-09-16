@@ -190,3 +190,9 @@ Housing Society UX was also restructured after real laptop use showed unacceptab
 - **Executive Council:** CEO, Chief of Staff, CTO/Architect, Product/User Advocate and Critic recommendations with explicit dissent.
 - **Environment Manager:** lockfile recovery, preconditions, Next preview, real Chromium verification and cleanup.
 - **Self-Healing Engineering:** bounded decomposition, classification, targeted repair, conflict detection and independent verification.
+
+## Autonomous Company Runtime — Generation 2
+
+- **User / Pilot Critic:** seven role personas with real-browser measurements and ranked opportunity intake.
+- **Independent Risk Board:** eleven review dimensions, seeded-blocker proof and candidate binding.
+- **Release / Rollback / Incident Loop:** preview, release checks, smoke, exact rollback, triage, postmortem and learning rehearsal.

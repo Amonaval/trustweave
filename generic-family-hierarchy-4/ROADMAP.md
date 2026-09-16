@@ -78,3 +78,5 @@ These exact historical labels remain only for accepted source-gate compatibility
 - **Generation 2 next (C5–C7):** autonomous user/pilot critic, independent risk board, release/rollback/incident loop.
 - **Generation 3 (C8–C10):** durable learning, Founder cockpit, zero-touch product mission.
 - **Later C11:** continuous portfolio selection only after C10 demonstrates bounded end-to-end autonomy.
+
+Generation 2 is now complete. C8 must make the existing decisions, failures, opportunities and incident lessons searchable and automatically relevant to planning. C9 turns that state into one human-facing cockpit. C10 then consumes the highest-value safe opportunity and demonstrates the entire loop on a real TrustWeave change.

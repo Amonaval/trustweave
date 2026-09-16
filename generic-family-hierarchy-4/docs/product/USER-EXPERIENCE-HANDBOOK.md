@@ -492,3 +492,5 @@ The reusable `ResponsiveSectionTabs` primitive and `section-workspace` layout ar
 ## Autonomous UX evidence rule
 
 From M3-C onward, usability claims must identify a persona, route, viewport, reproducible observation and evidence artifact. Automated criticism may rank opportunities, but it must not call source inspection a user journey or replace missing runtime proof with a PASS. C5 operationalizes this rule for Chairmen, Presidents, committee members, admins, residents/members, mobile-only users, elderly/non-technical users and first-time visitors.
+
+Generation 2 applies the rule to the public Discovery journeys. Layout density, horizontal overflow, practical tap-target height, expected copy and browser errors are captured as measurements. A finding becomes a product mission input only after it can be reproduced; severity and breadth determine rank.

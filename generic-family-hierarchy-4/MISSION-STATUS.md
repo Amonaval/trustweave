@@ -38,3 +38,13 @@ Reach **Founder Spectator Mode**: AI performs routine discovery, debate, plannin
 | C4 Self-Healing Swarm | CLOSE | Seeded defect repaired within scope and retry budget |
 
 Founder interventions: **0**. Manual error relays: **0**. Production/database effects: **0**.
+
+## M3-C checkpoint 2
+
+| Mission | Status | Proof |
+| --- | --- | --- |
+| C5 User / Pilot Critic | CLOSE | Seven real-browser personas; five measured opportunities |
+| C6 Independent Risk Board | CLOSE | Eleven dimensions; seeded blockers rejected; builder separation |
+| C7 Release / Rollback / Incident | CLOSE | Local preview-to-ready plus exact rollback and postmortem rehearsal |
+
+Founder interventions remain **0**. Manual error relays remain **0**. One candidate was correctly rejected during C6 and repaired; the rejection is retained as evidence.
