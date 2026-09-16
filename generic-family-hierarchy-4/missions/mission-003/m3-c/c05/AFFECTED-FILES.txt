@@ -1,0 +1,20 @@
+M3-C5 affected files
+
+company-state/opportunities.json
+governance/documentation-policy.json
+governance/quality-policy.json
+missions/mission-003/m3-c/c04/mission.json
+missions/mission-003/m3-c/c04/review.json
+missions/mission-003/m3-c/c05/AFFECTED-FILES.txt
+missions/mission-003/m3-c/c05/EVIDENCE.md
+missions/mission-003/m3-c/c05/mission.json
+missions/mission-003/m3-c/c05/review.json
+missions/registry.json
+package.json
+release-evidence/M3-C4/**
+release-evidence/M3-C5/**
+scripts/company/c5-gate.mjs
+scripts/company/user-critic.mjs
+
+Removed files: none.
+Supabase migrations changed: none.

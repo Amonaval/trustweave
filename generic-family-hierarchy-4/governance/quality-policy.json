@@ -127,6 +127,11 @@
       "command": "node scripts/company/c3-gate.mjs",
       "requiredEnv": []
     },
+    "runtime-company-user-critic": {
+      "kind": "runtime",
+      "command": "TW_C5_PERSIST=1 node scripts/company/c5-gate.mjs",
+      "requiredEnv": []
+    },
     "independent-review": {
       "kind": "review",
       "command": "node scripts/agentic/review-gate.mjs --mission {mission}"

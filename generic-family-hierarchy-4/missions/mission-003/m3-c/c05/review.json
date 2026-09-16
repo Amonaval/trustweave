@@ -1,0 +1,32 @@
+{
+  "status": "APPROVED",
+  "builder": "work-session/root",
+  "reviewer": "candidate-review-process/v1",
+  "candidate": "2af6506d716a4bf9bc7a853753c9d2276d9d13f3",
+  "candidateSha": "2af6506d716a4bf9bc7a853753c9d2276d9d13f3",
+  "generatedAt": "2026-09-16T08:52:09.705Z",
+  "blockingFindings": 0,
+  "findings": [],
+  "evidence": [
+    {
+      "gate": "mission-contract",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "gate": "architecture",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "gate": "mission-source",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "independence": {
+    "processIsolated": true,
+    "inputBoundToCommittedCandidate": true,
+    "builderCannotSetStatus": true
+  }
+}

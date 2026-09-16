@@ -1,0 +1,79 @@
+{
+  "id": "M3-C5",
+  "title": "Autonomous User, Pilot & Product Critic",
+  "risk": "R1",
+  "state": "CLOSE",
+  "scope": {
+    "include": [
+      "role-based browser journeys",
+      "mobile and non-technical heuristics",
+      "reproducible friction",
+      "ranked opportunity feed"
+    ],
+    "exclude": [
+      "authenticated production mutation",
+      "invented user feedback",
+      "automatic product changes"
+    ],
+    "allowedWrites": [
+      "scripts/company/**",
+      "company-state/**",
+      "missions/mission-003/m3-c/**",
+      "missions/registry.json",
+      "governance/documentation-policy.json",
+      "governance/quality-policy.json",
+      "package.json",
+      "release-evidence/M3-C5/**"
+    ],
+    "forbiddenWrites": [
+      "supabase/migrations/**",
+      "app/**",
+      "components/**"
+    ]
+  },
+  "acceptance": [
+    "seven personas exercised in browser",
+    "findings carry reproducible measurements",
+    "opportunities are ranked and durable",
+    "fatal journeys block"
+  ],
+  "gates": [
+    "mission-contract",
+    "control-plane",
+    "scope",
+    "architecture",
+    "documentation",
+    "mission-source",
+    "static-syntax",
+    "runtime-company-user-critic",
+    "independent-review",
+    "evidence"
+  ],
+  "sourceValidation": {
+    "commands": [
+      {
+        "name": "M3-C5 user critic source",
+        "command": "node --check scripts/company/user-critic.mjs && node --check scripts/company/c5-gate.mjs"
+      }
+    ]
+  },
+  "runtimeEvidenceRequired": true,
+  "rollback": "Remove the user critic and its generated opportunity feed.",
+  "humanInterventionBudget": 0,
+  "repair": {
+    "maxAttempts": 3,
+    "sameFailureMaxRepeats": 2
+  },
+  "execution": {
+    "baseRef": "main",
+    "branch": "agent/m3-c5-user-critic",
+    "worktree": ".agent-worktrees/m3-c5"
+  },
+  "baseline": {
+    "protectedTreeHashes": {
+      "supabase/migrations": "33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46"
+    }
+  },
+  "reviewArtifact": "missions/mission-003/m3-c/c05/review.json",
+  "candidateSha": "2af6506d716a4bf9bc7a853753c9d2276d9d13f3"
+}
