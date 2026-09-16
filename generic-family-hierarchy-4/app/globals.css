@@ -184,7 +184,7 @@ th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacin
 
 /* Family Release 1 — warm, mobile-first family experience */
 :root{
-  --bg:#f7f3ea;--surface:#fffdf8;--surface-strong:#fffaf0;--text:#24342d;--muted:#6d786f;
+  --bg:#f7f3ea;--surface:#fffdf8;--surface-strong:#fffaf0;--text:#24342d;--muted:#6d786f;--muted-contrast:#59645d;
   --line:#e8e0d2;--brand:#216653;--brand-strong:#174c3e;--brand-soft:#e8f2ec;
   --gold:#c8953d;--gold-soft:#fbf0d8;--coral:#c96853;--sage:#90a98d;
   --success:#277454;--warning:#a56b18;--danger:#b94f45;
@@ -1229,7 +1229,7 @@ html[data-theme="aurora"] .topbar,html[data-theme="aurora"] .sidebar{background:
 
 html[data-theme="dark"]{
   --bg:#0b1218;--surface:#142029;--surface-raised:#1a2933;--surface-soft:#20343f;--surface-hover:#29414d;
-  --text:#f2f7f8;--muted:#b2c1c8;--line:#344b58;--brand:#69d2bc;--brand-soft:#193f39;
+  --text:#f2f7f8;--muted:#b2c1c8;--muted-contrast:#c7d3d7;--line:#344b58;--brand:#69d2bc;--brand-soft:#193f39;
   --success:#70d9ac;--warning:#f2bf6c;--danger:#ff969c;--overlay:rgba(0,0,0,.72);
 }
 html[data-theme="dark"] body{background:radial-gradient(circle at 8% -8%,rgba(44,154,137,.18),transparent 31%),radial-gradient(circle at 93% 0%,rgba(58,97,149,.15),transparent 28%),#0b1218;background-attachment:fixed}
@@ -1322,6 +1322,7 @@ html:is([data-theme="warm"],[data-theme="modern"],[data-theme="aurora"]) .quick-
 [data-theme="modern"] .family-association-network .association-attention-strip{background:linear-gradient(135deg,#eef8f7,#f8fbfc)}
 [data-theme="aurora"] .family-association-network .association-attention-strip{background:linear-gradient(135deg,#f1f0ff,#ecfaf7)}
 [data-theme="dark"] .association-attention-strip,[data-theme="dark"] .association-announcement-list article{background:color-mix(in srgb,var(--surface-2) 88%,var(--product-accent-soft));border-color:var(--border)}
+.association-announcement-list p,.housing-society-network .hs-all-clear small,.housing-society-network .hs-finance-summary small{color:var(--muted-contrast)}
 @media(max-width:900px){.association-signature-home .association-hero{grid-template-columns:1fr}.association-signature-home .association-emblem{display:none}.association-attention-strip{align-items:flex-start;flex-direction:column}.association-wide-card .association-mini-timeline{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.association-signature-home{gap:12px}.association-signature-home .association-hero{padding:23px 18px;border-radius:22px}.association-signature-home .association-hero h1{font-size:32px}.association-signature-home .association-hero-actions{display:grid;grid-template-columns:1fr}.association-signature-home .association-hero-actions .btn{justify-content:center}.association-attention-items{display:grid;grid-template-columns:repeat(3,1fr);width:100%}.association-attention-items button{display:block;text-align:center;padding:9px 5px}.association-attention-items button span{display:block;margin-top:2px}.association-wide-card .association-mini-timeline{grid-template-columns:1fr}.association-wide-card{grid-column:auto}}
 

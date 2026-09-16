@@ -73,11 +73,19 @@ export const TINY_PNG={name:'mission2-photo.png',mimeType:'image/png',buffer:Buf
 
 export async function waitForPersistedOrMessage(page:Page,locator:any,label:string,timeout=25_000){
  const message=page.getByTestId('qa-product-message');
- const result=await Promise.race([
-  locator.waitFor({state:'visible',timeout}).then(()=>({kind:'persisted' as const})),
-  message.waitFor({state:'visible',timeout}).then(async()=>({kind:'message' as const,text:(await message.innerText()).trim()}))
- ]).catch(()=>null);
- if(result?.kind==='persisted')return;
- if(result?.kind==='message')throw new Error(`${label} did not persist. UI message: ${result.text}`);
- throw new Error(`${label} did not persist within ${timeout}ms and no product error message became visible.`);
+ const deadline=Date.now()+timeout;
+ let lastMessage='';
+ while(Date.now()<deadline){
+  if(await locator.isVisible().catch(()=>false))return;
+  if(await message.isVisible().catch(()=>false)){
+   const text=(await message.innerText().catch(()=>''))?.trim();
+   if(text){
+    lastMessage=text;
+    if(/failed|could not|error|denied|not allowed|invalid|unavailable|unable|is required/i.test(text))throw new Error(`${label} did not persist. UI message: ${text}`);
+   }
+  }
+  await page.waitForTimeout(250);
+ }
+ if(lastMessage)throw new Error(`${label} reported success but did not render within ${timeout}ms. Last UI message: ${lastMessage}`);
+ throw new Error(`${label} did not persist within ${timeout}ms and no product message became visible.`);
 }

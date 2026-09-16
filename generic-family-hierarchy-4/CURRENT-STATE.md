@@ -22,9 +22,11 @@ The autonomous-company C1–C10 proof is complete. It is now the delivery mechan
 
 - root `qa.config.mjs` controls connected vertical/role scope;
 - current scope is Housing Society + Family Community across owner/admin/member;
-- `npm run qa:reliability:local` is green for source contracts, 19 unit/contracts, full TypeScript and production build;
-- connected authentication/RPC/RLS/persistence/crawl evidence remains blocked until the ignored local `.env.qa` and deterministic staging fixture are available;
-- after connected findings, repair genuine product defects and add permanent regression assertions before expanding scope.
+- the first connected run completed with **19 passed, 5 failed and 7 not run** critical journeys; five of six resilient shards passed and `family-association/admin` failed twice;
+- the verified repair batch restores the complete Housing operations snapshot, recreates the missing notification-role RPC, removes a success-banner test race and fixes the measured Housing/Family Community contrast failures;
+- local repair validation is green: Mission-2 contracts 59/59, QA unit/contracts 24/24, full TypeScript, migration static audit and production build;
+- additive migration `122_reliability_snapshot_notification_contract_repair.sql` must be applied to dedicated staging before the focused connected rerun; no production mutation is authorized;
+- the `family-association/admin` crawler failure remains open until the rerun produces its specific shard evidence.
 
 ## Reusable product architecture remains active
 

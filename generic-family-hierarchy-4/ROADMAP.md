@@ -68,6 +68,8 @@ The autonomous-company proof does not replace product work. The active execution
 
 Connected QA scope is controlled from root `qa.config.mjs`; platform-wide contracts continue to protect all registered verticals.
 
+The first connected pass is complete. Repair batch R1-A addresses the verified Housing snapshot regression, missing notification-role RPC, persistence-helper race and two accessibility contrast findings. Exit now requires applying additive migration 122 to dedicated staging, rerunning the impacted journeys/Axe checks, and resolving the still-unclassified `family-association/admin` crawler shard before the full two-vertical closure run.
+
 ## Protected product architecture program
 
 The pre-autonomy reusable architecture program remains binding. M3-B6 completed only the first technical-primitives slice; remaining work proceeds incrementally after/alongside reliability:

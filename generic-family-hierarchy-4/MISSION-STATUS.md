@@ -5,7 +5,7 @@
 | Mission | Status | Meaning |
 |---|---|---|
 | Mission 1 — Runtime Defect & Seed Integrity | PRESERVED / RUNTIME RETEST OUTSTANDING | Source fixes/evidence remain available; no false runtime certification. |
-| Mission 2 — Slow Full Product User Regression | PAUSED | Automation exists; staging/runtime execution remains a carried certification task. |
+| Mission 2 — Slow Full Product User Regression | CONNECTED / REPAIR VERIFY | First focused connected run completed; bounded Housing, notification, harness and accessibility repairs await staging migration + rerun. |
 | M3-A — Architecture Inventory | COMPLETE | Shared/capability/vertical boundaries and convergence opportunities documented. |
 | M3-B1 — Constitutions | COMPLETE | Product/architecture authority is binding. |
 | M3-B2 — Agentic Company OS | COMPLETE | Engineering roles, repair limits and approvals are binding. |
@@ -16,7 +16,7 @@
 | **M3-C0 — Control Surface Reset** | **VERIFY / ACTIVE** | Root hygiene + generic mission runtime + autonomy north star implemented; independent review remains required before formal close. |
 | M3-C1→C10 — Autonomous Company Runtime | COMPLETE | Company Brain, Executive Council, environment/self-repair, product critic, risk/release/memory/cockpit and zero-touch proof completed. |
 | M3-C11 — Continuous Portfolio Loop | DEFERRED | Consider only after product reliability and pilot evidence; not the current priority. |
-| **Reliability R1 — Two-vertical QA control plane** | **SOURCE-GATED** | Root-configured Housing + Family Community scope; local source/unit/type/build green; connected staging evidence pending. |
+| **Reliability R1 — Two-vertical QA control plane** | **CONNECTED / REPAIR VERIFY** | First run: 19 passed, 5 failed, 7 not run; crawler 5/6 shards passed. Repair batch is source-green; migration 122 and focused connected rerun remain. |
 | Reusable Product Architecture — remaining M3-B/C/D/E | ACTIVE / PROTECTED | Workspace, async lifecycle, shared business components, CSS ownership and contracts remain required; AI-company work did not supersede them. |
 
 ## Active objective
