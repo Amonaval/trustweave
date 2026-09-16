@@ -1,6 +1,6 @@
 # TrustWeave — Product Roadmap
 
-**Updated:** 2026-09-15
+**Updated:** 2026-09-16
 
 The roadmap has moved from capability construction to **proof, pilot and adoption**. Broad feature expansion is intentionally paused until the final launch candidate passes runtime certification.
 
@@ -76,4 +76,19 @@ Formalize layered reusable components and shared CSS ownership: platform → ver
 
 ### Mission 4 — Plugin Architecture, Vertical Lazy Loading & SQL Modularization
 Move toward loading core/common code first and vertical bundles only when selected. Define injectable vertical manifests for routes, navigation, capabilities, permissions, seed adapters and tests. Keep historical Supabase migrations immutable; organize future maintainable SQL by domain (`common`, `family`, `family-community`, `housing`, `engagement`, etc.) while continuing to emit chronological deployment migrations. Do this only after Mission 2 provides strong regression protection.
+
+## Mission 3 — Shared Component / CSS Architecture
+### M3-A — COMPLETE
+Architecture inventory and boundaries are documented in `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`. The mission will converge existing launch surfaces onto proven shared contracts instead of performing a broad rewrite.
+
+### M3-B — NEXT: shared technical primitives
+Execution order begins with:
+1. replace Housing's duplicate section-tab component with `ResponsiveSectionTabs`;
+2. converge Housing and Family Community admin/workspace shells;
+3. extract repeated async resource/action lifecycle behavior;
+4. normalize loading/empty/error and media attachment controls;
+5. consolidate generic layout CSS touched by those slices.
+
+### M3-C / M3-D / M3-E — later
+Share business presentation only where domain contracts match, then normalize CSS ownership and close with component contracts/gates/documentation. Housing maintenance finance, Housing committee resolutions and complaint operations remain domain-specific behind shared lower-level primitives. Mission 4 remains reserved for plugin/lazy-load/bundle work.
 

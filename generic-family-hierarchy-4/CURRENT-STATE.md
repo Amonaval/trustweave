@@ -63,3 +63,11 @@ Mission 2 is implemented in source. The suite is serial (`workers=1`), defaults 
 The strict watcher now fails unexpected REST/Storage/Functions/app API HTTP 4xx/5xx rather than treating only 500s/page crashes as failures. Source audit also fixed a shared Activity composer bug where internal activity IDs were incorrectly compared with translated labels. Mission-2 source gate: **38/38 PASS**.
 
 Runtime execution is not claimed in this sandbox: `.env.qa` is absent and offline dependency restoration stops on an uncached `zustand-4.5.7.tgz`.
+
+## 2026-09-16 — Mission 3 active / M3-A complete
+Mission 2 remains intentionally paused with its evidence preserved. Mission 3 has started with an architecture-only inventory; no runtime feature or SQL behavior changed in M3-A.
+
+The current shared layer is stronger than a rewrite would imply: `NetworkUi`, `ResponsiveSectionTabs`, shared Funds, Voting, Posts, Activity and Media Management are already established. The main launch-critical debt is inconsistent composition around them, especially Housing-specific copies of progressive navigation/workspace mechanics and repeated async panel lifecycle code.
+
+The first implementation slice will migrate Housing Finance/Governance/Security from `HousingSectionTabs` to the canonical `ResponsiveSectionTabs`, preserving behavior and progressive disclosure. Business workflows that only look similar remain separate unless their contracts genuinely match. See `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`.
+

@@ -1,6 +1,6 @@
 # TrustWeave — Mission Status
 
-**Updated:** 2026-09-15
+**Updated:** 2026-09-16
 
 ## Final pre-launch mission
 
@@ -81,3 +81,14 @@ A source audit during Mission 2 fixed the shared Activity composer member-type f
 - Latest Housing UX follow-up exposes vendor complaint navigation and admin-visible committee/meeting state.
 - Next active mission: **Mission 3 — Shared Component / CSS Architecture**.
 - Mission 4 remains reserved for plugin/lazy-load/bundle architecture.
+
+## 2026-09-16 — Mission 3 M3-A architecture inventory complete
+- Mission 3 is now active; M3-A completed the shared-component/CSS duplication inventory without changing runtime behavior.
+- Canonical first convergence target: `ResponsiveSectionTabs`; Housing's parallel `HousingSectionTabs` contract is a lower-capability duplicate and is scheduled for M3-B1 replacement.
+- Housing + Family Community remain the protected launch consumers; other verticals remain registered and are not broadened into current certification scope.
+- Business boundaries are explicit: Housing maintenance finance is not the same contract as Community pooled funds, and Housing committee resolutions are not the same contract as shared elections/secret ballots. Mission 3 will share stable presentation/interaction primitives beneath those workflows rather than force them into universal panels.
+- Repeated async load/mutate/busy/notify/reload lifecycle code is a high-value technical extraction candidate.
+- `app/globals.css` normalization will be incremental: generic tabs/workspaces/grids first, vertical signature styling remains additive/domain-owned.
+- M3-A artifact: `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`.
+- Next slice: **M3-B1 — Progressive selector convergence**.
+
