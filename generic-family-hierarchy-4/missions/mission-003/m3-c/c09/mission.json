@@ -1,0 +1,77 @@
+{
+  "id": "M3-C9",
+  "title": "Founder Spectator Cockpit",
+  "risk": "R1",
+  "state": "CLOSE",
+  "scope": {
+    "include": [
+      "Founder cockpit route",
+      "safe company snapshot",
+      "mobile browser evidence"
+    ],
+    "exclude": [
+      "production control actions",
+      "secrets",
+      "database migration"
+    ],
+    "allowedWrites": [
+      "app/company/**",
+      "scripts/company/**",
+      "company-state/**",
+      "missions/mission-003/m3-c/**",
+      "missions/registry.json",
+      "governance/documentation-policy.json",
+      "governance/quality-policy.json",
+      "package.json",
+      "release-evidence/M3-C9/**"
+    ],
+    "forbiddenWrites": [
+      "supabase/migrations/**"
+    ]
+  },
+  "acceptance": [
+    "one concise cockpit shows company state and control signals",
+    "optional source drill-down is available",
+    "mobile cockpit renders without overflow",
+    "no secrets or production control are exposed"
+  ],
+  "gates": [
+    "mission-contract",
+    "control-plane",
+    "scope",
+    "architecture",
+    "documentation",
+    "mission-source",
+    "static-syntax",
+    "runtime-company-cockpit",
+    "independent-review",
+    "evidence"
+  ],
+  "sourceValidation": {
+    "commands": [
+      {
+        "name": "M3-C9 cockpit source",
+        "command": "node --check scripts/company/cockpit-snapshot.mjs && node --check scripts/company/c9-gate.mjs"
+      }
+    ]
+  },
+  "runtimeEvidenceRequired": true,
+  "rollback": "Remove /company, its local snapshot generator, and runtime gate; no external state is affected.",
+  "humanInterventionBudget": 0,
+  "repair": {
+    "maxAttempts": 3,
+    "sameFailureMaxRepeats": 2
+  },
+  "execution": {
+    "baseRef": "main",
+    "branch": "agent/m3-c9-cockpit",
+    "worktree": ".agent-worktrees/m3-c9"
+  },
+  "baseline": {
+    "protectedTreeHashes": {
+      "supabase/migrations": "33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46"
+    }
+  },
+  "reviewArtifact": "missions/mission-003/m3-c/c09/review.json",
+  "candidateSha": "231e48172f0d4b3a518b17ce9581ae37de9167ad"
+}

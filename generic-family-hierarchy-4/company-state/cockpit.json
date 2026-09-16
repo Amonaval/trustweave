@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-16T13:17:29.033Z",
+  "health": {
+    "status": "HEALTHY",
+    "score": 91,
+    "summary": "10 of 11 company missions closed; 0 independent-review blockers."
+  },
+  "autonomy": {
+    "score": 99,
+    "founderInterventions": 0,
+    "manualErrorRelays": 0,
+    "humanRole": "Strategic owner and D3 authority"
+  },
+  "activeMission": "M3-C10",
+  "missions": [
+    {
+      "id": "M3-C0",
+      "title": "Control Surface Reset + Autonomous Company Runtime Bootstrap",
+      "state": "VERIFY"
+    },
+    {
+      "id": "M3-C1",
+      "title": "Company Brain & Durable Mission Governor",
+      "state": "CLOSE"
+    },
+    {
+      "id": "M3-C2",
+      "title": "AI Executive Council",
+      "state": "CLOSE"
+    },
+    {
+      "id": "M3-C3",
+      "title": "Autonomous Environment & Toolchain Manager",
+      "state": "CLOSE"
+    },
+    {
+      "id": "M3-C4",
+      "title": "Self-Healing Engineering Swarm",
+      "state": "CLOSE"
+    },
+    {
+      "id": "M3-C5",
+      "title": "Autonomous User, Pilot & Product Critic",
+      "state": "CLOSE"
+    },
+    {
+      "id": "M3-C6",
+      "title": "Independent Risk & Review Board",
+      "state": "CLOSE"
+    },
+    {
+      "id": "M3-C7",
+      "title": "Autonomous Release, Rollback & Incident Loop",
+      "state": "CLOSE"
+    },
+    {
+      "id": "M3-C8",
+      "title": "Company Memory & Learning Engine",
+      "state": "CLOSE"
+    },
+    {
+      "id": "M3-C9",
+      "title": "Founder Spectator Cockpit",
+      "state": "CLOSE"
+    },
+    {
+      "id": "M3-C10",
+      "title": "Zero-Touch Mission Demonstration",
+      "state": "CLOSE"
+    }
+  ],
+  "executiveDebate": [
+    {
+      "role": "CEO",
+      "position": "Prioritize the highest-ranked observed user friction."
+    },
+    {
+      "role": "CTO",
+      "position": "Reuse the canonical public experience and preserve platform boundaries."
+    },
+    {
+      "role": "Risk & Review",
+      "position": "Require real browser, accessibility, rollback, and candidate-bound proof."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D-M3-C8",
+      "class": "D1",
+      "decision": "Apply retrieved tap-target evidence to the next product mission.",
+      "basis": "Company memory and user critic evidence"
+    }
+  ],
+  "risks": {
+    "blocking": 0,
+    "watch": [
+      {
+        "id": "first-time-visitor-tap-target",
+        "title": "At least one visible action is below a 40px practical tap target.",
+        "persona": "first-time-visitor"
+      },
+      {
+        "id": "chairman-tap-target",
+        "title": "At least one visible action is below a 40px practical tap target.",
+        "persona": "chairman"
+      },
+      {
+        "id": "president-tap-target",
+        "title": "At least one visible action is below a 40px practical tap target.",
+        "persona": "president"
+      }
+    ]
+  },
+  "evidence": {
+    "memoryRecords": 29,
+    "approvedReviews": 10,
+    "latestSources": [
+      "missions/mission-003/m3-c/c07/EVIDENCE.md",
+      "missions/mission-003/m3-c/c07/review.json",
+      "missions/mission-003/m3-c/c08/mission.json",
+      "missions/mission-003/m3-c/c08/EVIDENCE.md",
+      "missions/mission-003/m3-c/c08/review.json"
+    ]
+  },
+  "interventions": [],
+  "blockers": [],
+  "nextMoves": [
+    "Complete the Founder cockpit runtime proof.",
+    "Execute the highest-ranked product opportunity as M3-C10."
+  ]
+}

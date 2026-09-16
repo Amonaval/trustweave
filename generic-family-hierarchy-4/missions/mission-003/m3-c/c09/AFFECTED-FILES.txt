@@ -1,0 +1,14 @@
+app/company/page.tsx
+app/company/company.module.css
+scripts/company/cockpit-snapshot.mjs
+scripts/company/c9-gate.mjs
+scripts/company/risk-board.mjs
+company-state/cockpit.json
+missions/mission-003/m3-c/c09/mission.json
+missions/mission-003/m3-c/c09/review.json
+missions/mission-003/m3-c/c09/EVIDENCE.md
+missions/mission-003/m3-c/c09/AFFECTED-FILES.txt
+missions/registry.json
+governance/documentation-policy.json
+governance/quality-policy.json
+package.json
