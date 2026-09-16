@@ -1,0 +1,67 @@
+name: TrustWeave CI
+
+on:
+  push:
+    branches:
+      - llm-push
+      - main
+    paths:
+      - "generic-family-hierarchy-4/**"
+      - ".github/workflows/trustweave-ci.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "generic-family-hierarchy-4/**"
+      - ".github/workflows/trustweave-ci.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: trustweave-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate TrustWeave
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: generic-family-hierarchy-4
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: generic-family-hierarchy-4/package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Verify company architecture
+        run: npm run agentic:architecture
+
+      - name: Verify living documentation
+        run: npm run agentic:docs
+
+      - name: Verify deployed product artifacts
+        run: npm run artifacts:check
+
+      - name: Verify TypeScript
+        run: npm run check:types
+
+      - name: Verify lint baseline
+        run: npm run lint:trustweave
+
+      - name: Verify unit and resilient-crawl contracts
+        run: npm run qa:unit
+
+      - name: Verify production build
+        run: npm run build
