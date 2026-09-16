@@ -1,0 +1,16 @@
+governance/quality-policy.json
+governance/company-os.json
+scripts/agentic/lib.mjs
+scripts/agentic/architecture-gate.mjs
+scripts/agentic/documentation-gate.mjs
+scripts/agentic/mission-contract-gate.mjs
+scripts/agentic/control-plane-gate.mjs
+scripts/agentic/failure-classifier.mjs
+scripts/agentic/review-gate.mjs
+scripts/agentic/evidence-gate.mjs
+scripts/agentic/scorecard.mjs
+scripts/agentic/run-mission.mjs
+scripts/agentic/README.md
+scripts/static-syntax-scan.mjs
+package.json
+release-evidence/m3-b/M3-B4-AFFECTED-FILES.txt

@@ -1,0 +1,223 @@
+{
+  "version": "2026-09-16.m3-b4",
+  "status": "BINDING",
+  "principles": [
+    "compose-existing-gates",
+    "bind-evidence-to-candidate",
+    "separate-source-and-runtime-proof",
+    "classify-before-repair",
+    "block-release-on-mandatory-red",
+    "prefer-deterministic-checks-over-llm-judgment-for-provable-facts"
+  ],
+  "riskProfiles": {
+    "R0": {
+      "requiredBaseGates": [
+        "mission-contract",
+        "control-plane",
+        "architecture",
+        "documentation"
+      ],
+      "requirements": []
+    },
+    "R1": {
+      "requiredBaseGates": [
+        "mission-contract",
+        "control-plane",
+        "architecture",
+        "documentation",
+        "mission-source",
+        "static-syntax"
+      ],
+      "requirements": []
+    },
+    "R2": {
+      "requiredBaseGates": [
+        "mission-contract",
+        "control-plane",
+        "architecture",
+        "documentation",
+        "mission-source",
+        "static-syntax",
+        "types",
+        "lint"
+      ],
+      "requirements": [
+        "targeted-runtime"
+      ]
+    },
+    "R3": {
+      "requiredBaseGates": [
+        "mission-contract",
+        "control-plane",
+        "architecture",
+        "documentation",
+        "mission-source",
+        "static-syntax",
+        "types",
+        "lint"
+      ],
+      "requirements": [
+        "targeted-runtime",
+        "security-review",
+        "data-migration-review"
+      ]
+    }
+  },
+  "gateRegistry": {
+    "mission-contract": {
+      "kind": "source",
+      "command": "node scripts/agentic/mission-contract-gate.mjs --mission {mission}"
+    },
+    "architecture": {
+      "kind": "source",
+      "command": "node scripts/agentic/architecture-gate.mjs"
+    },
+    "documentation": {
+      "kind": "documentation",
+      "command": "node scripts/agentic/documentation-gate.mjs"
+    },
+    "mission-source": {
+      "kind": "source",
+      "command": "node scripts/m3b6-progressive-selector-gate.mjs"
+    },
+    "ux-progressive": {
+      "kind": "source",
+      "command": "node scripts/progressive-disclosure-ux-gate.mjs"
+    },
+    "launch-hotfix-contract": {
+      "kind": "source",
+      "command": "node scripts/final-launch-runtime-hotfix-gate.mjs"
+    },
+    "housing-source": {
+      "kind": "source",
+      "command": "node scripts/hs6-founder-pilot-commercialization-gate.mjs"
+    },
+    "family-community-source": {
+      "kind": "source",
+      "command": "node scripts/fca0-family-association-gate.mjs"
+    },
+    "static-syntax": {
+      "kind": "static",
+      "command": "node scripts/static-syntax-scan.mjs"
+    },
+    "types": {
+      "kind": "static",
+      "command": "npm run check:types:app"
+    },
+    "lint": {
+      "kind": "static",
+      "command": "npm run lint:trustweave:strict"
+    },
+    "runtime-b6-desktop": {
+      "kind": "runtime",
+      "command": "npx playwright test qa/e2e/34-m3b6-progressive-selector.spec.ts --project=chromium-desktop --workers=1",
+      "requiredEnv": [
+        "TW_QA_BASE_URL"
+      ]
+    },
+    "runtime-b6-mobile": {
+      "kind": "runtime",
+      "command": "npx playwright test qa/e2e/34-m3b6-progressive-selector.spec.ts --project=chromium-mobile --workers=1",
+      "requiredEnv": [
+        "TW_QA_BASE_URL"
+      ]
+    },
+    "independent-review": {
+      "kind": "review",
+      "command": "node scripts/agentic/review-gate.mjs --mission {mission}"
+    },
+    "evidence": {
+      "kind": "release",
+      "command": "node scripts/agentic/evidence-gate.mjs --mission {mission} --evidence {evidence}"
+    },
+    "scope": {
+      "kind": "source",
+      "command": "node scripts/agentic/scope-gate.mjs --mission {mission}"
+    },
+    "control-plane": {
+      "kind": "source",
+      "command": "node scripts/agentic/control-plane-gate.mjs"
+    }
+  },
+  "releasePolicy": {
+    "blockingStatuses": [
+      "FAIL",
+      "BLOCKED"
+    ],
+    "requireIndependentReview": true,
+    "requireRuntimeWhenMissionRequiresRuntime": true,
+    "allowSourceGatedIntermediateState": true
+  },
+  "specialistRequirements": {
+    "security": {
+      "triggers": [
+        "auth",
+        "privacy",
+        "rls",
+        "storage",
+        "cross-tenant",
+        "permission",
+        "secret"
+      ],
+      "requiredEvidence": [
+        "security-source-or-static-audit",
+        "targeted-runtime-authorization-proof"
+      ],
+      "existingCommands": [
+        "npm run qa:phase5a:audit",
+        "npm run qa:security"
+      ]
+    },
+    "dataMigration": {
+      "triggers": [
+        "supabase/migrations",
+        "schema",
+        "rpc",
+        "backfill",
+        "seed",
+        "destructive-data"
+      ],
+      "requiredEvidence": [
+        "migration-static-audit",
+        "fresh-disposable-replay-for-R3",
+        "rollback-or-forward-repair-plan"
+      ],
+      "existingCommands": [
+        "npm run qa:db-static",
+        "npm run qa:db-replay"
+      ]
+    },
+    "uxAccessibility": {
+      "triggers": [
+        "navigation",
+        "shared-ui",
+        "forms",
+        "responsive",
+        "user-visible-workflow"
+      ],
+      "requiredEvidence": [
+        "mission-specific-ux-contract",
+        "desktop-mobile-proof-when-behavior-is-responsive",
+        "accessibility-proof-when-controls-or-semantics-change"
+      ],
+      "existingCommands": [
+        "npm run validate:ux-progressive",
+        "npm run qa:accessibility"
+      ]
+    },
+    "performance": {
+      "triggers": [
+        "bundle",
+        "large-query",
+        "hot-path",
+        "latency",
+        "large-list"
+      ],
+      "requiredEvidence": [
+        "mission-specific-budget-and-measurement"
+      ],
+      "existingCommands": [],
+      "missionSpecificGateRequired": true
+    }
+  }
+}

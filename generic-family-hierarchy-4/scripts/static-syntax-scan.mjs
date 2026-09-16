@@ -9,7 +9,7 @@ try { ts=require('typescript'); } catch {
   ts=require(path.join(globalRoot,'typescript'));
 }
 
-const roots=['app','app-shell','capabilities','components','core','lib','templates','verticals'];
+const roots=['app','app-shell','capabilities','components','core','lib','templates','verticals','qa'];
 const files=[];
 function walk(dir){
   for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
