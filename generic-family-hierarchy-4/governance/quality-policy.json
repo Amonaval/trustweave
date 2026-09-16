@@ -137,6 +137,21 @@
       "command": "node scripts/company/c7-gate.mjs",
       "requiredEnv": []
     },
+    "runtime-company-memory": {
+      "kind": "runtime",
+      "command": "TW_C8_PERSIST=1 node scripts/company/c8-gate.mjs",
+      "requiredEnv": []
+    },
+    "runtime-company-cockpit": {
+      "kind": "runtime",
+      "command": "node scripts/company/c9-gate.mjs",
+      "requiredEnv": []
+    },
+    "runtime-company-zero-touch": {
+      "kind": "runtime",
+      "command": "node scripts/company/c10-gate.mjs",
+      "requiredEnv": []
+    },
     "independent-review": {
       "kind": "review",
       "command": "node scripts/agentic/review-gate.mjs --mission {mission}"

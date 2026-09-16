@@ -1,6 +1,6 @@
 {
-  "version": "2026-09-16.m3-c7",
-  "activeId": "M3-C7",
+  "version": "2026-09-16.m3-c10",
+  "activeId": "M3-C10",
   "missions": [
     {
       "id": "M3-B6-E1",
@@ -61,9 +61,30 @@
     {
       "id": "M3-C7",
       "title": "Autonomous Release, Rollback & Incident Loop",
-      "state": "REVIEW",
+      "state": "CLOSE",
       "path": "missions/mission-003/m3-c/c07/mission.json",
-      "aliases": ["c7", "active", "autonomy"]
+      "aliases": ["c7"]
+    },
+    {
+      "id": "M3-C8",
+      "title": "Company Memory & Learning Engine",
+      "state": "CLOSE",
+      "path": "missions/mission-003/m3-c/c08/mission.json",
+      "aliases": ["c8"]
+    },
+    {
+      "id": "M3-C9",
+      "title": "Founder Spectator Cockpit",
+      "state": "CLOSE",
+      "path": "missions/mission-003/m3-c/c09/mission.json",
+      "aliases": ["c9"]
+    },
+    {
+      "id": "M3-C10",
+      "title": "Zero-Touch Mission Demonstration",
+      "state": "CLOSE",
+      "path": "missions/mission-003/m3-c/c10/mission.json",
+      "aliases": ["c10", "active", "autonomy"]
     }
   ]
 }

@@ -1,0 +1,75 @@
+{
+  "id": "M3-C8",
+  "title": "Company Memory & Learning Engine",
+  "risk": "R1",
+  "state": "CLOSE",
+  "scope": {
+    "include": [
+      "durable memory",
+      "search",
+      "automatic lesson application"
+    ],
+    "exclude": [
+      "external vector services",
+      "production deployment",
+      "database migration"
+    ],
+    "allowedWrites": [
+      "scripts/company/**",
+      "company-state/**",
+      "missions/mission-003/m3-c/**",
+      "missions/registry.json",
+      "governance/documentation-policy.json",
+      "governance/quality-policy.json",
+      "package.json",
+      "release-evidence/M3-C8/**"
+    ],
+    "forbiddenWrites": [
+      "supabase/migrations/**"
+    ]
+  },
+  "acceptance": [
+    "knowledge sources become durable searchable records",
+    "new planning automatically applies relevant prior lessons",
+    "results retain source citations"
+  ],
+  "gates": [
+    "mission-contract",
+    "control-plane",
+    "scope",
+    "architecture",
+    "documentation",
+    "mission-source",
+    "static-syntax",
+    "runtime-company-memory",
+    "independent-review",
+    "evidence"
+  ],
+  "sourceValidation": {
+    "commands": [
+      {
+        "name": "M3-C8 memory source",
+        "command": "node --check scripts/company/memory-engine.mjs && node --check scripts/company/c8-gate.mjs"
+      }
+    ]
+  },
+  "runtimeEvidenceRequired": true,
+  "rollback": "Remove the generated local memory index and C8 engine; all source evidence remains unchanged.",
+  "humanInterventionBudget": 0,
+  "repair": {
+    "maxAttempts": 3,
+    "sameFailureMaxRepeats": 2
+  },
+  "execution": {
+    "baseRef": "main",
+    "branch": "agent/m3-c8-memory",
+    "worktree": ".agent-worktrees/m3-c8"
+  },
+  "baseline": {
+    "protectedTreeHashes": {
+      "supabase/migrations": "33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46"
+    }
+  },
+  "reviewArtifact": "missions/mission-003/m3-c/c08/review.json",
+  "candidateSha": "bd7902c8e274805fff1e600d10f0b9e20fddd2ec"
+}

@@ -1,0 +1,52 @@
+{
+  "intent": "plan a mobile housing release with accessible action targets and rollback",
+  "generatedAt": "2026-09-16T09:08:42.765Z",
+  "lessons": [
+    {
+      "id": "24e720ef7914ae4e",
+      "kind": "evidence",
+      "title": "C08 evidence",
+      "source": "missions/mission-003/m3-c/c08/EVIDENCE.md",
+      "score": 16
+    },
+    {
+      "id": "5cf3d0c437449a79",
+      "kind": "mission-outcome",
+      "title": "Company Brain & Durable Mission Governor",
+      "source": "missions/mission-003/m3-c/c01/mission.json",
+      "score": 9
+    },
+    {
+      "id": "3dd2e264fa7bad25",
+      "kind": "mission-outcome",
+      "title": "Autonomous Release, Rollback & Incident Loop",
+      "source": "missions/mission-003/m3-c/c07/mission.json",
+      "score": 7
+    },
+    {
+      "id": "8a66317e58bfd488",
+      "kind": "evidence",
+      "title": "C06 evidence",
+      "source": "missions/mission-003/m3-c/c06/EVIDENCE.md",
+      "score": 6
+    },
+    {
+      "id": "97816f8464e313b4",
+      "kind": "user-evidence",
+      "title": "At least one visible action is below a 40px practical tap target.",
+      "source": "company-state/opportunities.json",
+      "score": 6
+    },
+    {
+      "id": "b15483241bdd48cd",
+      "kind": "evidence",
+      "title": "C01 evidence",
+      "source": "missions/mission-003/m3-c/c01/EVIDENCE.md",
+      "score": 6
+    }
+  ],
+  "appliedConstraints": [
+    "minimum-44px-action-targets"
+  ],
+  "memoryApplied": true
+}

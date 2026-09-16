@@ -224,7 +224,10 @@
     "validate:m3c4": "node scripts/company/c4-gate.mjs",
     "validate:m3c5": "node scripts/company/c5-gate.mjs",
     "validate:m3c6": "node scripts/company/c6-gate.mjs",
-    "validate:m3c7": "node scripts/company/c7-gate.mjs"
+    "validate:m3c7": "node scripts/company/c7-gate.mjs",
+    "validate:m3c8": "node scripts/company/c8-gate.mjs",
+    "validate:m3c9": "node scripts/company/c9-gate.mjs",
+    "validate:m3c10": "node scripts/company/c10-gate.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.54.0",

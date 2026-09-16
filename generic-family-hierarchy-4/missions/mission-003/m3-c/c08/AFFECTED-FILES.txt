@@ -1,0 +1,12 @@
+scripts/company/memory-engine.mjs
+scripts/company/c8-gate.mjs
+company-state/memory.json
+company-state/next-plan-memory.json
+missions/mission-003/m3-c/c08/mission.json
+missions/mission-003/m3-c/c08/review.json
+missions/mission-003/m3-c/c08/EVIDENCE.md
+missions/mission-003/m3-c/c08/AFFECTED-FILES.txt
+missions/registry.json
+governance/documentation-policy.json
+governance/quality-policy.json
+package.json
