@@ -1,0 +1,25 @@
+PASS shared responsive section primitive exists
+PASS mobile section navigation uses select instead of horizontal tab scrolling
+PASS shared workspace/card-grid layout is available
+PASS productized vertical admin is progressive
+PASS productized community life is progressive
+PASS productized contributions are progressive
+PASS productized guide is progressive
+PASS Family Community admin is progressive
+PASS Family admin center uses responsive sections
+PASS Family advanced administration renders one category at a time
+PASS Family guide overview uses progressive disclosure
+PASS Family guide library uses internal mode ids, not translated display text
+PASS Alumni admin is progressive
+PASS shared Funds surface is sectioned
+PASS shared Voting surface is sectioned
+PASS shared Activity/Groups surface is sectioned without horizontal tab scrolling
+PASS Family participation center uses responsive section navigation
+PASS shared media management uses responsive filters
+PASS network tool navigation switches to a mobile selector
+PASS Housing Manage Society is sectioned
+PASS Housing Finance/Governance/Security use canonical responsive sections
+PASS UX handbook contains cross-vertical density rule
+PASS development rules make progressive disclosure permanent
+Progressive disclosure UX gate: 23/23
+

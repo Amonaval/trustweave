@@ -1,0 +1,56 @@
+PASS policy parses: governance/architecture-policy.json
+PASS policy binding: governance/architecture-policy.json — BINDING
+PASS policy parses: governance/company-os.json
+PASS policy binding: governance/company-os.json — BINDING
+PASS policy parses: governance/documentation-policy.json
+PASS policy binding: governance/documentation-policy.json — BINDING
+PASS policy parses: governance/quality-policy.json
+PASS policy binding: governance/quality-policy.json — BINDING
+PASS policy parses: governance/execution-policy.json
+PASS policy binding: governance/execution-policy.json — BINDING
+PASS schema parses: governance/schemas/mission.schema.json
+PASS schema parses: governance/schemas/evidence.schema.json
+PASS gate has kind+command: mission-contract
+PASS gate has kind+command: architecture
+PASS gate has kind+command: documentation
+PASS gate has kind+command: mission-source
+PASS gate has kind+command: ux-progressive
+PASS gate has kind+command: launch-hotfix-contract
+PASS gate has kind+command: housing-source
+PASS gate has kind+command: family-community-source
+PASS gate has kind+command: static-syntax
+PASS gate has kind+command: types
+PASS gate has kind+command: lint
+PASS gate has kind+command: runtime-b6-desktop
+PASS gate has kind+command: runtime-b6-mobile
+PASS gate has kind+command: independent-review
+PASS gate has kind+command: evidence
+PASS gate has kind+command: scope
+PASS gate has kind+command: control-plane
+PASS risk profile references registered base gates: R0
+PASS risk profile references registered base gates: R1
+PASS risk profile references registered base gates: R2
+PASS risk profile references registered base gates: R3
+PASS six accountable roles remain explicit — 6
+PASS bounded repair policy remains enforced
+PASS control plane remains Git/worktree/PR/CI/evidence — git-worktree-pr-ci-evidence
+PASS protected production actions require approval
+PASS active proving mission has explicit risk — R1
+PASS active proving mission has rollback
+PASS active proving mission has human intervention budget
+PASS agentic script parses: architecture-gate.mjs
+PASS agentic script parses: control-plane-gate.mjs
+PASS agentic script parses: documentation-gate.mjs
+PASS agentic script parses: evidence-gate.mjs
+PASS agentic script parses: failure-classifier.mjs
+PASS agentic script parses: lib.mjs
+PASS agentic script parses: mission-close.mjs
+PASS agentic script parses: mission-contract-gate.mjs
+PASS agentic script parses: mission-worktree.mjs
+PASS agentic script parses: review-gate.mjs
+PASS agentic script parses: run-mission.mjs
+PASS agentic script parses: runtime-preflight.mjs
+PASS agentic script parses: scope-gate.mjs
+PASS agentic script parses: scorecard.mjs
+Agentic control-plane gate: 54/54 passed.
+

@@ -1,0 +1,24 @@
+PASS legacy HousingSectionTabs component is removed
+PASS zero live component references to HousingSectionTabs
+PASS finance imports canonical ResponsiveSectionTabs
+PASS finance renders canonical ResponsiveSectionTabs
+PASS finance uses active/onChange selector contract
+PASS governance imports canonical ResponsiveSectionTabs
+PASS governance renders canonical ResponsiveSectionTabs
+PASS governance uses active/onChange selector contract
+PASS security imports canonical ResponsiveSectionTabs
+PASS security renders canonical ResponsiveSectionTabs
+PASS security uses active/onChange selector contract
+PASS finance preserves billing/funds/arrears branches
+PASS governance preserves committee/actions/resolutions branches
+PASS security preserves visitors/requests/assets branches
+PASS canonical selector exposes deterministic QA ids
+PASS canonical selector keeps tab semantics
+PASS canonical selector keeps mobile select path
+PASS obsolete Housing selector CSS is gone
+PASS canonical responsive selector CSS remains
+PASS mission remains R1 and runtime-evidence bound
+PASS mission forbids migration writes
+PASS Supabase migration tree is byte-stable — 33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46
+M3-B6 progressive selector gate: 22/22
+

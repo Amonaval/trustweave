@@ -44,7 +44,7 @@ Family Community guided import now commits annual Association Membership through
 The engineering mission is packaged as a launch candidate, but the original Definition of DONE remains binding: **launch-ready is not claimed until dependency-backed build/lint and persisted headed/mobile runtime certification pass.**
 
 ## Next mission
-Mission 2 is now implemented in source. Run `npm run qa:mission2` against approved staging with migrations through 115 applied; fix all real failures and keep permanent regression assertions. Mission 3 (`NEXT-SESSION-MISSION-3-SHARED-COMPONENT-ARCHITECTURE.md`) starts only after that runtime run is green.
+Mission 3 is active independently of the paused Mission-2 staging run. The immediate remaining work is M3-B6 verification/independent review; Mission-2 runtime evidence stays preserved and may be resumed later without blocking the current architecture/autonomy program.
 
 ## 2026-09-15 — Seeded-network rehearsal hotfix
 The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
@@ -89,8 +89,8 @@ A source audit during Mission 2 fixed the shared Activity composer member-type f
 - Business boundaries are explicit: Housing maintenance finance is not the same contract as Community pooled funds, and Housing committee resolutions are not the same contract as shared elections/secret ballots. Mission 3 will share stable presentation/interaction primitives beneath those workflows rather than force them into universal panels.
 - Repeated async load/mutate/busy/notify/reload lifecycle code is a high-value technical extraction candidate.
 - `app/globals.css` normalization will be incremental: generic tabs/workspaces/grids first, vertical signature styling remains additive/domain-owned.
-- M3-A artifact: `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`.
-- Next slice: **M3-B1 — Progressive selector convergence**.
+- M3-A artifact: `missions/mission-003/M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`.
+- That selector workload was subsequently moved to **M3-B6** so B1–B5 could establish the governing system first.
 
 ## 2026-09-16 — Mission 3 M3-B strategic reset ACTIVE
 - M3-A Architecture Inventory & Boundaries remains COMPLETE.
@@ -100,3 +100,13 @@ A source audit during Mission 2 fixed the shared Activity composer member-type f
 - M3-B sequence: B0 evidence/diagnosis → B1 constitutions → B2 company OS/lifecycle → B3 knowledge OS → B4 evaluation OS → B5 execution harness → B6 first agent-governed refactor.
 - Production release, constitution changes, privacy/security risk acceptance and irreversible data changes remain human gates at the current maturity.
 
+
+
+## 2026-09-16 — M3-B1 through M3-B6 execution status
+- **M3-B1 — COMPLETE:** Product/Architecture constitutions promoted to binding authority; architecture policy + mission/evidence schemas are machine-readable.
+- **M3-B2 — COMPLETE:** Six accountable roles, specialist lenses, lifecycle, repair limits, approval matrix and maturity model are binding.
+- **M3-B3 — COMPLETE:** root-document ambiguity reduced; canonical product documents live under `docs/product`; mission/evidence/history boundaries are explicit; documentation drift gate is green.
+- **M3-B4 — COMPLETE / OPERATING:** mission-scoped gate registry, risk profiles, specialist requirements, evidence runner, failure classifier, scorecard and control-plane self-check are active.
+- **M3-B5 — COMPLETE / OPERATING:** Git/worktree/CI/evidence harness, scope guard, runtime preflight and closure gate are wired; the harness explicitly distinguishes what this sandbox can and cannot execute.
+- **M3-B6 — VERIFY:** progressive selector convergence is implemented. Source profile: green. Application+QA syntax: green. Migration tree: unchanged. Type/lint are environment-blocked because locked dependencies are unavailable; desktop/mobile runtime is environment-blocked because `TW_QA_BASE_URL` is unavailable; independent review is pending.
+- **Release status:** NOT CLOSED. No blocked gate is waived or converted to PASS.

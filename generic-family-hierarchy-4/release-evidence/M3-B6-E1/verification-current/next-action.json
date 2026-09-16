@@ -1,0 +1,7 @@
+{
+  "missionId": "M3-B6-E1",
+  "gate": "types",
+  "classification": "environment-defect",
+  "status": "BLOCKED",
+  "action": "repair environment/preconditions before changing product code"
+}

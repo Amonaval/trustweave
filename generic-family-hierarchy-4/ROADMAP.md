@@ -82,28 +82,28 @@ Move toward loading core/common code first and vertical bundles only when select
 Mission 3 is strategically reframed. M3-A remains the evidence base; the old component-refactor sequence becomes the first workload of the new operating system rather than the immediate mission.
 
 ### M3-A — COMPLETE: Architecture Inventory & Boundaries
-Preserve `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`.
+Preserve `missions/mission-003/M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`.
 
-### M3-B0 — ACTIVE: Strategic reset / evidence ingestion
+### M3-B0 — COMPLETE: Strategic reset / evidence ingestion
 No production code. Diagnose current architecture/process/orchestration/documentation/tooling gaps.
 
-### M3-B1 — Product & Architecture Constitutions
+### M3-B1 — COMPLETE: Product & Architecture Constitutions
 Finalize product vocabulary, kernel/capability/vertical/shared-use-case/domain-adapter boundaries, invariants, ADR policy and human approval boundaries.
 
-### M3-B2 — Agentic Company OS + Mission Lifecycle
+### M3-B2 — COMPLETE: Agentic Company OS + Mission Lifecycle
 Finalize minimal agent roles, independent review, failure/repair loop, lifecycle, approval matrix, maturity model and scorecard.
 
-### M3-B3 — Repository Knowledge OS
+### M3-B3 — COMPLETE: Repository Knowledge OS
 Remove canonical ambiguity and divergent mirrors; compact session bootstrap; archive stale handoffs/evidence; add document-drift checks.
 
-### M3-B4 — Evaluation / Quality OS
+### M3-B4 — COMPLETE / OPERATING: Evaluation / Quality OS
 Compose existing source/QA/security/migration/runtime assets into mission-scoped gate manifests and evidence contracts rather than creating another unrelated validation chain.
 
-### M3-B5 — Execution Harness
+### M3-B5 — COMPLETE / OPERATING: Execution Harness
 Design/wire Git branch/worktree + PR/check feedback + persistent orchestration + preview runtime + disposable database + evidence artifacts. Use existing GitHub Actions/QA foundations. Add no speculative infrastructure.
 
-### M3-B6 — First agent-governed engineering experiment
-Execute M3-A progressive selector convergence under the new operating model. Measure human interventions, repair-loop success, independent review catches, lead time and documentation drift.
+### M3-B6 — VERIFY: First agent-governed engineering experiment
+Progressive selector convergence is implemented under the new operating model: Housing Finance/Governance/Security use `ResponsiveSectionTabs`; duplicate selector code/CSS is removed; source, architecture, documentation and protected-migration gates are green. Dependency-backed type/lint, desktop/mobile runtime and an independent reviewer remain blocking evidence before CLOSE.
 
 ### After B6
 If the operating model proves useful, continue the parked M3-A backlog: workspace convergence → async lifecycle → async state/media primitives → incremental CSS ownership normalization. Mission 4 remains reserved for plugin/lazy-load/bundle/SQL modularization and is not pulled forward merely because Mission 3 is agentic.

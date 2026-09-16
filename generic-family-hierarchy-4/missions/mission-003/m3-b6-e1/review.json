@@ -1,0 +1,19 @@
+{
+  "missionId": "M3-B6-E1",
+  "candidateSha": "snapshot-6ffcfc3beee83d16f1e2c76c",
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "builder": "implementation-agent:m3-b6-session",
+  "reviewer": null,
+  "blockingFindings": null,
+  "selfReview": {
+    "status": "PASS",
+    "scope": [
+      "selector contract",
+      "architecture boundaries",
+      "migration immutability",
+      "source regression gates"
+    ],
+    "note": "Implementation was self-reviewed and deterministically gated, but self-review is not accepted as independent final review."
+  },
+  "requiredNextAction": "Assign an independent reviewer/agent that did not author the change, bind its review to this candidate, and resolve any blocking findings before RELEASE/CLOSE."
+}

@@ -1,0 +1,6 @@
+
+> xyz-hierarchy-network@0.2.0 lint:trustweave:strict
+> eslint --no-eslintrc --config eslint.trustweave.cjs --ext .ts,.tsx --max-warnings=0 app app-shell capabilities components core lib templates verticals TemplateNetworkApp.tsx
+
+
+sh: 1: eslint: not found

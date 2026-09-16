@@ -1,0 +1,177 @@
+{
+  "missionId": "M3-B6-E1",
+  "candidateSha": "snapshot-6ffcfc3beee83d16f1e2c76c",
+  "generatedAt": "2026-09-15T21:37:48.101Z",
+  "environmentClass": "local-session",
+  "profile": "all",
+  "results": [
+    {
+      "gate": "mission-contract",
+      "kind": "source",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:40.596Z",
+      "finishedAt": "2026-09-15T21:37:40.637Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/mission-contract.log"
+    },
+    {
+      "gate": "control-plane",
+      "kind": "source",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:40.638Z",
+      "finishedAt": "2026-09-15T21:37:40.989Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/control-plane.log"
+    },
+    {
+      "gate": "scope",
+      "kind": "source",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:40.990Z",
+      "finishedAt": "2026-09-15T21:37:41.037Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/scope.log"
+    },
+    {
+      "gate": "architecture",
+      "kind": "source",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:41.038Z",
+      "finishedAt": "2026-09-15T21:37:41.082Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/architecture.log"
+    },
+    {
+      "gate": "documentation",
+      "kind": "documentation",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:41.082Z",
+      "finishedAt": "2026-09-15T21:37:41.185Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/documentation.log"
+    },
+    {
+      "gate": "mission-source",
+      "kind": "source",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:41.185Z",
+      "finishedAt": "2026-09-15T21:37:41.251Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/mission-source.log"
+    },
+    {
+      "gate": "ux-progressive",
+      "kind": "source",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:41.251Z",
+      "finishedAt": "2026-09-15T21:37:41.289Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/ux-progressive.log"
+    },
+    {
+      "gate": "launch-hotfix-contract",
+      "kind": "source",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:41.290Z",
+      "finishedAt": "2026-09-15T21:37:41.329Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/launch-hotfix-contract.log"
+    },
+    {
+      "gate": "housing-source",
+      "kind": "source",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:41.329Z",
+      "finishedAt": "2026-09-15T21:37:41.365Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/housing-source.log"
+    },
+    {
+      "gate": "family-community-source",
+      "kind": "source",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:41.366Z",
+      "finishedAt": "2026-09-15T21:37:41.407Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/family-community-source.log"
+    },
+    {
+      "gate": "static-syntax",
+      "kind": "static",
+      "status": "PASS",
+      "classification": null,
+      "startedAt": "2026-09-15T21:37:41.407Z",
+      "finishedAt": "2026-09-15T21:37:43.757Z",
+      "exitCode": 0,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/static-syntax.log"
+    },
+    {
+      "gate": "types",
+      "kind": "static",
+      "status": "BLOCKED",
+      "classification": "environment-defect",
+      "startedAt": "2026-09-15T21:37:43.757Z",
+      "finishedAt": "2026-09-15T21:37:47.937Z",
+      "exitCode": 2,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/types.log"
+    },
+    {
+      "gate": "lint",
+      "kind": "static",
+      "status": "BLOCKED",
+      "classification": "environment-defect",
+      "startedAt": "2026-09-15T21:37:47.970Z",
+      "finishedAt": "2026-09-15T21:37:48.063Z",
+      "exitCode": 127,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/lint.log"
+    },
+    {
+      "gate": "runtime-b6-desktop",
+      "kind": "runtime",
+      "status": "BLOCKED",
+      "classification": "environment-defect",
+      "startedAt": "2026-09-15T21:37:48.064Z",
+      "finishedAt": "2026-09-15T21:37:48.064Z",
+      "exitCode": null,
+      "artifact": null,
+      "detail": "missing env: TW_QA_BASE_URL"
+    },
+    {
+      "gate": "runtime-b6-mobile",
+      "kind": "runtime",
+      "status": "BLOCKED",
+      "classification": "environment-defect",
+      "startedAt": "2026-09-15T21:37:48.064Z",
+      "finishedAt": "2026-09-15T21:37:48.064Z",
+      "exitCode": null,
+      "artifact": null,
+      "detail": "missing env: TW_QA_BASE_URL"
+    },
+    {
+      "gate": "independent-review",
+      "kind": "review",
+      "status": "BLOCKED",
+      "classification": "review-pending",
+      "startedAt": "2026-09-15T21:37:48.064Z",
+      "finishedAt": "2026-09-15T21:37:48.100Z",
+      "exitCode": 1,
+      "artifact": "release-evidence/M3-B6-E1/verification-current/independent-review.log"
+    }
+  ],
+  "summary": {
+    "pass": 11,
+    "fail": 0,
+    "skip": 0,
+    "blocked": 5
+  }
+}

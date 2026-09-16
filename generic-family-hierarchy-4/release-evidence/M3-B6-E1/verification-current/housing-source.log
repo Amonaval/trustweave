@@ -1,0 +1,32 @@
+PASS pilot runs model
+PASS weekly checkpoints model
+PASS willingness and renewal evidence
+PASS repeatability evidence
+PASS pricing experiments evidence first
+PASS usage events
+PASS notice readership evidence
+PASS objective unit activation metrics
+PASS complaint resolution metric
+PASS maintenance visibility metric
+PASS governance and security evidence
+PASS mapped import readiness signal
+PASS second society readiness signal
+PASS admin-only pilot controls
+PASS member usage scoped to current flat
+PASS remote snapshot adapter
+PASS pricing remote adapter
+PASS pilot UI
+PASS pilot phases surfaced
+PASS operator value checkpoint UI
+PASS pricing experiment UI
+PASS evidence export
+PASS import kit link
+PASS admin app integration
+PASS housing navigation tab contract stays exhaustive
+PASS feature flags catalogued
+PASS launch composition updated
+PASS template closes HS6
+PASS migration rerunnable
+PASS migration assertions
+HS-6 source gate passed (30 checks).
+

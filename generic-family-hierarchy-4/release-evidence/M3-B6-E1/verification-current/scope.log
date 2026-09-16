@@ -1,0 +1,4 @@
+INFO scope mode=protected-hash (full changed-file scope requires Git; protected trees are still enforced)
+PASS protected tree unchanged: supabase/migrations — 33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46 vs 33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46
+Mission scope gate: 1/1 passed.
+

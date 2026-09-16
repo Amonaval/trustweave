@@ -2,7 +2,7 @@
 
 **Updated:** 2026-09-16
 
-TrustWeave is now in **Mission 3 strategic reset / M3-B Agentic Company & Engineering OS design**. M3-A architecture inventory is complete; Mission 2 remains intentionally paused with its evidence preserved. Mission 1 runtime/seed repairs are preserved, and Mission 2 adds strict low-concurrency browser journeys designed to expose remaining ordinary-user API/database failures. The product has three strongest flagship experiences — Family, Family Community / Cultural Association, and Residential / Housing Society — on top of the shared private Network OS and E1–E10 engagement stack.
+TrustWeave is now in **Mission 3 / M3-B Agentic Company & Engineering OS verification**. M3-B1 through M3-B5 are implemented as binding machine-operable governance; M3-B6 progressive-selector convergence is implemented and source-gated, with dependency-backed static/runtime and independent-review proof still required before release. M3-A architecture inventory is complete; Mission 2 remains intentionally paused with its evidence preserved. Mission 1 runtime/seed repairs are preserved, and Mission 2 adds strict low-concurrency browser journeys designed to expose remaining ordinary-user API/database failures. The product has three strongest flagship experiences — Family, Family Community / Cultural Association, and Residential / Housing Society — on top of the shared private Network OS and E1–E10 engagement stack.
 
 ## Launch-candidate state
 - **Anonymous Discovery / Product Exploration:** implemented. A visitor can understand TrustWeave before sign-in, choose Housing Society / Family Community / member-oriented journeys, open Playground, and use a public-safe Product Guide with Simple / Detailed / Deep disclosure.
@@ -35,7 +35,7 @@ This candidate is **source-closed but not yet runtime-certified for launch**. Th
 The Mission 1 FULL ZIP is the **exact baseline** for targeted seed/media retest and subsequent user-regression certification. Do not call it production-launch-ready until the checklist in `RUNTIME-VERIFICATION-CHECKLIST.md` is fully green.
 
 ## Next mission
-Complete M3-B0 through M3-B5 design/governance work before resuming product refactoring. The old M3-B1 progressive-selector convergence is parked as the first low-risk agent-governed engineering experiment in M3-B6. No broad product feature, migration or Mission-2 regression expansion is part of the strategic-reset slice.
+Finish M3-B6 verification in an approved dependency-backed/runtime environment: install locked dependencies, run TypeScript + strict lint, execute the dedicated desktop/mobile selector journey, obtain independent review, and then run the evidence/close gate. After B6 closure, continue the parked M3-A backlog only through new bounded mission manifests.
 
 ## 2026-09-15 — Seeded-network rehearsal hotfix
 The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
@@ -78,3 +78,11 @@ No production code or SQL changes are part of M3-B0. The old selector/workspace/
 
 Current maturity is AI-assisted rather than autonomous: the repository already has extensive deterministic source/QA/security/migration gates, but mission planning, branch/PR orchestration, failure relay, documentation synchronization and environment execution still require human coordination. See `AGENTIC-COMPANY-OS.md`, `ARCHITECTURE-CONSTITUTION.md`, `MISSION-LIFECYCLE.md` and `DOCUMENTATION-GOVERNANCE.md`.
 
+
+
+## 2026-09-16 — M3-B1→B6 Agentic OS execution
+M3-B1 through M3-B5 are now implemented rather than merely proposed: binding product/architecture governance, a six-role Company OS, repository Knowledge OS, deterministic Quality OS and a Git/worktree/CI/evidence execution harness exist in machine-readable form under `governance/` and `scripts/agentic/`. The control-plane self-check is green, documentation drift is deterministic, failures are classified before repair, protected migration trees are hash-guarded, and source/runtime evidence remain separate.
+
+M3-B6 is the first governed workload. Housing Finance, Governance and Security now use the canonical `ResponsiveSectionTabs`; the duplicate `HousingSectionTabs` component and `hs-section-tab-*` CSS were removed without changing business semantics or SQL. The B6 mission source profile is green, the expanded syntax scan covers application + QA TypeScript/TSX, and the Supabase migration tree remains byte-identical to its recorded baseline.
+
+**Not release-certified in this sandbox:** locked dependencies could not be restored from the npm registry, so full TypeScript and strict ESLint are classified `BLOCKED: environment-defect`; `TW_QA_BASE_URL` is unavailable, so desktop/mobile Playwright are also `BLOCKED: environment-defect`; independent review remains pending and is not self-certified. These gates are preserved, not waived.

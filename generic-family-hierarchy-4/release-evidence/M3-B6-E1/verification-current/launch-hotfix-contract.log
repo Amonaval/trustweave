@@ -1,0 +1,20 @@
+PASS repair migration restores hs4 zero-argument snapshot RPC
+PASS repair migration restores route_network_mentions typed RPC
+PASS funds snapshot uses network_activities.activity_type
+PASS explicit Open Voting opens immediately
+PASS media storage is authorized from path network membership
+PASS media guard no longer requires current_network_id equality
+PASS PostgREST schema cache reload is requested after RPC repair
+PASS client storage refuses ambiguous first-membership fallback
+PASS Manage Society renders one categorized workspace
+PASS Housing admin modules route into workspace sections
+PASS Housing More navigation is grouped on desktop/mobile
+PASS Finance dense admin surface has focused subsections
+PASS Governance dense admin surface has focused subsections
+PASS Security dense surface has focused subsections
+PASS subsection tabs collapse to a mobile select
+PASS theme choices are exactly Classic / Modern / Dark
+PASS old Warm/Aurora preferences migrate safely
+PASS new Housing/theme navigation copy exists in all locales
+Final launch runtime hotfix gate: 18/18
+

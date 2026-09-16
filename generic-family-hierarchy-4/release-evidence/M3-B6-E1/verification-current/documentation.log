@@ -1,0 +1,31 @@
+INFO root markdown count=34; legacy compatibility docs=21
+PASS canonical/index exists: AI-START-HERE.md
+PASS canonical/index exists: PRODUCT-CONSTITUTION.md
+PASS canonical/index exists: ARCHITECTURE-CONSTITUTION.md
+PASS canonical/index exists: AGENTIC-COMPANY-OS.md
+PASS canonical/index exists: MISSION-LIFECYCLE.md
+PASS canonical/index exists: CURRENT-STATE.md
+PASS canonical/index exists: MISSION-STATUS.md
+PASS canonical/index exists: ROADMAP.md
+PASS canonical/index exists: DOCUMENTATION-GOVERNANCE.md
+PASS canonical/index exists: DEVELOPMENT-RULES.md
+PASS canonical/index exists: README.md
+PASS canonical/index exists: DOCUMENTATION.md
+PASS canonical/index exists: ARCHIVE-INDEX.md
+PASS no forbidden root pattern ^NEXT-SESSION-.*\.md$
+PASS no forbidden root pattern ^STABILITY-HOTFIX-.*\.md$
+PASS no forbidden root pattern .*-APPLY-NOTE\.md$
+PASS no forbidden root pattern .*-AFFECTED-MANIFEST\.md$
+PASS single canonical copy: CEO-PRODUCT-BRIEF.md — docs/product/CEO-PRODUCT-BRIEF.md
+PASS single canonical copy: CTO-PRODUCT-CAPABILITY-BOOK.md — docs/product/CTO-PRODUCT-CAPABILITY-BOOK.md
+PASS single canonical copy: PRODUCT-CAPABILITY-CATALOG.md — docs/product/PRODUCT-CAPABILITY-CATALOG.md
+PASS single canonical copy: USER-EXPERIENCE-HANDBOOK.md — docs/product/USER-EXPERIENCE-HANDBOOK.md
+PASS single canonical copy: TRUSTWEAVE-MISSION-JOURNEY.md — docs/product/TRUSTWEAVE-MISSION-JOURNEY.md
+PASS single canonical copy: PROJECT-VISION.md — docs/product/PROJECT-VISION.md
+PASS single canonical copy: FOUNDER-COMPASS.md — docs/product/FOUNDER-COMPASS.md
+PASS single canonical copy: USER-GUIDE.md — docs/product/USER-GUIDE.md
+PASS active mission record exists — missions/mission-003/mission.json
+PASS active mission id/state present — M3-B VERIFY
+PASS documentation governance has one canonical live copy — DOCUMENTATION-GOVERNANCE.md
+Documentation drift gate: 28/28 passed.
+

@@ -11,7 +11,7 @@ export default defineConfig({
  use:{baseURL,trace:'retain-on-failure',screenshot:'only-on-failure',video:'retain-on-failure',actionTimeout:15_000,navigationTimeout:45_000},
  projects:[
   {name:'chromium-desktop',testIgnore:/90-cross-browser-smoke\.spec\.ts/,use:{...devices['Desktop Chrome']}},
-  {name:'chromium-mobile',testMatch:/30-mission2-family-and-mobile\.spec\.ts/,use:{...devices['Pixel 5']}},
+  {name:'chromium-mobile',testMatch:/(30-mission2-family-and-mobile|34-m3b6-progressive-selector)\.spec\.ts/,use:{...devices['Pixel 5']}},
   {name:'firefox-smoke',testMatch:/90-cross-browser-smoke\.spec\.ts/,use:{...devices['Desktop Firefox']}},
   {name:'webkit-smoke',testMatch:/90-cross-browser-smoke\.spec\.ts/,use:{...devices['Desktop Safari']}}
  ],

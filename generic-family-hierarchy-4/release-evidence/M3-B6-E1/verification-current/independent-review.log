@@ -1,0 +1,7 @@
+PASS independent review artifact exists — missions/mission-003/m3-b6-e1/review.json
+FAIL review status APPROVED — PENDING_INDEPENDENT_REVIEW
+PASS blocking findings are zero — null
+FAIL reviewer differs from builder — implementation-agent:m3-b6-session / ?
+PASS review is candidate-bound — snapshot-6ffcfc3beee83d16f1e2c76c
+Independent review gate: 3/5 passed.
+

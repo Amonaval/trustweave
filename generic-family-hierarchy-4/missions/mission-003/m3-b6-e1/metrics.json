@@ -1,0 +1,21 @@
+{
+  "missionId": "M3-B6-E1",
+  "candidateSha": "snapshot-6ffcfc3beee83d16f1e2c76c",
+  "humanInterventionsDuringExecution": 0,
+  "humanInterventionBudget": 2,
+  "architectureViolationsFinal": 0,
+  "migrationChanges": 0,
+  "finalSourceGateFailures": 0,
+  "environmentBlockers": [
+    "locked npm dependencies unavailable in this sandbox",
+    "TW_QA_BASE_URL unavailable for desktop/mobile runtime"
+  ],
+  "independentReview": "PENDING",
+  "documentationDriftFinal": 0,
+  "repairsPerformedByAgent": [
+    "adjusted Housing CSS removal to actual compact stylesheet shape",
+    "repaired control-plane self-check to company-os machine contract shape",
+    "reclassified missing dependency failures as environment blockers rather than product/test failures",
+    "strengthened non-Git candidate identity from two-file seed to repository-content snapshot hash"
+  ]
+}

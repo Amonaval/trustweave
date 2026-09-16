@@ -1,0 +1,16 @@
+PASS mission id — M3-B6-E1
+PASS risk class — R1
+PASS lifecycle state — VERIFY
+PASS bounded include scope
+PASS explicit exclusions
+PASS allowed writes declared
+PASS acceptance criteria declared
+PASS rollback declared
+PASS human intervention budget declared
+PASS all gates are registered
+PASS risk-profile base gates declared
+PASS R1 does not authorize migration writes
+PASS runtime-required mission declares runtime gates — runtime-b6-desktop, runtime-b6-mobile
+PASS independent review is declared when required
+Mission contract gate: 14/14 passed.
+

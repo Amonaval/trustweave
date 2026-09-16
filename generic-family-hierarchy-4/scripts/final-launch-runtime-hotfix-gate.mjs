@@ -4,7 +4,7 @@ const migration=read('supabase/migrations/114_final_launch_runtime_contract_repa
 const storage=read('lib/storage.ts');
 const template=read('components/TemplateNetworkApp.tsx');
 const manage=read('components/HousingSocietyManageWorkspace.tsx');
-const sectionTabs=read('components/shared/HousingSectionTabs.tsx');
+const sectionTabs=read('components/shared/ResponsiveSectionTabs.tsx');
 const finance=read('components/HousingSocietyFinancePanel.tsx');
 const governance=read('components/HousingSocietyGovernancePanel.tsx');
 const security=read('components/HousingSocietySecurityPanel.tsx');
@@ -24,10 +24,10 @@ const checks=[
  ['Manage Society renders one categorized workspace',template.includes('<HousingSocietyManageWorkspace')&&manage.includes('content[active]')&&manage.includes('HsManageDataSettingsTxt')],
  ['Housing admin modules route into workspace sections',template.includes('members:"people"')&&template.includes('import:"data"')&&template.includes('lifecycle:"data"')],
  ['Housing More navigation is grouped on desktop/mobile',template.includes('desktopMoreGroups.map')&&template.includes('mobileMoreGroups.map')&&template.includes('HsNavRunSocietyTxt')],
- ['Finance dense admin surface has focused subsections',finance.includes('<HousingSectionTabs')&&finance.includes('financeView==="billing"')&&finance.includes('financeView==="funds"')&&finance.includes('financeView==="arrears"')],
- ['Governance dense admin surface has focused subsections',governance.includes('<HousingSectionTabs')&&governance.includes('governanceView==="committee"')&&governance.includes('governanceView==="actions"')&&governance.includes('governanceView==="resolutions"')],
- ['Security dense surface has focused subsections',security.includes('<HousingSectionTabs')&&security.includes('securityView==="visitors"')&&security.includes('securityView==="requests"')&&security.includes('securityView==="assets"')],
- ['subsection tabs collapse to a mobile select',sectionTabs.includes('hs-section-tab-select')&&css.includes('@media(max-width:620px)')],
+ ['Finance dense admin surface has focused subsections',finance.includes('<ResponsiveSectionTabs')&&finance.includes('financeView==="billing"')&&finance.includes('financeView==="funds"')&&finance.includes('financeView==="arrears"')],
+ ['Governance dense admin surface has focused subsections',governance.includes('<ResponsiveSectionTabs')&&governance.includes('governanceView==="committee"')&&governance.includes('governanceView==="actions"')&&governance.includes('governanceView==="resolutions"')],
+ ['Security dense surface has focused subsections',security.includes('<ResponsiveSectionTabs')&&security.includes('securityView==="visitors"')&&security.includes('securityView==="requests"')&&security.includes('securityView==="assets"')],
+ ['subsection tabs collapse to a mobile select',sectionTabs.includes('responsive-section-tab-select')&&css.includes('@media(max-width:760px)')&&css.includes('.responsive-section-tab-buttons{display:none}')&&!css.includes('.hs-section-tab')],
  ['theme choices are exactly Classic / Modern / Dark',themeProvider.includes('type AppTheme="light"|"modern"|"dark"')&&themeProvider.includes('const THEMES:AppTheme[]=["light","modern","dark"]')&&themeSwitcher.includes('qa-theme-select')&&!themeSwitcher.includes('value:"warm"')&&!themeSwitcher.includes('value:"aurora"')],
  ['old Warm/Aurora preferences migrate safely',themeProvider.includes('if(value==="warm")return "light"')&&themeProvider.includes('if(value==="aurora")return "modern"')],
  ['new Housing/theme navigation copy exists in all locales',messages.every(m=>['HsManageWorkspaceTxt','HsNavRunSocietyTxt','HsNavCommunityRecordsTxt','HsNavHelpManageTxt','ThemeClassicTxt','ThemeModernTxt','ThemeDarkTxt'].every(k=>m.includes(k)))],

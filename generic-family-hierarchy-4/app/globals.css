@@ -1459,13 +1459,6 @@ html[data-theme="dark"] .hs-manage-tabs{background:color-mix(in srgb,var(--surfa
 .hs-manage-overview{display:grid;gap:14px}
 
 /* Housing Society dense surfaces: one focused subsection at a time */
-.hs-section-tabs{margin:2px 0 12px}
-.hs-section-tab-buttons{display:flex;gap:6px;flex-wrap:wrap;padding:5px;border:1px solid var(--line);border-radius:13px;background:var(--surface-soft)}
-.hs-section-tab-buttons button{border:0;border-radius:9px;background:transparent;color:var(--muted);padding:8px 11px;font-size:11px;font-weight:850;cursor:pointer}
-.hs-section-tab-buttons button:hover{background:var(--surface-raised);color:var(--text)}
-.hs-section-tab-buttons button.active{background:var(--surface-raised);color:var(--product,var(--brand));box-shadow:var(--shadow-sm)}
-.hs-section-tab-select{display:none}
-@media(max-width:620px){.hs-section-tab-buttons{display:none}.hs-section-tab-select{display:grid;gap:4px;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:var(--surface-raised)}.hs-section-tab-select span{font-size:9px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.06em}.hs-section-tab-select select{border:0;background:transparent;color:var(--text);font-weight:800;outline:0;width:100%}}
 
 /* Progressive-disclosure rule: peer work areas use tabs/selectors rather than an endless vertical document. */
 .responsive-section-tabs{margin:4px 0 14px;min-width:0}
