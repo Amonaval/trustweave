@@ -1,0 +1,13 @@
+governance/execution-policy.json
+governance/quality-policy.json
+missions/mission-003/mission.json
+missions/mission-003/m3-b6-e1/mission.json
+missions/mission-003/EXECUTION-HARNESS.md
+scripts/agentic/scope-gate.mjs
+scripts/agentic/mission-worktree.mjs
+scripts/agentic/runtime-preflight.mjs
+scripts/agentic/mission-close.mjs
+.github/workflows/ci.yml
+.github/workflows/agentic-mission.yml
+package.json
+release-evidence/m3-b/M3-B5-AFFECTED-FILES.txt

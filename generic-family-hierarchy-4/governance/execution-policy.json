@@ -1,0 +1,30 @@
+{
+  "version": "2026-09-16.m3-b5",
+  "status": "BINDING",
+  "controlPlane": "git-worktree-pr-ci-evidence",
+  "branchPrefix": "agent/",
+  "worktreeDirectory": ".agent-worktrees",
+  "protectedBranches": ["main", "master"],
+  "requiredCandidateIdentity": "git-sha-when-git-is-available",
+  "evidenceDirectory": "release-evidence",
+  "failureLoop": {
+    "maxRepairAttempts": 3,
+    "sameFailureMaxRepeats": 2,
+    "requireClassificationBeforeRepair": true,
+    "rerunFailedGateBeforeFullProfile": true,
+    "escalateOnScopeExpansion": true
+  },
+  "environments": {
+    "local": {"destructiveAllowed": false},
+    "qaDisposable": {"destructiveAllowed": true, "productionDataAllowed": false},
+    "stagingProtected": {"destructiveAllowed": false, "humanApproval": true},
+    "production": {"destructiveAllowed": false, "humanApproval": true}
+  },
+  "release": {
+    "requireGreenMandatoryGates": true,
+    "requireIndependentReview": true,
+    "requireRollback": true,
+    "requireRuntimeEvidenceWhenDeclared": true,
+    "productionHumanGateUntilMaturity": "L4"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "M3-B",
+  "title": "Agentic Company & Engineering OS",
+  "risk": "R2",
+  "state": "VERIFY",
+  "scope": {
+    "include": [
+      "M3-B1 through M3-B6 operating system and first governed engineering experiment"
+    ],
+    "exclude": [
+      "broad product feature expansion",
+      "Mission 4 plugin architecture",
+      "microservices/event sourcing",
+      "broad in-product AI agents"
+    ],
+    "allowedWrites": [
+      "governance/**",
+      "scripts/agentic/**",
+      "missions/mission-003/**",
+      "release-evidence/m3-b/**",
+      "bounded B6 files"
+    ],
+    "forbiddenWrites": [
+      "historical accepted migrations"
+    ]
+  },
+  "acceptance": [
+    "B1-B5 governance is machine-operable",
+    "B6 is executed under the mission gate/evidence model",
+    "source proof is not conflated with runtime proof"
+  ],
+  "gates": [
+    "architecture",
+    "documentation"
+  ],
+  "runtimeEvidenceRequired": false,
+  "rollback": "Revert Mission 3 governance/experiment commits; B6 has no data migration.",
+  "humanInterventionBudget": 2,
+  "activeExecution": "missions/mission-003/m3-b6-e1/mission.json"
+}

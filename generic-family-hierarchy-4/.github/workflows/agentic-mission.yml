@@ -1,0 +1,34 @@
+name: Agentic Mission Gate
+on:
+  pull_request:
+    paths:
+      - 'governance/**'
+      - 'missions/**'
+      - 'scripts/agentic/**'
+      - 'components/**'
+      - 'app/globals.css'
+      - 'qa/**'
+  workflow_dispatch:
+jobs:
+  mission-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run agentic:mission
+      - run: npm run agentic:scope
+      - run: npm run agentic:run:static
+      - name: Upload mission evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agentic-mission-evidence
+          path: release-evidence/M3-B6-E1/
+          if-no-files-found: warn
