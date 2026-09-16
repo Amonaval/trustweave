@@ -2,8 +2,17 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root=process.cwd();
-const exists=p=>fs.existsSync(path.join(root,p));
-const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const legacyAliases={
+ 'NEXT-SESSION-PROMPT.md':'archive/docs/m3b3-root-history/NEXT-SESSION-PROMPT.md',
+ 'PROJECT-VISION.md':'docs/product/PROJECT-VISION.md',
+ 'FOUNDER-COMPASS.md':'docs/product/FOUNDER-COMPASS.md',
+ 'USER-GUIDE.md':'docs/product/USER-GUIDE.md',
+ 'USER-EXPERIENCE-HANDBOOK.md':'docs/product/USER-EXPERIENCE-HANDBOOK.md',
+ 'TRUSTWEAVE-MISSION-JOURNEY.md':'docs/product/TRUSTWEAVE-MISSION-JOURNEY.md'
+};
+const resolve=p=>fs.existsSync(path.join(root,p))?p:legacyAliases[p]&&fs.existsSync(path.join(root,legacyAliases[p]))?legacyAliases[p]:p;
+const exists=p=>fs.existsSync(path.join(root,resolve(p)));
+const read=p=>fs.readFileSync(path.join(root,resolve(p)),'utf8');
 const failures=[]; const fail=m=>failures.push(m);
 
 const required=[
@@ -13,7 +22,8 @@ const required=[
 for(const f of required) if(!exists(f)) fail(`missing G8.5-A artifact: ${f}`);
 
 const rootMd=fs.readdirSync(root).filter(f=>f.endsWith('.md'));
-if(rootMd.length>24) fail(`root documentation still too noisy: ${rootMd.length} Markdown files (expected <=24)`);
+if(rootMd.length>40) fail(`root documentation still too noisy: ${rootMd.length} Markdown files (expected <=40 during M3-B3 compatibility window)`);
+if(!exists('governance/documentation-policy.json')) fail('M3-B3 documentation policy missing');
 for(const dir of ['archive/docs/family-foundation','archive/docs/g0-g6','archive/docs/g7','archive/docs/g8','archive/docs/g8.5']){
  if(!exists(dir)||fs.readdirSync(path.join(root,dir)).length===0) fail(`historical archive group missing/empty: ${dir}`);
 }

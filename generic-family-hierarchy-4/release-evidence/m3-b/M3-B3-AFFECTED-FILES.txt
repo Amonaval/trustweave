@@ -1,0 +1,17 @@
+AI-START-HERE.md
+DOCUMENTATION.md
+DOCUMENTATION-GOVERNANCE.md
+governance/documentation-policy.json
+docs/product/README.md
+docs/product/USER-EXPERIENCE-HANDBOOK.md
+docs/product/TRUSTWEAVE-MISSION-JOURNEY.md
+docs/product/PROJECT-VISION.md
+docs/product/FOUNDER-COMPASS.md
+docs/product/USER-GUIDE.md
+missions/mission-003/M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md
+missions/mission-003/evidence/M3-B0-STRATEGIC-RESET-MANIFEST.md
+missions/mission-003/evidence/MISSION-3-HANDOFF-MANIFEST.md
+scripts/progressive-disclosure-ux-gate.mjs
+scripts/mission2-slow-user-regression-gate.mjs
+archive/docs/m3b3-root-history/
+release-evidence/m3-b/M3-B3-REMOVED-FILES.txt

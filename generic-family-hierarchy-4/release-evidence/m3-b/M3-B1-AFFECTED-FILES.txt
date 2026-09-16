@@ -1,0 +1,7 @@
+ARCHITECTURE-CONSTITUTION.md
+PRODUCT-CONSTITUTION.md
+governance/architecture-policy.json
+governance/schemas/mission.schema.json
+governance/schemas/evidence.schema.json
+missions/mission-003/CHARTER.md
+missions/mission-003/DECISIONS.md
