@@ -1,8 +1,8 @@
 # TrustWeave — Current State
 
-**Updated:** 2026-09-15
+**Updated:** 2026-09-16
 
-TrustWeave is now in **Mission 2 slow automated user-regression closure**. Mission 1 runtime/seed repairs are preserved, and Mission 2 adds strict low-concurrency browser journeys designed to expose remaining ordinary-user API/database failures. The product has three strongest flagship experiences — Family, Family Community / Cultural Association, and Residential / Housing Society — on top of the shared private Network OS and E1–E10 engagement stack.
+TrustWeave is now in **Mission 3 strategic reset / M3-B Agentic Company & Engineering OS design**. M3-A architecture inventory is complete; Mission 2 remains intentionally paused with its evidence preserved. Mission 1 runtime/seed repairs are preserved, and Mission 2 adds strict low-concurrency browser journeys designed to expose remaining ordinary-user API/database failures. The product has three strongest flagship experiences — Family, Family Community / Cultural Association, and Residential / Housing Society — on top of the shared private Network OS and E1–E10 engagement stack.
 
 ## Launch-candidate state
 - **Anonymous Discovery / Product Exploration:** implemented. A visitor can understand TrustWeave before sign-in, choose Housing Society / Family Community / member-oriented journeys, open Playground, and use a public-safe Product Guide with Simple / Detailed / Deep disclosure.
@@ -35,7 +35,7 @@ This candidate is **source-closed but not yet runtime-certified for launch**. Th
 The Mission 1 FULL ZIP is the **exact baseline** for targeted seed/media retest and subsequent user-regression certification. Do not call it production-launch-ready until the checklist in `RUNTIME-VERIFICATION-CHECKLIST.md` is fully green.
 
 ## Next mission
-Execute `npm run qa:mission2` in the approved staging/QA environment with migrations through 115 applied. Fix every real defect it finds and keep its regression assertion. Only after Mission 2 is runtime-green proceed to `NEXT-SESSION-MISSION-3-SHARED-COMPONENT-ARCHITECTURE.md`.
+Complete M3-B0 through M3-B5 design/governance work before resuming product refactoring. The old M3-B1 progressive-selector convergence is parked as the first low-risk agent-governed engineering experiment in M3-B6. No broad product feature, migration or Mission-2 regression expansion is part of the strategic-reset slice.
 
 ## 2026-09-15 — Seeded-network rehearsal hotfix
 The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.
@@ -70,4 +70,11 @@ Mission 2 remains intentionally paused with its evidence preserved. Mission 3 ha
 The current shared layer is stronger than a rewrite would imply: `NetworkUi`, `ResponsiveSectionTabs`, shared Funds, Voting, Posts, Activity and Media Management are already established. The main launch-critical debt is inconsistent composition around them, especially Housing-specific copies of progressive navigation/workspace mechanics and repeated async panel lifecycle code.
 
 The first implementation slice will migrate Housing Finance/Governance/Security from `HousingSectionTabs` to the canonical `ResponsiveSectionTabs`, preserving behavior and progressive disclosure. Business workflows that only look similar remain separate unless their contracts genuinely match. See `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`.
+
+## 2026-09-16 — Mission 3 strategic reset / M3-B Agentic Company OS
+M3-A remains COMPLETE and authoritative as architecture evidence. Mission 3 is strategically reframed before the old shared-component refactor: the immediate goal is to establish Product/Architecture constitutions, a minimal agent organization, mission lifecycle, document authority model, evaluation model and execution harness.
+
+No production code or SQL changes are part of M3-B0. The old selector/workspace/async/CSS convergence backlog is PARKED, not cancelled, and becomes the first controlled workload for the agentic engineering system.
+
+Current maturity is AI-assisted rather than autonomous: the repository already has extensive deterministic source/QA/security/migration gates, but mission planning, branch/PR orchestration, failure relay, documentation synchronization and environment execution still require human coordination. See `AGENTIC-COMPANY-OS.md`, `ARCHITECTURE-CONSTITUTION.md`, `MISSION-LIFECYCLE.md` and `DOCUMENTATION-GOVERNANCE.md`.
 

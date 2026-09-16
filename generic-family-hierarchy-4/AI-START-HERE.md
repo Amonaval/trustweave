@@ -1,17 +1,35 @@
 # Generic Network OS — AI Start Here
 
+## 2026-09-16 — Current bootstrap authority
+
+Mission 3 is in the M3-B Agentic Company & Engineering OS strategic reset. M3-A is complete. Do not infer the active mission from older "latest mission" sections later in this file; those are historical context pending M3-B3 cleanup.
+
+Read in this order for current work:
+1. `PRODUCT-CONSTITUTION.md`
+2. `ARCHITECTURE-CONSTITUTION.md`
+3. `CURRENT-STATE.md`
+4. `MISSION-STATUS.md`
+5. `ROADMAP.md`
+6. `AGENTIC-COMPANY-OS.md`
+7. `MISSION-LIFECYCLE.md`
+8. the active mission record and relevant source/evidence
+
+`DOCUMENTATION-GOVERNANCE.md` defines which instruction/evidence wins when statements conflict.
+
 **Purpose:** minimal durable context for every new AI session. Read this before large roadmap/history files.
 
-## Read order
+## Legacy context map — non-authoritative during M3-B
 
-### Always read
+The list below is retained temporarily for historical discoverability. It does not override the current bootstrap authority above and should be compacted during M3-B3.
+
+### Previously 'Always read'
 1. `AI-START-HERE.md`
 2. `PRODUCT-CONSTITUTION.md`
 3. `CURRENT-STATE.md`
 4. `AIDLC-OPERATING-RULE.md` when planning/building/reviewing a mission
 5. `MISSION-DOCUMENTATION-RULE.md` before closing a major mission
 
-### Read only when relevant
+### Historical/on-demand references
 - `CODEBASE.md` / architecture docs — implementation or architecture work.
 - `VALIDATION.md` — validation/release work.
 - `ROADMAP.md` — strategy/sequence decisions; use current sections, not the whole history by default.

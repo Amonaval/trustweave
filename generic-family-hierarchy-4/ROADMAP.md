@@ -71,24 +71,39 @@ The one-worker Playwright regression layer is implemented. It runs the Mission-1
 
 Source contract: **38/38 PASS**. Runtime certification requires `npm run qa:mission2` against staging with migrations through 115 applied.
 
-### Mission 3 — Shared UI / Business / Technical Component Architecture — NEXT AFTER MISSION-2 RUNTIME GREEN
-Formalize layered reusable components and shared CSS ownership: platform → vertical plugins → reusable business components → technical/UI components → design tokens/primitives. Expand component/use-case documentation and evaluate Storybook for isolated component/use-case development. Preserve the progressive-disclosure rule: feature growth must not default to appending endless blocks down a page.
+### Mission 3 — Shared UI / Business / Technical Component Architecture — SUPERSEDED BY M3-B STRATEGIC RESET
+The architecture-convergence objective remains valid, but the prior sequencing assumption that Mission 2 runtime must be green before Mission 3 is superseded by the 2026-09-16 handoff decision. M3-A inventory is complete; implementation work is parked behind the M3-B Agentic Company & Engineering OS sequence below.
 
 ### Mission 4 — Plugin Architecture, Vertical Lazy Loading & SQL Modularization
 Move toward loading core/common code first and vertical bundles only when selected. Define injectable vertical manifests for routes, navigation, capabilities, permissions, seed adapters and tests. Keep historical Supabase migrations immutable; organize future maintainable SQL by domain (`common`, `family`, `family-community`, `housing`, `engagement`, etc.) while continuing to emit chronological deployment migrations. Do this only after Mission 2 provides strong regression protection.
 
-## Mission 3 — Shared Component / CSS Architecture
-### M3-A — COMPLETE
-Architecture inventory and boundaries are documented in `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`. The mission will converge existing launch surfaces onto proven shared contracts instead of performing a broad rewrite.
+## Mission 3 — Agentic Company & Engineering OS + architecture convergence
 
-### M3-B — NEXT: shared technical primitives
-Execution order begins with:
-1. replace Housing's duplicate section-tab component with `ResponsiveSectionTabs`;
-2. converge Housing and Family Community admin/workspace shells;
-3. extract repeated async resource/action lifecycle behavior;
-4. normalize loading/empty/error and media attachment controls;
-5. consolidate generic layout CSS touched by those slices.
+Mission 3 is strategically reframed. M3-A remains the evidence base; the old component-refactor sequence becomes the first workload of the new operating system rather than the immediate mission.
 
-### M3-C / M3-D / M3-E — later
-Share business presentation only where domain contracts match, then normalize CSS ownership and close with component contracts/gates/documentation. Housing maintenance finance, Housing committee resolutions and complaint operations remain domain-specific behind shared lower-level primitives. Mission 4 remains reserved for plugin/lazy-load/bundle work.
+### M3-A — COMPLETE: Architecture Inventory & Boundaries
+Preserve `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`.
 
+### M3-B0 — ACTIVE: Strategic reset / evidence ingestion
+No production code. Diagnose current architecture/process/orchestration/documentation/tooling gaps.
+
+### M3-B1 — Product & Architecture Constitutions
+Finalize product vocabulary, kernel/capability/vertical/shared-use-case/domain-adapter boundaries, invariants, ADR policy and human approval boundaries.
+
+### M3-B2 — Agentic Company OS + Mission Lifecycle
+Finalize minimal agent roles, independent review, failure/repair loop, lifecycle, approval matrix, maturity model and scorecard.
+
+### M3-B3 — Repository Knowledge OS
+Remove canonical ambiguity and divergent mirrors; compact session bootstrap; archive stale handoffs/evidence; add document-drift checks.
+
+### M3-B4 — Evaluation / Quality OS
+Compose existing source/QA/security/migration/runtime assets into mission-scoped gate manifests and evidence contracts rather than creating another unrelated validation chain.
+
+### M3-B5 — Execution Harness
+Design/wire Git branch/worktree + PR/check feedback + persistent orchestration + preview runtime + disposable database + evidence artifacts. Use existing GitHub Actions/QA foundations. Add no speculative infrastructure.
+
+### M3-B6 — First agent-governed engineering experiment
+Execute M3-A progressive selector convergence under the new operating model. Measure human interventions, repair-loop success, independent review catches, lead time and documentation drift.
+
+### After B6
+If the operating model proves useful, continue the parked M3-A backlog: workspace convergence → async lifecycle → async state/media primitives → incremental CSS ownership normalization. Mission 4 remains reserved for plugin/lazy-load/bundle/SQL modularization and is not pulled forward merely because Mission 3 is agentic.

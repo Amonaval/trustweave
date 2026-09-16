@@ -127,3 +127,28 @@ Permanent rules:
 - High-value applications such as trusted matrimony must reuse provenance, identity, privacy and mutual-consent primitives rather than weakening them.
 
 The product is now described as a product/platform-backed product, with Family as one application/vertical rather than the total product boundary.
+
+## M3-B product operating model — 2026-09-16
+
+TrustWeave is now intentionally treated as two related systems:
+
+1. the **Network OS product** used by governed networks and their members;
+2. the **AI-native company/engineering system** that builds and evolves that product.
+
+The second system exists to reduce founder operational burden; it does not change the product thesis.
+
+Product structure vocabulary:
+- **kernel** — domain-neutral platform foundation;
+- **capability** — reusable behavior with the same semantics across consumers;
+- **vertical** — domain product composition with its own vocabulary/rules;
+- **shared use-case** — common user/business workflow only when semantics genuinely match;
+- **technical shared component** — reusable interaction/presentation contract without domain decisions;
+- **domain adapter** — mapping from vertical semantics to a shared capability/use-case;
+- **plugin** — reserved for a future explicit runtime extension contract; current verticals are not automatically plugins.
+
+Product decisions must prefer reuse without flattening domain meaning. Housing maintenance finance, Housing committee resolutions and Housing complaints remain distinct from superficially similar shared Community workflows unless evidence proves the contracts are actually the same.
+
+Future in-product AI capabilities must be permission-scoped, tenant-safe, auditable and approval-aware. Generated suggestions do not become canonical network truth or perform sensitive external/destructive actions without the governed action policy.
+
+For implementation-level boundaries and forbidden dependencies, `ARCHITECTURE-CONSTITUTION.md` is authoritative.
+

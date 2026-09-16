@@ -2,6 +2,13 @@
 
 Use this page for current launch truth. Historical mission evidence remains under `archive/`.
 
+## Mission 3 strategic reset
+- `PRODUCT-CONSTITUTION.md` — product priorities and product-model invariants.
+- `ARCHITECTURE-CONSTITUTION.md` — architecture boundaries, ownership and forbidden dependencies.
+- `AGENTIC-COMPANY-OS.md` — minimal agent organization, approval matrix, maturity model and scorecard.
+- `MISSION-LIFECYCLE.md` — state machine, evidence contract and first agent-governed experiment.
+- `DOCUMENTATION-GOVERNANCE.md` — normative/descriptive authority and single-copy policy.
+
 ## Final launch closure
 - `CURRENT-STATE.md` — exact current product/release state.
 - `MISSION-STATUS.md` — final pre-launch mission status.

@@ -21,7 +21,7 @@ const args=['playwright','test',
 const env={...process.env,
  QA_M2_SCOPE:'housing-society,family-association',
  QA_M2_RESUME:'true',
- QA_M2_SERVER_WARMUP_MS:process.env.QA_M2_SERVER_WARMUP_MS||'10000'
+ QA_M2_SERVER_WARMUP_MS:process.env.QA_M2_SERVER_WARMUP_MS||'50000'
 };
 const code=await new Promise(resolve=>{
  const c=spawn('npx',args,{stdio:'inherit',env,shell:process.platform==='win32'});

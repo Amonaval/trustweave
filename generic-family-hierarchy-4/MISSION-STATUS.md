@@ -92,3 +92,11 @@ A source audit during Mission 2 fixed the shared Activity composer member-type f
 - M3-A artifact: `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`.
 - Next slice: **M3-B1 — Progressive selector convergence**.
 
+## 2026-09-16 — Mission 3 M3-B strategic reset ACTIVE
+- M3-A Architecture Inventory & Boundaries remains COMPLETE.
+- The previously planned immediate `M3-B1 — Progressive selector convergence` implementation is PARKED as the first agent-governed engineering experiment, not cancelled.
+- Active work is architecture/operating-model governance only; no production code or SQL change is authorized in M3-B0.
+- Proposed governing artifacts: `ARCHITECTURE-CONSTITUTION.md`, `AGENTIC-COMPANY-OS.md`, `MISSION-LIFECYCLE.md`, revised `PRODUCT-CONSTITUTION.md`, and revised `DOCUMENTATION-GOVERNANCE.md`.
+- M3-B sequence: B0 evidence/diagnosis → B1 constitutions → B2 company OS/lifecycle → B3 knowledge OS → B4 evaluation OS → B5 execution harness → B6 first agent-governed refactor.
+- Production release, constitution changes, privacy/security risk acceptance and irreversible data changes remain human gates at the current maturity.
+
