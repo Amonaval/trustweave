@@ -57,15 +57,27 @@ Machine-readable program: `missions/mission-003/m3-c/mission-set.json`.
 
 M3-C does not erase prior truth. B6 must still complete its dependency/runtime/independent-review certification before formal closure. Mission 1/2 runtime evidence remains pending where previously recorded. No autonomy milestone may weaken tenant isolation, migration immutability, privacy, evidence quality or release gates.
 
-## Product/architecture work after autonomy proof
+## Active product priority — two-vertical reliability
 
-Once C1–C4 are working, use the autonomous runtime on meaningful M3-A backlog rather than continuing governance work for its own sake:
+The autonomous-company proof does not replace product work. The active execution priority is now:
+
+1. Residential / Housing Society and Family Community connected reliability;
+2. deterministic critical journeys plus checkpointed crawling;
+3. verified product-defect repair with permanent regression assertions;
+4. then resume the remaining reusable component/CSS convergence on the stable baseline.
+
+Connected QA scope is controlled from root `qa.config.mjs`; platform-wide contracts continue to protect all registered verticals.
+
+## Protected product architecture program
+
+The pre-autonomy reusable architecture program remains binding. M3-B6 completed only the first technical-primitives slice; remaining work proceeds incrementally after/alongside reliability:
 
 - workspace-shell convergence;
 - async lifecycle/state normalization;
+- shared business/use-case components where Housing and Family Community semantics genuinely match;
 - incremental CSS ownership normalization;
-- shared admin/workspace primitives where contracts genuinely match;
-- later plugin/lazy-loading/SQL maintainability work when regression protection is strong.
+- component contract documentation and isolated scenarios/Storybook only if it materially helps;
+- later plugin/lazy-loading and modular SQL-source architecture after regression protection is strong.
 
 ## Legacy certification anchors
 These exact historical labels remain only for accepted source-gate compatibility; the active program above is authoritative.

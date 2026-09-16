@@ -1,8 +1,8 @@
 # TrustWeave — Current State
 
 **Updated:** 2026-09-16  
-**Active program:** M3-C — Autonomous Company Runtime / Founder Spectator Mode  
-**Active executable mission:** `M3-C0`
+**Active program:** Two-vertical product reliability + reusable architecture convergence
+**Active executable scope:** `housing-society` + `family-association`
 
 ## Product baseline
 
@@ -15,6 +15,20 @@ TrustWeave's strongest protected product experiences remain:
 - a private multi-network platform foundation with governed identity, relationships, membership and network isolation.
 
 Mission 1 seed/runtime repairs and Mission 2 slow-user regression assets remain preserved. Mission 2 runtime certification is paused rather than falsified.
+
+The autonomous-company C1–C10 proof is complete. It is now the delivery mechanism, not a replacement for the product roadmap.
+
+## Current reliability mission
+
+- root `qa.config.mjs` controls connected vertical/role scope;
+- current scope is Housing Society + Family Community across owner/admin/member;
+- `npm run qa:reliability:local` is green for source contracts, 19 unit/contracts, full TypeScript and production build;
+- connected authentication/RPC/RLS/persistence/crawl evidence remains blocked until the ignored local `.env.qa` and deterministic staging fixture are available;
+- after connected findings, repair genuine product defects and add permanent regression assertions before expanding scope.
+
+## Reusable product architecture remains active
+
+M3-B6 delivered only the first convergence slice (`ResponsiveSectionTabs`). Remaining planned work is shared workspace/admin shells, async resource/action lifecycle, business/use-case convergence where semantics match, common CSS ownership, contract/scenario documentation, then Mission 4 plugin/lazy-loading and modular SQL-source architecture. Vertical vocabulary, authorization and genuinely distinct workflows remain vertical-owned.
 
 ## Mission 3 completed foundation
 

@@ -14,11 +14,14 @@
 | M3-B5 — Execution Harness | COMPLETE / OPERATING FOUNDATION | Git/worktree/CI/evidence control plane is defined and partially executable. |
 | M3-B6 — Progressive Selector Convergence | VERIFY | Product refactor implemented/source-green; environment/runtime/independent review still block closure. |
 | **M3-C0 — Control Surface Reset** | **VERIFY / ACTIVE** | Root hygiene + generic mission runtime + autonomy north star implemented; independent review remains required before formal close. |
-| M3-C1→C11 — Autonomous Company Runtime | PLANNED | Company Brain through continuous autonomous portfolio loop. |
+| M3-C1→C10 — Autonomous Company Runtime | COMPLETE | Company Brain, Executive Council, environment/self-repair, product critic, risk/release/memory/cockpit and zero-touch proof completed. |
+| M3-C11 — Continuous Portfolio Loop | DEFERRED | Consider only after product reliability and pilot evidence; not the current priority. |
+| **Reliability R1 — Two-vertical QA control plane** | **SOURCE-GATED** | Root-configured Housing + Family Community scope; local source/unit/type/build green; connected staging evidence pending. |
+| Reusable Product Architecture — remaining M3-B/C/D/E | ACTIVE / PROTECTED | Workspace, async lifecycle, shared business components, CSS ownership and contracts remain required; AI-company work did not supersede them. |
 
 ## Active objective
 
-Reach **Founder Spectator Mode**: AI performs routine discovery, debate, planning, implementation, verification, criticism, repair, release preparation, learning and next-mission selection. The founder owns vision/values and D3 irreversible decisions, but routine progress must not depend on founder coordination or manual error relay.
+Stabilize every critical Residential and Family Community flow using the configured reliability runner, repair reproducible product defects, and establish the regression baseline required for the remaining reusable product architecture work.
 
 ## Current guardrails
 

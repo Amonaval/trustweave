@@ -1,4 +1,4 @@
 import {test,expect} from '@playwright/test';import {login} from '../lib/login';import {activate,seedState} from '../lib/role-client';
-import {openSurface} from '../lib/mission2-regression';
-const order=['housing-society','family-association','family','alumni','association','organization','business-trust','franchise','professional'] as const;
+import {openSurface} from '../lib/mission2-regression';import {QA_VERTICAL_KINDS} from '../runtime/scope.mjs';
+const order=QA_VERTICAL_KINDS;
 test.describe('vertical-specific runtime depth',()=>{for(const kind of order)test(`${kind} directory/explorer path is backed by seeded network data`,async({page})=>{const s=seedState(),n=s.networks[kind];await activate('owner',n.id);await login(page,'owner');await expect(page.locator('body')).toContainText(n.name);for(const id of kind==='family'?['tree','admin']:['explorer','connections']){if(await page.getByTestId(`qa-nav-${id}`).count()){await openSurface(page,id);await expect(page.locator('body')).not.toContainText(/Application error|Unhandled Runtime Error|TypeError:/i)}}})});
