@@ -1,0 +1,21 @@
+M3-C1 affected files
+
+capabilities/launch-seed/family-community.ts
+capabilities/launch-seed/housing.ts
+governance/documentation-policy.json
+history/M3-C-PREFLIGHT-HISTORY-INVENTORY.md
+history/root-legacy/README.md
+missions/mission-003/m3-c/c01/AFFECTED-FILES.txt
+missions/mission-003/m3-c/c01/EVIDENCE.md
+missions/mission-003/m3-c/c01/mission.json
+missions/mission-003/m3-c/c01/review.json
+missions/registry.json
+package.json
+scripts/company/c1-gate.mjs
+scripts/company/candidate-review.mjs
+scripts/company/company-cli.mjs
+scripts/company/mission-governor.mjs
+scripts/company/state-store.mjs
+
+Removed files: none.
+Supabase migrations changed: none.

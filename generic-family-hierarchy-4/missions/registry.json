@@ -1,8 +1,9 @@
 {
-  "version": "2026-09-16.m3-c0",
-  "activeId": "M3-C0",
+  "version": "2026-09-16.m3-c1",
+  "activeId": "M3-C1",
   "missions": [
     {"id":"M3-B6-E1","title":"Progressive Selector Convergence","state":"VERIFY","path":"missions/mission-003/m3-b6-e1/mission.json","aliases":["b6","selector"]},
-    {"id":"M3-C0","title":"Control Surface Reset + Autonomous Company Runtime Bootstrap","state":"VERIFY","path":"missions/mission-003/m3-c/mission.json","aliases":["c0","active","autonomy"]}
+    {"id":"M3-C0","title":"Control Surface Reset + Autonomous Company Runtime Bootstrap","state":"VERIFY","path":"missions/mission-003/m3-c/mission.json","aliases":["c0","autonomy-bootstrap"]},
+    {"id":"M3-C1","title":"Company Brain & Durable Mission Governor","state":"REVIEW","path":"missions/mission-003/m3-c/c01/mission.json","aliases":["c1","active","autonomy"]}
   ]
 }

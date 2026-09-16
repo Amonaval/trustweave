@@ -215,7 +215,10 @@
     "agentic:runtime-preflight": "node scripts/agentic/mission-cli.mjs preflight",
     "agentic": "node scripts/agentic/mission-cli.mjs",
     "agentic:list": "node scripts/agentic/mission-cli.mjs list",
-    "agentic:status": "node scripts/agentic/mission-cli.mjs status"
+    "agentic:status": "node scripts/agentic/mission-cli.mjs status",
+    "company": "node scripts/company/company-cli.mjs",
+    "company:verify": "node scripts/company/company-cli.mjs verify",
+    "validate:m3c1": "node scripts/company/c1-gate.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.54.0",

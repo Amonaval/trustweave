@@ -1,0 +1,79 @@
+{
+  "id": "M3-C1",
+  "title": "Company Brain & Durable Mission Governor",
+  "risk": "R1",
+  "state": "CLOSE",
+  "scope": {
+    "include": [
+      "scripts/company/state-store.mjs",
+      "scripts/company/mission-governor.mjs",
+      "scripts/company/company-cli.mjs",
+      "scripts/company/c1-gate.mjs",
+      "company-state/**",
+      "missions/mission-003/m3-c/c01/**",
+      "package.json"
+    ],
+    "exclude": [
+      "product behavior",
+      "Supabase migrations",
+      "production release"
+    ],
+    "allowedWrites": [
+      "scripts/company/**",
+      "company-state/**",
+      "missions/mission-003/m3-c/**",
+      "package.json",
+      "history/**",
+      "capabilities/launch-seed/**",
+      "release-evidence/M3-C1/**"
+    ],
+    "forbiddenWrites": [
+      "supabase/migrations/**"
+    ]
+  },
+  "acceptance": [
+    "generic create plan run resume next and close flows",
+    "dependency graph rejects cycles",
+    "state commits atomically with a journal",
+    "fresh process resumes after interruption",
+    "close requires candidate-bound evidence and independent approval"
+  ],
+  "gates": [
+    "mission-contract",
+    "control-plane",
+    "scope",
+    "architecture",
+    "documentation",
+    "mission-source",
+    "static-syntax",
+    "independent-review",
+    "evidence"
+  ],
+  "sourceValidation": {
+    "commands": [
+      {
+        "name": "M3-C1 durable governor",
+        "command": "node scripts/company/c1-gate.mjs"
+      }
+    ]
+  },
+  "runtimeEvidenceRequired": false,
+  "rollback": "Remove the company governor package and restore the M3-C0 registry pointer.",
+  "humanInterventionBudget": 0,
+  "repair": {
+    "maxAttempts": 3,
+    "sameFailureMaxRepeats": 2
+  },
+  "execution": {
+    "baseRef": "main",
+    "branch": "agent/m3-c1-company-brain",
+    "worktree": ".agent-worktrees/m3-c1"
+  },
+  "baseline": {
+    "protectedTreeHashes": {
+      "supabase/migrations": "33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46"
+    }
+  },
+  "reviewArtifact": "missions/mission-003/m3-c/c01/review.json",
+  "candidateSha": "ae51fb876764db24ce0d29088cfe19c51d3e20be"
+}
