@@ -1,6 +1,6 @@
 # TrustWeave — Mission Lifecycle
 
-**Status:** PROPOSED AUTHORITY — M3-B strategic reset  
+**Status:** BINDING — M3-B1/B2 accepted for execution  
 **Applies to:** material product, architecture, data, security, UX and engineering missions.
 
 ## 1. Canonical state machine
@@ -200,3 +200,8 @@ Wire mission branch/worktree, PR/check feedback, persistent orchestrator, previe
 Run the Progressive Selector Convergence experiment above. Use results to adjust the OS before larger M3-A refactors.
 
 The old M3-B selector/workspace/hooks/CSS plan is therefore **parked as implementation backlog inside M3-B6+**, not cancelled.
+
+
+## 9. Machine mission contract
+
+Every executable mission is represented by one `mission.json` validated against `governance/schemas/mission.schema.json`. Gate evidence is emitted as JSON compatible with `governance/schemas/evidence.schema.json`. The mission JSON is operational metadata; it does not override the human-readable charter or constitutions.

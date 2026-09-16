@@ -1,0 +1,168 @@
+{
+  "version": "2026-09-16.m3-b2",
+  "status": "BINDING",
+  "roles": {
+    "missionLead": {
+      "owns": [
+        "mission-contract",
+        "scope",
+        "risk",
+        "acceptance",
+        "gate-plan",
+        "human-intervention-budget"
+      ],
+      "cannot": [
+        "self-approve-final-review",
+        "weaken-constitution",
+        "hide-failed-evidence"
+      ]
+    },
+    "architectureGovernor": {
+      "owns": [
+        "boundary-compliance",
+        "adr-trigger",
+        "architecture-findings"
+      ],
+      "cannot": [
+        "approve-own-material-implementation",
+        "override-founder-required-gate"
+      ]
+    },
+    "builder": {
+      "owns": [
+        "implementation",
+        "targeted-tests",
+        "repair-commits"
+      ],
+      "cannot": [
+        "change-approved-scope-silently",
+        "edit-historical-migrations",
+        "self-certify-runtime"
+      ]
+    },
+    "independentReviewer": {
+      "owns": [
+        "diff-review",
+        "acceptance-review",
+        "architecture-regression-review",
+        "finding-severity"
+      ],
+      "cannot": [
+        "be-sole-author-of-reviewed-change",
+        "dismiss-blocker-without-evidence"
+      ]
+    },
+    "verificationAgent": {
+      "owns": [
+        "gate-execution",
+        "failure-classification",
+        "runtime-evidence",
+        "rerun-after-repair"
+      ],
+      "cannot": [
+        "convert-source-proof-to-runtime-proof",
+        "ignore-environment-defect"
+      ]
+    },
+    "releaseKnowledgeAgent": {
+      "owns": [
+        "evidence-manifest",
+        "canonical-doc-sync",
+        "release-record",
+        "closure-archive"
+      ],
+      "cannot": [
+        "release-with-mandatory-gate-red",
+        "edit-generated-evidence-to-pass"
+      ]
+    }
+  },
+  "specialistLenses": {
+    "security": [
+      "auth",
+      "privacy",
+      "rls",
+      "storage",
+      "cross-tenant",
+      "secrets"
+    ],
+    "dataMigration": [
+      "supabase/migrations",
+      "schema",
+      "rpc",
+      "destructive-data",
+      "backfill"
+    ],
+    "uxAccessibility": [
+      "shared-ui",
+      "navigation",
+      "responsive",
+      "a11y",
+      "user-visible-workflow"
+    ],
+    "performance": [
+      "bundle",
+      "hot-path",
+      "large-query",
+      "n-plus-one",
+      "latency-budget"
+    ]
+  },
+  "repairPolicy": {
+    "defaultMaxAttempts": 3,
+    "sameFailureMaxRepeats": 2,
+    "classifications": [
+      "product-defect",
+      "test-defect",
+      "environment-defect",
+      "stale-deployment",
+      "schema-drift",
+      "test-data-defect",
+      "architecture-violation",
+      "unknown",
+      "review-pending"
+    ],
+    "escalateWhen": [
+      "same-failure-repeats",
+      "scope-expands",
+      "constitution-conflict",
+      "security-or-privacy-risk",
+      "destructive-action-needed",
+      "evidence-ambiguous"
+    ]
+  },
+  "humanApproval": {
+    "always": [
+      "constitution-change",
+      "strategic-product-scope-change",
+      "privacy-or-security-risk-acceptance",
+      "destructive-production-data-action",
+      "new-recurring-infrastructure-class",
+      "production-release-until-l4"
+    ],
+    "conditional": [
+      "breaking-shared-contract",
+      "mission-risk-escalation",
+      "unresolved-independent-review-disagreement"
+    ],
+    "routine": [
+      "low-risk-code-patch",
+      "test-rerun",
+      "bounded-repair",
+      "documentation-sync",
+      "evidence-packaging"
+    ]
+  },
+  "maturity": {
+    "current": "L1",
+    "target": "L2",
+    "levels": [
+      "L0",
+      "L1",
+      "L2",
+      "L3",
+      "L4",
+      "L5"
+    ]
+  }
+}

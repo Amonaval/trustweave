@@ -1,6 +1,6 @@
 # TrustWeave — Agentic Company & Engineering OS
 
-**Status:** PROPOSED AUTHORITY — M3-B strategic reset  
+**Status:** BINDING — M3-B1/B2 accepted for execution  
 **Objective:** Let the founder/architect provide intent and exceptional decisions while the engineering system plans, builds, verifies, reviews, documents and prepares release evidence with minimal human participation.
 
 ## 1. Operating principle
@@ -261,3 +261,8 @@ AI inside TrustWeave is a separate track. Any future network-admin/member agent 
 - no silent mutation from generated knowledge.
 
 Mission 3 designs this policy but does not implement broad in-product agents.
+
+
+## 11. Machine operating contract
+
+`governance/company-os.json` is the executable projection for role separation, specialist activation, repair budgets and approval triggers. Mission manifests may narrow authority further but may not expand it beyond this contract.
