@@ -122,6 +122,11 @@
         "TW_QA_BASE_URL"
       ]
     },
+    "runtime-company-environment": {
+      "kind": "runtime",
+      "command": "node scripts/company/c3-gate.mjs",
+      "requiredEnv": []
+    },
     "independent-review": {
       "kind": "review",
       "command": "node scripts/agentic/review-gate.mjs --mission {mission}"

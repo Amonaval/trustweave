@@ -1,0 +1,80 @@
+{
+  "id": "M3-C3",
+  "title": "Autonomous Environment & Toolchain Manager",
+  "risk": "R1",
+  "state": "CLOSE",
+  "scope": {
+    "include": [
+      "locked dependency recovery",
+      "precondition inspection",
+      "preview lifecycle",
+      "real browser proof",
+      "cleanup"
+    ],
+    "exclude": [
+      "production deployment",
+      "external resource spend",
+      "database mutation"
+    ],
+    "allowedWrites": [
+      "scripts/company/**",
+      "company-state/**",
+      "missions/mission-003/m3-c/**",
+      "package.json",
+      "package-lock.json",
+      "governance/documentation-policy.json",
+      "missions/registry.json",
+      "governance/quality-policy.json",
+      "release-evidence/M3-C3/**"
+    ],
+    "forbiddenWrites": [
+      "supabase/migrations/**"
+    ]
+  },
+  "acceptance": [
+    "dependencies restore from lock",
+    "preconditions report names not secret values",
+    "preview starts and becomes ready",
+    "real Chromium validates routes",
+    "processes clean up"
+  ],
+  "gates": [
+    "mission-contract",
+    "control-plane",
+    "scope",
+    "architecture",
+    "documentation",
+    "mission-source",
+    "static-syntax",
+    "runtime-company-environment",
+    "independent-review",
+    "evidence"
+  ],
+  "sourceValidation": {
+    "commands": [
+      {
+        "name": "M3-C3 environment manager source",
+        "command": "node --check scripts/company/environment-manager.mjs && node --check scripts/company/c3-gate.mjs"
+      }
+    ]
+  },
+  "runtimeEvidenceRequired": true,
+  "rollback": "Remove environment manager and the locked serverless Chromium development dependency.",
+  "humanInterventionBudget": 0,
+  "repair": {
+    "maxAttempts": 3,
+    "sameFailureMaxRepeats": 2
+  },
+  "execution": {
+    "baseRef": "main",
+    "branch": "agent/m3-c3-environment-manager",
+    "worktree": ".agent-worktrees/m3-c3"
+  },
+  "baseline": {
+    "protectedTreeHashes": {
+      "supabase/migrations": "33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46"
+    }
+  },
+  "reviewArtifact": "missions/mission-003/m3-c/c03/review.json",
+  "candidateSha": "272570303feccb477f127004b186e8d5ebc58f1d"
+}
