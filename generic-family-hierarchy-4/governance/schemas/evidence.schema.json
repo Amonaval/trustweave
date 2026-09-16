@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "trustweave://schemas/evidence.schema.json",
+  "title": "TrustWeave Gate Evidence",
+  "type": "object",
+  "required": ["missionId", "candidateSha", "generatedAt", "results", "summary"],
+  "properties": {
+    "missionId":{"type":"string"},
+    "candidateSha":{"type":"string"},
+    "generatedAt":{"type":"string"},
+    "environmentClass":{"type":"string"},
+    "results":{"type":"array","items":{"type":"object","required":["gate","kind","status","startedAt","finishedAt"],"properties":{"gate":{"type":"string"},"kind":{"enum":["source","static","runtime","review","documentation","release"]},"status":{"enum":["PASS","FAIL","SKIP","BLOCKED"]},"startedAt":{"type":"string"},"finishedAt":{"type":"string"},"exitCode":{"type":["integer","null"]},"artifact":{"type":["string","null"]},"classification":{"type":["string","null"]}}}},
+    "summary":{"type":"object","required":["pass","fail","skip","blocked"],"properties":{"pass":{"type":"integer"},"fail":{"type":"integer"},"skip":{"type":"integer"},"blocked":{"type":"integer"}}}
+  }
+}

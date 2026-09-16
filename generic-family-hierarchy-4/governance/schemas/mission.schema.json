@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "trustweave://schemas/mission.schema.json",
+  "title": "TrustWeave Mission Contract",
+  "type": "object",
+  "required": ["id", "title", "risk", "state", "scope", "acceptance", "gates", "rollback", "humanInterventionBudget"],
+  "properties": {
+    "id": {"type":"string","pattern":"^[A-Z0-9][A-Z0-9._-]+$"},
+    "title": {"type":"string","minLength":3},
+    "risk": {"enum":["R0","R1","R2","R3"]},
+    "state": {"enum":["INTAKE","DISCOVERY","ARCHITECTURE","PLAN","IMPLEMENT","VERIFY","REVIEW","HARDEN","DOCUMENT","RELEASE","OBSERVE","CLOSE"]},
+    "scope": {
+      "type":"object",
+      "required":["include","exclude","allowedWrites"],
+      "properties": {
+        "include":{"type":"array","items":{"type":"string"}},
+        "exclude":{"type":"array","items":{"type":"string"}},
+        "allowedWrites":{"type":"array","items":{"type":"string"}},
+        "forbiddenWrites":{"type":"array","items":{"type":"string"}}
+      }
+    },
+    "acceptance":{"type":"array","minItems":1,"items":{"type":"string"}},
+    "gates":{"type":"array","minItems":1,"items":{"type":"string"}},
+    "runtimeEvidenceRequired":{"type":"boolean"},
+    "rollback":{"type":"string","minLength":3},
+    "humanInterventionBudget":{"type":"integer","minimum":0},
+    "repair":{"type":"object"},
+    "candidateSha":{"type":["string","null"]}
+  },
+  "additionalProperties": true
+}

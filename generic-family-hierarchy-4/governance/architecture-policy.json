@@ -1,0 +1,45 @@
+{
+  "version": "2026-09-16.m3-b1",
+  "status": "BINDING",
+  "constitution": "ARCHITECTURE-CONSTITUTION.md",
+  "evidenceBasis": "missions/mission-003/M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md",
+  "layers": {
+    "kernel": ["core/**"],
+    "sharedUi": ["components/shared/**"],
+    "capabilities": ["capabilities/**"],
+    "verticals": ["verticals/**"],
+    "composition": ["app-shell/**", "components/TemplateNetworkApp.tsx", "components/NetworkApp.tsx"],
+    "infrastructure": ["lib/**", "server/**", "supabase/**"]
+  },
+  "invariants": [
+    {"id":"ARCH-001","title":"Kernel cannot import vertical implementations","severity":"BLOCKER"},
+    {"id":"ARCH-002","title":"Shared technical UI cannot import vertical implementations","severity":"BLOCKER"},
+    {"id":"ARCH-003","title":"A vertical cannot import another vertical","severity":"BLOCKER"},
+    {"id":"ARCH-004","title":"Historical migrations are immutable","severity":"BLOCKER"},
+    {"id":"ARCH-005","title":"Authorization is not UI-only","severity":"BLOCKER","reviewOnly":true},
+    {"id":"ARCH-006","title":"Shared abstractions may not flatten domain semantics","severity":"HIGH","reviewOnly":true},
+    {"id":"ARCH-007","title":"Source-green cannot be represented as runtime certification","severity":"BLOCKER"}
+  ],
+  "sharedContracts": {
+    "progressiveSectionNavigation": "components/shared/ResponsiveSectionTabs.tsx"
+  },
+  "adrRequiredFor": [
+    "kernel-boundary-change",
+    "domain-ownership-change",
+    "new-infrastructure-class",
+    "tenant-or-privacy-semantics-change",
+    "authorization-semantics-change",
+    "destructive-or-hard-to-reverse-data-change",
+    "breaking-shared-contract",
+    "plugin-event-queue-cache-database-architecture",
+    "constitution-level-compatibility-change"
+  ],
+  "humanApprovalRequiredFor": [
+    "constitution-change",
+    "high-risk-adr",
+    "security-or-privacy-risk-acceptance",
+    "destructive-production-data-action",
+    "irreversible-production-action",
+    "new-recurring-infrastructure-commitment"
+  ]
+}

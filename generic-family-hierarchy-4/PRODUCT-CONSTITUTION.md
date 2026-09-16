@@ -1,5 +1,7 @@
 # Generic Network OS — Product Constitution
 
+**Status:** BINDING — M3-B1 execution authority
+
 This document governs **product prioritization**. Existing security, privacy and architecture invariants remain binding.
 
 ## Mission statement

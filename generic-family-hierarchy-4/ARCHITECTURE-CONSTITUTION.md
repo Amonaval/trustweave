@@ -1,8 +1,8 @@
 # TrustWeave — Architecture Constitution
 
-**Status:** PROPOSED AUTHORITY — M3-B strategic reset  
+**Status:** BINDING — M3-B1/B2 accepted for execution  
 **Effective scope:** TrustWeave / Generic Network OS  
-**Predecessor evidence:** `M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`  
+**Predecessor evidence:** `missions/mission-003/M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`  
 **Change rule:** Material changes to this constitution require an ADR and founder/architect approval.
 
 ## 1. Purpose
@@ -206,3 +206,8 @@ Architecture moves from prose to enforcement in this order:
 6. runtime verification where source inspection cannot prove behavior.
 
 The goal is not zero architectural discussion. The goal is that routine decisions become cheap, consistent and machine-checkable.
+
+
+## 12. Machine policy
+
+`governance/architecture-policy.json` is the machine-readable projection of this constitution. The Markdown constitution remains normative; the JSON may only make deterministic subsets stricter/easier to evaluate, never silently broaden permissions. If they disagree, this constitution wins and the projection must be repaired.
