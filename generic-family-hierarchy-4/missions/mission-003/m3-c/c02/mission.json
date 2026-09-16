@@ -1,0 +1,76 @@
+{
+  "id": "M3-C2",
+  "title": "AI Executive Council",
+  "risk": "R1",
+  "state": "CLOSE",
+  "scope": {
+    "include": [
+      "structured executive deliberation",
+      "decision authority classification",
+      "durable dissent and alternatives"
+    ],
+    "exclude": [
+      "external LLM services",
+      "production effects",
+      "product code"
+    ],
+    "allowedWrites": [
+      "scripts/company/**",
+      "company-state/**",
+      "missions/mission-003/m3-c/**",
+      "package.json",
+      "governance/documentation-policy.json",
+      "missions/registry.json",
+      "release-evidence/M3-C2/**"
+    ],
+    "forbiddenWrites": [
+      "supabase/migrations/**",
+      "app/**",
+      "components/**"
+    ]
+  },
+  "acceptance": [
+    "five roles produce competing recommendations",
+    "decision records evidence alternatives dissent class rationale",
+    "D3 is blocked for Founder",
+    "no first-thought adoption"
+  ],
+  "gates": [
+    "mission-contract",
+    "control-plane",
+    "scope",
+    "architecture",
+    "documentation",
+    "mission-source",
+    "static-syntax",
+    "independent-review",
+    "evidence"
+  ],
+  "sourceValidation": {
+    "commands": [
+      {
+        "name": "M3-C2 executive council",
+        "command": "node scripts/company/c2-gate.mjs"
+      }
+    ]
+  },
+  "runtimeEvidenceRequired": false,
+  "rollback": "Remove executive-council and C2 records; C1 governor remains operational.",
+  "humanInterventionBudget": 0,
+  "repair": {
+    "maxAttempts": 3,
+    "sameFailureMaxRepeats": 2
+  },
+  "execution": {
+    "baseRef": "main",
+    "branch": "agent/m3-c2-executive-council",
+    "worktree": ".agent-worktrees/m3-c2"
+  },
+  "baseline": {
+    "protectedTreeHashes": {
+      "supabase/migrations": "33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46"
+    }
+  },
+  "reviewArtifact": "missions/mission-003/m3-c/c02/review.json",
+  "candidateSha": "83fa2fc2cdda13daf148caabe0cc387e0f0c5e67"
+}

@@ -1,0 +1,17 @@
+M3-C2 affected files
+
+governance/documentation-policy.json
+missions/mission-003/m3-c/c01/mission.json
+missions/mission-003/m3-c/c01/review.json
+missions/mission-003/m3-c/c02/AFFECTED-FILES.txt
+missions/mission-003/m3-c/c02/EVIDENCE.md
+missions/mission-003/m3-c/c02/mission.json
+missions/mission-003/m3-c/c02/review.json
+missions/registry.json
+package.json
+release-evidence/M3-C1/**
+scripts/company/c2-gate.mjs
+scripts/company/executive-council.mjs
+
+Removed files: none.
+Supabase migrations changed: none.

@@ -71,7 +71,7 @@
     "FOUNDER-COMPASS.md",
     "USER-GUIDE.md"
   ],
-  "activeMission": "missions/mission-003/m3-c/c01/mission.json",
+  "activeMission": "missions/mission-003/m3-c/c02/mission.json",
   "maxRootMarkdown": 10,
   "legacyArchiveDirectory": "archive",
   "historyIndex": "history/root-legacy/README.md"
