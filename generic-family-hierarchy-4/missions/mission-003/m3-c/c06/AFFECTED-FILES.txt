@@ -1,0 +1,20 @@
+M3-C6 affected files
+
+company-state/opportunities.json
+governance/documentation-policy.json
+missions/mission-003/m3-c/c05/mission.json
+missions/mission-003/m3-c/c05/review.json
+missions/mission-003/m3-c/c06/AFFECTED-FILES.txt
+missions/mission-003/m3-c/c06/EVIDENCE.md
+missions/mission-003/m3-c/c06/mission.json
+missions/mission-003/m3-c/c06/review.json
+missions/mission-003/m3-c/c06/review-attempt-1-rejected.json
+missions/registry.json
+package.json
+release-evidence/M3-C5/**
+scripts/company/c6-gate.mjs
+scripts/company/risk-board-cli.mjs
+scripts/company/risk-board.mjs
+
+Removed files: none.
+Supabase migrations changed: none.

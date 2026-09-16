@@ -1,0 +1,76 @@
+{
+  "id": "M3-C6",
+  "title": "Independent Risk & Review Board",
+  "risk": "R1",
+  "state": "CLOSE",
+  "scope": {
+    "include": [
+      "candidate-bound independent review",
+      "eleven risk dimensions",
+      "seeded blocker proof",
+      "builder-reviewer separation"
+    ],
+    "exclude": [
+      "self-approval",
+      "risk acceptance",
+      "product changes"
+    ],
+    "allowedWrites": [
+      "scripts/company/**",
+      "missions/mission-003/m3-c/**",
+      "missions/registry.json",
+      "governance/documentation-policy.json",
+      "package.json",
+      "release-evidence/M3-C6/**"
+    ],
+    "forbiddenWrites": [
+      "supabase/migrations/**",
+      "app/**",
+      "components/**"
+    ]
+  },
+  "acceptance": [
+    "builder cannot approve",
+    "review bound to committed candidate",
+    "eleven dimensions evaluated",
+    "seeded violations block"
+  ],
+  "gates": [
+    "mission-contract",
+    "control-plane",
+    "scope",
+    "architecture",
+    "documentation",
+    "mission-source",
+    "static-syntax",
+    "independent-review",
+    "evidence"
+  ],
+  "sourceValidation": {
+    "commands": [
+      {
+        "name": "M3-C6 independent risk board",
+        "command": "node scripts/company/c6-gate.mjs"
+      }
+    ]
+  },
+  "runtimeEvidenceRequired": false,
+  "rollback": "Remove the expanded risk board and continue using the C1 candidate review process.",
+  "humanInterventionBudget": 0,
+  "repair": {
+    "maxAttempts": 3,
+    "sameFailureMaxRepeats": 2
+  },
+  "execution": {
+    "baseRef": "main",
+    "branch": "agent/m3-c6-risk-board",
+    "worktree": ".agent-worktrees/m3-c6"
+  },
+  "baseline": {
+    "protectedTreeHashes": {
+      "supabase/migrations": "33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46"
+    }
+  },
+  "reviewArtifact": "missions/mission-003/m3-c/c06/review.json",
+  "candidateSha": "8a89e0e1ee36eed9335635728990e5fbd9efa824"
+}

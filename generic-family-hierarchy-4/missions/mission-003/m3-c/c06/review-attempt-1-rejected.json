@@ -1,0 +1,113 @@
+{
+  "status": "REJECTED",
+  "blockingFindings": 1,
+  "findings": [
+    {
+      "dimension": "security",
+      "severity": "BLOCKER",
+      "summary": "Candidate contains credential-like material.",
+      "evidence": "secret-pattern"
+    },
+    {
+      "dimension": "architecture",
+      "severity": "INFO",
+      "summary": "No blocking signal found in the supplied candidate evidence.",
+      "evidence": "automated-review"
+    },
+    {
+      "dimension": "privacy",
+      "severity": "INFO",
+      "summary": "No blocking signal found in the supplied candidate evidence.",
+      "evidence": "automated-review"
+    },
+    {
+      "dimension": "data-integrity",
+      "severity": "INFO",
+      "summary": "No blocking signal found in the supplied candidate evidence.",
+      "evidence": "automated-review"
+    },
+    {
+      "dimension": "accessibility",
+      "severity": "INFO",
+      "summary": "No blocking signal found in the supplied candidate evidence.",
+      "evidence": "automated-review"
+    },
+    {
+      "dimension": "ux",
+      "severity": "INFO",
+      "summary": "No blocking signal found in the supplied candidate evidence.",
+      "evidence": "automated-review"
+    },
+    {
+      "dimension": "maintainability",
+      "severity": "INFO",
+      "summary": "No blocking signal found in the supplied candidate evidence.",
+      "evidence": "automated-review"
+    },
+    {
+      "dimension": "performance",
+      "severity": "INFO",
+      "summary": "No blocking signal found in the supplied candidate evidence.",
+      "evidence": "automated-review"
+    },
+    {
+      "dimension": "regression",
+      "severity": "INFO",
+      "summary": "No blocking signal found in the supplied candidate evidence.",
+      "evidence": "automated-review"
+    },
+    {
+      "dimension": "evidence-quality",
+      "severity": "INFO",
+      "summary": "No blocking signal found in the supplied candidate evidence.",
+      "evidence": "automated-review"
+    },
+    {
+      "dimension": "scope",
+      "severity": "INFO",
+      "summary": "No blocking signal found in the supplied candidate evidence.",
+      "evidence": "automated-review"
+    }
+  ],
+  "dimensionsReviewed": [
+    "architecture",
+    "security",
+    "privacy",
+    "data-integrity",
+    "accessibility",
+    "ux",
+    "maintainability",
+    "performance",
+    "regression",
+    "evidence-quality",
+    "scope"
+  ],
+  "builder": "work-session/root",
+  "reviewer": "risk-board/process-v1",
+  "candidate": "5178853b94e90124e1b94e10963e947462e70e7a",
+  "candidateSha": "5178853b94e90124e1b94e10963e947462e70e7a",
+  "missionId": "M3-C6",
+  "generatedAt": "2026-09-16T08:56:41.498Z",
+  "evidence": [
+    {
+      "gate": "mission-contract",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "gate": "architecture",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "gate": "mission-source",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "independence": {
+    "processIsolated": true,
+    "inputBoundToCommittedCandidate": true,
+    "builderCannotSetStatus": true
+  }
+}
