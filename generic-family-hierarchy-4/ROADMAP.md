@@ -80,3 +80,5 @@ These exact historical labels remain only for accepted source-gate compatibility
 - **Later C11:** continuous portfolio selection only after C10 demonstrates bounded end-to-end autonomy.
 
 Generation 2 is now complete. C8 must make the existing decisions, failures, opportunities and incident lessons searchable and automatically relevant to planning. C9 turns that state into one human-facing cockpit. C10 then consumes the highest-value safe opportunity and demonstrates the entire loop on a real TrustWeave change.
+
+Generation 3 is complete pending final candidate closure. The next roadmap decision returns to the Founder/company portfolio: pilot rollout remains gated by explicit production authority, while routine discovery, debate, implementation, browser QA, review and packaging can now proceed autonomously.

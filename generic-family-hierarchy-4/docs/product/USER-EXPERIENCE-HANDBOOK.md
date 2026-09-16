@@ -494,3 +494,7 @@ The reusable `ResponsiveSectionTabs` primitive and `section-workspace` layout ar
 From M3-C onward, usability claims must identify a persona, route, viewport, reproducible observation and evidence artifact. Automated criticism may rank opportunities, but it must not call source inspection a user journey or replace missing runtime proof with a PASS. C5 operationalizes this rule for Chairmen, Presidents, committee members, admins, residents/members, mobile-only users, elderly/non-technical users and first-time visitors.
 
 Generation 2 applies the rule to the public Discovery journeys. Layout density, horizontal overflow, practical tap-target height, expected copy and browser errors are captured as measurements. A finding becomes a product mission input only after it can be reproduced; severity and breadth determine rank.
+
+## Public action target contract
+
+All visible `button` and `a` actions inside public Discovery must render at least 44px high. The contract applies to desktop and mobile across the overview, Housing Society, Family Community, everyday member and Product Guide journeys. C10 verifies the rendered dimensions in Chromium rather than inferring them from CSS.

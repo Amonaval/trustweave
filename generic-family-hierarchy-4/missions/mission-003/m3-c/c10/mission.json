@@ -1,0 +1,89 @@
+{
+  "id": "M3-C10",
+  "title": "Zero-Touch Mission Demonstration",
+  "risk": "R1",
+  "state": "CLOSE",
+  "scope": {
+    "include": [
+      "highest-ranked public discovery opportunity",
+      "executive debate",
+      "memory-guided planning",
+      "real role and device journeys",
+      "local release rehearsal",
+      "documentation and packaging"
+    ],
+    "exclude": [
+      "production deployment",
+      "external effects",
+      "database migration",
+      "vertical removal"
+    ],
+    "allowedWrites": [
+      "app/globals.css",
+      "scripts/company/**",
+      "company-state/**",
+      "missions/mission-003/m3-c/**",
+      "missions/registry.json",
+      "governance/documentation-policy.json",
+      "governance/quality-policy.json",
+      "package.json",
+      "release-evidence/M3-C10/**",
+      "CURRENT-STATE.md",
+      "MISSION-STATUS.md",
+      "ROADMAP.md",
+      "docs/product/**",
+      "TRUSTWEAVE-PUBLIC-PRODUCT-PROFILE.html",
+      "TRUSTWEAVE-PRODUCT-EVOLUTION-JOURNEY.html"
+    ],
+    "forbiddenWrites": [
+      "supabase/migrations/**"
+    ]
+  },
+  "acceptance": [
+    "broad intent proceeds with zero routine Founder intervention",
+    "highest-ranked prior user evidence is applied automatically",
+    "all visible public actions meet 44px minimum across five real journeys",
+    "mobile has no horizontal overflow",
+    "candidate reaches local release-ready state",
+    "independent review and documentation remain candidate-bound"
+  ],
+  "gates": [
+    "mission-contract",
+    "control-plane",
+    "scope",
+    "architecture",
+    "documentation",
+    "mission-source",
+    "static-syntax",
+    "runtime-company-zero-touch",
+    "independent-review",
+    "evidence"
+  ],
+  "sourceValidation": {
+    "commands": [
+      {
+        "name": "M3-C10 zero-touch source",
+        "command": "node --check scripts/company/c10-gate.mjs"
+      }
+    ]
+  },
+  "runtimeEvidenceRequired": true,
+  "rollback": "Remove the single public-discovery minimum target rule and C10 local evidence; no persisted user or external state is changed.",
+  "humanInterventionBudget": 0,
+  "repair": {
+    "maxAttempts": 3,
+    "sameFailureMaxRepeats": 2
+  },
+  "execution": {
+    "baseRef": "main",
+    "branch": "agent/m3-c10-zero-touch",
+    "worktree": ".agent-worktrees/m3-c10"
+  },
+  "baseline": {
+    "protectedTreeHashes": {
+      "supabase/migrations": "33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46"
+    }
+  },
+  "reviewArtifact": "missions/mission-003/m3-c/c10/review.json",
+  "candidateSha": "ccce233f9fec56137121ac6a88c6c14e86e3d74e"
+}

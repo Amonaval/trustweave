@@ -352,3 +352,12 @@ Launch seeding now treats execution state as a recoverable workflow rather than 
 - Risk Board covers architecture, security, privacy, data integrity, accessibility, UX, maintainability, performance, regression, evidence and scope.
 - Candidate approval is process-isolated and SHA-bound; a builder identity cannot approve.
 - Local release slots exercise preview, checks, promotion, smoke, rollback, incident, postmortem and knowledge update without production effects.
+
+### M3-C Generation 3 — learning, observability and zero-touch execution
+
+- The memory engine indexes mission outcomes, user observations, risk decisions and evidence with deterministic source citations.
+- Planning queries retrieve relevant lessons and materialize constraints before implementation.
+- The `/company` server route renders a safe Founder snapshot without secrets or production controls.
+- User-visible risk findings bind to candidate runtime evidence rather than builder assertions.
+- The C10 workflow composes memory, council, governor, real Chromium journeys and release rehearsal around one broad D1 intent.
+- Public Discovery now enforces a shared 44px minimum action target while leaving vertical contracts and migrations unchanged.

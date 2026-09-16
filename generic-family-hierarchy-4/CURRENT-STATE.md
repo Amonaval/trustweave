@@ -70,3 +70,7 @@ The next active generation is C5–C7: realistic user/pilot criticism, an expand
 M3-C5 through M3-C7 are implemented and candidate-certified. Seven personas now exercise the real product front door; measurable friction becomes a ranked company opportunity feed. The review board independently evaluates eleven risk dimensions and demonstrated that seeded violations block approval. The release loop rehearses candidate preview, checks, promotion, smoke, automatic rollback, incident triage, postmortem and learning without touching production.
 
 The next active generation is C8–C10: memory that automatically informs planning, the Founder Spectator Cockpit and a substantial zero-touch product/architecture mission.
+
+## 2026-09-16 — Autonomous Company Generation 3
+
+M3-C8 through M3-C10 are implemented. Durable, cited company memory now informs planning automatically; `/company` gives the Founder a concise spectator cockpit; and one broad product intent flowed through evidence retrieval, five-role debate, governed execution, five real role/device journeys, independent review and local release rehearsal. The selected user outcome raises every visible public Discovery action to a 44px minimum across Housing Society, Family Community and shared member/guide paths without migrations or production effects.

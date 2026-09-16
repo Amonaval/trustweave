@@ -196,3 +196,10 @@ Housing Society UX was also restructured after real laptop use showed unacceptab
 - **User / Pilot Critic:** seven role personas with real-browser measurements and ranked opportunity intake.
 - **Independent Risk Board:** eleven review dimensions, seeded-blocker proof and candidate binding.
 - **Release / Rollback / Incident Loop:** preview, release checks, smoke, exact rollback, triage, postmortem and learning rehearsal.
+
+## Autonomous Company Runtime — Generation 3
+
+- **Company Memory:** durable cited retrieval across mission, user, review and incident evidence.
+- **Founder Cockpit:** health, debate, decisions, risks, evidence, autonomy, blockers and next moves on `/company`.
+- **Zero-Touch Delivery:** delegated intent through debate, implementation, multi-persona browser proof, independent review and release-ready rehearsal.
+- **Accessible Discovery Actions:** 44px minimum touch targets across the shared public Housing, Community, member and guide experience.

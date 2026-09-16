@@ -48,3 +48,13 @@ Founder interventions: **0**. Manual error relays: **0**. Production/database ef
 | C7 Release / Rollback / Incident | CLOSE | Local preview-to-ready plus exact rollback and postmortem rehearsal |
 
 Founder interventions remain **0**. Manual error relays remain **0**. One candidate was correctly rejected during C6 and repaired; the rejection is retained as evidence.
+
+## M3-C checkpoint 3
+
+| Mission | Status | Proof |
+| --- | --- | --- |
+| C8 Company Memory | CLOSE | Cited mission, review and user evidence automatically applied to planning |
+| C9 Founder Cockpit | CLOSE | Real `/company` route, mobile proof, optional drill-down, no exposed control/secrets |
+| C10 Zero-Touch Demonstration | CLOSE | Broad intent to 44px public journeys, five browser personas and release-ready rehearsal |
+
+Founder interventions: **0**. Manual error relays: **0**. Optional Founder interventions: **0**.
