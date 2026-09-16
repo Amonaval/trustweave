@@ -1,0 +1,11 @@
+TrustWeave source handoff
+Generated: 2026-09-16 UTC
+Branch: master
+Commit: 2ea72b8512b736085add86c0ca04e000871cd146
+Commit title: feat(company): add product artifact hub and resilient diagnostics
+Remote repository: none configured in this workspace
+
+Contents are the complete tracked source at the commit above.
+Excluded intentionally: .git history, node_modules, .next, .env files, credentials, and ignored transient qa-results.
+
+Next step: connect this source repository to the Founder's Git provider and Vercel project, then configure an autonomous branch/push/deploy workflow with production deployment retained as Founder-controlled authority.

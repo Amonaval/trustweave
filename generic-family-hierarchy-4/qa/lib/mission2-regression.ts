@@ -25,7 +25,7 @@ export function mission2Watch(page:Page,testInfo:TestInfo){
   async assertClean(label='Mission 2 user journey'){
    await userPause(page,.25);
    if(issues.length){
-    const dir='qa-results/mission2';fs.mkdirSync(dir,{recursive:true});
+    const dir=process.env.QA_MISSION2_EVIDENCE_DIR||'qa-results/mission2';fs.mkdirSync(dir,{recursive:true});
     fs.appendFileSync(path.join(dir,'runtime-issues.ndjson'),issues.map(issue=>JSON.stringify({...issue,test:testInfo.titlePath.join(' > '),label})).join('\n')+'\n');
     await testInfo.attach('mission2-runtime-issues',{body:Buffer.from(JSON.stringify({label,issues},null,2)),contentType:'application/json'});
    }

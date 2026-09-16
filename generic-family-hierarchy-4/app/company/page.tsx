@@ -151,7 +151,7 @@ export default function CompanyCockpit() {
       </section>
       <footer>
         Snapshot {new Date(data.generatedAt).toISOString()} · No production
-        control is exposed here.
+        control is exposed here. · <a href="/artifacts">Product artifacts</a>
       </footer>
     </main>
   );

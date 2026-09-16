@@ -118,6 +118,8 @@ npm run qa:rpc
 npm run qa:rls
 npm run qa:verticals
 npm run qa:crawl
+npm run qa:crawl:robust
+npm run qa:crawl:robust:all
 npm run qa:security
 npm run qa:accessibility
 npm run qa:lifecycle
@@ -126,6 +128,20 @@ npm run qa:report
 ```
 
 Use these only to shorten a fix/retest loop. Release certification remains `npm run qa:certify`.
+
+### Resilient whole-app crawl
+
+Use `qa:crawl:robust` for the two launch verticals and `qa:crawl:robust:all` for all nine verticals across owner, admin and member roles. The resilient runner is intentionally different from the old monolithic crawl:
+
+- one role × vertical shard runs in a fresh browser process;
+- one local app server is reused for the entire run;
+- each shard is checkpointed immediately and a rerun resumes completed work;
+- a failed shard gets one clean-context retry so intermittent harness failures are visible instead of becoming false product bugs;
+- destructive controls are never activated by exploratory crawling;
+- screenshots, traces, videos, per-attempt logs and an aggregate report remain under `qa-results/resilient-crawl/`;
+- a twice-reproduced failure is reported for triage, not automatically mislabeled as a product defect.
+
+The runner uses `.env.qa` and the deterministic fixture created by `npm run qa:seed`. It never writes credential values into the crawl report. When it finishes, send `qa-results/` without `.env.qa`.
 
 ## 8. Safety behavior
 

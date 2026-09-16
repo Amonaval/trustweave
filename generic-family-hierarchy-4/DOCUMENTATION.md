@@ -28,6 +28,10 @@ The repository root is intentionally a **small AI control surface**, not a docum
 
 Canonical product narrative lives under `docs/product/`. Root mirrors are not maintained.
 
+- `docs/product/FOUNDER-AUTONOMOUS-WORKING-MODEL.md` — how the Founder and autonomous company now work.
+- `/artifacts` — deployed artifact library generated from the approved root HTML narratives.
+- `public/artifacts/` — Vercel-served projections; update with `npm run artifacts:sync` and verify with `npm run artifacts:check`.
+
 ## History and evidence
 
 - `history/root-legacy/` — single landing zone for Markdown removed from root during M3-C0 cleanup.
