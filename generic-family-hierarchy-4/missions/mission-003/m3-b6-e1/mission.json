@@ -90,5 +90,13 @@
     }
   },
   "reviewArtifact": "missions/mission-003/m3-b6-e1/review.json",
-  "candidateSha": null
+  "candidateSha": null,
+  "sourceValidation": {
+    "commands": [
+      {
+        "name": "B6 progressive selector contract",
+        "command": "node scripts/m3b6-progressive-selector-gate.mjs"
+      }
+    ]
+  }
 }

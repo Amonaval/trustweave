@@ -114,7 +114,7 @@ The in-app notification record remains authoritative even when Push is disabled 
 A visitor can now use the public Discovery front door to understand TrustWeave, explore Housing Society or Family Community journeys, view member/resident value, open Playground, and read the Product Guide. Sign In remains visible but is not required to understand the product.
 
 ### Populating a real pilot/demo network
-For Residential or Family Community, an admin/platform owner opens the network Admin surface and uses **Final launch data**. Choose the bundled dataset (or upload the matching launch JSON/XLSX), review the dry-run counts, type the exact active network name, confirm synthetic-data intent, authorize the dataset, and then persist it. Re-running the same version is lineage/idempotency aware. See `DATA-SEED-RUNBOOK.md`.
+For Residential or Family Community, an admin/platform owner opens the network Admin surface and uses **Final launch data**. Choose the bundled dataset (or upload the matching launch JSON/XLSX), review the dry-run counts, type the exact active network name, confirm synthetic-data intent, authorize the dataset, and then persist it. Re-running the same version is lineage/idempotency aware. See `history/root-legacy/DATA-SEED-RUNBOOK.md`.
 
 ### Safety
 The launch loader does not reset a network globally. A production-looking network name requires a separate explicit override. Use this capability only for synthetic launch/pilot datasets.

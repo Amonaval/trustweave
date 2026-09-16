@@ -594,7 +594,7 @@ The next phase should therefore build on the engagement foundation, not start an
 ### 135. Final launch data + certification foundation
 **Outcome:** Added bundled 25-flat Residential and 20-family Family Community datasets, a guarded network-scoped launch loader, lineage/idempotency migration, FCA annual-membership import closure, launch-specific source gate and staging runtime E2E specifications. Source closure is green; final dependency-backed lint/build and headed/mobile persisted-network certification remain the required go/no-go gate.
 
-**Release artifacts:** `LAUNCH-READINESS-REPORT.md`, `PILOT-DEMO-RUNBOOK.md`, `DATA-SEED-RUNBOOK.md`, `RUNTIME-VERIFICATION-CHECKLIST.md`, `FINAL-RELEASE-MANIFEST.md`.
+**Release artifacts:** `history/root-legacy/LAUNCH-READINESS-REPORT.md`, `history/root-legacy/PILOT-DEMO-RUNBOOK.md`, `history/root-legacy/DATA-SEED-RUNBOOK.md`, `history/root-legacy/RUNTIME-VERIFICATION-CHECKLIST.md`, `history/root-legacy/FINAL-RELEASE-MANIFEST.md`.
 
 ## 2026-09-15 — Seeded-network rehearsal hotfix
 The first real seeded Residential rehearsal exposed live contract/UX defects that source-only certification had not proven. Migration **114** now restores the missing `hs4_get_operations_snapshot()` and `route_network_mentions(...)` RPCs, fixes the invalid funds `a.type` reference, makes explicit **Open Voting** open immediately, and decouples Storage authorization from profile active-network drift while preserving network membership isolation.

@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-09-15T21:36:12.476Z",
+  "architecture": {
+    "kernelLoc": 1698,
+    "capabilityLoc": 1621,
+    "verticalLoc": 1250,
+    "sharedUiLoc": 850
+  },
+  "repository": {
+    "rootMarkdown": 34,
+    "npmScripts": 210,
+    "migrations": 119
+  },
+  "knowledge": {
+    "legacyRootCompatibility": 21,
+    "singleCopyNarratives": 8
+  },
+  "autonomy": {
+    "maturity": "L1",
+    "target": "L2"
+  }
+}

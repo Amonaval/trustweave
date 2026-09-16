@@ -1,0 +1,414 @@
+# Development Rules
+
+## Model and Effort Selection
+
+Use the highest-capability available reasoning mode appropriate to mission risk. Architecture, security, migrations, major UX and cross-cutting refactors require deliberate/high-effort reasoning; routine deterministic checks should be delegated to scripts rather than repeated model deliberation. Model choice is an execution concern, not a historical-document dependency.
+
+## Family UX Acceptance
+
+Usability and emotional quality are release criteria, not optional polish. For user-facing family work, validate the rendered desktop and mobile journeys with realistic data. Compilation alone is insufficient. Prefer plain family language, progressive disclosure, large tap targets, obvious primary actions, dignified warmth, accessible contrast and privacy explanations that non-technical relatives can understand.
+
+Every user-facing deliverable must state: the changed journey and screens; the
+newly possible user outcome; phone behaviour; translated behaviour; loading,
+empty, error and success states; accessibility/performance acceptance; privacy
+impact in plain language; and rendered evidence or an explicit unverified item.
+Do not mark a visual mission complete from compilation alone.
+
+## Family Visual System
+
+- Use the shared ivory/forest/gold design tokens; do not introduce isolated page themes.
+- Prefer people, photographs, relationships and memories over dashboards and statistics.
+- Keep layouts aligned, spacious and calm with one obvious primary action.
+- Design at 390px first, then tablet and desktop. No horizontal overflow.
+- Hindi/Marathi text expansion and Devanagari typography are acceptance cases.
+- Motion must be restrained, fast and safe for `prefers-reduced-motion`.
+
+## Family Excel Rule
+
+The official workbook and importer are one product journey. Use harmless human
+IDs such as P001, separate people from relationships, include instructions and
+a realistic example, preview before write, explain issues in family language and
+never silently invent an uncertain relationship. Do not expose UUIDs, raw SQL or
+database error text to the user.
+
+## Source of Truth
+
+1.  Latest user-provided source ZIP/repository is authoritative.
+2.  Actual code and migrations override planning documents.
+3.  `CURRENT-STATE.md` and current mission evidence summarize reality but do not override observed code/runtime.
+4.  Never trust a migration because an implementation note says it ran; inspect dependencies and schema.
+
+## Session Start
+
+1. Read `AI-START-HERE.md`.
+2. Resolve the active mission from `missions/registry.json`.
+3. Read `docs/product/PROJECT-VISION.md`, `docs/product/FOUNDER-COMPASS.md`, `ROADMAP.md` and `MISSION-STATUS.md` only as needed.
+4. Read relevant source/migrations and verify claims against code/runtime evidence.
+5. Continue the active mission unless higher-authority intent or an explicit gate changes priority.
+
+## Implementation
+
+-   Work mission-by-mission, end-to-end.
+-   Do not silently expand scope.
+-   Fix production/security/data-integrity blockers before feature
+    expansion.
+-   Preserve local/demo and Supabase modes unless intentionally retired.
+-   Every introduced feature must be mobile-usable.
+-   Prefer additive/backwards-compatible migrations.
+-   Never add speculative columns just to satisfy code.
+-   When a PostgreSQL function return signature changes, explicitly drop
+    the exact prior signature.
+-   Privacy is enforced by RLS/secure RPC/access boundary, not React
+    hiding.
+-   `SECURITY DEFINER` functions require safe `search_path` and explicit
+    authorization.
+-   Never expose service-role secrets to browser code.
+-   Validate ownership/visibility server-side; assume client IDs are
+    manipulable.
+-   Media visibility must be enforced at the access boundary.
+
+## Generic Platform Rule
+
+Classify new capabilities: - **CORE** --- domain-independent
+relationship capability. - **MODULE** --- vertical/domain semantics. -
+**CONFIG** --- labels/presentation/settings. - **PRODUCT** ---
+workflow/experience for a customer.
+
+Do not put domain semantics into CORE merely because labels can be
+renamed.
+
+## Quality Gate
+
+Before a mission is complete: - build/typecheck/lint/tests available in
+repo; - migration clean-chain/upgrade verification as applicable; -
+RLS/security cases for changed data; - local/demo regression if
+touched; - mobile usability; - documentation update; - explicit list of
+anything unverified.
+
+## Context/Token Discipline
+
+Prioritize implementation and verification over repeated long planning.
+Do not regenerate exhaustive audits unless architecture/security
+materially changes. Keep session-resume context in maintained Markdown
+files rather than conversational history.
+
+## Hard rule — no silent feature regression
+
+Every accepted release is cumulative unless a feature removal or replacement is explicitly approved.
+Before delivery, compare the candidate against the previous accepted release(s) and treat unexplained deletion of UI, routes, components, exports, types, repository functions, RPCs, migrations, workflows, navigation, or user journeys as a release blocker.
+
+Required release validation:
+1. Run a source-tree deletion/diff audit against the previous accepted baseline.
+2. Classify every deletion as intentional replacement, verified dead code, or regression.
+3. Restore all regressions before release.
+4. Run TypeScript/production build validation to catch missing exports and stale consumers.
+5. Validate all previously delivered feature journeys, not only the current mission.
+6. Never mark a release complete when a previous feature is merely hidden from navigation but still expected by the product baseline.
+
+## Hard rule — behaviour QA for user-facing journeys
+
+A user-facing mission is not complete because its component, RPC or source gate exists.
+For every onboarding/navigation/profile/import/share flow changed by a mission:
+
+1. Define the journey from a clean user state (anonymous, fresh signup, member, family owner/admin, returning user as applicable).
+2. Verify the user's next visible action after every successful write; never assume hidden session/auth context refreshed correctly.
+3. A successful primary write must not be presented as a failed journey because optional hydration, telemetry, analytics or secondary UI work failed afterward.
+4. Test both first use and return use (logout/login or reload) when persistence is part of the feature.
+5. Test the narrow mobile path for any flow intended for relatives.
+6. Record what was source-checked versus actually exercised against deployed Supabase/Vercel.
+7. Status remains **IMPLEMENTED / BEHAVIOUR VERIFY** until the critical journey passes in the real runtime.
+
+This rule is especially binding for Alpha onboarding: anonymous Playground, fresh creator, Excel/CSV creator, invited/code joiner and returning Owner.
+
+## Strategic outcome rule — 2026-08-23
+
+For major product work, classify the mission before implementation:
+
+- **S1:** reduces time-to-value or increases first-session emotional/product magic;
+- **S2:** increases return, contribution, sharing or organic family growth;
+- **S3:** increases trust, repeatability, defensibility, measurable business proof or willingness to pay.
+
+If a proposed item supports none of S1/S2/S3 and is not a release/security blocker, defer it.
+
+Each major mission must state both:
+1. the user behavior expected to change; and
+2. the metric/evidence that would prove the change occurred.
+
+Do not substitute source-complete status for behavioral evidence.
+
+## S1 first-session relationship rule — 2026-08-23
+
+For family-facing first-session work:
+- default to **You / My Family Line / human relationship words** before graph, generation or hierarchy terminology;
+- anonymous demo identity must be explicitly temporary, read-only and non-persistent;
+- every personal-family view must have an obvious reversible path to Full Family and back;
+- imported `parent`/`child` vocabulary must be normalized before rendering human labels;
+- members may report structure/profile corrections, but reporting must route through governed change requests rather than silently granting structure mutation;
+- a sample/download CTA is not implemented unless the referenced public artifact actually ships;
+- source gates remain regression checks only; S1 status cannot advance to complete without persona behaviour QA on deployed runtime and supported mobile widths.
+
+## S1 behaviour and demo-data rules — 2026-08-23
+
+- Security hardening must not be bypassed to fix UX. If a direct table grant was intentionally revoked, add/use a narrowly scoped RPC instead of reopening broad writes.
+- Family Owner/Admin checks must use family-scoped membership semantics; do not assume legacy/global `profiles.role` is sufficient.
+- Friendly/demo/import IDs must never reach UUID-only Supabase writes. Normalize/remap before persistence, including linked relationships/events/memories.
+- Playground data must be read-only and must never silently fetch/write the signed-in user's live active family merely because Supabase is configured.
+- Demo quality is measured by capability density and emotional/product coverage, not maximum member count.
+- A workbook feature is not complete if users must remember valid categorical vocabulary. Prefer spreadsheet dropdowns for relationship, gender, generation and living status.
+- Fresh family creation must always provide an obvious next smallest action: Add Myself, add close family, import, or defer safely.
+- S1 source gates are necessary but never sufficient for S1 completion; deployed persona behaviour remains binding.
+
+## S1 family escape-path rule
+Authentication and family membership must never trap a user inside one family. Sign out, family selection, create/join-another and safe recovery paths are baseline navigation and MUST NOT be hidden by Simple/Connected/Explorer experience settings. A sole Owner must not be allowed to orphan a populated family; use a non-destructive Family Lobby/switch path instead.
+
+## Playground rollout rule
+Playground feature visibility is controlled independently from real-family platform rollout. The Playground should demonstrate released product potential without forcing the same exposure onto Alpha families. Anonymous Playground remains read-only and must never persist demo IDs/data.
+
+## S1 modal + privacy-preview interaction rules (2026-08-23)
+
+- Ordinary modal popups must dismiss when the user activates the backdrop; interaction inside the modal must never trigger backdrop dismissal.
+- Blocking authentication/password-recovery surfaces are exempt when dismissing them would leave no meaningful usable state.
+- Never label a narrow privacy preview as a whole-app role simulation. UI labels must describe the actual scope.
+- Admin privacy-preview controls must reduce rendered information to the simulated audience even though the operator's real account has broader privileges.
+- User-verified visual fixes become part of the cumulative baseline and must not be silently reverted by later missions.
+
+## S2 living-loop rules — added 2026-08-23
+
+- Retention features must stay family-contextual and calm; do not introduce infinite-feed mechanics.
+- Family Pulse is capped at 1–3 prioritized items per visit.
+- Engagement telemetry must be tenant-scoped, privacy-minimal and aggregate-oriented for admins.
+- Demo/Playground interaction may simulate writes locally but must never persist into a real family.
+- S2 completion requires pilot behavior evidence; source gates can only mark implementation, never retention success.
+
+## Cross-family/community data rule
+Community membership never grants direct access to another family's tables. Cross-family discovery must use explicit opt-in snapshots/RPCs. Sensitive categories (especially marriage) require person-level consent. Do not infer family relationship from surname, caste/community, city or similarity. Community publishing must always identify its scope (chapter/city/umbrella) and offer a recovery/unpublish path.
+
+## Cross-family trust / introduction rules
+- Cross-family connection edges must be explicit and accepted by both families before they can power paths.
+- Family trust-edge creation/revocation is Family Owner/admin governed; normal members cannot alter family-level trust.
+- Same surname, community, geography or inferred similarity must never create a connection path.
+- Person-level connector wording requires explicit opt-in from the named bridge person; until then show family-level paths only.
+- Introduction requests may reference only opt-in community profile cards and must not reveal private phone/email/tree data.
+- Preserve a path snapshot for explainability/audit, but do not treat old snapshots as proof that a currently revoked path still exists.
+
+## Quiet return-loop rule (S2-D)
+- Do not create high-frequency notification pressure merely to increase sessions.
+- Digest generation must stay active-family scoped and preference-aware.
+- Shared digest content must be an explicit safe summary; never serialize private profile/contact/tree data into share text.
+- Playground/demos must never write digest engagement into a signed-in user's real family.
+- External email/push providers are replaceable delivery infrastructure, not product architecture; preserve one canonical digest/preference model.
+
+## Living help / documentation rule (S2-E)
+
+- A user-facing feature is not fully discoverable until its purpose, basic use, permissions/privacy and recovery path can be understood inside the product.
+- Use a central structured guide registry; do not copy/paste long help prose independently across components.
+- Contextual guides must be collapsible, mobile-first and non-blocking.
+- Guide content must respect actual feature visibility and role permissions.
+- Privacy statements must reflect implemented runtime/RLS behavior, never aspirations.
+- Future features in the user guide must be explicitly labeled as planned/explored and must not expose confidential technical/founder roadmap detail.
+- Search should be deterministic before adding an LLM; a future AI guide must answer from the curated guide corpus.
+- Product feedback must use governed persistence and safe contextual metadata; never auto-capture private family stories/profile data.
+- Guide completeness is behavior-tested with novice/older users and 360/390/430 mobile, not source-checked only.
+
+## S2-E implementation rule — guide truth must stay coupled to product truth
+
+- New meaningful user-facing modules must add/update one central guide-registry entry rather than copying long help prose into the component.
+- A module may be labelled `live` only when its guide claim is safe for the currently certified runtime; use `live_verify`/`partial` for uncertain deployment behavior.
+- Contextual help, Guide Portal, search, related navigation, Playground examples and future AI-help layers should reuse the same registry.
+- Feedback metadata must remain minimal and must never silently attach private memories, profile prose, contact data or family-sensitive payloads.
+- Platform feedback triage is evidence; changing triage status must never directly edit roadmap/mission files.
+
+## Pilot freeze / feedback-first rule
+- S3-A is the only active product mission until explicitly changed.
+- Do not start S3-B/C/D/E or a new broad feature bundle during the pilot by default.
+- Triage real-user work in this order: blocker; privacy/security/correctness; repeated friction; repeated need; activation improvement; optional idea.
+- Preserve deferred ideas and mission history. Archive obsolete planning files; never delete historical reasoning solely to keep the root clean.
+- Launch visibility is configuration, not code ownership: hide/test/pilot early features rather than ripping them out.
+- Playground visibility is independent from real-family rollout and must remain no-save.
+
+
+## Mission closure lifecycle — permanent delivery rule
+
+For every **major user-facing mission**, and after every coherent batch of **2–3 smaller user-facing missions**, use this closure sequence:
+
+**IMPLEMENT → VALIDATE → GUIDE → PLAYGROUND → LAUNCH CONTROL → WHAT'S NEW → ROADMAP/STATUS → CLOSE**
+
+A mission can be technically implemented before every closure layer is complete, but it must not be labelled **UX COMPLETE / CLOSED** until every applicable layer below is finished.
+
+### 1. IMPLEMENT
+- Evolve the current architecture; do not silently remove existing capabilities.
+- Preserve tenant boundaries, privacy, provenance and existing contracts.
+- Prefer additive integration over rewrites.
+
+### 2. VALIDATE
+- Run mission-specific source/build/regression checks.
+- Record what is source-verified versus what still requires deployed Supabase/RLS/browser/mobile verification.
+- Never use source checks as a substitute for LIVE VERIFY.
+
+### 3. GUIDE
+- Add/update the feature in the central guide registry / Doc Portal.
+- Add contextual, collapsible guidance on each meaningful new interface.
+- Explain: **what this is → who should use it → where to find it → how to use it → what happens next → permissions/privacy → recovery/help**.
+- User/Admin Guide documentation must remain consistent with actual Launch Control and runtime behavior.
+
+### 4. PLAYGROUND
+- Demonstrate every meaningful safe user-facing capability in Playground.
+- Playground demonstrations must be no-save and must never mutate a real family.
+- If the real feature requires authentication, private data, external recipients or privileged actions, simulate the journey with safe sample data rather than bypassing those protections.
+- Backend-only/security/internal work does not require an artificial Playground screen.
+
+### 5. LAUNCH CONTROL
+- Every meaningful user-facing feature must have an explicit rollout decision: **Hidden / Test / Pilot / Released** (and Playground visibility where applicable).
+- Real-family visibility and Playground visibility are independent.
+- New privacy-sensitive/distribution/community capabilities should not silently become Released.
+- Mission closure documentation must state the default rollout and intended audience.
+
+### 6. WHAT'S NEW
+- Add a short human-readable release/change entry for meaningful user-facing missions.
+- Explain the user benefit and **where to find it**, not implementation internals.
+- Respect role and Launch Control visibility; do not advertise inaccessible Pilot/Test features to ordinary users.
+- Batch small changes into one understandable update rather than producing noisy release notes.
+
+### 7. ROADMAP / STATUS
+- Update ROADMAP, MISSION-STATUS, CODEBASE and VALIDATION where applicable.
+- Preserve prior mission history and deferred ideas.
+- Every major mission must include **Where to see this in the product** traceability covering relevant Owner, Member/Contributor, Playground, Guide and Launch Control locations.
+- Preserve status truth: **PLANNED / IMPLEMENTED / PARTIAL / VERIFIED / LIVE VERIFY / DEFERRED**.
+
+### 8. CLOSE
+A user-facing mission may be marked **CLOSED / UX COMPLETE** only when:
+- implementation is present;
+- applicable validation is recorded;
+- contextual + central guidance is present;
+- safe Playground coverage exists where meaningful;
+- Launch Control is explicit;
+- What's New is updated;
+- roadmap/status/codebase truth is updated;
+- product locations are traceable.
+
+If deployed verification is still outstanding, use a truthful state such as **IMPLEMENTED / UX CLOSURE COMPLETE / LIVE VERIFY REQUIRED** rather than VERIFIED.
+
+### Small/internal mission exception
+For backend-only, migration-only, security-only, refactor or invisible reliability work, update only the applicable closure layers. Do not create fake user guides, Playground demos or What's New entries for changes users cannot meaningfully see. Such work must still update validation/status/security documentation when relevant.
+
+### Mission closure checklist
+Use this checklist in the mission document:
+
+- [ ] IMPLEMENT
+- [ ] VALIDATE
+- [ ] GUIDE
+- [ ] PLAYGROUND (or N/A with reason)
+- [ ] LAUNCH CONTROL (or N/A with reason)
+- [ ] WHAT'S NEW (or N/A with reason)
+- [ ] ROADMAP / STATUS
+- [ ] WHERE TO SEE THIS IN THE PRODUCT
+- [ ] CLOSE
+
+
+## Architecture classification gate — permanent rule
+
+Before IMPLEMENT for any meaningful feature, run **CLASSIFY**.
+
+**CLASSIFY → IMPLEMENT → VALIDATE → GUIDE → PLAYGROUND → LAUNCH CONTROL → WHAT'S NEW → ROADMAP/STATUS → CLOSE**
+
+CLASSIFY must determine:
+1. Core Network Foundation?
+2. Shared Capability?
+3. Intermediate reusable Domain Layer?
+4. Vertical-specific?
+
+Rules:
+- prefer the lowest genuinely reusable layer;
+- apply the Second-Consumer Rule;
+- preserve existing Family behavior behind stable contracts;
+- Core/shared layers must not import vertical modules;
+- one vertical must not directly depend on another vertical's implementation;
+- keep strong generic primitives and explicit vertical semantics;
+- avoid giant metadata/configuration abstractions when explicit code is safer.
+
+## G-architecture batching rule — 2026-08-25
+
+From G2 onward, architecture work should be delivered as **coherent High-effort batches**, not fragmented into minor Gx.y missions merely because individual files can be extracted separately.
+
+- Absorb closely related identity/claiming/invitation/participation seams into one batch when they share the same architectural proof.
+- Prefer G2, G3, G4... over G2.1/G2.2/G2.3 unless a security, migration or release-risk boundary genuinely requires isolation.
+- Every G batch must preserve Family behavior, keep compatibility facades where needed, run all historical regression gates, update architecture/status/handoff docs, produce an affected-files artifact, and include only a short high-level runtime smoke checklist for invisible architecture changes.
+- Do not use batching as permission for a big-bang rewrite. A batch is coherent by capability boundary, not by file count.
+
+
+## Network construction extraction rule — G3+
+
+- Shared construction may own source/session/access/staging/match-decision/conflict/provenance/validation/commit **mechanics**.
+- Vertical/domain adapters own relationship meaning, scoring/context policy and canonical graph integrity rules until a second real implementation proves a lower common layer.
+- Never move parent/child/spouse, generation/lineage or `family_members` persistence into Core merely to make an importer look generic.
+- Existing production construction RPCs may remain vertical-named behind adapters; compatibility is more important than cosmetic database renaming.
+- A skeleton vertical must fail closed before persistence exists.
+
+## Vertical app composition rule — G4+
+
+- Vertical app surfaces must be registered in the vertical runtime composition, not added as new Family-specific lookup tables inside shared/app-shell code.
+- Core app-composition contracts contain only neutral metadata shapes and never import vertical implementations.
+- App-shell is the composition root and may import explicit vertical implementations.
+- A skeleton vertical must fail closed; it must never inherit Family navigation, Guide, Playground, Launch Control or What's New surfaces by default.
+- Keep renderers concrete until a second real vertical proves a component is genuinely reusable. Do not create generic React renderers only to reduce folder names.
+- When moving an existing registry into vertical composition, preserve labels/order/feature keys/experience gating exactly and update historical source gates to follow the new canonical source rather than weakening the check.
+
+
+## G6 two-vertical rules
+
+1. Shared app-shell/UI code must use neutral network contracts (`fetchMyNetworkMemberships`) and may not depend on Family profile links.
+2. Never evaluate a feature key through another vertical's catalog/runtime. Keep unknown-key failures strict.
+3. Bundle names such as `core` or `admin` are vertical-local; any platform bundle operation must include `vertical_kind`.
+4. Cross-profile Alumni references must be tenant-safe at the database level, not only checked in React/RPC code.
+5. A shared UI primitive is allowed only when Family and Alumni genuinely share the interaction pattern; domain meaning/copy stays vertical-owned.
+6. G6 protects critical Family domain foundations by hash. Later platform productization must explicitly justify any change to those files.
+
+## G7 Generic Network OS rules — permanent
+
+1. **Reuse has no quota.** Share the lowest correct layer; never target a numeric reuse percentage.
+2. **Affiliations are not kinship.** Generic dimensions/projections may represent belonging. Parent/child/spouse/ancestry remain Family semantics.
+3. **One dataset, many projections.** A new hierarchy order must not require duplicated entities.
+4. **Templates compose; they do not execute arbitrary logic.** SQL and domain algorithms stay in capabilities/adapters.
+5. **Future templates are fail-closed.** A proof/future template does not become a visible product without an explicit active vertical runtime.
+6. **Generic persistence is additive.** Do not big-bang migrate deployed vertical tables merely for purity.
+7. **Generic SECURITY DEFINER helpers are internal.** Revoke PUBLIC execution unless a function is an intentional application RPC.
+8. **Tenant integrity is database-level.** Cross-network entity/value/activity references require composite network-aware constraints where applicable.
+9. **Shared UX does not mean identical UX.** Reuse shells/engines while vertical terminology and workflows remain domain-appropriate.
+10. **Unknown future use cases remain possible.** Custom Network must remain representable through entities + dimensions + relationships + capability composition without importing Family/Alumni code.
+
+## G8 productized vertical release rules — permanent
+
+1. Organization, Business Trust and Franchise are now released verticals, not fail-closed template proofs.
+2. The shared `TemplateNetworkApp` may contain only proven common product interaction mechanics; domain labels, dimensions, projections and relationship meaning remain vertical/template-owned.
+3. Productized network creation/join/claim/admin RPCs must explicitly reject Family and Alumni networks.
+4. A normal member may modify only their claimed generic entity; network-wide entity writes remain admin-only.
+5. One account may not claim multiple generic entities in the same network.
+6. Removing a member must not leave stale active-network or claimed-owner state.
+7. Multi-value affiliations must remain lossless through UI, import and persistence.
+8. Every new released vertical requires feature catalog + composition + backend feature registry + Playground + Guide + Launch Control classification.
+9. G8 protects critical Family + Alumni foundations by hash. Any later modification requires an explicit compatibility justification and corresponding gate update.
+
+## Product experience closure rule (G8 R4+)
+
+A new released vertical is not UX-complete merely because the domain workflow works. Before release, verify:
+- shared navigation classes are actually applied (no browser-default controls);
+- responsive behavior is based on available container space where components can live inside split/narrow panes;
+- Playground is discoverable and read-only;
+- shared appearance themes do not make cards/forms/nav unreadable;
+- at least one living-network summary links structure to activity/community;
+- Family/Alumni protected foundations remain unchanged unless an explicit backward-compatible mission requires otherwise.
+
+
+## Permanent mission DOCX rule
+A material mission must leave a durable human-readable mission record before closure. The canonical technical source is the mission contract/evidence under `missions/`; optional DOCX/PDF presentation artifacts may be generated when they add human value, but are not required merely to duplicate machine-readable truth.
+
+## Permanent UI density rule
+
+1. Do not implement product breadth by continuously appending large sibling blocks down one page.
+2. When a route contains more than three substantial peer work areas, introduce progressive disclosure before adding another: **tabs / mobile selector**, a focused submenu/workspace, accordions for optional detail, or a card-grid entry layer.
+3. Admin/Manage surfaces must be task-oriented workspaces. Only the active work area should render when inactive areas contain forms, tables or complex controls.
+4. Desktop tabs must wrap or remain contained; never require a horizontal scrollbar for core navigation. On narrow/mobile layouts, use a selector, sheet or equivalent compact control.
+5. Card grids are for summaries and entry points. Do not make each card expand into another uncontrolled vertical stack on the same page.
+6. Long data collections should use filtering, caps/pagination or contained table/list regions. Do not confuse data scrolling with feature navigation.
+7. This rule is cross-vertical: Family, Family Community / Association, Housing Society, Alumni and every current/future productized vertical must follow it.
+8. `npm run validate:ux-progressive` is a release source gate. New shared or vertical UX work must preserve it.

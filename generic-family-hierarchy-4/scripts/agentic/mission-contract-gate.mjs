@@ -1,5 +1,5 @@
-import {parseArgs,readJson,exists,printChecks} from './lib.mjs';
-const args=parseArgs();const missionPath=args.mission||'missions/mission-003/mission.json';const q=readJson('governance/quality-policy.json');const checks=[];const ok=(n,v,d='')=>checks.push([n,!!v,d]);
+import {parseArgs,readJson,exists,printChecks,resolveMissionPath} from './lib.mjs';
+const args=parseArgs();const missionPath=resolveMissionPath(args.mission);const q=readJson('governance/quality-policy.json');const checks=[];const ok=(n,v,d='')=>checks.push([n,!!v,d]);
 if(!exists(missionPath)){ok('mission exists',false,missionPath);printChecks('Mission contract gate',checks);process.exit(1)}
 const m=readJson(missionPath);const states=['INTAKE','DISCOVERY','ARCHITECTURE','PLAN','IMPLEMENT','VERIFY','REVIEW','HARDEN','DOCUMENT','RELEASE','OBSERVE','CLOSE'];
 ok('mission id',typeof m.id==='string'&&m.id.length>2,m.id);

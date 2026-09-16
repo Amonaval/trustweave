@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
-import {readJson,walk,printChecks} from './lib.mjs';
+import {readJson,walk,printChecks,resolveMissionPath} from './lib.mjs';
 
 const checks=[];const ok=(name,pass,detail='')=>checks.push([name,Boolean(pass),detail]);
 const policies=[
@@ -28,10 +28,10 @@ ok('bounded repair policy remains enforced',company.repairPolicy?.defaultMaxAtte
 const execution=readJson('governance/execution-policy.json');
 ok('control plane remains Git/worktree/PR/CI/evidence',execution.controlPlane==='git-worktree-pr-ci-evidence',execution.controlPlane||'');
 ok('protected production actions require approval',JSON.stringify(execution).includes('production'));
-const mission=readJson('missions/mission-003/m3-b6-e1/mission.json');
-ok('active proving mission has explicit risk',/^R[0-3]$/.test(mission.risk||''),mission.risk||'');
-ok('active proving mission has rollback',Boolean(mission.rollback));
-ok('active proving mission has human intervention budget',Number.isInteger(mission.humanInterventionBudget));
+const activeMissionPath=resolveMissionPath();const mission=readJson(activeMissionPath);
+ok('active mission has explicit risk',/^R[0-3]$/.test(mission.risk||''),mission.risk||'');
+ok('active mission has rollback',Boolean(mission.rollback));
+ok('active mission has human intervention budget',Number.isInteger(mission.humanInterventionBudget));
 
 const scripts=walk('scripts/agentic',{extensions:['.mjs']});
 for(const file of scripts){

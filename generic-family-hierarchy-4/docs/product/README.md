@@ -11,4 +11,4 @@ This directory owns the canonical product narrative. Do not maintain manual root
 - `FOUNDER-COMPASS.md` — founder/product principles and constraints.
 - `USER-GUIDE.md` — user-facing guide.
 
-Normative governance lives at repository root (`PRODUCT-CONSTITUTION.md`, `ARCHITECTURE-CONSTITUTION.md`, `DOCUMENTATION-GOVERNANCE.md`). Engineering history belongs in `archive/`; active mission evidence belongs in `missions/` and `release-evidence/`.
+Normative governance lives at repository root (`PRODUCT-CONSTITUTION.md`, `ARCHITECTURE-CONSTITUTION.md`, `governance/DOCUMENTATION-GOVERNANCE.md`). Engineering history belongs in `archive/`; active mission evidence belongs in `missions/` and `release-evidence/`.

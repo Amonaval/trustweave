@@ -187,7 +187,7 @@ Eliminate canonical ambiguity:
 - one authoritative copy per living document;
 - archive stale handoffs/apply notes;
 - compact `AI-START-HERE`;
-- make `CODEBASE.md` an index/current map rather than a historical diary;
+- make `history/root-legacy/CODEBASE.md` an index/current map rather than a historical diary;
 - add document-drift checks.
 
 ### M3-B4 — Evaluation / Quality OS

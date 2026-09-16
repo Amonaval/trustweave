@@ -11,7 +11,7 @@ const route=read('app/api/v1/networks/[networkId]/purge/route.ts');
 const m090=read('supabase/migrations/090_xp0_network_lifecycle_safety.sql');
 const m091=read('supabase/migrations/091_xp01_runtime_closure.sql');
 const env=read('.env.example');
-const deploy=read('DEPLOY.md');
+const deploy=read('history/root-legacy/DEPLOY.md');
 const checks=[];const ok=(name,cond)=>checks.push([name,!!cond]);
 const kinds=['housing-society','family-association','association','organization','business-trust','franchise','professional'];
 for(const kind of kinds){

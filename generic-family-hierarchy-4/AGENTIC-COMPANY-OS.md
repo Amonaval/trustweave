@@ -266,3 +266,12 @@ Mission 3 designs this policy but does not implement broad in-product agents.
 ## 11. Machine operating contract
 
 `governance/company-os.json` is the executable projection for role separation, specialist activation, repair budgets and approval triggers. Mission manifests may narrow authority further but may not expand it beyond this contract.
+
+
+## 12. Founder Spectator Mode
+
+M3-C expands the engineering OS into an autonomous-company operating model. The six engineering accountabilities remain valid, but company-level decisions are evaluated through an **executive council of lenses**: CEO, Chief of Staff, CTO/Architect, CPO/User Advocate, Critic/Red Team, COO/Release and Knowledge Officer. These are activated to create real separation of concerns and dissent, not persona theater.
+
+The founder remains the owner of vision, values, product identity and D3 irreversible decisions. The default objective is that routine work produces **zero founder interventions and zero manual error relay**. The AI system should discover, debate, decide, execute, verify, criticize, repair, release, observe and learn; the founder sees the rationale/evidence through a spectator surface and can intervene at any time.
+
+`governance/autonomy-policy.json` is the executable projection of this north star. `missions/mission-003/m3-c/mission-set.json` is the staged path from the current L1/L2 boundary toward governed continuous autonomy.

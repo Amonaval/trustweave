@@ -1,0 +1,59 @@
+{
+  "version": "2026-09-16.m3-c0",
+  "status": "BINDING",
+  "northStar": "Founder Spectator Mode",
+  "objective": "AI continuously operates TrustWeave from opportunity discovery through planning, implementation, verification, review, release, observation and learning while the founder remains the owner of vision, values and irreversible decisions.",
+  "founderDefaultRole": [
+    "set vision and values",
+    "define irreversible boundaries",
+    "approve high-risk/destructive/financial/privacy decisions",
+    "observe company decisions and outcomes",
+    "intervene by choice rather than operational necessity"
+  ],
+  "executiveCouncil": {
+    "ceo": "portfolio outcomes, strategic coherence, prioritization and company-level tradeoffs",
+    "chiefOfStaff": "mission orchestration, sequencing, dependency management, state and escalation",
+    "ctoArchitect": "technical strategy, architecture, platform leverage, reliability and engineering economics",
+    "cpoUserAdvocate": "user value, journey quality, adoption, pilot evidence and product simplicity",
+    "criticRedTeam": "challenge assumptions, find failure modes, prevent local optimization and premature closure",
+    "cooRelease": "operational readiness, environments, release, rollback, incidents and continuity",
+    "knowledgeOfficer": "durable memory, evidence, decisions, documentation authority and learning loops"
+  },
+  "decisionClasses": {
+    "D0": "fully autonomous reversible operational choice",
+    "D1": "autonomous material choice with recorded rationale and rollback",
+    "D2": "autonomous execution with founder notification before external/production effect",
+    "D3": "founder approval required before irreversible, destructive, privacy/security-risk acceptance, legal/financial commitment, constitution change or new strategic scope"
+  },
+  "autonomySLO": {
+    "routineFounderInterventionsPerMission": 0,
+    "standardMissionInterventionBudget": 1,
+    "manualErrorRelayTarget": 0,
+    "missionStateMustBeDurable": true,
+    "independentReviewRequired": true,
+    "evidenceBoundToCandidate": true,
+    "sourceAndRuntimeProofSeparated": true
+  },
+  "continuousLoop": [
+    "observe",
+    "discover",
+    "debate",
+    "decide",
+    "plan",
+    "build",
+    "verify",
+    "criticize",
+    "repair",
+    "release",
+    "measure",
+    "learn",
+    "select-next-mission"
+  ],
+  "nonGoals": [
+    "unbounded self-modification",
+    "silent weakening of safety or quality gates",
+    "autonomous irreversible production actions without delegated authority",
+    "persona theater without measurable separation of duties",
+    "documentation growth without operational value"
+  ]
+}

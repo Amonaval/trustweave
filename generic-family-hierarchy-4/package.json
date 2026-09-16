@@ -205,14 +205,17 @@
     "qa:mission2:resume:2v:headed": "node qa/run-mission2-resume-2v.mjs --headed",
     "agentic:architecture": "node scripts/agentic/architecture-gate.mjs",
     "agentic:docs": "node scripts/agentic/documentation-gate.mjs",
-    "agentic:mission": "node scripts/agentic/mission-contract-gate.mjs --mission missions/mission-003/m3-b6-e1/mission.json",
+    "agentic:mission": "node scripts/agentic/mission-cli.mjs check",
     "agentic:scorecard": "node scripts/agentic/scorecard.mjs",
-    "agentic:run:source": "node scripts/agentic/run-mission.mjs --mission missions/mission-003/m3-b6-e1/mission.json --profile source",
-    "agentic:run:static": "node scripts/agentic/run-mission.mjs --mission missions/mission-003/m3-b6-e1/mission.json --profile static",
-    "agentic:run:runtime": "node scripts/agentic/run-mission.mjs --mission missions/mission-003/m3-b6-e1/mission.json --profile runtime",
+    "agentic:run:source": "node scripts/agentic/mission-cli.mjs run --profile source",
+    "agentic:run:static": "node scripts/agentic/mission-cli.mjs run --profile static",
+    "agentic:run:runtime": "node scripts/agentic/mission-cli.mjs run --profile runtime",
     "validate:m3b6": "node scripts/m3b6-progressive-selector-gate.mjs",
-    "agentic:scope": "node scripts/agentic/scope-gate.mjs --mission missions/mission-003/m3-b6-e1/mission.json",
-    "agentic:runtime-preflight": "node scripts/agentic/runtime-preflight.mjs --mission missions/mission-003/m3-b6-e1/mission.json"
+    "agentic:scope": "node scripts/agentic/mission-cli.mjs scope",
+    "agentic:runtime-preflight": "node scripts/agentic/mission-cli.mjs preflight",
+    "agentic": "node scripts/agentic/mission-cli.mjs",
+    "agentic:list": "node scripts/agentic/mission-cli.mjs list",
+    "agentic:status": "node scripts/agentic/mission-cli.mjs status"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.54.0",

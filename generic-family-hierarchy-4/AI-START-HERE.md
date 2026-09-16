@@ -1,7 +1,7 @@
 # TrustWeave — AI Start Here
 
-**Current mission:** Mission 003 — Agentic Company & Engineering OS  
-**Active execution record:** `missions/mission-003/mission.json`
+**Current mission:** M3-C — Autonomous Company Runtime / Founder Spectator Mode  
+**Active execution record:** `missions/mission-003/m3-c/mission.json`
 
 ## Read order
 
@@ -9,10 +9,11 @@
 2. `ARCHITECTURE-CONSTITUTION.md` — architecture vocabulary, boundaries and ADR triggers.
 3. `AGENTIC-COMPANY-OS.md` — agent roles, authority, repair loop and human gates.
 4. `MISSION-LIFECYCLE.md` — state machine, risk classes and evidence contract.
-5. `DOCUMENTATION-GOVERNANCE.md` — authority and source-of-truth rules.
-6. `CURRENT-STATE.md` + `MISSION-STATUS.md` + `ROADMAP.md` — current descriptive truth and sequencing.
-7. Active mission folder under `missions/`.
-8. Only then inspect source, tests, migrations and historical evidence needed for the task.
+5. `governance/autonomy-policy.json` — Founder Spectator Mode, executive council, decision classes and autonomy SLO.
+6. `governance/DOCUMENTATION-GOVERNANCE.md` — authority and source-of-truth rules.
+7. `CURRENT-STATE.md` + `MISSION-STATUS.md` + `ROADMAP.md` — current descriptive truth and sequencing.
+8. Active mission contract from `missions/registry.json`.
+9. Only then inspect source, tests, migrations and historical evidence needed for the task.
 
 ## Machine-operable governance
 
@@ -20,6 +21,7 @@
 - `governance/company-os.json`
 - `governance/documentation-policy.json`
 - `governance/quality-policy.json`
+- `governance/autonomy-policy.json`
 - `governance/schemas/`
 
 These JSON files are executable projections. They never override the constitutions that authorize them.
@@ -39,4 +41,4 @@ These JSON files are executable projections. They never override the constitutio
 
 ## Historical context
 
-Closed mission notes, old handoffs, apply notes and session-era bootstrap diaries are evidence, not current authority. Use `ARCHIVE-INDEX.md`, `archive/`, and `missions/mission-003/evidence/` only when current work requires their history.
+Closed mission notes, old handoffs, apply notes and session-era bootstrap diaries are evidence, not current authority. Use `history/root-legacy/`, `archive/`, and mission evidence only when current work requires history. Root Markdown is capped at ten files by the documentation gate.

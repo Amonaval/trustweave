@@ -1,0 +1,75 @@
+{
+  "id": "M3-C0",
+  "title": "Control Surface Reset + Autonomous Company Runtime Bootstrap",
+  "risk": "R1",
+  "state": "VERIFY",
+  "scope": {
+    "include": [
+      "reduce repository root Markdown to a minimal AI control surface",
+      "preserve removed root Markdown under one obvious history folder",
+      "move active documentation/development governance out of root",
+      "remove B6-specific defaults from the agentic mission runtime",
+      "add registry-driven mission selection and generic mission source validation",
+      "define Founder Spectator Mode and the M3-C autonomous-company mission set"
+    ],
+    "exclude": [
+      "product feature changes",
+      "application component changes",
+      "Supabase schema or migration changes",
+      "production deployment",
+      "external LLM/provider integration"
+    ],
+    "allowedWrites": [
+      "*.md",
+      "history/root-legacy/**",
+      "governance/**",
+      "scripts/agentic/**",
+      "missions/**",
+      "package.json",
+      ".github/workflows/agentic-mission.yml",
+      "release-evidence/M3-C0/**"
+    ],
+    "forbiddenWrites": [
+      "app/**",
+      "components/**",
+      "core/**",
+      "capabilities/**",
+      "verticals/**",
+      "supabase/migrations/**"
+    ]
+  },
+  "acceptance": [
+    "root contains no more than ten Markdown control-surface files",
+    "legacy root Markdown is preserved under history/root-legacy",
+    "agentic runtime resolves active missions through missions/registry.json rather than B6 hardcoding",
+    "mission-source validation is mission-contract-driven",
+    "Founder Spectator Mode and M3-C0 through M3-C11 are explicit",
+    "Supabase migration tree is byte-identical to M3-B6 baseline"
+  ],
+  "gates": [
+    "mission-contract",
+    "control-plane",
+    "scope",
+    "architecture",
+    "documentation",
+    "mission-source",
+    "autonomy-runtime",
+    "static-syntax",
+    "independent-review",
+    "evidence"
+  ],
+  "sourceValidation": {
+    "commands": [
+      {"name":"Autonomous company runtime contract","command":"node scripts/agentic/autonomy-runtime-gate.mjs"},
+      {"name":"Documentation control surface","command":"node scripts/agentic/documentation-gate.mjs"}
+    ]
+  },
+  "runtimeEvidenceRequired": false,
+  "rollback": "Restore M3-B1-B6 repository layout and agentic defaults; no product/data rollback is required.",
+  "humanInterventionBudget": 0,
+  "repair": {"maxAttempts": 3, "sameFailureMaxRepeats": 2},
+  "execution": {"baseRef":"main","branch":"agent/m3-c0-autonomous-company-bootstrap","worktree":".agent-worktrees/m3-c0"},
+  "baseline": {"protectedTreeHashes":{"supabase/migrations":"33bfccd6bab49bc4b7ac031823e9e3a7d5838549700bbc604798cb8ad74d8b46"}},
+  "reviewArtifact": "missions/mission-003/m3-c/review.json",
+  "candidateSha": null
+}

@@ -19,7 +19,7 @@ const finance=read('components/HousingSocietyFinancePanel.tsx');
 const governance=read('components/HousingSocietyGovernancePanel.tsx');
 const security=read('components/HousingSocietySecurityPanel.tsx');
 const handbook=read('docs/product/USER-EXPERIENCE-HANDBOOK.md');
-const rules=read('DEVELOPMENT-RULES.md');
+const rules=read('governance/DEVELOPMENT-RULES.md');
 const checks=[
  ['shared responsive section primitive exists',responsive.includes('data-ui-progressive="tabs"')&&responsive.includes('responsive-section-tab-select')],
  ['mobile section navigation uses select instead of horizontal tab scrolling',css.includes('@media(max-width:760px)')&&css.includes('.responsive-section-tab-buttons{display:none}')&&css.includes('.responsive-section-tab-select{display:grid')],

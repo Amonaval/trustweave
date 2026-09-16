@@ -1,0 +1,8 @@
+{
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "builder": "GPT-5.6 Sol / current implementation session",
+  "reviewer": null,
+  "candidateSha": "snapshot-3859c972a801d4a66914a907",
+  "blockingFindings": null,
+  "note": "Deliberately not self-approved. C0 remains VERIFY until an operationally independent reviewer approves this exact candidate."
+}

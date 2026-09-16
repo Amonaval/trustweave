@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'governance/**'
+      - 'history/root-legacy/**'
       - 'missions/**'
       - 'scripts/agentic/**'
       - 'components/**'
@@ -30,5 +31,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: agentic-mission-evidence
-          path: release-evidence/M3-B6-E1/
+          path: release-evidence/**/
           if-no-files-found: warn

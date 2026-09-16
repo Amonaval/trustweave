@@ -1,5 +1,5 @@
-import fs from 'node:fs';import path from 'node:path';import {execFileSync} from 'node:child_process';import {parseArgs,readJson,treeHash,ROOT,printChecks} from './lib.mjs';
-const a=parseArgs();const missionPath=a.mission||'missions/mission-003/m3-b6-e1/mission.json';const m=readJson(missionPath);const checks=[];const ok=(n,v,d='')=>checks.push([n,!!v,d]);
+import fs from 'node:fs';import path from 'node:path';import {execFileSync} from 'node:child_process';import {parseArgs,readJson,treeHash,ROOT,printChecks,resolveMissionPath} from './lib.mjs';
+const a=parseArgs();const missionPath=resolveMissionPath(a.mission);const m=readJson(missionPath);const checks=[];const ok=(n,v,d='')=>checks.push([n,!!v,d]);
 function globRx(glob){let s=glob.replace(/[.+^${}()|[\]\\]/g,'\\$&');s=s.replaceAll('**','@@ALL@@').replaceAll('*','[^/]*').replaceAll('@@ALL@@','.*');return new RegExp(`^${s}$`)}
 const allowed=(m.scope.allowedWrites||[]).map(globRx),forbidden=(m.scope.forbiddenWrites||[]).map(globRx);let changed=[];let mode='protected-hash';
 try{const base=m.execution?.baseRef||'main';const committed=execFileSync('git',['diff','--name-only',`${base}...HEAD`],{cwd:ROOT,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim().split(/\r?\n/).filter(Boolean);const working=execFileSync('git',['status','--porcelain'],{cwd:ROOT,encoding:'utf8',stdio:['ignore','pipe','ignore']}).split(/\r?\n/).filter(Boolean).map(x=>x.slice(3).trim()).filter(Boolean);changed=[...new Set([...committed,...working])];mode='git';}catch{

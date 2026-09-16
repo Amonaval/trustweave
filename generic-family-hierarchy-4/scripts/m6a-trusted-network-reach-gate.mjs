@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 const read=p=>fs.readFileSync(p,'utf8');const checks=[];const ok=(n,v)=>checks.push([n,!!v]);
-const identity=read('core/identity/trusted-person.ts'),runtime=read('capabilities/trusted-identity/runtime.ts'),ui=read('components/MyNetworksHome.tsx'),migration=read('supabase/migrations/057_m6a_trusted_identity_reach.sql'),css=read('app/globals.css'),rules=read('MISSION-DOCUMENTATION-RULE.md'),ci=read('.github/workflows/ci.yml');
+const identity=read('core/identity/trusted-person.ts'),runtime=read('capabilities/trusted-identity/runtime.ts'),ui=read('components/MyNetworksHome.tsx'),migration=read('supabase/migrations/057_m6a_trusted_identity_reach.sql'),css=read('app/globals.css'),rules=read('history/root-legacy/MISSION-DOCUMENTATION-RULE.md'),ci=read('.github/workflows/ci.yml');
 ok('trusted identity aggregate now carries derived reach',identity.includes('TrustedNetworkReach')&&identity.includes('reach: TrustedNetworkReach'));
 ok('reach runtime reuses NX-1 identity and neutral memberships',runtime.includes('fetchMyNetworkMemberships')&&runtime.includes('get_my_trusted_network_reach'));
 ok('reach RPC aggregates only networks the actor belongs to',migration.includes("nm.user_id=auth.uid()")&&migration.includes("nm.status='active'")&&migration.includes('count(distinct user_id)'));

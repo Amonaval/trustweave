@@ -9,11 +9,24 @@ export const writeJson=(p,v)=>{const f=path.resolve(ROOT,p);fs.mkdirSync(path.di
 export const exists=p=>fs.existsSync(path.resolve(ROOT,p));
 export const read=p=>fs.readFileSync(path.resolve(ROOT,p),'utf8');
 export const sha256=s=>crypto.createHash('sha256').update(s).digest('hex');
+
+export function missionRegistry(){return exists('missions/registry.json')?readJson('missions/registry.json'):{activeId:null,missions:[]}}
+export function resolveMissionPath(value=null){
+  const requested=value||process.env.TW_MISSION||null;
+  if(requested&&exists(requested))return requested.replaceAll('\\','/');
+  const registry=missionRegistry();
+  if(requested){const hit=(registry.missions||[]).find(x=>x.id===requested||x.aliases?.includes(requested));if(hit?.path&&exists(hit.path))return hit.path;throw new Error(`Unknown mission '${requested}'. Use 'node scripts/agentic/mission-cli.mjs list'.`)}
+  if(registry.activeId){const hit=(registry.missions||[]).find(x=>x.id===registry.activeId);if(hit?.path&&exists(hit.path))return hit.path}
+  if(exists('governance/documentation-policy.json')){const p=readJson('governance/documentation-policy.json');if(p.activeMission&&exists(p.activeMission))return p.activeMission}
+  throw new Error('No active mission is configured.');
+}
+
 export function candidateSha(){
   try{return execFileSync('git',['rev-parse','HEAD'],{cwd:ROOT,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim()}catch{}
   const extensions=['.ts','.tsx','.js','.mjs','.json','.md','.css','.sql','.yml','.yaml','.toml','.cjs'];
-  const ignore=['release-evidence','archive','qa-results','node_modules','.next','.agent-worktrees','.git','missions/mission-003/m3-b6-e1/review.json','missions/mission-003/m3-b6-e1/EVIDENCE.md','missions/mission-003/m3-b6-e1/metrics.json'];
-  const files=walk('.',{extensions,ignore}).sort();const h=crypto.createHash('sha256');
+  const ignore=['release-evidence','archive','history','qa-results','node_modules','.next','.agent-worktrees','.git','missions/mission-003/m3-b6-e1/review.json','missions/mission-003/m3-b6-e1/EVIDENCE.md','missions/mission-003/m3-b6-e1/metrics.json'];
+  const dynamicNames=new Set(['review.json','EVIDENCE.md','metrics.json','execution-state.json']);
+  const files=walk('.',{extensions,ignore}).filter(file=>!dynamicNames.has(path.posix.basename(file))).sort();const h=crypto.createHash('sha256');
   for(const file of files){h.update(file);h.update('\0');h.update(fs.readFileSync(path.resolve(ROOT,file)));h.update('\0')}
   return `snapshot-${h.digest('hex').slice(0,24)}`;
 }

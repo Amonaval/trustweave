@@ -1,0 +1,7 @@
+AGENTIC-COMPANY-OS.md
+MISSION-LIFECYCLE.md
+governance/company-os.json
+governance/schemas/mission.schema.json
+governance/schemas/evidence.schema.json
+missions/mission-003/CHARTER.md
+missions/mission-003/DECISIONS.md

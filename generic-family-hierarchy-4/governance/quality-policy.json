@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-16.m3-b4",
+  "version": "2026-09-16.m3-c0",
   "status": "BINDING",
   "principles": [
     "compose-existing-gates",
@@ -78,7 +78,7 @@
     },
     "mission-source": {
       "kind": "source",
-      "command": "node scripts/m3b6-progressive-selector-gate.mjs"
+      "command": "node scripts/agentic/mission-source-gate.mjs --mission {mission}"
     },
     "ux-progressive": {
       "kind": "source",
@@ -137,6 +137,10 @@
     "control-plane": {
       "kind": "source",
       "command": "node scripts/agentic/control-plane-gate.mjs"
+    },
+    "autonomy-runtime": {
+      "kind": "source",
+      "command": "node scripts/agentic/autonomy-runtime-gate.mjs"
     }
   },
   "releasePolicy": {
