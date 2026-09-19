@@ -7,6 +7,7 @@
 | URL | Owner | Meaning / gate |
 | --- | --- | --- |
 | `/` | App shell | Existing Discovery, sign in and My Networks. |
+| `/?networks=1`, `/?setup=1` | App shell | Resumable network chooser and network creation shell states after route transitions. |
 | `/network/{networkId}` | App shell | Network Home; canonical generated form includes `/home`. |
 | `/network/{networkId}/{surface}` | Existing vertical app composition | A registered surface such as Family `/tree`, Family Community `/community`, Housing `/complaints`. Server-backed active membership and surface access are checked before network content renders. |
 | `/invite/{token}`, `/society-invite/{token}`, `/public/*`, `/passport/{slug}` | Existing owners | Their existing public/private contracts remain unchanged. |

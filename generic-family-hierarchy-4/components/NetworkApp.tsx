@@ -346,6 +346,11 @@ export default function NetworkApp() {
         setAllLifeEvents(await repository.fetchNetworkTimeline());
       } catch {}
     }
+    if(typeof window!=="undefined"&&window.location.pathname==="/"&&u?.id){
+      const shellDestination=new URLSearchParams(window.location.search);
+      if(shellDestination.get("networks")==="1"){setShowMyNetworks(true);setSetupNeeded(false)}
+      if(shellDestination.get("setup")==="1"){setShowMyNetworks(false);setNetwork(null);setSetupNeeded(true)}
+    }
   };
   const openActiveNetworkHome=async()=>{
     const u=await getAuthUser();
@@ -1192,19 +1197,19 @@ export default function NetworkApp() {
   const openMyNetworksHome=async()=>{
     if(!auth){setSetupNeeded(true);return;}
     setShellBusy(tr("LoadingTxt"));
-    try{const identity=await buildTrustedPersonIdentity(await getAuthUser());setTrustedIdentity(identity);window.history.pushState({},"","/");setShowMyNetworks(true);setSetupNeeded(false);}catch(e:any){notify(e.message||"Could not load your networks.")}finally{setShellBusy("")}
+    try{const identity=await buildTrustedPersonIdentity(await getAuthUser());setTrustedIdentity(identity);window.history.pushState({},"","/?networks=1");setShowMyNetworks(true);setSetupNeeded(false);}catch(e:any){notify(e.message||"Could not load your networks.")}finally{setShellBusy("")}
   };
   const openMembershipFromHome=async(membership:NeutralNetworkMembership)=>{
     setShellBusy(tr("LoadingTxt"));
     try{
       if(!membership.isActive)await setActiveNetwork(membership.network.id);
       setShowMyNetworks(false);setProductizedDemo(null);setAlumniDemo(false);setDemoPreview(false);
-      const refreshed=await getAuthUser();await hydrate(refreshed);navigateNetworkSurface(membership.network.id,"home");setViewState("home");
+      const refreshed=await getAuthUser();navigateNetworkSurface(membership.network.id,"home");await hydrate(refreshed);setShowMyNetworks(false);setViewState("home");
     }finally{setShellBusy("")}
   };
   const canAdmin = !demoPreview && (!isSupabaseConfigured || network?.membership_role === "owner" || network?.membership_role === "admin" || auth?.role === "admin");
   const isPlatformOwner = !isSupabaseConfigured || !!auth?.platform_owner;
-  if(showMyNetworks && trustedIdentity) return <MyNetworksHome identity={trustedIdentity} onOpenNetwork={openMembershipFromHome} onAddNetwork={()=>{setShowMyNetworks(false);setNetwork(null);setSetupNeeded(true)}} onExploreDemo={openNetworkPlayground} onDeleted={async()=>{const identity=await buildTrustedPersonIdentity(await getAuthUser());setTrustedIdentity(identity);await hydrate(await getAuthUser())}}/>;
+  if(showMyNetworks && trustedIdentity) return <MyNetworksHome identity={trustedIdentity} onOpenNetwork={openMembershipFromHome} onAddNetwork={()=>{window.history.pushState({},"","/?setup=1");setShowMyNetworks(false);setNetwork(null);setSetupNeeded(true)}} onExploreDemo={openNetworkPlayground} onDeleted={async()=>{const identity=await buildTrustedPersonIdentity(await getAuthUser());setTrustedIdentity(identity);await hydrate(await getAuthUser())}}/>;
   // Vertical handoff must happen before any Family-only feature evaluation.
   // G5 bugfix: evaluating Alumni surface keys through lib/features (the Family compatibility facade)
   // throws by design. Alumni owns its own feature catalog/runtime and UI workspace.
@@ -1354,7 +1359,7 @@ export default function NetworkApp() {
         middle={demoPreview?<div className="demo-preview-banner"><Sparkles size={14}/><span>{tr("PlaygroundYouAreTxt")}{" "}{members.find(m=>m.id===demoViewerId)?.full_name.split(/\s+/)[0] || tr("ASampleFamilyMemberTxt")} {tr("ForThisVisitNothingIsSavedTxt")}</span>{!auth&&<button className="btn primary small" data-testid="qa-playground-signin" onClick={openAnonymousSignIn}>{tr("ShowcaseSignInTxt")}</button>}<button className="btn small" onClick={async()=>{setDemoPreview(false);setDemoViewerId(undefined);setFocusId(undefined);setLineageOnly(false);setNetwork(null);setMembers([]);setRelationships([]);if(auth)await openMyNetworksHome();else setSetupNeeded(true)}}>{tr("BackToNetworkSelectionTxt")}</button></div>:undefined}
         actions={<div className={`nx6-top-actions ${experience==="simple"&&!canAdmin?"simple-top-actions":""}`}>
           {isSupabaseConfigured && !demoPreview && auth && <NotificationCenter/>}
-          {isSupabaseConfigured && !demoPreview && auth && <NetworkSwitcher label={tr("SwitchNetworkTxt")} onSwitched={openActiveNetworkHome} onCreate={()=>{window.history.pushState({},"","/");setNetwork(null);setSetupNeeded(true)}}/>}
+          {isSupabaseConfigured && !demoPreview && auth && <NetworkSwitcher label={tr("SwitchNetworkTxt")} onSwitched={openActiveNetworkHome} onCreate={()=>{window.history.pushState({},"","/?setup=1");setNetwork(null);setSetupNeeded(true)}}/>}
           <LanguageSwitcher compact />
           {canAdmin && <select className="select nx6-privacy-preview" aria-label={tr("PreviewProfilePrivacyAsTxt")} value={visibility} onChange={(e) => setVisibility(e.target.value as Visibility)}><option value="public">{tr("PublicPreviewTxt")}</option><option value="member">{tr("MemberPreviewTxt")}</option><option value="admin">{tr("AdminPreviewTxt")}</option></select>}
           <NetworkAccountMenu label={demoPreview?"Explore":auth?.email?.split("@")[0]||tr("MeTxt")} subtitle={demoPreview?"Playground":network?.membership_role||auth?.family_role||tr("FamilyMemberTxt")} items={[

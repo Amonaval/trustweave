@@ -39,7 +39,7 @@ test("route grammar rejects extra segments, untrusted identifiers and private da
 test("notifications use canonical surfaces, tolerate legacy links and never follow an off-site href",()=>{
  assert.equal(buildNotificationDeepLink({networkId:id,surface:"complaints",itemId:"email@example.com"}),`/network/${id}/complaints`);
  assert.deepEqual(readNotificationDeepLink(`?twNetwork=${id}&twSurface=community`),{networkId:id,surface:"community",itemId:undefined});
- const notification={network_id:id,href:"https://untrusted.example/private",type:"complaint_created",entity_type:"complaint",entity_id:null,metadata:{}};
+ const notification={network_id:id,href:"https://untrusted.example/private",type:"complaint_created",entity_type:"complaint",entity_id:undefined,metadata:{}};
  assert.equal(resolveNotificationDeepLink(notification),`/network/${id}/complaints`);
  assert.equal(resolveNotificationDeepLink({...notification,href:`/?twNetwork=${id}`}),`/network/${id}/complaints`);
 });
