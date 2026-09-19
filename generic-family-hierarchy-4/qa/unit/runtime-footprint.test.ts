@@ -45,9 +45,11 @@ test("D7 heavy showcase config remains behind the lazy productized shell",()=>{
  for(const path of heavyImporters)assert.match(read(path),/templates\/productized\/config/);
 });
 
-test("D7 production build enforces Next-reported root First Load JS",async()=>{
- const {parseRootFirstLoad}=await import("../../scripts/d7-bundle-budget.mjs");
- const parsed=parseRootFirstLoad("┌ ○ /                                            165 B           644 kB");
+test("D7 production build enforces Next-reported root First Load JS",()=>{
+ const probe=`import {parseRootFirstLoad} from "./scripts/d7-bundle-budget.mjs"; const x=parseRootFirstLoad("┌ ○ /                                            165 B           644 kB"); process.stdout.write(JSON.stringify(x));`;
+ const result=spawnSync(process.execPath,["--input-type=module","-e",probe],{encoding:"utf8"});
+ assert.equal(result.status,0,result.stderr);
+ const parsed=JSON.parse(result.stdout);
  assert.equal(parsed.routeBytes,165);
  assert.equal(parsed.firstLoadBytes,644000);
  const build=read("scripts/d7-build.mjs");
