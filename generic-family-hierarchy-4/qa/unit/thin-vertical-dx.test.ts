@@ -92,7 +92,8 @@ test("D10 CLI write produces only deterministic vertical-local scaffold files pl
  const adapters=readFileSync(join(base,"runtime","adapters.ts"),"utf8");
  assert.match(definition,/satisfies VerticalDefinition/);
  assert.match(composition,/satisfies VerticalAppComposition/);
- assert.match(adapters,/ThinVerticalAdapters/);\n assert.match(adapters,/vertical-required/);
+ assert.match(adapters,/ThinVerticalAdapters/);
+ assert.match(adapters,/vertical-required/);
  for(const file of [definition,composition,adapters])assert.doesNotMatch(file,/\.rpc\(|school/i);
  const generated=readdirSync(base).sort();
  assert.deepEqual(generated,["INTEGRATION-PLAN.json","definition.ts","features","playground","qa","runtime"]);
