@@ -45,14 +45,18 @@ test("D7 heavy showcase config remains behind the lazy productized shell",()=>{
  for(const path of heavyImporters)assert.match(read(path),/templates\/productized\/config/);
 });
 
-test("D7 production budget distinguishes Next dynamic chunks from startup chunks",()=>{
- const budget=read("scripts/d7-bundle-budget.mjs");
- assert.match(budget,/react-loadable-manifest\.json/);
- assert.match(budget,/routeFiles\.filter\(file=>!lazyFiles\.has\(file\)\)/);
- assert.match(budget,/lazy vertical startup-marker check/);
+test("D7 production build enforces Next-reported root First Load JS",async()=>{
+ const {parseRootFirstLoad}=await import("../../scripts/d7-bundle-budget.mjs");
+ const parsed=parseRootFirstLoad("┌ ○ /                                            165 B           644 kB");
+ assert.equal(parsed.routeBytes,165);
+ assert.equal(parsed.firstLoadBytes,644000);
+ const build=read("scripts/d7-build.mjs");
+ assert.match(build,/assertRootFirstLoadBudget/);
 });
 
-test("D7 post-build budget script is valid JavaScript",()=>{
- const result=spawnSync(process.execPath,["--check","scripts/d7-bundle-budget.mjs"],{encoding:"utf8"});
- assert.equal(result.status,0,result.stderr);
+test("D7 build and budget scripts are valid JavaScript",()=>{
+ for(const path of ["scripts/d7-bundle-budget.mjs","scripts/d7-build.mjs"]){
+  const result=spawnSync(process.execPath,["--check",path],{encoding:"utf8"});
+  assert.equal(result.status,0,result.stderr);
+ }
 });

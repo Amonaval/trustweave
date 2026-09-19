@@ -17,6 +17,7 @@ qa/unit/vertical-manifest.test.ts
 qa/unit/capability-manifest.test.ts
 qa/unit/runtime-footprint.test.ts
 scripts/d7-bundle-budget.mjs
+scripts/d7-build.mjs
 package.json
 CURRENT-STATE.md
 ROADMAP.md

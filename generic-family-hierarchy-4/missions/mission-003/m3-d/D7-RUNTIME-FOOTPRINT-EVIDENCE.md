@@ -37,12 +37,11 @@ This deliberately does not turn the manifest itself into an asynchronous registr
 - Housing/FCA specialty panels return to static `TemplateNetworkApp` imports;
 - Housing pilot telemetry becomes statically imported.
 
-`scripts/d7-bundle-budget.mjs` runs automatically after `next build` and:
-- measures root-route JavaScript from the Next app build manifest;
-- enforces a configurable root-route budget (default 2 MB raw JS);
-- rejects representative Housing/FCA markers in the root-route chunks.
+The production `build` script now runs Next through `scripts/d7-build.mjs`, preserves the complete Next output, parses the authoritative root-route **First Load JS** value, and enforces a configurable ceiling through `scripts/d7-bundle-budget.mjs`.
 
-The first production build showed that `app-build-manifest.json` contains both initial and `next/dynamic` chunks: its 13-file union totaled **2,260,785 raw bytes**, while Next reported **644 kB First Load JS** for `/`. A Housing marker was correctly found in that union because the dynamically loaded Housing chunk is referenced by the route, not because it is downloaded at startup. The guard now uses Next's `react-loadable-manifest.json` to subtract dynamic chunks before measuring or scanning the root startup set. The initial raw-startup ceiling is **1.2 MB** pending the next CI measurement; unlike the rejected 2 MB/2.4 MB union thresholds, this budget applies only to files that are not registered as dynamic chunks. Future missions should ratchet the measured startup baseline downward rather than comparing against the async union.
+The measured D7 root value from Next is **644 kB First Load JS** for `/`. The initial CI ceiling is **700 kB** (700,000 bytes), leaving bounded headroom while making startup growth visible. This replaces two rejected raw-manifest heuristics: `app-build-manifest.json` includes async App Router chunks, and `react-loadable-manifest.json` did not register these App Router dynamic chunks in this build. Those files therefore cannot reliably distinguish startup from async loading here.
+
+Vertical leakage is guarded structurally in `qa/unit/runtime-footprint.test.ts`: the universal shell cannot statically import Alumni/productized apps or the heavy showcase config, and the productized shell cannot statically import Housing/FCA specialty panels. Build-script syntax and parsing are also unit-tested.
 
 ## Boundaries / non-goals
 
