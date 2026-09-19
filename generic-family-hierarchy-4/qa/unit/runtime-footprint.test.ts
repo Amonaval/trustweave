@@ -1,6 +1,7 @@
 import {test} from "node:test";
 import {strict as assert} from "node:assert";
 import {readFileSync,statSync} from "node:fs";
+import {spawnSync} from "node:child_process";
 
 const read=(path:string)=>readFileSync(path,"utf8");
 
@@ -49,4 +50,9 @@ test("D7 production budget distinguishes Next dynamic chunks from startup chunks
  assert.match(budget,/react-loadable-manifest\.json/);
  assert.match(budget,/routeFiles\.filter\(file=>!lazyFiles\.has\(file\)\)/);
  assert.match(budget,/lazy vertical startup-marker check/);
+});
+
+test("D7 post-build budget script is valid JavaScript",()=>{
+ const result=spawnSync(process.execPath,["--check","scripts/d7-bundle-budget.mjs"],{encoding:"utf8"});
+ assert.equal(result.status,0,result.stderr);
 });

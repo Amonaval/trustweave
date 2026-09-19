@@ -15,8 +15,8 @@ if(!routeKey)throw new Error(`D7 bundle budget could not find root app page. Key
 const routeFiles=[...new Set((pages[routeKey]||[]).filter((f)=>f.endsWith(".js")))];
 if(!routeFiles.length)throw new Error("D7 bundle budget found no root-route JavaScript files.");
 
-const lazyFiles=new Set<string>();
-for(const entry of Object.values(loadableManifest) as Array<{files?:string[]}>){
+const lazyFiles=new Set();
+for(const entry of Object.values(loadableManifest)){
  for(const file of entry?.files||[])if(file.endsWith(".js"))lazyFiles.add(file);
 }
 const startupFiles=routeFiles.filter(file=>!lazyFiles.has(file));
