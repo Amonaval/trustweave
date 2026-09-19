@@ -66,9 +66,11 @@ function instant(value:string|undefined):number {
 }
 function inWindow(window:PolicyTimeWindow|undefined,now:number):boolean {
   if(!window)return true;
-  const from=window.validFrom?Date.parse(window.validFrom):Number.NEGATIVE_INFINITY;
-  const until=window.validUntil?Date.parse(window.validUntil):Number.POSITIVE_INFINITY;
-  return Number.isFinite(from)&&Number.isFinite(until)&&from<=now&&now<=until;
+  const from=window.validFrom?Date.parse(window.validFrom):null;
+  const until=window.validUntil?Date.parse(window.validUntil):null;
+  if(from!==null&&(!Number.isFinite(from)||now<from))return false;
+  if(until!==null&&(!Number.isFinite(until)||now>until))return false;
+  return true;
 }
 function sameResource(a:PolicyResourceRef,b:PolicyResourceRef):boolean {
   return a.networkId===b.networkId&&a.kind===b.kind&&a.id===b.id;
