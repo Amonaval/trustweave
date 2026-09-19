@@ -1,0 +1,12 @@
+qa/fixtures/d11-school-blueprint.json
+qa/unit/school-readiness.test.ts
+missions/mission-003/m3-d/D11-SCHOOL-WORKFLOW-MAP.json
+docs/architecture/SCHOOL-VERTICAL-ARCHITECTURE-PROOF.md
+missions/mission-003/m3-d/D11-FINAL-ARCHITECTURE-SCORECARD.md
+missions/mission-003/m3-d/D11-ROUTING-ADDRESSABILITY-INVENTORY.md
+missions/mission-003/m3-d/NEXT-SESSION-SCHOOL-IMPLEMENTATION-CHARTER.md
+missions/mission-003/m3-d/D11-SCHOOL-READINESS-EVIDENCE.md
+missions/mission-003/m3-d/D11-AFFECTED-FILES.txt
+package.json
+CURRENT-STATE.md
+ROADMAP.md

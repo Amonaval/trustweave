@@ -1,5 +1,10 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — M3-D11 School architecture readiness candidate
+
+D11 completes the D0→D11 architecture reinforcement program with a machine-readable School workflow proof and a D10 scaffold exercise. Representative School scope classifies as A=1, B=9, C=0, D=2: events are already generic; nine flows reuse existing Network OS primitives through thin School adapters; no new reusable platform primitive is required after D4/D5; attendance recording and transport/pickup remain the only genuinely School-specific seams in the proving scope. The School blueprint validates and can be scaffolded in a temporary directory, but School remains absent from runtime kinds, manifest, runtime metadata, QA activation and the product tree. D11 therefore certifies architecture readiness for bounded School implementation, not School product/release readiness. Existing connected reliability/staging evidence gaps remain open.
+
+
 ## 2026-09-20 — M3-D10 thin-vertical developer experience candidate
 
 D10 converts the D2–D9 architecture rules into a deterministic thin-vertical blueprint/scaffold contract. One JSON blueprint now validates reused/owned capabilities, route-safe localized surfaces, policy/workflow/data adapter obligations, lazy-loading intent, observability ownership and a bounded synthetic playground seed. The scaffold CLI can dry-run or emit only vertical-local definition/catalog/composition/adapter/seed/QA files plus an explicit integration plan; central kind/manifest/capability/QA registration remains deliberately explicit and fail-closed. Typed policy/workflow/query/command adapter interfaces prevent new verticals from inventing parallel platform engines. A synthetic QA-only civic-circle fixture proves the workflow while School remains unregistered and unimplemented.
