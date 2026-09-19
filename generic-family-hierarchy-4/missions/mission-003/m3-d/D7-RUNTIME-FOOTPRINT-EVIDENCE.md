@@ -42,7 +42,7 @@ This deliberately does not turn the manifest itself into an asynchronous registr
 - enforces a configurable root-route budget (default 2 MB raw JS);
 - rejects representative Housing/FCA markers in the root-route chunks.
 
-The raw 2 MB value is an initial safety ceiling, not a performance target. Future measurements can ratchet it down once a stable CI baseline is observed.
+The first production build measured **2,260,785 raw bytes across 13 root-route JS chunks**, while Next's route summary reported **644 kB First Load JS** for `/`. The raw-file guard therefore uses **2.4 MB** as the first evidence-based ceiling (about 6% headroom), not as a performance target. The representative vertical-leak marker check runs before the size assertion. Future missions should ratchet the ceiling down from this measured baseline rather than inventing a lower threshold.
 
 ## Boundaries / non-goals
 
