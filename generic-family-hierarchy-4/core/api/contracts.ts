@@ -37,3 +37,25 @@ export type RequestTrustedIntroductionCommand={candidateId:string;message:string
 export type RequestTrustedIntroductionResult={introductionId:string};
 export type ReviewTrustedIntroductionCommand={introductionId:string;accept:boolean};
 export type ReviewTrustedIntroductionResult={introductionId:string;status:"accepted"|"declined"};
+
+
+export type HousingOperationsCommand=
+ | {action:"createNotice";input:{title:string;body?:string;noticeType?:string;pinned?:boolean;expiresAt?:string|null}}
+ | {action:"createComplaint";input:{unitEntityId?:string|null;category:string;title:string;description?:string;priority?:string;photoPath?:string}}
+ | {action:"updateComplaint";input:{id:string;status?:string;assignedTo?:string|null;assignedVendorId?:string|null;slaDueAt?:string|null;resolutionNote?:string|null}}
+ | {action:"addComplaintComment";input:{id:string;body:string}}
+ | {action:"upsertVendor";input:{id?:string;name:string;category:string;contactName?:string;phone?:string;email?:string;status?:string}}
+ | {action:"createVendorContract";input:{vendorId:string;title:string;startsOn?:string|null;endsOn?:string|null;sla?:string|null;amount?:number|null}}
+ | {action:"upsertAmenity";input:{id?:string;name:string;description?:string;location?:string;capacity?:number|null;bookingMode?:string;status?:string}}
+ | {action:"createAmenityBooking";input:{amenityId:string;unitEntityId?:string|null;startsAt:string;endsAt:string;purpose?:string}}
+ | {action:"reviewAmenityBooking";input:{id:string;status:"approved"|"rejected"|"cancelled"}}
+ | {action:"setComplaintRoute";input:{category:string;roleKey:string}};
+export type HousingOperationsCommandResult={id?:string;notificationIds?:string[]};
+
+export type FamilyAssociationAdminCommand=
+ | {action:"updateSettings";input:{dependentAgeLimit:number;gracePeriodDays:number;maxAutoChildren:number;onboardingPolicy:string;financeVisibility:string}}
+ | {action:"upsertMembershipYear";input:{id?:string|null;label:string;startDate:string;endDate:string;familyFee:number;gracePeriodDays:number;status:string}}
+ | {action:"setFamilyMembership";input:{yearId:string;familyEntityId:string;representativeEntityId?:string|null;status:string;paymentStatus:string;amountPaid:number;paymentReference?:string}}
+ | {action:"assignRole";input:{yearId?:string|null;personEntityId:string;roleCatalogId:string;startsOn?:string|null;endsOn?:string|null;notes?:string}}
+ | {action:"addFinanceEntry";input:{yearId:string;entryType:string;amount:number;description?:string;visibility:string}};
+export type FamilyAssociationAdminCommandResult={id?:string};

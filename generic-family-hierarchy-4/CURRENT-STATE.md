@@ -1,5 +1,10 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — M3-D6 data & API boundary consolidation candidate
+
+A bounded D6 slice now routes Housing operations and Family Community administration through typed authenticated `/api/v1` query/command boundaries backed by server-owned services. Mutations use the existing idempotent command runtime; reads use a new shared authenticated query runtime with request IDs, rate limiting, normalized errors and structured logging. FCA admin RPC ownership moved out of the generic template-product remote into the Family Association vertical. `core/api/data-boundary-manifest.ts` and its unit guard record migrated RPC/table ownership and explicitly preserve remaining legacy hotspots rather than claiming a big-bang migration. No database migration, RLS relaxation or School implementation was added.
+
+
 ## 2026-09-19 — M3-D5 action / obligation / workflow candidate
 
 Shared workflow contracts now cover task, acknowledgement, approval and consent obligations with assignment, due/SLA timing, guarded transitions and append-only application audit entries. Existing Housing complaints, amenity approvals and governance actions plus Family Community event RSVP are projected through thin domain adapters; no existing persistence/status vocabulary is rewritten. The D4 consent vocabulary is reused rather than duplicated. `qa:resilient` now exposes the existing configured resilient crawler under the expected script name. D5 is source/CI candidate work; no migration or School implementation was added.

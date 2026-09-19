@@ -4,6 +4,23 @@ import type {ApiResponse} from "../core/api/contracts";
 export class ApiCommandError extends Error{constructor(message:string,public code:string,public requestId?:string,public status?:number){super(message);this.name="ApiCommandError"}}
 export type PostCommandOptions={idempotent?:boolean;retryTransient?:boolean};
 
+async function authenticatedHeaders(){
+ if(!supabase)throw new ApiCommandError("Shared Supabase mode is required.","CLIENT_NOT_CONFIGURED");
+ const {data:{session}}=await supabase.auth.getSession();
+ if(!session?.access_token)throw new ApiCommandError("Please sign in to continue.","UNAUTHENTICATED");
+ return {authorization:`Bearer ${session.access_token}`,"x-request-id":crypto.randomUUID()};
+}
+
+export async function getQuery<TResponse>(path:string):Promise<TResponse>{
+ const headers=await authenticatedHeaders();
+ const response=await fetch(path,{headers});
+ let payload:ApiResponse<TResponse>|null=null;try{payload=await response.json() as ApiResponse<TResponse>}catch{}
+ if(response.ok&&payload?.ok)return payload.data;
+ if(payload&&payload.ok===false)throw new ApiCommandError(payload.error.message,payload.error.code,payload.requestId,response.status);
+ throw new ApiCommandError(`Query failed with HTTP ${response.status}.`,"HTTP_ERROR",headers["x-request-id"],response.status);
+}
+
+
 export async function postCommand<TResponse>(path:string,body:unknown,options:PostCommandOptions={}):Promise<TResponse>{
  if(!supabase)throw new ApiCommandError("Shared Supabase mode is required.","CLIENT_NOT_CONFIGURED");
  const {data:{session}}=await supabase.auth.getSession();

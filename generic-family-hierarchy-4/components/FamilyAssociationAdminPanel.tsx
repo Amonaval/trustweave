@@ -2,7 +2,7 @@
 import {useEffect,useMemo,useState} from "react";
 import {BadgeIndianRupee,CalendarRange,History,Save,ShieldCheck,UsersRound} from "lucide-react";
 import type {NetworkAffiliatedEntity} from "../core/network-os/contracts";
-import {addFcaFinanceEntry,assignFcaRole,fetchFcaAdminSnapshot,setFcaFamilyMembership,updateFcaSettings,upsertFcaMembershipYear,type FcaAdminSnapshot} from "../capabilities/template-product/remote";
+import {addFcaFinanceEntry,assignFcaRole,fetchFcaAdminSnapshot,setFcaFamilyMembership,updateFcaSettings,upsertFcaMembershipYear,type FcaAdminSnapshot} from "../verticals/family-association/runtime/admin-remote";
 import {NetworkEmpty,NetworkMetric,NetworkSectionHead} from "./shared/NetworkUi";
 import ResponsiveSectionTabs from "./shared/ResponsiveSectionTabs";
 import {useLanguage} from "../lib/i18n";
