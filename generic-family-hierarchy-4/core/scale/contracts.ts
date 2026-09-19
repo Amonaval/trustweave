@@ -15,7 +15,7 @@ export const SCALE_BUDGETS=Object.freeze({
  inlineBackgroundItems:500,
 });
 
-export function boundedPageSize(value:unknown,defaultSize=SCALE_BUDGETS.pageDefault){
+export function boundedPageSize(value:unknown,defaultSize:number=SCALE_BUDGETS.pageDefault){
  const parsed=typeof value==="number"?value:Number(value);
  if(!Number.isFinite(parsed))return defaultSize;
  return Math.max(1,Math.min(SCALE_BUDGETS.pageMax,Math.floor(parsed)));
