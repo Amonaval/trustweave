@@ -10,6 +10,7 @@ export type CapabilityContract = Readonly<{
   persistenceNamespace: readonly string[];
   policyBoundary: "existing-rpc-rls" | "shared-application" | "unmapped";
   policyAdapter: string | null;
+  workflowAdapter: string | null;
   apiRoutes: readonly string[];
   uiRoute: "shared-network-surface" | "none";
   observability: "not-standardized";
@@ -17,7 +18,7 @@ export type CapabilityContract = Readonly<{
 }>;
 
 function contract(owner:string,source:string,options:Partial<Omit<CapabilityContract,"owner"|"source">>={}):CapabilityContract {
-  return Object.freeze({owner,source,commands:[],queries:[],events:[],persistenceNamespace:[],policyBoundary:"unmapped",policyAdapter:null,apiRoutes:[],uiRoute:"shared-network-surface",observability:"not-standardized",loadingBoundary:"current-shared-bundle",...options});
+  return Object.freeze({owner,source,commands:[],queries:[],events:[],persistenceNamespace:[],policyBoundary:"unmapped",policyAdapter:null,workflowAdapter:null,apiRoutes:[],uiRoute:"shared-network-surface",observability:"not-standardized",loadingBoundary:"current-shared-bundle",...options});
 }
 
 /** Capability IDs are derived from these records, not a second maintained union. */
@@ -41,8 +42,8 @@ export const CAPABILITY_MANIFEST={
   "domain.kinship":contract("family","verticals/family/participation/adapter.ts",{policyBoundary:"existing-rpc-rls"}),
   "domain.institutional-membership":contract("alumni","verticals/alumni/runtime/composition.ts",{persistenceNamespace:["public.alumni_profiles"],policyBoundary:"existing-rpc-rls"}),
   "domain.community-association":contract("association","verticals/association/runtime/composition.ts"),
-  "domain.family-association":contract("family-association","verticals/family-association/runtime/composition.ts",{policyAdapter:"verticals/family-association/runtime/policy.ts"}),
-  "domain.housing-society":contract("housing-society","verticals/housing-society/runtime/remote.ts",{persistenceNamespace:["public.hs_complaints"],policyBoundary:"existing-rpc-rls",policyAdapter:"verticals/housing-society/runtime/policy.ts"}),
+  "domain.family-association":contract("family-association","verticals/family-association/runtime/composition.ts",{policyAdapter:"verticals/family-association/runtime/policy.ts",workflowAdapter:"verticals/family-association/runtime/workflow.ts"}),
+  "domain.housing-society":contract("housing-society","verticals/housing-society/runtime/remote.ts",{persistenceNamespace:["public.hs_complaints"],policyBoundary:"existing-rpc-rls",policyAdapter:"verticals/housing-society/runtime/policy.ts",workflowAdapter:"verticals/housing-society/runtime/workflow.ts"}),
   "domain.organizational-intelligence":contract("organization","verticals/organization/runtime/composition.ts"),
   "domain.business-trust":contract("business-trust","verticals/business-trust/runtime/composition.ts"),
   "domain.franchise-operations":contract("franchise","verticals/franchise/runtime/composition.ts"),

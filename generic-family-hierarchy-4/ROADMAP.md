@@ -2,7 +2,7 @@
 
 ## Active architecture priority — M3-D (2026-09-19)
 
-Execute D0 evidence baseline, then D1 stable network/surface URLs with membership-aware direct entry, login return, browser history and legacy notification compatibility. D2–D11 cover the canonical manifest, capability ownership, scoped policy/consent, action/workflow primitives, API boundaries, lazy vertical loading, scale, observability, thin-vertical tooling and School readiness. Do not implement School until D11 provides credible proof. `missions/mission-003/m3-d/EXECUTION-CHARTER.md` gives the revised sequence; `NETWORK-OS-ARCHITECTURE-MASTER-PLAN.md` retains the older D1–D10 labels as historical strategy, explicitly shifted by one. The connected Residential/Community reliability and staging migration 122 gate below still require real evidence.
+D0–D4 are implemented as source/CI candidates, and D5 now extracts shared action/obligation/workflow primitives from proven Housing and Family Community behavior. D6–D11 continue with API/data boundaries, lazy vertical loading, scale, observability, thin-vertical tooling and School readiness. Do not implement School until D11 provides credible proof. `missions/mission-003/m3-d/EXECUTION-CHARTER.md` gives the revised sequence; `NETWORK-OS-ARCHITECTURE-MASTER-PLAN.md` retains the older D1–D10 labels as historical strategy, explicitly shifted by one. The connected Residential/Community reliability and staging migration 122 gate below still require real evidence.
 
 **Updated:** 2026-09-16
 

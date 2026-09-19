@@ -1,5 +1,10 @@
 # TrustWeave — Current State
 
+## 2026-09-19 — M3-D5 action / obligation / workflow candidate
+
+Shared workflow contracts now cover task, acknowledgement, approval and consent obligations with assignment, due/SLA timing, guarded transitions and append-only application audit entries. Existing Housing complaints, amenity approvals and governance actions plus Family Community event RSVP are projected through thin domain adapters; no existing persistence/status vocabulary is rewritten. The D4 consent vocabulary is reused rather than duplicated. `qa:resilient` now exposes the existing configured resilient crawler under the expected script name. D5 is source/CI candidate work; no migration or School implementation was added.
+
+
 ## 2026-09-19 — M3-D4 scoped authorization + consent candidate
 
 A reusable fail-closed policy decision contract now combines active network role, relationship/resource scope, declared purpose, time validity and optional exact consent. Housing Society and Family Community own thin policy adapters over that kernel, and direct network-surface role checks use the same decision path without weakening server/RPC/RLS enforcement. `missions/mission-003/m3-d/D4-AUTHORIZATION-CONSENT-EVIDENCE.md` records the proof and explicit limits. D1–D4 remain source candidates pending the combined authenticated staging/security checkpoint; D5 workflow primitives have not started.
