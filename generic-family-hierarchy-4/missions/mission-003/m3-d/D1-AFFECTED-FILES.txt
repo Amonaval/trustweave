@@ -1,0 +1,11 @@
+app/network/[networkId]/[[...surface]]/page.tsx
+capabilities/network-context/remote.ts
+components/NetworkApp.tsx
+components/TemplateNetworkApp.tsx
+lib/network-route-access.ts
+lib/network-routes.ts
+lib/notification-routing.ts
+qa/unit/network-routes.test.ts
+missions/mission-003/m3-d/D1-ROUTING-EVIDENCE.md
+missions/mission-003/m3-d/D1-AFFECTED-FILES.txt
+CURRENT-STATE.md

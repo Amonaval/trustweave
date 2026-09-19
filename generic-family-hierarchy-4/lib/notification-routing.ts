@@ -1,8 +1,16 @@
 import type {Notification} from "./types";
+import {networkSurfaceHref} from "./network-routes";
 
 export type NotificationDeepLink={networkId?:string;surface?:string;itemId?:string};
 
 export function buildNotificationDeepLink(input:NotificationDeepLink){
+ if(input.networkId){
+  try{
+   const href=networkSurfaceHref(input.networkId,input.surface||"home");
+   // A resource ID needs an owner-specific authorized detail route before it enters a URL.
+   return href;
+  }catch{/* Historical/non-UUID demo identifiers retain the legacy link. */}
+ }
  const params=new URLSearchParams();
  if(input.networkId)params.set("twNetwork",input.networkId);
  if(input.surface)params.set("twSurface",input.surface);
@@ -64,7 +72,8 @@ export function resolveNotificationDeepLink(notification: Pick<Notification,"net
    itemId=url.searchParams.get("twItem")||itemId;
    const hasTrustWeaveParams=url.searchParams.has("twNetwork")||url.searchParams.has("twSurface")||url.searchParams.has("twItem");
    // Preserve genuine application paths, but enrich partial root/query deep links.
-   if(url.pathname!=="/"&&!hasTrustWeaveParams)return `${url.pathname}${url.search}${url.hash}`;
+   // Only same-origin application paths can be used as an internal destination.
+   if(url.origin===base&&url.pathname!=="/"&&!hasTrustWeaveParams)return `${url.pathname}${url.search}${url.hash}`;
   }catch{
    // Fall through to deterministic in-app routing below.
   }

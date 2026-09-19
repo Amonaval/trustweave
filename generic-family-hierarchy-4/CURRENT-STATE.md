@@ -2,7 +2,7 @@
 
 ## 2026-09-19 — M3-D architecture foundation
 
-The canonical company direction is `docs/product/TRUSTWEAVE-COMPANY-NORTH-STAR.md`. The live `llm-push` branch is the code authority; the older M3-D handoff was reconciled selectively. The execution order is D0 architecture baseline, **D1 addressable routing**, then D2–D11 thin-vertical architecture and School readiness proof. School implementation has not started. D0 source inventory is recorded in `missions/mission-003/m3-d/D0-ARCHITECTURE-BASELINE.md`. D1 execution evidence and limitations will be recorded separately; the connected two-vertical reliability and migration 122 staging gate below remain open.
+The canonical company direction is `docs/product/TRUSTWEAVE-COMPANY-NORTH-STAR.md`. The live `llm-push` branch is the code authority; the older M3-D handoff was reconciled selectively. The execution order is D0 architecture baseline, **D1 addressable routing**, then D2–D11 thin-vertical architecture and School readiness proof. School implementation has not started. D0 source inventory is recorded in `missions/mission-003/m3-d/D0-ARCHITECTURE-BASELINE.md`. D1 has an implemented candidate network/surface route foundation; `missions/mission-003/m3-d/D1-ROUTING-EVIDENCE.md` records its tests and the missing connected browser certification. The connected two-vertical reliability and migration 122 staging gate below remain open.
 
 **Updated:** 2026-09-16  
 **Active program:** Two-vertical product reliability + reusable architecture convergence

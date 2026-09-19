@@ -38,6 +38,7 @@ function isNetworkVerticalKind(value: unknown): value is NetworkVerticalKind {
 }
 
 function resolveTransportVerticalKind(row: NetworkMembershipTransportRow): NetworkVerticalKind {
+  if(row.vertical_kind&&!isNetworkVerticalKind(row.vertical_kind))throw new Error("Unsupported network vertical");
   if (isNetworkVerticalKind(row.vertical_kind)) return row.vertical_kind;
   if (isNetworkVerticalKind(row.network_template)) return row.network_template;
   return "family";
