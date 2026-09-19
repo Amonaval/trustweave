@@ -5,6 +5,7 @@ components/TemplateNetworkApp.tsx
 lib/network-route-access.ts
 lib/network-routes.ts
 lib/notification-routing.ts
+package.json
 qa/unit/network-routes.test.ts
 missions/mission-003/m3-d/D1-ROUTING-EVIDENCE.md
 missions/mission-003/m3-d/D1-AFFECTED-FILES.txt
