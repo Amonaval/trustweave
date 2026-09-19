@@ -1,14 +1,15 @@
 import type {RequestContext} from "./request-context";
 import {createRequestContext} from "./request-context";
 import {commandFailure,commandSuccess,logQuery} from "./response";
-import {enforceBurstLimit} from "./rate-limit";
+import {enforceScopedBurstLimit} from "./rate-limit";
+import {SCALE_BUDGETS} from "../../core/scale/contracts";
 import {normalizeCommandError} from "./errors";
 
 type QueryRuntimeOptions<TResult>={
  request:Request;
  queryName:string;
  execute:(ctx:RequestContext)=>Promise<TResult>;
- rateLimit?:{limit:number;windowMs?:number};
+ rateLimit?:{limit:number;networkLimit?:number;windowMs?:number};
  networkId?:(result:TResult,ctx:RequestContext)=>string|undefined;
 };
 
@@ -18,7 +19,7 @@ export async function executeQuery<TResult>(o:QueryRuntimeOptions<TResult>){
  try{
   ctx=await createRequestContext(o.request);
   requestId=ctx.requestId;
-  enforceBurstLimit(`${ctx.user.id}:${o.queryName}`,o.rateLimit?.limit??60,o.rateLimit?.windowMs??60_000);
+  enforceScopedBurstLimit({actorId:ctx.user.id,networkId:ctx.activeNetworkId,operation:o.queryName,actorLimit:o.rateLimit?.limit??SCALE_BUDGETS.queryActorPerMinute,networkLimit:o.rateLimit?.networkLimit??SCALE_BUDGETS.queryNetworkPerMinute,windowMs:o.rateLimit?.windowMs});
   const data=await o.execute(ctx);
   logQuery({requestId,actorId:ctx.user.id,query:o.queryName,networkId:o.networkId?.(data,ctx)||ctx.activeNetworkId,outcome:"success",startedAt:ctx.startedAt});
   return commandSuccess(requestId,data);

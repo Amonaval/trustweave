@@ -1,5 +1,10 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — M3-D8 multi-tenant scale & performance candidate
+
+D8 adds bounded multi-tenant scale contracts without introducing premature sharding/partitioning. Shared query/command runtimes now apply actor + network burst scopes; graph traversal, bootstrap and synchronous export have explicit work ceilings; additive migration 123 supplies targeted network-first indexes and clamped keyset page RPCs; paged reads stay behind authenticated server query boundaries. Scale escalation triggers now make partitioning, deployment stamps and shared rate limiting conditional on measured signals rather than architecture theatre. Existing eager UI reads remain compatible and can migrate incrementally. No School implementation or new database topology was added.
+
+
 ## 2026-09-20 — M3-D7 runtime footprint & lazy vertical loading candidate
 
 The universal Network shell now dynamically loads Alumni and the productized-network application instead of statically bundling them, while lightweight productized runtime metadata is separated from the large showcase/sample dataset. Inside the productized shell, Housing and Family Community specialty panels plus Housing pilot telemetry are lazy-loaded only when those paths are used. Manifest/capability metadata records the loading boundary, source tests prevent static heavy imports from returning, and the production build now parses Next’s authoritative root-route First Load JS metric and enforces a 700 kB ceiling (D7 measured baseline: 644 kB). No School implementation, database migration, route behavior change or product feature expansion was added.

@@ -12,3 +12,9 @@ export function enforceBurstLimit(key:string,limit=30,windowMs=60_000){
  if(current.count>limit)throw new CommandError("RATE_LIMITED","Too many requests. Please retry shortly.",429);
  if(store.size>5000){for(const [k,v] of store)if(v.resetAt<=now)store.delete(k)}
 }
+
+export function enforceScopedBurstLimit(input:{actorId:string;networkId?:string|null;operation:string;actorLimit:number;networkLimit:number;windowMs?:number}){
+ const windowMs=input.windowMs??60_000;
+ enforceBurstLimit(`actor:${input.actorId}:${input.operation}`,input.actorLimit,windowMs);
+ if(input.networkId)enforceBurstLimit(`network:${input.networkId}:${input.operation}`,input.networkLimit,windowMs);
+}

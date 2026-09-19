@@ -1,5 +1,5 @@
 import {supabase} from "../../lib/supabase";
-import {postCommand} from "../../lib/api-client";
+import {getQuery,postCommand} from "../../lib/api-client";
 import {deleteOwnedNetworkPermanently} from "../../lib/network-lifecycle";
 import type {BootstrapInstitutionResult,ClaimIdentityResult,CreateGraphRelationshipResult,CreateNetworkResult,JoinNetworkResult} from "../../core/api/contracts";
 import type {ProductizedVerticalKind} from "../../templates/productized/config";
@@ -46,3 +46,16 @@ export type NetworkFundsSnapshot={is_admin:boolean;visibility_mode:string;funds:
 export async function fetchNetworkFundsSnapshot(){const s=required();const {data,error}=await s.rpc("get_network_funds_snapshot");if(error)throw error;const d=(data||{}) as any;return {is_admin:Boolean(d.is_admin),visibility_mode:String(d.visibility_mode||"admins"),funds:(d.funds||[]) as NetworkFundRow[],transactions:(d.transactions||[]) as NetworkFundTransactionRow[],membership_dues:(d.membership_dues||[]) as NetworkMembershipDueRow[],events:(d.events||[]) as any[]} as NetworkFundsSnapshot}
 export async function createNetworkFund(input:{name:string;fundKind:string;purpose?:string;targetAmount?:number|null;openingBalance?:number;visibility?:string;membershipYearId?:string|null;activityId?:string|null}){const s=required();const {data,error}=await s.rpc("create_network_fund",{p_name:input.name,p_fund_kind:input.fundKind,p_purpose:input.purpose||null,p_target_amount:input.targetAmount??null,p_opening_balance:input.openingBalance||0,p_visibility:input.visibility||"members",p_membership_year_id:input.membershipYearId||null,p_activity_id:input.activityId||null});if(error)throw error;return String(data)}
 export async function recordNetworkFundTransaction(input:{fundId:string;transactionKind:string;amount:number;sourceEntityId?:string|null;activityId?:string|null;membershipYearId?:string|null;paymentMethod?:string;reference?:string;note?:string;visibility?:string;occurredOn?:string}){const s=required();const {data,error}=await s.rpc("record_network_fund_transaction",{p_fund_id:input.fundId,p_transaction_kind:input.transactionKind,p_amount:input.amount,p_source_entity_id:input.sourceEntityId||null,p_activity_id:input.activityId||null,p_membership_year_id:input.membershipYearId||null,p_payment_method:input.paymentMethod||null,p_reference:input.reference||null,p_note:input.note||null,p_visibility:input.visibility||"members",p_occurred_on:input.occurredOn||new Date().toISOString().slice(0,10)});if(error)throw error;return String(data)}
+
+export async function fetchNetworkEntityRelationshipsPage(input:{afterId?:string|null;limit?:number}={}){
+ const q=new URLSearchParams();if(input.afterId)q.set("afterId",input.afterId);if(input.limit)q.set("limit",String(input.limit));
+ const data=await getQuery<any[]>(`/api/v1/network/relationships?${q.toString()}`);
+ const items=(data||[]).map((r:any)=>({id:String(r.id),fromEntityId:String(r.from_entity_id),toEntityId:String(r.to_entity_id),fromLabel:String(r.from_label),toLabel:String(r.to_label),relationshipType:String(r.relationship_type),label:String(r.relationship_label||r.relationship_type),metadata:r.metadata||{}})) as NetworkEntityRelationship[];
+ return {items,nextCursor:items.at(-1)?.id||null};
+}
+export async function fetchProductizedNetworkMembersPage(input:{afterJoinedAt?:string|null;afterUserId?:string|null;limit?:number}={}){
+ const q=new URLSearchParams();if(input.afterJoinedAt)q.set("afterJoinedAt",input.afterJoinedAt);if(input.afterUserId)q.set("afterUserId",input.afterUserId);if(input.limit)q.set("limit",String(input.limit));
+ const data=await getQuery<any[]>(`/api/v1/network/members?${q.toString()}`);
+ const items=(data||[]).map((r:any)=>({userId:String(r.user_id),email:r.email||null,role:r.role,status:r.status,entityLabel:r.entity_label||null,joinedAt:r.joined_at})) as ProductizedNetworkMember[];
+ const last=items.at(-1);return {items,nextCursor:last?.joinedAt&&last.userId?{afterJoinedAt:last.joinedAt,afterUserId:last.userId}:null};
+}
