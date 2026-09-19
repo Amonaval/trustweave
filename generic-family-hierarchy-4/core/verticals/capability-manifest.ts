@@ -13,7 +13,7 @@ export type CapabilityContract = Readonly<{
   workflowAdapter: string | null;
   apiRoutes: readonly string[];
   uiRoute: "shared-network-surface" | "none";
-  observability: "not-standardized";
+  observability: "not-standardized" | "partial-standardized-api-runtime" | "standardized-api-runtime";
   loadingBoundary: "current-shared-bundle" | "productized-lazy-shell" | "vertical-lazy-chunk";
 }>;
 
@@ -24,9 +24,9 @@ function contract(owner:string,source:string,options:Partial<Omit<CapabilityCont
 /** Capability IDs are derived from these records, not a second maintained union. */
 export const CAPABILITY_MANIFEST={
   "network.context":contract("network-context","capabilities/network-context/remote.ts",{commands:["setActiveNetwork"],queries:["fetchMyNetworkMemberships"],persistenceNamespace:["public.networks","public.network_memberships"],policyBoundary:"existing-rpc-rls"}),
-  "network.membership":contract("participation","capabilities/participation/remote.ts",{commands:["joinNetwork"],apiRoutes:["app/api/v1/networks/join/route.ts"],persistenceNamespace:["public.network_memberships"],policyBoundary:"existing-rpc-rls"}),
-  "network.construction":contract("construction","capabilities/construction/runtime.ts",{commands:["createNetwork"],apiRoutes:["app/api/v1/networks/create/route.ts"],persistenceNamespace:["public.networks"],policyBoundary:"existing-rpc-rls"}),
-  "network.affiliation":contract("affiliation","capabilities/affiliation/remote.ts",{queries:["fetchNetworkAffiliatedEntities","fetchNetworkProjections"],persistenceNamespace:["public.network_entities","public.network_projections"],policyBoundary:"existing-rpc-rls"}),
+  "network.membership":contract("participation","capabilities/participation/remote.ts",{commands:["joinNetwork"],apiRoutes:["app/api/v1/networks/join/route.ts"],persistenceNamespace:["public.network_memberships"],policyBoundary:"existing-rpc-rls",observability:"partial-standardized-api-runtime"}),
+  "network.construction":contract("construction","capabilities/construction/runtime.ts",{commands:["createNetwork"],apiRoutes:["app/api/v1/networks/create/route.ts"],persistenceNamespace:["public.networks"],policyBoundary:"existing-rpc-rls",observability:"partial-standardized-api-runtime"}),
+  "network.affiliation":contract("affiliation","capabilities/affiliation/remote.ts",{queries:["fetchNetworkAffiliatedEntities","fetchNetworkProjections"],persistenceNamespace:["public.network_entities","public.network_projections"],policyBoundary:"existing-rpc-rls",observability:"partial-standardized-api-runtime"}),
   "network.activity":contract("activity","capabilities/activity/remote.ts",{commands:["createNetworkActivity","respondNetworkEvent"],queries:["fetchNetworkActivities"],persistenceNamespace:["public.network_activities"],policyBoundary:"existing-rpc-rls"}),
   "network.intelligence":contract("intelligence-adapter","capabilities/intelligence-adapter/runtime.ts",{queries:["createKnowledgeIntelligenceRuntime"]}),
   "runtime.launch-control":contract("launch-runtime","capabilities/launch-runtime/remote.ts"),
@@ -42,8 +42,8 @@ export const CAPABILITY_MANIFEST={
   "domain.kinship":contract("family","verticals/family/participation/adapter.ts",{policyBoundary:"existing-rpc-rls"}),
   "domain.institutional-membership":contract("alumni","verticals/alumni/runtime/composition.ts",{persistenceNamespace:["public.alumni_profiles"],policyBoundary:"existing-rpc-rls",loadingBoundary:"vertical-lazy-chunk"}),
   "domain.community-association":contract("association","verticals/association/runtime/composition.ts",{loadingBoundary:"productized-lazy-shell"}),
-  "domain.family-association":contract("family-association","verticals/family-association/runtime/composition.ts",{policyAdapter:"verticals/family-association/runtime/policy.ts",workflowAdapter:"verticals/family-association/runtime/workflow.ts",apiRoutes:["app/api/v1/family-association/admin/route.ts","app/api/v1/family-association/admin/command/route.ts"],loadingBoundary:"vertical-lazy-chunk"}),
-  "domain.housing-society":contract("housing-society","verticals/housing-society/runtime/remote.ts",{persistenceNamespace:["public.hs_complaints"],policyBoundary:"existing-rpc-rls",policyAdapter:"verticals/housing-society/runtime/policy.ts",workflowAdapter:"verticals/housing-society/runtime/workflow.ts",apiRoutes:["app/api/v1/housing/operations/route.ts","app/api/v1/housing/operations/command/route.ts"],loadingBoundary:"vertical-lazy-chunk"}),
+  "domain.family-association":contract("family-association","verticals/family-association/runtime/composition.ts",{policyAdapter:"verticals/family-association/runtime/policy.ts",workflowAdapter:"verticals/family-association/runtime/workflow.ts",apiRoutes:["app/api/v1/family-association/admin/route.ts","app/api/v1/family-association/admin/command/route.ts"],observability:"standardized-api-runtime",loadingBoundary:"vertical-lazy-chunk"}),
+  "domain.housing-society":contract("housing-society","verticals/housing-society/runtime/remote.ts",{persistenceNamespace:["public.hs_complaints"],policyBoundary:"existing-rpc-rls",policyAdapter:"verticals/housing-society/runtime/policy.ts",workflowAdapter:"verticals/housing-society/runtime/workflow.ts",apiRoutes:["app/api/v1/housing/operations/route.ts","app/api/v1/housing/operations/command/route.ts"],observability:"standardized-api-runtime",loadingBoundary:"vertical-lazy-chunk"}),
   "domain.organizational-intelligence":contract("organization","verticals/organization/runtime/composition.ts",{loadingBoundary:"productized-lazy-shell"}),
   "domain.business-trust":contract("business-trust","verticals/business-trust/runtime/composition.ts",{loadingBoundary:"productized-lazy-shell"}),
   "domain.franchise-operations":contract("franchise","verticals/franchise/runtime/composition.ts",{loadingBoundary:"productized-lazy-shell"}),

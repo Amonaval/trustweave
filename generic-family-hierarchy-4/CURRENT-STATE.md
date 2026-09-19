@@ -1,5 +1,10 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — M3-D9 reliability / observability / SLO candidate
+
+D9 standardizes privacy-safe JSON observations for the authenticated query/command runtime: request correlation, capability/vertical/journey dimensions, latency, slow classification, failure code and idempotency state, with actor/network identifiers reduced to one-way tags. A bounded process-local SLI sample and executable SLO/error-budget contracts cover core reads/mutations plus Housing and Family Community operations; direct-entry remains explicitly browser-measured. Operational health now distinguishes liveness, runtime configuration readiness, background-worker availability and telemetry durability without exposing tenant traffic. Housing/FCA migrated API boundaries are marked standardized; partially migrated shared capabilities remain partial. No external telemetry vendor, observability database or School implementation was introduced.
+
+
 ## 2026-09-20 — M3-D8 multi-tenant scale & performance candidate
 
 D8 adds bounded multi-tenant scale contracts without introducing premature sharding/partitioning. Shared query/command runtimes now apply actor + network burst scopes; graph traversal, bootstrap and synchronous export have explicit work ceilings; additive migration 123 supplies targeted network-first indexes and clamped keyset page RPCs; paged reads stay behind authenticated server query boundaries. Scale escalation triggers now make partitioning, deployment stamps and shared rate limiting conditional on measured signals rather than architecture theatre. Existing eager UI reads remain compatible and can migrate incrementally. No School implementation or new database topology was added.

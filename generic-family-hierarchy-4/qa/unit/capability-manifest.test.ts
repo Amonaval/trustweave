@@ -14,7 +14,7 @@ test("each advertised capability resolves to one owned contract with real source
   if(entry.policyAdapter)assert.ok(existsSync(entry.policyAdapter),`${id}: policy adapter missing`);
   if(entry.workflowAdapter)assert.ok(existsSync(entry.workflowAdapter),`${id}: workflow adapter missing`);
   assert.ok(["current-shared-bundle","productized-lazy-shell","vertical-lazy-chunk"].includes(entry.loadingBoundary));
-  assert.equal(entry.observability,"not-standardized");
+  assert.ok(["not-standardized","partial-standardized-api-runtime","standardized-api-runtime"].includes(entry.observability));
   for(const table of entry.persistenceNamespace){
    assert.match(table,/^public\.[a-z_]+$/);
    assert.ok(schema.includes(table),`${id}: unknown persistence reference: ${table}`);
@@ -45,4 +45,10 @@ test("D7 loading metadata keeps heavy vertical capabilities out of the universal
  for(const id of ["domain.community-association","domain.organizational-intelligence","domain.business-trust","domain.franchise-operations","domain.professional-expertise"] as const){
   assert.equal(CAPABILITY_MANIFEST[id].loadingBoundary,"productized-lazy-shell");
  }
+});
+
+test("D9 standardized API observability is explicit for migrated Housing/FCA boundaries",()=>{
+ assert.equal(CAPABILITY_MANIFEST["domain.housing-society"].observability,"standardized-api-runtime");
+ assert.equal(CAPABILITY_MANIFEST["domain.family-association"].observability,"standardized-api-runtime");
+ for(const id of ["network.membership","network.construction","network.affiliation"] as const)assert.equal(CAPABILITY_MANIFEST[id].observability,"partial-standardized-api-runtime");
 });

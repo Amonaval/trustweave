@@ -1,0 +1,14 @@
+core/observability/contracts.ts
+server/observability/telemetry.ts
+server/observability/health.ts
+server/shared/response.ts
+server/jobs/dispatcher.ts
+app/api/health/route.ts
+core/verticals/capability-manifest.ts
+qa/unit/capability-manifest.test.ts
+qa/unit/observability-slo-contracts.test.ts
+package.json
+CURRENT-STATE.md
+ROADMAP.md
+missions/mission-003/m3-d/D9-OBSERVABILITY-SLO-EVIDENCE.md
+missions/mission-003/m3-d/D9-AFFECTED-FILES.txt
