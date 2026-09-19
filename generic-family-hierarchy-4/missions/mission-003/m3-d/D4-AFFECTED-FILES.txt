@@ -1,0 +1,11 @@
+core/authorization/policy.ts
+core/verticals/capability-manifest.ts
+lib/network-route-access.ts
+verticals/housing-society/runtime/policy.ts
+verticals/family-association/runtime/policy.ts
+qa/unit/authorization-policy.test.ts
+qa/unit/capability-manifest.test.ts
+package.json
+missions/mission-003/m3-d/D4-AUTHORIZATION-CONSENT-EVIDENCE.md
+missions/mission-003/m3-d/D4-AFFECTED-FILES.txt
+CURRENT-STATE.md

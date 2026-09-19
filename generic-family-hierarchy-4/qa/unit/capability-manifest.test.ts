@@ -11,6 +11,7 @@ test("each advertised capability resolves to one owned contract with real source
  for(const [id,entry] of Object.entries(CAPABILITY_MANIFEST)){
   assert.equal(getCapabilityContract(id),entry);
   assert.ok(entry.owner&&existsSync(entry.source),`${id}: source missing`);
+  if(entry.policyAdapter)assert.ok(existsSync(entry.policyAdapter),`${id}: policy adapter missing`);
   assert.equal(entry.loadingBoundary,"current-shared-bundle");
   assert.equal(entry.observability,"not-standardized");
   for(const table of entry.persistenceNamespace){

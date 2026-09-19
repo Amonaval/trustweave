@@ -1,6 +1,7 @@
 import type {NetworkMembership} from "../core/network/contracts";
 import {getVerticalAppComposition} from "../app-shell/vertical-runtime";
 import type {NetworkRoute} from "./network-routes";
+import {decideScopedAuthorization} from "../core/authorization/policy";
 
 /** A route never grants access. The active membership comes from the server-backed RPC. */
 export function authorizeNetworkSurface(route:NetworkRoute,memberships:readonly NetworkMembership[]):NetworkMembership {
@@ -11,6 +12,17 @@ export function authorizeNetworkSurface(route:NetworkRoute,memberships:readonly 
  if(composition.renderStatus!=="active")throw unavailable();
  const surfaces=[...composition.primaryNavigation,...composition.mobileMoreNavigation];
  const target=surfaces.find(item=>item.viewId===route.surface);
- if(!target||target.adminOnly&&membership.role!=="admin"&&membership.role!=="owner")throw unavailable();
+ if(!target)throw unavailable();
+ const decision=decideScopedAuthorization(
+  {
+   membership:{networkId:membership.network.id,role:membership.role,status:membership.status},
+   capability:target.capability||"network.context",
+   action:"surface.open",
+   purpose:"network-navigation",
+   resource:{networkId:membership.network.id,kind:"network-surface",id:target.viewId},
+  },
+  {roles:target.adminOnly?["owner","admin"]:["owner","admin","member"],accessMode:"role-only",purposes:["network-navigation"]},
+ );
+ if(!decision.allowed)throw unavailable();
  return membership;
 }

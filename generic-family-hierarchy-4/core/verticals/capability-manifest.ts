@@ -9,6 +9,7 @@ export type CapabilityContract = Readonly<{
   /** Known table references; these may be shared across owners and are not an exclusive schema grant. */
   persistenceNamespace: readonly string[];
   policyBoundary: "existing-rpc-rls" | "shared-application" | "unmapped";
+  policyAdapter: string | null;
   apiRoutes: readonly string[];
   uiRoute: "shared-network-surface" | "none";
   observability: "not-standardized";
@@ -16,7 +17,7 @@ export type CapabilityContract = Readonly<{
 }>;
 
 function contract(owner:string,source:string,options:Partial<Omit<CapabilityContract,"owner"|"source">>={}):CapabilityContract {
-  return Object.freeze({owner,source,commands:[],queries:[],events:[],persistenceNamespace:[],policyBoundary:"unmapped",apiRoutes:[],uiRoute:"shared-network-surface",observability:"not-standardized",loadingBoundary:"current-shared-bundle",...options});
+  return Object.freeze({owner,source,commands:[],queries:[],events:[],persistenceNamespace:[],policyBoundary:"unmapped",policyAdapter:null,apiRoutes:[],uiRoute:"shared-network-surface",observability:"not-standardized",loadingBoundary:"current-shared-bundle",...options});
 }
 
 /** Capability IDs are derived from these records, not a second maintained union. */
@@ -33,15 +34,15 @@ export const CAPABILITY_MANIFEST={
   "runtime.whats-new":contract("whats-new","app-shell/vertical-runtime.ts",{policyBoundary:"shared-application"}),
   "identity.claiming":contract("identity-claiming","capabilities/identity-claiming/runtime.ts",{commands:["claimIdentity"],apiRoutes:["app/api/v1/identities/claim/route.ts"],policyBoundary:"existing-rpc-rls"}),
   "identity.invitations":contract("participation","capabilities/participation/remote.ts",{apiRoutes:["app/api/v1/networks/[networkId]/invitations/route.ts"],persistenceNamespace:["public.network_memberships"],policyBoundary:"existing-rpc-rls"}),
-  "identity.privacy":contract("identity","lib/identity.tsx",{policyBoundary:"shared-application"}),
+  "identity.privacy":contract("identity","lib/identity.tsx",{policyBoundary:"shared-application",policyAdapter:"core/authorization/policy.ts"}),
   "contribution.governed":contract("participation","capabilities/participation/remote.ts",{persistenceNamespace:["public.network_contributions"],policyBoundary:"existing-rpc-rls"}),
   "community.groups-events":contract("activity","capabilities/activity/remote.ts",{commands:["createNetworkGroup","createNetworkActivity"],queries:["fetchNetworkGroups","fetchNetworkActivities"],persistenceNamespace:["public.network_groups","public.network_activities"],policyBoundary:"existing-rpc-rls"}),
   "notifications.digest":contract("notifications","lib/notification-routing.ts",{persistenceNamespace:["public.notifications"],policyBoundary:"shared-application"}),
   "domain.kinship":contract("family","verticals/family/participation/adapter.ts",{policyBoundary:"existing-rpc-rls"}),
   "domain.institutional-membership":contract("alumni","verticals/alumni/runtime/composition.ts",{persistenceNamespace:["public.alumni_profiles"],policyBoundary:"existing-rpc-rls"}),
   "domain.community-association":contract("association","verticals/association/runtime/composition.ts"),
-  "domain.family-association":contract("family-association","verticals/family-association/runtime/composition.ts"),
-  "domain.housing-society":contract("housing-society","verticals/housing-society/runtime/remote.ts",{persistenceNamespace:["public.hs_complaints"],policyBoundary:"existing-rpc-rls"}),
+  "domain.family-association":contract("family-association","verticals/family-association/runtime/composition.ts",{policyAdapter:"verticals/family-association/runtime/policy.ts"}),
+  "domain.housing-society":contract("housing-society","verticals/housing-society/runtime/remote.ts",{persistenceNamespace:["public.hs_complaints"],policyBoundary:"existing-rpc-rls",policyAdapter:"verticals/housing-society/runtime/policy.ts"}),
   "domain.organizational-intelligence":contract("organization","verticals/organization/runtime/composition.ts"),
   "domain.business-trust":contract("business-trust","verticals/business-trust/runtime/composition.ts"),
   "domain.franchise-operations":contract("franchise","verticals/franchise/runtime/composition.ts"),
