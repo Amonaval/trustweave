@@ -43,3 +43,10 @@ test("D7 heavy showcase config remains behind the lazy productized shell",()=>{
  const heavyImporters=["components/TemplateNetworkApp.tsx"];
  for(const path of heavyImporters)assert.match(read(path),/templates\/productized\/config/);
 });
+
+test("D7 production budget distinguishes Next dynamic chunks from startup chunks",()=>{
+ const budget=read("scripts/d7-bundle-budget.mjs");
+ assert.match(budget,/react-loadable-manifest\.json/);
+ assert.match(budget,/routeFiles\.filter\(file=>!lazyFiles\.has\(file\)\)/);
+ assert.match(budget,/lazy vertical startup-marker check/);
+});

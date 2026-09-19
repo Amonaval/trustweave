@@ -42,7 +42,7 @@ This deliberately does not turn the manifest itself into an asynchronous registr
 - enforces a configurable root-route budget (default 2 MB raw JS);
 - rejects representative Housing/FCA markers in the root-route chunks.
 
-The first production build measured **2,260,785 raw bytes across 13 root-route JS chunks**, while Next's route summary reported **644 kB First Load JS** for `/`. The raw-file guard therefore uses **2.4 MB** as the first evidence-based ceiling (about 6% headroom), not as a performance target. The representative vertical-leak marker check runs before the size assertion. Future missions should ratchet the ceiling down from this measured baseline rather than inventing a lower threshold.
+The first production build showed that `app-build-manifest.json` contains both initial and `next/dynamic` chunks: its 13-file union totaled **2,260,785 raw bytes**, while Next reported **644 kB First Load JS** for `/`. A Housing marker was correctly found in that union because the dynamically loaded Housing chunk is referenced by the route, not because it is downloaded at startup. The guard now uses Next's `react-loadable-manifest.json` to subtract dynamic chunks before measuring or scanning the root startup set. The initial raw-startup ceiling is **1.2 MB** pending the next CI measurement; unlike the rejected 2 MB/2.4 MB union thresholds, this budget applies only to files that are not registered as dynamic chunks. Future missions should ratchet the measured startup baseline downward rather than comparing against the async union.
 
 ## Boundaries / non-goals
 
