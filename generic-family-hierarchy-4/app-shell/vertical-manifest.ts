@@ -1,5 +1,6 @@
 import type {VerticalAppComposition,VerticalSurfaceDescriptor} from "../core/verticals/app-composition";
 import type {VerticalDefinition} from "../core/verticals/contracts";
+import {getCapabilityContract} from "../core/verticals/capability-manifest";
 import {NETWORK_VERTICAL_KINDS,type NetworkVerticalKind} from "../core/verticals/kinds";
 import {FAMILY_VERTICAL} from "../verticals/family/definition";
 import {ALUMNI_VERTICAL} from "../verticals/alumni/definition";
@@ -60,6 +61,7 @@ function assertManifest(){
     if((runtimeMode==="productized-template")!==(productizedConfig!==null)||productizedConfig&&productizedConfig.kind!==kind)throw new Error(`Vertical config mismatch: ${kind}`);
     const features=new Set(definition.featureCatalog.features.map(feature=>feature.key));
     const capabilities=new Set<string>(definition.capabilities);
+    for(const capability of capabilities)getCapabilityContract(capability);
     const surfaces=new Set<string>();
     for(const surface of [...app.primaryNavigation,...app.mobileMoreNavigation] as VerticalSurfaceDescriptor[]){
       if(surfaces.has(surface.viewId))throw new Error(`Duplicate ${kind} navigation surface: ${surface.viewId}`);

@@ -1,5 +1,9 @@
 # TrustWeave — Current State
 
+## 2026-09-19 — M3-D3 capability contract candidate
+
+The 25 declared vertical capability IDs now derive from one typed ownership and interface inventory in `core/verticals/capability-manifest.ts`. Unknown IDs fail closed; source, API route and known persistence references are checked in the unit suite. `missions/mission-003/m3-d/D3-CAPABILITY-CONTRACT-EVIDENCE.md` records explicit unmapped areas. D1–D3 remain source candidates pending a combined authenticated staging checkpoint; D4 authorization/consent work is not yet certified.
+
 ## 2026-09-19 — M3-D2 manifest candidate
 
 The released vertical identity, navigation and runtime registrations now project from `app-shell/vertical-manifest.ts` and the lightweight kind vocabulary in `core/verticals/kinds.ts`. The source gates and remaining connected verification are recorded in `missions/mission-003/m3-d/D2-VERTICAL-MANIFEST-EVIDENCE.md`. D1–D2 authenticated staging checks are batched for the next checkpoint; neither is represented as connected certified. School remains unimplemented.

@@ -1,0 +1,8 @@
+core/verticals/capability-manifest.ts
+core/verticals/contracts.ts
+app-shell/vertical-manifest.ts
+qa/unit/capability-manifest.test.ts
+package.json
+missions/mission-003/m3-d/D3-CAPABILITY-CONTRACT-EVIDENCE.md
+missions/mission-003/m3-d/D3-AFFECTED-FILES.txt
+CURRENT-STATE.md
