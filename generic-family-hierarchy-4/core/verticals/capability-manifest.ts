@@ -14,7 +14,7 @@ export type CapabilityContract = Readonly<{
   apiRoutes: readonly string[];
   uiRoute: "shared-network-surface" | "none";
   observability: "not-standardized";
-  loadingBoundary: "current-shared-bundle";
+  loadingBoundary: "current-shared-bundle" | "productized-lazy-shell" | "vertical-lazy-chunk";
 }>;
 
 function contract(owner:string,source:string,options:Partial<Omit<CapabilityContract,"owner"|"source">>={}):CapabilityContract {
@@ -40,14 +40,14 @@ export const CAPABILITY_MANIFEST={
   "community.groups-events":contract("activity","capabilities/activity/remote.ts",{commands:["createNetworkGroup","createNetworkActivity"],queries:["fetchNetworkGroups","fetchNetworkActivities"],persistenceNamespace:["public.network_groups","public.network_activities"],policyBoundary:"existing-rpc-rls"}),
   "notifications.digest":contract("notifications","lib/notification-routing.ts",{persistenceNamespace:["public.notifications"],policyBoundary:"shared-application"}),
   "domain.kinship":contract("family","verticals/family/participation/adapter.ts",{policyBoundary:"existing-rpc-rls"}),
-  "domain.institutional-membership":contract("alumni","verticals/alumni/runtime/composition.ts",{persistenceNamespace:["public.alumni_profiles"],policyBoundary:"existing-rpc-rls"}),
-  "domain.community-association":contract("association","verticals/association/runtime/composition.ts"),
-  "domain.family-association":contract("family-association","verticals/family-association/runtime/composition.ts",{policyAdapter:"verticals/family-association/runtime/policy.ts",workflowAdapter:"verticals/family-association/runtime/workflow.ts",apiRoutes:["app/api/v1/family-association/admin/route.ts","app/api/v1/family-association/admin/command/route.ts"]}),
-  "domain.housing-society":contract("housing-society","verticals/housing-society/runtime/remote.ts",{persistenceNamespace:["public.hs_complaints"],policyBoundary:"existing-rpc-rls",policyAdapter:"verticals/housing-society/runtime/policy.ts",workflowAdapter:"verticals/housing-society/runtime/workflow.ts",apiRoutes:["app/api/v1/housing/operations/route.ts","app/api/v1/housing/operations/command/route.ts"]}),
-  "domain.organizational-intelligence":contract("organization","verticals/organization/runtime/composition.ts"),
-  "domain.business-trust":contract("business-trust","verticals/business-trust/runtime/composition.ts"),
-  "domain.franchise-operations":contract("franchise","verticals/franchise/runtime/composition.ts"),
-  "domain.professional-expertise":contract("professional","verticals/professional/runtime/composition.ts"),
+  "domain.institutional-membership":contract("alumni","verticals/alumni/runtime/composition.ts",{persistenceNamespace:["public.alumni_profiles"],policyBoundary:"existing-rpc-rls",loadingBoundary:"vertical-lazy-chunk"}),
+  "domain.community-association":contract("association","verticals/association/runtime/composition.ts",{loadingBoundary:"productized-lazy-shell"}),
+  "domain.family-association":contract("family-association","verticals/family-association/runtime/composition.ts",{policyAdapter:"verticals/family-association/runtime/policy.ts",workflowAdapter:"verticals/family-association/runtime/workflow.ts",apiRoutes:["app/api/v1/family-association/admin/route.ts","app/api/v1/family-association/admin/command/route.ts"],loadingBoundary:"vertical-lazy-chunk"}),
+  "domain.housing-society":contract("housing-society","verticals/housing-society/runtime/remote.ts",{persistenceNamespace:["public.hs_complaints"],policyBoundary:"existing-rpc-rls",policyAdapter:"verticals/housing-society/runtime/policy.ts",workflowAdapter:"verticals/housing-society/runtime/workflow.ts",apiRoutes:["app/api/v1/housing/operations/route.ts","app/api/v1/housing/operations/command/route.ts"],loadingBoundary:"vertical-lazy-chunk"}),
+  "domain.organizational-intelligence":contract("organization","verticals/organization/runtime/composition.ts",{loadingBoundary:"productized-lazy-shell"}),
+  "domain.business-trust":contract("business-trust","verticals/business-trust/runtime/composition.ts",{loadingBoundary:"productized-lazy-shell"}),
+  "domain.franchise-operations":contract("franchise","verticals/franchise/runtime/composition.ts",{loadingBoundary:"productized-lazy-shell"}),
+  "domain.professional-expertise":contract("professional","verticals/professional/runtime/composition.ts",{loadingBoundary:"productized-lazy-shell"}),
 } as const satisfies Record<string,CapabilityContract>;
 
 export type VerticalCapabilityId=keyof typeof CAPABILITY_MANIFEST;

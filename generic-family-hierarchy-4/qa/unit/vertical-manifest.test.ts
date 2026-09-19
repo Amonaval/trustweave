@@ -5,7 +5,7 @@ import {VERTICAL_MANIFEST,getVerticalManifest} from "../../app-shell/vertical-ma
 import {VERTICAL_REGISTRY,getVerticalDefinition} from "../../app-shell/vertical-registry";
 import {getVerticalAppComposition,getRenderableVerticalRuntime} from "../../app-shell/vertical-runtime";
 import {getVerticalCapabilityRuntime} from "../../app-shell/vertical-capabilities";
-import {PRODUCTIZED_NETWORK_CONFIGS} from "../../templates/productized/config";
+import {PRODUCTIZED_RUNTIME_META} from "../../templates/productized/runtime-meta";
 
 test("the type vocabulary, feature projection, route composition and capability runtime resolve the same nine verticals",()=>{
  assert.deepEqual(new Set(Object.keys(VERTICAL_MANIFEST)),new Set(NETWORK_VERTICAL_KINDS));
@@ -16,8 +16,9 @@ test("the type vocabulary, feature projection, route composition and capability 
   assert.equal(getVerticalAppComposition(kind),manifest.app);
   assert.equal(getRenderableVerticalRuntime(kind).capabilities,getVerticalCapabilityRuntime(kind));
   assert.equal(manifest.app.featureCatalogId,manifest.definition.featureCatalog.catalogId);
-  if(manifest.runtimeMode==="productized-template")assert.equal(manifest.productizedConfig,PRODUCTIZED_NETWORK_CONFIGS[kind as keyof typeof PRODUCTIZED_NETWORK_CONFIGS]);
+  if(manifest.runtimeMode==="productized-template")assert.equal(manifest.productizedConfig,PRODUCTIZED_RUNTIME_META[kind as keyof typeof PRODUCTIZED_RUNTIME_META]);
   else assert.equal(manifest.productizedConfig,null);
+  assert.equal(manifest.loadingBoundary,kind==="family"?"universal-shell":"lazy-vertical-ui");
  }
 });
 

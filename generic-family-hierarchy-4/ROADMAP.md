@@ -2,7 +2,7 @@
 
 ## Active architecture priority — M3-D (2026-09-19)
 
-D0–D6 are implemented as bounded source/CI candidates: routing, manifests, capability ownership, scoped policy/consent, workflow primitives, and the first enforceable server API/data-boundary consolidation for Housing operations + Family Community administration. D7–D11 continue with lazy vertical loading, scale, observability, thin-vertical tooling and School readiness. Do not implement School until D11 provides credible proof. `missions/mission-003/m3-d/EXECUTION-CHARTER.md` gives the revised sequence; `NETWORK-OS-ARCHITECTURE-MASTER-PLAN.md` retains the older D1–D10 labels as historical strategy, explicitly shifted by one. The connected Residential/Community reliability and staging migration 122 gate below still require real evidence.
+D0–D7 are implemented as bounded source/CI candidates. The runtime-footprint slice now keeps Alumni/productized UI out of the universal static shell, separates lightweight vertical metadata from large productized showcase data, lazy-loads Housing/Family Community specialty UI, and applies a production root-route JavaScript budget. D8–D11 continue with multi-tenant scale, observability, thin-vertical tooling and School readiness. Do not implement School until D11 provides credible proof. `missions/mission-003/m3-d/EXECUTION-CHARTER.md` gives the revised sequence; `NETWORK-OS-ARCHITECTURE-MASTER-PLAN.md` retains the older D1–D10 labels as historical strategy, explicitly shifted by one. The connected Residential/Community reliability and staging migration 122 gate below still require real evidence.
 
 **Updated:** 2026-09-16
 

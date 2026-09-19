@@ -1,8 +1,8 @@
 import {createProductizedAppComposition} from "../../../capabilities/template-product/composition";
-import {PRODUCTIZED_NETWORK_CONFIGS} from "../../../templates/productized/config";
+import {PRODUCTIZED_RUNTIME_META} from "../../../templates/productized/runtime-meta";
 import type {VerticalAppComposition,VerticalSurfaceDescriptor} from "../../../core/verticals/app-composition";
 
-const base=createProductizedAppComposition("association",PRODUCTIZED_NETWORK_CONFIGS.association);
+const base=createProductizedAppComposition("association",PRODUCTIZED_RUNTIME_META["association"]);
 const label=(en:string)=>({en,hi:en,mr:en});
 const rename=(surface:VerticalSurfaceDescriptor,next:string):VerticalSurfaceDescriptor=>({...surface,label:label(next)});
 

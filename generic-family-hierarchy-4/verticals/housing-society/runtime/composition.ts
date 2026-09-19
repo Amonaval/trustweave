@@ -1,7 +1,7 @@
 import {createProductizedAppComposition} from "../../../capabilities/template-product/composition";
-import {PRODUCTIZED_NETWORK_CONFIGS} from "../../../templates/productized/config";
+import {PRODUCTIZED_RUNTIME_META} from "../../../templates/productized/runtime-meta";
 import type {VerticalAppComposition,VerticalSurfaceDescriptor} from "../../../core/verticals/app-composition";
-const base=createProductizedAppComposition("housing-society",PRODUCTIZED_NETWORK_CONFIGS["housing-society"]);
+const base=createProductizedAppComposition("housing-society",PRODUCTIZED_RUNTIME_META["housing-society"]);
 const label=(en:string,hi:string,mr:string)=>({en,hi,mr});
 const find=(viewId:string)=>[...base.primaryNavigation,...base.mobileMoreNavigation].find(s=>s.viewId===viewId)!;
 const relabel=(surface:VerticalSurfaceDescriptor,en:string,hi:string,mr:string):VerticalSurfaceDescriptor=>({...surface,label:label(en,hi,mr)});

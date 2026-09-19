@@ -39,16 +39,6 @@ import FounderLaunchConsole from "./FounderLaunchConsole";
 import OrganizationKnowledgeDiscoveryInbox from "./shared/OrganizationKnowledgeDiscoveryInbox";
 import OrganizationGraphAwareIntelligence from "./shared/OrganizationGraphAwareIntelligence";
 import InstitutionalBootstrapPanel from "./shared/InstitutionalBootstrapPanel";
-import AssociationHome from "./AssociationHome";
-import FamilyAssociationAdminPanel from "./FamilyAssociationAdminPanel";
-import HousingSocietyCorePanel from "./HousingSocietyCorePanel";
-import HousingSocietyHome from "./HousingSocietyHome";
-import HousingSocietyOperationsPanel from "./HousingSocietyOperationsPanel";
-import HousingSocietyFinancePanel from "./HousingSocietyFinancePanel";
-import HousingSocietyGovernancePanel from "./HousingSocietyGovernancePanel";
-import HousingSocietySecurityPanel from "./HousingSocietySecurityPanel";
-import HousingSocietyPilotPanel from "./HousingSocietyPilotPanel";
-import HousingSocietyManageWorkspace,{type HousingManageSection} from "./HousingSocietyManageWorkspace";
 import GuidedWorkbookImport from "./shared/GuidedWorkbookImport";
 import NetworkQuickStart from "./shared/NetworkQuickStart";
 import NetworkAdminCenter from "./shared/NetworkAdminCenter";
@@ -63,15 +53,25 @@ import NetworkFundsPanel from "./shared/NetworkFundsPanel";
 import NetworkVotingPanel from "./shared/NetworkVotingPanel";
 import MediaManagementPanel from "./shared/MediaManagementPanel";
 import type {NetworkAdminModuleId} from "../core/admin/contracts";
+import type {HousingManageSection} from "./HousingSocietyManageWorkspace";
 import type {QuickStartAction} from "../core/activation/quick-start";
 import {commitProductizedWorkbook} from "../capabilities/import/productized-workbook";
-import {recordHsPilotUsageEvent} from "../verticals/housing-society/runtime/pilot-remote";
 import {buildGovernedEdge,validateGraphRelationship} from "../core/graph/runtime";
 import {bindMediaAsset,removeMediaAsset,removeStoredMedia,uploadActivityMedia,uploadEntityProfileMedia,type NetworkMediaAsset} from "../lib/storage";
 
 // Leaflet touches `window` while its module is evaluated. Keep the geography surface
 // behind a client-only boundary so Next.js can prerender the application shell safely.
 const NetworkGeography = dynamic(() => import("./shared/NetworkGeography"), { ssr: false });
+const AssociationHome = dynamic(() => import("./AssociationHome"), {ssr:false});
+const FamilyAssociationAdminPanel = dynamic(() => import("./FamilyAssociationAdminPanel"), {ssr:false});
+const HousingSocietyCorePanel = dynamic(() => import("./HousingSocietyCorePanel"), {ssr:false});
+const HousingSocietyHome = dynamic(() => import("./HousingSocietyHome"), {ssr:false});
+const HousingSocietyOperationsPanel = dynamic(() => import("./HousingSocietyOperationsPanel"), {ssr:false});
+const HousingSocietyFinancePanel = dynamic(() => import("./HousingSocietyFinancePanel"), {ssr:false});
+const HousingSocietyGovernancePanel = dynamic(() => import("./HousingSocietyGovernancePanel"), {ssr:false});
+const HousingSocietySecurityPanel = dynamic(() => import("./HousingSocietySecurityPanel"), {ssr:false});
+const HousingSocietyPilotPanel = dynamic(() => import("./HousingSocietyPilotPanel"), {ssr:false});
+const HousingSocietyManageWorkspace = dynamic(() => import("./HousingSocietyManageWorkspace"), {ssr:false});
 
 type Tab="home"|"me"|"notices"|"complaints"|"maintenance"|"amenities"|"governance"|"security"|"funds"|"elections"|"media"|"intelligence"|"explorer"|"directory"|"community"|"places"|"connections"|"contribute"|"admin"|"guide"|"launch";
 type EditorState={id?:string;kind:string;label:string;metadata:Record<string,string>;affiliations:Record<string,string>};
@@ -116,7 +116,7 @@ export default function TemplateNetworkApp({network,auth,kind,demo=false,onNetwo
  useEffect(()=>{
   if(kind!=="housing-society"||demo)return;
   const key=({home:"home_view",me:"my_flat_view",directory:"directory_view",notices:"notice_view",complaints:"complaint_view",maintenance:"maintenance_view",amenities:"amenity_view",governance:"governance_view",security:"security_view"} as Record<string,string>)[tab];
-  if(key)void recordHsPilotUsageEvent(key).catch(()=>{});
+  if(key)void import("../verticals/housing-society/runtime/pilot-remote").then(({recordHsPilotUsageEvent})=>recordHsPilotUsageEvent(key)).catch(()=>{});
  },[kind,demo,tab]);
  const [relationFrom,setRelationFrom]=useState(""),[relationTo,setRelationTo]=useState(""),[relationType,setRelationType]=useState(cfg.template.relationships[0]?.key||""),[claimable,setClaimable]=useState<ClaimableProductizedEntity[]>([]),[members,setMembers]=useState<ProductizedNetworkMember[]>([]),[selectedEntity,setSelectedEntity]=useState<NetworkAffiliatedEntity|null>(null),[contributionKind,setContributionKind]=useState("Correction"),[explorerMode,setExplorerMode]=useState<"structure"|"drilldown">("structure"),[focusEntityId,setFocusEntityId]=useState("");
  const isAdmin=auth?.membership_role==="owner"||auth?.membership_role==="admin";const isPlatformOwner=!demo&&!!auth?.platform_owner;const experience=isAdmin?"admin":auth?"connected":"member";

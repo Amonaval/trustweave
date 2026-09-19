@@ -1,5 +1,10 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — M3-D7 runtime footprint & lazy vertical loading candidate
+
+The universal Network shell now dynamically loads Alumni and the productized-network application instead of statically bundling them, while lightweight productized runtime metadata is separated from the large showcase/sample dataset. Inside the productized shell, Housing and Family Community specialty panels plus Housing pilot telemetry are lazy-loaded only when those paths are used. Manifest/capability metadata records the loading boundary, source tests prevent static heavy imports from returning, and the production build now enforces a root-route JavaScript budget plus marker checks intended to catch Housing/FCA code leaking back into the root route. No School implementation, database migration, route behavior change or product feature expansion was added.
+
+
 ## 2026-09-20 — M3-D6 data & API boundary consolidation candidate
 
 A bounded D6 slice now routes Housing operations and Family Community administration through typed authenticated `/api/v1` query/command boundaries backed by server-owned services. Mutations use the existing idempotent command runtime; reads use a new shared authenticated query runtime with request IDs, rate limiting, normalized errors and structured logging. FCA admin RPC ownership moved out of the generic template-product remote into the Family Association vertical. `core/api/data-boundary-manifest.ts` and its unit guard record migrated RPC/table ownership and explicitly preserve remaining legacy hotspots rather than claiming a big-bang migration. No database migration, RLS relaxation or School implementation was added.

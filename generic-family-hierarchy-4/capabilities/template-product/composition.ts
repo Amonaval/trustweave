@@ -1,7 +1,8 @@
 import type {VerticalAppComposition} from "../../core/verticals/app-composition";
-import type {ProductizedNetworkConfig,ProductizedVerticalKind} from "../../templates/productized/config";
+import type {ProductizedVerticalKind} from "../../core/verticals/kinds";
+import type {ProductizedRuntimeMeta} from "../../templates/productized/runtime-meta";
 const label=(en:string,hi:string,mr:string)=>({en,hi,mr});
-export function createProductizedAppComposition(kind:ProductizedVerticalKind,cfg:ProductizedNetworkConfig):VerticalAppComposition{return {
+export function createProductizedAppComposition(kind:ProductizedVerticalKind,cfg:ProductizedRuntimeMeta):VerticalAppComposition{return {
  kind,renderStatus:"active",featureCatalogId:kind,
  primaryNavigation:[
   {viewId:"home",featureKey:`${kind}.core.home`,iconToken:"home",label:label("Home","होम","होम")},

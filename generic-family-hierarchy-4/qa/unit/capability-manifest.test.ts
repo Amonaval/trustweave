@@ -13,7 +13,7 @@ test("each advertised capability resolves to one owned contract with real source
   assert.ok(entry.owner&&existsSync(entry.source),`${id}: source missing`);
   if(entry.policyAdapter)assert.ok(existsSync(entry.policyAdapter),`${id}: policy adapter missing`);
   if(entry.workflowAdapter)assert.ok(existsSync(entry.workflowAdapter),`${id}: workflow adapter missing`);
-  assert.equal(entry.loadingBoundary,"current-shared-bundle");
+  assert.ok(["current-shared-bundle","productized-lazy-shell","vertical-lazy-chunk"].includes(entry.loadingBoundary));
   assert.equal(entry.observability,"not-standardized");
   for(const table of entry.persistenceNamespace){
    assert.match(table,/^public\.[a-z_]+$/);
@@ -35,5 +35,14 @@ test("each advertised capability resolves to one owned contract with real source
 test("unknown capability strings are denied, including object prototype keys",()=>{
  for(const id of ["domain.school","__proto__","constructor",""]){
   assert.throws(()=>getCapabilityContract(id),/Unknown capability/);
+ }
+});
+
+test("D7 loading metadata keeps heavy vertical capabilities out of the universal shell",()=>{
+ assert.equal(CAPABILITY_MANIFEST["domain.institutional-membership"].loadingBoundary,"vertical-lazy-chunk");
+ assert.equal(CAPABILITY_MANIFEST["domain.family-association"].loadingBoundary,"vertical-lazy-chunk");
+ assert.equal(CAPABILITY_MANIFEST["domain.housing-society"].loadingBoundary,"vertical-lazy-chunk");
+ for(const id of ["domain.community-association","domain.organizational-intelligence","domain.business-trust","domain.franchise-operations","domain.professional-expertise"] as const){
+  assert.equal(CAPABILITY_MANIFEST[id].loadingBoundary,"productized-lazy-shell");
  }
 });

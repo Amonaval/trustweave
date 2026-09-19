@@ -45,8 +45,6 @@ import AuthPanel from "./AuthPanel";
 import PublicDiscoveryPortal from "./PublicDiscoveryPortal";
 import RelationshipModal from "./RelationshipModal";
 import SetupScreen from "./SetupScreen";
-import AlumniNetworkApp from "./AlumniNetworkApp";
-import TemplateNetworkApp from "./TemplateNetworkApp";
 import NetworkTopbar from "./shared/NetworkTopbar";
 import NotificationCenter from "./shared/NotificationCenter";
 import {readNotificationDeepLink} from "../lib/notification-routing";
@@ -120,10 +118,13 @@ import { validateImportRows, validateNetwork } from "../lib/validation";
 import {createAlumniNetwork,fetchClaimableAlumniProfiles,claimAlumniProfile,acceptAlumniInvitation,type ClaimableAlumniProfile} from "../verticals/alumni/data/remote";
 import {createTemplateNetwork,joinProductizedNetworkByCode} from "../capabilities/template-product/remote";
 import {acceptNetworkInvitation} from "../capabilities/participation/remote";
-import {PRODUCTIZED_NETWORK_CONFIGS,isProductizedVerticalKind,type ProductizedVerticalKind} from "../templates/productized/config";
+import {isProductizedVerticalKind,type ProductizedVerticalKind} from "../core/verticals/kinds";
+import {PRODUCTIZED_RUNTIME_META} from "../templates/productized/runtime-meta";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "../lib/i18n";
 import {defaultFeatureMap, EffectiveFeatureMap, ExperienceLevel, FeatureKey, isFeatureAvailable, EXPERIENCE_LABELS, EXPERIENCE_RANK, FEATURE_BY_KEY} from "../lib/features";
+const AlumniNetworkApp = dynamic(() => import("./AlumniNetworkApp"), {ssr:false});
+const TemplateNetworkApp = dynamic(() => import("./TemplateNetworkApp"), {ssr:false});
 const MapView = dynamic(() => import("./MapView"), { ssr: false });
 const ImportModal = dynamic(() => import("./ImportModal"), { ssr: false });
 const repository = getNetworkRepository();
@@ -1119,7 +1120,7 @@ export default function NetworkApp() {
       setShowMyNetworks(false);setSetupNeeded(false);setDemoPreview(false);
       if(kind==="family"){if(familyVariant==="public")enterPublicPlayground();else enterSetupPlayground();return true;}
       if(kind==="alumni"){const alumni=getVerticalDefinition("alumni");setAlumniDemo(true);setProductizedDemo(null);setNetwork({id:"alumni-playground",name:"Sample Alumni Network",description:tr("ReadOnlySampleAlumniCommunityTxt"),entity_label:alumni.legacyNetworkLabels.entityLabel,entity_label_plural:alumni.legacyNetworkLabels.entityLabelPlural,level_label:alumni.legacyNetworkLabels.levelLabel,level_label_plural:alumni.legacyNetworkLabels.levelLabelPlural,parent_label:alumni.legacyNetworkLabels.parentLabel,child_label:alumni.legacyNetworkLabels.childLabel,peer_label:alumni.legacyNetworkLabels.peerLabel,network_template:"alumni",vertical_kind:"alumni",membership_role:"member"});setMembers([]);setRelationships([]);setSubmissions([]);return true;}
-      if(isProductizedVerticalKind(kind)){const def=getVerticalDefinition(kind);const pc=PRODUCTIZED_NETWORK_CONFIGS[kind];setProductizedDemo(kind);setAlumniDemo(false);setNetwork({id:`${kind}-playground`,name:pc.sampleName,description:pc.sampleDescription,entity_label:def.legacyNetworkLabels.entityLabel,entity_label_plural:def.legacyNetworkLabels.entityLabelPlural,level_label:def.legacyNetworkLabels.levelLabel,level_label_plural:def.legacyNetworkLabels.levelLabelPlural,parent_label:def.legacyNetworkLabels.parentLabel,child_label:def.legacyNetworkLabels.childLabel,peer_label:def.legacyNetworkLabels.peerLabel,network_template:kind,vertical_kind:kind,membership_role:"member"});setMembers([]);setRelationships([]);setSubmissions([]);return true;}
+      if(isProductizedVerticalKind(kind)){const def=getVerticalDefinition(kind);const pc=PRODUCTIZED_RUNTIME_META[kind];setProductizedDemo(kind);setAlumniDemo(false);setNetwork({id:`${kind}-playground`,name:pc.sampleName,description:pc.sampleDescription,entity_label:def.legacyNetworkLabels.entityLabel,entity_label_plural:def.legacyNetworkLabels.entityLabelPlural,level_label:def.legacyNetworkLabels.levelLabel,level_label_plural:def.legacyNetworkLabels.levelLabelPlural,parent_label:def.legacyNetworkLabels.parentLabel,child_label:def.legacyNetworkLabels.childLabel,peer_label:def.legacyNetworkLabels.peerLabel,network_template:kind,vertical_kind:kind,membership_role:"member"});setMembers([]);setRelationships([]);setSubmissions([]);return true;}
       return false;
     }finally{setShellBusy("")}
   };
