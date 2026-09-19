@@ -119,7 +119,7 @@
     "qa:preflight": "node qa/run-preflight.mjs",
     "qa:certify": "node qa/run-poc-certification.mjs",
     "qa:setup": "npm install --no-save --package-lock=false @playwright/test@1.55.0 @axe-core/playwright@4.10.2 pg@8.16.3 tsx@4.23.13 && npx playwright install chromium firefox webkit",
-    "qa:unit": "node --import tsx --test qa/unit/runtime-contracts.test.mjs qa/unit/core-contracts.test.ts qa/unit/resilient-crawl-contracts.test.mjs qa/unit/reliability-remediation-contracts.test.mjs qa/unit/network-routes.test.ts",
+    "qa:unit": "node --import tsx --test qa/unit/runtime-contracts.test.mjs qa/unit/core-contracts.test.ts qa/unit/resilient-crawl-contracts.test.mjs qa/unit/reliability-remediation-contracts.test.mjs qa/unit/network-routes.test.ts qa/unit/vertical-manifest.test.ts",
     "qa:m3d1:routing": "playwright test qa/e2e/35-m3d1-addressable-routing.spec.ts --project=chromium-desktop --workers=1",
     "qa:seed": "node qa/setup/seed.mjs",
     "qa:cleanup": "node qa/setup/cleanup.mjs",

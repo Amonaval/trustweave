@@ -1,6 +1,7 @@
 import type { NetworkMembership, NetworkMembershipRole, NetworkMembershipStatus } from "../../core/network/contracts";
 import type { NetworkVerticalKind } from "../../core/verticals/contracts";
 import { supabase } from "../../lib/supabase";
+import { isNetworkVerticalKind } from "../../core/verticals/kinds";
 
 /**
  * Transport projection for the neutral part of the historical get_my_networks() RPC.
@@ -20,22 +21,6 @@ type NetworkMembershipTransportRow = {
   vertical_kind?: NetworkVerticalKind | null;
   network_template?: string | null;
 };
-
-const NETWORK_VERTICAL_KINDS: readonly NetworkVerticalKind[] = [
-  "family",
-  "alumni",
-  "association",
-  "family-association",
-  "housing-society",
-  "organization",
-  "business-trust",
-  "franchise",
-  "professional",
-];
-
-function isNetworkVerticalKind(value: unknown): value is NetworkVerticalKind {
-  return typeof value === "string" && NETWORK_VERTICAL_KINDS.includes(value as NetworkVerticalKind);
-}
 
 function resolveTransportVerticalKind(row: NetworkMembershipTransportRow): NetworkVerticalKind {
   if(row.vertical_kind&&!isNetworkVerticalKind(row.vertical_kind))throw new Error("Unsupported network vertical");

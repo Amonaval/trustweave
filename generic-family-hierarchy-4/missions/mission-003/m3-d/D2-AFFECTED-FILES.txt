@@ -1,0 +1,14 @@
+core/verticals/kinds.ts
+core/verticals/contracts.ts
+app-shell/vertical-manifest.ts
+app-shell/vertical-registry.ts
+app-shell/vertical-runtime.ts
+app-shell/vertical-capabilities.ts
+capabilities/network-context/remote.ts
+templates/productized/config.ts
+qa/unit/runtime-contracts.test.mjs
+qa/unit/vertical-manifest.test.ts
+package.json
+missions/mission-003/m3-d/D2-VERTICAL-MANIFEST-EVIDENCE.md
+missions/mission-003/m3-d/D2-AFFECTED-FILES.txt
+CURRENT-STATE.md

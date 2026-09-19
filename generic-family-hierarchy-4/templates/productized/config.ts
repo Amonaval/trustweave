@@ -1,6 +1,7 @@
 import type {NetworkAffiliatedEntity,NetworkActivity} from "../../core/network-os/contracts";
 import type {NetworkGroup} from "../../capabilities/activity/remote";
 import type {VerticalTemplateDefinition} from "../../core/templates/contracts";
+import type {NetworkVerticalKind} from "../../core/verticals/contracts";
 import {ORGANIZATION_TEMPLATE} from "../organization/definition";
 import {BUSINESS_TRUST_TEMPLATE} from "../business-trust/definition";
 import {FRANCHISE_TEMPLATE} from "../franchise/definition";
@@ -9,7 +10,7 @@ import {ASSOCIATION_TEMPLATE} from "../association/definition";
 import {FAMILY_ASSOCIATION_TEMPLATE} from "../family-association/definition";
 import {HOUSING_SOCIETY_TEMPLATE} from "../housing-society/definition";
 
-export type ProductizedVerticalKind="association"|"family-association"|"housing-society"|"organization"|"business-trust"|"franchise"|"professional";
+export type ProductizedVerticalKind=Exclude<NetworkVerticalKind,"family"|"alumni">;
 export type ProductizedNetworkConfig={
  kind:ProductizedVerticalKind; template:VerticalTemplateDefinition; label:string; shortLabel:string; iconToken:string; themeClass:string;
  primaryEntityLabel:string; primaryEntityPlural:string; locationDimension:string; subtitleDimensions:string[];

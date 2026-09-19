@@ -1,5 +1,9 @@
 # TrustWeave — Current State
 
+## 2026-09-19 — M3-D2 manifest candidate
+
+The released vertical identity, navigation and runtime registrations now project from `app-shell/vertical-manifest.ts` and the lightweight kind vocabulary in `core/verticals/kinds.ts`. The source gates and remaining connected verification are recorded in `missions/mission-003/m3-d/D2-VERTICAL-MANIFEST-EVIDENCE.md`. D1–D2 authenticated staging checks are batched for the next checkpoint; neither is represented as connected certified. School remains unimplemented.
+
 ## 2026-09-19 — M3-D architecture foundation
 
 The canonical company direction is `docs/product/TRUSTWEAVE-COMPANY-NORTH-STAR.md`. The live `llm-push` branch is the code authority; the older M3-D handoff was reconciled selectively. The execution order is D0 architecture baseline, **D1 addressable routing**, then D2–D11 thin-vertical architecture and School readiness proof. School implementation has not started. D0 source inventory is recorded in `missions/mission-003/m3-d/D0-ARCHITECTURE-BASELINE.md`. D1 has an implemented candidate network/surface route foundation; `missions/mission-003/m3-d/D1-ROUTING-EVIDENCE.md` records its tests and the missing connected browser certification. The connected two-vertical reliability and migration 122 staging gate below remain open.
