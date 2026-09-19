@@ -2,7 +2,7 @@
 
 ## Active architecture priority — M3-D (2026-09-19)
 
-D0–D9 are implemented as bounded source/CI candidates. D9 adds privacy-safe tenant-correlated structured observations, bounded process-local SLIs, executable SLO/error-budget policy, slow-operation classification and honest dependency/background health. D10–D11 continue with thin-vertical tooling and School readiness. Do not implement School until D11 provides credible proof. `missions/mission-003/m3-d/EXECUTION-CHARTER.md` gives the revised sequence; `NETWORK-OS-ARCHITECTURE-MASTER-PLAN.md` retains the older D1–D10 labels as historical strategy, explicitly shifted by one. The connected Residential/Community reliability and staging migration 122 gate below still require real evidence.
+D0–D10 are implemented as bounded source/CI candidates. D10 adds a deterministic thin-vertical blueprint/SDK, typed adapter seams, route/surface validation, synthetic playground generation, release blockers, scaffold CLI and QA contract while preserving explicit fail-closed central registration. D11 is the remaining School architecture proof / readiness certification; School implementation remains blocked until that proof passes. Do not implement School until D11 provides credible proof. `missions/mission-003/m3-d/EXECUTION-CHARTER.md` gives the revised sequence; `NETWORK-OS-ARCHITECTURE-MASTER-PLAN.md` retains the older D1–D10 labels as historical strategy, explicitly shifted by one. The connected Residential/Community reliability and staging migration 122 gate below still require real evidence.
 
 **Updated:** 2026-09-16
 

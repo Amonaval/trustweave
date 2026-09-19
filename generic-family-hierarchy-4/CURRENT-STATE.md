@@ -1,5 +1,10 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — M3-D10 thin-vertical developer experience candidate
+
+D10 converts the D2–D9 architecture rules into a deterministic thin-vertical blueprint/scaffold contract. One JSON blueprint now validates reused/owned capabilities, route-safe localized surfaces, policy/workflow/data adapter obligations, lazy-loading intent, observability ownership and a bounded synthetic playground seed. The scaffold CLI can dry-run or emit only vertical-local definition/catalog/composition/adapter/seed/QA files plus an explicit integration plan; central kind/manifest/capability/QA registration remains deliberately explicit and fail-closed. Typed policy/workflow/query/command adapter interfaces prevent new verticals from inventing parallel platform engines. A synthetic QA-only civic-circle fixture proves the workflow while School remains unregistered and unimplemented.
+
+
 ## 2026-09-20 — M3-D9 reliability / observability / SLO candidate
 
 D9 standardizes privacy-safe JSON observations for the authenticated query/command runtime: request correlation, capability/vertical/journey dimensions, latency, slow classification, failure code and idempotency state, with actor/network identifiers reduced to one-way tags. A bounded process-local SLI sample and executable SLO/error-budget contracts cover core reads/mutations plus Housing and Family Community operations; direct-entry remains explicitly browser-measured. Operational health now distinguishes liveness, runtime configuration readiness, background-worker availability and telemetry durability without exposing tenant traffic. Housing/FCA migrated API boundaries are marked standardized; partially migrated shared capabilities remain partial. No external telemetry vendor, observability database or School implementation was introduced.
