@@ -140,6 +140,10 @@ Generate into a working directory:
 
 `npm run vertical:scaffold -- --spec path/to/vertical.json --write --out /tmp/trustweave-new-vertical`
 
+## CI repair note
+
+The first D10 candidate reached the TypeScript gate and exposed a test-source formatting defect: a literal `\\n` had been written into one scaffold assertion line. The source test was repaired without changing the SDK/scaffold design. The final D10 candidate must pass a fresh full CI run after this repair.
+
 ## Explicit non-goals
 
 D10 does not:
