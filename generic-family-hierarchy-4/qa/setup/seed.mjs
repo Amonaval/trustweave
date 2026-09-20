@@ -1,9 +1,11 @@
 import fs from 'node:fs';import path from 'node:path';
 import {VERTICALS} from '../runtime/catalog.mjs';
+import {QA_VERTICALS} from '../runtime/scope.mjs';
 import {assertMutationAllowed,loadQaEnv,requiredEnv,writeJson} from '../runtime/env.mjs';
 import {roleClient,serviceClient,setActiveNetwork} from '../runtime/supabase.mjs';
 loadQaEnv();assertMutationAllowed();requiredEnv(['NEXT_PUBLIC_SUPABASE_URL','NEXT_PUBLIC_SUPABASE_ANON_KEY','SUPABASE_SERVICE_ROLE_KEY']);
 const service=serviceClient();
+const targetVerticals=process.env.QA_SEED_SCOPE==='configured'?QA_VERTICALS:VERTICALS;
 const domain=process.env.QA_EMAIL_DOMAIN||'example.test';
 const password=process.env.QA_TEST_PASSWORD||'TrustWeave-QA-Only-ChangeMe-123!';
 const namespace=(process.env.QA_RUN_NAMESPACE||'cert').replace(/[^a-z0-9-]/gi,'-').toLowerCase();
@@ -21,7 +23,7 @@ const owner=(await roleClient('owner')).client;const tenantB=(await roleClient('
 async function findNetwork(ownerId,kind,name){const {data,error}=await service.from('networks').select('id,name,vertical_kind,status').eq('created_by',ownerId).eq('vertical_kind',kind).eq('name',name).limit(1);if(error)throw error;return data?.[0]}
 async function createNetwork(client,kind,name,context){if(kind==='family'){const {data,error}=await client.rpc('create_family',{p_name:name,p_slug:null,p_description:'Deterministic QA runtime fixture'});if(error)throw error;return String(data)}if(kind==='alumni'){const {data,error}=await client.rpc('create_alumni_network',{p_name:name,p_institution:context,p_description:'Deterministic QA runtime fixture'});if(error)throw error;return String(data)}const {data,error}=await client.rpc('create_productized_network',{p_vertical_kind:kind,p_name:name,p_context_value:context,p_description:'Deterministic QA runtime fixture'});if(error)throw error;return String(data)}
 const networks={};
-for(const v of VERTICALS){const name=`QA ${v.label} [${namespace}]`;let row=await findNetwork(users.owner.id,v.kind,name);if(!row){const id=await createNetwork(owner,v.kind,name,v.context);row={id,name,vertical_kind:v.kind,status:'active'}}else if(row.status==='archived'){await service.from('networks').update({status:'active',updated_at:new Date().toISOString()}).eq('id',row.id)}
+for(const v of targetVerticals){const name=`QA ${v.label} [${namespace}]`;let row=await findNetwork(users.owner.id,v.kind,name);if(!row){const id=await createNetwork(owner,v.kind,name,v.context);row={id,name,vertical_kind:v.kind,status:'active'}}else if(row.status==='archived'){await service.from('networks').update({status:'active',updated_at:new Date().toISOString()}).eq('id',row.id)}
  networks[v.kind]={id:row.id,name,kind:v.kind,marker:`QA-${v.marker}-${namespace}`};
  for(const [role,r] of [['admin','admin'],['member','member']]){const {error}=await service.from('network_memberships').upsert({network_id:row.id,user_id:users[role].id,role:r,status:'active',joined_at:new Date().toISOString()},{onConflict:'network_id,user_id'});if(error)throw new Error(`membership seed ${v.kind}/${role}: ${error.message}`)}
  await setActiveNetwork(owner,row.id);
@@ -31,9 +33,10 @@ for(const v of VERTICALS){const name=`QA ${v.label} [${namespace}]`;let row=awai
 // dedicated isolation tenant B: owner A/admin/member are intentionally NOT members
 const bName=`QA Isolation Tenant B [${namespace}]`;let b=await findNetwork(users.tenantB.id,'family',bName);if(!b){const id=await createNetwork(tenantB,'family',bName,'Tenant B');b={id,name:bName,vertical_kind:'family',status:'active'}}
 await setActiveNetwork(tenantB,b.id);
-// Default all tenant-A actors to family for deterministic login landing.
-for(const role of ['owner','admin','member']){const c=(await roleClient(role)).client;await setActiveNetwork(c,networks.family.id)}
+// Default all tenant-A actors to the first selected vertical for deterministic login landing.
+const defaultNetwork=networks[targetVerticals[0].kind];
+for(const role of ['owner','admin','member']){const c=(await roleClient(role)).client;await setActiveNetwork(c,defaultNetwork.id)}
 const state={version:1,namespace,generatedAt:new Date().toISOString(),users:Object.fromEntries(Object.entries(users).map(([k,v])=>[k,{id:v.id,email:v.email}])),networks,tenantB:{id:b.id,name:bName,kind:'family'}};
 writeJson(path.join('qa-results','fixtures','seed-state.json'),state);
-console.log(`QA seed PASS: ${Object.keys(networks).length} released verticals + isolated tenant B`);
+console.log(`QA seed PASS: ${Object.keys(networks).length} configured verticals + isolated tenant B`);
 console.log('Seed state: qa-results/fixtures/seed-state.json');

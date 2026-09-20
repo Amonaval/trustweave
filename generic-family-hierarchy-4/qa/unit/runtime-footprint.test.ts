@@ -1,0 +1,64 @@
+import {test} from "node:test";
+import {strict as assert} from "node:assert";
+import {readFileSync,statSync} from "node:fs";
+import {spawnSync} from "node:child_process";
+
+const read=(path:string)=>readFileSync(path,"utf8");
+
+test("D7 universal shell does not statically import productized/alumni UI or heavy productized showcase config",()=>{
+ const shell=read("components/NetworkApp.tsx");
+ assert.doesNotMatch(shell,/import\s+AlumniNetworkApp\s+from/);
+ assert.doesNotMatch(shell,/import\s+TemplateNetworkApp\s+from/);
+ assert.doesNotMatch(shell,/templates\/productized\/config/);
+ assert.match(shell,/dynamic\(\(\) => import\("\.\/AlumniNetworkApp"\)/);
+ assert.match(shell,/dynamic\(\(\) => import\("\.\/TemplateNetworkApp"\)/);
+ assert.match(shell,/PRODUCTIZED_RUNTIME_META/);
+});
+
+test("D7 productized shell lazy-loads vertical-heavy panels",()=>{
+ const shell=read("components/TemplateNetworkApp.tsx");
+ for(const name of ["AssociationHome","FamilyAssociationAdminPanel","HousingSocietyCorePanel","HousingSocietyHome","HousingSocietyOperationsPanel","HousingSocietyFinancePanel","HousingSocietyGovernancePanel","HousingSocietySecurityPanel","HousingSocietyPilotPanel","HousingSocietyManageWorkspace"]){
+  assert.doesNotMatch(shell,new RegExp(`import\\s+${name}\\s+from`),`${name} must not return to a static productized-shell import`);
+  assert.match(shell,new RegExp(`dynamic\\(\\(\\) => import\\("\\.\\/${name}"\\)`),`${name} must stay lazy`);
+ }
+ assert.doesNotMatch(shell,/import\s+\{recordHsPilotUsageEvent\}\s+from/);
+ assert.match(shell,/import\("\.\.\/verticals\/housing-society\/runtime\/pilot-remote"\)/);
+});
+
+test("D7 manifest/composition startup metadata cannot import the heavy productized showcase dataset",()=>{
+ const paths=[
+  "app-shell/vertical-manifest.ts",
+  "verticals/association/runtime/composition.ts",
+  "verticals/family-association/runtime/composition.ts",
+  "verticals/housing-society/runtime/composition.ts",
+  "verticals/organization/runtime/composition.ts",
+  "verticals/business-trust/runtime/composition.ts",
+  "verticals/franchise/runtime/composition.ts",
+  "verticals/professional/runtime/composition.ts",
+ ];
+ for(const path of paths)assert.doesNotMatch(read(path),/templates\/productized\/config/,`${path} reintroduced heavy showcase config into startup metadata`);
+ assert.ok(statSync("templates/productized/runtime-meta.ts").size<12_000,"lightweight runtime metadata exceeded 12 KB source budget");
+});
+
+test("D7 heavy showcase config remains behind the lazy productized shell",()=>{
+ const heavyImporters=["components/TemplateNetworkApp.tsx"];
+ for(const path of heavyImporters)assert.match(read(path),/templates\/productized\/config/);
+});
+
+test("D7 production build enforces Next-reported root First Load JS",()=>{
+ const probe=`import {parseRootFirstLoad} from "./scripts/d7-bundle-budget.mjs"; const x=parseRootFirstLoad("┌ ○ /                                            165 B           644 kB"); process.stdout.write(JSON.stringify(x));`;
+ const result=spawnSync(process.execPath,["--input-type=module","-e",probe],{encoding:"utf8"});
+ assert.equal(result.status,0,result.stderr);
+ const parsed=JSON.parse(result.stdout);
+ assert.equal(parsed.routeBytes,165);
+ assert.equal(parsed.firstLoadBytes,644000);
+ const build=read("scripts/d7-build.mjs");
+ assert.match(build,/assertRootFirstLoadBudget/);
+});
+
+test("D7 build and budget scripts are valid JavaScript",()=>{
+ for(const path of ["scripts/d7-bundle-budget.mjs","scripts/d7-build.mjs"]){
+  const result=spawnSync(process.execPath,["--check",path],{encoding:"utf8"});
+  assert.equal(result.status,0,result.stderr);
+ }
+});

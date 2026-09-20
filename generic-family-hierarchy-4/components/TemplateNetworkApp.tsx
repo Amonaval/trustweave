@@ -19,6 +19,7 @@ import {useLanguage} from "../lib/i18n";
 import NetworkTopbar from "./shared/NetworkTopbar";
 import NotificationCenter from "./shared/NotificationCenter";
 import {readNotificationDeepLink} from "../lib/notification-routing";
+import {navigateNetworkSurface,parseNetworkRoute} from "../lib/network-routes";
 import NetworkAccountMenu from "./shared/NetworkAccountMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
 import NetworkSwitcher from "./shared/NetworkSwitcher";
@@ -38,16 +39,6 @@ import FounderLaunchConsole from "./FounderLaunchConsole";
 import OrganizationKnowledgeDiscoveryInbox from "./shared/OrganizationKnowledgeDiscoveryInbox";
 import OrganizationGraphAwareIntelligence from "./shared/OrganizationGraphAwareIntelligence";
 import InstitutionalBootstrapPanel from "./shared/InstitutionalBootstrapPanel";
-import AssociationHome from "./AssociationHome";
-import FamilyAssociationAdminPanel from "./FamilyAssociationAdminPanel";
-import HousingSocietyCorePanel from "./HousingSocietyCorePanel";
-import HousingSocietyHome from "./HousingSocietyHome";
-import HousingSocietyOperationsPanel from "./HousingSocietyOperationsPanel";
-import HousingSocietyFinancePanel from "./HousingSocietyFinancePanel";
-import HousingSocietyGovernancePanel from "./HousingSocietyGovernancePanel";
-import HousingSocietySecurityPanel from "./HousingSocietySecurityPanel";
-import HousingSocietyPilotPanel from "./HousingSocietyPilotPanel";
-import HousingSocietyManageWorkspace,{type HousingManageSection} from "./HousingSocietyManageWorkspace";
 import GuidedWorkbookImport from "./shared/GuidedWorkbookImport";
 import NetworkQuickStart from "./shared/NetworkQuickStart";
 import NetworkAdminCenter from "./shared/NetworkAdminCenter";
@@ -62,15 +53,25 @@ import NetworkFundsPanel from "./shared/NetworkFundsPanel";
 import NetworkVotingPanel from "./shared/NetworkVotingPanel";
 import MediaManagementPanel from "./shared/MediaManagementPanel";
 import type {NetworkAdminModuleId} from "../core/admin/contracts";
+import type {HousingManageSection} from "./HousingSocietyManageWorkspace";
 import type {QuickStartAction} from "../core/activation/quick-start";
 import {commitProductizedWorkbook} from "../capabilities/import/productized-workbook";
-import {recordHsPilotUsageEvent} from "../verticals/housing-society/runtime/pilot-remote";
 import {buildGovernedEdge,validateGraphRelationship} from "../core/graph/runtime";
 import {bindMediaAsset,removeMediaAsset,removeStoredMedia,uploadActivityMedia,uploadEntityProfileMedia,type NetworkMediaAsset} from "../lib/storage";
 
 // Leaflet touches `window` while its module is evaluated. Keep the geography surface
 // behind a client-only boundary so Next.js can prerender the application shell safely.
 const NetworkGeography = dynamic(() => import("./shared/NetworkGeography"), { ssr: false });
+const AssociationHome = dynamic(() => import("./AssociationHome"), {ssr:false});
+const FamilyAssociationAdminPanel = dynamic(() => import("./FamilyAssociationAdminPanel"), {ssr:false});
+const HousingSocietyCorePanel = dynamic(() => import("./HousingSocietyCorePanel"), {ssr:false});
+const HousingSocietyHome = dynamic(() => import("./HousingSocietyHome"), {ssr:false});
+const HousingSocietyOperationsPanel = dynamic(() => import("./HousingSocietyOperationsPanel"), {ssr:false});
+const HousingSocietyFinancePanel = dynamic(() => import("./HousingSocietyFinancePanel"), {ssr:false});
+const HousingSocietyGovernancePanel = dynamic(() => import("./HousingSocietyGovernancePanel"), {ssr:false});
+const HousingSocietySecurityPanel = dynamic(() => import("./HousingSocietySecurityPanel"), {ssr:false});
+const HousingSocietyPilotPanel = dynamic(() => import("./HousingSocietyPilotPanel"), {ssr:false});
+const HousingSocietyManageWorkspace = dynamic(() => import("./HousingSocietyManageWorkspace"), {ssr:false});
 
 type Tab="home"|"me"|"notices"|"complaints"|"maintenance"|"amenities"|"governance"|"security"|"funds"|"elections"|"media"|"intelligence"|"explorer"|"directory"|"community"|"places"|"connections"|"contribute"|"admin"|"guide"|"launch";
 type EditorState={id?:string;kind:string;label:string;metadata:Record<string,string>;affiliations:Record<string,string>};
@@ -95,7 +96,8 @@ export default function TemplateNetworkApp({network,auth,kind,demo=false,onNetwo
  const surfaceLabel=(viewId:string)=>{const surface=navigationSurfaces.find(s=>s.viewId===viewId);return surface?localizedSurfaceLabel(surface,language):viewId};
  const localizedCfg=kind==="professional"?{label:t("ProfessionalNetworkTxt"),shortLabel:t("ProfessionalShortTxt"),heroTitle:t("ProfessionalHeroTxt"),heroDescription:t("ProfessionalHeroDescTxt")}:{label:cfg.label,shortLabel:cfg.shortLabel,heroTitle:cfg.heroTitle,heroDescription:cfg.heroDescription};
  const [paletteKey,setPaletteKey]=useState("signature");
- const [tab,setTab]=useState<Tab>("home"),[entities,setEntities]=useState<NetworkAffiliatedEntity[]>(demo?cfg.sampleEntities:[]),[projections,setProjections]=useState<NetworkProjectionDefinition[]>(demo?cfg.template.projections:[]),[activities,setActivities]=useState<NetworkActivity[]>(demo?cfg.sampleActivities:[]),[groups,setGroups]=useState<NetworkGroup[]>(demo?cfg.sampleGroups:[]),[relationships,setRelationships]=useState<NetworkEntityRelationship[]>(demo?cfg.sampleRelationships.map(x=>({...x,fromLabel:cfg.sampleEntities.find(e=>e.entity.id===x.fromEntityId)?.entity.label||"",toLabel:cfg.sampleEntities.find(e=>e.entity.id===x.toEntityId)?.entity.label||""})):[]),[contributions,setContributions]=useState<GenericContribution[]>([]);
+ const [tab,setTabState]=useState<Tab>("home"),[entities,setEntities]=useState<NetworkAffiliatedEntity[]>(demo?cfg.sampleEntities:[]),[projections,setProjections]=useState<NetworkProjectionDefinition[]>(demo?cfg.template.projections:[]),[activities,setActivities]=useState<NetworkActivity[]>(demo?cfg.sampleActivities:[]),[groups,setGroups]=useState<NetworkGroup[]>(demo?cfg.sampleGroups:[]),[relationships,setRelationships]=useState<NetworkEntityRelationship[]>(demo?cfg.sampleRelationships.map(x=>({...x,fromLabel:cfg.sampleEntities.find(e=>e.entity.id===x.fromEntityId)?.entity.label||"",toLabel:cfg.sampleEntities.find(e=>e.entity.id===x.toEntityId)?.entity.label||""})):[]),[contributions,setContributions]=useState<GenericContribution[]>([]);
+ const setTab=(next:Tab)=>{setTabState(next);if(!demo&&auth?.id)navigateNetworkSurface(network.network_id||network.id,next)};
  const [directoryMode,setDirectoryMode]=useState<"all"|"families"|"representatives"|"members">("all"),[areaFilter,setAreaFilter]=useState(""),[professionFilter,setProfessionFilter]=useState(""),[housingKindFilter,setHousingKindFilter]=useState(""),[housingBuildingFilter,setHousingBuildingFilter]=useState(""),[housingResidentTypeFilter,setHousingResidentTypeFilter]=useState("");
  const [settings,setSettings]=useState<TemplateNetworkSettings|null>(demo?{templateId:kind,contextLabel:cfg.contextLabel,contextValue:cfg.sampleName,description:cfg.sampleDescription}:null),[query,setQuery]=useState(""),[busy,setBusy]=useState(false),[message,setMessage]=useState(""),[editor,setEditor]=useState<EditorState|null>(null),[editorPhotoFile,setEditorPhotoFile]=useState<File|null>(null),[joinCode,setJoinCode]=useState(""),[lifecycleConfirm,setLifecycleConfirm]=useState(""),[contributionText,setContributionText]=useState(""),[contributionEntity,setContributionEntity]=useState("");
  const [privacyPreview,setPrivacyPreview]=useState<"public"|"member"|"admin">(auth?.membership_role==="owner"||auth?.membership_role==="admin"?"admin":"member");
@@ -114,7 +116,7 @@ export default function TemplateNetworkApp({network,auth,kind,demo=false,onNetwo
  useEffect(()=>{
   if(kind!=="housing-society"||demo)return;
   const key=({home:"home_view",me:"my_flat_view",directory:"directory_view",notices:"notice_view",complaints:"complaint_view",maintenance:"maintenance_view",amenities:"amenity_view",governance:"governance_view",security:"security_view"} as Record<string,string>)[tab];
-  if(key)void recordHsPilotUsageEvent(key).catch(()=>{});
+  if(key)void import("../verticals/housing-society/runtime/pilot-remote").then(({recordHsPilotUsageEvent})=>recordHsPilotUsageEvent(key)).catch(()=>{});
  },[kind,demo,tab]);
  const [relationFrom,setRelationFrom]=useState(""),[relationTo,setRelationTo]=useState(""),[relationType,setRelationType]=useState(cfg.template.relationships[0]?.key||""),[claimable,setClaimable]=useState<ClaimableProductizedEntity[]>([]),[members,setMembers]=useState<ProductizedNetworkMember[]>([]),[selectedEntity,setSelectedEntity]=useState<NetworkAffiliatedEntity|null>(null),[contributionKind,setContributionKind]=useState("Correction"),[explorerMode,setExplorerMode]=useState<"structure"|"drilldown">("structure"),[focusEntityId,setFocusEntityId]=useState("");
  const isAdmin=auth?.membership_role==="owner"||auth?.membership_role==="admin";const isPlatformOwner=!demo&&!!auth?.platform_owner;const experience=isAdmin?"admin":auth?"connected":"member";
@@ -123,7 +125,12 @@ export default function TemplateNetworkApp({network,auth,kind,demo=false,onNetwo
  const hasFeature=(key:string)=>featureRuntime.isFeatureAvailable(key as any,features as any,experience as any,isAdmin);
  const load=async()=>{if(demo){setEntities(cfg.sampleEntities);setProjections(cfg.template.projections);setActivities(cfg.sampleActivities);setGroups(cfg.sampleGroups);setClaimable([]);setMembers([]);return;}setBusy(true);try{const [e,p,a,g,r,s,c,claimRows]=await Promise.all([fetchNetworkAffiliatedEntities(),fetchNetworkProjections(),fetchNetworkActivities(),fetchNetworkGroups(),fetchNetworkEntityRelationships(),fetchTemplateNetworkSettings(),fetchNetworkContributions(),fetchClaimableProductizedEntities().catch(()=>[])]);setEntities(e);setProjections(p);setActivities(a);setGroups(g);setRelationships(r);setSettings(s);setContributions(c);setClaimable(claimRows);if(isAdmin){try{const [code,memberRows]=await Promise.all([getOrCreateNetworkJoinCode(),fetchProductizedNetworkMembers()]);setJoinCode(code);setMembers(memberRows)}catch{setMembers([])}}else setMembers([])}catch(e:any){setMessage(e.message||`Could not load ${cfg.label}.`)}finally{setBusy(false)}};
  useEffect(()=>{fetchShowcaseVerticalSettings().then(rows=>setPaletteKey(rows.find(r=>r.vertical_kind===kind)?.palette_key||"signature")).catch(()=>setPaletteKey("signature"))},[kind]);
- useEffect(()=>{if(demo)return;const deep=readNotificationDeepLink();const allowed=new Set<Tab>(["home","me","notices","complaints","maintenance","amenities","governance","security","funds","elections","media","intelligence","explorer","directory","community","places","connections","contribute","admin","guide","launch"]);if(deep.surface&&allowed.has(deep.surface as Tab))setTab(deep.surface as Tab)},[demo,network.id,kind]);
+ useEffect(()=>{
+  if(demo)return;
+  const allowed=new Set<Tab>(["home","me","notices","complaints","maintenance","amenities","governance","security","funds","elections","media","intelligence","explorer","directory","community","places","connections","contribute","admin","guide","launch"]);
+  const sync=()=>{const route=parseNetworkRoute(window.location.pathname);if(route&&route!=="invalid"&&route.networkId===(network.network_id||network.id).toLowerCase()){if(allowed.has(route.surface as Tab))setTabState(route.surface as Tab);return;}const deep=readNotificationDeepLink();if(deep.surface&&allowed.has(deep.surface as Tab))setTabState(deep.surface as Tab)};
+  sync();window.addEventListener("popstate",sync);return()=>window.removeEventListener("popstate",sync);
+ },[demo,network.id,kind]);
  useEffect(()=>{loadFeatures()},[demo,network.id,kind]);useEffect(()=>{load()},[demo,network.id,kind]);useEffect(()=>{if((kind!=="association"&&kind!=="family-association")||demo){setAssociationAdminContext([]);return;}fetchMyAssociationHouseholdAdminContext().then(setAssociationAdminContext).catch(()=>setAssociationAdminContext([]))},[demo,network.id,kind,entities.length,relationships.length]);
  const primary=useMemo(()=>entities.filter(e=>e.entity.kind===cfg.template.primaryEntityKind),[entities,kind]);
  const directoryEntities=useMemo(()=>kind==="family-association"?entities.filter(e=>e.entity.kind==="family"||e.entity.kind==="person"):kind==="housing-society"?entities.filter(e=>e.entity.kind==="unit"||e.entity.kind==="household"||e.entity.kind==="person"):primary,[entities,kind,primary]);

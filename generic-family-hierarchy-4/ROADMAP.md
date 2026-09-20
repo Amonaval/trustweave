@@ -1,5 +1,9 @@
 # TrustWeave — Roadmap
 
+## Active architecture priority — M3-D (2026-09-19)
+
+D0–D11 are implemented as the architecture reinforcement program. D11's School proof classifies the representative scope as A=1, B=9, C=0, D=2 and certifies the platform architecture for bounded School implementation while keeping School completely unregistered/unimplemented. The next School program must follow `missions/mission-003/m3-d/NEXT-SESSION-SCHOOL-IMPLEMENTATION-CHARTER.md`: scaffold first, then policy/graph, server-owned data boundaries, shared actions/consent, the two School-specific seams (attendance and transport/pickup), and only then synthetic Playground/connected activation gates. `missions/mission-003/m3-d/EXECUTION-CHARTER.md` gives the revised sequence; `NETWORK-OS-ARCHITECTURE-MASTER-PLAN.md` retains the older D1–D10 labels as historical strategy, explicitly shifted by one. The connected Residential/Community reliability and staging migration 122 gate below still require real evidence.
+
 **Updated:** 2026-09-16
 
 ## North star — Founder Spectator Mode
@@ -57,15 +61,29 @@ Machine-readable program: `missions/mission-003/m3-c/mission-set.json`.
 
 M3-C does not erase prior truth. B6 must still complete its dependency/runtime/independent-review certification before formal closure. Mission 1/2 runtime evidence remains pending where previously recorded. No autonomy milestone may weaken tenant isolation, migration immutability, privacy, evidence quality or release gates.
 
-## Product/architecture work after autonomy proof
+## Active product priority — two-vertical reliability
 
-Once C1–C4 are working, use the autonomous runtime on meaningful M3-A backlog rather than continuing governance work for its own sake:
+The autonomous-company proof does not replace product work. The active execution priority is now:
+
+1. Residential / Housing Society and Family Community connected reliability;
+2. deterministic critical journeys plus checkpointed crawling;
+3. verified product-defect repair with permanent regression assertions;
+4. then resume the remaining reusable component/CSS convergence on the stable baseline.
+
+Connected QA scope is controlled from root `qa.config.mjs`; platform-wide contracts continue to protect all registered verticals.
+
+The first connected pass is complete. Repair batch R1-A addresses the verified Housing snapshot regression, missing notification-role RPC, persistence-helper race and two accessibility contrast findings. Exit now requires applying additive migration 122 to dedicated staging, rerunning the impacted journeys/Axe checks, and resolving the still-unclassified `family-association/admin` crawler shard before the full two-vertical closure run.
+
+## Protected product architecture program
+
+The pre-autonomy reusable architecture program remains binding. M3-B6 completed only the first technical-primitives slice; remaining work proceeds incrementally after/alongside reliability:
 
 - workspace-shell convergence;
 - async lifecycle/state normalization;
+- shared business/use-case components where Housing and Family Community semantics genuinely match;
 - incremental CSS ownership normalization;
-- shared admin/workspace primitives where contracts genuinely match;
-- later plugin/lazy-loading/SQL maintainability work when regression protection is strong.
+- component contract documentation and isolated scenarios/Storybook only if it materially helps;
+- later plugin/lazy-loading and modular SQL-source architecture after regression protection is strong.
 
 ## Legacy certification anchors
 These exact historical labels remain only for accepted source-gate compatibility; the active program above is authoritative.

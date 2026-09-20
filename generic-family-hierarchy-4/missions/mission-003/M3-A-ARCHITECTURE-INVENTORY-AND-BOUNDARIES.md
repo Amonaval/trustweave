@@ -5,6 +5,8 @@
 **Date:** 2026-09-16  
 **Status:** COMPLETE — inventory/decision only; no runtime refactor in this slice
 
+**2026-09-16 continuation:** The autonomous-company program did not supersede this product-architecture direction. M3-B6 completed only the canonical progressive-section selector slice. Workspace shells, async resource/action lifecycle, genuinely shared business/use-case components, incremental CSS ownership, and contract/scenario documentation remain protected backlog. Reliability is being established first for `housing-society` and `family-association` so later convergence can be verified safely.
+
 ## 1. Decision summary
 
 TrustWeave already has a meaningful shared Network OS UI layer. Mission 3 should therefore be a **convergence mission**, not a rewrite.

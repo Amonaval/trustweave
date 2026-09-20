@@ -1,40 +1,25 @@
-import type { NetworkVerticalKind } from "../core/verticals/contracts";
-import { ALUMNI_VERTICAL } from "../verticals/alumni/definition";
-import { FAMILY_VERTICAL } from "../verticals/family/definition";
-import { ASSOCIATION_VERTICAL } from "../verticals/association/definition";
-import { FAMILY_ASSOCIATION_VERTICAL } from "../verticals/family-association/definition";
-import { ORGANIZATION_VERTICAL } from "../verticals/organization/definition";
-import { BUSINESS_TRUST_VERTICAL } from "../verticals/business-trust/definition";
-import { FRANCHISE_VERTICAL } from "../verticals/franchise/definition";
-import { PROFESSIONAL_VERTICAL } from "../verticals/professional/definition";
-import { HOUSING_SOCIETY_VERTICAL } from "../verticals/housing-society/definition";
+import type {NetworkVerticalKind} from "../core/verticals/contracts";
+import {NETWORK_VERTICAL_KINDS,isNetworkVerticalKind} from "../core/verticals/kinds";
+import {VERTICAL_MANIFEST,getVerticalManifest,type VerticalManifest} from "./vertical-manifest";
 
-const definitions = [FAMILY_VERTICAL, ALUMNI_VERTICAL, ASSOCIATION_VERTICAL, FAMILY_ASSOCIATION_VERTICAL, HOUSING_SOCIETY_VERTICAL, ORGANIZATION_VERTICAL, BUSINESS_TRUST_VERTICAL, FRANCHISE_VERTICAL, PROFESSIONAL_VERTICAL] as const;
-type RegisteredVerticalDefinition = typeof definitions[number];
-type VerticalRegistry = {
-  readonly [K in RegisteredVerticalDefinition["kind"]]: Extract<RegisteredVerticalDefinition, {kind: K}>;
-};
+type VerticalRegistry={readonly [K in NetworkVerticalKind]:VerticalManifest[K]["definition"]};
 
-function buildRegistry(items: typeof definitions): VerticalRegistry {
-  const seen = new Set<NetworkVerticalKind>();
-  for (const item of items) {
-    if (seen.has(item.kind)) throw new Error(`Duplicate vertical registration: ${item.kind}`);
-    seen.add(item.kind);
-  }
-  return Object.freeze(Object.fromEntries(items.map(item => [item.kind, item]))) as VerticalRegistry;
-}
+/** Compatibility projection; register a new vertical in vertical-manifest.ts. */
+export const VERTICAL_REGISTRY=Object.freeze(Object.fromEntries(
+  NETWORK_VERTICAL_KINDS.map(kind=>[kind,VERTICAL_MANIFEST[kind].definition])
+)) as VerticalRegistry;
 
-export const VERTICAL_REGISTRY = buildRegistry(definitions);
-export const DEFAULT_VERTICAL_KIND: NetworkVerticalKind = "family";
+export const DEFAULT_VERTICAL_KIND:NetworkVerticalKind="family";
 
-export function getVerticalDefinition<K extends NetworkVerticalKind>(kind: K): VerticalRegistry[K] {
+export function getVerticalDefinition<K extends NetworkVerticalKind>(kind:K):VerticalRegistry[K] {
+  getVerticalManifest(kind); // fail closed even for an unchecked runtime string
   return VERTICAL_REGISTRY[kind];
 }
 
-export function getVerticalFeatureCatalog<K extends NetworkVerticalKind>(kind: K): VerticalRegistry[K]["featureCatalog"] {
-  return VERTICAL_REGISTRY[kind].featureCatalog as VerticalRegistry[K]["featureCatalog"];
+export function getVerticalFeatureCatalog<K extends NetworkVerticalKind>(kind:K):VerticalRegistry[K]["featureCatalog"] {
+  return getVerticalDefinition(kind).featureCatalog;
 }
 
-export function isRegisteredVerticalKind(value: string | null | undefined): value is NetworkVerticalKind {
-  return Boolean(value && value in VERTICAL_REGISTRY);
+export function isRegisteredVerticalKind(value:string|null|undefined):value is NetworkVerticalKind {
+  return isNetworkVerticalKind(value)&&Object.prototype.hasOwnProperty.call(VERTICAL_REGISTRY,value);
 }

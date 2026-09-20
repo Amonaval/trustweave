@@ -1,0 +1,318 @@
+{
+  "version": 1,
+  "certification": "architecture-ready-for-bounded-implementation",
+  "summary": {
+    "A": 1,
+    "B": 9,
+    "C": 0,
+    "D": 2
+  },
+  "categories": {
+    "A": "Existing generic primitive with no School-specific lifecycle engine required.",
+    "B": "Existing primitive plus a thin School adapter for vocabulary, resource scoping, policy or projection.",
+    "C": "Reusable new platform primitive required before the School workflow should be built.",
+    "D": "Genuinely School-specific domain capability; keep inside the School vertical."
+  },
+  "newPlatformPrimitives": [],
+  "cDecision": "No category-C primitive is required for the representative scope. D5 workflow/consent/audit primitives closed the lifecycle gap identified in D0; D4 policy and D6 API boundaries cover the remaining cross-cutting mechanics.",
+  "workflows": [
+    {
+      "id": "student-guardian-relationships",
+      "label": "Student / guardian relationships",
+      "category": "B",
+      "existingCapabilities": [
+        "network.affiliation",
+        "identity.privacy"
+      ],
+      "platformPrimitives": [
+        "generic entities",
+        "typed relationships",
+        "resource-scoped authorization"
+      ],
+      "schoolAdapter": "School relationship vocabulary plus guardian-to-student resource policy.",
+      "schoolOwnedData": [
+        "relationship type semantics"
+      ],
+      "routeSurface": "students",
+      "evidence": [
+        "core/network-os/contracts.ts",
+        "core/authorization/policy.ts"
+      ],
+      "rationale": "The graph and authorization mechanics are generic; guardian semantics are School-owned."
+    },
+    {
+      "id": "class-teacher-scoping",
+      "label": "Class / teacher scoping",
+      "category": "B",
+      "existingCapabilities": [
+        "network.affiliation",
+        "community.groups-events",
+        "identity.privacy"
+      ],
+      "platformPrimitives": [
+        "affiliations",
+        "groups",
+        "resource-scoped authorization"
+      ],
+      "schoolAdapter": "Map class/cohort membership and teacher responsibility into scoped policy relationships.",
+      "schoolOwnedData": [
+        "class assignment semantics"
+      ],
+      "routeSurface": "classes",
+      "evidence": [
+        "capabilities/activity/remote.ts",
+        "core/authorization/policy.ts"
+      ],
+      "rationale": "Class scope is a domain vocabulary over existing group/affiliation/policy mechanics."
+    },
+    {
+      "id": "notices-actions",
+      "label": "Notices and required actions",
+      "category": "B",
+      "existingCapabilities": [
+        "network.activity",
+        "notifications.digest"
+      ],
+      "platformPrimitives": [
+        "announcements",
+        "notifications",
+        "workflow acknowledgement/task"
+      ],
+      "schoolAdapter": "Resolve class/student/guardian audience and project required actions into D5 workflow items.",
+      "schoolOwnedData": [
+        "audience rules"
+      ],
+      "routeSurface": "notices",
+      "evidence": [
+        "capabilities/activity/remote.ts",
+        "core/workflow/contracts.ts"
+      ],
+      "rationale": "Publishing and action mechanics already exist; only audience semantics are School-specific."
+    },
+    {
+      "id": "field-trip-consent",
+      "label": "Field-trip / activity consent",
+      "category": "B",
+      "existingCapabilities": [
+        "community.groups-events",
+        "identity.privacy"
+      ],
+      "platformPrimitives": [
+        "event",
+        "explicit consent",
+        "consent workflow",
+        "audit"
+      ],
+      "schoolAdapter": "Bind guardian, student and trip resource; define purpose and expiry.",
+      "schoolOwnedData": [
+        "trip participation semantics"
+      ],
+      "routeSurface": "events",
+      "evidence": [
+        "core/authorization/policy.ts",
+        "core/workflow/contracts.ts"
+      ],
+      "rationale": "Consent is already generic and purpose/resource/time scoped."
+    },
+    {
+      "id": "absence-recovery",
+      "label": "Absence recovery and missed-work follow-through",
+      "category": "B",
+      "existingCapabilities": [
+        "network.activity",
+        "identity.privacy"
+      ],
+      "platformPrimitives": [
+        "task",
+        "assignment",
+        "due date",
+        "audit"
+      ],
+      "schoolAdapter": "Project an attendance/absence source record into recovery tasks for the affected student/guardian/teacher.",
+      "schoolOwnedData": [
+        "absence source semantics"
+      ],
+      "schoolSpecificDependencies": [
+        "attendance-recording"
+      ],
+      "routeSurface": "attendance",
+      "evidence": [
+        "core/workflow/contracts.ts",
+        "core/workflow/runtime.ts"
+      ],
+      "rationale": "Recovery is a generic obligation lifecycle; only the attendance source is School-specific."
+    },
+    {
+      "id": "homework-tasks",
+      "label": "Homework and tasks",
+      "category": "B",
+      "existingCapabilities": [
+        "identity.privacy"
+      ],
+      "platformPrimitives": [
+        "task",
+        "assignee",
+        "due date",
+        "audit"
+      ],
+      "schoolAdapter": "Translate class/student assignment semantics into WorkflowItem projections and scoped reads.",
+      "schoolOwnedData": [
+        "homework content and class assignment"
+      ],
+      "routeSurface": "tasks",
+      "evidence": [
+        "core/workflow/contracts.ts",
+        "core/workflow/runtime.ts"
+      ],
+      "rationale": "Task lifecycle already exists; School owns the learning semantics and content."
+    },
+    {
+      "id": "ptm-continuity",
+      "label": "Parent-teacher meeting continuity",
+      "category": "B",
+      "existingCapabilities": [
+        "community.groups-events",
+        "identity.privacy"
+      ],
+      "platformPrimitives": [
+        "event",
+        "acknowledgement",
+        "task",
+        "audit"
+      ],
+      "schoolAdapter": "Project PTM slots, attendance and follow-up actions without creating a parallel workflow engine.",
+      "schoolOwnedData": [
+        "PTM notes/visibility"
+      ],
+      "routeSurface": "ptm",
+      "evidence": [
+        "capabilities/activity/remote.ts",
+        "verticals/family-association/runtime/workflow.ts",
+        "core/workflow/contracts.ts"
+      ],
+      "rationale": "Event and follow-up mechanics are generic; meeting semantics and sensitive notes stay School-owned."
+    },
+    {
+      "id": "school-events",
+      "label": "School events and RSVP",
+      "category": "A",
+      "existingCapabilities": [
+        "community.groups-events"
+      ],
+      "platformPrimitives": [
+        "groups",
+        "events",
+        "RSVP"
+      ],
+      "schoolAdapter": "None required for the basic lifecycle; School may supply labels/audience filters.",
+      "schoolOwnedData": [],
+      "routeSurface": "events",
+      "evidence": [
+        "capabilities/activity/remote.ts"
+      ],
+      "rationale": "The existing shared event lifecycle already supports create/list/respond semantics."
+    },
+    {
+      "id": "parent-concerns",
+      "label": "Parent concerns / follow-through",
+      "category": "B",
+      "existingCapabilities": [
+        "identity.privacy"
+      ],
+      "platformPrimitives": [
+        "task",
+        "assignment",
+        "SLA",
+        "audit"
+      ],
+      "schoolAdapter": "School-owned concern record projected into the same D5 obligation mechanics used by Housing complaints.",
+      "schoolOwnedData": [
+        "concern category",
+        "school response semantics"
+      ],
+      "routeSurface": "concerns",
+      "evidence": [
+        "verticals/housing-society/runtime/workflow.ts",
+        "core/workflow/contracts.ts"
+      ],
+      "rationale": "Complaint/concern follow-through mechanics are reusable; School must not reuse Housing persistence or vocabulary."
+    },
+    {
+      "id": "student-journey-history",
+      "label": "Student journey history",
+      "category": "B",
+      "existingCapabilities": [
+        "network.activity",
+        "network.affiliation",
+        "identity.privacy"
+      ],
+      "platformPrimitives": [
+        "milestones",
+        "activities",
+        "projections",
+        "resource policy"
+      ],
+      "schoolAdapter": "Compose authorized student-scoped milestones and activity projections; do not expose a network-wide timeline by default.",
+      "schoolOwnedData": [
+        "student milestone taxonomy"
+      ],
+      "routeSurface": "students",
+      "evidence": [
+        "core/network-os/contracts.ts",
+        "core/authorization/policy.ts"
+      ],
+      "rationale": "Timeline ingredients exist; School defines milestone meaning and visibility."
+    },
+    {
+      "id": "attendance-recording",
+      "label": "Attendance recording",
+      "category": "D",
+      "existingCapabilities": [
+        "identity.privacy"
+      ],
+      "platformPrimitives": [
+        "resource-scoped authorization",
+        "audit-compatible server command boundary"
+      ],
+      "ownedModule": "school.attendance",
+      "schoolAdapter": "School-owned attendance state, reason vocabulary and correction rules.",
+      "schoolOwnedData": [
+        "attendance records",
+        "absence reasons",
+        "corrections"
+      ],
+      "routeSurface": "attendance",
+      "evidence": [
+        "core/authorization/policy.ts",
+        "server/shared/command-runtime.ts"
+      ],
+      "rationale": "Attendance has genuinely School-specific record semantics even though authorization and command mechanics are shared."
+    },
+    {
+      "id": "transport-pickup",
+      "label": "Transport and authorized pickup",
+      "category": "D",
+      "existingCapabilities": [
+        "identity.privacy"
+      ],
+      "platformPrimitives": [
+        "resource-scoped authorization",
+        "consent/approval",
+        "notifications"
+      ],
+      "ownedModule": "school.transport",
+      "schoolAdapter": "School-owned route, stop, vehicle/pickup authorization and release semantics.",
+      "schoolOwnedData": [
+        "route/stop assignment",
+        "pickup authorization",
+        "release state"
+      ],
+      "routeSurface": "transport",
+      "evidence": [
+        "core/authorization/policy.ts",
+        "core/workflow/contracts.ts"
+      ],
+      "rationale": "Transport/pickup safety semantics are domain-specific; keep them thin but School-owned."
+    }
+  ]
+}

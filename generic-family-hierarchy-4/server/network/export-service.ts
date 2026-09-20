@@ -1,10 +1,12 @@
 import {createClient} from "@supabase/supabase-js";
 import type {RequestContext} from "../shared/request-context";
 import {getRuntimeConfig} from "../shared/runtime-config";
+import {CommandError} from "../shared/errors";
+import {SCALE_BUDGETS} from "../../core/scale/contracts";
 const BUCKETS=["profile-photos","community-media"] as const;
 type Entry={name:string;id?:string|null;metadata?:unknown};
 type StorageApi=ReturnType<typeof createClient>["storage"];
-async function listAll(storage:StorageApi,bucket:string,prefix:string){const out:string[]=[];const queue=[prefix];while(queue.length){const dir=queue.shift()!;let offset=0;for(;;){const {data,error}=await storage.from(bucket).list(dir,{limit:100,offset});if(error)throw error;const rows=(data||[]) as Entry[];for(const row of rows){const path=dir?`${dir}/${row.name}`:row.name;if(!row.id&&row.metadata==null)queue.push(path);else out.push(path)}if(rows.length<100)break;offset+=rows.length}}return out}
+async function listAll(storage:StorageApi,bucket:string,prefix:string){const out:string[]=[];const queue=[prefix];let directories=0;while(queue.length){const dir=queue.shift()!;directories++;if(directories>SCALE_BUDGETS.syncExportDirectories)throw new CommandError("EXPORT_REQUIRES_BACKGROUND","This network export is too large for synchronous storage enumeration.",413);let offset=0;for(;;){const {data,error}=await storage.from(bucket).list(dir,{limit:100,offset});if(error)throw error;const rows=(data||[]) as Entry[];for(const row of rows){const path=dir?`${dir}/${row.name}`:row.name;if(!row.id&&row.metadata==null)queue.push(path);else{out.push(path);if(out.length>SCALE_BUDGETS.syncExportStorageObjects)throw new CommandError("EXPORT_REQUIRES_BACKGROUND","This network export is too large for synchronous storage enumeration.",413)}}if(rows.length<100)break;offset+=rows.length}}return out}
 export async function buildNetworkExport(ctx:RequestContext,networkId:string){
  const {data,error}=await ctx.supabase.rpc("get_network_logical_backup",{p_network_id:networkId}); if(error)throw error;
  const serviceKey=process.env.SUPABASE_SERVICE_ROLE_KEY?.trim(); const buckets:Record<string,string[]>={}; const limitations:string[]=[];

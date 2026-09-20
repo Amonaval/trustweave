@@ -1,8 +1,59 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — M3-D11 School architecture readiness candidate
+
+D11 completes the D0→D11 architecture reinforcement program with a machine-readable School workflow proof and a D10 scaffold exercise. Representative School scope classifies as A=1, B=9, C=0, D=2: events are already generic; nine flows reuse existing Network OS primitives through thin School adapters; no new reusable platform primitive is required after D4/D5; attendance recording and transport/pickup remain the only genuinely School-specific seams in the proving scope. The School blueprint validates and can be scaffolded in a temporary directory, but School remains absent from runtime kinds, manifest, runtime metadata, QA activation and the product tree. D11 therefore certifies architecture readiness for bounded School implementation, not School product/release readiness. Existing connected reliability/staging evidence gaps remain open.
+
+
+## 2026-09-20 — M3-D10 thin-vertical developer experience candidate
+
+D10 converts the D2–D9 architecture rules into a deterministic thin-vertical blueprint/scaffold contract. One JSON blueprint now validates reused/owned capabilities, route-safe localized surfaces, policy/workflow/data adapter obligations, lazy-loading intent, observability ownership and a bounded synthetic playground seed. The scaffold CLI can dry-run or emit only vertical-local definition/catalog/composition/adapter/seed/QA files plus an explicit integration plan; central kind/manifest/capability/QA registration remains deliberately explicit and fail-closed. Typed policy/workflow/query/command adapter interfaces prevent new verticals from inventing parallel platform engines. A synthetic QA-only civic-circle fixture proves the workflow while School remains unregistered and unimplemented.
+
+
+## 2026-09-20 — M3-D9 reliability / observability / SLO candidate
+
+D9 standardizes privacy-safe JSON observations for the authenticated query/command runtime: request correlation, capability/vertical/journey dimensions, latency, slow classification, failure code and idempotency state, with actor/network identifiers reduced to one-way tags. A bounded process-local SLI sample and executable SLO/error-budget contracts cover core reads/mutations plus Housing and Family Community operations; direct-entry remains explicitly browser-measured. Operational health now distinguishes liveness, runtime configuration readiness, background-worker availability and telemetry durability without exposing tenant traffic. Housing/FCA migrated API boundaries are marked standardized; partially migrated shared capabilities remain partial. No external telemetry vendor, observability database or School implementation was introduced.
+
+
+## 2026-09-20 — M3-D8 multi-tenant scale & performance candidate
+
+D8 adds bounded multi-tenant scale contracts without introducing premature sharding/partitioning. Shared query/command runtimes now apply actor + network burst scopes; graph traversal, bootstrap and synchronous export have explicit work ceilings; additive migration 123 supplies targeted network-first indexes and clamped keyset page RPCs; paged reads stay behind authenticated server query boundaries. Scale escalation triggers now make partitioning, deployment stamps and shared rate limiting conditional on measured signals rather than architecture theatre. Existing eager UI reads remain compatible and can migrate incrementally. No School implementation or new database topology was added.
+
+
+## 2026-09-20 — M3-D7 runtime footprint & lazy vertical loading candidate
+
+The universal Network shell now dynamically loads Alumni and the productized-network application instead of statically bundling them, while lightweight productized runtime metadata is separated from the large showcase/sample dataset. Inside the productized shell, Housing and Family Community specialty panels plus Housing pilot telemetry are lazy-loaded only when those paths are used. Manifest/capability metadata records the loading boundary, source tests prevent static heavy imports from returning, and the production build now parses Next’s authoritative root-route First Load JS metric and enforces a 700 kB ceiling (D7 measured baseline: 644 kB). No School implementation, database migration, route behavior change or product feature expansion was added.
+
+
+## 2026-09-20 — M3-D6 data & API boundary consolidation candidate
+
+A bounded D6 slice now routes Housing operations and Family Community administration through typed authenticated `/api/v1` query/command boundaries backed by server-owned services. Mutations use the existing idempotent command runtime; reads use a new shared authenticated query runtime with request IDs, rate limiting, normalized errors and structured logging. FCA admin RPC ownership moved out of the generic template-product remote into the Family Association vertical. `core/api/data-boundary-manifest.ts` and its unit guard record migrated RPC/table ownership and explicitly preserve remaining legacy hotspots rather than claiming a big-bang migration. No database migration, RLS relaxation or School implementation was added.
+
+
+## 2026-09-19 — M3-D5 action / obligation / workflow candidate
+
+Shared workflow contracts now cover task, acknowledgement, approval and consent obligations with assignment, due/SLA timing, guarded transitions and append-only application audit entries. Existing Housing complaints, amenity approvals and governance actions plus Family Community event RSVP are projected through thin domain adapters; no existing persistence/status vocabulary is rewritten. The D4 consent vocabulary is reused rather than duplicated. `qa:resilient` now exposes the existing configured resilient crawler under the expected script name. D5 is source/CI candidate work; no migration or School implementation was added.
+
+
+## 2026-09-19 — M3-D4 scoped authorization + consent candidate
+
+A reusable fail-closed policy decision contract now combines active network role, relationship/resource scope, declared purpose, time validity and optional exact consent. Housing Society and Family Community own thin policy adapters over that kernel, and direct network-surface role checks use the same decision path without weakening server/RPC/RLS enforcement. `missions/mission-003/m3-d/D4-AUTHORIZATION-CONSENT-EVIDENCE.md` records the proof and explicit limits. D1–D4 remain source candidates pending the combined authenticated staging/security checkpoint; D5 workflow primitives have not started.
+
+## 2026-09-19 — M3-D3 capability contract candidate
+
+The 25 declared vertical capability IDs now derive from one typed ownership and interface inventory in `core/verticals/capability-manifest.ts`. Unknown IDs fail closed; source, API route and known persistence references are checked in the unit suite. `missions/mission-003/m3-d/D3-CAPABILITY-CONTRACT-EVIDENCE.md` records explicit unmapped areas. D1–D3 remain source candidates pending a combined authenticated staging checkpoint; D4 authorization/consent work is not yet certified.
+
+## 2026-09-19 — M3-D2 manifest candidate
+
+The released vertical identity, navigation and runtime registrations now project from `app-shell/vertical-manifest.ts` and the lightweight kind vocabulary in `core/verticals/kinds.ts`. The source gates and remaining connected verification are recorded in `missions/mission-003/m3-d/D2-VERTICAL-MANIFEST-EVIDENCE.md`. D1–D2 authenticated staging checks are batched for the next checkpoint; neither is represented as connected certified. School remains unimplemented.
+
+## 2026-09-19 — M3-D architecture foundation
+
+The canonical company direction is `docs/product/TRUSTWEAVE-COMPANY-NORTH-STAR.md`. The live `llm-push` branch is the code authority; the older M3-D handoff was reconciled selectively. The execution order is D0 architecture baseline, **D1 addressable routing**, then D2–D11 thin-vertical architecture and School readiness proof. School implementation has not started. D0 source inventory is recorded in `missions/mission-003/m3-d/D0-ARCHITECTURE-BASELINE.md`. D1 has an implemented candidate network/surface route foundation; `missions/mission-003/m3-d/D1-ROUTING-EVIDENCE.md` records its tests and the missing connected browser certification. The connected two-vertical reliability and migration 122 staging gate below remain open.
+
 **Updated:** 2026-09-16  
-**Active program:** M3-C — Autonomous Company Runtime / Founder Spectator Mode  
-**Active executable mission:** `M3-C0`
+**Active program:** Two-vertical product reliability + reusable architecture convergence
+**Active executable scope:** `housing-society` + `family-association`
 
 ## Product baseline
 
@@ -15,6 +66,22 @@ TrustWeave's strongest protected product experiences remain:
 - a private multi-network platform foundation with governed identity, relationships, membership and network isolation.
 
 Mission 1 seed/runtime repairs and Mission 2 slow-user regression assets remain preserved. Mission 2 runtime certification is paused rather than falsified.
+
+The autonomous-company C1–C10 proof is complete. It is now the delivery mechanism, not a replacement for the product roadmap.
+
+## Current reliability mission
+
+- root `qa.config.mjs` controls connected vertical/role scope;
+- current scope is Housing Society + Family Community across owner/admin/member;
+- the first connected run completed with **19 passed, 5 failed and 7 not run** critical journeys; five of six resilient shards passed and `family-association/admin` failed twice;
+- the verified repair batch restores the complete Housing operations snapshot, recreates the missing notification-role RPC, removes a success-banner test race and fixes the measured Housing/Family Community contrast failures;
+- local repair validation is green: Mission-2 contracts 59/59, QA unit/contracts 24/24, full TypeScript, migration static audit and production build;
+- additive migration `122_reliability_snapshot_notification_contract_repair.sql` must be applied to dedicated staging before the focused connected rerun; no production mutation is authorized;
+- the `family-association/admin` crawler failure remains open until the rerun produces its specific shard evidence.
+
+## Reusable product architecture remains active
+
+M3-B6 delivered only the first convergence slice (`ResponsiveSectionTabs`). Remaining planned work is shared workspace/admin shells, async resource/action lifecycle, business/use-case convergence where semantics match, common CSS ownership, contract/scenario documentation, then Mission 4 plugin/lazy-loading and modular SQL-source architecture. Vertical vocabulary, authorization and genuinely distinct workflows remain vertical-owned.
 
 ## Mission 3 completed foundation
 

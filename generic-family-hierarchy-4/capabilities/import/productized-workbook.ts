@@ -1,5 +1,6 @@
 import {fetchNetworkAffiliatedEntities} from "../affiliation/remote";
-import {createNetworkEntityRelationship,fetchFcaAdminSnapshot,fetchNetworkEntityRelationships,setFcaFamilyMembership,upsertFcaMembershipYear,upsertNetworkEntity} from "../template-product/remote";
+import {createNetworkEntityRelationship,fetchNetworkEntityRelationships,upsertNetworkEntity} from "../template-product/remote";
+import {fetchFcaAdminSnapshot,setFcaFamilyMembership,upsertFcaMembershipYear} from "../../verticals/family-association/runtime/admin-remote";
 import type {ImportCommitResult,ImportReview,ImportSheetSchema,ParsedImportRow} from "../../core/import/contracts";
 
 function value(row:ParsedImportRow,key:string){return row.values[key]}

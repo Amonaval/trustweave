@@ -1,0 +1,241 @@
+{
+  "kind": "school",
+  "displayName": "School Network",
+  "shortLabel": "School",
+  "iconToken": "school",
+  "themeToken": "school-trust",
+  "status": "skeleton",
+  "ownedCapability": "domain.school",
+  "reusedCapabilities": [
+    "network.context",
+    "network.membership",
+    "network.construction",
+    "network.affiliation",
+    "network.activity",
+    "runtime.launch-control",
+    "runtime.guide",
+    "runtime.playground",
+    "runtime.whats-new",
+    "identity.claiming",
+    "identity.invitations",
+    "identity.privacy",
+    "community.groups-events",
+    "notifications.digest"
+  ],
+  "labels": {
+    "entityLabel": "Student / Person",
+    "entityLabelPlural": "Students / People",
+    "levelLabel": "Class / Cohort",
+    "levelLabelPlural": "Classes / Cohorts",
+    "parentLabel": "Guardian / Teacher",
+    "childLabel": "Student",
+    "peerLabel": "School member"
+  },
+  "runtimeMeta": {
+    "sampleName": "Illustrative St. Arnold's School Network — Synthetic",
+    "sampleDescription": "Synthetic architecture-proof playground inspired by a Pune school context; no real student, guardian, staff or institutional records."
+  },
+  "surfaces": [
+    {
+      "viewId": "home",
+      "iconToken": "home",
+      "label": {
+        "en": "Home",
+        "hi": "होम",
+        "mr": "होम"
+      },
+      "featureSuffix": "core.home"
+    },
+    {
+      "viewId": "students",
+      "iconToken": "users",
+      "label": {
+        "en": "Students",
+        "hi": "विद्यार्थी",
+        "mr": "विद्यार्थी"
+      },
+      "featureSuffix": "core.students",
+      "capability": "network.affiliation"
+    },
+    {
+      "viewId": "classes",
+      "iconToken": "layers",
+      "label": {
+        "en": "Classes",
+        "hi": "कक्षाएँ",
+        "mr": "वर्ग"
+      },
+      "featureSuffix": "core.classes",
+      "capability": "network.affiliation"
+    },
+    {
+      "viewId": "notices",
+      "iconToken": "calendar",
+      "label": {
+        "en": "Notices & Actions",
+        "hi": "सूचनाएँ और कार्य",
+        "mr": "सूचना आणि कृती"
+      },
+      "featureSuffix": "community.notices",
+      "capability": "network.activity"
+    },
+    {
+      "viewId": "tasks",
+      "iconToken": "book-open",
+      "label": {
+        "en": "Homework & Tasks",
+        "hi": "गृहकार्य और कार्य",
+        "mr": "गृहपाठ आणि कार्य"
+      },
+      "featureSuffix": "learning.tasks",
+      "capability": "domain.school"
+    },
+    {
+      "viewId": "ptm",
+      "iconToken": "users",
+      "label": {
+        "en": "PTM",
+        "hi": "अभिभावक-शिक्षक बैठक",
+        "mr": "पालक-शिक्षक बैठक"
+      },
+      "featureSuffix": "community.ptm",
+      "capability": "community.groups-events"
+    },
+    {
+      "viewId": "events",
+      "iconToken": "calendar",
+      "label": {
+        "en": "Events",
+        "hi": "कार्यक्रम",
+        "mr": "कार्यक्रम"
+      },
+      "featureSuffix": "community.events",
+      "capability": "community.groups-events"
+    },
+    {
+      "viewId": "attendance",
+      "iconToken": "user",
+      "label": {
+        "en": "Attendance & Recovery",
+        "hi": "उपस्थिति और रिकवरी",
+        "mr": "उपस्थिती आणि भरपाई"
+      },
+      "featureSuffix": "school.attendance",
+      "capability": "domain.school"
+    },
+    {
+      "viewId": "transport",
+      "iconToken": "map",
+      "label": {
+        "en": "Transport & Pickup",
+        "hi": "परिवहन और पिकअप",
+        "mr": "वाहतूक आणि पिकअप"
+      },
+      "featureSuffix": "school.transport",
+      "capability": "domain.school"
+    },
+    {
+      "viewId": "concerns",
+      "iconToken": "settings",
+      "label": {
+        "en": "Parent Concerns",
+        "hi": "अभिभावक चिंताएँ",
+        "mr": "पालक चिंता"
+      },
+      "featureSuffix": "school.concerns",
+      "capability": "domain.school"
+    },
+    {
+      "viewId": "guide",
+      "iconToken": "book-open",
+      "label": {
+        "en": "Guide & Help",
+        "hi": "मार्गदर्शिका व सहायता",
+        "mr": "मार्गदर्शक व मदत"
+      },
+      "capability": "runtime.guide"
+    },
+    {
+      "viewId": "admin",
+      "iconToken": "settings",
+      "label": {
+        "en": "Manage School",
+        "hi": "स्कूल प्रबंधन",
+        "mr": "शाळा व्यवस्थापन"
+      },
+      "featureSuffix": "admin.manage",
+      "capability": "domain.school",
+      "adminOnly": true
+    }
+  ],
+  "playground": {
+    "startView": "home",
+    "synthetic": true,
+    "entities": [
+      {
+        "id": "school-student-1",
+        "kind": "person",
+        "label": "Synthetic Student A"
+      },
+      {
+        "id": "school-student-2",
+        "kind": "person",
+        "label": "Synthetic Student B"
+      },
+      {
+        "id": "school-guardian-1",
+        "kind": "person",
+        "label": "Synthetic Guardian A"
+      },
+      {
+        "id": "school-teacher-1",
+        "kind": "person",
+        "label": "Synthetic Teacher A"
+      },
+      {
+        "id": "school-class-1",
+        "kind": "group",
+        "label": "Synthetic Class 4A"
+      }
+    ],
+    "relationships": [
+      {
+        "id": "school-rel-1",
+        "fromEntityId": "school-guardian-1",
+        "toEntityId": "school-student-1",
+        "relationshipType": "guardian_of",
+        "label": "Guardian of"
+      },
+      {
+        "id": "school-rel-2",
+        "fromEntityId": "school-teacher-1",
+        "toEntityId": "school-class-1",
+        "relationshipType": "teacher_of",
+        "label": "Teacher of"
+      },
+      {
+        "id": "school-rel-3",
+        "fromEntityId": "school-student-1",
+        "toEntityId": "school-class-1",
+        "relationshipType": "student_in",
+        "label": "Student in"
+      },
+      {
+        "id": "school-rel-4",
+        "fromEntityId": "school-student-2",
+        "toEntityId": "school-class-1",
+        "relationshipType": "student_in",
+        "label": "Student in"
+      }
+    ]
+  },
+  "adapters": {
+    "policy": "vertical-required",
+    "workflow": "vertical-adapter",
+    "data": "vertical-api"
+  },
+  "observability": {
+    "journey": "school.primary",
+    "slowMs": 1200
+  }
+}

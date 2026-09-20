@@ -1,0 +1,12 @@
+core/workflow/contracts.ts
+core/workflow/runtime.ts
+verticals/housing-society/runtime/workflow.ts
+verticals/family-association/runtime/workflow.ts
+core/verticals/capability-manifest.ts
+qa/unit/workflow-primitives.test.ts
+qa/unit/capability-manifest.test.ts
+package.json
+missions/mission-003/m3-d/D5-WORKFLOW-PRIMITIVES-EVIDENCE.md
+missions/mission-003/m3-d/D5-AFFECTED-FILES.txt
+CURRENT-STATE.md
+ROADMAP.md

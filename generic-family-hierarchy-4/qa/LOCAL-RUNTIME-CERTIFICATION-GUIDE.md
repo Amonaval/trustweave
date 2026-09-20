@@ -2,6 +2,30 @@
 
 This repository contains the QA implementation. The application owner runs the runtime certification locally or against a dedicated staging environment and returns `qa-results/` for remediation.
 
+## Current reliability focus
+
+The top-level `qa.config.mjs` is the single connected-test scope control. It currently selects only:
+
+- Residential / Housing Society (`housing-society`)
+- Family Community / Cultural Association (`family-association`)
+- owner, admin and member roles
+
+Platform-wide static/type/unit contracts still protect the reusable architecture and all registered verticals. Connected browser journeys and resilient crawling use the configured two-vertical scope.
+
+Run the current mission with one command:
+
+```bash
+npm run qa:reliability
+```
+
+For credential-free source/type/build validation only:
+
+```bash
+npm run qa:reliability:local
+```
+
+The connected command reuses `qa-results/fixtures/seed-state.json` when present, otherwise it safely seeds only the verticals selected in `qa.config.mjs` into the dedicated staging project. It then runs targeted critical journeys and the resumable crawler independently so one failing journey does not hide additional findings. The legacy full-certification seed remains all-nine when it is explicitly run outside this focused command.
+
 ## 1. Preconditions
 
 Use **dedicated QA infrastructure only**. Never point mutating QA at production.
@@ -131,7 +155,7 @@ Use these only to shorten a fix/retest loop. Release certification remains `npm 
 
 ### Resilient whole-app crawl
 
-Use `qa:crawl:robust` for the two launch verticals and `qa:crawl:robust:all` for all nine verticals across owner, admin and member roles. The resilient runner is intentionally different from the old monolithic crawl:
+Use `qa:crawl:robust` for the verticals/roles selected in top-level `qa.config.mjs`. Use `qa:crawl:robust:all` only for an explicitly requested all-nine vertical crawl. The resilient runner is intentionally different from the old monolithic crawl:
 
 - one role × vertical shard runs in a fresh browser process;
 - one local app server is reused for the entire run;

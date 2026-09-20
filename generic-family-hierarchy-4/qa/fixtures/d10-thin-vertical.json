@@ -1,0 +1,124 @@
+{
+  "kind": "civic-circle",
+  "displayName": "Civic Circle",
+  "shortLabel": "Civic Circle",
+  "iconToken": "users-round",
+  "themeToken": "civic-circle-neutral",
+  "status": "skeleton",
+  "ownedCapability": "domain.civic-circle",
+  "reusedCapabilities": [
+    "network.context",
+    "network.membership",
+    "network.affiliation",
+    "network.activity",
+    "runtime.guide",
+    "runtime.playground",
+    "identity.privacy",
+    "community.groups-events"
+  ],
+  "labels": {
+    "entityLabel": "Member",
+    "entityLabelPlural": "Members",
+    "levelLabel": "Circle",
+    "levelLabelPlural": "Circles",
+    "parentLabel": "Coordinator",
+    "childLabel": "Member",
+    "peerLabel": "Peer"
+  },
+  "runtimeMeta": {
+    "sampleName": "Synthetic Civic Circle",
+    "sampleDescription": "Synthetic non-product fixture used only to prove the thin-vertical developer contract."
+  },
+  "surfaces": [
+    {
+      "viewId": "home",
+      "iconToken": "home",
+      "label": {
+        "en": "Home",
+        "hi": "होम",
+        "mr": "होम"
+      },
+      "featureSuffix": "core.home"
+    },
+    {
+      "viewId": "directory",
+      "iconToken": "users",
+      "label": {
+        "en": "Members",
+        "hi": "सदस्य",
+        "mr": "सदस्य"
+      },
+      "featureSuffix": "core.directory",
+      "capability": "network.affiliation"
+    },
+    {
+      "viewId": "events",
+      "iconToken": "calendar",
+      "label": {
+        "en": "Events",
+        "hi": "कार्यक्रम",
+        "mr": "कार्यक्रम"
+      },
+      "featureSuffix": "community.events",
+      "capability": "community.groups-events"
+    },
+    {
+      "viewId": "admin",
+      "iconToken": "settings",
+      "label": {
+        "en": "Manage",
+        "hi": "प्रबंधन",
+        "mr": "व्यवस्थापन"
+      },
+      "featureSuffix": "admin.manage",
+      "capability": "domain.civic-circle",
+      "adminOnly": true
+    }
+  ],
+  "playground": {
+    "startView": "home",
+    "synthetic": true,
+    "entities": [
+      {
+        "id": "cc-1",
+        "kind": "person",
+        "label": "Synthetic Member One"
+      },
+      {
+        "id": "cc-2",
+        "kind": "person",
+        "label": "Synthetic Member Two"
+      },
+      {
+        "id": "cc-3",
+        "kind": "person",
+        "label": "Synthetic Coordinator"
+      }
+    ],
+    "relationships": [
+      {
+        "id": "cc-r1",
+        "fromEntityId": "cc-1",
+        "toEntityId": "cc-3",
+        "relationshipType": "member_of",
+        "label": "Member of"
+      },
+      {
+        "id": "cc-r2",
+        "fromEntityId": "cc-2",
+        "toEntityId": "cc-3",
+        "relationshipType": "member_of",
+        "label": "Member of"
+      }
+    ]
+  },
+  "adapters": {
+    "policy": "vertical-required",
+    "workflow": "shared-primitives",
+    "data": "vertical-api"
+  },
+  "observability": {
+    "journey": "civic-circle.primary",
+    "slowMs": 1200
+  }
+}

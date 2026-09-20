@@ -1,0 +1,11 @@
+core/verticals/thin-sdk.ts
+core/verticals/thin-adapters.ts
+scripts/vertical-scaffold.ts
+qa/fixtures/d10-thin-vertical.json
+qa/unit/thin-vertical-dx.test.ts
+package.json
+docs/architecture/THIN-VERTICAL-DEVELOPER-CONTRACT.md
+CURRENT-STATE.md
+ROADMAP.md
+missions/mission-003/m3-d/D10-THIN-VERTICAL-DX-EVIDENCE.md
+missions/mission-003/m3-d/D10-AFFECTED-FILES.txt

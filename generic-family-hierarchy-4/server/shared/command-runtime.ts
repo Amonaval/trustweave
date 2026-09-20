@@ -2,14 +2,15 @@ import type {RequestContext} from "./request-context";
 import {createRequestContext} from "./request-context";
 import {commandFailure,commandSuccess,logCommand} from "./response";
 import {readJsonObject} from "./request-safety";
-import {enforceBurstLimit} from "./rate-limit";
+import {enforceScopedBurstLimit} from "./rate-limit";
+import {SCALE_BUDGETS} from "../../core/scale/contracts";
 import {beginIdempotency,completeIdempotency,releaseIdempotency} from "./idempotency";
 import {CommandError,normalizeCommandError} from "./errors";
 
 type IdempotencyMode="none"|"optional"|"required";
 type CommandRuntimeOptions<TCommand,TResult>={
  request:Request;commandName:string;parse:(body:Record<string,unknown>)=>TCommand;execute:(ctx:RequestContext,command:TCommand)=>Promise<TResult>;
- successStatus?:number;maxBodyBytes?:number;rateLimit?:{limit:number;windowMs?:number};idempotency?:IdempotencyMode;networkId?:(result:TResult,ctx:RequestContext)=>string|undefined;
+ successStatus?:number;maxBodyBytes?:number;rateLimit?:{limit:number;networkLimit?:number;windowMs?:number};idempotency?:IdempotencyMode;networkId?:(result:TResult,ctx:RequestContext)=>string|undefined;
 };
 
 export async function executeCommand<TCommand,TResult>(o:CommandRuntimeOptions<TCommand,TResult>){
@@ -17,7 +18,7 @@ export async function executeCommand<TCommand,TResult>(o:CommandRuntimeOptions<T
  try{
   const body=await readJsonObject(o.request,{maxBodyBytes:o.maxBodyBytes});
   ctx=await createRequestContext(o.request);requestId=ctx.requestId;
-  enforceBurstLimit(`${ctx.user.id}:${o.commandName}`,o.rateLimit?.limit??30,o.rateLimit?.windowMs??60_000);
+  enforceScopedBurstLimit({actorId:ctx.user.id,networkId:ctx.activeNetworkId,operation:o.commandName,actorLimit:o.rateLimit?.limit??SCALE_BUDGETS.commandActorPerMinute,networkLimit:o.rateLimit?.networkLimit??SCALE_BUDGETS.commandNetworkPerMinute,windowMs:o.rateLimit?.windowMs});
   const mode=o.idempotency??"none";idemKey=o.request.headers.get("idempotency-key")?.trim()||undefined;
   if(mode==="required"&&!idemKey)throw new CommandError("IDEMPOTENCY_KEY_REQUIRED","Idempotency-Key is required for this command.",400);
   if(idemKey&&mode!=="none"){

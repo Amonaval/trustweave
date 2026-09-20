@@ -1,33 +1,10 @@
 import type { FeatureCatalog } from "../features/contracts";
 
-export type NetworkVerticalKind = "family" | "alumni" | "association" | "family-association" | "housing-society" | "organization" | "business-trust" | "franchise" | "professional";
+export type { NetworkVerticalKind } from "./kinds";
+import type { NetworkVerticalKind } from "./kinds";
 
-export type VerticalCapabilityId =
-  | "network.context"
-  | "network.membership"
-  | "network.construction"
-  | "network.affiliation"
-  | "network.activity"
-  | "network.intelligence"
-  | "runtime.launch-control"
-  | "runtime.guide"
-  | "runtime.playground"
-  | "runtime.whats-new"
-  | "identity.claiming"
-  | "identity.invitations"
-  | "identity.privacy"
-  | "contribution.governed"
-  | "community.groups-events"
-  | "notifications.digest"
-  | "domain.kinship"
-  | "domain.institutional-membership"
-  | "domain.community-association"
-  | "domain.family-association"
-  | "domain.housing-society"
-  | "domain.organizational-intelligence"
-  | "domain.business-trust"
-  | "domain.franchise-operations"
-  | "domain.professional-expertise";
+export type { VerticalCapabilityId } from "./capability-manifest";
+import type { VerticalCapabilityId } from "./capability-manifest";
 
 export type VerticalNetworkLabels = {
   entityLabel: string; entityLabelPlural: string; levelLabel: string; levelLabelPlural: string;
