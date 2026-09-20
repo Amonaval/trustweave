@@ -1,6 +1,6 @@
 # D12 — Capture Stabilization Handover
 
-**Status:** capture phase stable enough to resume D12 architecture work in a fresh session.  
+**Status:** capture stable; live-vs-source classification and candidate canonical reconstruction are now in progress.  
 **Branch:** `llm-push`  
 **Golden database:** existing working Supabase project — read-only reference, no destructive changes authorized.
 
@@ -161,3 +161,63 @@ Resume **TrustWeave D12 Modular Database Architecture / Migration OS** from `llm
 Treat `docs/architecture/D12-LIVE-REFERENCE-TRIAGE.md`, `docs/architecture/D12-REFERENCE-CAPTURE.md`, and this handover as the current capture truth.
 
 The capture phase is stable. Do not repeat PostgreSQL/Docker setup. Begin live-vs-source object classification and canonical modular database reconstruction. Keep the existing Supabase project untouched as the golden fallback, build a fresh candidate Supabase in parallel, and do not start School implementation until D12 database modularization and parity are proven.
+
+
+## Reconstruction checkpoint — 2026-09-20
+
+D12 has moved beyond capture stabilization into executable classification and canonical reconstruction.
+
+Added on `llm-push`:
+
+- `docs/architecture/D12-LIVE-SOURCE-CLASSIFICATION.md` — evidence-based classification rules and first confirmed decisions;
+- `db/canonical/modules.json` — machine-readable ownership/dependency graph;
+- `db/canonical/README.md` — candidate-baseline promotion contract;
+- `scripts/d12-classify-catalog.py` — reproducible source↔live inventory/classifier;
+- `scripts/d12-reconstruct-canonical.py` — phase-ordered modular SQL reconstruction generator.
+
+### Confirmed classification decisions
+
+- `set_network_notification_role(text,text,uuid,boolean)` — **MISSING live / DRIFT**. Migration 105 defines it and current application source still expects it.
+- `remove_network_notification_role(text,uuid)` — **MISSING live / DRIFT**. Same evidence.
+- These two mutators are explicit candidate source-drift repairs in generated reconstruction; do **not** repair the golden project.
+- `reconcile_network_media_usage(uuid)` — **EXTRA pending provenance**, but its exact live definition is preserved from the primary capture and canonical ownership is assigned to the shared activity/media module.
+- `supabase_migrations.schema_migrations` visibility remains **DIFFERENT-BY-DESIGN / environment evidence gap**.
+
+### Canonical module graph
+
+Current ordered modules:
+
+1. platform-core;
+2. identity;
+3. activity;
+4. workflow;
+5. notifications;
+6. federation;
+7. family;
+8. family-community;
+9. housing;
+10. future-education (reserved only);
+11. future-specializations.
+
+The generator is **phase-first across modules**, not module-first:
+
+1. extensions;
+2. sequences;
+3. all table shells;
+4. all constraints;
+5. all indexes;
+6. live function definitions;
+7. explicit source-drift repairs;
+8. triggers;
+9. RLS/policies;
+10. Storage bucket configuration/policies;
+11. table grants;
+12. function grants.
+
+This ordering prevents cross-module foreign keys from being applied before referenced tables exist.
+
+### Current next step
+
+Do not repeat capture work. Run the classifier and reconstruction generator against the two already supplied CSVs in a repository checkout, review non-match inventory and generated manifest, then use the resulting candidate baseline for a **fresh disposable Supabase** parity run.
+
+The generated baseline remains a candidate. Do not promote it as canonical current source, alter bootstrap behavior, or touch the golden database until five-layer parity passes.
