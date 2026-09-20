@@ -12,7 +12,7 @@ Preflight passed locally against the real archived receipt, report, recapture an
 
 This is the final D12-E gate before canonical-promotion review.
 
-Database/catalog/API behavioral parity has already passed on the fresh disposable candidate. This document scopes only the remaining browser/product runtime proof.
+Structural, security and API **catalog** parity passed on the fresh disposable candidate. Connected behavior and browser parity are the remaining proof.
 
 ## Candidate / golden boundaries
 
@@ -52,6 +52,53 @@ Before any mutation:
 5. The configured project ref must not equal the golden ref `yyhwcqpzplebittvxzzl`.
 
 The existing QA runtime guards already reject production/golden mismatches.
+
+## Local runbook (Windows PowerShell)
+
+Use a fresh checkout to avoid reusing fixture users or networks from an older candidate. Run from a machine that can reach `https://yqwitkoxyrujbzpjwuji.supabase.co`. Keep the service-role key only in the ignored local environment file; never paste it into chat or commit it.
+
+1. Install Node.js 20 or newer and Python 3.12. From a short working path, clone the current branch and enter the app directory:
+
+   ```powershell
+   git clone --branch llm-push --single-branch https://github.com/Amonaval/trustweave.git trustweave-d12-qa
+   Set-Location .\trustweave-d12-qa\generic-family-hierarchy-4
+   ```
+
+2. Download `D12-FRESH-REPLAY-EVIDENCE-2026-09-20.zip`, set `$d12Zip` to its actual download path and extract it **into** the evidence directory (the ZIP contains `apply-receipt.json` at its root):
+
+   ```powershell
+   $d12Zip = "C:\path\to\D12-FRESH-REPLAY-EVIDENCE-2026-09-20.zip"
+   New-Item -ItemType Directory -Force .d12-work\bootstrap-replay | Out-Null
+   Expand-Archive -LiteralPath $d12Zip -DestinationPath .d12-work\bootstrap-replay -Force
+   Test-Path .d12-work\bootstrap-replay\recapture\candidate-primary.csv
+   ```
+
+   The last line must print `True`. Keep the capture ZIP and extracted CSVs out of Git.
+
+3. Copy the ignored candidate template and fill only the two key placeholders using the **final disposable project's** dashboard API keys. Use its anon (or compatible publishable) key for `NEXT_PUBLIC_SUPABASE_ANON_KEY` and its service-role key for `SUPABASE_SERVICE_ROLE_KEY`. Keep the project URL/ref and other template guards unchanged.
+
+   ```powershell
+   Copy-Item .env.d12-candidate.example .env.d12-candidate
+   notepad .env.d12-candidate
+   ```
+
+4. Install the locked dependencies and Chromium, then run the single D12 command. The wrapper validates the evidence and API access first, runs local contracts/build once, seeds five disposable QA identities and the configured two verticals, launches the local app/browser suite, and runs the notification-role proof. It writes a failed summary if a required journey fails.
+
+   ```powershell
+   npm ci
+   npx playwright install chromium
+   npm run qa:d12:candidate
+   ```
+
+5. Only after the D12 command passes, run the read-only promotion readiness check:
+
+   ```powershell
+   python scripts/d12-promotion-gate.py
+   ```
+
+   Expect `D12_BEHAVIOR_BROWSER_PARITY_PASS` followed by `READY_FOR_CANONICAL_PROMOTION_REVIEW`. This does not promote SQL or touch the protected golden project.
+
+If either command fails, stop there and share only the error message and the JSON summaries listed below after checking them for secrets. Do not share `.env.d12-candidate`, `qa-results/fixtures/generated.env`, service-role keys, raw browser traces or passwords. A fresh clone prevents the runner from reusing another project's `seed-state.json`.
 
 ## Browser certification command
 
@@ -100,6 +147,8 @@ A PASS requires:
 - `qa-results/d12-candidate-parity/notification-role-contract.json` = PASS;
 - `qa-results/d12-candidate-parity/SUMMARY.json` = `D12_BEHAVIOR_BROWSER_PARITY_PASS`;
 - no unresolved critical/high runtime defect in the D12 candidate scope.
+
+For review, provide `qa-results/reliability/SUMMARY.json`, `qa-results/d12-candidate-parity/SUMMARY.json`, `qa-results/d12-candidate-parity/notification-role-contract.json`, and `.d12-work/bootstrap-replay/promotion-readiness.json` when each exists. Check their contents for secrets before sharing. The last two files may be absent if an earlier gate stops the run.
 
 ## Promotion boundary
 
