@@ -589,6 +589,13 @@ def main() -> None:
                         f"GRANT {privilege} ON SEQUENCE {signature} "
                         f"TO {role_sql(principal)}{suffix};"
                     )
+                    # Owner self-GRANT may materialize an explicit grant-option
+                    # bit even when the captured ACL had no '*'. Remove only
+                    # that explicit bit so pg_class.relacl round-trips exactly.
+                    if principal == "postgres" and char not in grantable:
+                        sequence_acl_lines.append(
+                            f"REVOKE GRANT OPTION FOR {privilege} ON SEQUENCE {signature} FROM {qident('postgres')};"
+                        )
             continue
 
         if full_name not in relations:
@@ -613,6 +620,11 @@ def main() -> None:
                     f"GRANT {privilege} ON TABLE {qname(full_name)} "
                     f"TO {role_sql(principal)}{suffix};"
                 )
+                # Same owner normalization as sequences above.
+                if principal == "postgres" and char not in grantable:
+                    statements.append(
+                        f"REVOKE GRANT OPTION FOR {privilege} ON TABLE {qname(full_name)} FROM {qident('postgres')};"
+                    )
         table_acl_by_module[module].append((full_name, "\n".join(statements)))
 
     for module, blocks in table_acl_by_module.items():
