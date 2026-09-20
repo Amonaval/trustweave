@@ -1,0 +1,34 @@
+# D12 recovery review — 2026-09-20
+
+**Status:** recovery review complete; bounded automated browser parity **BLOCKED_BY_ENVIRONMENT**. No database mutation or bootstrap replay was performed in this review.
+
+## Authority and protected boundary
+
+Reviewed `llm-push` at `3dff4a87c90c9bfaa2b22092af4bf0f14ceb2c47`, the D12 freeze handover, committed bootstrap release, clean replay certification, browser parity handoff, QA wrapper, and latest successful CI run. The golden `OS Network` project (`yyhwcqpzplebittvxzzl`) remained untouched.
+
+## Current projects and read-only checks
+
+- `TrustWeave D12 Candidate` (`blpdjhmtayjkcczqltqi`): **INACTIVE**. Its earlier database behavioral PASS and founder browser smoke remain historical evidence, not a fresh browser run.
+- `TrustWeave D12 Clean Replay` (`yqtrkpyyzxzpthklqygs`): **ACTIVE_HEALTHY**. Read-only catalog checks found 167 public tables, 167 with RLS, 981 constraints, 401 indexes, 465 public functions, 97 public/Storage policies, both expected Storage buckets, and both notification-role RPC signatures. It currently has zero Auth users, zero networks, and zero Storage objects.
+- `TrustWeave QA DB Replay` (`gbdqujqohhdxqnemlpbc`): **INACTIVE**.
+
+The Clean Replay certification states that this project was populated **before** the final function ACL packaging correction. Its structural/API evidence remains useful, but it is not proof of a final fresh install from the corrected committed bytes. The latest `llm-push` GitHub Actions validation succeeded, including bootstrap integrity, tooling syntax, TypeScript, lint, unit contracts, and production build. CI did not run connected browser parity.
+
+## Browser gate preflight
+
+The required scope remains `housing-society` and `family-association`, with owner/admin/member roles. `qa/run-d12-candidate-parity.mjs` requires a local catalog PASS, a local disposable apply receipt, matching `QA_STAGING_PROJECT_REF`, a candidate-configured app runtime, and seeded test identities before its connected reliability suite and notification-role contract can run.
+
+No candidate-configured application runtime or QA credentials are available in this workspace, and the browser session has no TrustWeave app tab or verified candidate URL. The active Clean Replay has no Auth users or networks for role journeys. The committed `.env.d12-candidate.example` points to Clean Replay, but the QA wrapper still requires `.d12-work/candidate/apply-receipt.json` with status `APPLIED_TO_DISPOSABLE_CANDIDATE`; the committed bootstrap apply runner writes a different `.d12-work/bootstrap-replay/apply-receipt.json` format. Do not bypass this identity guard or relabel an old receipt.
+
+**Result:** no browser journeys were executed; product/browser parity is **NOT VERIFIED** in this review. This is a preflight/environment block, not a failed Housing or Family Community journey.
+
+## Coherent resume path
+
+1. Preserve the inactive earlier candidate and the golden project. Do not replay a full bootstrap over either existing populated candidate.
+2. For the final ACL packaging proof, use one genuinely empty disposable project and apply the finalized committed release through its guarded bootstrap path. Verify the resulting catalog/ACLs and record the new project ref in evidence.
+3. Align the D12 browser wrapper/promotion evidence contract with the committed bootstrap receipt, while retaining exact candidate/golden ref checks and fail-closed mutation guards.
+4. In a local checkout, configure the app and `.env.d12-candidate` for that **same** disposable project, keeping keys and passwords local. Seed only deterministic QA accounts/data there.
+5. Run bounded owner/admin/member journeys for the two configured verticals and the notification-role contract; retain the generated reliability and D12 summary files. Classify the already known Family Guide routing defect separately.
+6. Reconcile static, catalog, database behavior, browser and bootstrap provenance before the D12-F promotion/closure decision. Do not infer a fresh browser PASS from the earlier manual smoke.
+
+No user secret is requested or recorded in this checkpoint.
