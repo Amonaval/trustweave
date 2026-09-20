@@ -227,7 +227,50 @@ Before applying:
 6. keep all passwords/connection strings local;
 7. never commit secrets.
 
-The automated installer should perform the same safety checks before executing SQL.
+### Repository integrity gate
+
+Run this first:
+
+```bash
+python scripts/d12-validate-bootstrap.py
+```
+
+This validates the permanent Git release itself. It verifies all 95 SQL payload
+hashes, the 94-file direct apply order, the separate Storage owner-context file,
+the reviewed D12 object counts/contracts, phase ordering and credential hygiene.
+
+This check is also part of TrustWeave CI.
+
+### Guarded fresh-only local apply
+
+For a new disposable Supabase project:
+
+```bash
+export D12_BOOTSTRAP_DATABASE_URL='...keep local...'
+
+python scripts/d12-apply-bootstrap.py \
+  --candidate-project-ref <fresh-project-ref> \
+  --golden-project-ref yyhwcqpzplebittvxzzl \
+  --confirm APPLY-D12-BOOTSTRAP-TO-FRESH-DISPOSABLE
+```
+
+The runner intentionally refuses to proceed unless:
+
+- the committed bootstrap validator passes;
+- candidate and golden refs differ;
+- the supplied golden ref equals the protected ref recorded in the release;
+- the local database URL resolves to the declared candidate ref;
+- the target public schema contains zero relations, functions and sequences.
+
+The database URL is read from `D12_BOOTSTRAP_DATABASE_URL` only and is never
+written to the receipt.
+
+The runner applies the 94 ordinary database-context files in one transaction.
+The single `71-storage-owner-context` file remains separate because hosted
+Supabase owns the Storage schema. Apply that file through Supabase
+platform/dashboard owner context before parity comparison.
+
+The permanent bootstrap is never an upgrade mechanism for an existing database.
 
 ---
 
