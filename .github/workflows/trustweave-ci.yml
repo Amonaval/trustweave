@@ -51,7 +51,7 @@ jobs:
           python-version: "3.12"
 
       - name: Verify D12 database tooling syntax
-        run: python -m py_compile scripts/d12-classify-catalog.py scripts/d12-reconstruct-canonical.py scripts/d12-prepare-candidate.py scripts/d12-apply-candidate.py scripts/d12-capture-candidate.py scripts/d12-compare-catalogs.py scripts/d12-inspect-sql-editor-csv.py
+        run: python -m py_compile scripts/d12-classify-catalog.py scripts/d12-reconstruct-canonical.py scripts/d12-prepare-candidate.py scripts/d12-apply-candidate.py scripts/d12-capture-candidate.py scripts/d12-compare-catalogs.py scripts/d12-verify-candidate.py scripts/d12-inspect-sql-editor-csv.py
 
       - name: Verify company architecture
         run: npm run agentic:architecture
