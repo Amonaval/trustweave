@@ -45,18 +45,23 @@ def safe_file(value: str) -> str:
 def assign_module(name: str, kind: str, manifest: dict[str, Any]) -> str:
     leaf = name.split(".")[-1].replace('"', "").lower()
     rules = manifest["ownership_rules"]
+    existing = {m["id"] for m in manifest["modules"]}
     preferred = ["housing", "family-community", "federation", "notifications", "family",
                  "future-specializations", "activity", "workflow", "identity", "platform-core"]
-    for module in preferred:
+    ordered = [m for m in preferred if m in existing]
+
+    # Exact ownership overrides are global and must beat generic prefixes.
+    names_key = "table_names" if kind in {"table", "sequence"} else "function_names"
+    for module in ordered:
+        if leaf in {x.lower() for x in rules.get(module, {}).get(names_key, [])}:
+            return module
+
+    for module in ordered:
         rule = rules.get(module, {})
         if kind in {"table", "sequence"}:
-            if leaf in {x.lower() for x in rule.get("table_names", [])}:
-                return module
             if any(leaf.startswith(x.lower()) for x in rule.get("table_prefixes", [])):
                 return module
         else:
-            if leaf in {x.lower() for x in rule.get("function_names", [])}:
-                return module
             if any(leaf.startswith(x.lower()) for x in rule.get("function_prefixes", [])):
                 return module
             if any(x.lower() in leaf for x in rule.get("function_keywords", [])):
@@ -101,30 +106,54 @@ def policy_sql(p: dict[str, Any]) -> str:
 def grouped_grants(rows: Iterable[dict[str, Any]]) -> list[str]:
     grouped: dict[tuple[str, str, str], set[str]] = {}
     for r in rows:
-        key = (r["schema"], r["table"], r["grantee"])
+        key = (r["schema"], r["table"], r["grantee"], str(r.get("grantable", "NO")).upper() == "YES")
         grouped.setdefault(key, set()).add(r["privilege"])
     order = ["SELECT", "INSERT", "UPDATE", "DELETE", "TRUNCATE", "REFERENCES", "TRIGGER"]
     out = []
-    for (schema, table, grantee), privileges in sorted(grouped.items()):
+    for (schema, table, grantee, grantable), privileges in sorted(grouped.items()):
         ordered = [x for x in order if x in privileges] + sorted(privileges - set(order))
-        out.append(f"GRANT {', '.join(ordered)} ON TABLE {qident(schema)}.{qident(table)} TO {role_sql(grantee)};")
+        suffix = " WITH GRANT OPTION" if grantable else ""
+        out.append(f"GRANT {', '.join(ordered)} ON TABLE {qident(schema)}.{qident(table)} TO {role_sql(grantee)}{suffix};")
     return out
 
 
-def parse_acl(acl: str | None) -> list[tuple[str, str]]:
-    # Sufficient for captured PostgreSQL ACL strings whose role names do not contain commas.
+def parse_acl(acl: str | None) -> list[tuple[str, str, set[str]]]:
+    # PostgreSQL aclitem text: grantee=privileges/grantor. A '*' after a privilege
+    # marks WITH GRANT OPTION for that privilege.
     if not acl or acl == "{}":
         return []
     raw = acl.strip("{}")
-    items = []
+    items: list[tuple[str, str, set[str]]] = []
     for entry in raw.split(","):
         left = entry.split("/", 1)[0]
         if "=" not in left:
             continue
-        principal, privileges = left.split("=", 1)
+        principal, encoded = left.split("=", 1)
         principal = principal.strip('"') or "PUBLIC"
-        items.append((principal, privileges.replace("*", "")))
+        privileges: list[str] = []
+        grantable: set[str] = set()
+        i = 0
+        while i < len(encoded):
+            char = encoded[i]
+            if char == "*":
+                i += 1
+                continue
+            privileges.append(char)
+            if i + 1 < len(encoded) and encoded[i + 1] == "*":
+                grantable.add(char)
+                i += 1
+            i += 1
+        items.append((principal, "".join(privileges), grantable))
     return items
+
+
+def acl_privilege_name(kind: str, char: str) -> str | None:
+    maps = {
+        "schema": {"U": "USAGE", "C": "CREATE"},
+        "function": {"X": "EXECUTE"},
+        "sequence": {"r": "SELECT", "w": "UPDATE", "U": "USAGE"},
+    }
+    return maps.get(kind, {}).get(char)
 
 
 def sha(path: Path) -> str:
@@ -169,23 +198,6 @@ def main() -> None:
         ext_lines.append(f"CREATE EXTENSION IF NOT EXISTS {qident(ext['name'])} WITH SCHEMA {qident(ext['schema'])};")
     write(out / "00-foundation" / "00-extensions.sql", ext_lines)
 
-    # Phase 05: sequences across all modules before table creation.
-    seq_by_module: dict[str, list[dict[str, Any]]] = {m: [] for m in modules}
-    for seq in supplement.get("sequences", []):
-        name = f"{seq['schema']}.{seq['name']}"
-        seq_by_module[assign_module(name, "sequence", manifest)].append(seq)
-    for module, seqs in seq_by_module.items():
-        if not seqs:
-            continue
-        lines = header[:]
-        for s in sorted(seqs, key=lambda x: (x["schema"], x["name"])):
-            lines.append(
-                f"CREATE SEQUENCE IF NOT EXISTS {qident(s['schema'])}.{qident(s['name'])} AS {s['data_type']} "
-                f"INCREMENT BY {s['increment']} MINVALUE {s['min']} MAXVALUE {s['max']} START WITH {s['start']} "
-                f"CACHE {s['cache']} {'CYCLE' if s['cycle'] else 'NO CYCLE'};"
-            )
-        write(out / "05-sequences" / f"{module_order[module]:03d}-{safe_file(module)}.sql", lines)
-
     relations = {x["name"]: x for x in primary.get("relations", []) if x.get("kind") in ("r", "p")}
     columns: dict[str, list[dict[str, Any]]] = {}
     constraints: dict[str, list[dict[str, Any]]] = {}
@@ -201,14 +213,97 @@ def main() -> None:
     for name in relations:
         tables_by_module[assign_module(name, "table", manifest)].append(name)
 
-    # Phases 10/20/30 are deliberately phase-first, not module-first. This guarantees every
-    # table exists before any cross-module FK/constraint is applied.
+    # Sequence ownership must be reconstructed carefully: identity columns create their
+    # own sequence as part of CREATE TABLE and must not collide with an earlier CREATE SEQUENCE.
+    live_sequences = {
+        f"{x['schema']}.{x['name']}": x for x in supplement.get("sequences", [])
+    }
+    identity_sequence_names: set[str] = set()
+    sequence_owners: dict[str, tuple[str, str]] = {}
+    for relation, rows in columns.items():
+        clean_relation = relation.replace('"', "")
+        schema, table = clean_relation.split(".", 1)
+        for col in rows:
+            conventional = f"{schema}.{table}_{col['name']}_seq"
+            if (col.get("identity") or "") in {"a", "d"} and conventional in live_sequences:
+                identity_sequence_names.add(conventional)
+                sequence_owners[conventional] = (relation, col["name"])
+            default = str(col.get("default") or "")
+            match = re.search(r"nextval\('([^']+)'::regclass\)", default, flags=re.I)
+            if match:
+                seq_name = match.group(1).replace('"', "")
+                if "." not in seq_name:
+                    seq_name = f"{schema}.{seq_name}"
+                if seq_name in live_sequences:
+                    sequence_owners[seq_name] = (relation, col["name"])
+
+    # Phase 05: create only standalone/serial-style sequences. Identity-owned sequences
+    # are created implicitly by their table definitions in phase 10.
+    seq_by_module: dict[str, list[tuple[str, dict[str, Any]]]] = {m: [] for m in modules}
+    for name, seq in live_sequences.items():
+        if name in identity_sequence_names:
+            continue
+        owner = sequence_owners.get(name)
+        module = assign_module(owner[0], "table", manifest) if owner else assign_module(name, "sequence", manifest)
+        seq_by_module[module].append((name, seq))
+    for module, seqs in seq_by_module.items():
+        if not seqs:
+            continue
+        lines = header[:]
+        for name, seq in sorted(seqs, key=lambda x: x[0]):
+            lines.append(
+                f"CREATE SEQUENCE IF NOT EXISTS {qident(seq['schema'])}.{qident(seq['name'])} AS {seq['data_type']} "
+                f"INCREMENT BY {seq['increment']} MINVALUE {seq['min']} MAXVALUE {seq['max']} START WITH {seq['start']} "
+                f"CACHE {seq['cache']} {'CYCLE' if seq['cycle'] else 'NO CYCLE'};"
+            )
+        write(out / "05-sequences" / f"{module_order[module]:03d}-{safe_file(module)}.sql", lines)
+
+    # Some table defaults/checks/index expressions call application functions. Bootstrap
+    # only those required functions before table/constraint creation, with body checking
+    # disabled because their bodies can legitimately reference tables created later.
+    expression_texts: list[str] = []
+    expression_texts.extend(str(c.get("default") or "") for rows in columns.values() for c in rows)
+    expression_texts.extend(str(c.get("definition") or "") for rows in constraints.values() for c in rows)
+    expression_texts.extend(str(i.get("definition") or "") for rows in indexes.values() for i in rows)
+    functions = list(primary.get("functions", []))
+    by_leaf: dict[str, list[dict[str, Any]]] = {}
+    for fn in functions:
+        leaf = fn["name"].split(".")[-1].replace('"', "").lower()
+        by_leaf.setdefault(leaf, []).append(fn)
+    required_leaves = {
+        leaf
+        for leaf in by_leaf
+        if any(re.search(rf"(?<![A-Za-z0-9_])(?:public\.)?{re.escape(leaf)}\s*\(", expr, flags=re.I)
+               for expr in expression_texts)
+    }
+    bootstrap_functions = [
+        fn for leaf in sorted(required_leaves)
+        for fn in sorted(by_leaf[leaf], key=lambda x: x.get("identity_arguments", ""))
+    ]
+    relation_leaves = {x.split(".")[-1].replace('"', "").lower() for x in relations}
+    for fn in bootstrap_functions:
+        signature = f"{fn.get('identity_arguments', '')} {fn.get('result', '')}".lower()
+        composite_hits = [leaf for leaf in relation_leaves if f"public.{leaf}" in signature]
+        if composite_hits:
+            raise ValueError(
+                f"Bootstrap function {fn['name']} has table-composite signature dependency: {composite_hits}"
+            )
+    if bootstrap_functions:
+        lines = header[:] + [
+            "-- Required before CREATE TABLE/constraints because captured expressions call these functions.",
+            "SET check_function_bodies = off;",
+        ]
+        for fn in bootstrap_functions:
+            lines.append(fn["definition"].rstrip(";") + ";\n")
+        lines.append("SET check_function_bodies = on;")
+        write(out / "08-bootstrap-functions" / "000-required.sql", lines)
+
+    # Phase 10: all table shells before any cross-table constraint.
     for module in modules:
-        prefix = f"{module_order[module]:03d}-{safe_file(module)}.sql"
         table_names = sorted(tables_by_module[module])
         if not table_names:
             continue
-
+        prefix = f"{module_order[module]:03d}-{safe_file(module)}.sql"
         lines = header[:]
         for name in table_names:
             cols = columns.get(name, [])
@@ -217,6 +312,30 @@ def main() -> None:
             lines.append(");\n")
         write(out / "10-tables" / prefix, lines)
 
+    # Phase 15: restore exact sequence options after identity sequences exist, and attach
+    # standalone nextval sequences to their owning columns.
+    sequence_lines = header[:]
+    for name, seq in sorted(live_sequences.items()):
+        sequence_lines.append(
+            f"ALTER SEQUENCE {qident(seq['schema'])}.{qident(seq['name'])} AS {seq['data_type']} "
+            f"INCREMENT BY {seq['increment']} MINVALUE {seq['min']} MAXVALUE {seq['max']} START WITH {seq['start']} "
+            f"CACHE {seq['cache']} {'CYCLE' if seq['cycle'] else 'NO CYCLE'};"
+        )
+        if name in sequence_owners and name not in identity_sequence_names:
+            relation, column = sequence_owners[name]
+            sequence_lines.append(
+                f"ALTER SEQUENCE {qident(seq['schema'])}.{qident(seq['name'])} "
+                f"OWNED BY {qname(relation)}.{qident(column)};"
+            )
+    if live_sequences:
+        write(out / "15-sequence-ownership" / "000-sequences.sql", sequence_lines)
+
+    # Phase 20: all constraints after all tables. Phase 30: expression/non-constraint indexes.
+    for module in modules:
+        table_names = sorted(tables_by_module[module])
+        if not table_names:
+            continue
+        prefix = f"{module_order[module]:03d}-{safe_file(module)}.sql"
         lines = header[:]
         for name in table_names:
             for c in sorted(constraints.get(name, []), key=lambda x: x["name"]):
@@ -232,17 +351,19 @@ def main() -> None:
                 lines.append(idx["definition"].rstrip(";") + ";")
         write(out / "30-indexes" / prefix, lines)
 
-    # Phase 40: exact live function definitions.
+    # Phase 40: exact live function definitions. Body validation is intentionally disabled
+    # during creation so SQL-language functions may reference functions emitted later.
     funcs_by_module: dict[str, list[dict[str, Any]]] = {m: [] for m in modules}
-    for fn in primary.get("functions", []):
+    for fn in functions:
         funcs_by_module[assign_module(fn["name"], "function", manifest)].append(fn)
     for module, funcs in funcs_by_module.items():
         if not funcs:
             continue
         prefix = f"{module_order[module]:03d}-{safe_file(module)}.sql"
-        lines = header[:]
+        lines = header[:] + ["SET check_function_bodies = off;"]
         for fn in sorted(funcs, key=lambda x: (x["name"], x.get("identity_arguments", ""))):
             lines.append(fn["definition"].rstrip(";") + ";\n")
+        lines.append("SET check_function_bodies = on;")
         write(out / "40-functions" / prefix, lines)
 
     # Phase 45: source/application contracts proved missing from live. They stay explicit so
@@ -255,14 +376,23 @@ def main() -> None:
             "-- Extracted from immutable migration 105; validate behavior on the disposable candidate project.",
         ]
         for fname in ("set_network_notification_role", "remove_network_notification_role"):
-            match = re.search(
-                rf"(create\s+or\s+replace\s+function\s+public\.{fname}\s*\(.*?\n(?:revoke|grant).*?;(?:grant.*?;)?)(?=\n\n|\ncreate\s+or\s+replace\s+function|\Z)",
+            start = re.search(
+                rf"create\s+or\s+replace\s+function\s+public\.{fname}\s*\(",
                 source105,
-                flags=re.I | re.S,
+                flags=re.I,
             )
-            if not match:
-                raise ValueError(f"Could not extract migration-105 drift repair for {fname}")
-            repair_lines.append(match.group(1).strip() + "\n")
+            if not start:
+                raise ValueError(f"Could not locate migration-105 drift repair for {fname}")
+            nxt = re.search(
+                r"\ncreate\s+or\s+replace\s+function\s+public\.",
+                source105[start.end():],
+                flags=re.I,
+            )
+            end = start.end() + nxt.start() if nxt else len(source105)
+            block = source105[start.start():end].strip()
+            if "revoke all on function" not in block.lower() or "grant execute on function" not in block.lower():
+                raise ValueError(f"Migration-105 drift repair ACL incomplete for {fname}")
+            repair_lines.append(block + "\n")
         write(out / "45-source-drift-repairs" / "050-notifications.sql", repair_lines)
 
     # Phase 50: triggers after functions.
@@ -306,8 +436,17 @@ def main() -> None:
             lines.append(policy_sql(policy))
         write(out / "60-security" / prefix, lines)
 
-    # Phase 70: Storage bucket configuration and captured Storage policies. Files/objects are never copied.
+    # Phase 70: Storage relation security, bucket configuration and captured policies.
+    # Storage object/file rows are never copied.
     storage_lines = header[:]
+    for relsec in sorted(supplement.get("storage_relation_security", []), key=lambda x: x["name"]):
+        target = f"{qident('storage')}.{qident(relsec['name'])}"
+        storage_lines.append(
+            f"ALTER TABLE {target} {'ENABLE' if relsec.get('rls') else 'DISABLE'} ROW LEVEL SECURITY;"
+        )
+        storage_lines.append(
+            f"ALTER TABLE {target} {'FORCE' if relsec.get('force_rls') else 'NO FORCE'} ROW LEVEL SECURITY;"
+        )
     for bucket in supplement.get("storage_buckets", []):
         mimes = (
             "NULL"
@@ -327,7 +466,28 @@ def main() -> None:
         storage_lines.append(policy_sql(policy))
     write(out / "70-storage" / "000-storage.sql", storage_lines)
 
-    # Phase 80: table grants.
+    # Phase 75: captured application-schema ACL. Normalize API/public principals, then replay.
+    schema_lines = header[:]
+    for row in supplement.get("schema_grants", []):
+        schema = row["schema"]
+        schema_lines.append(
+            f"REVOKE ALL ON SCHEMA {qident(schema)} FROM PUBLIC, {qident('anon')}, "
+            f"{qident('authenticated')}, {qident('service_role')};"
+        )
+        for principal, privileges, grantable in parse_acl(row.get("acl")):
+            for char in privileges:
+                privilege = acl_privilege_name("schema", char)
+                if not privilege:
+                    continue
+                suffix = " WITH GRANT OPTION" if char in grantable else ""
+                schema_lines.append(
+                    f"GRANT {privilege} ON SCHEMA {qident(schema)} TO {role_sql(principal)}{suffix};"
+                )
+    if supplement.get("schema_grants"):
+        write(out / "75-schema-grants" / "000-schemas.sql", schema_lines)
+
+    # Phase 80: public/application table grants. Built-in storage relation ACLs remain
+    # Supabase-managed and are not overwritten by the candidate baseline.
     grants_by_module: dict[str, list[dict[str, Any]]] = {m: [] for m in modules}
     for grant in primary.get("grants", []):
         if grant["schema"] == "storage":
@@ -335,25 +495,58 @@ def main() -> None:
         relation = f"{grant['schema']}.{grant['table']}"
         grants_by_module[assign_module(relation, "table", manifest)].append(grant)
     for module, rows in grants_by_module.items():
-        if not rows:
+        table_names = sorted(tables_by_module[module])
+        if not rows and not table_names:
             continue
         prefix = f"{module_order[module]:03d}-{safe_file(module)}.sql"
-        write(out / "80-table-grants" / prefix, header[:] + grouped_grants(rows))
+        lines = header[:]
+        for relation in table_names:
+            lines.append(
+                f"REVOKE ALL ON TABLE {qname(relation)} FROM PUBLIC, {qident('anon')}, "
+                f"{qident('authenticated')}, {qident('service_role')};"
+            )
+        lines.extend(grouped_grants(rows))
+        write(out / "80-table-grants" / prefix, lines)
 
-    # Phase 90: exact captured function EXECUTE ACLs, using identity arguments from supplement.
+    # Phase 85: sequence USAGE/SELECT/UPDATE grants captured through information_schema.
+    sequence_grants: list[str] = []
+    for grant in primary.get("usage_grants", []):
+        if str(grant.get("type") or "").upper() != "SEQUENCE":
+            continue
+        privilege = str(grant.get("privilege") or "").upper()
+        if privilege not in {"USAGE", "SELECT", "UPDATE"}:
+            continue
+        sequence_grants.append(
+            f"GRANT {privilege} ON SEQUENCE {qident(grant['schema'])}.{qident(grant['object'])} "
+            f"TO {role_sql(grant['grantee'])};"
+        )
+    if sequence_grants:
+        write(out / "85-sequence-grants" / "000-sequences.sql", header[:] + sorted(set(sequence_grants)))
+
+    # Phase 90: explicit captured function ACLs. NULL proacl means PostgreSQL defaults and
+    # is deliberately left at its default; explicit ACLs are normalized then replayed.
     function_grants_by_module: dict[str, list[str]] = {m: [] for m in modules}
     for function_grant in supplement.get("function_grants", []):
+        acl = function_grant.get("acl")
+        if acl is None:
+            continue
         full_name = f"{function_grant['schema']}.{function_grant['name']}"
         signature = (
             f"{qident(function_grant['schema'])}.{qident(function_grant['name'])}"
             f"({function_grant.get('identity_arguments', '')})"
         )
-        for principal, privileges in parse_acl(function_grant.get("acl")):
-            if "X" in privileges:
-                module = assign_module(full_name, "function", manifest)
-                function_grants_by_module[module].append(
-                    f"GRANT EXECUTE ON FUNCTION {signature} TO {role_sql(principal)};"
-                )
+        module = assign_module(full_name, "function", manifest)
+        function_grants_by_module[module].append(
+            f"REVOKE ALL ON FUNCTION {signature} FROM PUBLIC, {qident('anon')}, "
+            f"{qident('authenticated')}, {qident('service_role')};"
+        )
+        for principal, privileges, grantable in parse_acl(acl):
+            if "X" not in privileges:
+                continue
+            suffix = " WITH GRANT OPTION" if "X" in grantable else ""
+            function_grants_by_module[module].append(
+                f"GRANT EXECUTE ON FUNCTION {signature} TO {role_sql(principal)}{suffix};"
+            )
     for module, rows in function_grants_by_module.items():
         if not rows:
             continue
@@ -369,6 +562,24 @@ def main() -> None:
         "server_version": primary.get("server_version"),
         "primary_capture_sha256": hashlib.sha256(args.primary.read_bytes()).hexdigest(),
         "supplement_capture_sha256": hashlib.sha256(args.supplement.read_bytes()).hexdigest() if args.supplement else None,
+        "sequence_reconstruction": {
+            "captured": len(live_sequences),
+            "identity_owned": sorted(identity_sequence_names),
+            "owners": {
+                name: {"relation": owner[0], "column": owner[1]}
+                for name, owner in sorted(sequence_owners.items())
+            },
+        },
+        "bootstrap_functions": [
+            f"{fn['name']}({fn.get('identity_arguments', '')})" for fn in bootstrap_functions
+        ],
+        "security_reconstruction": {
+            "schema_acl_source": "supplement.pg_namespace.nspacl",
+            "table_grant_source": "primary.information_schema.role_table_grants",
+            "sequence_grant_source": "primary.information_schema.usage_privileges",
+            "function_acl_source": "supplement.pg_proc.proacl",
+            "storage_relation_acl": "Supabase-managed; RLS state and user policies reconstructed, built-in relation ACL not overwritten",
+        },
         "object_counts": {
             "relations": len(primary.get("relations", [])),
             "columns": len(primary.get("columns", [])),
