@@ -165,3 +165,19 @@ The next database-changing activity is still **only a fresh disposable Supabase 
 6. then run behavioral and product/browser parity.
 
 No School/education schema work starts before those gates pass.
+
+
+### Current application RPC surface proof — 2026-09-20
+
+A repository-wide static scan covered all 78 current TypeScript/JavaScript files in the remote/service/route/client data-access surface.
+
+- 327 distinct static Supabase `.rpc("name")` contracts were found.
+- The golden primary capture contains 460 distinct live public function names across 463 signatures.
+- Exactly two current RPC names are absent live:
+  - `set_network_notification_role`;
+  - `remove_network_notification_role`.
+- No other current static application RPC name is missing from the golden live function catalog.
+
+This materially narrows the API-contract drift surface: the two notification mutators are the only name-level live omissions found in the current application RPC surface. Signature/result/behavior equivalence still belongs to the fresh-candidate parity gates.
+
+The final branch-head TrustWeave CI for commit `0e1f7b72257062e844aefe05cc05df66ba418f30` completed successfully, including D12 Python syntax validation.
