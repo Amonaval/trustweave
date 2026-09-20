@@ -13,7 +13,23 @@ This directory is the **candidate current-state database source**, not a replace
 
 ## Generation
 
-Run from `generic-family-hierarchy-4`:
+For the guarded path, run from `generic-family-hierarchy-4`:
+
+```bash
+python scripts/d12-prepare-candidate.py "<primary.csv>" --supplement "<supplement.csv>"
+```
+
+This runs classification + reconstruction together and writes `.d12-work/candidate/static-gate.json`. It fails closed on:
+
+- invalid/cyclic canonical module dependencies;
+- captured FK edges not declared in `modules.json`;
+- current application RPC names missing live beyond the two reviewed notification mutators;
+- unreviewed `MISSING`, `DRIFT`, `EXTRA`, or `DIFFERENT-BY-DESIGN` objects;
+- capture-hash mismatch;
+- unexpected source-drift repairs;
+- invalid phase ordering or incomplete generated manifest.
+
+The lower-level commands remain available for investigation:
 
 ```bash
 python scripts/d12-classify-catalog.py "<primary.csv>" --supplement "<supplement.csv>" --out .d12-work/classification.json
