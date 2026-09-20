@@ -1,0 +1,20 @@
+# Generated SQL apply order will be materialized from the promoted D12 canonical manifest.
+# Phase contract:
+00-foundation/
+05-sequences/
+08-bootstrap-functions/
+10-tables/
+15-sequence-ownership/
+20-constraints/00-keys/
+20-constraints/10-other/
+30-indexes/
+40-functions/
+45-source-drift-repairs/
+50-triggers/
+60-security/
+70-storage/
+71-storage-owner-context/   # Supabase platform/owner-context path; not ordinary psql
+75-schema-grants/
+80-table-grants/
+85-sequence-grants/
+90-function-grants/
