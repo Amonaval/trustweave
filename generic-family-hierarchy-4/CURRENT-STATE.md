@@ -1,5 +1,9 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — D12 working-database SQL Editor reference received
+
+The Founder supplied a read-only SQL Editor export from the working project. It contains one complete metadata JSON row for 167 public tables, 463 functions, 97 public/Storage policies and other catalog objects. `docs/architecture/D12-LIVE-REFERENCE-TRIAGE.md` records three specific function drift candidates: two RPCs used by the app and defined in migration 105 are absent from the live inventory, while one live media reconciliation function lacks a literal source migration definition. The migration catalog is not visible. A second read-only SQL Editor query is prepared for bucket, type, sequence and ACL metadata. No raw capture is committed, no live database is modified, and canonical SQL/bootstrap certification remains open.
+
 ## 2026-09-20 — D12 reference capture preparation
 
 The D0–D11 PR passed CI and merged to `main`. D12 has begun with a read-only, Docker-free reference capture kit (`docs/architecture/D12-REFERENCE-CAPTURE.md`). Its metadata, public schema, storage bucket configuration and migration-history capture has not yet been run against the working Supabase project. Canonical SQL reconstruction, a clean bootstrap and parity certification remain blocked pending the reviewed reference package. The existing database remains untouched; School database implementation remains deferred.

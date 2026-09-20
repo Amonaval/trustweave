@@ -2,6 +2,10 @@
 
 This is a read-only capture of the existing Supabase PostgreSQL schema. Keep the old project as the golden reference. The kit does not connect to a new project, run migrations, or move customer data. It requires native PostgreSQL client tools (`psql`, `pg_dump`) and Python 3; **Docker is not required**. Install a `pg_dump` major version at least as new as the server's major version.
 
+## Supabase SQL Editor alternative (no local installation)
+
+If PostgreSQL clients cannot be installed, open `scripts/d12-capture-reference.sql` in your working project's Supabase SQL Editor, run it, and export the single `doc` result as CSV. Then run `scripts/d12-capture-supplement.sql` the same way and export its single `doc` result as a second CSV. Keep the raw exports off GitHub. Review them locally for sensitive schema literals and bucket/role names before sharing. These queries do not change the database and do not export application rows or Storage files. A SQL Editor export does **not** include a full `pg_dump` DDL script; structural and security comparison can begin, while exact bootstrap/replay certification still needs equivalent DDL or a fresh-project proof.
+
 ## Capture on Windows (PowerShell)
 
 Use your existing Supabase dashboard's **Project Settings → Database → Connection string** to configure the database connection on your own computer. Prefer the session pooler if direct IPv6 access is unavailable. Obtain the database password locally; never paste a URL or password into chat or a repository.
