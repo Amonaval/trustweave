@@ -1,33 +1,38 @@
 import fs from 'node:fs';
 import {spawn} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {loadQaEnv,assertMutationAllowed,writeJson} from './runtime/env.mjs';
 import {QA_VERTICAL_KINDS} from './runtime/scope.mjs';
+import {validateD12Evidence} from './runtime/d12-evidence.mjs';
 
 process.env.QA_ENV_FILE=process.env.QA_ENV_FILE||'.env.d12-candidate';
 loadQaEnv();
 
-const root='.d12-work/candidate';
+const root=process.env.D12_PARITY_EVIDENCE_ROOT||'.d12-work/candidate';
 const catalogPath=`${root}/catalog-parity.json`;
 const applyPath=`${root}/apply-receipt.json`;
 if(!fs.existsSync(catalogPath))throw new Error(`Missing D12 catalog parity report: ${catalogPath}`);
 if(!fs.existsSync(applyPath))throw new Error(`Missing D12 disposable apply receipt: ${applyPath}`);
 const catalog=JSON.parse(fs.readFileSync(catalogPath,'utf8'));
 const apply=JSON.parse(fs.readFileSync(applyPath,'utf8'));
-if(catalog.status!=='PASS')throw new Error('D12 behavioral parity requires catalog parity PASS first.');
-if(apply.status!=='APPLIED_TO_DISPOSABLE_CANDIDATE')throw new Error('D12 apply receipt is not a disposable candidate PASS.');
+const bootstrap=apply.format==='trustweave-d12-bootstrap-replay-apply-receipt-v1';
+const recapturePath=`${root}/recapture-receipt.json`;
+const releaseName=fs.readFileSync('supabase/bootstrap/CURRENT','utf8').trim();
+if(!/^[a-zA-Z0-9._-]+$/.test(releaseName))throw new Error('Invalid committed bootstrap release name.');
+const manifestPath=`supabase/bootstrap/releases/${releaseName}/manifest.json`;
+const manifestBytes=bootstrap?fs.readFileSync(manifestPath):null;
+const evidence=validateD12Evidence({
+ catalog,apply,
+ recapture:bootstrap?JSON.parse(fs.readFileSync(recapturePath,'utf8')):null,
+ manifest:bootstrap?JSON.parse(manifestBytes.toString('utf8')):null,
+ manifestSha256:bootstrap?createHash('sha256').update(manifestBytes).digest('hex'):null,
+ qaProjectRef:process.env.QA_STAGING_PROJECT_REF
+});
 
 const expectedVerticals=['family-association','housing-society'];
 const configured=[...QA_VERTICAL_KINDS].sort();
 if(JSON.stringify(configured)!==JSON.stringify(expectedVerticals)){
  throw new Error(`D12 candidate QA scope must be exactly ${expectedVerticals.join(', ')}; got ${configured.join(', ')}`);
-}
-const qaRef=(process.env.QA_STAGING_PROJECT_REF||'').trim().toLowerCase();
-if(!qaRef)throw new Error('D12 candidate QA requires QA_STAGING_PROJECT_REF in .env.d12-candidate.');
-if(qaRef!==String(apply.candidate_project_ref||'').toLowerCase()){
- throw new Error(`QA staging ref ${qaRef} does not match D12 candidate apply receipt.`);
-}
-if(qaRef===String(apply.golden_project_ref||'').toLowerCase()){
- throw new Error('REFUSING D12 behavioral parity: QA target equals golden project.');
 }
 assertMutationAllowed();
 
@@ -59,8 +64,9 @@ const status=failed?'FAILED':'D12_BEHAVIOR_BROWSER_PARITY_PASS';
 const report={
  generatedAt:new Date().toISOString(),
  status,
- candidateProjectRef:apply.candidate_project_ref,
- goldenProjectRef:apply.golden_project_ref,
+ candidateProjectRef:evidence.candidateProjectRef,
+ goldenProjectRef:evidence.goldenProjectRef,
+ applyMode:evidence.mode,
  catalogParity:'PASS',
  scope:{verticals:expectedVerticals,roles:['owner','admin','member'],browser:'chromium-desktop',resilientCrawl:true},
  steps,
