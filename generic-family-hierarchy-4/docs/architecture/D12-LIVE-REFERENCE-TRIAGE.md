@@ -18,6 +18,38 @@ The source contains 121 SQL migration files numbered through `123`; versions `09
 
 The name checks come from `scripts/d12-inspect-sql-editor-csv.py`. They ignore dynamic SQL, overloads, signatures and policy generation. Neither the table-name coverage nor these three function findings constitutes a full drift audit.
 
-## Missing from this export
+## Supplement capture — stabilized
 
-The first SQL Editor query did not export Storage bucket configuration, enum/domain/sequence metadata, schema and object ACLs, or complete executable DDL. Use the read-only single-row `scripts/d12-capture-supplement.sql` for the first group. A SQL Editor catalog export is sufficient to begin object ownership and dependency analysis; fresh bootstrap and five-layer equivalence still require schema reconstruction and proof in an isolated new project. No user data or Storage objects need copying.
+A corrected run of `scripts/d12-capture-supplement.sql` was received as a one-row CSV with SHA-256 `0ce6507dc57ae79d96820800f76b5b38ba91e1be82004b3f51591295aaed4743`. The raw export remains outside the repository.
+
+The supplement confirms:
+
+- PostgreSQL server version: **17.6**.
+- Public enums: **0**.
+- Public domains: **0**.
+- Public sequences: **6**.
+- Public schema ACL captured successfully.
+- Relation ACL entries captured: **173**.
+- Function ACL entries captured: **463**.
+- Storage buckets: **2** — `community-media` and `profile-photos`; both private with a 1 MiB file-size limit.
+- `storage.buckets` and `storage.objects` both have RLS enabled; `FORCE ROW LEVEL SECURITY` is false.
+- `reconcile_network_media_usage(uuid)` is present by exact signature.
+- `set_network_notification_role(text,text,uuid,boolean)` is absent by exact signature.
+- `remove_network_notification_role(text,uuid)` is absent by exact signature.
+- `supabase_migrations.schema_migrations` is still not visible through `to_regclass`.
+
+This moves the two notification-role RPCs from a name-inventory suspicion to a **confirmed live contract drift candidate**. Do not patch the golden database yet. D12 should first compare repository call sites and migration intent, then reproduce the failure/absence against the candidate fresh database and decide whether the canonical source should contain those RPCs.
+
+The original supplement failed because its `app_ns` CTE projected only `oid,nspname` and later referenced `nspacl`. Commit `23418c290b90c9bcf6b15487f30e6871692e5d8a` fixed the capture query by projecting `nspacl`; this was a capture-script defect, not a live database defect.
+
+## Remaining capture limitation
+
+The SQL Editor captures now provide enough catalog evidence to begin object ownership, dependency analysis and live-vs-source drift classification. They still do **not** provide a complete executable logical dump equivalent to `pg_dump --schema-only`.
+
+That is no longer a blocker for the next D12 design step. Canonical reconstruction can proceed from:
+
+1. 121 accepted historical migration files through version 123;
+2. the two live catalog captures;
+3. current application/RPC usage.
+
+Fresh bootstrap and final five-layer equivalence still require reconstruction into a new isolated Supabase project and product-level comparison against the untouched golden project. No user data or Storage objects need copying.

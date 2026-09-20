@@ -36,3 +36,10 @@ The output is `generic-family-hierarchy-4/.d12-reference/` and contains:
 Run `./scripts/d12-capture-reference.ps1 -ValidateOnly` (or `bash scripts/d12-capture-reference.sh --validate-only`) before sharing. Inspect the package locally for sensitive literals in function bodies, schema comments, bucket names or role names. The scanner rejects likely credentials and data-copy statements, but it cannot prove all content safe. If necessary, redact locally and rerun validation; note any redaction so schema comparison can account for it. Share only these five files with the D12 session.
 
 The scripts use read-only catalog queries and `pg_dump --schema-only`; they do not alter the live database. If the connection lacks catalog permissions, capture fails without producing a complete package. Do not substitute a production data dump or `roles.sql` containing password hashes. A subsequent mission will compare this reference to all 121 historical migration files (`001` through `123`, with reserved gaps `096` and `097`) and application SQL usage before deriving canonical modules.
+
+
+## Capture stability checkpoint — 2026-09-20
+
+The SQL Editor path is now the preferred capture route for restricted Windows environments where Docker/PostgreSQL client installation is unavailable. The primary and supplement capture queries have both been exercised against the working Supabase project. The supplement ACL projection defect was fixed in commit `23418c290b90c9bcf6b15487f30e6871692e5d8a`.
+
+For the next D12 session, do not repeat local PostgreSQL/Docker setup unless a full logical dump becomes necessary. Start from the two exported one-row CSV captures plus repository history. Raw CSV exports remain outside GitHub.
