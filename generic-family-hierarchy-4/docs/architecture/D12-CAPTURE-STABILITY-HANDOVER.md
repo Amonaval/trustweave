@@ -421,3 +421,71 @@ This issue existed before D12/database reconstruction and is therefore classifie
 It does **not** block D12 database promotion. Fix it only after the SQL refinement/database-architecture work is closed so routing work does not contaminate the D12 scope.
 
 Structured evidence: `docs/architecture/D12-MANUAL-BROWSER-SMOKE-EVIDENCE.json`.
+
+
+## D12 freeze checkpoint — 2026-09-20
+
+**Founder decision:** pause/freeze D12 execution here and resume in a later session.
+
+### Supabase state at freeze
+
+- Golden project: `OS Network` (`yyhwcqpzplebittvxzzl`) — remains strict read-only reference.
+- Older `TrustWeave QA DB Replay` (`gbdqujqohhdxqnemlpbc`) — paused to free the Free-plan active-project slot; do not delete it.
+- Fresh disposable project: `TrustWeave D12 Candidate` (`blpdjhmtayjkcczqltqi`) in `ap-south-1`.
+- Supabase reported project cost as **$0/month** before creation.
+- No database password, card details, service-role key, connection URL, or other secret was shared in chat or committed.
+
+### Verified D12 state
+
+The durable evidence already recorded above remains authoritative:
+
+- structural/security/API candidate reconstruction work exists in the repository;
+- database/API behavioral parity is **PASS**;
+- founder browser smoke against the D12 candidate was broadly healthy;
+- `D12-DEFERRED-ROUTING-001` is a pre-existing non-database Guide routing defect and is not a D12 database blocker;
+- the golden database was not mutated.
+
+### What happened during the interrupted resume attempt
+
+A later attempt in chat tried to reconstruct and package the generated SQL into statement-safe batches for direct connector execution. Two local-only problems occurred:
+
+1. an older temporary local copy of the reconstruction script was encountered before switching back to the hardened repository version;
+2. a temporary batching helper expected an `apply_order` field that was not present in that local manifest, then the temporary local workspace disappeared when the execution environment reset.
+
+These were **chat/local workspace orchestration failures, not Supabase/database failures**.
+
+Most importantly:
+
+- no new D12 SQL batch from that interrupted attempt was applied to the candidate;
+- no SQL from that attempt was applied to the golden database;
+- do not treat the disappearance of `/mnt/data` temporary files as loss of repository D12 work.
+
+### Promotion status
+
+D12 is **not yet promoted/closed**.
+
+The candidate has strong parity evidence, but the canonical source-of-truth promotion/review boundary remains explicit. Historical migrations remain immutable and the golden project remains fallback/reference until D12-F is deliberately closed.
+
+### Safe resume sequence
+
+When D12 resumes:
+
+1. Start from `llm-push` and this handover; do not repeat capture stabilization or module-ownership work.
+2. Inspect the current D12 candidate catalog/state before applying anything.
+3. Reuse committed bootstrap assets under `supabase/bootstrap/releases/2026-09-20-d12/` and committed D12 scripts; do not depend on old `/mnt/data` temporary artifacts.
+4. Do **not** blindly replay the full bootstrap over the existing candidate. If a new zero-state proof is desired, use a fresh disposable candidate (or an explicitly reviewed reset), never the golden project.
+5. Reconfirm the remaining browser/product evidence and promotion-readiness gate.
+6. Perform D12-F canonical promotion review only after evidence is coherent and commit-bound.
+7. Keep School/education implementation blocked until D12 is formally closed.
+
+### Commit policy going forward
+
+Prefer **batched milestone commits** over micro-commits:
+
+- one coherent implementation/checkpoint should normally be one commit;
+- related code + tests + evidence/docs may be committed together;
+- aim for roughly 1–3 meaningful commits per mission/checkpoint rather than a commit for every tiny script adjustment;
+- use a small isolated commit when a change is risky, independently reversible, security-sensitive, or valuable for `git bisect`;
+- documentation closure should usually ride in the same checkpoint commit or one final closure commit.
+
+The earlier fine-grained D12 commits are valid history and do not need rewriting/squashing now. Apply this batching policy prospectively.

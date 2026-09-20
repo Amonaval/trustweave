@@ -1,5 +1,11 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — D12 frozen at verified candidate checkpoint
+
+Founder requested that D12 execution stop and be frozen for later resumption. The golden Supabase project `OS Network` remains read-only. The older `TrustWeave QA DB Replay` project is paused, and the fresh disposable `TrustWeave D12 Candidate` (`blpdjhmtayjkcczqltqi`, Mumbai) remains the D12 proof environment. Repository evidence records database/API behavioral parity as PASS and a broadly healthy founder browser smoke; the known Family Guide route issue is pre-existing and classified outside the D12 database scope. A later chat-only attempt to regenerate/package SQL batches failed because temporary local workspace state was inconsistent/reset; no SQL from that interrupted attempt was applied to either candidate or golden. D12 canonical promotion is still open and must resume from `docs/architecture/D12-CAPTURE-STABILITY-HANDOVER.md`, committed bootstrap assets, and the existing candidate state rather than old `/mnt/data` artifacts.
+
+Commit practice is also updated prospectively: batch related code/tests/evidence/docs into coherent milestone commits (normally 1–3 per checkpoint), using micro-commits only when independent rollback, security isolation, or bisect value justifies them.
+
 ## 2026-09-20 — D12 working-database SQL Editor reference received
 
 The Founder supplied a read-only SQL Editor export from the working project. It contains one complete metadata JSON row for 167 public tables, 463 functions, 97 public/Storage policies and other catalog objects. `docs/architecture/D12-LIVE-REFERENCE-TRIAGE.md` records three specific function drift candidates: two RPCs used by the app and defined in migration 105 are absent from the live inventory, while one live media reconciliation function lacks a literal source migration definition. The migration catalog is not visible. A second read-only SQL Editor query is prepared for bucket, type, sequence and ACL metadata. No raw capture is committed, no live database is modified, and canonical SQL/bootstrap certification remains open.
