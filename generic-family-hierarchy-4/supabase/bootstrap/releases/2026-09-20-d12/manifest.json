@@ -429,43 +429,43 @@
     },
     {
       "path": "80-table-grants/010-platform-core.sql",
-      "sha256": "a3a4664aa56da6954f2ee0fa0d2af6c81b6fd4d0780ce4c04128cf7c3ee98cd9"
+      "sha256": "1f58fa1f4fd0173af0a1b65e93d9fa9df799dbe053797eb0a0082eda614d3dfb"
     },
     {
       "path": "80-table-grants/020-identity.sql",
-      "sha256": "bb0e8225ff2fb8e14ef3db2752274334f1e10371422eaede7e751aef79f2b7a3"
+      "sha256": "bc649d87e24b81e41735a16f1e8bb62fd33e00a00479b3ffe2b345bd951d29da"
     },
     {
       "path": "80-table-grants/030-activity.sql",
-      "sha256": "4524ab93766de0d56b9549fb7b8c07004923615bdb2d88773a226ee7e17ba859"
+      "sha256": "82ea108c0833ffb43c4ec2e2fb669611f7cb79005b3c905441ee8f9e0fbf95a2"
     },
     {
       "path": "80-table-grants/040-workflow.sql",
-      "sha256": "fb8661a3ee7e7b80e42922377cd4eb888ad51e77d0ea57ca7942b34c99c73437"
+      "sha256": "7ca3c4f45174a4b45954b88998c7b5aac9666a917d606a778b719c274f5193e2"
     },
     {
       "path": "80-table-grants/050-notifications.sql",
-      "sha256": "183d57d3ea10281dee01da7efd6dfd59293e968452dcd1247a51a0ba2528cd95"
+      "sha256": "bbb30ab4091ef90e9f1d4872782089738c43bd5c4d40b90843d27ccb01facda2"
     },
     {
       "path": "80-table-grants/060-federation.sql",
-      "sha256": "64f6f57c05e6b346ce85ebab8d94cb1485980ef9283cace864c82b4f03e2f878"
+      "sha256": "9fda4bbb728f30d1a07a156a440774e6cd3f65365240dbc2e43f18eae0369afc"
     },
     {
       "path": "80-table-grants/070-family.sql",
-      "sha256": "f8a2abde41e5717a4a9232abf866e3919502e750b7015d07f442391351406d91"
+      "sha256": "7e66d7ad635b5344ba5421a6a946485c4bc81ca6d2ed49f109136bf7b4fc1378"
     },
     {
       "path": "80-table-grants/080-family-community.sql",
-      "sha256": "7739bb227064440ab53aa85e87744802390c6f3f976d04b44df109ba60e3a034"
+      "sha256": "6038d3b68c09796ca68db59f3b63417529221581f656903401888d6125976a77"
     },
     {
       "path": "80-table-grants/090-housing.sql",
-      "sha256": "9c2c2706c4e2073efb735fb9dec2cefe663504302ac328f38ca118ca6305ac0b"
+      "sha256": "9a9281c83a523a0e6faa6fd8ea63ee863b5ec387a7fb26d869cfee39d4942194"
     },
     {
       "path": "80-table-grants/110-future-specializations.sql",
-      "sha256": "150f496b91db7338388e676fdbf4432f8cae2a4d2f88e7a355e7db8660383470"
+      "sha256": "176da24de0d583ec4ab66ddd597af3ce3918df587f3a07a0fa57071c5193a0c9"
     },
     {
       "path": "85-sequence-grants/000-sequences.sql",
