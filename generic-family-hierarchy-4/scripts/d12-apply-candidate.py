@@ -154,6 +154,7 @@ def main() -> None:
         print("D12 disposable apply: FAILED; psql transaction should have rolled back.", file=sys.stderr)
         raise SystemExit(proc.returncode)
 
+    owner_context_files = list(manifest.get("owner_context_apply_order") or [])
     receipt = {
         "format": "trustweave-d12-disposable-apply-receipt-v1",
         "status": "APPLIED_TO_DISPOSABLE_CANDIDATE",
@@ -161,13 +162,25 @@ def main() -> None:
         "golden_project_ref": golden_ref,
         "manifest": str(manifest_path),
         "sql_files": len(sql_files),
-        "next_gate": "candidate-recapture-and-parity",
+        "owner_context_files": owner_context_files,
+        "owner_context_required": bool(owner_context_files),
+        "next_gate": (
+            "apply-storage-owner-context-then-candidate-recapture"
+            if owner_context_files
+            else "candidate-recapture-and-parity"
+        ),
         "secrets_recorded": False,
     }
     receipt_path = root / "apply-receipt.json"
     receipt_path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(f"D12 disposable apply: PASS ({receipt_path})")
-    print("Next: recapture the candidate catalog and compare it with the golden captures.")
+    if owner_context_files:
+        print(
+            "Storage owner-context SQL remains. Apply manifest owner_context_apply_order "
+            "through Supabase Dashboard/platform migration tooling before catalog parity."
+        )
+    else:
+        print("Next: recapture the candidate catalog and compare it with the golden captures.")
 
 
 if __name__ == "__main__":
