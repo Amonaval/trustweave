@@ -55,7 +55,8 @@ jobs:
 
       - name: Verify D12 runtime parity tooling syntax
         run: node --check qa/run-d12-candidate-parity.mjs && node --check qa/db/d12-notification-role-contract.mjs
-\n      - name: Verify committed D12 bootstrap integrity
+
+      - name: Verify committed D12 bootstrap integrity
         run: python scripts/d12-validate-bootstrap.py
 
 
