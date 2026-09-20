@@ -242,6 +242,8 @@ jobs:
             exit 0
           fi
 
-          git diff --cached --check
+          # Do not run git diff --check on the generated SQL payload.
+          # Historical captured function bodies intentionally preserve byte-exact
+          # whitespace covered by manifest hashes.
           git commit -m "D12 materialize verified bootstrap SQL payload"
           git push origin HEAD:llm-push
