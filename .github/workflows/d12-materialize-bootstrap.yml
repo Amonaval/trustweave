@@ -40,16 +40,40 @@ jobs:
 
           repo = Path.cwd()
           transport = repo / ".d12-transport"
-          ready = transport / "READY"\n          parts = sorted(transport.glob("bootstrap.tar.xz.b64.part*"))
+          ready = transport / "READY"
+          expected_names = [
+              f"bootstrap.tar.xz.b64.part{i:02d}" for i in range(15)
+          ]
+          parts = [transport / name for name in expected_names]
 
-          # Creating/updating this workflow alone is intentionally a no-op.
-          if not parts:
-              print("No D12 transport parts present; nothing to materialize.")
+          # Chunks are intentionally inert. Only READY may start materialization.
+          if not ready.is_file():
+              print("D12 transport is not marked READY; nothing to materialize.")
               raise SystemExit(0)
 
-          expected_archive_sha = "4baf154f34402233e52050cfac2c6790e226cc77b5da814866705edf9f740486"
+          actual_names = sorted(
+              p.name for p in transport.glob("bootstrap.tar.xz.b64.part*")
+          )
+          if actual_names != expected_names:
+              raise SystemExit(
+                  f"D12 transport parts mismatch. expected={expected_names} actual={actual_names}"
+              )
+          for p in parts[:-1]:
+              if p.stat().st_size != 12000:
+                  raise SystemExit(f"Unexpected D12 transport chunk size: {p.name}={p.stat().st_size}")
+          if parts[-1].stat().st_size != 3160:
+              raise SystemExit(
+                  f"Unexpected D12 final transport chunk size: {parts[-1].name}={parts[-1].stat().st_size}"
+              )
+
           encoded = b"".join(p.read_bytes() for p in parts)
+          if len(encoded) != 171160:
+              raise SystemExit(f"Unexpected D12 encoded payload size: {len(encoded)}")
+          if re.search(rb"\s", encoded):
+              raise SystemExit("Whitespace is not allowed inside D12 base64 transport chunks.")
+
           archive_bytes = base64.b64decode(encoded, validate=True)
+          expected_archive_sha = "4baf154f34402233e52050cfac2c6790e226cc77b5da814866705edf9f740486"
           actual_archive_sha = hashlib.sha256(archive_bytes).hexdigest()
           if actual_archive_sha != expected_archive_sha:
               raise SystemExit(
@@ -69,7 +93,9 @@ jobs:
                       if extract.resolve() not in resolved.parents and resolved != extract.resolve():
                           raise SystemExit(f"Unsafe archive path: {member.name}")
                       if member.issym() or member.islnk():
-                          raise SystemExit(f"Links are not allowed in D12 bootstrap archive: {member.name}")
+                          raise SystemExit(
+                              f"Links are not allowed in D12 bootstrap archive: {member.name}"
+                          )
                   tf.extractall(extract)
 
               source = extract / "d12-canonical-materialized"
@@ -79,9 +105,13 @@ jobs:
 
               manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
               if manifest.get("status") != "CANONICAL_CURRENT_STATE":
-                  raise SystemExit(f"Unexpected D12 manifest status: {manifest.get('status')}")
+                  raise SystemExit(
+                      f"Unexpected D12 manifest status: {manifest.get('status')}"
+                  )
               if manifest.get("format") != "trustweave-d12-canonical-baseline-v1":
-                  raise SystemExit(f"Unexpected D12 manifest format: {manifest.get('format')}")
+                  raise SystemExit(
+                      f"Unexpected D12 manifest format: {manifest.get('format')}"
+                  )
 
               files = manifest.get("all_files") or []
               direct_apply = manifest.get("direct_apply_order") or []
@@ -89,9 +119,13 @@ jobs:
               if len(files) != 95:
                   raise SystemExit(f"Expected 95 SQL files, found {len(files)}")
               if len(direct_apply) != 94:
-                  raise SystemExit(f"Expected 94 direct-apply files, found {len(direct_apply)}")
+                  raise SystemExit(
+                      f"Expected 94 direct-apply files, found {len(direct_apply)}"
+                  )
               if owner_context != ["71-storage-owner-context/000-storage-policies.sql"]:
-                  raise SystemExit(f"Unexpected Storage owner-context files: {owner_context}")
+                  raise SystemExit(
+                      f"Unexpected Storage owner-context files: {owner_context}"
+                  )
 
               listed_paths = set()
               for record in files:
@@ -113,24 +147,37 @@ jobs:
               if actual_sql_paths != listed_paths:
                   missing = sorted(listed_paths - actual_sql_paths)
                   extra = sorted(actual_sql_paths - listed_paths)
-                  raise SystemExit(f"Manifest/file mismatch. missing={missing} extra={extra}")
+                  raise SystemExit(
+                      f"Manifest/file mismatch. missing={missing} extra={extra}"
+                  )
 
-              # Defense-in-depth: schema/bootstrap must not embed deploy credentials.
+              # Defense in depth: bootstrap source must never embed deploy credentials.
               forbidden = [
                   re.compile(r"postgres(?:ql)?://", re.I),
                   re.compile(r"sb_secret_[A-Za-z0-9_-]+"),
-                  re.compile(r"eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{10,}"),
+                  re.compile(
+                      r"eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{10,}"
+                  ),
               ]
               for rel in sorted(actual_sql_paths):
-                  text = (source / rel).read_text(encoding="utf-8", errors="strict")
+                  sql = (source / rel).read_text(encoding="utf-8", errors="strict")
                   for pattern in forbidden:
-                      if pattern.search(text):
-                          raise SystemExit(f"Forbidden credential-like content in {rel}: {pattern.pattern}")
+                      if pattern.search(sql):
+                          raise SystemExit(
+                              f"Forbidden credential-like content in {rel}: {pattern.pattern}"
+                          )
 
-              target = repo / "generic-family-hierarchy-4" / "supabase" / "bootstrap" / "releases" / "2026-09-20-d12"
+              target = (
+                  repo
+                  / "generic-family-hierarchy-4"
+                  / "supabase"
+                  / "bootstrap"
+                  / "releases"
+                  / "2026-09-20-d12"
+              )
               target.mkdir(parents=True, exist_ok=True)
 
-              # Preserve hand-written release README; generated paths are replaced exactly.
+              # Preserve only a hand-written README if one already exists.
               for child in list(target.iterdir()):
                   if child.name == "README.md":
                       continue
@@ -151,39 +198,50 @@ jobs:
                   "# Generated from manifest.json. Do not reorder manually.",
                   "",
                   "# Direct PostgreSQL/Supabase database-context phase:",
-              ]
-              apply_lines.extend(direct_apply)
-              apply_lines.extend([
+                  *direct_apply,
                   "",
                   "# Hosted Supabase owner-context phase (apply via platform/dashboard tooling):",
-              ])
-              apply_lines.extend(owner_context)
-              apply_lines.append("")
-              (target / "APPLY_ORDER.txt").write_text("\n".join(apply_lines), encoding="utf-8")
+                  *owner_context,
+                  "",
+              ]
+              (target / "APPLY_ORDER.txt").write_text(
+                  "\n".join(apply_lines), encoding="utf-8"
+              )
 
-              # Re-verify after copy.
-              copied_manifest = json.loads((target / "manifest.json").read_text(encoding="utf-8"))
+              # Verify the committed staging tree after copy as well.
+              copied_manifest = json.loads(
+                  (target / "manifest.json").read_text(encoding="utf-8")
+              )
+              copied_sql = list(target.rglob("*.sql"))
+              if len(copied_sql) != 95:
+                  raise SystemExit(
+                      f"Post-copy SQL count mismatch: expected 95, found {len(copied_sql)}"
+                  )
               for record in copied_manifest["all_files"]:
                   p = target / record["path"]
-                  if hashlib.sha256(p.read_bytes()).hexdigest() != record["sha256"]:
+                  actual = hashlib.sha256(p.read_bytes()).hexdigest()
+                  if actual != record["sha256"]:
                       raise SystemExit(f"Post-copy hash mismatch: {record['path']}")
 
-          # Transport is one-time only. Never leave encoded payload in repository history after materialization.
+          # Transport is a one-time staging mechanism, never permanent bootstrap source.
           shutil.rmtree(transport)
           print("D12 bootstrap materialization verified: 95 SQL files + manifest.")
+
           PY
 
       - name: Commit readable bootstrap payload
         shell: bash
         run: |
-          if git diff --quiet --             generic-family-hierarchy-4/supabase/bootstrap/releases/2026-09-20-d12             .d12-transport; then
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A --             generic-family-hierarchy-4/supabase/bootstrap/releases/2026-09-20-d12             .d12-transport
+
+          if git diff --cached --quiet; then
             echo "No materialization changes to commit."
             exit 0
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add             generic-family-hierarchy-4/supabase/bootstrap/releases/2026-09-20-d12             .d12-transport
           git diff --cached --check
           git commit -m "D12 materialize verified bootstrap SQL payload"
           git push origin HEAD:llm-push
