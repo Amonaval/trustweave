@@ -363,9 +363,23 @@ def main() -> None:
             continue
         prefix = f"{module_order[module]:03d}-{safe_file(module)}.sql"
         lines = header[:]
-        for name in table_names:
-            for c in sorted(constraints.get(name, []), key=lambda x: x["name"]):
-                lines.append(f"ALTER TABLE {qname(name)} ADD CONSTRAINT {qident(c['name'])} {c['definition']};")
+        module_constraints = [
+            (name, c)
+            for name in table_names
+            for c in constraints.get(name, [])
+        ]
+        # Foreign keys can only be created after the referenced PK/UNIQUE exists.
+        # Module order handles cross-module dependencies; this local priority handles
+        # same-module references such as audit_log -> networks.
+        module_constraints.sort(
+            key=lambda item: (
+                1 if str(item[1].get("kind") or "").lower() == "f" else 0,
+                item[0],
+                item[1]["name"],
+            )
+        )
+        for name, c in module_constraints:
+            lines.append(f"ALTER TABLE {qname(name)} ADD CONSTRAINT {qident(c['name'])} {c['definition']};")
         write(out / "20-constraints" / prefix, lines)
 
         lines = header[:]
