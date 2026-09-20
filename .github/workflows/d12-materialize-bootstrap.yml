@@ -1,0 +1,189 @@
+name: D12 Materialize Bootstrap
+
+on:
+  push:
+    branches:
+      - llm-push
+    paths:
+      - ".d12-transport/bootstrap.tar.gz.b64.part*"
+      - ".github/workflows/d12-materialize-bootstrap.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: d12-materialize-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout llm-push
+        uses: actions/checkout@v4
+        with:
+          ref: llm-push
+          fetch-depth: 0
+
+      - name: Materialize checksum-verified D12 bootstrap
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+          import hashlib
+          import json
+          import re
+          import shutil
+          import tarfile
+          import tempfile
+
+          repo = Path.cwd()
+          transport = repo / ".d12-transport"
+          parts = sorted(transport.glob("bootstrap.tar.gz.b64.part*"))
+
+          # Creating/updating this workflow alone is intentionally a no-op.
+          if not parts:
+              print("No D12 transport parts present; nothing to materialize.")
+              raise SystemExit(0)
+
+          expected_archive_sha = "0eab15716069bb172c6a6c07de75af5e5615845b126dc2f67e0ba41bdbb7560a"
+          encoded = b"".join(p.read_bytes() for p in parts)
+          archive_bytes = base64.b64decode(encoded, validate=True)
+          actual_archive_sha = hashlib.sha256(archive_bytes).hexdigest()
+          if actual_archive_sha != expected_archive_sha:
+              raise SystemExit(
+                  f"D12 transport SHA mismatch: expected {expected_archive_sha}, got {actual_archive_sha}"
+              )
+
+          with tempfile.TemporaryDirectory(prefix="d12-materialize-") as tmp:
+              tmp_path = Path(tmp)
+              archive = tmp_path / "baseline.tar.gz"
+              archive.write_bytes(archive_bytes)
+
+              extract = tmp_path / "extract"
+              extract.mkdir()
+              with tarfile.open(archive, "r:gz") as tf:
+                  for member in tf.getmembers():
+                      resolved = (extract / member.name).resolve()
+                      if extract.resolve() not in resolved.parents and resolved != extract.resolve():
+                          raise SystemExit(f"Unsafe archive path: {member.name}")
+                      if member.issym() or member.islnk():
+                          raise SystemExit(f"Links are not allowed in D12 bootstrap archive: {member.name}")
+                  tf.extractall(extract)
+
+              source = extract / "d12-canonical-materialized"
+              manifest_path = source / "manifest.json"
+              if not manifest_path.is_file():
+                  raise SystemExit("D12 manifest missing from transport archive.")
+
+              manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+              if manifest.get("status") != "CANONICAL_CURRENT_STATE":
+                  raise SystemExit(f"Unexpected D12 manifest status: {manifest.get('status')}")
+              if manifest.get("format") != "trustweave-d12-canonical-baseline-v1":
+                  raise SystemExit(f"Unexpected D12 manifest format: {manifest.get('format')}")
+
+              files = manifest.get("all_files") or []
+              direct_apply = manifest.get("direct_apply_order") or []
+              owner_context = manifest.get("storage_owner_context_files") or []
+              if len(files) != 95:
+                  raise SystemExit(f"Expected 95 SQL files, found {len(files)}")
+              if len(direct_apply) != 94:
+                  raise SystemExit(f"Expected 94 direct-apply files, found {len(direct_apply)}")
+              if owner_context != ["71-storage-owner-context/000-storage-policies.sql"]:
+                  raise SystemExit(f"Unexpected Storage owner-context files: {owner_context}")
+
+              listed_paths = set()
+              for record in files:
+                  rel = record["path"]
+                  listed_paths.add(rel)
+                  p = source / rel
+                  if not p.is_file():
+                      raise SystemExit(f"Manifest file missing: {rel}")
+                  actual = hashlib.sha256(p.read_bytes()).hexdigest()
+                  if actual != record["sha256"]:
+                      raise SystemExit(f"Manifest hash mismatch: {rel}")
+                  if p.suffix.lower() != ".sql":
+                      raise SystemExit(f"Unexpected non-SQL payload: {rel}")
+
+              actual_sql_paths = {
+                  str(p.relative_to(source)).replace("\\", "/")
+                  for p in source.rglob("*.sql")
+              }
+              if actual_sql_paths != listed_paths:
+                  missing = sorted(listed_paths - actual_sql_paths)
+                  extra = sorted(actual_sql_paths - listed_paths)
+                  raise SystemExit(f"Manifest/file mismatch. missing={missing} extra={extra}")
+
+              # Defense-in-depth: schema/bootstrap must not embed deploy credentials.
+              forbidden = [
+                  re.compile(r"postgres(?:ql)?://", re.I),
+                  re.compile(r"sb_secret_[A-Za-z0-9_-]+"),
+                  re.compile(r"eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{10,}"),
+              ]
+              for rel in sorted(actual_sql_paths):
+                  text = (source / rel).read_text(encoding="utf-8", errors="strict")
+                  for pattern in forbidden:
+                      if pattern.search(text):
+                          raise SystemExit(f"Forbidden credential-like content in {rel}: {pattern.pattern}")
+
+              target = repo / "generic-family-hierarchy-4" / "supabase" / "bootstrap" / "releases" / "2026-09-20-d12"
+              target.mkdir(parents=True, exist_ok=True)
+
+              # Preserve hand-written release README; generated paths are replaced exactly.
+              for child in list(target.iterdir()):
+                  if child.name == "README.md":
+                      continue
+                  if child.is_dir():
+                      shutil.rmtree(child)
+                  else:
+                      child.unlink()
+
+              for child in source.iterdir():
+                  dest = target / child.name
+                  if child.is_dir():
+                      shutil.copytree(child, dest)
+                  else:
+                      shutil.copy2(child, dest)
+
+              apply_lines = [
+                  "# TrustWeave D12 bootstrap apply order",
+                  "# Generated from manifest.json. Do not reorder manually.",
+                  "",
+                  "# Direct PostgreSQL/Supabase database-context phase:",
+              ]
+              apply_lines.extend(direct_apply)
+              apply_lines.extend([
+                  "",
+                  "# Hosted Supabase owner-context phase (apply via platform/dashboard tooling):",
+              ])
+              apply_lines.extend(owner_context)
+              apply_lines.append("")
+              (target / "APPLY_ORDER.txt").write_text("\n".join(apply_lines), encoding="utf-8")
+
+              # Re-verify after copy.
+              copied_manifest = json.loads((target / "manifest.json").read_text(encoding="utf-8"))
+              for record in copied_manifest["all_files"]:
+                  p = target / record["path"]
+                  if hashlib.sha256(p.read_bytes()).hexdigest() != record["sha256"]:
+                      raise SystemExit(f"Post-copy hash mismatch: {record['path']}")
+
+          # Transport is one-time only. Never leave encoded payload in repository history after materialization.
+          shutil.rmtree(transport)
+          print("D12 bootstrap materialization verified: 95 SQL files + manifest.")
+          PY
+
+      - name: Commit readable bootstrap payload
+        shell: bash
+        run: |
+          if git diff --quiet --             generic-family-hierarchy-4/supabase/bootstrap/releases/2026-09-20-d12             .d12-transport; then
+            echo "No materialization changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             generic-family-hierarchy-4/supabase/bootstrap/releases/2026-09-20-d12             .d12-transport
+          git diff --cached --check
+          git commit -m "D12 materialize verified bootstrap SQL payload"
+          git push origin HEAD:llm-push
