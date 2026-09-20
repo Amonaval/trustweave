@@ -94,6 +94,22 @@ Repository integrity is enforced by:
 
 The clean-replay verification confirms the materialized Git baseline corresponds to the D12 current-state architecture.
 
+
+## Final ACL packaging refinement
+
+After the existing Clean Replay project was populated, D12 tightened ACL reconstruction to preserve exact `pg_class.relacl` / `pg_proc.proacl` semantics, including PostgreSQL 17 privilege/grant-option fidelity.
+
+The permanent release now contains **465 unique function ACL replay blocks**:
+
+- 463 golden public functions;
+- 2 intentional notification-role source repairs;
+- zero duplicate signatures;
+- every function block performs REVOKE before replaying the captured GRANTs.
+
+The `110-future-specializations.sql` phase was corrected so its 16 alumni/organization-intelligence functions no longer grant and then revoke; they now follow the same revoke-then-grant ordering as all other modules.
+
+Because `TrustWeave D12 Clean Replay` was populated before this final ACL packaging correction, it remains valid evidence for structural/API/catalog parity, but it is **not claimed as the final fresh-from-Git ACL replay certification**. That final proof requires one more genuinely empty disposable project created from the finalized committed bootstrap bytes.
+
 ## Advisor note
 
 Supabase advisors report many expected zero-traffic warnings such as unused indexes and tables with RLS enabled but no direct policies. These are not classified as D12 replay defects merely because they appear on a fresh database. They should be evaluated against golden/product access architecture separately; D12 parity evidence is based on deterministic catalog comparison and behavioral/product verification, not on eliminating every advisor informational/performance warning.
