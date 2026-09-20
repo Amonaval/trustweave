@@ -115,4 +115,8 @@ The reconstructed baseline has now been applied to a fresh Supabase project and 
 
 Supabase advisor parity matches the golden database for all security categories except the expected +2 authenticated SECURITY DEFINER warnings introduced by the two intentionally restored notification mutators. Those functions contain explicit network-admin checks and ordinary-member denial has been proven behaviorally.
 
-The remaining promotion blocker is **browser/product runtime parity** against an application instance configured to the disposable candidate. A catalog/database PASS is not sufficient for promotion.
+Browser/product smoke has now been completed against the disposable candidate and is recorded in `docs/architecture/D12-MANUAL-BROWSER-SMOKE-EVIDENCE.json`.
+
+D12 is **READY FOR CANONICAL BASELINE MATERIALIZATION**. The known Family Explore/Guide route defect (`D12-DEFERRED-ROUTING-001`) is explicitly pre-existing, non-database and non-blocking.
+
+Promotion provenance is recorded in `db/canonical/PROMOTION.json`. The remaining step is mechanical/reproducible: regenerate the proven modular baseline with the committed D12 generator, verify its manifest/checksums, then check those SQL files into `db/canonical/baseline/`. Historical migrations remain immutable.
