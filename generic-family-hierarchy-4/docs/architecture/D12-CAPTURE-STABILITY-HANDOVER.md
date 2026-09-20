@@ -393,3 +393,31 @@ Performance advisor counts also match golden for unindexed foreign keys, auth RL
 Database/API behavioral parity is **PASS**.
 
 The remaining D12-E gate is browser/product runtime parity against an application instance configured to the disposable candidate project. This requires an application runtime (local or deployed) pointed at the candidate; the database itself no longer has an unresolved D12 behavioral blocker.
+
+
+## Founder browser smoke checkpoint — 2026-09-20
+
+The application was switched to the fresh D12 candidate database (`blpdjhmtayjkcczqltqi`) and manually exercised for approximately 5–10 minutes at an eagle-eye/high-level regression level.
+
+Observed:
+
+- application loads successfully against the candidate;
+- high-level product flows work;
+- the product looks healthy at a broad regression level;
+- no new database/migration regression was observed.
+
+One issue was observed while opening Family Explore / Guide:
+
+`/network/:networkId/guide`
+
+Example:
+
+`/network/d55a9f1c-bab6-405a-81bb-0afa9cde39a0/guide`
+
+This issue existed before D12/database reconstruction and is therefore classified as:
+
+`D12-DEFERRED-ROUTING-001 — PRE_EXISTING_NON_DATABASE_ROUTING_DEFECT`
+
+It does **not** block D12 database promotion. Fix it only after the SQL refinement/database-architecture work is closed so routing work does not contaminate the D12 scope.
+
+Structured evidence: `docs/architecture/D12-MANUAL-BROWSER-SMOKE-EVIDENCE.json`.
