@@ -70,18 +70,21 @@ def module_manifest(project: Path) -> dict[str, Any]:
 
 
 def assign_module(name: str, kind: str, manifest: dict[str, Any]) -> str:
-    leaf = name.split(".")[-1].lower()
+    leaf = name.split(".")[-1].replace('"', "").lower()
     rules: dict[str, dict[str, Any]] = manifest["ownership_rules"]
-    ordered = [m["id"] for m in sorted(manifest["modules"], key=lambda x: x["order"])]
-    # Specific verticals must win over generic/fallback rules.
+    existing = {m["id"] for m in manifest["modules"]}
     preferred = ["housing", "family-community", "federation", "notifications", "family",
                  "future-specializations", "activity", "workflow", "identity", "platform-core"]
-    ordered = [m for m in preferred if m in ordered]
+    ordered = [m for m in preferred if m in existing]
+
+    # Exact ownership overrides are evaluated globally before any prefix rule.
+    names_key = "table_names" if kind in {"table", "sequence"} else "function_names"
+    for module in ordered:
+        if leaf in {x.lower() for x in rules.get(module, {}).get(names_key, [])}:
+            return module
+
     for module in ordered:
         rule = rules.get(module, {})
-        names_key = "table_names" if kind in {"table", "sequence"} else "function_names"
-        if leaf in {x.lower() for x in rule.get(names_key, [])}:
-            return module
         if kind in {"table", "sequence"}:
             if any(leaf.startswith(x.lower()) for x in rule.get("table_prefixes", [])):
                 return module
@@ -181,6 +184,50 @@ def main() -> None:
         "reason": "Migration catalog is not visible in the captured environment; do not infer applied versions from filenames.",
     })
 
+    # Validate the architectural module graph against actual live public foreign keys.
+    # depends_on is intentionally a schema/FK graph only; runtime function calls are
+    # integration edges and are not required to be acyclic.
+    declared = {m["id"]: set(m.get("depends_on", [])) for m in manifest["modules"]}
+    edge_counts: dict[tuple[str, str], int] = {}
+    edge_examples: dict[tuple[str, str], list[dict[str, str]]] = {}
+    for con in primary.get("constraints", []):
+        if con.get("kind") != "f":
+            continue
+        match = re.search(r"\bREFERENCES\s+((?:\"?\w+\"?\.)?\"?\w+\"?)", con.get("definition", ""), flags=re.I)
+        if not match:
+            continue
+        target = norm_name(match.group(1))
+        if "." not in target:
+            target = "public." + target
+        source = norm_name(con["relation"])
+        if not source.startswith("public.") or not target.startswith("public."):
+            continue
+        source_module = assign_module(source, "table", manifest)
+        target_module = assign_module(target, "table", manifest)
+        if source_module == target_module:
+            continue
+        key = (source_module, target_module)
+        edge_counts[key] = edge_counts.get(key, 0) + 1
+        edge_examples.setdefault(key, [])
+        if len(edge_examples[key]) < 5:
+            edge_examples[key].append({
+                "source": source,
+                "constraint": con["name"],
+                "target": target,
+            })
+
+    schema_dependency_edges = [
+        {
+            "source_module": source_module,
+            "target_module": target_module,
+            "foreign_keys": count,
+            "declared": target_module in declared.get(source_module, set()),
+            "examples": edge_examples[(source_module, target_module)],
+        }
+        for (source_module, target_module), count in sorted(edge_counts.items())
+    ]
+    schema_dependency_violations = [x for x in schema_dependency_edges if not x["declared"]]
+
     counts: dict[str, int] = {}
     modules: dict[str, int] = {}
     for row in inventory:
@@ -196,6 +243,8 @@ def main() -> None:
         "migration_versions_note": "121 accepted files through 123; 096/097 reserved",
         "counts": counts,
         "module_counts": modules,
+        "schema_dependency_edges": schema_dependency_edges,
+        "schema_dependency_violations": schema_dependency_violations,
         "limits": [
             "MATCH with evidence_level=name-only is a candidate, not definition/security equivalence.",
             "Final MATCH promotion requires candidate fresh-project replay and catalog parity.",
