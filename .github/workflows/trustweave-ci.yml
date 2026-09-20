@@ -45,6 +45,14 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify D12 database tooling syntax
+        run: python -m py_compile scripts/d12-classify-catalog.py scripts/d12-reconstruct-canonical.py scripts/d12-inspect-sql-editor-csv.py
+
       - name: Verify company architecture
         run: npm run agentic:architecture
 
