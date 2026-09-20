@@ -100,3 +100,19 @@ That command creates fresh candidate captures and runs the structural/security/A
 ## Promotion rule
 
 Do not copy generated files into a permanent baseline or change bootstrap behavior until the candidate database passes the D12 parity gates. Historical migrations are not deleted, squashed or rewritten.
+
+
+## D12 parity status — fresh disposable candidate
+
+The reconstructed baseline has now been applied to a fresh Supabase project and passed:
+
+- structural catalog parity;
+- security/ACL parity, with documented Supabase-managed Storage boundaries;
+- API/function contract parity;
+- representative database behavioral parity for Housing + Family Community;
+- restored notification-role mutator authorization behavior;
+- cross-tenant read/activation denial.
+
+Supabase advisor parity matches the golden database for all security categories except the expected +2 authenticated SECURITY DEFINER warnings introduced by the two intentionally restored notification mutators. Those functions contain explicit network-admin checks and ordinary-member denial has been proven behaviorally.
+
+The remaining promotion blocker is **browser/product runtime parity** against an application instance configured to the disposable candidate. A catalog/database PASS is not sufficient for promotion.
