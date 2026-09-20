@@ -42,3 +42,15 @@ Product criticism now comes from seven repeatable browser personas and creates a
 ## 2026-09-16 — Zero-touch operating proof
 
 TrustWeave converted the highest-ranked observed usability issue into a release-ready improvement without routine Founder involvement. Public Discovery actions now meet a 44px touch minimum across Housing, Community, member and guide journeys. The Founder remains the strategic owner and D3 authority, with a single cockpit for health, debate, risk, evidence and next moves.
+
+## 2026-09-20 — Commercial wedge sharpened: Distributed Operations first
+
+The company category remains unchanged: **TrustWeave is a private, federated operating system for trusted networks**. The first serious paid-wedge experiment is **TrustWeave Ops — an AI operating system for distributed organizations**, beginning with founder-led multi-location / franchise-style businesses.
+
+The job to solve is: **Across all my locations, what needs my attention right now, why, who owns it, what evidence exists, and what should happen next?**
+
+Smallest credible slice: location hierarchy, SOP/audit, issues + corrective actions, compliance/renewals, exception dashboard, and an evidence-backed AI COO brief.
+
+This does not demote Family, MPF / Community or Residential: Family remains the deepest trust laboratory; MPF the federation proving ground; Residential the operational proving ground; Distributed Operations becomes the first serious revenue experiment; Promoter / Business Group becomes the higher-ticket expansion after integrations are proven.
+
+Canonical detail: `docs/product/TRUSTWEAVE-COMMERCIAL-THESIS-DISTRIBUTED-OPERATIONS-OS.md`.
