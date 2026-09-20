@@ -1,11 +1,11 @@
 {
-  "version": 1,
+  "version": 2,
   "status": "candidate-until-fresh-parity",
   "principles": [
     "The live golden database is read-only evidence, not a mutation target.",
     "Historical migrations remain immutable upgrade history.",
     "Each current database object has exactly one canonical owning module.",
-    "Cross-module dependencies must be explicit and acyclic.",
+    "depends_on models schema/FK dependencies only and must remain acyclic; runtime integrations are recorded separately and do not determine DDL apply order.",
     "future-education is reserved during D12 and contains no School implementation."
   ],
   "modules": [
@@ -21,7 +21,7 @@
       "depends_on": [
         "platform-core"
       ],
-      "description": "Profiles, memberships, invitations, claiming, roles and access context."
+      "description": "Profiles, memberships, invitations, claiming, roles and the legacy shared member identity record."
     },
     {
       "id": "activity",
@@ -30,7 +30,7 @@
         "platform-core",
         "identity"
       ],
-      "description": "Shared activities, posts, comments, reactions, RSVP, groups and media-facing participation."
+      "description": "Shared community spaces, activities, posts, comments, reactions, RSVP, groups, media and participation."
     },
     {
       "id": "workflow",
@@ -40,7 +40,7 @@
         "identity",
         "activity"
       ],
-      "description": "Governance, ballots, funds, change requests, idempotency and reusable workflow primitives."
+      "description": "Governance, ballots, funds, change requests, feedback/suggestion workflows and idempotency."
     },
     {
       "id": "notifications",
@@ -59,7 +59,7 @@
         "platform-core",
         "identity"
       ],
-      "description": "Passports, umbrellas, bridges, discovery, federated requests, introductions and trust receipts."
+      "description": "Passports, umbrellas, bridges, discovery, network-effect telemetry, federated requests, introductions and trust receipts."
     },
     {
       "id": "family",
@@ -70,7 +70,7 @@
         "activity",
         "workflow"
       ],
-      "description": "Family-specific hierarchy, intake, memories, life events and family administration."
+      "description": "Family-specific hierarchy, intake, memories, life events and family administration built on shared member identity."
     },
     {
       "id": "family-community",
@@ -154,7 +154,8 @@
         "network_passports",
         "network_trust_bridges",
         "network_umbrella_affiliations",
-        "trusted_introduction_requests"
+        "trusted_introduction_requests",
+        "network_effect_events"
       ],
       "function_keywords": [
         "federat",
@@ -162,7 +163,8 @@
         "passport",
         "trust_bridge",
         "cross_network",
-        "trusted_introduction"
+        "trusted_introduction",
+        "network_effect"
       ]
     },
     "notifications": {
@@ -209,23 +211,21 @@
     "activity": {
       "table_prefixes": [
         "network_activity_",
-        "community_event_",
-        "community_group_",
-        "community_post"
+        "community_"
       ],
       "table_names": [
         "network_activities",
-        "community_events",
-        "community_groups",
-        "community_posts",
-        "network_media_assets"
+        "network_media_assets",
+        "participation_events"
       ],
       "function_keywords": [
         "network_activity",
         "network_post",
         "community_event",
         "community_group",
-        "media_asset"
+        "media_asset",
+        "community_",
+        "participation_"
       ],
       "function_names": [
         "reconcile_network_media_usage"
@@ -240,13 +240,17 @@
         "change_requests",
         "api_command_idempotency",
         "network_ballots",
-        "network_funds"
+        "network_funds",
+        "contribution_suggestions",
+        "guide_feedback"
       ],
       "function_keywords": [
         "ballot",
         "network_fund",
         "change_request",
-        "idempotency"
+        "idempotency",
+        "contribution_suggestion",
+        "guide_feedback"
       ]
     },
     "identity": {
@@ -255,7 +259,8 @@
         "member_invitations",
         "network_memberships",
         "network_participation_invitations",
-        "network_role_capabilities"
+        "network_role_capabilities",
+        "family_members"
       ],
       "function_keywords": [
         "membership",
@@ -267,5 +272,9 @@
     "platform-core": {
       "fallback": true
     }
+  },
+  "dependency_contract": {
+    "depends_on": "Acyclic schema/FK dependency. Used to validate ownership boundaries, not to order phase-first generated SQL.",
+    "runtime_integrations": "Function/application calls may cross modules in either direction and may be cyclic. They are integration evidence, not schema ownership."
   }
 }
