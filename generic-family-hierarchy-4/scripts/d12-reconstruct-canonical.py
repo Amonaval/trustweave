@@ -505,9 +505,19 @@ def main() -> None:
             "ON CONFLICT(id) DO UPDATE SET name=excluded.name,public=excluded.public,"
             "file_size_limit=excluded.file_size_limit,allowed_mime_types=excluded.allowed_mime_types;"
         )
-    for policy in sorted(storage_policies, key=lambda x: (x["table"], x["name"])):
-        storage_lines.append(policy_sql(policy))
     write(out / "70-storage" / "000-storage.sql", storage_lines)
+
+    # Hosted Supabase owns storage.buckets/storage.objects with supabase_storage_admin.
+    # Direct postgres/psql sessions cannot CREATE POLICY on those relations. Keep the
+    # policies as a separate owner-context artifact for Dashboard/platform migration use.
+    if storage_policies:
+        owner_lines = header[:] + [
+            "-- REQUIRES SUPABASE STORAGE OWNER CONTEXT.",
+            "-- Apply through Supabase Dashboard/platform migration tooling, not direct psql.",
+        ]
+        for policy in sorted(storage_policies, key=lambda x: (x["table"], x["name"])):
+            owner_lines.append(policy_sql(policy))
+        write(out / "71-storage-owner-context" / "000-storage-policies.sql", owner_lines)
 
     # Phase 75: captured application-schema ACL. Normalize API/public principals, then replay.
     schema_lines = header[:]
@@ -598,10 +608,18 @@ def main() -> None:
 
     # Verification manifest: no raw capture/body copy; only capture hashes, counts and generated file hashes.
     generated = sorted(out.rglob("*.sql"))
+    owner_context_generated = [
+        path for path in generated
+        if "71-storage-owner-context" in path.parts
+    ]
+    direct_generated = [path for path in generated if path not in owner_context_generated]
     result = {
         "format": "trustweave-d12-candidate-baseline-v1",
         "status": "candidate-until-fresh-parity",
-        "apply_order": [str(path.relative_to(out)).replace("\\", "/") for path in generated],
+        "apply_order": [str(path.relative_to(out)).replace("\\", "/") for path in direct_generated],
+        "owner_context_apply_order": [
+            str(path.relative_to(out)).replace("\\", "/") for path in owner_context_generated
+        ],
         "server_version": primary.get("server_version"),
         "primary_capture_sha256": hashlib.sha256(args.primary.read_bytes()).hexdigest(),
         "supplement_capture_sha256": hashlib.sha256(args.supplement.read_bytes()).hexdigest() if args.supplement else None,
