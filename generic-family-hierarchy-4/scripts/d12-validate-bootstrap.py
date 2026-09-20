@@ -184,15 +184,23 @@ def validate(root: Path) -> dict[str, Any]:
         )
 
     rank = {phase: i for i, phase in enumerate(PHASE_ORDER)}
-    observed: list[int] = []
-    for rel in direct + owner:
+    # direct_apply_order is the transactional database-context sequence.
+    # Storage owner-context is deliberately applied later through hosted
+    # Supabase platform/owner context and must not be inserted into that order.
+    observed_direct: list[int] = []
+    for rel in direct:
         phase = rel.split("/", 1)[0]
         if phase not in rank:
             errors.append(f"unknown bootstrap phase: {phase} ({rel})")
         else:
-            observed.append(rank[phase])
-    if observed != sorted(observed):
-        errors.append("manifest apply order is not phase-first")
+            observed_direct.append(rank[phase])
+    if observed_direct != sorted(observed_direct):
+        errors.append("manifest direct_apply_order is not phase-first")
+
+    for rel in owner:
+        phase = rel.split("/", 1)[0]
+        if phase != "71-storage-owner-context":
+            errors.append(f"unexpected owner-context phase: {phase} ({rel})")
 
     actual_sql: set[str] = set()
     for p in root.rglob("*.sql"):
