@@ -1,5 +1,9 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — D12 reference capture preparation
+
+The D0–D11 PR passed CI and merged to `main`. D12 has begun with a read-only, Docker-free reference capture kit (`docs/architecture/D12-REFERENCE-CAPTURE.md`). Its metadata, public schema, storage bucket configuration and migration-history capture has not yet been run against the working Supabase project. Canonical SQL reconstruction, a clean bootstrap and parity certification remain blocked pending the reviewed reference package. The existing database remains untouched; School database implementation remains deferred.
+
 ## 2026-09-20 — M3-D11 School architecture readiness candidate
 
 D11 completes the D0→D11 architecture reinforcement program with a machine-readable School workflow proof and a D10 scaffold exercise. Representative School scope classifies as A=1, B=9, C=0, D=2: events are already generic; nine flows reuse existing Network OS primitives through thin School adapters; no new reusable platform primitive is required after D4/D5; attendance recording and transport/pickup remain the only genuinely School-specific seams in the proving scope. The School blueprint validates and can be scaffolded in a temporary directory, but School remains absent from runtime kinds, manifest, runtime metadata, QA activation and the product tree. D11 therefore certifies architecture readiness for bounded School implementation, not School product/release readiness. Existing connected reliability/staging evidence gaps remain open.

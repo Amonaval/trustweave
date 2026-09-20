@@ -1,5 +1,9 @@
 # TrustWeave — Roadmap
 
+## Current priority — D12 database architecture (2026-09-20)
+
+First collect the working Supabase project's schema-only reference using `docs/architecture/D12-REFERENCE-CAPTURE.md`. Then compare it against the 121 migrations through `123` and application object usage, derive canonical modules, build a guarded fresh bootstrap, and verify structural, security, API, behavioral and browser parity against a separate fresh project. Keep the old project as fallback and defer School SQL until the database module boundary is established. No cutover is authorized by the capture kit alone.
+
 ## Active architecture priority — M3-D (2026-09-19)
 
 D0–D11 are implemented as the architecture reinforcement program. D11's School proof classifies the representative scope as A=1, B=9, C=0, D=2 and certifies the platform architecture for bounded School implementation while keeping School completely unregistered/unimplemented. The next School program must follow `missions/mission-003/m3-d/NEXT-SESSION-SCHOOL-IMPLEMENTATION-CHARTER.md`: scaffold first, then policy/graph, server-owned data boundaries, shared actions/consent, the two School-specific seams (attendance and transport/pickup), and only then synthetic Playground/connected activation gates. `missions/mission-003/m3-d/EXECUTION-CHARTER.md` gives the revised sequence; `NETWORK-OS-ARCHITECTURE-MASTER-PLAN.md` retains the older D1–D10 labels as historical strategy, explicitly shifted by one. The connected Residential/Community reliability and staging migration 122 gate below still require real evidence.
