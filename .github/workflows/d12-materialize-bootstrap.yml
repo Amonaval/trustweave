@@ -5,7 +5,7 @@ on:
     branches:
       - llm-push
     paths:
-      - ".d12-transport/bootstrap.tar.gz.b64.part*"
+      - ".d12-transport/READY"
       - ".github/workflows/d12-materialize-bootstrap.yml"
 
 permissions:
@@ -40,7 +40,7 @@ jobs:
 
           repo = Path.cwd()
           transport = repo / ".d12-transport"
-          parts = sorted(transport.glob("bootstrap.tar.gz.b64.part*"))
+          ready = transport / "READY"\n          parts = sorted(transport.glob("bootstrap.tar.xz.b64.part*"))
 
           # Creating/updating this workflow alone is intentionally a no-op.
           if not parts:
