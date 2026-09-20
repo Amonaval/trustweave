@@ -2,11 +2,11 @@
 
 ## Current continuation — 2026-09-20
 
-The original D12 Candidate `blpdjhmtayjkcczqltqi` is now inactive. The active Clean Replay `yqtrkpyyzxzpthklqygs` predates the final ACL packaging correction and has no seeded Auth users. Use **one new empty disposable project** for the final committed-bootstrap ACL proof and this browser gate. Do not replay the full bootstrap on either earlier populated project.
+The final fresh replay target is `TrustWeave D12 Final ACL Proof` (`yqwitkoxyrujbzpjwuji`). Its 94 direct SQL files and seven owner-context Storage policies are applied, and the structural/security/API catalog comparator passed. The earlier Clean Replay `yqtrkpyyzxzpthklqygs` and first ACL diagnostic project `leeupnpnyoblfsdasbkp` are paused. Use the **final project** for this browser gate; do not replay the bootstrap on it.
 
-The QA wrapper now accepts committed bootstrap evidence at `.d12-work/bootstrap-replay` when `D12_PARITY_EVIDENCE_ROOT` points there. Run `d12-verify-candidate.py` with `--candidate-root .d12-work/bootstrap-replay` to generate a fresh catalog parity report and bound recapture receipt. The catalog report includes hashes of all four input CSVs. Keep `.env.d12-candidate` local, set its ref and URL to the same new project, and retain its secrets only on the machine running QA. The wrapper rejects mismatched refs, release manifest bytes, nonempty freshness receipts, and stale capture hashes. It cannot certify the current Clean Replay from old receipts.
+The QA wrapper accepts the reviewed managed-SQL receipt (`trustweave-d12-managed-sql-apply-receipt-v1`) and the historical direct-bootstrap receipt. Extract `D12-FRESH-REPLAY-EVIDENCE-2026-09-20.zip` at the repository root so the receipt, parity report and recapture files land under `.d12-work/bootstrap-replay/`. Set `D12_PARITY_EVIDENCE_ROOT=.d12-work/bootstrap-replay`. The wrapper checks the committed manifest bytes, the exact reviewed project and source commit, empty-project freshness, apply provenance, all catalog layers and the actual candidate CSV bytes. The original golden supplement hash is accepted only with its fixed promoted manifest fingerprint.
 
-The previous candidate's manual browser smoke is historical evidence; it is not an automated PASS on the new project. Formal D12-F closure remains open.
+Preflight passed locally against the real archived receipt, report, recapture and CSV bytes; 23 focused tests passed. **Connected behavior/browser parity has not run:** this session's workspace has no TrustWeave checkout, candidate app server or local QA environment file. Set up the repo and candidate app runtime locally before executing the command below. Never share service-role keys or database passwords in chat. The earlier candidate's manual browser smoke is historical evidence and does not certify this final project. D12-F closure remains open.
 
 ## Purpose
 
@@ -17,7 +17,7 @@ Database/catalog/API behavioral parity has already passed on the fresh disposabl
 ## Candidate / golden boundaries
 
 - Golden project: `OS Network` — `yyhwcqpzplebittvxzzl` — read-only.
-- Historical candidate: `TrustWeave D12 Candidate` — `blpdjhmtayjkcczqltqi` — inactive. Current target: the next empty disposable project after final bootstrap apply.
+- Current disposable candidate: `TrustWeave D12 Final ACL Proof` — `yqwitkoxyrujbzpjwuji` — active. Earlier replay projects and historical candidate are not QA targets.
 - Never point mutating QA at the golden project.
 - Never place service-role keys, DB passwords, or connection URLs in Git or chat.
 
@@ -45,8 +45,8 @@ The application runtime must be configured to the disposable candidate project.
 
 Before any mutation:
 
-1. `NEXT_PUBLIC_SUPABASE_URL` must resolve to the same new disposable project ref.
-2. `QA_STAGING_PROJECT_REF` must equal that new disposable project ref.
+1. `NEXT_PUBLIC_SUPABASE_URL` must resolve to the final disposable project ref `yqwitkoxyrujbzpjwuji`.
+2. `QA_STAGING_PROJECT_REF` must equal `yqwitkoxyrujbzpjwuji`.
 3. `QA_MODE=staging`.
 4. `QA_ALLOW_MUTATION=true`.
 5. The configured project ref must not equal the golden ref `yyhwcqpzplebittvxzzl`.

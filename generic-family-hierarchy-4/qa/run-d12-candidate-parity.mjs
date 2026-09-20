@@ -3,25 +3,33 @@ import {spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {loadQaEnv,assertMutationAllowed,writeJson} from './runtime/env.mjs';
 import {QA_VERTICAL_KINDS} from './runtime/scope.mjs';
-import {d12EvidencePaths,validateD12Evidence} from './runtime/d12-evidence.mjs';
+import {d12EvidencePaths,isD12BootstrapReceipt,validateD12Evidence} from './runtime/d12-evidence.mjs';
 
 process.env.QA_ENV_FILE=process.env.QA_ENV_FILE||'.env.d12-candidate';
 loadQaEnv();
 
 const root=process.env.D12_PARITY_EVIDENCE_ROOT||'.d12-work/candidate';
-const {catalog:catalogPath,apply:applyPath,recapture:recapturePath}=d12EvidencePaths(root);
+const {catalog:catalogPath,apply:applyPath,recapture:recapturePath,primary:primaryPath,supplement:supplementPath}=d12EvidencePaths(root);
 if(!fs.existsSync(catalogPath))throw new Error(`Missing D12 catalog parity report: ${catalogPath}`);
 if(!fs.existsSync(applyPath))throw new Error(`Missing D12 disposable apply receipt: ${applyPath}`);
 const catalog=JSON.parse(fs.readFileSync(catalogPath,'utf8'));
 const apply=JSON.parse(fs.readFileSync(applyPath,'utf8'));
-const bootstrap=apply.format==='trustweave-d12-bootstrap-replay-apply-receipt-v1';
+const bootstrap=isD12BootstrapReceipt(apply);
 const releaseName=fs.readFileSync('supabase/bootstrap/CURRENT','utf8').trim();
 if(!/^[a-zA-Z0-9._-]+$/.test(releaseName))throw new Error('Invalid committed bootstrap release name.');
 const manifestPath=`supabase/bootstrap/releases/${releaseName}/manifest.json`;
 const manifestBytes=bootstrap?fs.readFileSync(manifestPath):null;
+const recapture=bootstrap?JSON.parse(fs.readFileSync(recapturePath,'utf8')):null;
+if(bootstrap){
+ for(const [path,expected] of [[primaryPath,recapture.primary_sha256],[supplementPath,recapture.supplement_sha256]]){
+  if(!fs.existsSync(path)||createHash('sha256').update(fs.readFileSync(path)).digest('hex')!==expected){
+   throw new Error(`D12 candidate capture bytes do not match the recapture receipt: ${path}`);
+  }
+ }
+}
 const evidence=validateD12Evidence({
  catalog,apply,
- recapture:bootstrap?JSON.parse(fs.readFileSync(recapturePath,'utf8')):null,
+ recapture,
  manifest:bootstrap?JSON.parse(manifestBytes.toString('utf8')):null,
  manifestSha256:bootstrap?createHash('sha256').update(manifestBytes).digest('hex'):null,
  qaProjectRef:process.env.QA_STAGING_PROJECT_REF
@@ -31,6 +39,11 @@ const expectedVerticals=['family-association','housing-society'];
 const configured=[...QA_VERTICAL_KINDS].sort();
 if(JSON.stringify(configured)!==JSON.stringify(expectedVerticals)){
  throw new Error(`D12 candidate QA scope must be exactly ${expectedVerticals.join(', ')}; got ${configured.join(', ')}`);
+}
+let configuredProjectOrigin='';
+try{configuredProjectOrigin=new URL(process.env.NEXT_PUBLIC_SUPABASE_URL||'').origin.toLowerCase()}catch{}
+if(configuredProjectOrigin!==`https://${evidence.candidateProjectRef}.supabase.co`){
+ throw new Error('D12 candidate app runtime must point to the exact receipt project URL.');
 }
 assertMutationAllowed();
 

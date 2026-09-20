@@ -4,7 +4,7 @@
 
 The corrected canonical bootstrap passed full structural, security and API catalog parity after a fresh install on disposable project `yqwitkoxyrujbzpjwuji`. The golden project remains read-only; earlier replay projects are paused. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md` for commit and capture evidence.
 
-Next align the managed-SQL receipt with the QA wrapper, configure and seed the candidate app runtime, then run bounded owner/admin/member behavior and browser journeys for Housing Society and Family Community. Reconcile all five evidence layers before D12-F promotion; School SQL stays deferred until this stability gate closes.
+The managed-SQL receipt adapter passes against the archived evidence. Next configure and seed the candidate app runtime, then run bounded owner/admin/member behavior and browser journeys for Housing Society and Family Community. Reconcile all five evidence layers before D12-F promotion; School SQL stays deferred until this stability gate closes.
 
 ## Active architecture priority — M3-D (2026-09-19)
 

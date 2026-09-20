@@ -2,7 +2,7 @@
 
 ## 2026-09-20 — D12 final fresh bootstrap and catalog parity PASS
 
-The corrected committed release at `ce5eddfbedd2a1ab3a92bbd58ac24ca78e57bfe1` replayed on the genuinely empty Personal project `TrustWeave D12 Final ACL Proof` (`yqwitkoxyrujbzpjwuji`). All 94 direct SQL files and seven owner-context Storage policies applied. The full golden structural/security/API comparator passed with zero differences and warnings; CI passed. Earlier Clean Replay and the first ACL diagnostic project are paused; golden `OS Network` remains read-only. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md`. The next gate is managed receipt QA preflight plus bounded two-vertical behavior/browser parity on this same project. D12-F promotion is still open.
+The corrected committed release at `ce5eddfbedd2a1ab3a92bbd58ac24ca78e57bfe1` replayed on the genuinely empty Personal project `TrustWeave D12 Final ACL Proof` (`yqwitkoxyrujbzpjwuji`). All 94 direct SQL files and seven owner-context Storage policies applied. The full golden structural/security/API comparator passed with zero differences and warnings; CI passed. Earlier Clean Replay and the first ACL diagnostic project are paused; golden `OS Network` remains read-only. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md`. The managed-SQL receipt QA adapter now passes against the actual archived evidence and 23 focused guard tests. The next gate is bounded two-vertical behavior/browser parity on this same project. This session had no app checkout, candidate server or local QA environment; connected QA was not run. D12-F promotion is still open.
 
 ## 2026-09-20 — D12 recovery resumed; browser gate pending
 
