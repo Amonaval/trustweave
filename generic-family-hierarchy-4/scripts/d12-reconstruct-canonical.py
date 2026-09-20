@@ -156,6 +156,31 @@ def acl_privilege_name(kind: str, char: str) -> str | None:
     return maps.get(kind, {}).get(char)
 
 
+def validate_module_graph(manifest: dict[str, Any]) -> None:
+    modules = {m["id"]: set(m.get("depends_on", [])) for m in manifest["modules"]}
+    unknown = sorted({dep for deps in modules.values() for dep in deps if dep not in modules})
+    if unknown:
+        raise ValueError(f"Unknown canonical module dependencies: {unknown}")
+
+    visiting: list[str] = []
+    visited: set[str] = set()
+
+    def walk(node: str) -> None:
+        if node in visiting:
+            start = visiting.index(node)
+            raise ValueError(f"Canonical module dependency cycle: {' -> '.join(visiting[start:] + [node])}")
+        if node in visited:
+            return
+        visiting.append(node)
+        for dep in sorted(modules[node]):
+            walk(dep)
+        visiting.pop()
+        visited.add(node)
+
+    for node in sorted(modules):
+        walk(node)
+
+
 def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -178,6 +203,7 @@ def main() -> None:
     primary = load_capture(args.primary)
     supplement = load_capture(args.supplement) if args.supplement else {}
     manifest = json.loads((project / "db" / "canonical" / "modules.json").read_text(encoding="utf-8"))
+    validate_module_graph(manifest)
     sorted_modules = sorted(manifest["modules"], key=lambda x: x["order"])
     modules = [m["id"] for m in sorted_modules]
     module_order = {m["id"]: m["order"] for m in sorted_modules}
