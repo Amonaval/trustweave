@@ -9,28 +9,263 @@
     "future-education is reserved during D12 and contains no School implementation."
   ],
   "modules": [
-    {"id":"platform-core","order":10,"depends_on":[],"description":"Tenant/network registry, platform control plane, launch, reliability and audit foundations."},
-    {"id":"identity","order":20,"depends_on":["platform-core"],"description":"Profiles, memberships, invitations, claiming, roles and access context."},
-    {"id":"activity","order":30,"depends_on":["platform-core","identity"],"description":"Shared activities, posts, comments, reactions, RSVP, groups and media-facing participation."},
-    {"id":"workflow","order":40,"depends_on":["platform-core","identity","activity"],"description":"Governance, ballots, funds, change requests, idempotency and reusable workflow primitives."},
-    {"id":"notifications","order":50,"depends_on":["platform-core","identity","activity"],"description":"Notification inbox/preferences, push, mention routing and responsibility-role routing."},
-    {"id":"federation","order":60,"depends_on":["platform-core","identity"],"description":"Passports, umbrellas, bridges, discovery, federated requests, introductions and trust receipts."},
-    {"id":"family","order":70,"depends_on":["platform-core","identity","activity","workflow"],"description":"Family-specific hierarchy, intake, memories, life events and family administration."},
-    {"id":"family-community","order":80,"depends_on":["platform-core","identity","activity","workflow","notifications","family"],"description":"Association/community household, membership-year, finance and role-history specialization."},
-    {"id":"housing","order":90,"depends_on":["platform-core","identity","activity","workflow","notifications"],"description":"Housing/residential operations, finance, governance, security, assets and pilot controls."},
-    {"id":"future-education","order":100,"depends_on":["platform-core","identity","activity","workflow","notifications"],"description":"Reserved boundary only. No School schema is implemented during D12."},
-    {"id":"future-specializations","order":110,"depends_on":["platform-core","identity","activity","workflow"],"description":"Existing low-priority or future vertical specializations such as alumni/organization/professional extensions."}
+    {
+      "id": "platform-core",
+      "order": 10,
+      "depends_on": [],
+      "description": "Tenant/network registry, platform control plane, launch, reliability and audit foundations."
+    },
+    {
+      "id": "identity",
+      "order": 20,
+      "depends_on": [
+        "platform-core"
+      ],
+      "description": "Profiles, memberships, invitations, claiming, roles and access context."
+    },
+    {
+      "id": "activity",
+      "order": 30,
+      "depends_on": [
+        "platform-core",
+        "identity"
+      ],
+      "description": "Shared activities, posts, comments, reactions, RSVP, groups and media-facing participation."
+    },
+    {
+      "id": "workflow",
+      "order": 40,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity"
+      ],
+      "description": "Governance, ballots, funds, change requests, idempotency and reusable workflow primitives."
+    },
+    {
+      "id": "notifications",
+      "order": 50,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity"
+      ],
+      "description": "Notification inbox/preferences, push, mention routing and responsibility-role routing."
+    },
+    {
+      "id": "federation",
+      "order": 60,
+      "depends_on": [
+        "platform-core",
+        "identity"
+      ],
+      "description": "Passports, umbrellas, bridges, discovery, federated requests, introductions and trust receipts."
+    },
+    {
+      "id": "family",
+      "order": 70,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity",
+        "workflow"
+      ],
+      "description": "Family-specific hierarchy, intake, memories, life events and family administration."
+    },
+    {
+      "id": "family-community",
+      "order": 80,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity",
+        "workflow",
+        "notifications",
+        "family"
+      ],
+      "description": "Association/community household, membership-year, finance and role-history specialization."
+    },
+    {
+      "id": "housing",
+      "order": 90,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity",
+        "workflow",
+        "notifications"
+      ],
+      "description": "Housing/residential operations, finance, governance, security, assets and pilot controls."
+    },
+    {
+      "id": "future-education",
+      "order": 100,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity",
+        "workflow",
+        "notifications"
+      ],
+      "description": "Reserved boundary only. No School schema is implemented during D12."
+    },
+    {
+      "id": "future-specializations",
+      "order": 110,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity",
+        "workflow"
+      ],
+      "description": "Existing low-priority or future vertical specializations such as alumni/organization/professional extensions."
+    }
   ],
   "ownership_rules": {
-    "housing": {"table_prefixes":["hs_"],"function_prefixes":["hs","housing_"]},
-    "family-community": {"table_prefixes":["family_association_","association_"],"function_prefixes":["fca_","add_fca_","assign_fca_","association_","can_manage_association_"]},
-    "federation": {"table_prefixes":["federated_","federation_","cross_network_discovery_"],"table_names":["network_passports","network_trust_bridges","network_umbrella_affiliations","trusted_introduction_requests"],"function_keywords":["federat","umbrella","passport","trust_bridge","cross_network","trusted_introduction"]},
-    "notifications": {"table_names":["notifications","notification_preferences","push_subscriptions","network_notification_roles"],"function_keywords":["notification","push_subscription","route_network_mentions"]},
-    "family": {"table_prefixes":["family_"],"table_names":["memories","memory_people","memory_reactions","member_life_events","profile_submissions"],"function_keywords":["family_","memory","profile_submission"]},
-    "future-specializations": {"table_prefixes":["alumni_","organization_intelligence_"],"function_keywords":["alumni_","organization_knowledge","organization_intelligence"]},
-    "activity": {"table_prefixes":["network_activity_","community_event_","community_group_","community_post"],"table_names":["network_activities","community_events","community_groups","community_posts","network_media_assets"],"function_keywords":["network_activity","network_post","community_event","community_group","media_asset"]},
-    "workflow": {"table_prefixes":["network_ballot_","network_fund_"],"table_names":["change_requests","api_command_idempotency","network_ballots","network_funds"],"function_keywords":["ballot","network_fund","change_request","idempotency"]},
-    "identity": {"table_names":["profiles","member_invitations","network_memberships","network_participation_invitations","network_role_capabilities"],"function_keywords":["membership","invitation","claim_","profile_by_verified_email"]},
-    "platform-core": {"fallback":true}
+    "housing": {
+      "table_prefixes": [
+        "hs_"
+      ],
+      "function_prefixes": [
+        "hs",
+        "housing_"
+      ]
+    },
+    "family-community": {
+      "table_prefixes": [
+        "family_association_",
+        "association_"
+      ],
+      "function_prefixes": [
+        "fca_",
+        "add_fca_",
+        "assign_fca_",
+        "association_",
+        "can_manage_association_"
+      ]
+    },
+    "federation": {
+      "table_prefixes": [
+        "federated_",
+        "federation_",
+        "cross_network_discovery_"
+      ],
+      "table_names": [
+        "network_passports",
+        "network_trust_bridges",
+        "network_umbrella_affiliations",
+        "trusted_introduction_requests"
+      ],
+      "function_keywords": [
+        "federat",
+        "umbrella",
+        "passport",
+        "trust_bridge",
+        "cross_network",
+        "trusted_introduction"
+      ]
+    },
+    "notifications": {
+      "table_names": [
+        "notifications",
+        "notification_preferences",
+        "push_subscriptions",
+        "network_notification_roles"
+      ],
+      "function_keywords": [
+        "notification",
+        "push_subscription",
+        "route_network_mentions"
+      ]
+    },
+    "family": {
+      "table_prefixes": [
+        "family_"
+      ],
+      "table_names": [
+        "memories",
+        "memory_people",
+        "memory_reactions",
+        "member_life_events",
+        "profile_submissions"
+      ],
+      "function_keywords": [
+        "family_",
+        "memory",
+        "profile_submission"
+      ]
+    },
+    "future-specializations": {
+      "table_prefixes": [
+        "alumni_",
+        "organization_intelligence_"
+      ],
+      "function_keywords": [
+        "alumni_",
+        "organization_knowledge",
+        "organization_intelligence"
+      ]
+    },
+    "activity": {
+      "table_prefixes": [
+        "network_activity_",
+        "community_event_",
+        "community_group_",
+        "community_post"
+      ],
+      "table_names": [
+        "network_activities",
+        "community_events",
+        "community_groups",
+        "community_posts",
+        "network_media_assets"
+      ],
+      "function_keywords": [
+        "network_activity",
+        "network_post",
+        "community_event",
+        "community_group",
+        "media_asset"
+      ],
+      "function_names": [
+        "reconcile_network_media_usage"
+      ]
+    },
+    "workflow": {
+      "table_prefixes": [
+        "network_ballot_",
+        "network_fund_"
+      ],
+      "table_names": [
+        "change_requests",
+        "api_command_idempotency",
+        "network_ballots",
+        "network_funds"
+      ],
+      "function_keywords": [
+        "ballot",
+        "network_fund",
+        "change_request",
+        "idempotency"
+      ]
+    },
+    "identity": {
+      "table_names": [
+        "profiles",
+        "member_invitations",
+        "network_memberships",
+        "network_participation_invitations",
+        "network_role_capabilities"
+      ],
+      "function_keywords": [
+        "membership",
+        "invitation",
+        "claim_",
+        "profile_by_verified_email"
+      ]
+    },
+    "platform-core": {
+      "fallback": true
+    }
   }
 }
