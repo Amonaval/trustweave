@@ -1,5 +1,7 @@
 # D12 fresh bootstrap CI replay
 
+The final D12 fresh replay passed catalog parity using the connected Supabase SQL path on project `yqwitkoxyrujbzpjwuji`; see `generic-family-hierarchy-4/docs/architecture/D12-FRESH-REPLAY-2026-09-20.md`. This GitHub Actions path remains available for future disposable replays. Do not create `READY.json` for the already populated final project.
+
 This workflow applies only the 94 committed direct SQL files to a **new, empty,
 disposable** Supabase project. It never targets the golden project, the earlier
 candidate, Clean Replay, or the old QA Replay. A fresh public-schema preflight
