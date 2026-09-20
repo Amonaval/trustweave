@@ -152,6 +152,16 @@ def acl_privilege_name(kind: str, char: str) -> str | None:
         "schema": {"U": "USAGE", "C": "CREATE"},
         "function": {"X": "EXECUTE"},
         "sequence": {"r": "SELECT", "w": "UPDATE", "U": "USAGE"},
+        "table": {
+            "r": "SELECT",
+            "a": "INSERT",
+            "w": "UPDATE",
+            "d": "DELETE",
+            "D": "TRUNCATE",
+            "x": "REFERENCES",
+            "t": "TRIGGER",
+            "m": "MAINTAIN",
+        },
     }
     return maps.get(kind, {}).get(char)
 
@@ -539,46 +549,88 @@ def main() -> None:
     if supplement.get("schema_grants"):
         write(out / "75-schema-grants" / "000-schemas.sql", schema_lines)
 
-    # Phase 80: public/application table grants. Built-in storage relation ACLs remain
-    # Supabase-managed and are not overwritten by the candidate baseline.
-    grants_by_module: dict[str, list[dict[str, Any]]] = {m: [] for m in modules}
-    for grant in primary.get("grants", []):
-        if grant["schema"] == "storage":
+    # Phase 80/85: exact public relation ACLs from pg_class.relacl.
+    # information_schema.role_table_grants does not expose PostgreSQL 17 MAINTAIN
+    # and cannot faithfully preserve per-privilege grant-option state.
+    relation_acl_by_name = {
+        f"{row['schema']}.{row['name']}": row
+        for row in supplement.get("relation_grants", [])
+        if row.get("schema") != "storage"
+    }
+    sequence_names = {
+        f"{row['schema']}.{row['name']}"
+        for row in supplement.get("sequences", [])
+    }
+
+    table_acl_by_module: dict[str, list[tuple[str, str]]] = {m: [] for m in modules}
+    sequence_acl_lines: list[str] = []
+
+    for full_name, row in sorted(relation_acl_by_name.items()):
+        acl = row.get("acl")
+        if acl is None:
+            # NULL relacl means PostgreSQL default owner privileges only.
             continue
-        relation = f"{grant['schema']}.{grant['table']}"
-        grants_by_module[assign_module(relation, "table", manifest)].append(grant)
-    for module, rows in grants_by_module.items():
-        table_names = sorted(tables_by_module[module])
-        if not rows and not table_names:
+        schema = row["schema"]
+        name = row["name"]
+
+        if full_name in sequence_names:
+            signature = f"{qident(schema)}.{qident(name)}"
+            sequence_acl_lines.append(
+                f"REVOKE ALL ON SEQUENCE {signature} FROM PUBLIC, {qident('anon')}, "
+                f"{qident('authenticated')}, {qident('service_role')};"
+            )
+            for principal, privileges, grantable in parse_acl(acl):
+                for char in privileges:
+                    privilege = acl_privilege_name("sequence", char)
+                    if not privilege:
+                        continue
+                    suffix = " WITH GRANT OPTION" if char in grantable else ""
+                    sequence_acl_lines.append(
+                        f"GRANT {privilege} ON SEQUENCE {signature} "
+                        f"TO {role_sql(principal)}{suffix};"
+                    )
+            continue
+
+        if full_name not in relations:
+            # Views/materialized views can be added here if the canonical model
+            # gains them. D12 contains ordinary/partitioned application tables.
+            continue
+
+        module = assign_module(full_name, "table", manifest)
+        statements: list[str] = [
+            f"REVOKE ALL ON TABLE {qname(full_name)} FROM PUBLIC, {qident('anon')}, "
+            f"{qident('authenticated')}, {qident('service_role')};"
+        ]
+        for principal, privileges, grantable in parse_acl(acl):
+            # Preserve grant-option state per individual privilege. Combining a
+            # mixed ACL into one GRANT ... WITH GRANT OPTION would over-grant.
+            for char in privileges:
+                privilege = acl_privilege_name("table", char)
+                if not privilege:
+                    continue
+                suffix = " WITH GRANT OPTION" if char in grantable else ""
+                statements.append(
+                    f"GRANT {privilege} ON TABLE {qname(full_name)} "
+                    f"TO {role_sql(principal)}{suffix};"
+                )
+        table_acl_by_module[module].append((full_name, "\n".join(statements)))
+
+    for module, blocks in table_acl_by_module.items():
+        if not blocks:
             continue
         prefix = f"{module_order[module]:03d}-{safe_file(module)}.sql"
         lines = header[:]
-        for relation in table_names:
-            lines.append(
-                f"REVOKE ALL ON TABLE {qname(relation)} FROM PUBLIC, {qident('anon')}, "
-                f"{qident('authenticated')}, {qident('service_role')};"
-            )
-        lines.extend(grouped_grants(rows))
+        for _full_name, block in sorted(blocks):
+            lines.extend(block.splitlines())
         write(out / "80-table-grants" / prefix, lines)
 
-    # Phase 85: sequence USAGE/SELECT/UPDATE grants captured through information_schema.
-    sequence_grants: list[str] = []
-    for grant in primary.get("usage_grants", []):
-        if str(grant.get("type") or "").upper() != "SEQUENCE":
-            continue
-        privilege = str(grant.get("privilege") or "").upper()
-        if privilege not in {"USAGE", "SELECT", "UPDATE"}:
-            continue
-        sequence_grants.append(
-            f"GRANT {privilege} ON SEQUENCE {qident(grant['schema'])}.{qident(grant['object'])} "
-            f"TO {role_sql(grant['grantee'])};"
-        )
-    if sequence_grants:
-        write(out / "85-sequence-grants" / "000-sequences.sql", header[:] + sorted(set(sequence_grants)))
+    if sequence_acl_lines:
+        write(out / "85-sequence-grants" / "000-sequences.sql", header[:] + sequence_acl_lines)
 
-    # Phase 90: explicit captured function ACLs. NULL proacl means PostgreSQL defaults and
-    # is deliberately left at its default; explicit ACLs are normalized then replayed.
-    function_grants_by_module: dict[str, list[str]] = {m: [] for m in modules}
+    # Phase 90: exact captured function ACLs. NULL proacl means PostgreSQL
+    # defaults and is deliberately left at its default. Order is important:
+    # each function must be revoked first and then its captured grants replayed.
+    function_acl_by_module: dict[str, list[tuple[str, list[str]]]] = {m: [] for m in modules}
     for function_grant in supplement.get("function_grants", []):
         acl = function_grant.get("acl")
         if acl is None:
@@ -589,22 +641,27 @@ def main() -> None:
             f"({function_grant.get('identity_arguments', '')})"
         )
         module = assign_module(full_name, "function", manifest)
-        function_grants_by_module[module].append(
+        statements = [
             f"REVOKE ALL ON FUNCTION {signature} FROM PUBLIC, {qident('anon')}, "
             f"{qident('authenticated')}, {qident('service_role')};"
-        )
+        ]
         for principal, privileges, grantable in parse_acl(acl):
             if "X" not in privileges:
                 continue
             suffix = " WITH GRANT OPTION" if "X" in grantable else ""
-            function_grants_by_module[module].append(
+            statements.append(
                 f"GRANT EXECUTE ON FUNCTION {signature} TO {role_sql(principal)}{suffix};"
             )
-    for module, rows in function_grants_by_module.items():
-        if not rows:
+        function_acl_by_module[module].append((signature, statements))
+
+    for module, blocks in function_acl_by_module.items():
+        if not blocks:
             continue
         prefix = f"{module_order[module]:03d}-{safe_file(module)}.sql"
-        write(out / "90-function-grants" / prefix, header[:] + sorted(set(rows)))
+        lines = header[:]
+        for _signature, statements in sorted(blocks, key=lambda item: item[0]):
+            lines.extend(statements)
+        write(out / "90-function-grants" / prefix, lines)
 
     # Verification manifest: no raw capture/body copy; only capture hashes, counts and generated file hashes.
     generated = sorted(out.rglob("*.sql"))
@@ -636,8 +693,8 @@ def main() -> None:
         ],
         "security_reconstruction": {
             "schema_acl_source": "supplement.pg_namespace.nspacl",
-            "table_grant_source": "primary.information_schema.role_table_grants",
-            "sequence_grant_source": "primary.information_schema.usage_privileges",
+            "table_grant_source": "supplement.pg_class.relacl",
+            "sequence_grant_source": "supplement.pg_class.relacl",
             "function_acl_source": "supplement.pg_proc.proacl",
             "storage_relation_acl": "Supabase-managed; RLS state and user policies reconstructed, built-in relation ACL not overwritten",
         },
