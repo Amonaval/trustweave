@@ -119,4 +119,17 @@ Browser/product smoke has now been completed against the disposable candidate an
 
 D12 is **READY FOR CANONICAL BASELINE MATERIALIZATION**. The known Family Explore/Guide route defect (`D12-DEFERRED-ROUTING-001`) is explicitly pre-existing, non-database and non-blocking.
 
-Promotion provenance is recorded in `db/canonical/PROMOTION.json`. The remaining step is mechanical/reproducible: regenerate the proven modular baseline with the committed D12 generator, verify its manifest/checksums, then check those SQL files into `db/canonical/baseline/`. Historical migrations remain immutable.
+Promotion provenance is recorded in `db/canonical/PROMOTION.json`. The canonical model is the architecture/generation source; the executable fresh-install artifact is versioned under `supabase/bootstrap/releases/`. The first promoted package is `supabase/bootstrap/releases/2026-09-20-d12/`, with `supabase/bootstrap/CURRENT` identifying the release new environments should use. Historical migrations remain immutable.
+
+
+## Canonical vs bootstrap
+
+Do not confuse the architectural canonical model with the executable installer:
+
+- `db/canonical/` — ownership graph, reconstruction contract and promotion provenance;
+- `supabase/bootstrap/` — versioned one-time installers for empty Supabase projects;
+- `supabase/migrations/` — immutable chronological upgrade history for existing databases.
+
+The generated SQL payload is promoted into a versioned bootstrap release after D12 parity, rather than turning `db/canonical/` itself into a deployment directory.
+
+See `supabase/bootstrap/DEVELOPER_GUIDE.md`.
