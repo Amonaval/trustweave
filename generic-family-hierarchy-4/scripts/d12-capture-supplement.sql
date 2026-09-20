@@ -1,7 +1,7 @@
 -- D12 supplement for the Supabase SQL Editor. Read-only, one JSON row.
 -- Run separately from d12-capture-reference.sql, then export CSV.
 WITH app_ns AS (
- SELECT oid,nspname FROM pg_namespace WHERE nspname='public' OR nspname LIKE 'tw\_%' ESCAPE '\'
+ SELECT oid,nspname,nspacl FROM pg_namespace WHERE nspname='public' OR nspname LIKE 'tw\_%' ESCAPE '\'
 ), captured AS (
  SELECT jsonb_build_object(
   'server_version',current_setting('server_version'),
