@@ -473,43 +473,43 @@
     },
     {
       "path": "90-function-grants/010-platform-core.sql",
-      "sha256": "ff06dcaabf24d019af5329e84bf832d3c3788c9c2776f993862e9890ac2d1b7f"
+      "sha256": "ee2f87113d8acc8affeb2d6440da71db42e703150f8362aa829e0c9364a5cb76"
     },
     {
       "path": "90-function-grants/020-identity.sql",
-      "sha256": "9a22b25d413ac85f108481c98c27dff84c2c64c811a90072efffb2259828b81f"
+      "sha256": "0ba6633c9a6b1e9185a9d4f7bc7edceceac04e22e263fea246b573856fa0b37a"
     },
     {
       "path": "90-function-grants/030-activity.sql",
-      "sha256": "03c9ade9da3cef6c12b22b38e3f51c5b84547046658845bf3cca2805de942f7e"
+      "sha256": "450ee9f5ae613e1d88bdf9f44a10a2e99629785cd27fd67146dd43c4adef7939"
     },
     {
       "path": "90-function-grants/040-workflow.sql",
-      "sha256": "b203cdac228f6a5ba0367245f6af41ff0052df3bf78e4a214899992b36b6b1dd"
+      "sha256": "65b1b96c229ea642e13cdcba6bab14ba20d448d9f1fc83e69772e96f266b5232"
     },
     {
       "path": "90-function-grants/050-notifications.sql",
-      "sha256": "e45ac383c396776b8179f9a64cd02a809a31237c5365ea70ff896883a07bc8df"
+      "sha256": "572a9bcaf5bde27680631286eb698e49707062007bb3bd35a002cb8560513bcd"
     },
     {
       "path": "90-function-grants/060-federation.sql",
-      "sha256": "d188bae9a7f325558816d7528f548a9400bbc4a893c3e810d528d6e9c4ebc5e5"
+      "sha256": "6765b0912ee81aa9869d7a841dfe78c5031093a63f8c327c2892ea68e0ec45cc"
     },
     {
       "path": "90-function-grants/070-family.sql",
-      "sha256": "e4d050b03d0204a914cce4c14e6fbc0dbf5ba9221d0ac2060ee847148743a6cc"
+      "sha256": "209588e252e40dba4bfd6d3c46c46c79fbf21076ae2fa43ed1a01d6f8be2626f"
     },
     {
       "path": "90-function-grants/080-family-community.sql",
-      "sha256": "6716756a3887f24b2b346a09cf23b81e4d7515d5167b4d8fd17e07c194b4893a"
+      "sha256": "93e471fd3af37d7a970de8ade031eb27fb145906f92cb5e5fa57a4d44cd3f091"
     },
     {
       "path": "90-function-grants/090-housing.sql",
-      "sha256": "5710ad0de49e9142dbb8b4ad67133199c3190f5cf83036bf56cd7c37ea099a15"
+      "sha256": "ceef7f72149bfc031492f98cad3e7b5669f3ea23d212189abd2f80866a37da74"
     },
     {
       "path": "90-function-grants/110-future-specializations.sql",
-      "sha256": "1274e58aa62bbe69740b9b84589feb77545282d5f1461078a4811a081b1f577e"
+      "sha256": "d0841e39c76a03758d5707ff98687e5411a327df5000924cccc588b2f2822947"
     }
   ],
   "promotion_evidence": [
