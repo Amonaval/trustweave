@@ -62,6 +62,12 @@ The split is intentional. Identity sequences must not be pre-created; expression
 The generator normalizes application-facing ACLs before replaying captured grants. Built-in Storage relation ACLs remain Supabase-managed; their RLS state and user-defined policies are reconstructed.
 
 
+### Storage owner context
+
+Hosted Supabase owns `storage.buckets` and `storage.objects` with `supabase_storage_admin`. Direct `postgres` / `psql` sessions cannot mutate their RLS state or create policies on them.
+
+D12 therefore treats built-in Storage relation RLS/force-RLS as **verify-only**. Bucket rows are reconstructed in `70-storage`. User-defined Storage policies are emitted separately under `71-storage-owner-context` and are excluded from the direct `apply_order`. Apply those files through Supabase Dashboard/platform migration tooling, then run catalog parity.
+
 ## Disposable candidate workflow
 
 After the guarded static gate passes, D12 still does **not** touch the golden project.
