@@ -1,8 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {validateD12Evidence} from '../runtime/d12-evidence.mjs';
+import {d12EvidencePaths,validateD12Evidence} from '../runtime/d12-evidence.mjs';
 
 const golden='yyhwcqpzplebittvxzzl',candidate='freshcandidate';
+test('reads the receipt from the verifier recapture subdirectory',()=>{
+ assert.equal(d12EvidencePaths('.d12-work/bootstrap-replay').recapture,'.d12-work/bootstrap-replay/recapture/recapture-receipt.json');
+});
 function fixture(){
  const manifest={status:'CANONICAL_CURRENT_STATE',golden_project_ref:golden,primary_capture_sha256:'gp',supplement_capture_sha256:'gs',direct_apply_order:['one.sql'],storage_owner_context_files:['storage.sql']};
  return {

@@ -1,5 +1,13 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — D12 recovery resumed; browser gate pending
+
+The committed D12 bootstrap preflight now accepts the finalized bootstrap receipt and binds its manifest checksum, empty-project preflight, recapture hashes, three catalog parity layers, and exact QA candidate ref. The older candidate receipt remains supported. Targeted fail-closed tests and full TrustWeave CI passed at `2a86bd3b8366bf26912f854af4cc7a343b100d68`. No database mutation or browser journey was run in this checkpoint.
+
+`TrustWeave D12 Clean Replay` (`yqtrkpyyzxzpthklqygs`) is active and has matching structural counts, but was populated before the final ACL packaging correction and currently has no Auth users/networks. The former D12 Candidate (`blpdjhmtayjkcczqltqi`) is inactive. A final fresh-from-Git ACL proof needs one genuinely empty disposable project; run the bounded Housing/Family Community browser suite against that same project after local QA setup. The golden `OS Network` remains read-only. The committed bootstrap labels itself current, while formal D12-F closure remains open and must reconcile that status explicitly.
+
+See `docs/architecture/D12-RECOVERY-REVIEW-2026-09-20.md` and `docs/architecture/D12-BROWSER-PARITY-HANDOFF.md` for the exact gate.
+
 ## 2026-09-20 — D12 frozen at verified candidate checkpoint
 
 Founder requested that D12 execution stop and be frozen for later resumption. The golden Supabase project `OS Network` remains read-only. The older `TrustWeave QA DB Replay` project is paused, and the fresh disposable `TrustWeave D12 Candidate` (`blpdjhmtayjkcczqltqi`, Mumbai) remains the D12 proof environment. Repository evidence records database/API behavioral parity as PASS and a broadly healthy founder browser smoke; the known Family Guide route issue is pre-existing and classified outside the D12 database scope. A later chat-only attempt to regenerate/package SQL batches failed because temporary local workspace state was inconsistent/reset; no SQL from that interrupted attempt was applied to either candidate or golden. D12 canonical promotion is still open and must resume from `docs/architecture/D12-CAPTURE-STABILITY-HANDOVER.md`, committed bootstrap assets, and the existing candidate state rather than old `/mnt/data` artifacts.

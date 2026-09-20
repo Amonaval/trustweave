@@ -1,6 +1,14 @@
 const BOOTSTRAP_FORMAT='trustweave-d12-bootstrap-replay-apply-receipt-v1';
 const LEGACY_STATUS='APPLIED_TO_DISPOSABLE_CANDIDATE';
 
+export function d12EvidencePaths(root){
+ return {
+  catalog:`${root}/catalog-parity.json`,
+  apply:`${root}/apply-receipt.json`,
+  recapture:`${root}/recapture/recapture-receipt.json`
+ };
+}
+
 export function validateD12Evidence({catalog,apply,recapture,manifest,manifestSha256,qaProjectRef}){
  const fail=message=>{throw new Error(`D12 parity preflight: ${message}`)};
  if(catalog?.format!=='trustweave-d12-catalog-parity-v1'||catalog.status!=='PASS')fail('catalog parity report is not PASS');

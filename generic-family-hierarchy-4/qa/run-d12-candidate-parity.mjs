@@ -3,20 +3,18 @@ import {spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {loadQaEnv,assertMutationAllowed,writeJson} from './runtime/env.mjs';
 import {QA_VERTICAL_KINDS} from './runtime/scope.mjs';
-import {validateD12Evidence} from './runtime/d12-evidence.mjs';
+import {d12EvidencePaths,validateD12Evidence} from './runtime/d12-evidence.mjs';
 
 process.env.QA_ENV_FILE=process.env.QA_ENV_FILE||'.env.d12-candidate';
 loadQaEnv();
 
 const root=process.env.D12_PARITY_EVIDENCE_ROOT||'.d12-work/candidate';
-const catalogPath=`${root}/catalog-parity.json`;
-const applyPath=`${root}/apply-receipt.json`;
+const {catalog:catalogPath,apply:applyPath,recapture:recapturePath}=d12EvidencePaths(root);
 if(!fs.existsSync(catalogPath))throw new Error(`Missing D12 catalog parity report: ${catalogPath}`);
 if(!fs.existsSync(applyPath))throw new Error(`Missing D12 disposable apply receipt: ${applyPath}`);
 const catalog=JSON.parse(fs.readFileSync(catalogPath,'utf8'));
 const apply=JSON.parse(fs.readFileSync(applyPath,'utf8'));
 const bootstrap=apply.format==='trustweave-d12-bootstrap-replay-apply-receipt-v1';
-const recapturePath=`${root}/recapture-receipt.json`;
 const releaseName=fs.readFileSync('supabase/bootstrap/CURRENT','utf8').trim();
 if(!/^[a-zA-Z0-9._-]+$/.test(releaseName))throw new Error('Invalid committed bootstrap release name.');
 const manifestPath=`supabase/bootstrap/releases/${releaseName}/manifest.json`;

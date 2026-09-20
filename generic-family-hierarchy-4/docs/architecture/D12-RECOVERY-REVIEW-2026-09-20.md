@@ -32,3 +32,9 @@ No candidate-configured application runtime or QA credentials are available in t
 6. Reconcile static, catalog, database behavior, browser and bootstrap provenance before the D12-F promotion/closure decision. Do not infer a fresh browser PASS from the earlier manual smoke.
 
 No user secret is requested or recorded in this checkpoint.
+
+## Follow-up checkpoint — QA preflight repair
+
+Commit `2a86bd3b8366bf26912f854af4cc7a343b100d68` added support for the committed-bootstrap receipt alongside the original candidate receipt. It binds the final manifest checksum, fresh-project preflight, recapture project refs and hashes, catalog CSV input hashes, all three PASS layers, and QA project ref before any connected mutation. Eleven focused tests passed locally, including rejection of stale/mismatched evidence; full TrustWeave CI passed. `.env.d12-candidate.example` now uses a placeholder future disposable ref and the bootstrap-replay evidence root, rather than pointing at the older Clean Replay. This fixes the receipt-format blocker identified above; it does not create an app runtime or produce a browser parity PASS.
+
+The release's `CURRENT` pointer and `CANONICAL_CURRENT_STATE` manifest label predate formal D12-F closure. Reconcile that state in the promotion review after fresh ACL and browser proof; do not infer closure from those labels alone.
