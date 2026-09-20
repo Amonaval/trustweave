@@ -433,6 +433,14 @@ def main() -> None:
             if "revoke all on function" not in block.lower() or "grant execute on function" not in block.lower():
                 raise ValueError(f"Migration-105 drift repair ACL incomplete for {fname}")
             repair_lines.append(block + "\n")
+            signature = {
+                "set_network_notification_role": "text,text,uuid,boolean",
+                "remove_network_notification_role": "text,uuid",
+            }[fname]
+            repair_lines.extend([
+                f"REVOKE ALL ON FUNCTION public.{fname}({signature}) FROM PUBLIC, anon, authenticated, service_role;",
+                f"GRANT EXECUTE ON FUNCTION public.{fname}({signature}) TO authenticated, service_role;",
+            ])
         write(out / "45-source-drift-repairs" / "050-notifications.sql", repair_lines)
 
     # Phase 50: triggers after functions.
