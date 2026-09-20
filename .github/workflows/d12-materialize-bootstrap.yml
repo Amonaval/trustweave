@@ -47,7 +47,7 @@ jobs:
               print("No D12 transport parts present; nothing to materialize.")
               raise SystemExit(0)
 
-          expected_archive_sha = "0eab15716069bb172c6a6c07de75af5e5615845b126dc2f67e0ba41bdbb7560a"
+          expected_archive_sha = "4baf154f34402233e52050cfac2c6790e226cc77b5da814866705edf9f740486"
           encoded = b"".join(p.read_bytes() for p in parts)
           archive_bytes = base64.b64decode(encoded, validate=True)
           actual_archive_sha = hashlib.sha256(archive_bytes).hexdigest()
@@ -58,12 +58,12 @@ jobs:
 
           with tempfile.TemporaryDirectory(prefix="d12-materialize-") as tmp:
               tmp_path = Path(tmp)
-              archive = tmp_path / "baseline.tar.gz"
+              archive = tmp_path / "baseline.tar.xz"
               archive.write_bytes(archive_bytes)
 
               extract = tmp_path / "extract"
               extract.mkdir()
-              with tarfile.open(archive, "r:gz") as tf:
+              with tarfile.open(archive, "r:xz") as tf:
                   for member in tf.getmembers():
                       resolved = (extract / member.name).resolve()
                       if extract.resolve() not in resolved.parents and resolved != extract.resolve():
