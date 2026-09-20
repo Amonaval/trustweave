@@ -478,15 +478,10 @@ def main() -> None:
 
     # Phase 70: Storage relation security, bucket configuration and captured policies.
     # Storage object/file rows are never copied.
-    storage_lines = header[:]
-    for relsec in sorted(supplement.get("storage_relation_security", []), key=lambda x: x["name"]):
-        target = f"{qident('storage')}.{qident(relsec['name'])}"
-        storage_lines.append(
-            f"ALTER TABLE {target} {'ENABLE' if relsec.get('rls') else 'DISABLE'} ROW LEVEL SECURITY;"
-        )
-        storage_lines.append(
-            f"ALTER TABLE {target} {'FORCE' if relsec.get('force_rls') else 'NO FORCE'} ROW LEVEL SECURITY;"
-        )
+    storage_lines = header[:] + [
+        "-- Built-in storage.buckets/storage.objects are owned by supabase_storage_admin on hosted Supabase.",
+        "-- Their RLS/force-RLS state is parity-verified, not mutated by the canonical candidate.",
+    ]
     for bucket in supplement.get("storage_buckets", []):
         mimes = (
             "NULL"
