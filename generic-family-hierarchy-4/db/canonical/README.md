@@ -61,6 +61,36 @@ The split is intentional. Identity sequences must not be pre-created; expression
 
 The generator normalizes application-facing ACLs before replaying captured grants. Built-in Storage relation ACLs remain Supabase-managed; their RLS state and user-defined policies are reconstructed.
 
+
+## Disposable candidate workflow
+
+After the guarded static gate passes, D12 still does **not** touch the golden project.
+
+Apply only to a newly created disposable Supabase project:
+
+```bash
+# Keep the connection URL local. Do not paste it into chat or Git.
+export D12_CANDIDATE_DATABASE_URL='postgresql://...'
+
+python scripts/d12-apply-candidate.py \
+  --candidate-project-ref "<new-project-ref>" \
+  --golden-project-ref "<existing-golden-project-ref>" \
+  --confirm APPLY-TO-DISPOSABLE-D12-CANDIDATE
+```
+
+The apply runner requires a PASS `.d12-work/candidate/static-gate.json`, validates that the connection hostname belongs to the declared candidate project, refuses the golden project ref, and applies the manifest in a single `psql` transaction.
+
+Then recapture and compare the disposable database in one command:
+
+```bash
+python scripts/d12-verify-candidate.py "<golden-primary.csv>" \
+  --golden-supplement "<golden-supplement.csv>" \
+  --candidate-project-ref "<new-project-ref>" \
+  --golden-project-ref "<existing-golden-project-ref>"
+```
+
+That command creates fresh candidate captures and runs the structural/security/API catalog parity gate. A PASS is still **not canonical promotion**; behavioral and product/browser parity remain required.
+
 ## Promotion rule
 
 Do not copy generated files into a permanent baseline or change bootstrap behavior until the candidate database passes the D12 parity gates. Historical migrations are not deleted, squashed or rewritten.
