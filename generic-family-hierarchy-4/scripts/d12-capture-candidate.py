@@ -15,22 +15,14 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
-from urllib.parse import urlparse
-
-
-def project_ref_from_db_url(value: str) -> str | None:
-    try:
-        host = (urlparse(value).hostname or "").lower()
-    except ValueError:
-        return None
-    if host.startswith("db.") and host.endswith(".supabase.co"):
-        return host[3 : -len(".supabase.co")]
-    return None
+from d12_db_url import project_ref_from_db_url
 
 
 def capture(psql: str, db_url: str, sql_path: Path) -> str:
     env = os.environ.copy()
     env["PGDATABASE"] = db_url
+    env["PGSSLMODE"] = "require"
+    env["PGCONNECT_TIMEOUT"] = "20"
     proc = subprocess.run(
         [psql, "-X", "-q", "-A", "-t", "--set", "ON_ERROR_STOP=1", "--file", str(sql_path)],
         env=env,

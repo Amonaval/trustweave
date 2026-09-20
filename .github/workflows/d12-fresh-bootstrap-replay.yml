@@ -1,0 +1,90 @@
+name: D12 Fresh Bootstrap Replay
+
+on:
+  push:
+    branches:
+      - llm-push
+    paths:
+      - ".d12-ci/READY.json"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: d12-fresh-bootstrap-replay
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: github.repository == 'Amonaval/trustweave' && github.ref == 'refs/heads/llm-push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out triggering commit
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Verify ready marker and committed release
+        id: gate
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          marker = json.loads(Path(".d12-ci/READY.json").read_text(encoding="utf-8"))
+          expected_keys = {"format", "candidate_project_ref", "golden_project_ref", "manifest_sha256"}
+          if set(marker) != expected_keys or marker["format"] != "trustweave-d12-fresh-replay-v1":
+              raise SystemExit("REFUSING REPLAY: unexpected ready marker.")
+          manifest_bytes = Path("generic-family-hierarchy-4/supabase/bootstrap/releases/2026-09-20-d12/manifest.json").read_bytes()
+          manifest = json.loads(manifest_bytes)
+          candidate = marker["candidate_project_ref"]
+          golden = marker["golden_project_ref"]
+          if not isinstance(candidate, str) or not re.fullmatch(r"[a-z0-9]{20}", candidate):
+              raise SystemExit("REFUSING REPLAY: invalid candidate project ref.")
+          if golden != "yyhwcqpzplebittvxzzl" or golden != manifest.get("golden_project_ref"):
+              raise SystemExit("REFUSING REPLAY: golden project ref mismatch.")
+          historical = {"yyhwcqpzplebittvxzzl", "blpdjhmtayjkcczqltqi", "yqtrkpyyzxzpthklqygs", "gbdqujqohhdxqnemlpbc"}
+          if candidate in historical:
+              raise SystemExit("REFUSING REPLAY: marker names a protected or historical project.")
+          if marker["manifest_sha256"] != hashlib.sha256(manifest_bytes).hexdigest():
+              raise SystemExit("REFUSING REPLAY: committed manifest SHA does not match marker.")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write(f"candidate={candidate}\ngolden={golden}\n")
+          print("D12 ready marker and immutable release digest: PASS.")
+          PY
+
+      - name: Install psql if needed
+        shell: bash
+        run: |
+          if ! command -v psql >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y postgresql-client
+          fi
+          psql --version
+
+      - name: Apply to fresh disposable database
+        working-directory: generic-family-hierarchy-4
+        shell: bash
+        env:
+          D12_BOOTSTRAP_DATABASE_URL: ${{ secrets.D12_BOOTSTRAP_DATABASE_URL }}
+          CANDIDATE_REF: ${{ steps.gate.outputs.candidate }}
+          GOLDEN_REF: ${{ steps.gate.outputs.golden }}
+        run: |
+          test -n "$D12_BOOTSTRAP_DATABASE_URL" || { echo "Missing GitHub Actions secret D12_BOOTSTRAP_DATABASE_URL."; exit 1; }
+          python scripts/d12-apply-bootstrap.py \
+            --candidate-project-ref "$CANDIDATE_REF" \
+            --golden-project-ref "$GOLDEN_REF" \
+            --confirm APPLY-D12-BOOTSTRAP-TO-FRESH-DISPOSABLE
+
+      - name: Save secret-free apply receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: d12-fresh-apply-receipt
+          path: generic-family-hierarchy-4/.d12-work/bootstrap-replay/apply-receipt.json
+          if-no-files-found: error
+          retention-days: 7
