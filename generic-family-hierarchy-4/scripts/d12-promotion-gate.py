@@ -5,18 +5,75 @@ This gate is read-only. It never copies generated SQL into permanent canonical
 source and never changes bootstrap/migrations. Passing means the founder may review
 promotion; it does not silently promote anything.
 
-Behavior/product evidence can come from either:
-1. the full automated D12 browser/runtime summary; or
-2. a strict pair of persisted database-behavior evidence + founder manual browser
-   smoke evidence. The manual path is accepted only when there are zero D12 blockers
-   and any deferred defect is explicitly pre-existing and non-database.
+The final managed-SQL replay requires automated connected behavior/browser evidence.
+The earlier candidate still accepts either the full automated summary or a strict
+pair of database-behavior and founder manual browser evidence with zero blockers.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import os
 from pathlib import Path
+import subprocess
+import sys
 from typing import Any
+
+MANAGED_FORMAT = "trustweave-d12-managed-sql-apply-receipt-v1"
+MANAGED_STATUS = "MANAGED_SQL_BOOTSTRAP_APPLIED_TO_FRESH_DISPOSABLE"
+MANAGED_PROJECT = "yqwitkoxyrujbzpjwuji"
+MANAGED_COMMIT = "ce5eddfbedd2a1ab3a92bbd58ac24ca78e57bfe1"
+PROMOTED_SUPPLEMENT = "5a2a2c5f301ef9606a90f254b98fafae5a8477ab13ccb5ce68052dd66d639c47"
+ORIGINAL_SUPPLEMENT = "0ce6507dc57ae79d96820800f76b5b38ba91e1be82004b3f51591295aaed4743"
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def validate_managed_replay(root: Path, apply: dict[str, Any], catalog: dict[str, Any]) -> list[str]:
+    """Bind the promotion decision to the same reviewed fresh replay as QA."""
+    errors: list[str] = []
+    release = (Path("supabase/bootstrap/CURRENT").read_text(encoding="utf-8")).strip()
+    if not release or any(c not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-" for c in release):
+        return ["Invalid committed bootstrap release name."]
+    release_root = Path("supabase/bootstrap/releases") / release
+    validated = subprocess.run(
+        [sys.executable, "scripts/d12-validate-bootstrap.py", "--release-root", str(release_root)],
+        capture_output=True, text=True, check=False,
+    )
+    if validated.returncode:
+        errors.append("Committed bootstrap integrity validation failed.")
+    manifest_path = release_root / "manifest.json"
+    if not manifest_path.is_file():
+        return errors + ["Committed bootstrap manifest is missing."]
+    manifest = load(manifest_path)
+    if apply.get("status") != MANAGED_STATUS or apply.get("candidate_project_ref") != MANAGED_PROJECT or apply.get("source_commit") != MANAGED_COMMIT:
+        errors.append("Managed-SQL receipt does not identify the reviewed final replay.")
+    if apply.get("psql_receipt") is not False or apply.get("direct_apply_transactions") != 8 or apply.get("owner_context_migration") != "d12_final_storage_owner_context":
+        errors.append("Managed-SQL execution provenance differs from the reviewed replay.")
+    if apply.get("secrets_recorded") is not False or apply.get("manifest_sha256") != sha256(manifest_path):
+        errors.append("Managed-SQL receipt fails secret or manifest checksum guard.")
+    if apply.get("golden_project_ref") != manifest.get("golden_project_ref") or apply.get("direct_sql_files") != len(manifest.get("direct_apply_order") or []) or apply.get("owner_context_files") != manifest.get("storage_owner_context_files"):
+        errors.append("Managed-SQL receipt disagrees with the committed manifest.")
+    if any((apply.get("freshness_preflight") or {}).get(k) != 0 for k in ("relations", "functions", "sequences")):
+        errors.append("Managed-SQL receipt does not prove an empty project.")
+    recapture_path = root / "recapture/recapture-receipt.json"
+    if not recapture_path.is_file():
+        return errors + ["Managed-SQL candidate recapture receipt is missing."]
+    recapture = load(recapture_path)
+    if recapture.get("format") != "trustweave-d12-candidate-recapture-v1" or recapture.get("candidate_project_ref") != MANAGED_PROJECT or recapture.get("golden_project_ref") != apply.get("golden_project_ref") or recapture.get("secrets_recorded") is not False:
+        errors.append("Managed-SQL recapture project refs or provenance differ.")
+    inputs = catalog.get("inputs") or {}
+    for label in ("primary", "supplement"):
+        capture = root / "recapture" / f"candidate-{label}.csv"
+        expected = recapture.get(f"{label}_sha256")
+        if not capture.is_file() or not expected or sha256(capture) != expected or inputs.get(f"candidate_{label}_sha256") != expected:
+            errors.append(f"Managed-SQL candidate {label} capture checksum differs.")
+    if inputs.get("golden_primary_sha256") != manifest.get("primary_capture_sha256") or manifest.get("supplement_capture_sha256") != PROMOTED_SUPPLEMENT or inputs.get("golden_supplement_sha256") != ORIGINAL_SUPPLEMENT:
+        errors.append("Managed-SQL golden capture provenance differs from reviewed inputs.")
+    return errors
 
 
 def load(path: Path) -> dict[str, Any]:
@@ -103,7 +160,10 @@ def main() -> None:
     parser.add_argument(
         "--candidate-root",
         type=Path,
-        default=Path(".d12-work") / "candidate",
+        default=Path(os.environ.get("D12_PARITY_EVIDENCE_ROOT") or (
+            ".d12-work/bootstrap-replay" if Path(".d12-work/bootstrap-replay/apply-receipt.json").is_file()
+            else ".d12-work/candidate"
+        )),
     )
     parser.add_argument(
         "--behavior-report",
@@ -123,9 +183,10 @@ def main() -> None:
     args = parser.parse_args()
 
     root = args.candidate_root.resolve()
-    static_gate = load(root / "static-gate.json")
     apply_receipt = load(root / "apply-receipt.json")
     catalog = load(root / "catalog-parity.json")
+    managed = apply_receipt.get("format") == MANAGED_FORMAT
+    static_gate = None if managed else load(root / "static-gate.json")
 
     behavior_path = args.behavior_report.resolve()
     automated_behavior = maybe_load(behavior_path)
@@ -138,10 +199,15 @@ def main() -> None:
     errors: list[str] = []
     review_warnings: list[Any] = list(catalog.get("warnings") or [])
 
-    if static_gate.get("status") != "PASS":
-        errors.append("Static candidate gate is not PASS.")
-    if apply_receipt.get("status") != "APPLIED_TO_DISPOSABLE_CANDIDATE":
-        errors.append("Disposable candidate apply receipt is not PASS.")
+    if managed:
+        errors.extend(validate_managed_replay(root, apply_receipt, catalog))
+    else:
+        if static_gate.get("status") != "PASS":
+            errors.append("Static candidate gate is not PASS.")
+        if apply_receipt.get("status") != "APPLIED_TO_DISPOSABLE_CANDIDATE":
+            errors.append("Disposable candidate apply receipt is not PASS.")
+    if managed and catalog.get("format") != "trustweave-d12-catalog-parity-v1":
+        errors.append("Managed-SQL catalog parity report has unexpected format.")
     if catalog.get("status") != "PASS":
         errors.append("Structural/security/API catalog parity is not PASS.")
 
@@ -161,28 +227,49 @@ def main() -> None:
             errors.append("Automated behavior report candidate ref does not match apply receipt.")
         if behavior_golden != golden_ref:
             errors.append("Automated behavior report golden ref does not match apply receipt.")
+        if managed:
+            reliability = maybe_load(Path("qa-results/reliability/SUMMARY.json"))
+            notification = maybe_load(Path("qa-results/d12-candidate-parity/notification-role-contract.json"))
+            steps = automated_behavior.get("steps") or []
+            if automated_behavior.get("applyMode") != "managed-bootstrap" or automated_behavior.get("catalogParity") != "PASS" or [
+                (step.get("name"), step.get("status")) for step in steps
+            ] != [
+                ("two-vertical-connected-reliability", "passed"),
+                ("notification-role-drift-repair", "passed"),
+            ]:
+                errors.append("Managed-SQL automated parity summary lacks both completed connected steps.")
+            if reliability is None or reliability.get("status") != "CERTIFIED" or reliability.get("mode") != "connected":
+                errors.append("Connected reliability summary is absent or not certified.")
+            if notification is None or notification.get("status") != "PASSED" or any(
+                check.get("status") != "passed" for check in notification.get("checks") or []
+            ) or len(notification.get("checks") or []) != 14:
+                errors.append("Notification-role contract is absent or incomplete.")
         behavior_evidence["automated_behavior_browser_parity"] = str(behavior_path)
     else:
-        behavior_mode = "database-plus-manual-browser-smoke"
-        if database_behavior is None:
-            errors.append(
-                "Automated behavior/browser report is unavailable/not PASS and database behavior evidence is missing."
-            )
-        if manual_browser is None:
-            errors.append(
-                "Automated behavior/browser report is unavailable/not PASS and manual browser evidence is missing."
-            )
-        if database_behavior is not None and manual_browser is not None:
-            errors.extend(
-                validate_manual_path(
-                    database_behavior,
-                    manual_browser,
-                    candidate_ref,
-                    golden_ref,
+        if managed:
+            behavior_mode = "automated-required"
+            errors.append("Final managed replay requires connected automated behavior/browser parity.")
+        else:
+            behavior_mode = "database-plus-manual-browser-smoke"
+            if database_behavior is None:
+                errors.append(
+                    "Automated behavior/browser report is unavailable/not PASS and database behavior evidence is missing."
                 )
-            )
-            behavior_evidence["database_behavior_parity"] = str(database_behavior_path)
-            behavior_evidence["manual_browser_smoke"] = str(manual_browser_path)
+            if manual_browser is None:
+                errors.append(
+                    "Automated behavior/browser report is unavailable/not PASS and manual browser evidence is missing."
+                )
+            if database_behavior is not None and manual_browser is not None:
+                errors.extend(
+                    validate_manual_path(
+                        database_behavior,
+                        manual_browser,
+                        candidate_ref,
+                        golden_ref,
+                    )
+                )
+                behavior_evidence["database_behavior_parity"] = str(database_behavior_path)
+                behavior_evidence["manual_browser_smoke"] = str(manual_browser_path)
 
     layers = catalog.get("layers") or {}
     for layer in ("structural", "security", "api_contract"):
@@ -196,7 +283,11 @@ def main() -> None:
         "golden_project_ref": golden_ref,
         "behavior_evidence_mode": behavior_mode,
         "evidence": {
-            "static_gate": str(root / "static-gate.json"),
+            **({"committed_bootstrap_manifest": str(
+                Path("supabase/bootstrap/releases")
+                / Path("supabase/bootstrap/CURRENT").read_text(encoding="utf-8").strip()
+                / "manifest.json"
+            )} if managed else {"static_gate": str(root / "static-gate.json")}),
             "apply_receipt": str(root / "apply-receipt.json"),
             "catalog_parity": str(root / "catalog-parity.json"),
             **behavior_evidence,

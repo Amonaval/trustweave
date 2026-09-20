@@ -6,7 +6,7 @@ The final fresh replay target is `TrustWeave D12 Final ACL Proof` (`yqwitkoxyruj
 
 The QA wrapper accepts the reviewed managed-SQL receipt (`trustweave-d12-managed-sql-apply-receipt-v1`) and the historical direct-bootstrap receipt. Extract `D12-FRESH-REPLAY-EVIDENCE-2026-09-20.zip` at the repository root so the receipt, parity report and recapture files land under `.d12-work/bootstrap-replay/`. Set `D12_PARITY_EVIDENCE_ROOT=.d12-work/bootstrap-replay`. The wrapper checks the committed manifest bytes, the exact reviewed project and source commit, empty-project freshness, apply provenance, all catalog layers and the actual candidate CSV bytes. The original golden supplement hash is accepted only with its fixed promoted manifest fingerprint.
 
-Preflight passed locally against the real archived receipt, report, recapture and CSV bytes; 23 focused tests passed. **Connected behavior/browser parity has not run:** this session's workspace has no TrustWeave checkout, candidate app server or local QA environment file. Set up the repo and candidate app runtime locally before executing the command below. Never share service-role keys or database passwords in chat. The earlier candidate's manual browser smoke is historical evidence and does not certify this final project. D12-F closure remains open.
+Preflight passed locally against the real archived receipt, report, recapture and CSV bytes; 23 focused tests passed. A checkout and dependencies are now available, and the final project is healthy with zero Auth users/networks. **Connected behavior/browser parity has not run:** direct candidate API requests from this workspace time out, its dashboard browser session is at sign-in, and no candidate service key/local QA environment is available. The Supabase plugin can query the disposable database but cannot supply the service key required by the existing deterministic Auth seed. The wrapper now fails before lengthy static/build work if keys are absent or the candidate API is unreachable (8-second timeout). Configure the candidate app runtime in an environment that reaches its API before executing the command below. Never share service-role keys or database passwords in Git or chat. The earlier candidate's manual browser smoke is historical evidence and does not certify this final project. D12-F closure remains open.
 
 ## Purpose
 
@@ -112,5 +112,7 @@ python scripts/d12-promotion-gate.py
 Expected result:
 
 `READY_FOR_CANONICAL_PROMOTION_REVIEW`
+
+The promotion gate recognizes the reviewed managed-SQL replay, validates the committed bootstrap and recapture bytes, and requires both connected reliability and notification-role results. It returns `NOT_READY` while this final project's connected evidence is absent. Four focused promotion guard tests cover a complete isolated fixture, absent browser result, altered manifest receipt and altered capture bytes.
 
 That result is review readiness only. It must not automatically rewrite historical migrations or silently promote generated SQL.
