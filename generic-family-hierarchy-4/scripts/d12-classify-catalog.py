@@ -100,6 +100,58 @@ def live_signature(fn: dict[str, Any]) -> str:
     return f"{norm_name(fn['name'])}({fn.get('identity_arguments','').strip().lower()})"
 
 
+def validate_module_graph(manifest: dict[str, Any]) -> dict[str, Any]:
+    modules = {m["id"]: set(m.get("depends_on", [])) for m in manifest["modules"]}
+    unknown = sorted(
+        {dep for deps in modules.values() for dep in deps if dep not in modules}
+    )
+    cycles: list[list[str]] = []
+    visiting: list[str] = []
+    visited: set[str] = set()
+
+    def walk(node: str) -> None:
+        if node in visiting:
+            start = visiting.index(node)
+            cycle = visiting[start:] + [node]
+            if cycle not in cycles:
+                cycles.append(cycle)
+            return
+        if node in visited:
+            return
+        visiting.append(node)
+        for dep in sorted(modules.get(node, [])):
+            if dep in modules:
+                walk(dep)
+        visiting.pop()
+        visited.add(node)
+
+    for node in sorted(modules):
+        walk(node)
+    return {"unknown_dependencies": unknown, "cycles": cycles, "valid": not unknown and not cycles}
+
+
+def application_rpc_calls(project: Path) -> dict[str, list[str]]:
+    calls: dict[str, list[str]] = {}
+    excluded = {"node_modules", ".next", ".git", "coverage", "dist", "build", ".d12-work"}
+    rx = re.compile(r"""\.rpc\s*\(\s*["']([A-Za-z_][A-Za-z0-9_]*)["']""")
+    for path in project.rglob("*"):
+        if not path.is_file() or path.suffix.lower() not in {".ts", ".tsx", ".js", ".jsx"}:
+            continue
+        if any(part in excluded for part in path.parts):
+            continue
+        try:
+            text = path.read_text(errors="replace")
+        except OSError:
+            continue
+        for match in rx.finditer(text):
+            name = match.group(1).lower()
+            rel = str(path.relative_to(project)).replace("\\", "/")
+            calls.setdefault(name, [])
+            if rel not in calls[name]:
+                calls[name].append(rel)
+    return calls
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("primary", type=Path)
@@ -114,6 +166,8 @@ def main() -> None:
     files = migration_files(project)
     source = source_text(files)
     manifest = module_manifest(project)
+    graph_validation = validate_module_graph(manifest)
+    app_rpc_calls = application_rpc_calls(project)
 
     source_tables = create_name_set(source, "table")
     source_functions = create_name_set(source, "function")
@@ -153,6 +207,7 @@ def main() -> None:
             "config": fn.get("config"),
             "definition_sha256": sha256_text(fn.get("definition")),
             "source_files": object_provenance(files, name),
+            "application_callsites": app_rpc_calls.get(name.split(".")[-1], []),
         })
 
     # Explicit source/live contract checks stabilized by the supplement capture.
@@ -168,6 +223,26 @@ def main() -> None:
                 "source_files": object_provenance(files, fname),
                 "reason": "Source/application contract exists but exact live signature is absent.",
             })
+
+    # General current-application RPC contract scan. Static .rpc("name") callers that
+    # have no live function are surfaced even when they are not part of a hand-maintained list.
+    explicit_missing_names = {x.split("(", 1)[0].split(".")[-1] for x in confirmed_missing}
+    for rpc_name, callsites in sorted(app_rpc_calls.items()):
+        if rpc_name in {x.split(".")[-1] for x in live_function_names}:
+            continue
+        if rpc_name in explicit_missing_names:
+            continue
+        inventory.append({
+            "kind": "function",
+            "object": f"public.{rpc_name}(?)",
+            "module": assign_module(f"public.{rpc_name}", "function", manifest),
+            "classification": "MISSING",
+            "drift": True,
+            "evidence_level": "static-application-rpc-call",
+            "source_files": object_provenance(files, rpc_name),
+            "application_callsites": callsites,
+            "reason": "Current application source calls this RPC name, but no live public function with that name was captured.",
+        })
 
     for name, seq in sorted(live_sequences.items()):
         source_present = name in source_sequences or name.split(".")[-1] in source_sequences or name.split(".")[-1] in source.lower()
@@ -243,6 +318,14 @@ def main() -> None:
         "migration_versions_note": "121 accepted files through 123; 096/097 reserved",
         "counts": counts,
         "module_counts": modules,
+        "module_graph_validation": graph_validation,
+        "application_rpc_contracts": {
+            "static_rpc_names": len(app_rpc_calls),
+            "missing_live_names": sorted(
+                name for name in app_rpc_calls
+                if name not in {x.split(".")[-1] for x in live_function_names}
+            ),
+        },
         "schema_dependency_edges": schema_dependency_edges,
         "schema_dependency_violations": schema_dependency_violations,
         "limits": [
