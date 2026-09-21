@@ -106,6 +106,24 @@ const existing=await fetchNetworkAffiliatedEntities();const stableMap=new Map<st
    }
   }
 
+  const peopleLabelByStable=new Map<string,string>();
+  for(const sheet of review.sheets.filter(s=>s.schema.recordType==="entity"&&s.schema.entityKind==="person")){
+   for(const row of sheet.rows.filter(r=>r.status!=="rejected")){
+    const stable=String(row.values.stable_id||"").trim().toLowerCase();
+    const label=String(row.values.name||"").trim();
+    if(stable&&label)peopleLabelByStable.set(stable,label);
+   }
+  }
+  const roleLabelById=new Map<string,string>((snapshot.roles||[]).map((role:any)=>[String(role.id),String(role.label||"").trim()]));
+  const existingRoleKeys=new Set<string>((snapshot.role_history||[]).map((history:any)=>[
+   String(history.year_label||"").trim().toLowerCase(),
+   String(history.person_label||"").trim().toLowerCase(),
+   String(history.role_label||"").trim().toLowerCase(),
+   String(history.starts_on||"").trim(),
+   String(history.ends_on||"").trim()
+  ].join("|")));
+  const activationRoleKeys=new Set<string>();
+
   for(const sheet of review.sheets.filter(s=>s.schema.recordType==="domain"&&s.schema.key==="leadership_history")){
    for(const row of sheet.rows.filter(r=>r.status!=="rejected")){
     const personRef=String(row.values.person_id||"").trim().toLowerCase();
@@ -116,14 +134,21 @@ const existing=await fetchNetworkAffiliatedEntities();const stableMap=new Map<st
     if(!personEntityId)throw new Error(`Leadership person “${row.values.person_id}” could not be resolved.`);
     if(!roleCatalogId)throw new Error(`Association role “${row.values.role_key}” is not available in this network.`);
     const yearId=label?await ensureYear(label):null;
+    const personLabel=peopleLabelByStable.get(personRef)||String(row.values.person_id||"").trim();
+    const roleLabel=roleLabelById.get(roleCatalogId)||roleKey;
+    const startsOn=String(row.values.starts_on||"").trim();
+    const endsOn=String(row.values.ends_on||"").trim();
+    const exactKey=[label.toLowerCase(),personLabel.toLowerCase(),roleLabel.toLowerCase(),startsOn,endsOn].join("|");
+    if(existingRoleKeys.has(exactKey)||activationRoleKeys.has(exactKey)){skipped++;continue}
     await assignFcaRole({
      yearId,
      personEntityId,
      roleCatalogId,
-     startsOn:String(row.values.starts_on||"").trim()||null,
-     endsOn:String(row.values.ends_on||"").trim()||null,
+     startsOn:startsOn||null,
+     endsOn:endsOn||null,
      notes:String(row.values.notes||"").trim()
     });
+    activationRoleKeys.add(exactKey);
     domainRecords++;
    }
   }
