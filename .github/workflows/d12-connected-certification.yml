@@ -17,8 +17,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  secret-ready:
+    name: Check D12 secret readiness
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - id: check
+        env:
+          D12_QA_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
+        run: |
+          if [ -n "$D12_QA_PASSWORD" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "D12 connected certification is paused until repository secret D12_QA_PASSWORD is configured."
+          fi
+
   connected:
-    if: ${{ secrets.D12_QA_PASSWORD != '' }}
+    needs: secret-ready
+    if: needs.secret-ready.outputs.ready == 'true'
     name: Connected two-vertical certification
     runs-on: ubuntu-latest
     timeout-minutes: 50

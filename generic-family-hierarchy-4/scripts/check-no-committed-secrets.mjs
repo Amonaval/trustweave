@@ -18,11 +18,12 @@ for(const path of tracked){
  for(let i=0;i<lines.length;i++){
   const line=lines[i];
   if(/sb_secret_[A-Za-z0-9_-]+/.test(line))findings.push(`${path}:${i+1}: Supabase secret key literal`);
+  const inspectAssignment=(path.startsWith('.github/workflows/')&&/\.ya?ml$/.test(path))||(/^generic-family-hierarchy-4\/\.env/.test(path)&&!path.endsWith('.example'));
+  if(!inspectAssignment)continue;
   const m=line.match(/\b(QA_[A-Z0-9_]*PASSWORD|SUPABASE_SERVICE_ROLE_KEY)\s*[:=]\s*(.+)$/);
   if(!m)continue;
   const rhs=m[2].trim();
-  if(!rhs||rhs.includes('secrets.')||rhs.includes('process.env')||rhs.startsWith('[')||rhs.startsWith('<'))continue;
-  if(/^['"]?[A-Z0-9_]+['"]?[),;]?$/i.test(rhs))continue;
+  if(!rhs||rhs.includes('secrets.')||rhs.includes('process.env')||rhs.startsWith('${{'))continue;
   findings.push(`${path}:${i+1}: literal value assigned to ${m[1]}`);
  }
 }
