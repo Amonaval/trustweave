@@ -14,15 +14,16 @@ permissions:
   contents: read
 
 concurrency:
-  group: d12-connected-certification
+  group: d12-connected-certification-${{ github.sha }}
   cancel-in-progress: true
 
 jobs:
   secret-ready:
-    name: Check D12 secret readiness
+    name: Check D12 readiness
     runs-on: ubuntu-latest
     outputs:
       ready: ${{ steps.check.outputs.ready }}
+      head_match: ${{ steps.head.outputs.head_match }}
     steps:
       - id: check
         env:
@@ -34,10 +35,23 @@ jobs:
             echo "ready=false" >> "$GITHUB_OUTPUT"
             echo "D12 connected certification is paused until repository secret D12_QA_PASSWORD is configured."
           fi
+      - id: head
+        env:
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
+        run: |
+          HEAD_SHA="$(git ls-remote "https://github.com/$REPO.git" "refs/heads/$BRANCH" | cut -f1)"
+          if [ "$HEAD_SHA" = "$SHA" ]; then
+            echo "head_match=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "head_match=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping stale D12 push $SHA; current branch head is $HEAD_SHA."
+          fi
 
   connected:
     needs: secret-ready
-    if: needs.secret-ready.outputs.ready == 'true'
+    if: needs.secret-ready.outputs.ready == 'true' && needs.secret-ready.outputs.head_match == 'true'
     name: Connected two-vertical certification
     runs-on: ubuntu-latest
     timeout-minutes: 50
