@@ -46,6 +46,14 @@ class ManagedPromotionGate(unittest.TestCase):
             path.write_bytes(b'{\r\n  "ok": false\r\n}\r\n')
             self.assertNotEqual(bootstrap.sha256_git_text(path), expected)
 
+        release = (PROJECT / "supabase/bootstrap/CURRENT").read_text().strip()
+        manifest_path = PROJECT / "supabase/bootstrap/releases" / release / "manifest.json"
+        reviewed_hash = digest(manifest_path.read_bytes().replace(b"\r\n", b"\n"))
+        self.assertTrue(
+            bootstrap.matches_reviewed_git_bytes(manifest_path, reviewed_hash, PROJECT),
+            "Git blob lookup must work when the app is nested below the repository root.",
+        )
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
