@@ -363,7 +363,7 @@ function membershipConflictAttention(review: ImportReview): ActivationAttentionI
     const status = normalized(row.values.status);
     const representative = clean(row.values.representative_id).toLowerCase();
     const paymentSignature = [
-      norm(row.values.payment_status),
+      normalized(row.values.payment_status),
       clean(row.values.amount_paid),
       clean(row.values.payment_reference),
     ].join("|");
