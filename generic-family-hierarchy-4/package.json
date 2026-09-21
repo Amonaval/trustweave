@@ -112,6 +112,8 @@
     "qa:crawl:robust:all": "node qa/run-resilient-crawl.mjs --scope=all",
     "qa:reliability:local": "node qa/run-reliability.mjs",
     "qa:reliability": "node qa/run-reliability.mjs --connected",
+    "qa:d12:candidate": "node qa/run-d12-candidate-parity.mjs",
+    "qa:d12:notification": "node qa/db/d12-notification-role-contract.mjs",
     "qa:verticals": "playwright test qa/e2e/20-vertical-smoke-matrix.spec.ts qa/e2e/45-guided-workbook-roundtrip.spec.ts qa/e2e/50-vertical-deep-flows.spec.ts qa/e2e/55-vertical-capability-matrix.spec.ts",
     "qa:security": "playwright test qa/e2e/30-authorization-matrix.spec.ts qa/e2e/35-api-integration.spec.ts && node qa/db/rls-adversarial.mjs && node qa/db/rpc-permission-audit.mjs",
     "qa:db-static": "node qa/db/migration-static-audit.mjs",

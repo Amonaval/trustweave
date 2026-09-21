@@ -1,5 +1,31 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — D12 final fresh bootstrap and catalog parity PASS
+
+The corrected committed release at `ce5eddfbedd2a1ab3a92bbd58ac24ca78e57bfe1` replayed on the genuinely empty Personal project `TrustWeave D12 Final ACL Proof` (`yqwitkoxyrujbzpjwuji`). All 94 direct SQL files and seven owner-context Storage policies applied. The full golden structural/security/API comparator passed with zero differences and warnings; CI passed. Earlier Clean Replay and the first ACL diagnostic project are paused; golden `OS Network` remains read-only. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md`. The managed-SQL receipt QA adapter passes against the archived evidence and 23 focused guard tests. The promotion gate now recognizes this replay and validates its bootstrap and capture bytes; four promotion guard tests pass. A checkout and dependencies are available. The candidate is healthy with zero Auth users/networks, but direct candidate API access from this workspace times out, the dashboard browser is at sign-in, and no local service key/QA environment is available. Connected QA was not run, promotion readiness is `NOT_READY`, and D12-F remains open.
+
+## 2026-09-20 — D12 recovery resumed; browser gate pending
+
+The committed D12 bootstrap preflight now accepts the finalized bootstrap receipt and binds its manifest checksum, empty-project preflight, recapture hashes, three catalog parity layers, and exact QA candidate ref. The older candidate receipt remains supported. Targeted fail-closed tests and full TrustWeave CI passed at `2a86bd3b8366bf26912f854af4cc7a343b100d68`. No database mutation or browser journey was run in this checkpoint.
+
+At the earlier recovery review, `TrustWeave D12 Clean Replay` (`yqtrkpyyzxzpthklqygs`) was active and had matching structural counts, but was populated before the final ACL packaging correction and currently has no Auth users/networks. The former D12 Candidate (`blpdjhmtayjkcczqltqi`) is inactive. A final fresh-from-Git ACL proof needs one genuinely empty disposable project; run the bounded Housing/Family Community browser suite against that same project after local QA setup. The golden `OS Network` remains read-only. The committed bootstrap labels itself current, while formal D12-F closure remains open and must reconcile that status explicitly.
+
+See `docs/architecture/D12-RECOVERY-REVIEW-2026-09-20.md` and `docs/architecture/D12-BROWSER-PARITY-HANDOFF.md` for the exact gate.
+
+## 2026-09-20 — D12 frozen at verified candidate checkpoint
+
+Founder requested that D12 execution stop and be frozen for later resumption. The golden Supabase project `OS Network` remains read-only. The older `TrustWeave QA DB Replay` project is paused, and the fresh disposable `TrustWeave D12 Candidate` (`blpdjhmtayjkcczqltqi`, Mumbai) remains the D12 proof environment. Repository evidence records database/API behavioral parity as PASS and a broadly healthy founder browser smoke; the known Family Guide route issue is pre-existing and classified outside the D12 database scope. A later chat-only attempt to regenerate/package SQL batches failed because temporary local workspace state was inconsistent/reset; no SQL from that interrupted attempt was applied to either candidate or golden. D12 canonical promotion is still open and must resume from `docs/architecture/D12-CAPTURE-STABILITY-HANDOVER.md`, committed bootstrap assets, and the existing candidate state rather than old `/mnt/data` artifacts.
+
+Commit practice is also updated prospectively: batch related code/tests/evidence/docs into coherent milestone commits (normally 1–3 per checkpoint), using micro-commits only when independent rollback, security isolation, or bisect value justifies them.
+
+## 2026-09-20 — D12 working-database SQL Editor reference received
+
+The Founder supplied a read-only SQL Editor export from the working project. It contains one complete metadata JSON row for 167 public tables, 463 functions, 97 public/Storage policies and other catalog objects. `docs/architecture/D12-LIVE-REFERENCE-TRIAGE.md` records three specific function drift candidates: two RPCs used by the app and defined in migration 105 are absent from the live inventory, while one live media reconciliation function lacks a literal source migration definition. The migration catalog is not visible. A second read-only SQL Editor query is prepared for bucket, type, sequence and ACL metadata. No raw capture is committed, no live database is modified, and canonical SQL/bootstrap certification remains open.
+
+## 2026-09-20 — D12 reference capture preparation
+
+The D0–D11 PR passed CI and merged to `main`. D12 has begun with a read-only, Docker-free reference capture kit (`docs/architecture/D12-REFERENCE-CAPTURE.md`). Its metadata, public schema, storage bucket configuration and migration-history capture has not yet been run against the working Supabase project. Canonical SQL reconstruction, a clean bootstrap and parity certification remain blocked pending the reviewed reference package. The existing database remains untouched; School database implementation remains deferred.
+
 ## 2026-09-20 — M3-D11 School architecture readiness candidate
 
 D11 completes the D0→D11 architecture reinforcement program with a machine-readable School workflow proof and a D10 scaffold exercise. Representative School scope classifies as A=1, B=9, C=0, D=2: events are already generic; nine flows reuse existing Network OS primitives through thin School adapters; no new reusable platform primitive is required after D4/D5; attendance recording and transport/pickup remain the only genuinely School-specific seams in the proving scope. The School blueprint validates and can be scaffolded in a temporary directory, but School remains absent from runtime kinds, manifest, runtime metadata, QA activation and the product tree. D11 therefore certifies architecture readiness for bounded School implementation, not School product/release readiness. Existing connected reliability/staging evidence gaps remain open.

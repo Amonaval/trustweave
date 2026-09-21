@@ -1,0 +1,280 @@
+{
+  "version": 2,
+  "status": "candidate-until-fresh-parity",
+  "principles": [
+    "The live golden database is read-only evidence, not a mutation target.",
+    "Historical migrations remain immutable upgrade history.",
+    "Each current database object has exactly one canonical owning module.",
+    "depends_on models schema/FK dependencies only and must remain acyclic; runtime integrations are recorded separately and do not determine DDL apply order.",
+    "future-education is reserved during D12 and contains no School implementation."
+  ],
+  "modules": [
+    {
+      "id": "platform-core",
+      "order": 10,
+      "depends_on": [],
+      "description": "Tenant/network registry, platform control plane, launch, reliability and audit foundations."
+    },
+    {
+      "id": "identity",
+      "order": 20,
+      "depends_on": [
+        "platform-core"
+      ],
+      "description": "Profiles, memberships, invitations, claiming, roles and the legacy shared member identity record."
+    },
+    {
+      "id": "activity",
+      "order": 30,
+      "depends_on": [
+        "platform-core",
+        "identity"
+      ],
+      "description": "Shared community spaces, activities, posts, comments, reactions, RSVP, groups, media and participation."
+    },
+    {
+      "id": "workflow",
+      "order": 40,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity"
+      ],
+      "description": "Governance, ballots, funds, change requests, feedback/suggestion workflows and idempotency."
+    },
+    {
+      "id": "notifications",
+      "order": 50,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity"
+      ],
+      "description": "Notification inbox/preferences, push, mention routing and responsibility-role routing."
+    },
+    {
+      "id": "federation",
+      "order": 60,
+      "depends_on": [
+        "platform-core",
+        "identity"
+      ],
+      "description": "Passports, umbrellas, bridges, discovery, network-effect telemetry, federated requests, introductions and trust receipts."
+    },
+    {
+      "id": "family",
+      "order": 70,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity",
+        "workflow"
+      ],
+      "description": "Family-specific hierarchy, intake, memories, life events and family administration built on shared member identity."
+    },
+    {
+      "id": "family-community",
+      "order": 80,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity",
+        "workflow",
+        "notifications",
+        "family"
+      ],
+      "description": "Association/community household, membership-year, finance and role-history specialization."
+    },
+    {
+      "id": "housing",
+      "order": 90,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity",
+        "workflow",
+        "notifications"
+      ],
+      "description": "Housing/residential operations, finance, governance, security, assets and pilot controls."
+    },
+    {
+      "id": "future-education",
+      "order": 100,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity",
+        "workflow",
+        "notifications"
+      ],
+      "description": "Reserved boundary only. No School schema is implemented during D12."
+    },
+    {
+      "id": "future-specializations",
+      "order": 110,
+      "depends_on": [
+        "platform-core",
+        "identity",
+        "activity",
+        "workflow"
+      ],
+      "description": "Existing low-priority or future vertical specializations such as alumni/organization/professional extensions."
+    }
+  ],
+  "ownership_rules": {
+    "housing": {
+      "table_prefixes": [
+        "hs_"
+      ],
+      "function_prefixes": [
+        "hs",
+        "housing_"
+      ]
+    },
+    "family-community": {
+      "table_prefixes": [
+        "family_association_",
+        "association_"
+      ],
+      "function_prefixes": [
+        "fca_",
+        "add_fca_",
+        "assign_fca_",
+        "association_",
+        "can_manage_association_"
+      ]
+    },
+    "federation": {
+      "table_prefixes": [
+        "federated_",
+        "federation_",
+        "cross_network_discovery_"
+      ],
+      "table_names": [
+        "network_passports",
+        "network_trust_bridges",
+        "network_umbrella_affiliations",
+        "trusted_introduction_requests",
+        "network_effect_events"
+      ],
+      "function_keywords": [
+        "federat",
+        "umbrella",
+        "passport",
+        "trust_bridge",
+        "cross_network",
+        "trusted_introduction",
+        "network_effect"
+      ]
+    },
+    "notifications": {
+      "table_names": [
+        "notifications",
+        "notification_preferences",
+        "push_subscriptions",
+        "network_notification_roles"
+      ],
+      "function_keywords": [
+        "notification",
+        "push_subscription",
+        "route_network_mentions"
+      ]
+    },
+    "family": {
+      "table_prefixes": [
+        "family_"
+      ],
+      "table_names": [
+        "memories",
+        "memory_people",
+        "memory_reactions",
+        "member_life_events",
+        "profile_submissions"
+      ],
+      "function_keywords": [
+        "family_",
+        "memory",
+        "profile_submission"
+      ]
+    },
+    "future-specializations": {
+      "table_prefixes": [
+        "alumni_",
+        "organization_intelligence_"
+      ],
+      "function_keywords": [
+        "alumni_",
+        "organization_knowledge",
+        "organization_intelligence"
+      ]
+    },
+    "activity": {
+      "table_prefixes": [
+        "network_activity_",
+        "community_"
+      ],
+      "table_names": [
+        "network_activities",
+        "network_media_assets",
+        "participation_events"
+      ],
+      "function_keywords": [
+        "network_activity",
+        "network_post",
+        "community_event",
+        "community_group",
+        "media_asset",
+        "community_",
+        "participation_"
+      ],
+      "function_names": [
+        "reconcile_network_media_usage"
+      ]
+    },
+    "workflow": {
+      "table_prefixes": [
+        "network_ballot_",
+        "network_fund_"
+      ],
+      "table_names": [
+        "change_requests",
+        "api_command_idempotency",
+        "network_ballots",
+        "network_funds",
+        "contribution_suggestions",
+        "guide_feedback"
+      ],
+      "function_keywords": [
+        "ballot",
+        "network_fund",
+        "change_request",
+        "idempotency",
+        "contribution_suggestion",
+        "guide_feedback"
+      ]
+    },
+    "identity": {
+      "table_names": [
+        "profiles",
+        "member_invitations",
+        "network_memberships",
+        "network_participation_invitations",
+        "network_role_capabilities",
+        "family_members"
+      ],
+      "function_keywords": [
+        "membership",
+        "invitation",
+        "claim_",
+        "profile_by_verified_email"
+      ]
+    },
+    "platform-core": {
+      "fallback": true
+    }
+  },
+  "dependency_contract": {
+    "depends_on": "Acyclic schema/FK dependency. Used to validate ownership boundaries, not to order phase-first generated SQL.",
+    "runtime_integrations": "Function/application calls may cross modules in either direction and may be cyclic. They are integration evidence, not schema ownership."
+  }
+}

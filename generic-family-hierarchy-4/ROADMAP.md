@@ -1,5 +1,11 @@
 # TrustWeave — Roadmap
 
+## Current priority — D12 database architecture (2026-09-20)
+
+The corrected canonical bootstrap passed full structural, security and API catalog parity after a fresh install on disposable project `yqwitkoxyrujbzpjwuji`. The golden project remains read-only; earlier replay projects are paused. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md` for commit and capture evidence.
+
+The managed-SQL receipt adapter passes against the archived evidence, and the promotion gate now accepts the reviewed replay but remains `NOT_READY` until connected evidence exists. Next run the candidate app in an environment that reaches its API, configure its local QA key and seed, then execute bounded owner/admin/member behavior and browser journeys for Housing Society and Family Community. Reconcile all five evidence layers before D12-F promotion; School SQL stays deferred until this stability gate closes.
+
 ## Active architecture priority — M3-D (2026-09-19)
 
 D0–D11 are implemented as the architecture reinforcement program. D11's School proof classifies the representative scope as A=1, B=9, C=0, D=2 and certifies the platform architecture for bounded School implementation while keeping School completely unregistered/unimplemented. The next School program must follow `missions/mission-003/m3-d/NEXT-SESSION-SCHOOL-IMPLEMENTATION-CHARTER.md`: scaffold first, then policy/graph, server-owned data boundaries, shared actions/consent, the two School-specific seams (attendance and transport/pickup), and only then synthetic Playground/connected activation gates. `missions/mission-003/m3-d/EXECUTION-CHARTER.md` gives the revised sequence; `NETWORK-OS-ARCHITECTURE-MASTER-PLAN.md` retains the older D1–D10 labels as historical strategy, explicitly shifted by one. The connected Residential/Community reliability and staging migration 122 gate below still require real evidence.
