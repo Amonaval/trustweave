@@ -62,7 +62,8 @@ export async function openSurface(page:Page,id:string){
   target=visible(`qa-mobile-more-${id}`);
   await activate(target,`mobile surface ${id}`);return;
  }
- await expect(visible(`qa-nav-${id}`),`surface ${id} should be reachable`).toBeVisible({timeout:10_000});
+ target=visible(`qa-nav-${id}`);
+ await activate(target,`surface ${id}`);
 }
 
 export async function expectAdminWorkspace(page:Page){
