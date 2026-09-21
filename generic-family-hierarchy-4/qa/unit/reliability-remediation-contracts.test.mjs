@@ -43,3 +43,9 @@ test('crawler enforces its budget inside the candidate-action loop',()=>{
  assert.match(crawler,/if\(Date\.now\(\)-started>=timeBudgetMs\)\{budgetExhausted=true;break;\}/);
  assert.match(crawler,/timeout:Math\.min\(3500,remaining\)/);
 });
+
+test('surface navigation confirms React hydration before returning',()=>{
+ assert.match(helper,/for\(let attempt=0;attempt<3;attempt\+\+\)/);
+ assert.match(helper,/classList\.contains\('active'\)/);
+ assert.match(helper,/should become active after navigation/);
+});
