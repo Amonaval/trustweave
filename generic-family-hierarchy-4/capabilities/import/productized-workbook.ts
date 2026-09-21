@@ -21,6 +21,7 @@ function membershipYearDates(label:string){
 function fcaMembershipStatus(input:unknown){const status=String(input||"active").trim().toLowerCase();if(status==="grace")return "grace";if(status==="inactive"||status==="expired")return "inactive";return "active"}
 function fcaPaymentStatus(input:unknown){const status=String(input||"unpaid").trim().toLowerCase();return ["unpaid","paid","waived","partial","not_required"].includes(status)?status:"unpaid"}
 function membershipYearStatus(endDate:string){return endDate<new Date().toISOString().slice(0,10)?"closed":"open"}
+function membershipYearRank(label:string){const dates=membershipYearDates(label);return dates?Number(dates.startDate.slice(0,4)):-1}
 
 export async function commitProductizedWorkbook(review:ImportReview):Promise<ImportCommitResult>{
  if(!review.canCommit)throw new Error("Resolve import validation errors before committing.");
@@ -33,6 +34,33 @@ export async function commitProductizedWorkbook(review:ImportReview):Promise<Imp
 const existing=await fetchNetworkAffiliatedEntities();const stableMap=new Map<string,string>();for(const e of existing){const sid=String(e.entity.metadata?.importStableId||"").trim().toLowerCase();if(sid)stableMap.set(`${e.entity.kind}|${sid}`,e.entity.id)}const refMap=new Map<string,string>();let created=0,updated=0,relationships=0,domainRecords=0,skipped=0;
  for(const sheet of review.sheets.filter(s=>s.schema.recordType==="entity")){for(const row of sheet.rows.filter(r=>r.status!=="rejected")){const item=buildEntity(row,sheet.schema,review.schema.version);if(!item.label){skipped++;continue}const existingId=item.stableId?stableMap.get(`${item.kind}|${item.stableId.toLowerCase()}`):undefined;const id=await upsertNetworkEntity({id:existingId,kind:item.kind,label:item.label,metadata:item.metadata,affiliations:item.affiliations});if(existingId)updated++;else created++;if(item.stableId){refMap.set(item.stableId.toLowerCase(),id);stableMap.set(`${item.kind}|${item.stableId.toLowerCase()}`,id)}}}
  const existingRelationships=await fetchNetworkEntityRelationships();const edgeKeys=new Set(existingRelationships.map(r=>`${r.fromEntityId}|${r.toEntityId}|${r.relationshipType}`));for(const sheet of review.sheets.filter(s=>s.schema.recordType==="relationship")){for(const row of sheet.rows.filter(r=>r.status!=="rejected")){const from=refMap.get(String(row.values.from_id||"").toLowerCase())||refMap.get(String(row.values.fromRef||"").toLowerCase());const to=refMap.get(String(row.values.to_id||"").toLowerCase())||refMap.get(String(row.values.toRef||"").toLowerCase());const rel=String(row.values.relationship||row.values.relationship_type||"").trim();if(!from||!to||!rel){skipped++;continue}const key=`${from}|${to}|${rel}`;if(edgeKeys.has(key)){skipped++;continue}await createNetworkEntityRelationship(from,to,rel,{importSchemaVersion:review.schema.version});edgeKeys.add(key);relationships++}}
+
+ if(review.schema.verticalKind==="family-association"){
+  const currentRepresentativeByFamily=new Map<string,{personRef:string;membershipYear:string;rank:number}>();
+  for(const sheet of review.sheets.filter(s=>s.schema.recordType==="domain"&&s.schema.key==="association_membership")){
+   for(const row of sheet.rows.filter(r=>r.status!=="rejected")){
+    const familyRef=String(row.values.family_id||"").trim().toLowerCase();
+    const personRef=String(row.values.representative_id||"").trim().toLowerCase();
+    const membershipYear=String(row.values.membership_year||"").trim();
+    if(!familyRef||!personRef||!membershipYear)continue;
+    const rank=membershipYearRank(membershipYear),prior=currentRepresentativeByFamily.get(familyRef);
+    if(!prior||rank>prior.rank)currentRepresentativeByFamily.set(familyRef,{personRef,membershipYear,rank});
+   }
+  }
+  for(const [familyRef,current] of currentRepresentativeByFamily){
+   const familyEntityId=refMap.get(familyRef)||stableMap.get(`family|${familyRef}`);
+   const personEntityId=refMap.get(current.personRef)||stableMap.get(`person|${current.personRef}`);
+   if(!familyEntityId||!personEntityId)throw new Error(`Current representative for ${familyRef.toUpperCase()} could not be resolved.`);
+   const represented=existingRelationships.filter(r=>r.fromEntityId===familyEntityId&&r.relationshipType==="represented_by");
+   const conflicting=represented.find(r=>r.toEntityId!==personEntityId);
+   if(conflicting)throw new Error(`${conflicting.fromLabel||familyRef} already has a different current representative. Resolve the existing governed relationship before activation.`);
+   const key=`${familyEntityId}|${personEntityId}|represented_by`;
+   if(!edgeKeys.has(key)){
+    await createNetworkEntityRelationship(familyEntityId,personEntityId,"represented_by",{importSchemaVersion:review.schema.version,source:"network-activation-autopilot",membershipYear:current.membershipYear});
+    edgeKeys.add(key);relationships++;
+   }
+  }
+ }
 
  // Family Association annual membership and leadership are governed domain state,
  // not generic entity metadata. Resolve the activation pack against the existing
