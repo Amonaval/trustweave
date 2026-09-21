@@ -39,7 +39,9 @@ export type ActivationAttentionItem = {
     | "POSSIBLE_DUPLICATE_EMAIL"
     | "POSSIBLE_DUPLICATE_NAME"
     | "MULTIPLE_HOUSEHOLD_CANDIDATES"
-    | "MEMBERSHIP_STATUS_CONFLICT";
+    | "MEMBERSHIP_STATUS_CONFLICT"
+    | "REPRESENTATIVE_CONFLICT"
+    | "LEADERSHIP_ROLE_CONFLICT";
   severity: ActivationAttentionSeverity;
   title: string;
   description: string;
@@ -329,41 +331,109 @@ function membershipConflictAttention(review: ImportReview): ActivationAttentionI
 
   const groups = new Map<
     string,
-    { statuses: Set<string>; rows: ParsedImportRow[]; family: string; year: string }
+    {
+      statuses: Set<string>;
+      representatives: Set<string>;
+      rows: ParsedImportRow[];
+      family: string;
+      year: string;
+    }
   >();
 
   for (const row of sheet.rows.filter((item) => item.status !== "rejected")) {
     const family = clean(row.values.family_id).toLowerCase();
     const year = normalized(row.values.membership_year);
     const status = normalized(row.values.status);
-    if (!family || !year || !status) continue;
+    const representative = clean(row.values.representative_id).toLowerCase();
+    if (!family || !year) continue;
 
     const key = `${family}|${year}`;
     const current = groups.get(key) || {
       statuses: new Set<string>(),
+      representatives: new Set<string>(),
       rows: [],
       family,
       year: clean(row.values.membership_year),
     };
-    current.statuses.add(status);
+    if (status) current.statuses.add(status);
+    if (representative) current.representatives.add(representative);
     current.rows.push(row);
     groups.set(key, current);
   }
 
   const attention: ActivationAttentionItem[] = [];
   for (const [key, entry] of groups) {
-    if (entry.statuses.size < 2) continue;
-    attention.push({
-      id: `membership-status-conflict:${key}`,
-      code: "MEMBERSHIP_STATUS_CONFLICT",
-      severity: "review",
-      title: "Membership history conflicts",
-      description: `${entry.family.toUpperCase()} has more than one status for ${entry.year}. Confirm the status that should become canonical.`,
-      subjectKeys: [`family:${entry.family}`],
-      sourceRefs: entry.rows.map((row) => sourceFor(review, sheet, row)),
-    });
+    if (entry.statuses.size > 1) {
+      attention.push({
+        id: `membership-status-conflict:${key}`,
+        code: "MEMBERSHIP_STATUS_CONFLICT",
+        severity: "review",
+        title: "Membership history conflicts",
+        description: `${entry.family.toUpperCase()} has more than one status for ${entry.year}. Confirm the status that should become canonical.`,
+        subjectKeys: [`family:${entry.family}`],
+        sourceRefs: entry.rows.map((row) => sourceFor(review, sheet, row)),
+      });
+    }
+    if (entry.representatives.size > 1) {
+      attention.push({
+        id: `representative-conflict:${key}`,
+        code: "REPRESENTATIVE_CONFLICT",
+        severity: "review",
+        title: "More than one representative is listed",
+        description: `${entry.family.toUpperCase()} has multiple representatives for ${entry.year}: ${[...entry.representatives].map((value) => value.toUpperCase()).join(", ")}.`,
+        subjectKeys: [`family:${entry.family}`],
+        sourceRefs: entry.rows.map((row) => sourceFor(review, sheet, row)),
+      });
+    }
   }
 
+  return attention;
+}
+
+function leadershipConflictAttention(review: ImportReview): ActivationAttentionItem[] {
+  const sheet = review.sheets.find((item) => item.schema.key === "leadership_history");
+  if (!sheet) return [];
+
+  const singularRoles = new Set([
+    "president",
+    "president-elect",
+    "past-president",
+    "secretary",
+    "treasurer",
+    "chairperson",
+  ]);
+  const groups = new Map<string,{people:Set<string>;rows:ParsedImportRow[];year:string;role:string}>();
+
+  for (const row of sheet.rows.filter((item) => item.status !== "rejected")) {
+    const person = clean(row.values.person_id).toLowerCase();
+    const year = normalized(row.values.membership_year);
+    const role = normalized(row.values.role_key).replace(/\s+/g,"-");
+    if (!person || !year || !role || !singularRoles.has(role)) continue;
+    const key = `${year}|${role}`;
+    const current = groups.get(key) || {
+      people: new Set<string>(),
+      rows: [],
+      year: clean(row.values.membership_year),
+      role,
+    };
+    current.people.add(person);
+    current.rows.push(row);
+    groups.set(key,current);
+  }
+
+  const attention: ActivationAttentionItem[] = [];
+  for (const [key,entry] of groups) {
+    if (entry.people.size < 2) continue;
+    attention.push({
+      id: `leadership-role-conflict:${key}`,
+      code: "LEADERSHIP_ROLE_CONFLICT",
+      severity: "review",
+      title: "Leadership history conflicts",
+      description: `More than one person is listed as ${entry.role.replaceAll("-"," ")} for ${entry.year}. Confirm the correct office holder before activation.`,
+      subjectKeys: [...entry.people].map((person) => `person:${person}`),
+      sourceRefs: entry.rows.map((row) => sourceFor(review,sheet,row)),
+    });
+  }
   return attention;
 }
 
@@ -371,15 +441,18 @@ function markReviewFacts(
   facts: ActivationCandidateFact[],
   attention: ActivationAttentionItem[],
 ): ActivationCandidateFact[] {
-  const reviewSubjects = new Set(
-    attention
-      .filter((item) => item.severity !== "info")
-      .flatMap((item) => item.subjectKeys),
+  const reviewItems = attention.filter((item) => item.severity !== "info");
+  const reviewSubjects = new Set(reviewItems.flatMap((item) => item.subjectKeys));
+  const reviewRows = new Set(
+    reviewItems.flatMap((item) =>
+      item.sourceRefs.map((ref) => `${ref.fileName}|${ref.sheetKey}|${ref.rowNumber}`),
+    ),
   );
 
   return facts.map((fact) => {
     if (fact.status === "rejected") return fact;
-    if (!reviewSubjects.has(fact.subjectKey)) return fact;
+    const rowKey = `${fact.source.fileName}|${fact.source.sheetKey}|${fact.source.rowNumber}`;
+    if (!reviewSubjects.has(fact.subjectKey) && !reviewRows.has(rowKey)) return fact;
     return {
       ...fact,
       status: "needs_review" as const,
@@ -397,6 +470,7 @@ export function compileNetworkActivationCandidate(
     ...duplicateAttention(review),
     ...householdAttention(review),
     ...membershipConflictAttention(review),
+    ...leadershipConflictAttention(review),
   ];
   const facts = markReviewFacts(initialFacts, attention);
 
