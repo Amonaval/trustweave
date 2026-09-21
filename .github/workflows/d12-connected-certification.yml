@@ -1,4 +1,5 @@
 name: D12 Connected Certification
+# D12 QA credential is supplied only through the repository Actions secret.
 
 on:
   push:
