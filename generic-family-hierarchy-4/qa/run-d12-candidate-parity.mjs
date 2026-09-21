@@ -50,7 +50,7 @@ requiredEnv(['NEXT_PUBLIC_SUPABASE_ANON_KEY','SUPABASE_SERVICE_ROLE_KEY']);
 // Fail before the build and unit suite when this runner cannot reach the
 // candidate project. The connected seed/browser run cannot pass offline.
 try{
- const response=await fetch(`${configuredProjectOrigin}/auth/v1/health`,{signal:AbortSignal.timeout(8000)});
+ const response=await fetch(`${configuredProjectOrigin}/auth/v1/health`,{headers:{apikey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY},signal:AbortSignal.timeout(8000)});
  if(!response.ok)throw new Error(`HTTP ${response.status}`);
 }catch{
  throw new Error('D12 candidate API is unreachable from this runner; connected QA cannot start.');
