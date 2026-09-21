@@ -33,15 +33,15 @@ jobs:
       QA_RUN_NAMESPACE: d12
       QA_BASE_URL: http://127.0.0.1:3000
       QA_OWNER_EMAIL: qa-owner-d12@example.test
-      QA_OWNER_PASSWORD: TrustWeave-QA-Only-ChangeMe-123!
+            QA_OWNER_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
       QA_ADMIN_EMAIL: qa-admin-d12@example.test
-      QA_ADMIN_PASSWORD: TrustWeave-QA-Only-ChangeMe-123!
+            QA_ADMIN_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
       QA_MEMBER_EMAIL: qa-member-d12@example.test
-      QA_MEMBER_PASSWORD: TrustWeave-QA-Only-ChangeMe-123!
+            QA_MEMBER_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
       QA_INVITEE_EMAIL: qa-invitee-d12@example.test
-      QA_INVITEE_PASSWORD: TrustWeave-QA-Only-ChangeMe-123!
+            QA_INVITEE_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
       QA_TENANT_B_OWNER_EMAIL: qa-tenant-b-owner-d12@example.test
-      QA_TENANT_B_OWNER_PASSWORD: TrustWeave-QA-Only-ChangeMe-123!
+            QA_TENANT_B_OWNER_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
 
     steps:
       - name: Check out repository
