@@ -110,8 +110,19 @@ def matches_reviewed_git_bytes(path: Path, expected: str, project: Path) -> bool
         relative = path.resolve().relative_to(project.resolve()).as_posix()
     except ValueError:
         return False
+    prefix_result = subprocess.run(
+        ["git", "rev-parse", "--show-prefix"],
+        cwd=project,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if prefix_result.returncode != 0:
+        return False
+    prefix = prefix_result.stdout.strip().replace("\\", "/")
+    git_path = f"{prefix}{relative}" if prefix else relative
     result = subprocess.run(
-        ["git", "show", f"HEAD:{relative}"],
+        ["git", "show", f"HEAD:{git_path}"],
         cwd=project,
         capture_output=True,
         check=False,
