@@ -6,6 +6,9 @@ const read=path=>fs.readFileSync(path,'utf8');
 const migration=read('supabase/migrations/122_reliability_snapshot_notification_contract_repair.sql');
 const helper=read('qa/lib/mission2-regression.ts');
 const css=read('app/globals.css');
+const apiClient=read('lib/api-client.ts');
+const responseRuntime=read('server/shared/response.ts');
+const crawler=read('qa/lib/crawler.ts');
 
 test('migration 122 restores every Housing operations collection',()=>{
  for(const table of ['hs_notices','hs_complaints','hs_vendors','hs_amenities','hs_amenity_bookings'])assert.match(migration,new RegExp(`public\\.${table}`));
@@ -27,5 +30,16 @@ test('persistence wait does not classify a success banner as failure',()=>{
 
 test('measured flagship muted text uses the accessible contrast token',()=>{
  assert.match(css,/--muted-contrast:#59645d/);
- assert.match(css,/\.association-announcement-list p,.housing-society-network \.hs-all-clear small,.housing-society-network \.hs-finance-summary small\{color:var\(--muted-contrast\)\}/);
+ assert.match(css,/\.housing-society-network \.hs-all-clear small\{color:var\(--muted-contrast\)\}/);
+ assert.match(css,/\.housing-society-network \.hs-finance-summary small\{display:block;color:var\(--muted-contrast\);font-size:9px\}/);
+});
+
+test('authenticated query reads fail closed against stale browser or intermediary caches',()=>{
+ assert.match(apiClient,/fetch\(path,\{headers,cache:"no-store"\}\)/);
+ assert.match(responseRuntime,/"cache-control":"private, no-store, max-age=0"/);
+});
+
+test('crawler enforces its budget inside the candidate-action loop',()=>{
+ assert.match(crawler,/if\(Date\.now\(\)-started>=timeBudgetMs\)\{budgetExhausted=true;break;\}/);
+ assert.match(crawler,/timeout:Math\.min\(3500,remaining\)/);
 });
