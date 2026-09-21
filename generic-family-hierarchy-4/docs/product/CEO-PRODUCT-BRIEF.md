@@ -67,3 +67,14 @@ Current portfolio decision: this is the **leading long-term category thesis for 
 Canonical detail:
 - docs/product/TRUSTWEAVE-AI-NATIVE-TRUSTED-NETWORK-INTELLIGENCE-THESIS.md
 - docs/product/TRUSTWEAVE-PRODUCT-THESIS-EVALUATION-PORTFOLIO.md
+
+
+## 2026-09-22 — Day-1 reassessment and adjacent AI-native opportunity map
+
+A zero-sunk-cost review reached a deliberately mixed conclusion: **"private Network OS" is a serious architecture thesis but not, by itself, a sufficiently differentiated startup proposition.** The strategic opportunity is what becomes possible because the governed network substrate exists.
+
+Five adjacent directions are now preserved for later evaluation: **AI Agent Permission / Context Layer, Federated Human Search, Institutional Memory Engine, Governed Agent-to-Agent Coordination, and Network Compiler / Autopilot.**
+
+They are not new execution priorities and are not independently scored yet because several may be components of the existing Intelligence Fabric rather than separate businesses. The current engineering priority and near-term commercial thesis remain unchanged.
+
+Canonical analysis: `docs/product/TRUSTWEAVE-DAY1-REASSESSMENT-AND-ADJACENT-AI-DIRECTIONS.md`.

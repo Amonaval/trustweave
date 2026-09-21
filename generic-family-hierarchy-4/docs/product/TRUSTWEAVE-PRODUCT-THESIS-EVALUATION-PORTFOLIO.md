@@ -239,3 +239,27 @@ Prefer directions where:
 > **AI becomes dramatically more useful because TrustWeave possesses governed context that a generic assistant does not.**
 
 That is the strategic lesson to preserve.
+
+## 10. Adjacent opportunity register — added 2026-09-22
+
+A Day-1 re-evaluation of the private/governed network thesis surfaced five adjacent directions that may sit inside or alongside the Intelligence Fabric:
+
+| Direction | Core question | Current status |
+|---|---|---|
+| **AI Agent Permission / Context Layer** | What may an agent know, disclose and do for a person inside each governed network? | Explore |
+| **Federated Human Search** | Can users query reachable human capability across trusted networks without a global public graph? | Explore |
+| **Institutional Memory Engine** | Can a network reliably remember decisions, rationale, roles, actions and outcomes across leadership changes? | Explore |
+| **Governed Agent-to-Agent Coordination** | Can agents safely negotiate introductions and low-level coordination before consuming human attention? | Explore |
+| **Network Compiler / Autopilot** | Can AI transform messy existing organizational artifacts into a living governed network with minimal setup? | Explore |
+
+These are intentionally **not yet given independent numeric scores**. They overlap substantially with the 90/100 Intelligence Fabric thesis, and scoring them separately before decomposing product boundaries would create false precision.
+
+When strategy work resumes, determine whether each is:
+
+1. a standalone wedge;
+2. a shared TrustWeave platform primitive;
+3. a capability inside Intelligence Fabric;
+4. a feature of TrustWeave Ops / Community / Family;
+5. or an attractive idea that should be discarded.
+
+Canonical analysis: `TRUSTWEAVE-DAY1-REASSESSMENT-AND-ADJACENT-AI-DIRECTIONS.md`.
