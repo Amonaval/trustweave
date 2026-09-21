@@ -24,6 +24,7 @@ import {
   applyActivationResolutions,
   type ActivationResolutionDecision,
 } from "../../core/activation-autopilot/resolution";
+import {buildActivationInstitutionalReport} from "../../core/activation-autopilot/intelligence";
 import {NetworkSectionHead} from "./NetworkUi";
 
 type Props = {
@@ -113,6 +114,10 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
     .filter((fact) => fact.status !== "rejected")
     .slice(0,12) || [];
 
+  const institutionalReport = resolution
+    ? buildActivationInstitutionalReport(resolution.review)
+    : null;
+
   return <section data-testid="qa-network-activation-autopilot" className="card xp1-guided-import">
     <NetworkSectionHead
       kicker={<><Sparkles size={12}/> Network Activation Autopilot · V1</>}
@@ -201,7 +206,7 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
                 </small>}
                 {conflicting&&<small>Your linked decisions disagree. Choose the same canonical row for both items.</small>}
                 {item.severity==="blocking"&&<small>Correct this source error and analyze the pack again.</small>}
-                {item.severity==="review"&&duplicate&&<div className="card-actions">
+                {item.severity==="review"&&duplicate&&<span className="card-actions">
                   <button
                     className={`btn small ${decision?.action==="keep_separate"?"primary":""}`}
                     disabled={busy}
@@ -210,8 +215,8 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
                     Confirm separate people
                   </button>
                   <small>If these are the same person, leave unresolved for now rather than merging uncertain identity automatically.</small>
-                </div>}
-                {item.severity==="review"&&!duplicate&&<div className="card-actions">
+                </span>}
+                {item.severity==="review"&&!duplicate&&<span className="card-actions">
                   {rowChoices.map(ref=>{
                     const selected=decision?.action==="keep_source_row"&&decision.sheetKey===ref.sheetKey&&decision.rowNumber===ref.rowNumber;
                     return <button
@@ -223,7 +228,7 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
                       Use row {ref.rowNumber}: {rowPreview(ref)}
                     </button>;
                   })}
-                </div>}
+                </span>}
               </span>
             </div>;
           })}
@@ -275,6 +280,46 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
     {activated&&<div data-testid="qa-network-activation-result" className="notice">
       <b>Activation complete.</b> {activated.message} The network can now be inspected through its normal Community, Directory and administration surfaces.
     </div>}
+
+    {activated&&institutionalReport&&<section data-testid="qa-network-activation-intelligence" className="card">
+      <NetworkSectionHead
+        kicker={<><Sparkles size={12}/> First institutional intelligence</>}
+        title="Your files are now more than imported rows"
+        description={institutionalReport.headline}
+      />
+      <div className="network-metric-grid">
+        <div className="network-metric"><b>{institutionalReport.summary.families}</b><span>Families</span><small>Reconstructed households</small></div>
+        <div className="network-metric"><b>{institutionalReport.summary.people}</b><span>People</span><small>Known participants</small></div>
+        <div className="network-metric"><b>{institutionalReport.summary.membershipYears}</b><span>Membership cycles</span><small>Historical depth</small></div>
+        <div className="network-metric"><b>{institutionalReport.summary.leadershipAssignments}</b><span>Leadership assignments</span><small>Governance history</small></div>
+      </div>
+
+      {institutionalReport.insights.length>0&&<div className="friendly-issues">
+        {institutionalReport.insights.map(insight=><div className={`issue-row ${insight.severity==="attention"?"warning":""}`} key={insight.id}>
+          {insight.severity==="attention"?<AlertTriangle/>:<CheckCircle2/>}
+          <span>
+            <b>{insight.title}</b>
+            {insight.summary}
+            {insight.evidence.length>0&&<small>
+              Evidence: {insight.evidence.slice(0,4).map(ref=>`${ref.sheetName} row ${ref.rowNumber}`).join(" · ")}
+            </small>}
+          </span>
+        </div>)}
+      </div>}
+
+      <div className="product-member-list">
+        {institutionalReport.answers.map((answer,index)=><div className="product-member-row" key={index}>
+          <div className="product-member-identity">
+            <FileSearch/>
+            <span>
+              <b>{answer.question}</b>
+              <small>{answer.answer}</small>
+              {answer.evidence.length>0&&<small>Evidence: {answer.evidence.slice(0,5).map(ref=>`${ref.sheetName} row ${ref.rowNumber}`).join(" · ")}</small>}
+            </span>
+          </div>
+        </div>)}
+      </div>
+    </section>}
     {message&&!activated&&<div data-testid="qa-network-activation-message" className="notice">{message}</div>}
   </section>;
 }
