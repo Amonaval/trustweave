@@ -9,6 +9,8 @@ const css=read('app/globals.css');
 const apiClient=read('lib/api-client.ts');
 const responseRuntime=read('server/shared/response.ts');
 const crawler=read('qa/lib/crawler.ts');
+const pushRoute=read('app/api/notifications/push/route.ts');
+const d12Workflow=read('../.github/workflows/d12-connected-certification.yml');
 
 test('migration 122 restores every Housing operations collection',()=>{
  for(const table of ['hs_notices','hs_complaints','hs_vendors','hs_amenities','hs_amenity_bookings'])assert.match(migration,new RegExp(`public\\.${table}`));
@@ -53,4 +55,15 @@ test('surface navigation confirms React hydration before returning',()=>{
 test('late-hydrated navigation activates the surface after waiting',()=>{
  assert.match(helper,/target=visible\(`qa-nav-\$\{id\}`\)/);
  assert.match(helper,/await activate\(target,`surface \$\{id\}`\)/);
+});
+
+test('optional push infrastructure is a clean suppression, not a service outage',()=>{
+ assert.match(pushRoute,/suppressed:"push_server_unconfigured"/);
+ assert.match(pushRoute,/suppressed:"vapid_unconfigured"/);
+ assert.doesNotMatch(pushRoute,/Push server is not configured\."\},\{status:503/);
+});
+
+test('D12 connected certification serializes the shared disposable QA identity',()=>{
+ assert.match(d12Workflow,/group: d12-connected-certification\n\s+cancel-in-progress: false/);
+ assert.match(d12Workflow,/head_match/);
 });
