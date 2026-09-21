@@ -57,6 +57,8 @@ The existing QA runtime guards already reject production/golden mismatches.
 
 Use a fresh checkout to avoid reusing fixture users or networks from an older candidate. Run from a machine that can reach `https://yqwitkoxyrujbzpjwuji.supabase.co`. Keep the service-role key only in the ignored local environment file; never paste it into chat or commit it.
 
+Windows note: commit `c10cccf4` exposed an EOL-only manifest checksum failure when Git materialized the reviewed LF manifest as CRLF. The current gate canonicalizes only CRLF→LF before hashing Git-controlled bootstrap text, and `.gitattributes` keeps future bootstrap checkouts at LF. Pull the latest `llm-push` before retrying; actual content changes still fail closed.
+
 1. Install Node.js 20 or newer and Python 3.12. From a short working path, clone the current branch and enter the app directory:
 
    ```powershell

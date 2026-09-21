@@ -1,3 +1,5 @@
+import {createHash} from 'node:crypto';
+
 const BOOTSTRAP_FORMAT='trustweave-d12-bootstrap-replay-apply-receipt-v1';
 const MANAGED_FORMAT='trustweave-d12-managed-sql-apply-receipt-v1';
 const MANAGED_STATUS='MANAGED_SQL_BOOTSTRAP_APPLIED_TO_FRESH_DISPOSABLE';
@@ -9,6 +11,14 @@ const APPROVED_OWNER_MIGRATION='d12_final_storage_owner_context';
 const PROMOTED_SUPPLEMENT_SHA256='5a2a2c5f301ef9606a90f254b98fafae5a8477ab13ccb5ce68052dd66d639c47';
 const ORIGINAL_SUPPLEMENT_SHA256='0ce6507dc57ae79d96820800f76b5b38ba91e1be82004b3f51591295aaed4743';
 const LEGACY_STATUS='APPLIED_TO_DISPOSABLE_CANDIDATE';
+
+// Git may materialize text files with CRLF on Windows even though the reviewed
+// blob was committed with LF. Hash the canonical Git text representation so an
+// EOL-only checkout transformation does not invalidate otherwise identical
+// evidence. Content changes still produce a different digest.
+export function canonicalGitTextSha256(bytes){
+ return createHash('sha256').update(Buffer.from(bytes).toString('utf8').replace(/\r\n/g,'\n'),'utf8').digest('hex');
+}
 
 export function isD12BootstrapReceipt(apply){
  return apply?.format===BOOTSTRAP_FORMAT||apply?.format===MANAGED_FORMAT;

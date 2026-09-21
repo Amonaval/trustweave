@@ -1,8 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {d12EvidencePaths,isD12BootstrapReceipt,validateD12Evidence} from '../runtime/d12-evidence.mjs';
+import {canonicalGitTextSha256,d12EvidencePaths,isD12BootstrapReceipt,validateD12Evidence} from '../runtime/d12-evidence.mjs';
 
 const golden='yyhwcqpzplebittvxzzl',candidate='freshcandidate';
+test('canonical Git text hash tolerates Windows CRLF only',()=>{
+ assert.equal(canonicalGitTextSha256(Buffer.from('{\r\n  "ok": true\r\n}\r\n')),canonicalGitTextSha256(Buffer.from('{\n  "ok": true\n}\n')));
+ assert.notEqual(canonicalGitTextSha256(Buffer.from('{\n  "ok": false\n}\n')),canonicalGitTextSha256(Buffer.from('{\n  "ok": true\n}\n')));
+});
 test('reads the receipt from the verifier recapture subdirectory',()=>{
  assert.equal(d12EvidencePaths('.d12-work/bootstrap-replay').recapture,'.d12-work/bootstrap-replay/recapture/recapture-receipt.json');
  assert.equal(d12EvidencePaths('.d12-work/bootstrap-replay').primary,'.d12-work/bootstrap-replay/recapture/candidate-primary.csv');

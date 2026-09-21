@@ -1,5 +1,6 @@
 """Promotion gate regression: fresh managed replay still needs connected evidence."""
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import subprocess
@@ -12,6 +13,13 @@ REF = "yqwitkoxyrujbzpjwuji"
 COMMIT = "ce5eddfbedd2a1ab3a92bbd58ac24ca78e57bfe1"
 
 
+def load_script(name, filename):
+    spec = importlib.util.spec_from_file_location(name, PROJECT / "scripts" / filename)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def digest(value):
     return hashlib.sha256(value).hexdigest()
 
@@ -22,6 +30,22 @@ def write(path, value):
 
 
 class ManagedPromotionGate(unittest.TestCase):
+    def test_git_text_hash_tolerates_windows_crlf_only(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "text.json"
+            path.write_bytes(b'{\r\n  "ok": true\r\n}\r\n')
+            bootstrap = load_script("d12_validate_bootstrap", "d12-validate-bootstrap.py")
+            promotion = load_script("d12_promotion_gate", "d12-promotion-gate.py")
+            expected = digest(b'{\n  "ok": true\n}\n')
+            self.assertEqual(bootstrap.sha256_git_text(path), expected)
+            self.assertEqual(promotion.sha256_git_text(path), expected)
+            reviewed = b"one\r\ntwo\nthree\r\n"
+            windows = b"one\r\ntwo\r\nthree\r\n"
+            self.assertTrue(bootstrap.matches_reviewed_content(windows, reviewed, digest(reviewed)))
+            self.assertFalse(bootstrap.matches_reviewed_content(windows + b"changed", reviewed, digest(reviewed)))
+            path.write_bytes(b'{\r\n  "ok": false\r\n}\r\n')
+            self.assertNotEqual(bootstrap.sha256_git_text(path), expected)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

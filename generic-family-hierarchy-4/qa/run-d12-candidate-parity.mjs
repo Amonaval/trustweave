@@ -3,7 +3,7 @@ import {spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {loadQaEnv,assertMutationAllowed,requiredEnv,writeJson} from './runtime/env.mjs';
 import {QA_VERTICAL_KINDS} from './runtime/scope.mjs';
-import {d12EvidencePaths,isD12BootstrapReceipt,validateD12Evidence} from './runtime/d12-evidence.mjs';
+import {canonicalGitTextSha256,d12EvidencePaths,isD12BootstrapReceipt,validateD12Evidence} from './runtime/d12-evidence.mjs';
 
 process.env.QA_ENV_FILE=process.env.QA_ENV_FILE||'.env.d12-candidate';
 loadQaEnv();
@@ -31,7 +31,7 @@ const evidence=validateD12Evidence({
  catalog,apply,
  recapture,
  manifest:bootstrap?JSON.parse(manifestBytes.toString('utf8')):null,
- manifestSha256:bootstrap?createHash('sha256').update(manifestBytes).digest('hex'):null,
+ manifestSha256:bootstrap?canonicalGitTextSha256(manifestBytes):null,
  qaProjectRef:process.env.QA_STAGING_PROJECT_REF
 });
 

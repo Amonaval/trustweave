@@ -32,6 +32,11 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def sha256_git_text(path: Path) -> str:
+    """Hash Git's canonical LF text, independent of Windows checkout EOLs."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
 def validate_managed_replay(root: Path, apply: dict[str, Any], catalog: dict[str, Any]) -> list[str]:
     """Bind the promotion decision to the same reviewed fresh replay as QA."""
     errors: list[str] = []
@@ -53,7 +58,7 @@ def validate_managed_replay(root: Path, apply: dict[str, Any], catalog: dict[str
         errors.append("Managed-SQL receipt does not identify the reviewed final replay.")
     if apply.get("psql_receipt") is not False or apply.get("direct_apply_transactions") != 8 or apply.get("owner_context_migration") != "d12_final_storage_owner_context":
         errors.append("Managed-SQL execution provenance differs from the reviewed replay.")
-    if apply.get("secrets_recorded") is not False or apply.get("manifest_sha256") != sha256(manifest_path):
+    if apply.get("secrets_recorded") is not False or apply.get("manifest_sha256") != sha256_git_text(manifest_path):
         errors.append("Managed-SQL receipt fails secret or manifest checksum guard.")
     if apply.get("golden_project_ref") != manifest.get("golden_project_ref") or apply.get("direct_sql_files") != len(manifest.get("direct_apply_order") or []) or apply.get("owner_context_files") != manifest.get("storage_owner_context_files"):
         errors.append("Managed-SQL receipt disagrees with the committed manifest.")
