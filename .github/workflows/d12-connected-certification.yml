@@ -119,11 +119,19 @@ jobs:
           }
           JSON
 
+      - name: Run targeted Housing persistence preflight
+        run: npx playwright test qa/e2e/28-mission2-housing-user-journeys.spec.ts --project=chromium-desktop --workers=1 --grep "notice, complaint\\+photo"
+
       - name: Run connected reliability certification
         run: npm run qa:reliability -- --headless
 
       - name: Run D12 notification role contract
         run: node qa/db/d12-notification-role-contract.mjs
+
+      - name: Write D12 connected parity summary
+        env:
+          D12_GOLDEN_PROJECT_REF: yyhwcqpzplebittvxzzl
+        run: node qa/write-d12-connected-summary.mjs
 
       - name: Upload connected evidence
         if: always()
