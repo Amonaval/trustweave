@@ -18,6 +18,7 @@ function membershipYearDates(label:string){
  return {startDate:`${startYear}-04-01`,endDate:`${endYear}-03-31`};
 }
 function fcaMembershipStatus(input:unknown){const status=String(input||"active").trim().toLowerCase();if(status==="grace")return "grace";if(status==="inactive"||status==="expired")return "inactive";return "active"}
+function fcaPaymentStatus(input:unknown){const status=String(input||"unpaid").trim().toLowerCase();return ["unpaid","paid","waived","partial","not_required"].includes(status)?status:"unpaid"}
 function membershipYearStatus(endDate:string){return endDate<new Date().toISOString().slice(0,10)?"closed":"open"}
 
 export async function commitProductizedWorkbook(review:ImportReview):Promise<ImportCommitResult>{
@@ -25,26 +26,70 @@ export async function commitProductizedWorkbook(review:ImportReview):Promise<Imp
  for(const sheet of review.sheets.filter(s=>s.schema.recordType==="entity")){for(const row of sheet.rows.filter(r=>r.status!=="rejected")){const item=buildEntity(row,sheet.schema,review.schema.version);if(!item.label){skipped++;continue}const existingId=item.stableId?stableMap.get(`${item.kind}|${item.stableId.toLowerCase()}`):undefined;const id=await upsertNetworkEntity({id:existingId,kind:item.kind,label:item.label,metadata:item.metadata,affiliations:item.affiliations});if(existingId)updated++;else created++;if(item.stableId){refMap.set(item.stableId.toLowerCase(),id);stableMap.set(`${item.kind}|${item.stableId.toLowerCase()}`,id)}}}
  const existingRelationships=await fetchNetworkEntityRelationships();const edgeKeys=new Set(existingRelationships.map(r=>`${r.fromEntityId}|${r.toEntityId}|${r.relationshipType}`));for(const sheet of review.sheets.filter(s=>s.schema.recordType==="relationship")){for(const row of sheet.rows.filter(r=>r.status!=="rejected")){const from=refMap.get(String(row.values.from_id||"").toLowerCase())||refMap.get(String(row.values.fromRef||"").toLowerCase());const to=refMap.get(String(row.values.to_id||"").toLowerCase())||refMap.get(String(row.values.toRef||"").toLowerCase());const rel=String(row.values.relationship||row.values.relationship_type||"").trim();if(!from||!to||!rel){skipped++;continue}const key=`${from}|${to}|${rel}`;if(edgeKeys.has(key)){skipped++;continue}await createNetworkEntityRelationship(from,to,rel,{importSchemaVersion:review.schema.version});edgeKeys.add(key);relationships++}}
 
- // Family Association annual membership is governed domain state, not entity metadata.
- // Commit it through the existing FCA membership RPCs after families are resolved so
- // the guided workbook is genuinely persisted and rerun-safe instead of silently ignored.
+ // Family Association annual membership and leadership are governed domain state,
+ // not generic entity metadata. Resolve the activation pack against the existing
+ // FCA admin contracts so Autopilot never bypasses domain authorization or history.
  if(review.schema.verticalKind==="family-association"){
-  const domainSheets=review.sheets.filter(s=>s.schema.recordType==="domain"&&s.schema.key==="association_membership");
-  if(domainSheets.length){
-   const snapshot=await fetchFcaAdminSnapshot();
-   const yearIds=new Map<string,string>((snapshot.years||[]).map((year:any)=>[String(year.label||"").trim().toLowerCase(),String(year.id)]));
-   const graceDays=Math.max(0,Math.min(90,Number(snapshot.settings?.grace_period_days??30)||30));
-   for(const sheet of domainSheets){for(const row of sheet.rows.filter(r=>r.status!=="rejected")){
+  const snapshot=await fetchFcaAdminSnapshot();
+  const yearIds=new Map<string,string>((snapshot.years||[]).map((year:any)=>[String(year.label||"").trim().toLowerCase(),String(year.id)]));
+  const graceDays=Math.max(0,Math.min(90,Number(snapshot.settings?.grace_period_days??30)||30));
+  const roleIds=new Map<string,string>();
+  for(const role of snapshot.roles||[]){
+   const id=String(role.id||"");if(!id)continue;
+   const key=String(role.role_key||"").trim().toLowerCase();
+   const label=String(role.label||"").trim().toLowerCase();
+   if(key)roleIds.set(key,id);if(label)roleIds.set(label,id);
+  }
+  const ensureYear=async(label:string)=>{
+   const key=label.trim().toLowerCase();const existingId=yearIds.get(key);if(existingId)return existingId;
+   const dates=membershipYearDates(label);if(!dates)throw new Error(`Membership year “${label}” must use YYYY-YY or YYYY-YYYY before activation.`);
+   const id=await upsertFcaMembershipYear({label,startDate:dates.startDate,endDate:dates.endDate,familyFee:0,gracePeriodDays:graceDays,status:membershipYearStatus(dates.endDate)});
+   yearIds.set(key,id);return id;
+  };
+
+  for(const sheet of review.sheets.filter(s=>s.schema.recordType==="domain"&&s.schema.key==="association_membership")){
+   for(const row of sheet.rows.filter(r=>r.status!=="rejected")){
     const familyRef=String(row.values.family_id||"").trim().toLowerCase();
     const familyEntityId=refMap.get(familyRef)||stableMap.get(`family|${familyRef}`);
     const label=String(row.values.membership_year||"").trim();
-    const dates=membershipYearDates(label);
-    if(!familyEntityId||!label||!dates){skipped++;continue}
-    const yearKey=label.toLowerCase();let yearId=yearIds.get(yearKey);
-    if(!yearId){yearId=await upsertFcaMembershipYear({label,startDate:dates.startDate,endDate:dates.endDate,familyFee:0,gracePeriodDays:graceDays,status:membershipYearStatus(dates.endDate)});yearIds.set(yearKey,yearId)}
-    await setFcaFamilyMembership({yearId,familyEntityId,status:fcaMembershipStatus(row.values.status),paymentStatus:"unpaid",amountPaid:0});
+    if(!familyEntityId||!label){skipped++;continue}
+    const representativeRef=String(row.values.representative_id||"").trim().toLowerCase();
+    const representativeEntityId=representativeRef?(refMap.get(representativeRef)||stableMap.get(`person|${representativeRef}`)):undefined;
+    if(representativeRef&&!representativeEntityId)throw new Error(`Representative “${row.values.representative_id}” could not be resolved for ${row.values.family_id}.`);
+    const yearId=await ensureYear(label);
+    await setFcaFamilyMembership({
+     yearId,
+     familyEntityId,
+     representativeEntityId:representativeEntityId||null,
+     status:fcaMembershipStatus(row.values.status),
+     paymentStatus:fcaPaymentStatus(row.values.payment_status),
+     amountPaid:Number(row.values.amount_paid||0),
+     paymentReference:String(row.values.payment_reference||"").trim()
+    });
     domainRecords++;
-   }}
+   }
+  }
+
+  for(const sheet of review.sheets.filter(s=>s.schema.recordType==="domain"&&s.schema.key==="leadership_history")){
+   for(const row of sheet.rows.filter(r=>r.status!=="rejected")){
+    const personRef=String(row.values.person_id||"").trim().toLowerCase();
+    const personEntityId=refMap.get(personRef)||stableMap.get(`person|${personRef}`);
+    const roleKey=String(row.values.role_key||"").trim().toLowerCase();
+    const roleCatalogId=roleIds.get(roleKey);
+    const label=String(row.values.membership_year||"").trim();
+    if(!personEntityId)throw new Error(`Leadership person “${row.values.person_id}” could not be resolved.`);
+    if(!roleCatalogId)throw new Error(`Association role “${row.values.role_key}” is not available in this network.`);
+    const yearId=label?await ensureYear(label):null;
+    await assignFcaRole({
+     yearId,
+     personEntityId,
+     roleCatalogId,
+     startsOn:String(row.values.starts_on||"").trim()||null,
+     endsOn:String(row.values.ends_on||"").trim()||null,
+     notes:String(row.values.notes||"").trim()
+    });
+    domainRecords++;
+   }
   }
  }
  return {created,updated,relationships,skipped,message:`Imported ${created} new, updated ${updated}, created ${relationships} relationships${domainRecords?`, persisted ${domainRecords} governed membership records`:""}${skipped?` and skipped ${skipped} existing/incomplete rows`:""}.`};
