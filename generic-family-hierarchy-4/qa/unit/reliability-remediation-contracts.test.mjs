@@ -49,3 +49,8 @@ test('surface navigation confirms React hydration before returning',()=>{
  assert.match(helper,/classList\.contains\('active'\)/);
  assert.match(helper,/should become active after navigation/);
 });
+
+test('late-hydrated navigation activates the surface after waiting',()=>{
+ assert.match(helper,/target=visible\(`qa-nav-\$\{id\}`\)/);
+ assert.match(helper,/await activate\(target,`surface \$\{id\}`\)/);
+});
