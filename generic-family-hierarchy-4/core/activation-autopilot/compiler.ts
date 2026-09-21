@@ -37,9 +37,11 @@ export type ActivationAttentionItem = {
   code:
     | "IMPORT_BLOCKER"
     | "POSSIBLE_DUPLICATE_EMAIL"
+    | "POSSIBLE_DUPLICATE_PHONE"
     | "POSSIBLE_DUPLICATE_NAME"
     | "MULTIPLE_HOUSEHOLD_CANDIDATES"
     | "MEMBERSHIP_STATUS_CONFLICT"
+    | "MEMBERSHIP_PAYMENT_CONFLICT"
     | "REPRESENTATIVE_CONFLICT"
     | "LEADERSHIP_ROLE_CONFLICT";
   severity: ActivationAttentionSeverity;
@@ -212,8 +214,10 @@ type PersonCandidate = {
   subjectKey: string;
   label: string;
   email: string;
+  phone: string;
   nameKey: string;
   emailKey: string;
+  phoneKey: string;
   source: ActivationSourceRef;
 };
 
@@ -223,16 +227,20 @@ function personCandidates(review: ImportReview): PersonCandidate[] {
     (item) => item.schema.recordType === "entity" && item.schema.entityKind === "person",
   )) {
     const emailColumn = sheet.schema.columns.find((column) => column.key === "email");
+    const phoneColumn = sheet.schema.columns.find((column) => column.key === "phone");
     for (const row of sheet.rows.filter((item) => item.status !== "rejected")) {
       const subject = subjectForRow(sheet, row);
       const label = labelForRow(sheet, row);
       const email = emailColumn ? clean(row.values[emailColumn.key]) : "";
+      const phone = phoneColumn ? clean(row.values[phoneColumn.key]) : "";
       candidates.push({
         subjectKey: subject.key,
         label,
         email,
+        phone,
         nameKey: normalized(label),
         emailKey: compact(email),
+        phoneKey: phone.replace(/\D+/g,"").replace(/^91(?=\d{10}$)/,""),
         source: sourceFor(review, sheet, row),
       });
     }
@@ -245,7 +253,7 @@ function duplicateAttention(review: ImportReview): ActivationAttentionItem[] {
   const attention: ActivationAttentionItem[] = [];
 
   const addGrouped = (
-    code: "POSSIBLE_DUPLICATE_EMAIL" | "POSSIBLE_DUPLICATE_NAME",
+    code: "POSSIBLE_DUPLICATE_EMAIL" | "POSSIBLE_DUPLICATE_PHONE" | "POSSIBLE_DUPLICATE_NAME",
     keyOf: (candidate: PersonCandidate) => string,
     title: string,
     description: (items: PersonCandidate[]) => string,
@@ -280,6 +288,14 @@ function duplicateAttention(review: ImportReview): ActivationAttentionItem[] {
     "Possible duplicate person",
     (items) =>
       `${items.map((item) => item.label || item.subjectKey).join(" / ")} share the same email address. Confirm whether these records represent one person.`,
+  );
+
+  addGrouped(
+    "POSSIBLE_DUPLICATE_PHONE",
+    (candidate) => candidate.phoneKey,
+    "Possible duplicate person",
+    (items) =>
+      `${items.map((item) => item.label || item.subjectKey).join(" / ")} share the same phone number. Confirm whether these records represent one person.`,
   );
 
   addGrouped(
@@ -334,6 +350,7 @@ function membershipConflictAttention(review: ImportReview): ActivationAttentionI
     {
       statuses: Set<string>;
       representatives: Set<string>;
+      paymentSignatures: Set<string>;
       rows: ParsedImportRow[];
       family: string;
       year: string;
@@ -345,18 +362,25 @@ function membershipConflictAttention(review: ImportReview): ActivationAttentionI
     const year = normalized(row.values.membership_year);
     const status = normalized(row.values.status);
     const representative = clean(row.values.representative_id).toLowerCase();
+    const paymentSignature = [
+      norm(row.values.payment_status),
+      clean(row.values.amount_paid),
+      clean(row.values.payment_reference),
+    ].join("|");
     if (!family || !year) continue;
 
     const key = `${family}|${year}`;
     const current = groups.get(key) || {
       statuses: new Set<string>(),
       representatives: new Set<string>(),
+      paymentSignatures: new Set<string>(),
       rows: [],
       family,
       year: clean(row.values.membership_year),
     };
     if (status) current.statuses.add(status);
     if (representative) current.representatives.add(representative);
+    if (paymentSignature.replaceAll("|","")) current.paymentSignatures.add(paymentSignature);
     current.rows.push(row);
     groups.set(key, current);
   }
@@ -381,6 +405,17 @@ function membershipConflictAttention(review: ImportReview): ActivationAttentionI
         severity: "review",
         title: "More than one representative is listed",
         description: `${entry.family.toUpperCase()} has multiple representatives for ${entry.year}: ${[...entry.representatives].map((value) => value.toUpperCase()).join(", ")}.`,
+        subjectKeys: [`family:${entry.family}`],
+        sourceRefs: entry.rows.map((row) => sourceFor(review, sheet, row)),
+      });
+    }
+    if (entry.paymentSignatures.size > 1) {
+      attention.push({
+        id: `membership-payment-conflict:${key}`,
+        code: "MEMBERSHIP_PAYMENT_CONFLICT",
+        severity: "review",
+        title: "Membership payment records disagree",
+        description: `${entry.family.toUpperCase()} has different payment state, amount or references for ${entry.year}. Choose the source row that should become canonical.`,
         subjectKeys: [`family:${entry.family}`],
         sourceRefs: entry.rows.map((row) => sourceFor(review, sheet, row)),
       });
