@@ -31,6 +31,9 @@ Binding rules:
 - every bulk repair must show its rule, rationale and affected scope;
 - generated completion workbooks/review reports are valid product outcomes even before TrustWeave activation;
 - no paid/external AI dependency is authorized by this product direction;
+- before building commodity capability, evaluate mature open-source options first; default sequence is **adopt → compose → extend → build**;
+- building from scratch requires a reason: no suitable component, unacceptable integration/ownership risk, or genuine differentiation/moat;
+- paid dependencies are allowed only when commercial/customer economics justify them and the Founder explicitly approves the cost before any billable use;
 - do not create a standalone repository, provision infrastructure, select a paid model/provider or broaden into generic OCR/connectors without explicit Founder authorization;
 - do not build broad V2 Intelligence until V1 demonstrates trustworthy messy-source → governed-context conversion with low human effort.
 
