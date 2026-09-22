@@ -54,6 +54,31 @@ def stable(value: Any) -> Any:
     return value
 
 
+def normalize_constraint_definition(value: str | None) -> str | None:
+    """Normalize PostgreSQL-equivalent CHECK rendering after dump/recreate.
+
+    PG can render ARRAY varchar literals as either:
+      ARRAY['x'::varchar, ...]::text[]
+    or:
+      ARRAY['x'::varchar::text, ...]
+    after recreating the exact captured CHECK. These forms are semantically
+    equivalent and were proven across all 173 affected golden constraints on
+    the D12 disposable candidate. Other constraint text remains strict.
+    """
+    if value is None:
+        return None
+    text = re.sub(r"::character varying::text", "::character varying", value)
+    text = re.sub(r"\]::text\[\]", "]", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def normalized_constraint_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [
+        {**row, "definition": normalize_constraint_definition(row.get("definition"))}
+        for row in rows
+    ]
+
+
 def parse_acl(acl: str | None) -> list[tuple[str, str, tuple[str, ...]]]:
     if not acl or acl == "{}":
         return []
@@ -186,8 +211,8 @@ def main() -> None:
     add_map_diff(
         structural,
         "constraints",
-        map_rows(gp.get("constraints") or [], ("relation", "name"), ("kind", "definition")),
-        map_rows(cp.get("constraints") or [], ("relation", "name"), ("kind", "definition")),
+        map_rows(normalized_constraint_rows(gp.get("constraints") or []), ("relation", "name"), ("kind", "definition")),
+        map_rows(normalized_constraint_rows(cp.get("constraints") or []), ("relation", "name"), ("kind", "definition")),
     )
     add_map_diff(
         structural,

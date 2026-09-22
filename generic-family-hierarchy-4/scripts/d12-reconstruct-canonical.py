@@ -363,9 +363,23 @@ def main() -> None:
             continue
         prefix = f"{module_order[module]:03d}-{safe_file(module)}.sql"
         lines = header[:]
-        for name in table_names:
-            for c in sorted(constraints.get(name, []), key=lambda x: x["name"]):
-                lines.append(f"ALTER TABLE {qname(name)} ADD CONSTRAINT {qident(c['name'])} {c['definition']};")
+        module_constraints = [
+            (name, c)
+            for name in table_names
+            for c in constraints.get(name, [])
+        ]
+        # Foreign keys can only be created after the referenced PK/UNIQUE exists.
+        # Module order handles cross-module dependencies; this local priority handles
+        # same-module references such as audit_log -> networks.
+        module_constraints.sort(
+            key=lambda item: (
+                1 if str(item[1].get("kind") or "").lower() == "f" else 0,
+                item[0],
+                item[1]["name"],
+            )
+        )
+        for name, c in module_constraints:
+            lines.append(f"ALTER TABLE {qname(name)} ADD CONSTRAINT {qident(c['name'])} {c['definition']};")
         write(out / "20-constraints" / prefix, lines)
 
         lines = header[:]
@@ -419,6 +433,14 @@ def main() -> None:
             if "revoke all on function" not in block.lower() or "grant execute on function" not in block.lower():
                 raise ValueError(f"Migration-105 drift repair ACL incomplete for {fname}")
             repair_lines.append(block + "\n")
+            signature = {
+                "set_network_notification_role": "text,text,uuid,boolean",
+                "remove_network_notification_role": "text,uuid",
+            }[fname]
+            repair_lines.extend([
+                f"REVOKE ALL ON FUNCTION public.{fname}({signature}) FROM PUBLIC, anon, authenticated, service_role;",
+                f"GRANT EXECUTE ON FUNCTION public.{fname}({signature}) TO authenticated, service_role;",
+            ])
         write(out / "45-source-drift-repairs" / "050-notifications.sql", repair_lines)
 
     # Phase 50: triggers after functions.
@@ -464,15 +486,10 @@ def main() -> None:
 
     # Phase 70: Storage relation security, bucket configuration and captured policies.
     # Storage object/file rows are never copied.
-    storage_lines = header[:]
-    for relsec in sorted(supplement.get("storage_relation_security", []), key=lambda x: x["name"]):
-        target = f"{qident('storage')}.{qident(relsec['name'])}"
-        storage_lines.append(
-            f"ALTER TABLE {target} {'ENABLE' if relsec.get('rls') else 'DISABLE'} ROW LEVEL SECURITY;"
-        )
-        storage_lines.append(
-            f"ALTER TABLE {target} {'FORCE' if relsec.get('force_rls') else 'NO FORCE'} ROW LEVEL SECURITY;"
-        )
+    storage_lines = header[:] + [
+        "-- Built-in storage.buckets/storage.objects are owned by supabase_storage_admin on hosted Supabase.",
+        "-- Their RLS/force-RLS state is parity-verified, not mutated by the canonical candidate.",
+    ]
     for bucket in supplement.get("storage_buckets", []):
         mimes = (
             "NULL"
@@ -488,9 +505,19 @@ def main() -> None:
             "ON CONFLICT(id) DO UPDATE SET name=excluded.name,public=excluded.public,"
             "file_size_limit=excluded.file_size_limit,allowed_mime_types=excluded.allowed_mime_types;"
         )
-    for policy in sorted(storage_policies, key=lambda x: (x["table"], x["name"])):
-        storage_lines.append(policy_sql(policy))
     write(out / "70-storage" / "000-storage.sql", storage_lines)
+
+    # Hosted Supabase owns storage.buckets/storage.objects with supabase_storage_admin.
+    # Direct postgres/psql sessions cannot CREATE POLICY on those relations. Keep the
+    # policies as a separate owner-context artifact for Dashboard/platform migration use.
+    if storage_policies:
+        owner_lines = header[:] + [
+            "-- REQUIRES SUPABASE STORAGE OWNER CONTEXT.",
+            "-- Apply through Supabase Dashboard/platform migration tooling, not direct psql.",
+        ]
+        for policy in sorted(storage_policies, key=lambda x: (x["table"], x["name"])):
+            owner_lines.append(policy_sql(policy))
+        write(out / "71-storage-owner-context" / "000-storage-policies.sql", owner_lines)
 
     # Phase 75: captured application-schema ACL. Normalize API/public principals, then replay.
     schema_lines = header[:]
@@ -581,10 +608,18 @@ def main() -> None:
 
     # Verification manifest: no raw capture/body copy; only capture hashes, counts and generated file hashes.
     generated = sorted(out.rglob("*.sql"))
+    owner_context_generated = [
+        path for path in generated
+        if "71-storage-owner-context" in path.parts
+    ]
+    direct_generated = [path for path in generated if path not in owner_context_generated]
     result = {
         "format": "trustweave-d12-candidate-baseline-v1",
         "status": "candidate-until-fresh-parity",
-        "apply_order": [str(path.relative_to(out)).replace("\\", "/") for path in generated],
+        "apply_order": [str(path.relative_to(out)).replace("\\", "/") for path in direct_generated],
+        "owner_context_apply_order": [
+            str(path.relative_to(out)).replace("\\", "/") for path in owner_context_generated
+        ],
         "server_version": primary.get("server_version"),
         "primary_capture_sha256": hashlib.sha256(args.primary.read_bytes()).hexdigest(),
         "supplement_capture_sha256": hashlib.sha256(args.supplement.read_bytes()).hexdigest() if args.supplement else None,

@@ -348,3 +348,76 @@ Do not share the DB password, connection URL, service-role key, anon key, or tes
 - D12-D structural/security/API catalog parity: **High for the first comparison**, because any mismatch needs architecture-level classification; Medium for clean reruns.
 - D12-E behavioral/browser parity: **Medium**, using existing two-vertical QA.
 - D12-F canonical promotion review + bootstrap cutover plan: **High**, because this is the irreversible source-of-truth decision boundary (historical migrations still remain immutable).
+
+
+## D12-E database behavioral parity checkpoint — 2026-09-20
+
+Fresh disposable candidate project: `TrustWeave D12 Candidate` (`blpdjhmtayjkcczqltqi`, `ap-south-1`).
+
+Golden project remained read-only.
+
+### Behavioral proofs passed
+
+Using authenticated-role JWT impersonation against the disposable candidate:
+
+- Housing owner can activate the Housing network and `current_network_id()` resolves to that network.
+- `hs1_get_property_snapshot()` executes successfully for the Housing owner.
+- Family Community owner can activate the Family Community network and `current_network_id()` resolves to that network.
+- `get_fca_admin_snapshot()` executes successfully for the Family Community owner.
+- Restored `set_network_notification_role(...)` succeeds for the network owner in both Housing and Family Community.
+- The assignment is observable through `get_network_notification_roles()`.
+- Restored `remove_network_notification_role(...)` succeeds for the network owner in both verticals.
+- The removal is observable through `get_network_notification_roles()`.
+- An ordinary member is denied both notification-role assignment and removal in both verticals.
+- Cross-tenant isolation was proven with a rollback-only owner-exclusive network:
+  - the unrelated member cannot SELECT the isolated network;
+  - the unrelated member cannot activate the isolated network with `set_active_network(...)`.
+
+### Advisor parity
+
+Candidate security advisor counts match golden exactly except for one intentional difference:
+
+- `rls_enabled_no_policy`: golden 103, candidate 103.
+- `function_search_path_mutable`: golden 10, candidate 10.
+- `anon_security_definer_function_executable`: golden 444, candidate 444.
+- `authenticated_security_definer_function_executable`: golden 444, candidate 446.
+  - the +2 are exactly the two D12-restored notification mutators;
+  - both contain explicit `is_network_admin(...)` authorization checks;
+  - ordinary-member denial was verified behaviorally.
+- `auth_leaked_password_protection`: golden 1, candidate 1 (environment setting, not schema drift).
+
+Performance advisor counts also match golden for unindexed foreign keys, auth RLS init-plan warnings, multiple permissive policies and duplicate indexes. The candidate reports more unused indexes only because it is a fresh database with no workload statistics.
+
+### D12-E status
+
+Database/API behavioral parity is **PASS**.
+
+The remaining D12-E gate is browser/product runtime parity against an application instance configured to the disposable candidate project. This requires an application runtime (local or deployed) pointed at the candidate; the database itself no longer has an unresolved D12 behavioral blocker.
+
+
+## Founder browser smoke checkpoint — 2026-09-20
+
+The application was switched to the fresh D12 candidate database (`blpdjhmtayjkcczqltqi`) and manually exercised for approximately 5–10 minutes at an eagle-eye/high-level regression level.
+
+Observed:
+
+- application loads successfully against the candidate;
+- high-level product flows work;
+- the product looks healthy at a broad regression level;
+- no new database/migration regression was observed.
+
+One issue was observed while opening Family Explore / Guide:
+
+`/network/:networkId/guide`
+
+Example:
+
+`/network/d55a9f1c-bab6-405a-81bb-0afa9cde39a0/guide`
+
+This issue existed before D12/database reconstruction and is therefore classified as:
+
+`D12-DEFERRED-ROUTING-001 — PRE_EXISTING_NON_DATABASE_ROUTING_DEFECT`
+
+It does **not** block D12 database promotion. Fix it only after the SQL refinement/database-architecture work is closed so routing work does not contaminate the D12 scope.
+
+Structured evidence: `docs/architecture/D12-MANUAL-BROWSER-SMOKE-EVIDENCE.json`.
