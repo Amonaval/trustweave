@@ -1,5 +1,25 @@
 # TrustWeave — Current State
 
+## 2026-09-22 — FCA-L1 field-feedback closure implemented in source
+
+Founder real-use feedback displaced the screenshot-only checkpoint long enough to fix seven concrete pilot blockers without opening a broad new workstream.
+
+Source changes on `main`:
+
+- `df06bf64` — clears stale Playground state when switching verticals; hardens Residential mobile home, mobile More/navigation visibility, dark-mode public Discovery and sign-out state; exposes appearance control on the signed-out public surface.
+- `ba80e5a7` — adds member-visible Going/Tentative RSVP identities through additive read RPC `get_network_event_rsvps`; existing RSVP counts/writes are unchanged.
+- `6ed76916` — separates Housing **Committee election** from ordinary **Member poll**, adds Maharashtra Type-E process guidance, makes voting choices native radio/checkbox controls, and explains why a vote is unavailable.
+- this closure commit — records the launch-seed reuse contract and tightens RSVP indexed access for TypeScript.
+
+The RSVP database migration is committed as `125_fca_field_feedback_rsvp_visibility.sql` but has **not been applied to any Supabase project in this session**. Until it is applied, the UI degrades to a message while existing RSVP counts continue to work.
+
+Bundled seed reuse is already network-scoped and lineage-driven: unchanged rows with the same dataset version + section + stable row reference are skipped and keep their prior remote IDs; changed mutable rows receive the prior remote ID for update/reuse. The same logical dataset used in a **different network must create separate network-owned records** to preserve tenant isolation.
+
+No deployment, GitHub workflow, connected browser suite, paid service or Supabase mutation was performed in this field-feedback pass.
+
+**Next action remains validation, not feature expansion:** run the touched journeys locally/deployed when appropriate, apply migration 125 only to an explicitly chosen Supabase environment, and then obtain the MPF/pilot reaction required by FCA-L1.
+
+
 ## 2026-09-22 — FCA-L1 selected: MPF East public pilot proof
 
 NAA-L1 is implemented in source and Network Activation is parked. Portfolio re-selection now makes **FCA-L1 — MPF East public pilot proof** the single bounded active slice.
