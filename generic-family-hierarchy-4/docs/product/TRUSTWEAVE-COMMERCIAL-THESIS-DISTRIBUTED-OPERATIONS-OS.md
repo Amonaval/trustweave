@@ -125,3 +125,18 @@ A business group is a governed federation of companies.
 > **Model every unit as a private network. Connect them into governed networks of networks. Let AI understand authorized activity across the whole organization and surface the few things that matter.**
 
 Family remains the deepest trust thesis. MPF remains the federation proving ground. Residential remains the operational proving ground. **Distributed Operations becomes the first serious revenue experiment.**
+
+
+## 10. Relationship to the AI-native Trusted Network Intelligence thesis — 2026-09-22
+
+Distributed Operations remains the leading **near-term paid-wedge hypothesis**. A separate, higher-upside long-term thesis is now tracked: **TrustWeave Intelligence Fabric**, where AI operates over trusted relationships, explicit intent, institutional memory, consent and federation to discover and coordinate value inside and across governed networks.
+
+These directions are complementary rather than mutually exclusive. TrustWeave Ops can become one consumer of the same shared intelligence primitives: authorized context, role-aware agents, institutional memory, evidence, policy and action.
+
+Portfolio rule:
+
+> **Do not abandon a clearer paid wedge for an exciting platform thesis; do not let a near-term wedge prevent validation of a potentially category-defining shared intelligence layer.**
+
+See:
+- TRUSTWEAVE-AI-NATIVE-TRUSTED-NETWORK-INTELLIGENCE-THESIS.md
+- TRUSTWEAVE-PRODUCT-THESIS-EVALUATION-PORTFOLIO.md

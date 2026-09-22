@@ -54,3 +54,16 @@ Smallest credible slice: location hierarchy, SOP/audit, issues + corrective acti
 This does not demote Family, MPF / Community or Residential: Family remains the deepest trust laboratory; MPF the federation proving ground; Residential the operational proving ground; Distributed Operations becomes the first serious revenue experiment; Promoter / Business Group becomes the higher-ticket expansion after integrations are proven.
 
 Canonical detail: `docs/product/TRUSTWEAVE-COMMERCIAL-THESIS-DISTRIBUTED-OPERATIONS-OS.md`.
+
+
+## 2026-09-22 — AI-native trusted-network intelligence thesis added
+
+A new high-potential long-term thesis is now tracked alongside the Distributed Operations commercial wedge: **TrustWeave Intelligence Fabric — intelligence for trusted human networks**.
+
+The idea is not to add generic AI chat. It is to let authorized AI reason over TrustWeave's strongest foundations — multi-network identity, verified relationships, roles, institutional history, permissions, explicit intent, consent and federation — so the product can discover who can help whom, preserve organizational memory, coordinate safe introductions/actions and eventually bridge networks without collapsing privacy boundaries.
+
+Current portfolio decision: this is the **leading long-term category thesis for validation**, while **TrustWeave Ops remains the leading near-term paid-wedge hypothesis**. Active reliability / architecture / D12 execution is unchanged.
+
+Canonical detail:
+- docs/product/TRUSTWEAVE-AI-NATIVE-TRUSTED-NETWORK-INTELLIGENCE-THESIS.md
+- docs/product/TRUSTWEAVE-PRODUCT-THESIS-EVALUATION-PORTFOLIO.md

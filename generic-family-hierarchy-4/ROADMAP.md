@@ -114,3 +114,32 @@ The active reliability / architecture program above remains engineering authorit
 7. Expand toward a Promoter / Business Group Command Center only after connector/data-quality maturity.
 
 This track must not interrupt current Residential / Family Community reliability work or database/bootstrap closure.
+
+
+## Parallel strategic validation track — AI-native Trusted Network Intelligence
+
+**Product-thesis only; not current execution authority.**
+
+TrustWeave will evaluate whether its strongest long-term differentiation is a shared **Intelligence Fabric for trusted human networks**: member/network agents operating over explicit intent, verified trust paths, institutional memory, consent, permissions and federated network boundaries.
+
+Current working portfolio decision:
+
+- active engineering remains reliability / architecture / D12 closure;
+- AI Trusted Network Intelligence Fabric is the highest-upside long-term thesis to validate;
+- TrustWeave Ops remains the strongest near-term monetization hypothesis;
+- Family + Community become natural proving grounds for trust/intent/consent;
+- Residential remains an operational proving ground.
+
+Validation sequence before broad implementation:
+
+1. define intent, consent, trust-path and match-explanation semantics;
+2. prototype one synthetic "I need help" flow;
+3. test with neutral users against directory/group-broadcast alternatives;
+4. run a bounded human-reviewed Community/Association pilot;
+5. separately prove a Network Agent job such as meeting preparation or institutional-memory retrieval;
+6. test cross-network federation only after two networks independently produce local value;
+7. re-score the portfolio using observed outcome, trust and willingness-to-pay evidence.
+
+Canonical strategy:
+- docs/product/TRUSTWEAVE-AI-NATIVE-TRUSTED-NETWORK-INTELLIGENCE-THESIS.md
+- docs/product/TRUSTWEAVE-PRODUCT-THESIS-EVALUATION-PORTFOLIO.md
