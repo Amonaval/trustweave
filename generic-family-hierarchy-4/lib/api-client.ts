@@ -13,7 +13,7 @@ async function authenticatedHeaders(){
 
 export async function getQuery<TResponse>(path:string):Promise<TResponse>{
  const headers=await authenticatedHeaders();
- const response=await fetch(path,{headers,cache:"no-store"});
+ const response=await fetch(path,{headers});
  let payload:ApiResponse<TResponse>|null=null;try{payload=await response.json() as ApiResponse<TResponse>}catch{}
  if(response.ok&&payload?.ok)return payload.data;
  if(payload&&payload.ok===false)throw new ApiCommandError(payload.error.message,payload.error.code,payload.requestId,response.status);

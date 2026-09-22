@@ -1,7 +1,7 @@
 # TrustWeave — AI Start Here
 
-**Current mission:** D12 — Modular Database Architecture / Migration OS — **FRESH BOOTSTRAP/CATALOG PARITY PASS; behavior and browser parity pending**  
-**Active execution record:** `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md` and `docs/architecture/D12-BROWSER-PARITY-HANDOFF.md`
+**Current mission:** M3-C — Autonomous Company Runtime / Founder Spectator Mode  
+**Active execution record:** `missions/mission-003/m3-c/mission.json`
 
 ## Read order
 
@@ -38,7 +38,6 @@ These JSON files are executable projections. They never override the constitutio
 - Historical migrations are immutable.
 - Keep founder involvement to explicit approval gates and exceptional decisions.
 - Close a mission with commit-bound evidence and synchronized canonical truth.
-- Batch related code, tests, evidence and docs into coherent checkpoint commits; use micro-commits only when rollback/bisect/security isolation materially benefits.
 
 ## Historical context
 

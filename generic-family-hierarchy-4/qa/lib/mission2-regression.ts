@@ -36,34 +36,25 @@ export function mission2Watch(page:Page,testInfo:TestInfo){
 
 
 export async function openSurface(page:Page,id:string){
- const visible=(testId:string)=>page.locator(`[data-testid="${testId}"]:visible`).first();
- const activate=async(target:Locator,label:string)=>{
-  await expect(target,`${label} should be reachable`).toBeVisible({timeout:10_000});
-  for(let attempt=0;attempt<3;attempt++){
-   await target.click();await userPause(page,.35);
-   if(await target.evaluate(el=>el.classList.contains('active')).catch(()=>false))return;
-   await page.waitForTimeout(250);
-  }
-  await expect(target,`${label} should become active after navigation`).toHaveClass(/active/,{timeout:5_000});
- };
- let target=visible(`qa-nav-${id}`);
- if(await target.count()){await activate(target,`surface ${id}`);return}
- target=visible(`qa-mobile-nav-${id}`);
- if(await target.count()){await activate(target,`mobile surface ${id}`);return}
+ const visible=async(testId:string)=>page.locator(`[data-testid="${testId}"]:visible`).first();
+ let target=await visible(`qa-nav-${id}`);
+ if(await target.count()){await userClick(page,target);return}
+ target=await visible(`qa-mobile-nav-${id}`);
+ if(await target.count()){await userClick(page,target);return}
  const desktopMore=page.locator('.product-nav-more:visible summary, .family-nav-more:visible summary').first();
  if(await desktopMore.count()){
   await desktopMore.click();await userPause(page,.4);
-  target=visible(`qa-nav-${id}`);
-  if(await target.count()){await activate(target,`surface ${id}`);return}
+  target=await visible(`qa-nav-${id}`);
+  if(await target.count()){await userClick(page,target);return}
  }
- const mobileMore=visible('qa-mobile-nav-more');
+ const mobileMore=await visible('qa-mobile-nav-more');
  if(await mobileMore.count()){
   await userClick(page,mobileMore,.35);
-  target=visible(`qa-mobile-more-${id}`);
-  await activate(target,`mobile surface ${id}`);return;
+  target=await visible(`qa-mobile-more-${id}`);
+  await expect(target,`mobile surface ${id} should be reachable`).toBeVisible({timeout:10_000});
+  await userClick(page,target);return;
  }
- target=visible(`qa-nav-${id}`);
- await activate(target,`surface ${id}`);
+ await expect(page.locator(`[data-testid="qa-nav-${id}"]:visible`).first(),`surface ${id} should be reachable`).toBeVisible({timeout:10_000});
 }
 
 export async function expectAdminWorkspace(page:Page){

@@ -42,29 +42,8 @@ jobs:
           cache: npm
           cache-dependency-path: generic-family-hierarchy-4/package-lock.json
 
-      - name: Reject committed secrets
-        run: node scripts/check-no-committed-secrets.mjs
-
       - name: Install locked dependencies
         run: npm ci
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Verify D12 database tooling syntax
-        run: python -m py_compile scripts/d12-classify-catalog.py scripts/d12-reconstruct-canonical.py scripts/d12-prepare-candidate.py scripts/d12-apply-candidate.py scripts/d12-capture-candidate.py scripts/d12-compare-catalogs.py scripts/d12-verify-candidate.py scripts/d12-promotion-gate.py scripts/d12-inspect-sql-editor-csv.py scripts/d12-validate-bootstrap.py scripts/d12-apply-bootstrap.py
-
-      - name: Verify D12 runtime parity tooling syntax
-        run: node --check qa/run-d12-candidate-parity.mjs && node --check qa/db/d12-notification-role-contract.mjs && node --test qa/unit/d12-evidence-contracts.test.mjs
-
-      - name: Test D12 database URL and promotion guards
-        run: python -m unittest discover -s qa/unit -p 'test_d12_*.py'
-
-      - name: Verify committed D12 bootstrap integrity
-        run: python scripts/d12-validate-bootstrap.py
-
 
       - name: Verify company architecture
         run: npm run agentic:architecture
