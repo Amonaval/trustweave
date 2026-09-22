@@ -6,6 +6,26 @@ A feature is strategically valuable only when it helps answer a painful network 
 
 # Founder Compass
 
+## 2026-09-22 binding execution rule — prove activation before expanding intelligence
+
+The consolidated D0–D12 architecture is now leverage, not the roadmap.
+
+The active product experiment is **V1 — Network Activation Autopilot** for Family Community / Association.
+
+Binding rules:
+
+- prove that an existing institution can become useful in TrustWeave without being manually rebuilt;
+- maximize machine reconstruction and minimize meaningful human decisions;
+- preserve source provenance separately from approved canonical truth;
+- when records conflict, ask rather than guess;
+- deterministic work stays deterministic;
+- no paid/external AI dependency is authorized for V1;
+- do not build broad V2 intelligence, Residential Autopilot, new verticals or more architecture before one real Association activation produces product evidence;
+- source completion is not V1 success; the success signal is saved setup work, trusted reconstruction, useful immediate insight and willingness to activate another network.
+
+Canonical execution detail: `V1-NETWORK-ACTIVATION-AUTOPILOT.md`.
+
+
 ## Objective Hierarchy
 
 During the family-first release period, when priorities conflict: 1. **Help a
