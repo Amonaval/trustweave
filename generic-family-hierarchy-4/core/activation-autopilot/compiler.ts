@@ -96,7 +96,7 @@ function sourceFor(
     fileName: review.fileName,
     schemaVersion: review.schema.version,
     sheetKey: sheet.schema.key,
-    sheetName: sheet.schema.name,
+    sheetName: row.sheetName || sheet.schema.name,
     rowNumber: row.rowNumber,
     columnKey: column?.key,
     columnLabel: column?.label,
@@ -183,7 +183,10 @@ function importBlockers(review: ImportReview): ActivationAttentionItem[] {
     .filter((issue) => issue.severity === "error")
     .map((issue, index) => {
       const matchingSheet = review.sheets.find(
-        (sheet) => sheet.schema.name === issue.sheet || sheet.schema.key === issue.sheet,
+        (sheet) =>
+          sheet.schema.name === issue.sheet ||
+          sheet.schema.key === issue.sheet ||
+          sheet.rows.some((row) => row.sheetName === issue.sheet),
       );
       const matchingRow = issue.row
         ? matchingSheet?.rows.find((row) => row.rowNumber === issue.row)
