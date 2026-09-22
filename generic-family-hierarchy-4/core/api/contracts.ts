@@ -52,10 +52,14 @@ export type HousingOperationsCommand=
  | {action:"setComplaintRoute";input:{category:string;roleKey:string}};
 export type HousingOperationsCommandResult={id?:string;notificationIds?:string[]};
 
+export type ActivationEvidenceSourceInput={externalId:string;title:string;schemaVersion:string;metadata?:Record<string,unknown>};
+export type ActivationEvidenceRecordInput={chunkId:string;title:string;section:string;excerpt:string;extractionVersion?:string;metadata?:Record<string,unknown>};
+
 export type FamilyAssociationAdminCommand=
  | {action:"updateSettings";input:{dependentAgeLimit:number;gracePeriodDays:number;maxAutoChildren:number;onboardingPolicy:string;financeVisibility:string}}
  | {action:"upsertMembershipYear";input:{id?:string|null;label:string;startDate:string;endDate:string;familyFee:number;gracePeriodDays:number;status:string}}
  | {action:"setFamilyMembership";input:{yearId:string;familyEntityId:string;representativeEntityId?:string|null;status:string;paymentStatus:string;amountPaid:number;paymentReference?:string}}
  | {action:"assignRole";input:{yearId?:string|null;personEntityId:string;roleCatalogId:string;startsOn?:string|null;endsOn?:string|null;notes?:string}}
- | {action:"addFinanceEntry";input:{yearId:string;entryType:string;amount:number;description?:string;visibility:string}};
-export type FamilyAssociationAdminCommandResult={id?:string};
+ | {action:"addFinanceEntry";input:{yearId:string;entryType:string;amount:number;description?:string;visibility:string}}
+ | {action:"recordActivationEvidence";input:{source:ActivationEvidenceSourceInput;records:ActivationEvidenceRecordInput[]}};
+export type FamilyAssociationAdminCommandResult={id?:string;sourceId?:string;insertedEvidence?:number};

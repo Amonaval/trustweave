@@ -10,7 +10,9 @@ TrustWeave now has several plausible product directions. They should be compared
 
 A high score means "deserves stronger validation," not "build immediately."
 
-The active engineering program remains governed by current reliability, architecture and database/bootstrap closure documents. Product-thesis work can change future direction only after an explicit Founder decision backed by evidence.
+A newly discovered adjacent product must not be forced into the scorecard before its buyer/job is clear. The **Generic Data Transformation Engine** is therefore tracked as a parallel thesis first, with an independent proof gate before it receives a portfolio score.
+
+The consolidated architecture/D0–D12 baseline is now treated as leverage rather than the agenda. Founder decision on 2026-09-22 selected **V1 — Network Activation Autopilot** as the active product-value experiment. Product-thesis work can change future direction only after explicit Founder decisions backed by evidence.
 
 ## 2. Weighted evaluation framework
 
@@ -99,29 +101,78 @@ Strong recurring workflows and governance, but less differentiated as a standalo
 
 Therefore: preserve as a reliability and operational-workflow proving ground rather than broadening it aggressively.
 
+## 4A. Parallel adjacent thesis — Generic Data Transformation Engine
+
+The Network Activation Autopilot work exposed a potentially independent product:
+
+> Human-supervised X → Y spreadsheet/data transformation where the machine performs the scale work and the human supplies semantic meaning.
+
+This capability could power TrustWeave while remaining completely separate and reusable.
+
+However, this is **not automatically a new company priority**.
+
+The generic category already contains mature data-import/mapping/validation products, so the standalone thesis must prove a sharper job than "CSV importer" or "AI mapping."
+
+The proposed differentiation to validate is:
+
+- arbitrary supported source X + arbitrary target Y;
+- user-assisted semantic mapping instead of domain synonym hard-coding;
+- reusable transformation recipes;
+- explainable pattern-level bulk repair;
+- partial safe completion rather than forced 100% import;
+- downloadable completion workbook + review report;
+- provenance for every transformation;
+- correctness/trust as a stronger product promise than maximal automation;
+- independently useful output even without integrating another application.
+
+Independent proof gate before scoring/building broadly:
+
+1. transform an input not created for the product;
+2. target an unrelated output schema/workbook;
+3. require only small human semantic input;
+4. perform orders of magnitude more row-level work than the human;
+5. isolate unresolved data instead of guessing;
+6. produce a useful transformed file + audit/review artifact;
+7. reuse the recipe safely on a second changed source;
+8. get a non-TrustWeave user to say they would use/pay for the capability.
+
+Canonical thesis:
+
+- `docs/product/GENERIC-DATA-TRANSFORMATION-ENGINE-THESIS.md`
+
 ## 5. Current portfolio decision
 
-As of 2026-09-22:
+As of 2026-09-22, after D12 review closure and consolidation onto `main`:
 
-1. **Execution now does not change.** Complete the active reliability / architecture / D12 database-bootstrap work already in flight.
-2. **Elevate AI Trusted Network Intelligence Fabric to the leading long-term category thesis for validation.**
-3. **Keep TrustWeave Ops / Distributed Operations as the leading near-term paid-wedge hypothesis.**
-4. **Use Family and Community as strategic proving grounds for trust, intent, consent, relationship intelligence and institutional memory.**
-5. **Use Residential as a governed-operations proving ground.**
-6. **Defer Promoter / Business Group productization until connector/data-quality maturity exists.**
+1. **Execute only NAA-L1 — Lean Source Mapping Bridge.** Prove that TrustWeave can take an ordinary supported Excel/CSV, ask the user to confirm a small mapping, safely transform the mapped subset and expose unresolved data. Stop the workstream after this proof instead of automatically building the full transformation engine.
+2. **Keep the broader generic X→Y transformation engine parked as a separate product thesis.** If it is later re-selected for implementation, it belongs in an independently usable codebase/repository and TrustWeave integrates through an adapter. Do not continue into it automatically after NAA-L1.
+3. **Do not build the broad Intelligence Fabric yet.** V1 must first prove that high-quality governed context can be created cheaply enough to make later intelligence credible.
+4. **Retain Governed Institutional Intelligence as V2 only if V1 produces strong product evidence.**
+5. **Keep TrustWeave Ops / Distributed Operations as a serious paid-wedge hypothesis**, but do not start a generic franchise/operations build before a design-partner problem justifies it.
+6. **Use Family Community / Association as the first TrustWeave activation laboratory** because households, representatives, annual membership and governance create richer institutional structure than a simple member directory.
+7. **Preserve Residential as a second operational proving ground**, not a parallel V1 implementation.
+8. **Do not return to broad architecture, D12 reconstruction, feature accumulation or new vertical work without a concrete value reason.**
 
-This deliberately separates three questions:
+The portfolio sequence is now:
 
 ~~~text
 What do we execute now?
-    -> reliability / architecture closure
+    -> V1 Network Activation Autopilot
 
-What may become the category-defining product?
-    -> AI Trusted Network Intelligence Fabric
+What does V1 need to prove?
+    -> messy existing records can become trustworthy governed context
+       with very little human setup and immediate useful insight
 
-What may reach paid proof fastest?
+What becomes next only after that proof?
+    -> V2 Governed Institutional Intelligence
+
+What remains the strongest separate paid-wedge hypothesis?
     -> TrustWeave Ops / Distributed Operations
 ~~~
+
+Canonical execution detail:
+- `docs/product/V1-NETWORK-ACTIVATION-AUTOPILOT.md`
+
 
 ## 6. Fast validation roadmap for the Intelligence Fabric
 
@@ -263,3 +314,11 @@ When strategy work resumes, determine whether each is:
 5. or an attractive idea that should be discarded.
 
 Canonical analysis: `TRUSTWEAVE-DAY1-REASSESSMENT-AND-ADJACENT-AI-DIRECTIONS.md`.
+
+## 11. Network Activation Autopilot product-learning record
+
+The complete discussion synthesis, buyer/user critique, open-source leverage policy, mission queue, deferred ideas and kill criteria are maintained in:
+
+- docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
+
+This record is the handoff for NAA-1 and prevents the parallel transformation-engine thesis from silently becoming execution authority beyond its evidence.

@@ -3,7 +3,7 @@ import {executeFamilyAssociationAdminCommand} from "../../../../../../server/fam
 import {executeCommand} from "../../../../../../server/shared/command-runtime";
 import {CommandError} from "../../../../../../server/shared/errors";
 export const runtime="nodejs";
-const actions=new Set(["updateSettings","upsertMembershipYear","setFamilyMembership","assignRole","addFinanceEntry"]);
+const actions=new Set(["updateSettings","upsertMembershipYear","setFamilyMembership","assignRole","addFinanceEntry","recordActivationEvidence"]);
 export async function POST(request:Request){
  return executeCommand({request,commandName:"familyAssociationAdmin",idempotency:"required",rateLimit:{limit:30},parse:body=>{
   const action=typeof body.action==="string"?body.action:"";

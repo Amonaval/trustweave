@@ -1,10 +1,54 @@
 # TrustWeave — Roadmap
 
-## Current priority — D12 database architecture (2026-09-20)
+## Current priority — V1 Network Activation Autopilot (2026-09-22)
 
-The corrected canonical bootstrap passed full structural, security and API catalog parity after a fresh install on disposable project `yqwitkoxyrujbzpjwuji`. The golden project remains read-only; earlier replay projects are paused. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md` for commit and capture evidence.
+TrustWeave is still pre-release. Network Activation should therefore receive **one bounded 20–30% effort / 70–80% impact slice**, not a full transformation-platform program.
 
-The managed-SQL receipt adapter passes against the archived evidence, and the promotion gate now accepts the reviewed replay but remains `NOT_READY` until connected evidence exists. Next run the candidate app in an environment that reaches its API, configure its local QA key and seed, then execute bounded owner/admin/member behavior and browser journeys for Housing Society and Family Community. Reconcile all five evidence layers before D12-F promotion; School SQL stays deferred until this stability gate closes.
+### NAA-L1 — Lean Source Mapping Bridge — SOURCE IMPLEMENTED
+
+Prove only this:
+
+> Can a user bring an ordinary supported Excel/CSV, confirm a small source → TrustWeave mapping, and get a safe normalized activation candidate without manually migrating hundreds/thousands of rows?
+
+In scope:
+
+- XLSX/CSV upload using existing spreadsheet plumbing;
+- sheet/header selection or cheap detection;
+- source-column → target-field mapping UI;
+- reuse existing/open-source mapping/validation capability where it actually saves work;
+- user confirm/change/ignore;
+- deterministic application across all rows;
+- explicit unresolved/missing-data summary;
+- safe normalized preview/output for the existing governed compiler.
+
+Not required for this alpha slice:
+
+- smart pattern-repair engine;
+- persistent recipes;
+- drift detection;
+- separate standalone-engine repository;
+- arbitrary external target Y;
+- multi-file orchestration;
+- PDF/OCR/connectors;
+- AI/LLM semantic inference;
+- migration 124 / database activation.
+
+### Stop condition
+
+Source implementation now covers the bounded slice above. Network Activation is **parked for portfolio re-selection**; synthetic/browser proof may be run when we intentionally validate this area, but no follow-on feature mission is implied.
+
+Open items remain visible in `docs/product/PRODUCT-WORKSTREAM-TRACKER.md`; they are not an instruction to continue this category.
+
+Detailed product learning:
+
+- `docs/product/V1-NETWORK-ACTIVATION-AUTOPILOT.md`
+- `docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md`
+- `docs/product/GENERIC-DATA-TRANSFORMATION-ENGINE-THESIS.md`
+
+## D12 architecture/recoverability — review-closed
+
+D12 successfully demonstrated fresh-project structural/security/API-contract parity. Formal exhaustive browser certification remains deferred by Founder decision, not falsely complete. The historical golden Supabase remains the preferred real environment for existing data/users; the D12 project remains a recovery/reference environment. Restart D12 only for a concrete product/recovery reason.
+
 
 ## Active architecture priority — M3-D (2026-09-19)
 
@@ -149,3 +193,9 @@ Validation sequence before broad implementation:
 Canonical strategy:
 - docs/product/TRUSTWEAVE-AI-NATIVE-TRUSTED-NETWORK-INTELLIGENCE-THESIS.md
 - docs/product/TRUSTWEAVE-PRODUCT-THESIS-EVALUATION-PORTFOLIO.md
+
+## Cross-workstream backlog authority
+
+Use `docs/product/PRODUCT-WORKSTREAM-TRACKER.md` to retain open work across Network Activation, verticals, architecture, reliability and product-thesis areas.
+
+A backlog item is not active merely because it is documented.
