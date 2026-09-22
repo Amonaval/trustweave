@@ -1509,3 +1509,7 @@ html[data-theme="dark"] .public-hero-visual:before,html[data-theme="dark"] .publ
  .housing-society-network .hs-chairman-status>div{margin-top:10px;padding-top:9px}
  .public-top-actions{gap:4px}.public-top-actions .theme-select{padding:5px}.public-top-actions .theme-select select{max-width:24px;color:transparent}
 }
+
+.activity-rsvp-summary{display:inline-flex;align-items:center;gap:5px;border:0;background:transparent;color:var(--muted);padding:0;font:inherit;font-size:inherit;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+.activity-rsvp-people{margin:9px 0 3px;padding:10px 11px;border:1px solid var(--line);border-radius:11px;background:var(--surface-soft);display:grid;gap:7px;font-size:10px}
+.activity-rsvp-people>div{display:grid;grid-template-columns:minmax(82px,auto) 1fr;gap:8px;align-items:start}.activity-rsvp-people b{color:var(--text)}.activity-rsvp-people span,.activity-rsvp-people small{color:var(--muted);line-height:1.45}
