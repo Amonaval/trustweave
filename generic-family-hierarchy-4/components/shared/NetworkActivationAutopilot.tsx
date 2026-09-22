@@ -26,6 +26,7 @@ import {
 } from "../../core/activation-autopilot/resolution";
 import {buildActivationInstitutionalReport} from "../../core/activation-autopilot/intelligence";
 import {NetworkSectionHead} from "./NetworkUi";
+import LeanSourceMapping from "./LeanSourceMapping";
 
 type Props = {
   onCommit: (review: ImportReview) => Promise<ImportCommitResult>;
@@ -55,6 +56,15 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
     ? applyActivationResolutions(review,candidate,decisions)
     : null;
 
+  const acceptReview = (parsed: ImportReview) => {
+    const compiled = compileNetworkActivationCandidate(parsed);
+    setReview(parsed);
+    setCandidate(compiled);
+    setDecisions([]);
+    setActivated(null);
+    setMessage("");
+  };
+
   const read = async (file: File) => {
     setBusy(true);
     setMessage("");
@@ -62,9 +72,7 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
     setDecisions([]);
     try {
       const parsed = await parseImportWorkbook(await file.arrayBuffer(),file.name,schema);
-      const compiled = compileNetworkActivationCandidate(parsed);
-      setReview(parsed);
-      setCandidate(compiled);
+      acceptReview(parsed);
     } catch (error: any) {
       setReview(null);
       setCandidate(null);
@@ -125,12 +133,14 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
       description="Upload existing Association records. TrustWeave compiles them into a candidate governed network, shows exactly what it understood, and asks only about ambiguity before anything becomes canonical."
     />
 
+    <LeanSourceMapping schema={schema} onReview={acceptReview}/>
+
     <div className="product-import-card">
       <div>
         <FileSpreadsheet/>
         <span>
-          <h3>Start with the existing Association workbook</h3>
-          <p>People, households, representatives, annual membership and leadership history are analyzed before anything is written to the network.</p>
+          <h3>Already using the TrustWeave activation format?</h3>
+          <p>Use the guided workbook directly. Otherwise use the mapping bridge above with the Excel/CSV your organization already has.</p>
         </span>
       </div>
       <button
@@ -141,7 +151,7 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
         <Download size={15}/> Download activation workbook
       </button>
       <label className="btn primary">
-        <UploadCloud size={15}/> {busy?"Understanding records…":"Analyze existing records"}
+        <UploadCloud size={15}/> {busy?"Understanding records…":"Analyze TrustWeave workbook"}
         <input
           data-testid="qa-activation-pack-file"
           hidden
