@@ -1521,3 +1521,67 @@ html[data-theme="dark"] .public-hero-visual:before,html[data-theme="dark"] .publ
 .hs-election-legal-note,.hs-statutory-election-note,.network-vote-unavailable,.hs-vote-type-help{display:flex;gap:8px;align-items:flex-start;padding:10px 11px;border-radius:10px;background:var(--surface-soft);color:var(--muted);font-size:10px;line-height:1.45}.hs-election-legal-note svg,.hs-statutory-election-note svg,.network-vote-unavailable svg{flex:none;color:var(--product);margin-top:1px}.hs-vote-type-help{display:grid;margin-bottom:11px}.hs-vote-type-help b{color:var(--text)}.hs-vote-type-help strong{color:var(--text)}
 .network-ballot-option{cursor:pointer}.network-ballot-option>input{width:16px;height:16px;accent-color:var(--product);flex:none;margin:2px 2px 0 0}.network-ballot-option.disabled{cursor:not-allowed;opacity:.72}.network-vote-unavailable{margin:9px 0}
 @media(max-width:700px){.hs-election-guide ol{grid-template-columns:1fr}.hs-election-guide{padding:12px}.network-ballot-option{align-items:flex-start}}
+
+
+/* FCA-L1 follow-up: field-observed responsive + theme regressions. */
+/* Real Residential names can be substantially longer than demo names. Make the
+   whole flagship hero shrink/flow rather than only reducing font sizes. */
+.housing-society-network .hs-chairman-hero,
+.housing-society-network .hs-chairman-hero-copy,
+.housing-society-network .hs-chairman-status{min-width:0;max-width:100%;box-sizing:border-box}
+.housing-society-network .hs-chairman-hero-copy h1{max-width:100%;overflow-wrap:anywhere;word-break:break-word}
+.housing-society-network .hs-chairman-actions{max-width:100%}
+.housing-society-network .hs-chairman-actions .btn{min-width:0;white-space:normal;text-align:center;line-height:1.25}
+@media(max-width:820px){
+ .housing-society-network .hs-chairman-hero{width:100%;grid-template-columns:minmax(0,1fr);gap:12px;padding:18px;border-radius:19px;overflow:hidden}
+ .housing-society-network .hs-chairman-hero-copy{width:100%}
+ .housing-society-network .hs-chairman-hero-copy h1{font-size:clamp(24px,7vw,32px);line-height:1.08}
+ .housing-society-network .hs-chairman-hero-copy p{font-size:12px;line-height:1.5}
+ .housing-society-network .hs-chairman-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:13px;width:100%}
+ .housing-society-network .hs-chairman-actions .btn{width:100%;justify-content:center;padding:9px 7px;font-size:10px}
+ .housing-society-network .hs-chairman-status{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;padding:13px}
+ .housing-society-network .hs-chairman-status>span,.housing-society-network .hs-chairman-status>small{grid-column:1/-1}
+ .housing-society-network .hs-chairman-status>strong{font-size:34px}
+ .housing-society-network .hs-chairman-status>div{grid-column:1/-1;min-width:0;margin-top:10px;padding-top:9px}
+}
+@media(max-width:430px){
+ .housing-society-network .hs-chairman-hero{padding:14px;border-radius:16px}
+ .housing-society-network .hs-chairman-actions{grid-template-columns:minmax(0,1fr)}
+ .housing-society-network .hs-chairman-actions .btn{min-height:38px;font-size:11px}
+}
+
+/* Signed-out Discovery must remain readable in dark mode. Replace the remaining
+   light-only cards/backgrounds with theme surfaces and explicit foregrounds. */
+html[data-theme="dark"] .public-discovery-shell{background:radial-gradient(circle at 8% 0%,color-mix(in srgb,var(--brand) 18%,transparent),transparent 34%),radial-gradient(circle at 92% 8%,color-mix(in srgb,var(--product-accent,var(--brand)) 14%,transparent),transparent 32%),var(--bg);color:var(--text)}
+html[data-theme="dark"] .public-discovery,
+html[data-theme="dark"] .public-detail-page,
+html[data-theme="dark"] .public-guide-page{color:var(--text)}
+html[data-theme="dark"] .public-role-grid>button,
+html[data-theme="dark"] .public-journey-flow article,
+html[data-theme="dark"] .public-member-grid article,
+html[data-theme="dark"] .public-guide-levels button,
+html[data-theme="dark"] .public-guide-grid article,
+html[data-theme="dark"] .public-guide-next,
+html[data-theme="dark"] .public-artifact-footer{background:var(--surface);border-color:var(--line);color:var(--text)}
+html[data-theme="dark"] .public-guide-levels button.active{background:var(--brand);border-color:var(--brand);color:#fff}
+html[data-theme="dark"] .public-role-icon,
+html[data-theme="dark"] .public-journey-icon,
+html[data-theme="dark"] .public-guide-grid article>span{background:var(--brand-soft);color:var(--brand)}
+html[data-theme="dark"] .public-role-grid b,
+html[data-theme="dark"] .public-section-head>span,
+html[data-theme="dark"] .public-member-grid svg{color:var(--brand)}
+html[data-theme="dark"] .public-detail-hero{border-color:var(--line)}
+html[data-theme="dark"] .public-back,
+html[data-theme="dark"] .public-role-grid p,
+html[data-theme="dark"] .public-journey-flow p,
+html[data-theme="dark"] .public-member-grid p,
+html[data-theme="dark"] .public-guide-head p,
+html[data-theme="dark"] .public-guide-grid p,
+html[data-theme="dark"] .public-guide-next p,
+html[data-theme="dark"] .public-artifact-footer small,
+html[data-theme="dark"] .public-brand small{color:var(--muted);opacity:1}
+html[data-theme="dark"] .public-top-actions .btn{background:var(--surface-raised);border-color:var(--line);color:var(--text)}
+html[data-theme="dark"] .public-top-actions .btn:hover{background:var(--surface-soft)}
+html[data-theme="dark"] .public-top-actions .language-switcher,
+html[data-theme="dark"] .public-top-actions .theme-select{background:var(--surface-raised);border-color:var(--line);color:var(--text)}
+html[data-theme="dark"] .public-top-actions select{background:var(--surface-raised);color:var(--text)}

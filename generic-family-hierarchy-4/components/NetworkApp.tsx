@@ -1086,13 +1086,19 @@ export default function NetworkApp() {
       "image/svg+xml",
     );
   };
-  const enterVerticalPlayground = (variant:"public"|"setup") => {
-    if(!appComposition.playground.enabled)return;
-    const settings=variant==="public"?appComposition.playground.publicNetworkSettings:appComposition.playground.setupNetworkSettings;
+  const enterFamilyPlayground = (variant:"public"|"setup") => {
+    // Never derive Family Playground from the currently rendered vertical.
+    // State updates that clear a Housing/Community demo are asynchronous, so using
+    // activeVerticalKind/appComposition here can reopen the previous playground.
+    const familyComposition=getRenderableVerticalRuntime("family").app;
+    if(!familyComposition.playground.enabled)return;
+    const settings=variant==="public"?familyComposition.playground.publicNetworkSettings:familyComposition.playground.setupNetworkSettings;
     if(!settings)return;
     const d = loadDemoState();
-    const preferred=appComposition.playground.preferredViewerIdentityId;
+    const preferred=familyComposition.playground.preferredViewerIdentityId;
     const viewer=d.members.find(m=>m.id===preferred)?.id || d.members[Math.floor(d.members.length/2)]?.id;
+    setProductizedDemo(null);
+    setAlumniDemo(false);
     setNetwork(settings as unknown as NetworkSettings);
     setMembers(d.members);
     setRelationships(d.relationships);
@@ -1105,10 +1111,10 @@ export default function NetworkApp() {
     setFocusId(viewer);
     setLineageOnly(true);
     setSetupNeeded(false);
-    setView(appComposition.playground.startView as View);
+    setViewState(familyComposition.playground.startView as View);
   };
-  const enterPublicPlayground = () => enterVerticalPlayground("public");
-  const enterSetupPlayground = () => enterVerticalPlayground("setup");
+  const enterPublicPlayground = () => enterFamilyPlayground("public");
+  const enterSetupPlayground = () => enterFamilyPlayground("setup");
   const getShowcaseVerticalSetting=async(kind:NetworkVerticalKind)=>{
     try{const rows=await fetchShowcaseVerticalSettings();return rows.find(row=>row.vertical_kind===kind)||getDefaultShowcaseVerticalSetting(kind)}catch{return getDefaultShowcaseVerticalSetting(kind)}
   };
