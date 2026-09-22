@@ -1,1 +1,0 @@
-Review only changed files. Prefer simplicity and maintainability.
