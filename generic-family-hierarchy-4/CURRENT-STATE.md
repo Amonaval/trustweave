@@ -182,3 +182,25 @@ The next active generation is C8–C10: memory that automatically informs planni
 ## 2026-09-16 — Autonomous Company Generation 3
 
 M3-C8 through M3-C10 are implemented. Durable, cited company memory now informs planning automatically; `/company` gives the Founder a concise spectator cockpit; and one broad product intent flowed through evidence retrieval, five-role debate, governed execution, five real role/device journeys, independent review and local release rehearsal. The selected user outcome raises every visible public Discovery action to a 44px minimum across Housing Society, Family Community and shared member/guide paths without migrations or production effects.
+
+## 2026-09-22 — Network Activation Autopilot discussion closure
+
+The source-adaptation discussion is now canonicalized.
+
+Key outcome:
+
+- the existing governed compiler/activation work is the lower half, not the complete Autopilot;
+- the missing hero layer is arbitrary-source → target adaptation, repair and exception handling;
+- the generic X→Y transformation engine is a separate independently usable product/codebase when implementation begins;
+- TrustWeave becomes one adapter/consumer;
+- small semantic questions to the user are desirable when they avoid unsafe inference;
+- partial safe output is valid;
+- wrong trusted data is unacceptable;
+- reuse-before-build is binding: adopt → compose → extend → build;
+- paid capability may be commercially rational later but remains Founder/cost gated.
+
+**NAA-1 is the next mission:** open-source capability spike + ownership decision.
+
+Canonical handoff:
+
+docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md

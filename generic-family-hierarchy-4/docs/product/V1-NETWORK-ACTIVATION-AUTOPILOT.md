@@ -358,3 +358,16 @@ The next V1 problem is now clearly **arbitrary-source adaptation + assisted tran
 The generic source-to-target engine is a parallel product thesis with a strict separation boundary. Do not create its standalone repository, infrastructure or broad feature set until explicitly authorized.
 
 Do not begin V2 Governed Institutional Intelligence as a broad mission until V1 can demonstrate that genuinely messy source data can be converted into trustworthy governed context with low human effort.
+
+## Canonical discussion synthesis and mission sequence
+
+The product-learning discussion that changed V1 from a known-schema importer into arbitrary-source adaptation is captured in:
+
+- docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
+- docs/product/GENERIC-DATA-TRANSFORMATION-ENGINE-THESIS.md
+
+The next mission is **NAA-1 — Open-source capability spike + ownership decision**.
+
+Do not begin by creating custom mapping/cleaning infrastructure. First prove what existing components can cover, then define the minimal differentiated layer.
+
+If generic-engine implementation proceeds after NAA-1, that engine lives in a separate codebase/repository and TrustWeave consumes it through an adapter.

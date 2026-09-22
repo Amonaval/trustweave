@@ -94,7 +94,7 @@ TrustWeave governed compiler + activation
 
 The engine may expose library, CLI, API or embeddable UI surfaces later, but these are delivery decisions rather than core semantics.
 
-A separate repository/package is preferred once implementation begins. Until that decision is explicitly authorized, TrustWeave should define only the adapter boundary and product requirements, not embed a new generic subsystem into the current application.
+When implementation begins, the generic engine **must live in a separate codebase/repository** and remain independently runnable/testable. TrustWeave should define and consume only a stable adapter contract; it must not absorb the generic subsystem into the application. Repository creation is deferred until NAA-1 establishes what capability we actually need to own.
 
 ## 3. Genericity rule
 
@@ -375,6 +375,26 @@ AI may later be an optional suggestion provider behind an adapter, but:
 - it cannot write trusted output without the same decision rules;
 - source data must not be sent to an external model without an explicit privacy/product decision;
 - any potentially billable external model/API requires explicit Founder approval before use.
+
+The same approval rule applies to paid libraries/products generally: commercial justification may make a paid dependency rational, but it never authorizes spending automatically.
+
+## 14A. Mandatory dependency decision record
+
+Every implementation mission must explicitly state, before custom code:
+
+- which existing/open-source systems were considered;
+- license/commercial-use compatibility;
+- maintenance/activity and known security posture;
+- runtime/stack/privacy implications;
+- estimated percentage of the mission they remove;
+- adopt / compose / extend / build decision;
+- why any owned code is differentiated or otherwise necessary.
+
+“Open source exists” is not enough to adopt it. “We can code it” is not enough to rebuild it.
+
+Canonical discussion synthesis and mission queue:
+
+- docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
 
 ## 15. What is not authorized yet
 

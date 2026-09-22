@@ -273,3 +273,29 @@ Validation sequence before broad implementation:
 Canonical strategy:
 - docs/product/TRUSTWEAVE-AI-NATIVE-TRUSTED-NETWORK-INTELLIGENCE-THESIS.md
 - docs/product/TRUSTWEAVE-PRODUCT-THESIS-EVALUATION-PORTFOLIO.md
+
+## Network Activation Autopilot mission queue — 2026-09-22
+
+Canonical detailed queue:
+
+docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
+
+Current sequence:
+
+| Mission | Status | Product outcome |
+| --- | --- | --- |
+| NAA-0 Product correction + synthesis | COMPLETE | Arbitrary-source + generic X→Y + trust/reuse rules locked |
+| **NAA-1 OSS capability spike + ownership decision** | **NEXT** | Prove what we can adopt/compose before custom building |
+| NAA-2 Standalone engine skeleton + source/target contracts | PENDING | Separate generic codebase; no TrustWeave imports |
+| NAA-3 Structure discovery + assisted mapping + Recipe v0 | PENDING | Existing source can be mapped with small human effort |
+| NAA-4 Transform/validate + safe partial output | PENDING | High-volume repetitive work is machine-owned |
+| NAA-5 Pattern Repair + Exception Workbench | PENDING | One confirmed rule resolves many records |
+| NAA-6 Completion Workbook + Review Report | PENDING | Useful output even without activation |
+| NAA-7 Recipe reuse + drift detection | PENDING | Repeat files do not restart from zero |
+| NAA-8 TrustWeave adapter + compiler bridge | PENDING | Generic engine powers TrustWeave without coupling |
+| NAA-9 Adversarial synthetic proof | PENDING | Very different file shapes; zero silent semantic invention |
+| NAA-10 Real Association read-only proof | PENDING | Real setup/time/trust evidence before DB mutation |
+| NAA-11 Controlled TrustWeave activation | FOUNDER GATED | Migration/runtime only after explicit approval |
+| NAA-12 Unrelated standalone X→Y proof | PENDING | Determine whether the engine is independently valuable |
+
+Do not reorder NAA-11 ahead of the read-only source-adaptation proof merely because the lower activation layer already exists.

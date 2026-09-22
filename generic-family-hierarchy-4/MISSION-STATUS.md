@@ -23,7 +23,7 @@
 
 ## Active objective
 
-Build/validate the missing **source-adaptation + transformation/repair layer** so Network Activation Autopilot can start from the user's existing supported Excel/CSV rather than requiring manual conversion to a TrustWeave template. The human supplies small amounts of semantic meaning; the system performs the repetitive work. Incomplete safe output is acceptable; wrong trusted data is not.
+Execute **NAA-1 — Open-source capability spike + ownership decision** before implementing the missing source-adaptation + transformation/repair layer. Establish what mature components can safely provide, what must remain our differentiated layer, and the separate generic-engine boundary. The human supplies small amounts of semantic meaning; the system performs the repetitive work. Incomplete safe output is acceptable; wrong trusted data is not.
 
 ## Current guardrails
 
@@ -64,3 +64,13 @@ Founder interventions remain **0**. Manual error relays remain **0**. One candid
 | C10 Zero-Touch Demonstration | CLOSE | Broad intent to 44px public journeys, five browser personas and release-ready rehearsal |
 
 Founder interventions: **0**. Manual error relays: **0**. Optional Founder interventions: **0**.
+
+## Network Activation Autopilot mission queue
+
+Detailed NAA-0→NAA-12 sequence:
+
+docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
+
+Current checkpoint: **NAA-0 complete; NAA-1 next.**
+
+Migration 124 remains source-only and is not part of NAA-1.

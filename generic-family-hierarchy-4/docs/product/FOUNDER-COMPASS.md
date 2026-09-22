@@ -32,6 +32,8 @@ Binding rules:
 - generated completion workbooks/review reports are valid product outcomes even before TrustWeave activation;
 - no paid/external AI dependency is authorized by this product direction;
 - before building commodity capability, evaluate mature open-source options first; default sequence is **adopt → compose → extend → build**;
+- every implementation mission that could reuse external capability must record the candidates considered, license/security/maintenance/runtime implications and explicit adopt/compose/extend/build decision before custom implementation;
+- if the generic X → Y engine moves from thesis to implementation, its codebase is separate and independently usable; TrustWeave integrates only through an adapter;
 - building from scratch requires a reason: no suitable component, unacceptable integration/ownership risk, or genuine differentiation/moat;
 - paid dependencies are allowed only when commercial/customer economics justify them and the Founder explicitly approves the cost before any billable use;
 - do not create a standalone repository, provision infrastructure, select a paid model/provider or broaden into generic OCR/connectors without explicit Founder authorization;
@@ -318,3 +320,11 @@ This sharpens the existing Founder rule that **Organizational Intelligence and F
 5. Do **not** start another broad commercial vertical before buyer evidence.
 
 Before building, ask a real operator for hierarchy, MIS, SOP/audit checklist, issue tracker, compliance calendar and Monday-review workflow. Preferred build signal: design-partner access plus LOI, paid discovery, paid trial or another concrete pull signal.
+
+## 2026-09-22 product-learning handoff
+
+The complete reasoning, user/buyer critique, reuse map, kill criteria and NAA-0→NAA-12 mission queue are preserved in:
+
+- docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
+
+Use that artifact when resuming Network Activation Autopilot so the team does not regress into a TrustWeave-template importer or rebuild commodity spreadsheet tooling.

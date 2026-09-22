@@ -145,7 +145,7 @@ Canonical thesis:
 As of 2026-09-22, after D12 review closure and consolidation onto `main`:
 
 1. **Execute the missing V1 source-adaptation + repair layer now.** Test whether TrustWeave can start from the organization's existing supported Excel/CSV rather than a preformatted activation workbook, ask only a small number of semantic questions, and safely perform the repetitive transformation work.
-2. **Keep the generic X→Y transformation engine architecturally separate from TrustWeave.** Treat it as a parallel product thesis and reusable component; do not create a new repository/service or broad standalone product until its independent proof gate is authorized and passed.
+2. **Keep the generic X→Y transformation engine architecturally separate from TrustWeave.** If implementation begins after the OSS/ownership spike, the engine must live in a separate independently usable codebase/repository; TrustWeave integrates through an adapter. Do not broaden it into a standalone SaaS/service before independent evidence.
 3. **Do not build the broad Intelligence Fabric yet.** V1 must first prove that high-quality governed context can be created cheaply enough to make later intelligence credible.
 4. **Retain Governed Institutional Intelligence as V2 only if V1 produces strong product evidence.**
 5. **Keep TrustWeave Ops / Distributed Operations as a serious paid-wedge hypothesis**, but do not start a generic franchise/operations build before a design-partner problem justifies it.
@@ -314,3 +314,11 @@ When strategy work resumes, determine whether each is:
 5. or an attractive idea that should be discarded.
 
 Canonical analysis: `TRUSTWEAVE-DAY1-REASSESSMENT-AND-ADJACENT-AI-DIRECTIONS.md`.
+
+## 11. Network Activation Autopilot product-learning record
+
+The complete discussion synthesis, buyer/user critique, open-source leverage policy, mission queue, deferred ideas and kill criteria are maintained in:
+
+- docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
+
+This record is the handoff for NAA-1 and prevents the parallel transformation-engine thesis from silently becoming execution authority beyond its evidence.
