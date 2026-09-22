@@ -36,9 +36,7 @@ export type ActivationAttentionItem = {
   id: string;
   code:
     | "IMPORT_BLOCKER"
-    | "POSSIBLE_DUPLICATE_EMAIL"
-    | "POSSIBLE_DUPLICATE_PHONE"
-    | "POSSIBLE_DUPLICATE_NAME"
+    | "POSSIBLE_DUPLICATE_IDENTITY"
     | "MULTIPLE_HOUSEHOLD_CANDIDATES"
     | "MEMBERSHIP_STATUS_CONFLICT"
     | "MEMBERSHIP_PAYMENT_CONFLICT"
@@ -250,62 +248,65 @@ function personCandidates(review: ImportReview): PersonCandidate[] {
 
 function duplicateAttention(review: ImportReview): ActivationAttentionItem[] {
   const people = personCandidates(review);
-  const attention: ActivationAttentionItem[] = [];
+  const bySubject = new Map(people.map(person=>[person.subjectKey,person] as const));
+  const adjacency = new Map<string,Set<string>>();
+  const reasons = new Map<string,Set<string>>();
 
-  const addGrouped = (
-    code: "POSSIBLE_DUPLICATE_EMAIL" | "POSSIBLE_DUPLICATE_PHONE" | "POSSIBLE_DUPLICATE_NAME",
-    keyOf: (candidate: PersonCandidate) => string,
-    title: string,
-    description: (items: PersonCandidate[]) => string,
-  ) => {
-    const groups = new Map<string, PersonCandidate[]>();
-    for (const person of people) {
-      const key = keyOf(person);
-      if (!key) continue;
-      const group = groups.get(key) || [];
-      group.push(person);
-      groups.set(key, group);
-    }
-
-    for (const [key, items] of groups) {
-      const uniqueSubjects = [...new Set(items.map((item) => item.subjectKey))];
-      if (uniqueSubjects.length < 2) continue;
-      attention.push({
-        id: `${code.toLowerCase()}:${key}`,
-        code,
-        severity: "review",
-        title,
-        description: description(items),
-        subjectKeys: uniqueSubjects,
-        sourceRefs: items.map((item) => item.source),
-      });
+  const connectGroup = (key:string,items:PersonCandidate[],reason:string) => {
+    if(!key||items.length<2)return;
+    for(const item of items){
+      if(!adjacency.has(item.subjectKey))adjacency.set(item.subjectKey,new Set());
+      if(!reasons.has(item.subjectKey))reasons.set(item.subjectKey,new Set());
+      reasons.get(item.subjectKey)!.add(reason);
+      for(const other of items){
+        if(other.subjectKey!==item.subjectKey)adjacency.get(item.subjectKey)!.add(other.subjectKey);
+      }
     }
   };
 
-  addGrouped(
-    "POSSIBLE_DUPLICATE_EMAIL",
-    (candidate) => candidate.emailKey,
-    "Possible duplicate person",
-    (items) =>
-      `${items.map((item) => item.label || item.subjectKey).join(" / ")} share the same email address. Confirm whether these records represent one person.`,
-  );
+  const grouped = (
+    keyOf:(candidate:PersonCandidate)=>string,
+    reason:string,
+  ) => {
+    const groups=new Map<string,PersonCandidate[]>();
+    for(const person of people){
+      const key=keyOf(person);if(!key)continue;
+      const group=groups.get(key)||[];group.push(person);groups.set(key,group);
+    }
+    for(const [key,items] of groups)connectGroup(key,items,reason);
+  };
 
-  addGrouped(
-    "POSSIBLE_DUPLICATE_PHONE",
-    (candidate) => candidate.phoneKey,
-    "Possible duplicate person",
-    (items) =>
-      `${items.map((item) => item.label || item.subjectKey).join(" / ")} share the same phone number. Confirm whether these records represent one person.`,
-  );
+  grouped(candidate=>candidate.emailKey,"same email");
+  grouped(candidate=>candidate.phoneKey,"same phone");
+  grouped(candidate=>candidate.nameKey,"same normalized name");
 
-  addGrouped(
-    "POSSIBLE_DUPLICATE_NAME",
-    (candidate) => candidate.nameKey,
-    "Same name appears more than once",
-    (items) =>
-      `${items[0]?.label || "This name"} appears in multiple person rows. Keep them separate only when they are genuinely different people.`,
-  );
-
+  const visited=new Set<string>();
+  const attention:ActivationAttentionItem[]=[];
+  for(const subjectKey of adjacency.keys()){
+    if(visited.has(subjectKey))continue;
+    const queue=[subjectKey],component:string[]=[];
+    visited.add(subjectKey);
+    while(queue.length){
+      const current=queue.shift()!;component.push(current);
+      for(const next of adjacency.get(current)||[]){
+        if(!visited.has(next)){visited.add(next);queue.push(next)}
+      }
+    }
+    if(component.length<2)continue;
+    const items=component.map(key=>bySubject.get(key)).filter(Boolean) as PersonCandidate[];
+    const signalSet=new Set<string>();
+    items.forEach(item=>(reasons.get(item.subjectKey)||new Set()).forEach(reason=>signalSet.add(reason)));
+    const labels=items.map(item=>item.label||item.subjectKey).join(" / ");
+    attention.push({
+      id:`possible-duplicate-identity:${component.sort().join("|")}`,
+      code:"POSSIBLE_DUPLICATE_IDENTITY",
+      severity:"review",
+      title:"Possible duplicate identity",
+      description:`${labels} overlap on ${[...signalSet].join(", ")}. Confirm whether these are separate people or choose the canonical source person to merge into.`,
+      subjectKeys:component,
+      sourceRefs:items.map(item=>item.source),
+    });
+  }
   return attention;
 }
 
