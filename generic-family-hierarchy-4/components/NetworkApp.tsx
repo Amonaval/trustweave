@@ -1175,7 +1175,7 @@ export default function NetworkApp() {
         <AuthPanel initialMode="reset" onDone={()=>{}} onResetDone={async()=>{setPasswordRecovery(false);try{await hydrate(await getAuthUser());notify(tr("PasswordUpdatedSuccessfullyTxt"))}catch(e:any){notify(e.message||tr("PasswordChangedPleaseSignInAgainTxt"));setAuth(null)}}} />
       </div>
     );
-  if (isSupabaseConfigured && !auth && !demoPreview)
+  if (isSupabaseConfigured && !auth && !demoPreview && !productizedDemo && !alumniDemo)
     return (
       <div className="public-discovery-shell">
         {requestedRoute&&<div role="status" className="card" style={{margin:"1rem auto",maxWidth:"42rem"}}>Sign in to open your private network link. You will return here after sign in.</div>}

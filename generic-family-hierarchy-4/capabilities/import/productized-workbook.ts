@@ -129,7 +129,7 @@ export async function commitProductizedWorkbook(review:ImportReview):Promise<Imp
     if(!familyEntityId||!label){skipped++;continue}
     const representativeRef=String(row.values.representative_id||"").trim().toLowerCase();
     const representativeEntityId=representativeRef?(refMap.get(representativeRef)||stableMap.get(`person|${representativeRef}`)):undefined;
-    if(representativeRef&&!representativeEntityId)throw new Error(`Representative “${row.values.representative_id}” could not be resolved for ${row.values.family_id}.`);
+    if(representativeRef&&!representativeEntityId)throw new Error(`Representative “${String(row.values.representative_id||"")}” could not be resolved for ${String(row.values.family_id||"")}.`);
     const yearId=await ensureYear(label);
     await setFcaFamilyMembership({
      yearId,
@@ -169,8 +169,8 @@ export async function commitProductizedWorkbook(review:ImportReview):Promise<Imp
     const roleKey=String(row.values.role_key||"").trim().toLowerCase();
     const roleCatalogId=roleIds.get(roleKey);
     const label=String(row.values.membership_year||"").trim();
-    if(!personEntityId)throw new Error(`Leadership person “${row.values.person_id}” could not be resolved.`);
-    if(!roleCatalogId)throw new Error(`Association role “${row.values.role_key}” is not available in this network.`);
+    if(!personEntityId)throw new Error(`Leadership person “${String(row.values.person_id||"")}” could not be resolved.`);
+    if(!roleCatalogId)throw new Error(`Association role “${String(row.values.role_key||"")}” is not available in this network.`);
     const yearId=label?await ensureYear(label):null;
     const personLabel=peopleLabelByStable.get(personRef)||String(row.values.person_id||"").trim();
     const roleLabel=roleLabelById.get(roleCatalogId)||roleKey;
