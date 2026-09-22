@@ -29,13 +29,17 @@ export function buildActivationEvidencePayload(review:ImportReview):ActivationEv
  const records:ActivationEvidenceRecordInput[]=[];
 
  for(const sheet of review.sheets){
-  for(const row of sheet.rows.filter(item=>item.status!=="rejected")){
-   const values=sheet.schema.columns
-    .map(column=>({column,value:row.values[column.key]}))
+  for(const row of sheet.rows){
+   const rawValues=Object.entries(row.raw||{})
+    .filter(([,value])=>value!==""&&value!=null)
+    .map(([label,value])=>({label,value}));
+   const normalizedValues=sheet.schema.columns
+    .map(column=>({label:column.label,value:row.values[column.key]}))
     .filter(item=>item.value!==""&&item.value!=null);
+   const sourceValues=rawValues.length?rawValues:normalizedValues;
 
-   const excerpt=values
-    .map(({column,value})=>`${column.label}: ${clean(value)}`)
+   const excerpt=sourceValues
+    .map(({label,value})=>`${label}: ${clean(value)}`)
     .join(" · ");
 
    records.push({
@@ -50,8 +54,11 @@ export function buildActivationEvidencePayload(review:ImportReview):ActivationEv
      recordType:sheet.schema.recordType,
      entityKind:sheet.schema.entityKind||null,
      rowStatus:row.status,
+     activationExcluded:row.status==="rejected",
      schemaVersion:review.schema.version,
-     sourceKind:"guided-workbook"
+     sourceKind:"guided-workbook",
+     resolvedValues:{...row.values},
+     sourceRaw:{...row.raw}
     }
    });
   }
