@@ -1499,14 +1499,6 @@ html[data-theme="dark"] .public-hero-visual:before,html[data-theme="dark"] .publ
  .product-mobile-nav button.active{color:var(--product,var(--brand))}
 }
 @media(max-width:560px){
- .housing-society-network .hs-chairman-hero{gap:12px;padding:16px;border-radius:18px}
- .housing-society-network .hs-chairman-hero h1{font-size:26px;line-height:1.05}
- .housing-society-network .hs-chairman-hero p{font-size:12px;line-height:1.45}
- .housing-society-network .hs-chairman-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:13px}
- .housing-society-network .hs-chairman-actions .btn{width:100%;min-width:0;padding:8px 6px;font-size:10px}
- .housing-society-network .hs-chairman-status{padding:13px;grid-template-columns:auto 1fr}
- .housing-society-network .hs-chairman-status>strong{font-size:34px}
- .housing-society-network .hs-chairman-status>div{margin-top:10px;padding-top:9px}
  .public-top-actions{gap:4px}.public-top-actions .theme-select{padding:5px}.public-top-actions .theme-select select{max-width:24px;color:transparent}
 }
 
@@ -1522,33 +1514,6 @@ html[data-theme="dark"] .public-hero-visual:before,html[data-theme="dark"] .publ
 .network-ballot-option{cursor:pointer}.network-ballot-option>input{width:16px;height:16px;accent-color:var(--product);flex:none;margin:2px 2px 0 0}.network-ballot-option.disabled{cursor:not-allowed;opacity:.72}.network-vote-unavailable{margin:9px 0}
 @media(max-width:700px){.hs-election-guide ol{grid-template-columns:1fr}.hs-election-guide{padding:12px}.network-ballot-option{align-items:flex-start}}
 
-
-/* FCA-L1 follow-up: field-observed responsive + theme regressions. */
-/* Real Residential names can be substantially longer than demo names. Make the
-   whole flagship hero shrink/flow rather than only reducing font sizes. */
-.housing-society-network .hs-chairman-hero,
-.housing-society-network .hs-chairman-hero-copy,
-.housing-society-network .hs-chairman-status{min-width:0;max-width:100%;box-sizing:border-box}
-.housing-society-network .hs-chairman-hero-copy h1{max-width:100%;overflow-wrap:anywhere;word-break:break-word}
-.housing-society-network .hs-chairman-actions{max-width:100%}
-.housing-society-network .hs-chairman-actions .btn{min-width:0;white-space:normal;text-align:center;line-height:1.25}
-@media(max-width:820px){
- .housing-society-network .hs-chairman-hero{width:100%;grid-template-columns:minmax(0,1fr);gap:12px;padding:18px;border-radius:19px;overflow:hidden}
- .housing-society-network .hs-chairman-hero-copy{width:100%}
- .housing-society-network .hs-chairman-hero-copy h1{font-size:clamp(24px,7vw,32px);line-height:1.08}
- .housing-society-network .hs-chairman-hero-copy p{font-size:12px;line-height:1.5}
- .housing-society-network .hs-chairman-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:13px;width:100%}
- .housing-society-network .hs-chairman-actions .btn{width:100%;justify-content:center;padding:9px 7px;font-size:10px}
- .housing-society-network .hs-chairman-status{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;padding:13px}
- .housing-society-network .hs-chairman-status>span,.housing-society-network .hs-chairman-status>small{grid-column:1/-1}
- .housing-society-network .hs-chairman-status>strong{font-size:34px}
- .housing-society-network .hs-chairman-status>div{grid-column:1/-1;min-width:0;margin-top:10px;padding-top:9px}
-}
-@media(max-width:430px){
- .housing-society-network .hs-chairman-hero{padding:14px;border-radius:16px}
- .housing-society-network .hs-chairman-actions{grid-template-columns:minmax(0,1fr)}
- .housing-society-network .hs-chairman-actions .btn{min-height:38px;font-size:11px}
-}
 
 /* Signed-out Discovery must remain readable in dark mode. Replace the remaining
    light-only cards/backgrounds with theme surfaces and explicit foregrounds. */
@@ -1585,3 +1550,135 @@ html[data-theme="dark"] .public-top-actions .btn:hover{background:var(--surface-
 html[data-theme="dark"] .public-top-actions .language-switcher,
 html[data-theme="dark"] .public-top-actions .theme-select{background:var(--surface-raised);border-color:var(--line);color:var(--text)}
 html[data-theme="dark"] .public-top-actions select{background:var(--surface-raised);color:var(--text)}
+
+
+/* 2026-09-22 responsive/theme shell correction.
+   Fix the width source, not individual banners: async-loaded cards must never
+   enlarge a product/family/association main column beyond its viewport. */
+.product-network-app,
+.product-network-shell,
+.product-network-main,
+.product-network-main> *,
+.housing-society-network .hs-flagship-home,
+.housing-society-network .hs-flagship-home> *,
+.association-signature-home,
+.association-dashboard-grid,
+.association-dashboard-grid> *,
+.nx6-family-home,
+.nx6-family-home> *{min-width:0;max-width:100%}
+.product-network-app,.product-network-shell,.product-network-main{width:100%;overflow-x:clip}
+.product-network-main{box-sizing:border-box}
+.housing-society-network .hs-chairman-hero,
+.housing-society-network .hs-chairman-hero-copy,
+.housing-society-network .hs-chairman-status,
+.association-hero,
+.association-hero-copy,
+.association-dashboard-grid>.card,
+.association-section-title,
+.association-section-title>div,
+.association-upcoming-list article>div,
+.association-mini-timeline article>div,
+.nx6-family-hero,
+.nx6-family-hero-copy{min-width:0;max-width:100%;box-sizing:border-box}
+.housing-society-network .hs-chairman-hero-copy h1,
+.association-hero h1,
+.nx6-family-hero h1{max-width:100%;overflow-wrap:anywhere;word-break:break-word}
+.housing-society-network .hs-chairman-actions,
+.association-hero-actions,
+.nx6-hero-actions{max-width:100%}
+.housing-society-network .hs-chairman-actions .btn,
+.association-hero-actions .btn,
+.nx6-hero-actions .btn{min-width:0;white-space:normal;text-align:center;line-height:1.25}
+.nx6-family-hero-copy{width:100%}
+.association-profile-chips{max-width:100%;min-width:0}
+.xp3-quick-start,.xp3-quick-head,.xp3-step-list,.xp3-step-list>button,.xp3-step-list>button>span{min-width:0;max-width:100%}
+.xp3-step-list>button>span:nth-child(2){min-width:0}
+.xp3-step-list b,.xp3-step-list small{overflow-wrap:anywhere}
+@media(max-width:820px){
+ .product-network-main{padding-left:12px;padding-right:12px}
+ .housing-society-network .hs-chairman-hero,
+ .association-hero,
+ .nx6-family-hero{width:100%;grid-template-columns:minmax(0,1fr);gap:12px;overflow:hidden}
+ .housing-society-network .hs-chairman-hero{padding:18px;border-radius:19px}
+ .housing-society-network .hs-chairman-hero-copy{width:100%}
+ .housing-society-network .hs-chairman-hero-copy h1{font-size:clamp(24px,7vw,32px);line-height:1.08}
+ .housing-society-network .hs-chairman-hero-copy p{font-size:12px;line-height:1.5}
+ .housing-society-network .hs-chairman-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:13px;width:100%}
+ .housing-society-network .hs-chairman-actions .btn{width:100%;justify-content:center;padding:9px 7px;font-size:10px}
+ .housing-society-network .hs-chairman-status{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;padding:13px}
+ .housing-society-network .hs-chairman-status>span,.housing-society-network .hs-chairman-status>small{grid-column:1/-1}
+ .housing-society-network .hs-chairman-status>strong{font-size:34px}
+ .housing-society-network .hs-chairman-status>div{grid-column:1/-1;min-width:0;margin-top:10px;padding-top:9px}
+ .association-dashboard-grid>.card{width:100%}
+ .nx6-family-hero{padding:23px 18px}
+ .nx6-family-hero-copy{width:100%;max-width:100%}
+ .xp3-quick-head{display:grid;grid-template-columns:minmax(0,1fr) auto}
+ .xp3-step-list>button{grid-template-columns:auto minmax(0,1fr) auto}
+ .xp3-step-list>button>svg{display:none}
+}
+@media(max-width:430px){
+ .product-network-main{padding-left:10px;padding-right:10px}
+ .housing-society-network .hs-chairman-hero{padding:14px;border-radius:16px}
+ .housing-society-network .hs-chairman-actions{grid-template-columns:minmax(0,1fr)}
+ .housing-society-network .hs-chairman-actions .btn{min-height:38px;font-size:11px}
+ .association-hero,.nx6-family-hero{padding-left:14px;padding-right:14px}
+}
+
+/* Productized nav always has four primary destinations + More = five cells.
+   This intentionally outranks the legacy Family-only .mobile-bottom-nav:not(.has-admin)
+   rule, which otherwise puts qa-mobile-nav-more in an implicit overflow column. */
+@media(max-width:800px){
+ .mobile-bottom-nav.product-mobile-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;overflow:visible!important}
+ .mobile-bottom-nav.product-mobile-nav button{min-width:0!important;width:auto!important}
+}
+
+/* Dark theme consistency for legacy/light-authored surfaces touched by every vertical.
+   Background and foreground switch as a pair, preventing light-on-light states. */
+html[data-theme="dark"] .my-network-card-wrap,
+html[data-theme="dark"] .claimable-family-box,
+html[data-theme="dark"] .existing-family-box,
+html[data-theme="dark"] .guide-hero,
+html[data-theme="dark"] .family-digest,
+html[data-theme="dark"] .feature-guide,
+html[data-theme="dark"] .guide-path-grid>button,
+html[data-theme="dark"] .guide-subnav button,
+html[data-theme="dark"] .guide-goal-grid button,
+html[data-theme="dark"] .guide-result-list button,
+html[data-theme="dark"] .guide-value-grid>div,
+html[data-theme="dark"] .seven-step-grid>div,
+html[data-theme="dark"] .guide-feedback-panel,
+html[data-theme="dark"] .feedback-signal-grid>div,
+html[data-theme="dark"] .family-start-card,
+html[data-theme="dark"] .search-bar,
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .modal,
+html[data-theme="dark"] .drawer,
+html[data-theme="dark"] .family-switcher-trigger,
+html[data-theme="dark"] .family-switcher-menu{background:var(--surface)!important;border-color:var(--line)!important;color:var(--text)!important}
+html[data-theme="dark"] .my-network-card-wrap .card-actions,
+html[data-theme="dark"] .claimable-family-box *,
+html[data-theme="dark"] .existing-family-box *,
+html[data-theme="dark"] .guide-hero *,
+html[data-theme="dark"] .family-digest *,
+html[data-theme="dark"] .feature-guide *,
+html[data-theme="dark"] .guide-path-grid>button *,
+html[data-theme="dark"] .guide-goal-grid button *,
+html[data-theme="dark"] .guide-result-list button *{color:inherit}
+html[data-theme="dark"] .guide-hero p,
+html[data-theme="dark"] .family-digest small,
+html[data-theme="dark"] .feature-guide p,
+html[data-theme="dark"] .feature-guide small,
+html[data-theme="dark"] .claimable-family-box small,
+html[data-theme="dark"] .existing-family-box small{color:var(--muted)!important}
+html[data-theme="dark"] .select,
+html[data-theme="dark"] .text-input,
+html[data-theme="dark"] .textarea,
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea{background:var(--surface-raised);color:var(--text);border-color:var(--line)}
+html[data-theme="dark"] .btn:not(.primary){background:var(--surface-raised);color:var(--text);border-color:var(--line)}
+html[data-theme="dark"] .btn:not(.primary):hover{background:var(--surface-hover);color:var(--text)}
+html[data-theme="dark"] .association-dashboard-grid>.card,
+html[data-theme="dark"] .association-stat-grid article,
+html[data-theme="dark"] .association-announcement-list article,
+html[data-theme="dark"] .association-community-card,
+html[data-theme="dark"] .association-family-card{background:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important}
