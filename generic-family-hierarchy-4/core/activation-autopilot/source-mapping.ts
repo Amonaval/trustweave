@@ -135,10 +135,6 @@ function rawRecord(columns:LeanSourceColumn[],row:unknown[]){
   return Object.fromEntries(columns.map(column=>[`${column.label} [${excelColumn(column.index)}]`,row[column.index]??""]));
 }
 
-function generatedPreviewId(targetKey:string,rowNumber:number){
-  return `NAA-PREVIEW-${targetKey.toUpperCase()}-${String(rowNumber).padStart(4,"0")}`;
-}
-
 export function buildLeanMappedImportReview(
   workbook:LeanSourceWorkbook,
   schema:ImportSchema,
@@ -176,10 +172,10 @@ export function buildLeanMappedImportReview(
       if(column.target==="stableId"&&target.recordType==="entity"){
         issues.push({
           severity:"error",
-          code:"PREVIEW_GENERATED_STABLE_ID",
+          code:"UNMAPPED_STABLE_ID",
           sheet:target.name,
           column:column.label,
-          message:`${target.name}: “${column.label}” is not mapped. Preview-only internal IDs were generated so you can inspect the candidate, but activation stays blocked until a stable source identifier is mapped.`,
+          message:`${target.name}: “${column.label}” is not mapped. Preview uses source-row identity only; activation stays blocked until a stable source identifier is mapped.`,
         });
       }else{
         issues.push({
@@ -205,8 +201,7 @@ export function buildLeanMappedImportReview(
 
       for(const column of target.columns){
         const sourceIndex=mappedIndex(column.key);
-        const generated=sourceIndex==null&&column.target==="stableId"&&target.recordType==="entity";
-        const rawValue=sourceIndex!=null?sourceRow[sourceIndex]:generated?generatedPreviewId(target.key,rowNumber):"";
+        const rawValue=sourceIndex!=null?sourceRow[sourceIndex]:"";
 
         try{
           const converted=convertImportValue(rawValue,column);
@@ -246,7 +241,6 @@ export function buildLeanMappedImportReview(
             if(!prior)globalStable.set(id,{sheet:target.name,row:rowNumber});
           }
 
-          if(column.type==="reference"&&clean(converted))refs.push({row:null as unknown as ParsedImportRow,target:column,value:clean(converted)});
         }catch(error:any){
           values[column.key]="";
           rowIssues.push({
@@ -287,7 +281,7 @@ export function buildLeanMappedImportReview(
     });
   }
 
-  for(const item of refs.filter(item=>item.row)){
+  for(const item of refs){
     const targets=item.target.referenceSheets?.length
       ? [...item.target.referenceSheets]
       : item.target.referenceSheet?[item.target.referenceSheet]:[];

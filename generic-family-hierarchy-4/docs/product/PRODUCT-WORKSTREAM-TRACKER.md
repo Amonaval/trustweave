@@ -22,7 +22,7 @@ For every product, vertical or architecture area:
 
 | Area | Current state | Highest-leverage next slice | Status | Resume / selection trigger |
 | --- | --- | --- | --- | --- |
-| **Network Activation Autopilot** | Governed compile/resolve/activate foundation implemented | **NAA-L1: ordinary XLSX/CSV → user-assisted mapping → safe normalized candidate + unresolved summary** | **NEXT / one bounded slice** | Stop after synthetic proof; only resume further NAA work if real data/user evidence exposes the next dominant bottleneck |
+| **Network Activation Autopilot** | Governed lower layer + NAA-L1 source-mapping bridge implemented | None now | **PARKED / manual proof pending** | Resume only for a real/synthetic validation finding, alpha blocker, or evidence that source adaptation remains the dominant onboarding pain |
 | Generic X→Y Transformation Engine | Strong parallel thesis; no independent implementation | None now | PARKED | Re-select only if NAA-L1 proves a reusable boundary or a non-TrustWeave buyer/use case appears |
 | Pattern Repair / smart bulk fixes | Product idea defined | None now | PARKED | Real files show repetitive repair dominates remaining effort |
 | Transformation Recipe / drift detection | Product idea defined | None now | PARKED | Same source format is imported repeatedly and remapping becomes real pain |

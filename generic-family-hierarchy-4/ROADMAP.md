@@ -4,7 +4,7 @@
 
 TrustWeave is still pre-release. Network Activation should therefore receive **one bounded 20–30% effort / 70–80% impact slice**, not a full transformation-platform program.
 
-### NAA-L1 — Lean Source Mapping Bridge — NEXT
+### NAA-L1 — Lean Source Mapping Bridge — SOURCE IMPLEMENTED
 
 Prove only this:
 
@@ -35,7 +35,7 @@ Not required for this alpha slice:
 
 ### Stop condition
 
-Once the above works credibly across several structurally different synthetic files, **park Network Activation and re-select the next product priority**.
+Source implementation now covers the bounded slice above. Network Activation is **parked for portfolio re-selection**; synthetic/browser proof may be run when we intentionally validate this area, but no follow-on feature mission is implied.
 
 Open items remain visible in `docs/product/PRODUCT-WORKSTREAM-TRACKER.md`; they are not an instruction to continue this category.
 

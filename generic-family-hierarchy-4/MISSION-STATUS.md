@@ -4,7 +4,7 @@
 
 | Mission | Status | Meaning |
 |---|---|---|
-| **V1 — Network Activation Autopilot** | **LOWER LAYER IMPLEMENTED / ONE LEAN MAPPING SLICE NEXT** | Governed compile/resolve/activate/intelligence foundation exists. NAA-L1 only: ordinary XLSX/CSV → user-assisted source/target mapping → safe normalized candidate + unresolved summary. Broader repair/recipe/standalone work is parked. Migration 124 remains unapplied. |
+| **V1 — Network Activation Autopilot** | **NAA-L1 SOURCE IMPLEMENTED / PARKED** | Ordinary XLSX/CSV can now be inspected and explicitly mapped into TrustWeave activation targets, validated and previewed without semantic guessing. Manual/browser proof is deferred; broader repair/recipe/standalone work remains parked. Migration 124 remains unapplied. |
 | **D12 — Modular Database Architecture / Migration OS** | **REVIEW-CLOSED / FORMAL EXHAUSTIVE CERTIFICATION DEFERRED** | Fresh Supabase reconstruction demonstrated structural/security/API-contract parity. Do not restart broad reconstruction/browser certification without a concrete product reason; golden remains the preferred real data environment and the D12 project remains recovery/reference. |
 | Mission 1 — Runtime Defect & Seed Integrity | PRESERVED / RUNTIME RETEST OUTSTANDING | Source fixes/evidence remain available; no false runtime certification. |
 | Mission 2 — Slow Full Product User Regression | CONNECTED / REPAIR VERIFY | First focused connected run completed; bounded Housing, notification, harness and accessibility repairs await staging migration + rerun. |
@@ -23,7 +23,7 @@
 
 ## Active objective
 
-Execute only **NAA-L1 — Lean Source Mapping Bridge**: reuse existing/open-source plumbing where useful, let the human confirm a small source → TrustWeave mapping, apply it safely across the file, and expose unresolved data. Then park this workstream and choose the next priority globally. Incomplete safe output is acceptable; wrong trusted data is not.
+**NAA-L1 source implementation is complete.** Network Activation should now remain parked unless validation exposes a concrete blocker. Re-select the next priority globally. Incomplete safe output remains acceptable; wrong trusted data is not.
 
 ## Current guardrails
 
@@ -71,6 +71,6 @@ Lean scope + parked backlog:
 
 docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
 
-Current checkpoint: **governed lower layer complete; NAA-L1 is the single selected follow-up.**
+Current checkpoint: **governed lower layer + NAA-L1 source mapping implemented; workstream parked.**
 
 Migration 124 remains source-only and is not part of NAA-1.

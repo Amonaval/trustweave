@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-22  
 **Execution branch:** `network-activation-autopilot-lean`  
-**Product status:** **GOVERNED COMPILER FOUNDATION IMPLEMENTED / ONE LEAN SOURCE-MAPPING SLICE NEXT**  
+**Product status:** **NAA-L1 SOURCE IMPLEMENTED / MANUAL RUNTIME PROOF DEFERRED**  
 **Primary proving vertical:** Family Community / Cultural Association  
 **Runtime/database effects in this implementation session:** none
 
@@ -77,7 +77,7 @@ V1-D First Institutional Intelligence
 
 The generic adaptation layer should ultimately live as an independently usable product/component. TrustWeave should consume it through a thin adapter rather than embedding TrustWeave vocabulary into the generic core.
 
-## V1-A0 — Lean Source Mapping Bridge — NEXT bounded slice
+## V1-A0 — Lean Source Mapping Bridge — SOURCE IMPLEMENTED
 
 Before the existing compiler runs, V1 needs a generic source-adaptation layer that can inspect supported arbitrary Excel/CSV input and construct a user-confirmed mapping into a target schema.
 
@@ -357,7 +357,7 @@ It is a real organizer saying:
 
 The governed compiler/activation foundation is sufficient; do not expand that lower layer further without evidence.
 
-The only active V1 problem is now **NAA-L1 — Lean Source Mapping Bridge**:
+**NAA-L1 source implementation now provides:**
 
 1. accept an ordinary supported XLSX/CSV;
 2. select/detect the relevant sheet/header;
@@ -366,7 +366,7 @@ The only active V1 problem is now **NAA-L1 — Lean Source Mapping Bridge**:
 5. transform the safely mapped data into the current activation model;
 6. show unresolved/missing items clearly, with no semantic guessing.
 
-When this works credibly across a handful of structurally different files, **stop this workstream and return to the product portfolio**. Pattern repair, recipe persistence, drift detection, standalone commercialization and broader generic X→Y support remain parked until evidence calls for them.
+Source implementation is complete. Manual/browser proof against the synthetic files remains useful evidence, but it is not a reason to keep expanding this workstream. Pattern repair, recipe persistence, drift detection, standalone commercialization and broader generic X→Y support remain parked until evidence calls for them.
 
 The generic source-to-target engine is a parallel product thesis with a strict separation boundary. Do not create its standalone repository, infrastructure or broad feature set until explicitly authorized.
 
@@ -379,8 +379,21 @@ The product-learning discussion that changed V1 from a known-schema importer int
 - docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
 - docs/product/GENERIC-DATA-TRANSFORMATION-ENGINE-THESIS.md
 
-The next and only active mission is **NAA-L1 — Lean Source Mapping Bridge**.
+**NAA-L1 is implemented in source. Network Activation is now parked for portfolio re-selection.**
 
-Its first implementation step is still reuse-before-build: inspect the smallest useful OSS pieces for upload/header mapping/validation, then compose only what is needed for this bounded slice.
+Implementation reused the existing SheetJS/XLSX dependency and added only the product-specific mapping/trust seam. No additional importer framework was added because the bounded need did not justify another dependency/runtime surface.
 
-Do not create the standalone engine repository yet. That remains a future option if this lean proof demonstrates a genuinely reusable product boundary.
+Current behavior:
+
+- inspect ordinary XLSX/CSV;
+- suggest a header row while keeping it user-controlled;
+- map one source sheet to any TrustWeave activation target section;
+- suggest only exact header-name matches, never fuzzy semantic meaning;
+- allow confirm/change/ignore mapping;
+- apply mapped values across all rows with existing target validation;
+- reject ambiguous date strings rather than guessing locale;
+- preserve original source sheet/row provenance;
+- allow partial candidate preview;
+- leave missing stable IDs genuinely missing and block activation until mapped.
+
+Do not create the standalone engine repository yet. That remains a future option if real evidence justifies it.

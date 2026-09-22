@@ -249,9 +249,9 @@ This list is a hypothesis. The lean alpha slice must try to shrink it using open
 
 ## 8. One active Network Activation slice
 
-### NAA-L1 — Lean Source Mapping Bridge — NEXT
+### NAA-L1 — Lean Source Mapping Bridge — SOURCE IMPLEMENTED
 
-This is the **only** Network Activation follow-up selected for the alpha.
+This was the **only** Network Activation follow-up selected for the alpha and is now implemented in source.
 
 Goal:
 
@@ -277,7 +277,7 @@ Exit criteria:
 
 ### Stop rule
 
-When NAA-L1 works credibly, **close/park Network Activation and re-select the next highest-value TrustWeave workstream**.
+NAA-L1 source implementation is complete, so **Network Activation is now parked and the next session should re-select the highest-value TrustWeave workstream**.
 
 Do not automatically continue into pattern repair, recipe reuse, standalone engine work, unrelated X→Y support or controlled DB activation merely because those ideas are already documented.
 

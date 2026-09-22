@@ -5,6 +5,8 @@ const required=[
  "core/activation-autopilot/resolution.ts",
  "core/activation-autopilot/evidence.ts",
  "core/activation-autopilot/intelligence.ts",
+ "core/activation-autopilot/source-mapping.ts",
+ "components/shared/LeanSourceMapping.tsx",
  "components/shared/NetworkActivationAutopilot.tsx",
  "capabilities/import/productized-workbook.ts",
  "supabase/migrations/124_v1_network_activation_evidence.sql"
@@ -46,6 +48,27 @@ for(const token of [
  "setFcaFamilyMembership"
 ]){
  if(!commit.includes(token))throw new Error(`V1 activation commit missing ${token}`);
+}
+
+const sourceMapping=fs.readFileSync("core/activation-autopilot/source-mapping.ts","utf8");
+for(const token of [
+ "inspectLeanSourceWorkbook",
+ "buildLeanMappedImportReview",
+ "UNMAPPED_STABLE_ID",
+ "UNMAPPED_REQUIRED_COLUMN",
+ "convertImportValue"
+]){
+ if(!sourceMapping.includes(token))throw new Error(`NAA-L1 source mapping missing ${token}`);
+}
+
+const leanUi=fs.readFileSync("components/shared/LeanSourceMapping.tsx","utf8");
+for(const token of [
+ "Use the Excel or CSV you already have",
+ "Map only what you understand",
+ "Build safe candidate",
+ "activation stays blocked"
+]){
+ if(!leanUi.includes(token))throw new Error(`NAA-L1 mapping UI missing ${token}`);
 }
 
 const ui=fs.readFileSync("components/shared/NetworkActivationAutopilot.tsx","utf8");
