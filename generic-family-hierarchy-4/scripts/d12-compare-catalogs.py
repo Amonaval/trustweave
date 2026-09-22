@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -492,6 +493,12 @@ def main() -> None:
     report = {
         "format": "trustweave-d12-catalog-parity-v1",
         "status": "PASS" if not errors else "FAIL",
+        "inputs": {
+            "golden_primary_sha256": hashlib.sha256(args.golden_primary.read_bytes()).hexdigest(),
+            "golden_supplement_sha256": hashlib.sha256(args.golden_supplement.read_bytes()).hexdigest(),
+            "candidate_primary_sha256": hashlib.sha256(args.candidate_primary.read_bytes()).hexdigest(),
+            "candidate_supplement_sha256": hashlib.sha256(args.candidate_supplement.read_bytes()).hexdigest(),
+        },
         "layers": {
             "structural": {"status": "PASS" if not structural else "FAIL", "differences": structural},
             "security": {"status": "PASS" if not security else "FAIL", "differences": security},

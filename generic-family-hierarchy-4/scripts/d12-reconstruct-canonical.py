@@ -605,25 +605,27 @@ def main() -> None:
 
         module = assign_module(full_name, "table", manifest)
         statements: list[str] = [
+            # A new table's owner starts with implicit grant-option bits. Reset
+            # postgres too, then restore the explicit captured ACL including
+            # PostgreSQL 17 MAINTAIN; otherwise every table drifts on fresh replay.
             f"REVOKE ALL ON TABLE {qname(full_name)} FROM PUBLIC, {qident('anon')}, "
-            f"{qident('authenticated')}, {qident('service_role')};"
+            f"{qident('authenticated')}, {qident('service_role')}, {qident('postgres')};"
         ]
         for principal, privileges, grantable in parse_acl(acl):
-            # Preserve grant-option state per individual privilege. Combining a
-            # mixed ACL into one GRANT ... WITH GRANT OPTION would over-grant.
-            for char in privileges:
-                privilege = acl_privilege_name("table", char)
-                if not privilege:
-                    continue
-                suffix = " WITH GRANT OPTION" if char in grantable else ""
-                statements.append(
-                    f"GRANT {privilege} ON TABLE {qname(full_name)} "
-                    f"TO {role_sql(principal)}{suffix};"
-                )
-                # Same owner normalization as sequences above.
-                if principal == "postgres" and char not in grantable:
+            # Group privileges only when their grant-option state agrees.
+            # This preserves mixed ACLs without adding owner grant options.
+            for wants_option in (False, True):
+                selected = [
+                    acl_privilege_name("table", char)
+                    for char in privileges
+                    if (char in grantable) == wants_option
+                ]
+                selected = [privilege for privilege in selected if privilege]
+                if selected:
+                    suffix = " WITH GRANT OPTION" if wants_option else ""
                     statements.append(
-                        f"REVOKE GRANT OPTION FOR {privilege} ON TABLE {qname(full_name)} FROM {qident('postgres')};"
+                        f"GRANT {', '.join(selected)} ON TABLE {qname(full_name)} "
+                        f"TO {role_sql(principal)}{suffix};"
                     )
         table_acl_by_module[module].append((full_name, "\n".join(statements)))
 

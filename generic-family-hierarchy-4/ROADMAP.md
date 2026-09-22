@@ -2,9 +2,9 @@
 
 ## Current priority — D12 database architecture (2026-09-20)
 
-First collect the working Supabase project's schema-only reference using `docs/architecture/D12-REFERENCE-CAPTURE.md`. Then compare it against the 121 migrations through `123` and application object usage, derive canonical modules, build a guarded fresh bootstrap, and verify structural, security, API, behavioral and browser parity against a separate fresh project. Keep the old project as fallback and defer School SQL until the database module boundary is established. No cutover is authorized by the capture kit alone.
+The corrected canonical bootstrap passed full structural, security and API catalog parity after a fresh install on disposable project `yqwitkoxyrujbzpjwuji`. The golden project remains read-only; earlier replay projects are paused. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md` for commit and capture evidence.
 
-The first reference is now available as a SQL Editor catalog CSV. Triage found concrete RPC drift candidates. Next collect the single-row supplement, confirm the mismatches with read-only signature queries, and map SQL ownership before assembling canonical modules. The SQL Editor path avoids local PostgreSQL installation; fresh project bootstrap and behavioral parity remain later gates.
+Next align the managed-SQL receipt with the QA wrapper, configure and seed the candidate app runtime, then run bounded owner/admin/member behavior and browser journeys for Housing Society and Family Community. Reconcile all five evidence layers before D12-F promotion; School SQL stays deferred until this stability gate closes.
 
 ## Active architecture priority — M3-D (2026-09-19)
 

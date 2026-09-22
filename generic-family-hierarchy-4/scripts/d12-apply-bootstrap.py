@@ -7,7 +7,7 @@ SAFETY CONTRACT:
 - requires explicit candidate and golden project refs;
 - refuses when candidate == golden;
 - requires the golden ref to match the committed release manifest;
-- requires the DB host to be db.<candidate-ref>.supabase.co;
+- accepts only candidate-bound direct or Supabase session-pooler URLs;
 - validates every committed bootstrap checksum before connecting;
 - refuses any database with existing public relations/functions/sequences;
 - applies only manifest direct_apply_order in one psql transaction;
@@ -26,7 +26,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
-from urllib.parse import urlparse
+from d12_db_url import project_ref_from_db_url
 
 
 CONFIRM = "APPLY-D12-BOOTSTRAP-TO-FRESH-DISPOSABLE"
@@ -37,16 +37,6 @@ def load_json(path: Path) -> dict:
     if not isinstance(value, dict):
         raise ValueError(f"{path}: expected JSON object")
     return value
-
-
-def project_ref_from_db_url(value: str) -> str | None:
-    try:
-        host = (urlparse(value).hostname or "").lower()
-    except ValueError:
-        return None
-    if host.startswith("db.") and host.endswith(".supabase.co"):
-        return host[3 : -len(".supabase.co")]
-    return None
 
 
 def run_capture(command: list[str], env: dict[str, str]) -> str:
@@ -147,7 +137,7 @@ def main() -> None:
     if detected_ref is None:
         raise SystemExit(
             "REFUSING APPLY: database URL is not a recognized "
-            "db.<project-ref>.supabase.co URL."
+            "candidate-bound Supabase direct or session-pooler URL."
         )
     if detected_ref != candidate_ref:
         raise SystemExit(
@@ -167,6 +157,8 @@ def main() -> None:
     # libpq accepts a URI in PGDATABASE. This keeps credentials out of argv and
     # therefore out of normal process listings and receipts.
     env["PGDATABASE"] = db_url
+    env["PGSSLMODE"] = "require"
+    env["PGCONNECT_TIMEOUT"] = "20"
 
     # Freshness is non-negotiable: the permanent baseline is never an upgrade
     # mechanism. Existing public application objects mean the target is wrong.

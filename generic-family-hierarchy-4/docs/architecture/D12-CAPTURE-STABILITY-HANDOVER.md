@@ -489,3 +489,10 @@ Prefer **batched milestone commits** over micro-commits:
 - documentation closure should usually ride in the same checkpoint commit or one final closure commit.
 
 The earlier fine-grained D12 commits are valid history and do not need rewriting/squashing now. Apply this batching policy prospectively.
+
+
+## Recovery continuation checkpoint — 2026-09-20
+
+The frozen project list has changed: the earlier candidate `blpdjhmtayjkcczqltqi` is inactive and `TrustWeave D12 Clean Replay` (`yqtrkpyyzxzpthklqygs`) is active. Clean Replay matches key catalog counts, but predates the final ACL packaging correction; it does not certify a fresh install from the final committed bytes. The `llm-push` QA wrapper now understands both the original candidate receipt and the committed-bootstrap receipt, with bound manifest and capture hashes. Focused tests and full CI passed at `2a86bd3b8366bf26912f854af4cc7a343b100d68`.
+
+The next execution gate is a genuinely empty disposable project for final fresh-from-Git ACL replay, catalog proof, and a bounded Housing/Family Community browser suite against the **same** project. A local app/QA environment and local-only keys are required. No new browser parity PASS or formal D12-F closure is claimed. See `docs/architecture/D12-RECOVERY-REVIEW-2026-09-20.md` and `docs/architecture/D12-BROWSER-PARITY-HANDOFF.md`.

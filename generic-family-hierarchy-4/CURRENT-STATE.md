@@ -1,5 +1,17 @@
 # TrustWeave — Current State
 
+## 2026-09-20 — D12 final fresh bootstrap and catalog parity PASS
+
+The corrected committed release at `ce5eddfbedd2a1ab3a92bbd58ac24ca78e57bfe1` replayed on the genuinely empty Personal project `TrustWeave D12 Final ACL Proof` (`yqwitkoxyrujbzpjwuji`). All 94 direct SQL files and seven owner-context Storage policies applied. The full golden structural/security/API comparator passed with zero differences and warnings; CI passed. Earlier Clean Replay and the first ACL diagnostic project are paused; golden `OS Network` remains read-only. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md`. The next gate is managed receipt QA preflight plus bounded two-vertical behavior/browser parity on this same project. D12-F promotion is still open.
+
+## 2026-09-20 — D12 recovery resumed; browser gate pending
+
+The committed D12 bootstrap preflight now accepts the finalized bootstrap receipt and binds its manifest checksum, empty-project preflight, recapture hashes, three catalog parity layers, and exact QA candidate ref. The older candidate receipt remains supported. Targeted fail-closed tests and full TrustWeave CI passed at `2a86bd3b8366bf26912f854af4cc7a343b100d68`. No database mutation or browser journey was run in this checkpoint.
+
+At the earlier recovery review, `TrustWeave D12 Clean Replay` (`yqtrkpyyzxzpthklqygs`) was active and had matching structural counts, but was populated before the final ACL packaging correction and currently has no Auth users/networks. The former D12 Candidate (`blpdjhmtayjkcczqltqi`) is inactive. A final fresh-from-Git ACL proof needs one genuinely empty disposable project; run the bounded Housing/Family Community browser suite against that same project after local QA setup. The golden `OS Network` remains read-only. The committed bootstrap labels itself current, while formal D12-F closure remains open and must reconcile that status explicitly.
+
+See `docs/architecture/D12-RECOVERY-REVIEW-2026-09-20.md` and `docs/architecture/D12-BROWSER-PARITY-HANDOFF.md` for the exact gate.
+
 ## 2026-09-20 — D12 frozen at verified candidate checkpoint
 
 Founder requested that D12 execution stop and be frozen for later resumption. The golden Supabase project `OS Network` remains read-only. The older `TrustWeave QA DB Replay` project is paused, and the fresh disposable `TrustWeave D12 Candidate` (`blpdjhmtayjkcczqltqi`, Mumbai) remains the D12 proof environment. Repository evidence records database/API behavioral parity as PASS and a broadly healthy founder browser smoke; the known Family Guide route issue is pre-existing and classified outside the D12 database scope. A later chat-only attempt to regenerate/package SQL batches failed because temporary local workspace state was inconsistent/reset; no SQL from that interrupted attempt was applied to either candidate or golden. D12 canonical promotion is still open and must resume from `docs/architecture/D12-CAPTURE-STABILITY-HANDOVER.md`, committed bootstrap assets, and the existing candidate state rather than old `/mnt/data` artifacts.

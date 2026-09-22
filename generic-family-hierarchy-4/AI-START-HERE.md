@@ -1,7 +1,7 @@
 # TrustWeave — AI Start Here
 
-**Current mission:** D12 — Modular Database Architecture / Migration OS — **PAUSED / FROZEN**  
-**Active execution record:** `docs/architecture/D12-CAPTURE-STABILITY-HANDOVER.md`
+**Current mission:** D12 — Modular Database Architecture / Migration OS — **FRESH BOOTSTRAP/CATALOG PARITY PASS; behavior and browser parity pending**  
+**Active execution record:** `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md` and `docs/architecture/D12-RECOVERY-REVIEW-2026-09-20.md`
 
 ## Read order
 
