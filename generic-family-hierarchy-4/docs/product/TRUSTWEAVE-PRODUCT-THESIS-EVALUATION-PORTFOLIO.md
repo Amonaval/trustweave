@@ -10,7 +10,7 @@ TrustWeave now has several plausible product directions. They should be compared
 
 A high score means "deserves stronger validation," not "build immediately."
 
-The active engineering program remains governed by current reliability, architecture and database/bootstrap closure documents. Product-thesis work can change future direction only after an explicit Founder decision backed by evidence.
+The consolidated architecture/D0–D12 baseline is now treated as leverage rather than the agenda. Founder decision on 2026-09-22 selected **V1 — Network Activation Autopilot** as the active product-value experiment. Product-thesis work can change future direction only after explicit Founder decisions backed by evidence.
 
 ## 2. Weighted evaluation framework
 
@@ -101,27 +101,36 @@ Therefore: preserve as a reliability and operational-workflow proving ground rat
 
 ## 5. Current portfolio decision
 
-As of 2026-09-22:
+As of 2026-09-22, after D12 review closure and consolidation onto `main`:
 
-1. **Execution now does not change.** Complete the active reliability / architecture / D12 database-bootstrap work already in flight.
-2. **Elevate AI Trusted Network Intelligence Fabric to the leading long-term category thesis for validation.**
-3. **Keep TrustWeave Ops / Distributed Operations as the leading near-term paid-wedge hypothesis.**
-4. **Use Family and Community as strategic proving grounds for trust, intent, consent, relationship intelligence and institutional memory.**
-5. **Use Residential as a governed-operations proving ground.**
-6. **Defer Promoter / Business Group productization until connector/data-quality maturity exists.**
+1. **Execute V1 — Network Activation Autopilot now.** Test whether TrustWeave can convert an Association's existing records into governed context with very little human work and immediate institutional usefulness.
+2. **Do not build the broad Intelligence Fabric yet.** V1 must first prove that high-quality governed context can be created cheaply enough to make later intelligence credible.
+3. **Retain Governed Institutional Intelligence as V2 only if V1 produces strong product evidence.**
+4. **Keep TrustWeave Ops / Distributed Operations as a serious paid-wedge hypothesis**, but do not start a generic franchise/operations build before a design-partner problem justifies it.
+5. **Use Family Community / Association as the first activation laboratory** because households, representatives, annual membership and governance create richer institutional structure than a simple member directory.
+6. **Preserve Residential as a second operational proving ground**, not a parallel V1 implementation.
+7. **Do not return to broad architecture, D12 reconstruction, feature accumulation or new vertical work without a concrete value reason.**
 
-This deliberately separates three questions:
+The portfolio sequence is now:
 
 ~~~text
 What do we execute now?
-    -> reliability / architecture closure
+    -> V1 Network Activation Autopilot
 
-What may become the category-defining product?
-    -> AI Trusted Network Intelligence Fabric
+What does V1 need to prove?
+    -> messy existing records can become trustworthy governed context
+       with very little human setup and immediate useful insight
 
-What may reach paid proof fastest?
+What becomes next only after that proof?
+    -> V2 Governed Institutional Intelligence
+
+What remains the strongest separate paid-wedge hypothesis?
     -> TrustWeave Ops / Distributed Operations
 ~~~
+
+Canonical execution detail:
+- `docs/product/V1-NETWORK-ACTIVATION-AUTOPILOT.md`
+
 
 ## 6. Fast validation roadmap for the Intelligence Fabric
 
