@@ -39,10 +39,3 @@ Canonical product narrative lives under `docs/product/`. Root mirrors are not ma
 - `release-evidence/` — generated mission evidence.
 
 Historical documents never override constitutions, current source/runtime evidence, or the active mission contract.
-
-## Commercial product thesis
-
-- `docs/product/TRUSTWEAVE-COMMERCIAL-THESIS-DISTRIBUTED-OPERATIONS-OS.md` — canonical commercialization direction.
-- `docs/product/showcase/product-thesis/` — human-readable DOCX/PDF summaries and strategy visual.
-
-These are strategic/product communication artifacts. They do not override runtime evidence, CURRENT-STATE, constitutions or mission contracts.

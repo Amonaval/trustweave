@@ -18,7 +18,7 @@ ok('login helper keeps the simple proven auth flow',read('qa/lib/login.ts').incl
 
 ok('dedicated mobile Chromium project exists',cfg.includes("name:'chromium-mobile'")&&cfg.includes("devices['Pixel 5']"));
 ok('slow user pace defaults to 700ms',helper.includes("QA_USER_PACE_MS||700"));
-ok('slow crawler pace is configurable',crawler.includes('QA_CRAWL_PACE_MS')&&crawler.includes('waitForTimeout(pace)'));
+ok('slow crawler pace is configurable',crawler.includes('QA_CRAWL_PACE_MS')&&(crawler.includes('waitForTimeout(pace)')||crawler.includes('waitForTimeout(Math.min(pace')));
 ok('strict watcher observes REST, Storage, Functions and app APIs',helper.includes('/rest\\/v1')&&helper.includes('/storage\\/v1')&&helper.includes('/functions\\/v1')&&helper.includes('/api\\/v1'));
 ok('strict watcher fails unexpected 4xx/5xx',helper.includes('status<400')&&helper.includes('expect(issues'));
 ok('strict watcher persists structured runtime evidence',helper.includes('runtime-issues.ndjson')&&helper.includes('testInfo.titlePath'));

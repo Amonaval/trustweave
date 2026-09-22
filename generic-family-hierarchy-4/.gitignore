@@ -8,3 +8,6 @@ out
 .DS_Store
 *.tsbuildinfo
 qa-results
+.d12-reference/
+.env.d12-candidate
+.d12-work/

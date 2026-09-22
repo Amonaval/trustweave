@@ -269,15 +269,3 @@ See `DOCUMENTATION-CONTROLLED-REVEAL-ARCHITECTURE.md`.
 
 ### Federation batch closure principle
 NF-1→NF-8 is the first complete governed trust-to-outcome loop. Do not mistake source completion for market proof. Before adding outcome-adaptive intelligence, apply and runtime-validate the complete sequence, observe failure modes and preserve the strongest evidence/anti-gaming insights as founder/private operating knowledge.
-
-## 2026-09-20 — Commercial wedge decision: operational pain before another vertical
-
-This sharpens the existing Founder rule that **Organizational Intelligence and Franchise are the first paid-wedge candidates**.
-
-1. **Multi-location / Distributed Operations** — first paid-wedge experiment.
-2. **Promoter / Business Group Command Center** — expansion after integration/data-quality maturity.
-3. MPF / Association and Residential continue as real product/pilot laboratories.
-4. Family remains the deepest trust/relationship product and long-term differentiator.
-5. Do **not** start another broad commercial vertical before buyer evidence.
-
-Before building, ask a real operator for hierarchy, MIS, SOP/audit checklist, issue tracker, compliance calendar and Monday-review workflow. Preferred build signal: design-partner access plus LOI, paid discovery, paid trial or another concrete pull signal.

@@ -1,5 +1,11 @@
 # TrustWeave — Roadmap
 
+## Current priority — D12 database architecture (2026-09-20)
+
+The corrected canonical bootstrap passed full structural, security and API catalog parity after a fresh install on disposable project `yqwitkoxyrujbzpjwuji`. The golden project remains read-only; earlier replay projects are paused. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md` for commit and capture evidence.
+
+The managed-SQL receipt adapter passes against the archived evidence, and the promotion gate now accepts the reviewed replay but remains `NOT_READY` until connected evidence exists. Next run the candidate app in an environment that reaches its API, configure its local QA key and seed, then execute bounded owner/admin/member behavior and browser journeys for Housing Society and Family Community. Reconcile all five evidence layers before D12-F promotion; School SQL stays deferred until this stability gate closes.
+
 ## Active architecture priority — M3-D (2026-09-19)
 
 D0–D11 are implemented as the architecture reinforcement program. D11's School proof classifies the representative scope as A=1, B=9, C=0, D=2 and certifies the platform architecture for bounded School implementation while keeping School completely unregistered/unimplemented. The next School program must follow `missions/mission-003/m3-d/NEXT-SESSION-SCHOOL-IMPLEMENTATION-CHARTER.md`: scaffold first, then policy/graph, server-owned data boundaries, shared actions/consent, the two School-specific seams (attendance and transport/pickup), and only then synthetic Playground/connected activation gates. `missions/mission-003/m3-d/EXECUTION-CHARTER.md` gives the revised sequence; `NETWORK-OS-ARCHITECTURE-MASTER-PLAN.md` retains the older D1–D10 labels as historical strategy, explicitly shifted by one. The connected Residential/Community reliability and staging migration 122 gate below still require real evidence.
@@ -100,46 +106,3 @@ These exact historical labels remain only for accepted source-gate compatibility
 Generation 2 is now complete. C8 must make the existing decisions, failures, opportunities and incident lessons searchable and automatically relevant to planning. C9 turns that state into one human-facing cockpit. C10 then consumes the highest-value safe opportunity and demonstrates the entire loop on a real TrustWeave change.
 
 Generation 3 is complete pending final candidate closure. The next roadmap decision returns to the Founder/company portfolio: pilot rollout remains gated by explicit production authority, while routine discovery, debate, implementation, browser QA, review and packaging can now proceed autonomously.
-
-## Parallel commercial discovery track — product-thesis, not current execution authority
-
-The active reliability / architecture program above remains engineering authority. In parallel, validate the first paid wedge before authorizing another broad vertical.
-
-1. Interview / observe 3–5 founder-led multi-location operators.
-2. Obtain hierarchy, weekly MIS, SOP/audit, issue tracker, compliance calendar and review workflow from at least one design partner.
-3. Map the buyer's Monday-morning operating review to existing TrustWeave primitives.
-4. Seek a concrete pull signal: data access, design-partner commitment, LOI, paid discovery or paid trial.
-5. Only then authorize the smallest TrustWeave Ops slice: location hierarchy, audit/SOP, issue/corrective action, compliance/renewals, exception dashboard, AI COO brief.
-6. Measure manual follow-ups removed, closure time, leadership time saved and willingness to renew/pay.
-7. Expand toward a Promoter / Business Group Command Center only after connector/data-quality maturity.
-
-This track must not interrupt current Residential / Family Community reliability work or database/bootstrap closure.
-
-
-## Parallel strategic validation track — AI-native Trusted Network Intelligence
-
-**Product-thesis only; not current execution authority.**
-
-TrustWeave will evaluate whether its strongest long-term differentiation is a shared **Intelligence Fabric for trusted human networks**: member/network agents operating over explicit intent, verified trust paths, institutional memory, consent, permissions and federated network boundaries.
-
-Current working portfolio decision:
-
-- active engineering remains reliability / architecture / D12 closure;
-- AI Trusted Network Intelligence Fabric is the highest-upside long-term thesis to validate;
-- TrustWeave Ops remains the strongest near-term monetization hypothesis;
-- Family + Community become natural proving grounds for trust/intent/consent;
-- Residential remains an operational proving ground.
-
-Validation sequence before broad implementation:
-
-1. define intent, consent, trust-path and match-explanation semantics;
-2. prototype one synthetic "I need help" flow;
-3. test with neutral users against directory/group-broadcast alternatives;
-4. run a bounded human-reviewed Community/Association pilot;
-5. separately prove a Network Agent job such as meeting preparation or institutional-memory retrieval;
-6. test cross-network federation only after two networks independently produce local value;
-7. re-score the portfolio using observed outcome, trust and willingness-to-pay evidence.
-
-Canonical strategy:
-- docs/product/TRUSTWEAVE-AI-NATIVE-TRUSTED-NETWORK-INTELLIGENCE-THESIS.md
-- docs/product/TRUSTWEAVE-PRODUCT-THESIS-EVALUATION-PORTFOLIO.md

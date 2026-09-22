@@ -42,39 +42,3 @@ Product criticism now comes from seven repeatable browser personas and creates a
 ## 2026-09-16 — Zero-touch operating proof
 
 TrustWeave converted the highest-ranked observed usability issue into a release-ready improvement without routine Founder involvement. Public Discovery actions now meet a 44px touch minimum across Housing, Community, member and guide journeys. The Founder remains the strategic owner and D3 authority, with a single cockpit for health, debate, risk, evidence and next moves.
-
-## 2026-09-20 — Commercial wedge sharpened: Distributed Operations first
-
-The company category remains unchanged: **TrustWeave is a private, federated operating system for trusted networks**. The first serious paid-wedge experiment is **TrustWeave Ops — an AI operating system for distributed organizations**, beginning with founder-led multi-location / franchise-style businesses.
-
-The job to solve is: **Across all my locations, what needs my attention right now, why, who owns it, what evidence exists, and what should happen next?**
-
-Smallest credible slice: location hierarchy, SOP/audit, issues + corrective actions, compliance/renewals, exception dashboard, and an evidence-backed AI COO brief.
-
-This does not demote Family, MPF / Community or Residential: Family remains the deepest trust laboratory; MPF the federation proving ground; Residential the operational proving ground; Distributed Operations becomes the first serious revenue experiment; Promoter / Business Group becomes the higher-ticket expansion after integrations are proven.
-
-Canonical detail: `docs/product/TRUSTWEAVE-COMMERCIAL-THESIS-DISTRIBUTED-OPERATIONS-OS.md`.
-
-
-## 2026-09-22 — AI-native trusted-network intelligence thesis added
-
-A new high-potential long-term thesis is now tracked alongside the Distributed Operations commercial wedge: **TrustWeave Intelligence Fabric — intelligence for trusted human networks**.
-
-The idea is not to add generic AI chat. It is to let authorized AI reason over TrustWeave's strongest foundations — multi-network identity, verified relationships, roles, institutional history, permissions, explicit intent, consent and federation — so the product can discover who can help whom, preserve organizational memory, coordinate safe introductions/actions and eventually bridge networks without collapsing privacy boundaries.
-
-Current portfolio decision: this is the **leading long-term category thesis for validation**, while **TrustWeave Ops remains the leading near-term paid-wedge hypothesis**. Active reliability / architecture / D12 execution is unchanged.
-
-Canonical detail:
-- docs/product/TRUSTWEAVE-AI-NATIVE-TRUSTED-NETWORK-INTELLIGENCE-THESIS.md
-- docs/product/TRUSTWEAVE-PRODUCT-THESIS-EVALUATION-PORTFOLIO.md
-
-
-## 2026-09-22 — Day-1 reassessment and adjacent AI-native opportunity map
-
-A zero-sunk-cost review reached a deliberately mixed conclusion: **"private Network OS" is a serious architecture thesis but not, by itself, a sufficiently differentiated startup proposition.** The strategic opportunity is what becomes possible because the governed network substrate exists.
-
-Five adjacent directions are now preserved for later evaluation: **AI Agent Permission / Context Layer, Federated Human Search, Institutional Memory Engine, Governed Agent-to-Agent Coordination, and Network Compiler / Autopilot.**
-
-They are not new execution priorities and are not independently scored yet because several may be components of the existing Intelligence Fabric rather than separate businesses. The current engineering priority and near-term commercial thesis remain unchanged.
-
-Canonical analysis: `docs/product/TRUSTWEAVE-DAY1-REASSESSMENT-AND-ADJACENT-AI-DIRECTIONS.md`.

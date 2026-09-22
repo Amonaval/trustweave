@@ -154,18 +154,3 @@ Future in-product AI capabilities must be permission-scoped, tenant-safe, audita
 
 For implementation-level boundaries and forbidden dependencies, `ARCHITECTURE-CONSTITUTION.md` is authoritative.
 
-## Commercial wedge constitution — 2026-09-20
-
-**Category:** private, federated Trusted Network OS.  
-**First serious paid wedge:** Multi-location / Distributed Operations.  
-**Second expansion:** Promoter / Business Group Command Center.
-
-Binding rules:
-- Pain before platform breadth.
-- Buyer evidence before vertical expansion.
-- Prefer **exception + owner + evidence + next action** over dashboard breadth.
-- Existing ERP/POS/CRM/accounting/HR systems remain sources of truth where appropriate; connect rather than reflexively replace.
-- AI conclusions must be traceable to authorized operational evidence.
-- Family, Community and Residential remain strategic products and proving grounds.
-- Business-group functionality waits until connector/data-quality maturity is proven.
-- Paid proof outranks speculative enterprise infrastructure.
