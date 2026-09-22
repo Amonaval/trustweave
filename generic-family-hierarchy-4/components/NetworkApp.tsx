@@ -179,7 +179,7 @@ export default function NetworkApp() {
   const [routeError,setRouteError]=useState("");
   const setView=(next:View)=>{
     setViewState(next);
-    if(auth?.id&&network&&!setupNeeded&&!demoPreview)navigateNetworkSurface(network.network_id||network.id,next);
+    if(auth?.id&&network&&!setupNeeded&&!demoPreview)navigateNetworkSurface(network.network_id||network.id,next==="founder"?"launch":next);
   };
   const [shellBusy,setShellBusy]=useState("");
   const [familyAdvancedSection,setFamilyAdvancedSection]=useState<FamilyAdvancedSection>("health");
@@ -257,7 +257,7 @@ export default function NetworkApp() {
     if(!route||!auth?.id){setRouteError("");if(!auth?.id){setVerifiedRoute("");setRouteMembership(null)}return;}
     const key=`${auth.id}:${route.networkId}`;
     if(verifiedRoute===key&&routeMembership&&network&&(network.network_id||network.id).toLowerCase()===route.networkId){
-      try{authorizeNetworkSurface(route,[routeMembership]);setRouteError("");if(activeVerticalKind==="family")setViewState(route.surface as View)}catch{setRouteError("This page is not available to your account.")}
+      try{authorizeNetworkSurface(route,[routeMembership],{platformOwner:!!auth?.platform_owner});setRouteError("");if(activeVerticalKind==="family")setViewState((route.surface==="launch"?"founder":route.surface) as View)}catch{setRouteError("This page is not available to your account.")}
       return;
     }
     let cancelled=false;
@@ -265,13 +265,13 @@ export default function NetworkApp() {
       try{
         const memberships=await fetchMyNetworkMemberships();
         if(cancelled)return;
-        const membership=authorizeNetworkSurface(route,memberships);
+        const membership=authorizeNetworkSurface(route,memberships,{platformOwner:!!auth?.platform_owner});
         if(auth.active_network_id?.toLowerCase()!==route.networkId)await setActiveNetwork(route.networkId);
         if(cancelled)return;
         setRouteMembership(membership);
         setVerifiedRoute(key);
         if((network?.network_id||network?.id)?.toLowerCase()!==route.networkId)await hydrate(await getAuthUser());
-        if(!cancelled){setRouteError("");if(membership.network.verticalKind==="family")setViewState(route.surface as View);}
+        if(!cancelled){setRouteError("");if(membership.network.verticalKind==="family")setViewState((route.surface==="launch"?"founder":route.surface) as View);}
       }catch{
         if(!cancelled)setRouteError("This page is not available to your account.");
       }

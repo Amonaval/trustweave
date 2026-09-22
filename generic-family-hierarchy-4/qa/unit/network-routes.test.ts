@@ -52,3 +52,11 @@ test("direct entry fails closed for another tenant, inactive members, unknown su
  assert.throws(()=>authorizeNetworkSurface({networkId:id,surface:"school-register"},[member]));
  assert.throws(()=>authorizeNetworkSurface({networkId:id,surface:"community"},[{...member,status:"suspended"} as NetworkMembership]));
 });
+
+
+test("platform Launch Control keeps the established /launch route and requires platform ownership",()=>{
+ const member={network:{id,name:"Founder family",slug:"founder-family",verticalKind:"family"},role:"owner",status:"active",isActive:true,resources:{storageLimitBytes:0,photoUploadEnabled:false,photoMaxBytes:0}} satisfies NetworkMembership;
+ assert.deepEqual(parseNetworkRoute(networkSurfaceHref(id,"launch")),{networkId:id,surface:"launch"});
+ assert.equal(authorizeNetworkSurface({networkId:id,surface:"launch"},[member],{platformOwner:true}),member);
+ assert.throws(()=>authorizeNetworkSurface({networkId:id,surface:"launch"},[member],{platformOwner:false}));
+});

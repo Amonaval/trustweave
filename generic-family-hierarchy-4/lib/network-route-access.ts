@@ -4,10 +4,16 @@ import type {NetworkRoute} from "./network-routes";
 import {decideScopedAuthorization} from "../core/authorization/policy";
 
 /** A route never grants access. The active membership comes from the server-backed RPC. */
-export function authorizeNetworkSurface(route:NetworkRoute,memberships:readonly NetworkMembership[]):NetworkMembership {
+export function authorizeNetworkSurface(route:NetworkRoute,memberships:readonly NetworkMembership[],context:{platformOwner?:boolean}={}):NetworkMembership {
  const unavailable=()=>new Error("This page is not available to your account.");
  const membership=memberships.find(row=>row.network.id.toLowerCase()===route.networkId&&row.status==="active");
  if(!membership)throw unavailable();
+ // Launch Control is platform-scoped but keeps the active network in the URL for shell context.
+ // It is deliberately not part of ordinary vertical navigation and therefore needs an explicit gate.
+ if(route.surface==="launch"){
+  if(!context.platformOwner)throw unavailable();
+  return membership;
+ }
  const composition=getVerticalAppComposition(membership.network.verticalKind);
  if(composition.renderStatus!=="active")throw unavailable();
  const surfaces=[...composition.primaryNavigation,...composition.mobileMoreNavigation];
