@@ -1,10 +1,11 @@
 # TrustWeave — Mission Status
 
-**Updated:** 2026-09-20
+**Updated:** 2026-09-22
 
 | Mission | Status | Meaning |
 |---|---|---|
-| **D12 — Modular Database Architecture / Migration OS** | **FRESH BOOTSTRAP/CATALOG PASS; BEHAVIOR/BROWSER VERIFY** | Corrected release replayed on empty disposable with zero structural/security/API differences; connected QA and D12-F promotion remain open. |
+| **V1 — Network Activation Autopilot** | **SOURCE-COMPLETE CANDIDATE / VALUE VALIDATION PENDING** | Family Community activation now compiles existing records, surfaces ambiguity, preserves provenance, activates through governed contracts and produces first deterministic institutional intelligence. Migration 124 and one real artifact-pack proof remain explicitly unexecuted. |
+| **D12 — Modular Database Architecture / Migration OS** | **REVIEW-CLOSED / FORMAL EXHAUSTIVE CERTIFICATION DEFERRED** | Fresh Supabase reconstruction demonstrated structural/security/API-contract parity. Do not restart broad reconstruction/browser certification without a concrete product reason; golden remains the preferred real data environment and the D12 project remains recovery/reference. |
 | Mission 1 — Runtime Defect & Seed Integrity | PRESERVED / RUNTIME RETEST OUTSTANDING | Source fixes/evidence remain available; no false runtime certification. |
 | Mission 2 — Slow Full Product User Regression | CONNECTED / REPAIR VERIFY | First focused connected run completed; bounded Housing, notification, harness and accessibility repairs await staging migration + rerun. |
 | M3-A — Architecture Inventory | COMPLETE | Shared/capability/vertical boundaries and convergence opportunities documented. |
@@ -22,11 +23,12 @@
 
 ## Active objective
 
-Stabilize every critical Residential and Family Community flow using the configured reliability runner, repair reproducible product defects, and establish the regression baseline required for the remaining reusable product architecture work.
+Validate whether **Network Activation Autopilot** can turn an existing Association's imperfect records into a trustworthy governed network with very little human work and immediately useful institutional context. Engineering completeness is not the goal; product learning, adoption leverage and trust are.
 
 ## Current guardrails
 
 - Historical migrations are immutable.
+- V1 migration 124 is source-only until the Founder explicitly authorizes a database change.
 - Source proof is never called runtime proof.
 - Independent review cannot be self-certified.
 - D3 irreversible/privacy/security/legal/financial/constitution decisions remain founder gates until explicitly delegated.
