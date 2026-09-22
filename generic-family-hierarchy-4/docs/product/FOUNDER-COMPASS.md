@@ -6,24 +6,38 @@ A feature is strategically valuable only when it helps answer a painful network 
 
 # Founder Compass
 
-## 2026-09-22 binding execution rule — prove activation before expanding intelligence
+## 2026-09-22 binding execution rule — trustworthy data adaptation before activation
 
-The consolidated D0–D12 architecture is now leverage, not the roadmap.
+The consolidated D0–D12 architecture is leverage, not the roadmap.
 
-The active product experiment is **V1 — Network Activation Autopilot** for Family Community / Association.
+The active TrustWeave product experiment remains **V1 — Network Activation Autopilot**, but V1 is not complete merely because the governed compiler can consume a TrustWeave-shaped workbook.
+
+The product must help with the user's existing data rather than first asking the user to perform a large manual migration.
 
 Binding rules:
 
-- prove that an existing institution can become useful in TrustWeave without being manually rebuilt;
-- maximize machine reconstruction and minimize meaningful human decisions;
-- preserve source provenance separately from approved canonical truth;
-- when records conflict, ask rather than guess;
-- deterministic work stays deterministic;
-- no paid/external AI dependency is authorized for V1;
-- do not build broad V2 intelligence, Residential Autopilot, new verticals or more architecture before one real Association activation produces product evidence;
-- source completion is not V1 success; the success signal is saved setup work, trusted reconstruction, useful immediate insight and willingness to activate another network.
+- accept supported arbitrary Excel/CSV structures through a source-adaptation layer before the governed compiler;
+- do not hard-code domain synonym dictionaries in the generic transformation core;
+- the generic source → target transformation engine must be separable, independently usable and pluggable; TrustWeave is one consumer through an adapter;
+- humans may be asked for small, high-leverage semantic work such as mapping columns, defining ambiguous codes, approving rules and supplying truly missing facts;
+- machines own the repetitive work across large datasets;
+- prefer one confirmed rule applied to hundreds of rows over hundreds of manual edits;
+- deterministic transformations may be automated only when meaning is preserved and provenance is retained;
+- semantic suggestions remain suggestions until confirmed at the appropriate scope;
+- allow unmapped columns, unresolved rows, partial safe output and highlighted completion work;
+- **incomplete data is acceptable; wrong trusted data is not**;
+- never increase apparent completion by inventing semantic meaning;
+- preserve original source separately from transformed/canonical values;
+- every bulk repair must show its rule, rationale and affected scope;
+- generated completion workbooks/review reports are valid product outcomes even before TrustWeave activation;
+- no paid/external AI dependency is authorized by this product direction;
+- do not create a standalone repository, provision infrastructure, select a paid model/provider or broaden into generic OCR/connectors without explicit Founder authorization;
+- do not build broad V2 Intelligence until V1 demonstrates trustworthy messy-source → governed-context conversion with low human effort.
 
-Canonical execution detail: `V1-NETWORK-ACTIVATION-AUTOPILOT.md`.
+Canonical product contracts:
+
+- `V1-NETWORK-ACTIVATION-AUTOPILOT.md`
+- `GENERIC-DATA-TRANSFORMATION-ENGINE-THESIS.md`
 
 
 ## Objective Hierarchy
