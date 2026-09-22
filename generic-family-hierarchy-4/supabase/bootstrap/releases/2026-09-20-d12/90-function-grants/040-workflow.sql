@@ -1,0 +1,65 @@
+-- TRUSTWEAVE D12 CANONICAL CURRENT-STATE BASELINE.
+-- Materialized after fresh-project structural/security/API/behavior/product parity on 2026-09-20.
+-- DO NOT apply these files to the historical golden project as an upgrade sequence.
+-- Historical supabase/migrations/001..123 remain immutable upgrade history.
+
+REVOKE ALL ON FUNCTION "public"."act_on_contribution_suggestion"(p_suggestion_id uuid, p_action text) FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."act_on_contribution_suggestion"(p_suggestion_id uuid, p_action text) TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."act_on_contribution_suggestion"(p_suggestion_id uuid, p_action text) TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."act_on_contribution_suggestion"(p_suggestion_id uuid, p_action text) TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."act_on_contribution_suggestion"(p_suggestion_id uuid, p_action text) TO "service_role";
+REVOKE ALL ON FUNCTION "public"."begin_api_command_idempotency"(p_command text, p_key text, p_request_hash text) FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."begin_api_command_idempotency"(p_command text, p_key text, p_request_hash text) TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."begin_api_command_idempotency"(p_command text, p_key text, p_request_hash text) TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."begin_api_command_idempotency"(p_command text, p_key text, p_request_hash text) TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."begin_api_command_idempotency"(p_command text, p_key text, p_request_hash text) TO "service_role";
+REVOKE ALL ON FUNCTION "public"."complete_api_command_idempotency"(p_command text, p_key text, p_response jsonb) FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."complete_api_command_idempotency"(p_command text, p_key text, p_response jsonb) TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."complete_api_command_idempotency"(p_command text, p_key text, p_response jsonb) TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."complete_api_command_idempotency"(p_command text, p_key text, p_response jsonb) TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."complete_api_command_idempotency"(p_command text, p_key text, p_response jsonb) TO "service_role";
+REVOKE ALL ON FUNCTION "public"."create_change_request"(p_action character varying, p_target_member_id uuid, p_payload jsonb) FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."create_change_request"(p_action character varying, p_target_member_id uuid, p_payload jsonb) TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."create_change_request"(p_action character varying, p_target_member_id uuid, p_payload jsonb) TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."create_change_request"(p_action character varying, p_target_member_id uuid, p_payload jsonb) TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."create_change_request"(p_action character varying, p_target_member_id uuid, p_payload jsonb) TO "service_role";
+REVOKE ALL ON FUNCTION "public"."get_contribution_suggestions"(p_status text) FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."get_contribution_suggestions"(p_status text) TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."get_contribution_suggestions"(p_status text) TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."get_contribution_suggestions"(p_status text) TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."get_contribution_suggestions"(p_status text) TO "service_role";
+REVOKE ALL ON FUNCTION "public"."get_guide_feedback_signals"() FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."get_guide_feedback_signals"() TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."get_guide_feedback_signals"() TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."get_guide_feedback_signals"() TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."get_guide_feedback_signals"() TO "service_role";
+REVOKE ALL ON FUNCTION "public"."get_platform_guide_feedback"(p_status text) FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."get_platform_guide_feedback"(p_status text) TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."get_platform_guide_feedback"(p_status text) TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."get_platform_guide_feedback"(p_status text) TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."get_platform_guide_feedback"(p_status text) TO "service_role";
+REVOKE ALL ON FUNCTION "public"."refresh_contribution_suggestions"() FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."refresh_contribution_suggestions"() TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."refresh_contribution_suggestions"() TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."refresh_contribution_suggestions"() TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."refresh_contribution_suggestions"() TO "service_role";
+REVOKE ALL ON FUNCTION "public"."release_api_command_idempotency"(p_command text, p_key text) FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."release_api_command_idempotency"(p_command text, p_key text) TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."release_api_command_idempotency"(p_command text, p_key text) TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."release_api_command_idempotency"(p_command text, p_key text) TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."release_api_command_idempotency"(p_command text, p_key text) TO "service_role";
+REVOKE ALL ON FUNCTION "public"."review_change_request"(p_request_id uuid, p_status character varying, p_review_note text) FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."review_change_request"(p_request_id uuid, p_status character varying, p_review_note text) TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."review_change_request"(p_request_id uuid, p_status character varying, p_review_note text) TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."review_change_request"(p_request_id uuid, p_status character varying, p_review_note text) TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."review_change_request"(p_request_id uuid, p_status character varying, p_review_note text) TO "service_role";
+REVOKE ALL ON FUNCTION "public"."set_guide_feedback_status"(p_feedback_id uuid, p_status text) FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."set_guide_feedback_status"(p_feedback_id uuid, p_status text) TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."set_guide_feedback_status"(p_feedback_id uuid, p_status text) TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."set_guide_feedback_status"(p_feedback_id uuid, p_status text) TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."set_guide_feedback_status"(p_feedback_id uuid, p_status text) TO "service_role";
+REVOKE ALL ON FUNCTION "public"."submit_guide_feedback"(p_guide_key text, p_screen text, p_feedback_type text, p_message text, p_role text, p_experience_mode text, p_app_version text) FROM PUBLIC, "anon", "authenticated", "service_role";
+GRANT EXECUTE ON FUNCTION "public"."submit_guide_feedback"(p_guide_key text, p_screen text, p_feedback_type text, p_message text, p_role text, p_experience_mode text, p_app_version text) TO "anon";
+GRANT EXECUTE ON FUNCTION "public"."submit_guide_feedback"(p_guide_key text, p_screen text, p_feedback_type text, p_message text, p_role text, p_experience_mode text, p_app_version text) TO "authenticated";
+GRANT EXECUTE ON FUNCTION "public"."submit_guide_feedback"(p_guide_key text, p_screen text, p_feedback_type text, p_message text, p_role text, p_experience_mode text, p_app_version text) TO "postgres";
+GRANT EXECUTE ON FUNCTION "public"."submit_guide_feedback"(p_guide_key text, p_screen text, p_feedback_type text, p_message text, p_role text, p_experience_mode text, p_app_version text) TO "service_role";

@@ -1,0 +1,526 @@
+{
+  "format": "trustweave-d12-canonical-baseline-v1",
+  "status": "CANONICAL_CURRENT_STATE",
+  "promoted_at": "2026-09-20",
+  "golden_project_ref": "yyhwcqpzplebittvxzzl",
+  "candidate_project_ref": "blpdjhmtayjkcczqltqi",
+  "primary_capture_sha256": "074f89728fce44712b81627ef5f0dbcae76b6627ba321bd11720f285e9c0acc1",
+  "supplement_capture_sha256": "5a2a2c5f301ef9606a90f254b98fafae5a8477ab13ccb5ce68052dd66d639c47",
+  "object_counts": {
+    "relations": 167,
+    "columns": 1743,
+    "constraints": 981,
+    "indexes": 401,
+    "captured_functions": 463,
+    "canonical_functions": 465,
+    "triggers": 10,
+    "policies": 97,
+    "sequences": 6
+  },
+  "explicit_source_drift_repairs": [
+    "public.set_network_notification_role(text,text,uuid,boolean)",
+    "public.remove_network_notification_role(text,uuid)"
+  ],
+  "bootstrap_functions": [
+    "public.a4_safe_external_url(p_url text, p_kind text)",
+    "public.current_network_id()"
+  ],
+  "identity_sequences": [
+    "public.family_intake_events_id_seq",
+    "public.hs_pilot_usage_events_id_seq",
+    "public.participation_events_id_seq",
+    "public.platform_feature_rollout_audit_id_seq"
+  ],
+  "storage_owner_context_files": [
+    "71-storage-owner-context/000-storage-policies.sql"
+  ],
+  "direct_apply_order": [
+    "00-foundation/00-extensions.sql",
+    "05-sequences/060-federation.sql",
+    "05-sequences/070-family.sql",
+    "08-bootstrap-functions/000-required.sql",
+    "10-tables/010-platform-core.sql",
+    "10-tables/020-identity.sql",
+    "10-tables/030-activity.sql",
+    "10-tables/040-workflow.sql",
+    "10-tables/050-notifications.sql",
+    "10-tables/060-federation.sql",
+    "10-tables/070-family.sql",
+    "10-tables/080-family-community.sql",
+    "10-tables/090-housing.sql",
+    "10-tables/110-future-specializations.sql",
+    "15-sequence-ownership/000-sequences.sql",
+    "20-constraints/00-keys/010-platform-core.sql",
+    "20-constraints/00-keys/020-identity.sql",
+    "20-constraints/00-keys/030-activity.sql",
+    "20-constraints/00-keys/040-workflow.sql",
+    "20-constraints/00-keys/050-notifications.sql",
+    "20-constraints/00-keys/060-federation.sql",
+    "20-constraints/00-keys/070-family.sql",
+    "20-constraints/00-keys/080-family-community.sql",
+    "20-constraints/00-keys/090-housing.sql",
+    "20-constraints/00-keys/110-future-specializations.sql",
+    "20-constraints/10-other/010-platform-core.sql",
+    "20-constraints/10-other/020-identity.sql",
+    "20-constraints/10-other/030-activity.sql",
+    "20-constraints/10-other/040-workflow.sql",
+    "20-constraints/10-other/050-notifications.sql",
+    "20-constraints/10-other/060-federation.sql",
+    "20-constraints/10-other/070-family.sql",
+    "20-constraints/10-other/080-family-community.sql",
+    "20-constraints/10-other/090-housing.sql",
+    "20-constraints/10-other/110-future-specializations.sql",
+    "30-indexes/010-platform-core.sql",
+    "30-indexes/020-identity.sql",
+    "30-indexes/030-activity.sql",
+    "30-indexes/040-workflow.sql",
+    "30-indexes/050-notifications.sql",
+    "30-indexes/060-federation.sql",
+    "30-indexes/070-family.sql",
+    "30-indexes/080-family-community.sql",
+    "30-indexes/090-housing.sql",
+    "30-indexes/110-future-specializations.sql",
+    "40-functions/010-platform-core.sql",
+    "40-functions/020-identity.sql",
+    "40-functions/030-activity.sql",
+    "40-functions/040-workflow.sql",
+    "40-functions/050-notifications.sql",
+    "40-functions/060-federation.sql",
+    "40-functions/070-family.sql",
+    "40-functions/080-family-community.sql",
+    "40-functions/090-housing.sql",
+    "40-functions/110-future-specializations.sql",
+    "45-source-drift-repairs/050-notifications.sql",
+    "50-triggers/010-platform-core.sql",
+    "50-triggers/020-identity.sql",
+    "50-triggers/060-federation.sql",
+    "50-triggers/070-family.sql",
+    "50-triggers/110-future-specializations.sql",
+    "60-security/010-platform-core.sql",
+    "60-security/020-identity.sql",
+    "60-security/030-activity.sql",
+    "60-security/040-workflow.sql",
+    "60-security/050-notifications.sql",
+    "60-security/060-federation.sql",
+    "60-security/070-family.sql",
+    "60-security/080-family-community.sql",
+    "60-security/090-housing.sql",
+    "60-security/110-future-specializations.sql",
+    "70-storage/000-buckets.sql",
+    "75-schema-grants/000-schemas.sql",
+    "80-table-grants/010-platform-core.sql",
+    "80-table-grants/020-identity.sql",
+    "80-table-grants/030-activity.sql",
+    "80-table-grants/040-workflow.sql",
+    "80-table-grants/050-notifications.sql",
+    "80-table-grants/060-federation.sql",
+    "80-table-grants/070-family.sql",
+    "80-table-grants/080-family-community.sql",
+    "80-table-grants/090-housing.sql",
+    "80-table-grants/110-future-specializations.sql",
+    "85-sequence-grants/000-sequences.sql",
+    "90-function-grants/010-platform-core.sql",
+    "90-function-grants/020-identity.sql",
+    "90-function-grants/030-activity.sql",
+    "90-function-grants/040-workflow.sql",
+    "90-function-grants/050-notifications.sql",
+    "90-function-grants/060-federation.sql",
+    "90-function-grants/070-family.sql",
+    "90-function-grants/080-family-community.sql",
+    "90-function-grants/090-housing.sql",
+    "90-function-grants/110-future-specializations.sql"
+  ],
+  "all_files": [
+    {
+      "path": "00-foundation/00-extensions.sql",
+      "sha256": "a7d6389a4a5d0263a4a213b3b44bb0efa1d093a353d6c719ba7f952f04a46f8c"
+    },
+    {
+      "path": "05-sequences/060-federation.sql",
+      "sha256": "cb3407e852972385257b8fc706a5ea43db921ec3a64c5010f02baeafcf4f4f56"
+    },
+    {
+      "path": "05-sequences/070-family.sql",
+      "sha256": "2bc021c9be30d40a403a124877bdff7fa54877fae2a5a2a576174f679d46f796"
+    },
+    {
+      "path": "08-bootstrap-functions/000-required.sql",
+      "sha256": "52db4fd4500b796472a724c04c5d1f462e3bbcf1304a219377e7a5be30bc4e58"
+    },
+    {
+      "path": "10-tables/010-platform-core.sql",
+      "sha256": "251c99f4d0cefbd64400c273068667b92e7376a5126b3f503499c508b9865acc"
+    },
+    {
+      "path": "10-tables/020-identity.sql",
+      "sha256": "af99933aa5a909c178c40d8c7b5337e7b03f23a3f6191c7abdcf72a4635b22c5"
+    },
+    {
+      "path": "10-tables/030-activity.sql",
+      "sha256": "0a16d99b892b3d6db169080e8fbc7c6a3716cb5370c698d0a40c96a74e4df70c"
+    },
+    {
+      "path": "10-tables/040-workflow.sql",
+      "sha256": "24c309f66a8a913274f0cbdc530ea783cf257f6244324a72d9573934d506f3b5"
+    },
+    {
+      "path": "10-tables/050-notifications.sql",
+      "sha256": "5413ee42c282b2757c13c03fa980709206b432d99ad2a072d23757b800feed91"
+    },
+    {
+      "path": "10-tables/060-federation.sql",
+      "sha256": "858d9a0f5ce4005fca6a2980c774e92bfda85f1f9c868cee0e48849d82918d56"
+    },
+    {
+      "path": "10-tables/070-family.sql",
+      "sha256": "54eaa56b8d8608dabe1d4564e8af59273b8b4ab7af152b6c26c2e01629c0e8dc"
+    },
+    {
+      "path": "10-tables/080-family-community.sql",
+      "sha256": "5df478290d86537c12bb96698024710a974bd2540a7de854ee2137e4c4e2d635"
+    },
+    {
+      "path": "10-tables/090-housing.sql",
+      "sha256": "fd1098c33513504558983c5a9f774ab387cb62903ed9583965994e89281fcae1"
+    },
+    {
+      "path": "10-tables/110-future-specializations.sql",
+      "sha256": "e3f9c4c5d81538c3da88bac98ad7a3b085c965baa20768bae1647a4549e1f274"
+    },
+    {
+      "path": "15-sequence-ownership/000-sequences.sql",
+      "sha256": "607d1aa99fc084199940c7d6935dbdae26ce44d117be5296d683fddc68935c94"
+    },
+    {
+      "path": "20-constraints/00-keys/010-platform-core.sql",
+      "sha256": "d5bdf142835f517d03a9d7a0383135a2dd4e4e4c1b5b2c61f594a1ec6cccd5c8"
+    },
+    {
+      "path": "20-constraints/00-keys/020-identity.sql",
+      "sha256": "b9d6d565d4fb8a6e5904d3060a768e3f64e6893f3da4f826251f868e6c1215fb"
+    },
+    {
+      "path": "20-constraints/00-keys/030-activity.sql",
+      "sha256": "47aa49f79986950b77f42089c26e81f2316ff2ddbd6c427e5527f6855fa40b61"
+    },
+    {
+      "path": "20-constraints/00-keys/040-workflow.sql",
+      "sha256": "6a5ddb25503d096240f18f163cf35a409e1584719f8dff5ace125c47e0aaf798"
+    },
+    {
+      "path": "20-constraints/00-keys/050-notifications.sql",
+      "sha256": "d22f6cb7a7fdf3c0de42c0b4adae527863ac3e56d16733dbba129b8f229c891b"
+    },
+    {
+      "path": "20-constraints/00-keys/060-federation.sql",
+      "sha256": "ec8fc2e4417e3f5f3d0ad1178e525b2ad06635de81462f6c53eb779bf3492db9"
+    },
+    {
+      "path": "20-constraints/00-keys/070-family.sql",
+      "sha256": "ac232d464e9a18d3d1b73c53afcd187eee8d8a93e43e82a1e973773d264d75f9"
+    },
+    {
+      "path": "20-constraints/00-keys/080-family-community.sql",
+      "sha256": "5df93033afa38f9e664d44f2e0018c6a05dcd8cb33774677c04a66d2b85b132d"
+    },
+    {
+      "path": "20-constraints/00-keys/090-housing.sql",
+      "sha256": "9a82caba28585e3554a60b46a549aae5ce97d70ba016c045ea3d3a17fe87f189"
+    },
+    {
+      "path": "20-constraints/00-keys/110-future-specializations.sql",
+      "sha256": "c4196ae5d0166fba85e6cb74af226c0cdef5a1ee747592d929009f8738c34bdc"
+    },
+    {
+      "path": "20-constraints/10-other/010-platform-core.sql",
+      "sha256": "e6d18bb10136c20f47f2006e049d5309a6e39c34a808297112221de190c1cbc6"
+    },
+    {
+      "path": "20-constraints/10-other/020-identity.sql",
+      "sha256": "d343091f90f5d68785d873d23c78bc54efb036b6afc43a2f9b247a9e535992ee"
+    },
+    {
+      "path": "20-constraints/10-other/030-activity.sql",
+      "sha256": "6b4b6cef5025e88b06922e5cfb6817de0f1f9f613d75a48b60decdfad8a1fce0"
+    },
+    {
+      "path": "20-constraints/10-other/040-workflow.sql",
+      "sha256": "046c59cae5e6c57a0dffd7c67a4871a50700f8128c7705dcc143cc4097b252be"
+    },
+    {
+      "path": "20-constraints/10-other/050-notifications.sql",
+      "sha256": "aae257ab19627df35cbb06cf519cfb25e41baabeb6384f528bf2d27484ca3972"
+    },
+    {
+      "path": "20-constraints/10-other/060-federation.sql",
+      "sha256": "71b2d6df77f3bf0ac7a50058250a28fc27cd5972ec0f45deae9d1c48f9968d25"
+    },
+    {
+      "path": "20-constraints/10-other/070-family.sql",
+      "sha256": "0fe898cb2b5719bc4a56dfd5dffe761decb064924d10a426431fdd56ee5eb215"
+    },
+    {
+      "path": "20-constraints/10-other/080-family-community.sql",
+      "sha256": "89bc763becbb6cd271d9163f2b8c92df56b584db0fe8f6833c686e829d485b5e"
+    },
+    {
+      "path": "20-constraints/10-other/090-housing.sql",
+      "sha256": "468acf2325505b25eb8751eba695e89eb58a405c364e7f6cebd5ffe707f48c97"
+    },
+    {
+      "path": "20-constraints/10-other/110-future-specializations.sql",
+      "sha256": "2bb2825e8c995801ac1e48a68e8e6595d8cc5b90479de1935af5a65ceb5db239"
+    },
+    {
+      "path": "30-indexes/010-platform-core.sql",
+      "sha256": "4a2e92300688419a747597b8b2dbf6f6483b71c571f7f4a0e85404acbfb10e4e"
+    },
+    {
+      "path": "30-indexes/020-identity.sql",
+      "sha256": "856e8d57935b8d00d955070a855e7095936e9b19f294cee71b9ff221f7910144"
+    },
+    {
+      "path": "30-indexes/030-activity.sql",
+      "sha256": "0e92d4459ce0dd6973f401cc33ac4e569024a61ac4f9745e116c820caf75cdc4"
+    },
+    {
+      "path": "30-indexes/040-workflow.sql",
+      "sha256": "095f89ccdb5f5051947bc122c2d16107bada10560bc7aaed492175eef25f5ab2"
+    },
+    {
+      "path": "30-indexes/050-notifications.sql",
+      "sha256": "4e50f7b7c8831b4bbeae636bc02c213286602fba53958c940fc0a247c5a8c29d"
+    },
+    {
+      "path": "30-indexes/060-federation.sql",
+      "sha256": "5fe5a661d0bd425d0caafa8ecd6b5641395c8eab70109bfb72e79d017103e8ab"
+    },
+    {
+      "path": "30-indexes/070-family.sql",
+      "sha256": "bff6023e9e90c5edf23d0a0b7714cdc9f7987efaea415c4e57b80580df707e12"
+    },
+    {
+      "path": "30-indexes/080-family-community.sql",
+      "sha256": "e65535b4d795cd97ecafd7364e818a3dfb5890851d57420a321a5e7628cc35cd"
+    },
+    {
+      "path": "30-indexes/090-housing.sql",
+      "sha256": "08ad84e8d054185277582b355b9528fe505c82ab3e5145194f4e1abff7274944"
+    },
+    {
+      "path": "30-indexes/110-future-specializations.sql",
+      "sha256": "ba015e2a31c5cbaf67536ba9171ab242face6f41da06ae2bb94c55b22ea623b9"
+    },
+    {
+      "path": "40-functions/010-platform-core.sql",
+      "sha256": "28dbf4ccec8d3c13bac0a580d697382ecdde6c95a0ab900e6f7ae5a882603194"
+    },
+    {
+      "path": "40-functions/020-identity.sql",
+      "sha256": "cd3fd9d569ef6acdaf1575307daf54c55304d1502800a2ef4a43fc8364204067"
+    },
+    {
+      "path": "40-functions/030-activity.sql",
+      "sha256": "34829afb9a8e6f7472cce0c4caba7829f26950b3c7f7e971f84055abca0ddf6a"
+    },
+    {
+      "path": "40-functions/040-workflow.sql",
+      "sha256": "74abe1de5af0569c62facdb09f95d4194f5d09a333c7eac9a5f33bcf98aff4fa"
+    },
+    {
+      "path": "40-functions/050-notifications.sql",
+      "sha256": "ae765d3d609da7774e8ec8fc7cae9b5a0c100c32f61d91a911e0f05fbb206073"
+    },
+    {
+      "path": "40-functions/060-federation.sql",
+      "sha256": "0996910e1c736eec22ab261e5f1ddc68e728bf8763f6eab33d8ed282c5d90377"
+    },
+    {
+      "path": "40-functions/070-family.sql",
+      "sha256": "da0fe6326e32aa812db316abfb41a6fa8d2d42c08cdef7f2338f20deafabb27a"
+    },
+    {
+      "path": "40-functions/080-family-community.sql",
+      "sha256": "224e2c7e9378e0d334d0d1b53b55f7d2889510e76041fc585215948503bc3aec"
+    },
+    {
+      "path": "40-functions/090-housing.sql",
+      "sha256": "a535b392f30726481c67b86920fb799f4a5c56d4753e6ddd3d86fe608152cbb2"
+    },
+    {
+      "path": "40-functions/110-future-specializations.sql",
+      "sha256": "a2e45931cf9993d6e7fe269e35a217dd4156e241e843ba3b4abdc2463d678ae7"
+    },
+    {
+      "path": "45-source-drift-repairs/050-notifications.sql",
+      "sha256": "b71ec62ba809812115dddf511793bb2c91ab60c5ed9f5cde2e5c26f145501111"
+    },
+    {
+      "path": "50-triggers/010-platform-core.sql",
+      "sha256": "8c05879312654fb8e21f3e986d3ffaa10cb4efba91f37ac2f58c39f7668ca168"
+    },
+    {
+      "path": "50-triggers/020-identity.sql",
+      "sha256": "8f7e8a453044618b0962cc5a811025f22ba642711fb658db200acb459e37b856"
+    },
+    {
+      "path": "50-triggers/060-federation.sql",
+      "sha256": "507a51389e4f9418cf9ffe21eed1832ca8c214efb3968267efb0de7be79978d7"
+    },
+    {
+      "path": "50-triggers/070-family.sql",
+      "sha256": "18fc013d1dcdc5ecbb0c37a90c2f198ff99bb9600541e0125db009e810d82815"
+    },
+    {
+      "path": "50-triggers/110-future-specializations.sql",
+      "sha256": "f1c2bab86850f47927607c9f2166b6e1e96516b41f9140828feda04b4ba74518"
+    },
+    {
+      "path": "60-security/010-platform-core.sql",
+      "sha256": "3d92d1f7e04af70008818e77938508d7bab6083232d718d035df5895f6fbdc61"
+    },
+    {
+      "path": "60-security/020-identity.sql",
+      "sha256": "faa43265cac2245412db3e95da817fc97fa0f310ca21e4343e4c1a5b4e5e7912"
+    },
+    {
+      "path": "60-security/030-activity.sql",
+      "sha256": "ae409e9a6d2d751ad5e0f539e1b3b9466d246accc0c57827e58d67801dd20db5"
+    },
+    {
+      "path": "60-security/040-workflow.sql",
+      "sha256": "2a25148567094d8e8d70fbe19961a4d17c04f7c459bfc666982ab4d688ed0ff0"
+    },
+    {
+      "path": "60-security/050-notifications.sql",
+      "sha256": "9c82ddbee1d01ced0fbcc406e274a934f08a4bc9e38a330b05f0a92a568c2476"
+    },
+    {
+      "path": "60-security/060-federation.sql",
+      "sha256": "f93f2a8b84fe18506dcbce523926e258a1a92139f2ef6ae7eecdd92b3ae0a30a"
+    },
+    {
+      "path": "60-security/070-family.sql",
+      "sha256": "dbc279033452186d17e4f1cfa1a0533cea16d84e3d25864f1a184bfaa3293916"
+    },
+    {
+      "path": "60-security/080-family-community.sql",
+      "sha256": "93526aa57393699abdda331bf3279ae9d980d048a62fece047bf5ce10925dc1c"
+    },
+    {
+      "path": "60-security/090-housing.sql",
+      "sha256": "23da3adc5218c1f49bc9ae55c9e75dfe77739ebeca7c977a181a49b1d58f7cd9"
+    },
+    {
+      "path": "60-security/110-future-specializations.sql",
+      "sha256": "2f3e4842ecef9adeec93147123197f20d6a403593d2499e4bbc4b3de3f916bcd"
+    },
+    {
+      "path": "70-storage/000-buckets.sql",
+      "sha256": "7ff577d4116dec0f00b63a4657917be232e1fc0c0d5934ce47eb521ed0da8935"
+    },
+    {
+      "path": "71-storage-owner-context/000-storage-policies.sql",
+      "sha256": "c24ffd3219cbe5c8601655a289b15ece9bf4a59615dc6cc6f89461930f1f5e60"
+    },
+    {
+      "path": "75-schema-grants/000-schemas.sql",
+      "sha256": "4a6eaea78e07ddf7349226efa1a8948f0133ac1cec32bbe0326c7c14977ae46e"
+    },
+    {
+      "path": "80-table-grants/010-platform-core.sql",
+      "sha256": "a3a4664aa56da6954f2ee0fa0d2af6c81b6fd4d0780ce4c04128cf7c3ee98cd9"
+    },
+    {
+      "path": "80-table-grants/020-identity.sql",
+      "sha256": "bb0e8225ff2fb8e14ef3db2752274334f1e10371422eaede7e751aef79f2b7a3"
+    },
+    {
+      "path": "80-table-grants/030-activity.sql",
+      "sha256": "4524ab93766de0d56b9549fb7b8c07004923615bdb2d88773a226ee7e17ba859"
+    },
+    {
+      "path": "80-table-grants/040-workflow.sql",
+      "sha256": "fb8661a3ee7e7b80e42922377cd4eb888ad51e77d0ea57ca7942b34c99c73437"
+    },
+    {
+      "path": "80-table-grants/050-notifications.sql",
+      "sha256": "183d57d3ea10281dee01da7efd6dfd59293e968452dcd1247a51a0ba2528cd95"
+    },
+    {
+      "path": "80-table-grants/060-federation.sql",
+      "sha256": "64f6f57c05e6b346ce85ebab8d94cb1485980ef9283cace864c82b4f03e2f878"
+    },
+    {
+      "path": "80-table-grants/070-family.sql",
+      "sha256": "f8a2abde41e5717a4a9232abf866e3919502e750b7015d07f442391351406d91"
+    },
+    {
+      "path": "80-table-grants/080-family-community.sql",
+      "sha256": "7739bb227064440ab53aa85e87744802390c6f3f976d04b44df109ba60e3a034"
+    },
+    {
+      "path": "80-table-grants/090-housing.sql",
+      "sha256": "9c2c2706c4e2073efb735fb9dec2cefe663504302ac328f38ca118ca6305ac0b"
+    },
+    {
+      "path": "80-table-grants/110-future-specializations.sql",
+      "sha256": "150f496b91db7338388e676fdbf4432f8cae2a4d2f88e7a355e7db8660383470"
+    },
+    {
+      "path": "85-sequence-grants/000-sequences.sql",
+      "sha256": "c7fe6d4c0f68258097b9d124f0bb490c00e365a9aaa82c9ee0e4c0dc28e78d5a"
+    },
+    {
+      "path": "90-function-grants/010-platform-core.sql",
+      "sha256": "ee2f87113d8acc8affeb2d6440da71db42e703150f8362aa829e0c9364a5cb76"
+    },
+    {
+      "path": "90-function-grants/020-identity.sql",
+      "sha256": "0ba6633c9a6b1e9185a9d4f7bc7edceceac04e22e263fea246b573856fa0b37a"
+    },
+    {
+      "path": "90-function-grants/030-activity.sql",
+      "sha256": "450ee9f5ae613e1d88bdf9f44a10a2e99629785cd27fd67146dd43c4adef7939"
+    },
+    {
+      "path": "90-function-grants/040-workflow.sql",
+      "sha256": "65b1b96c229ea642e13cdcba6bab14ba20d448d9f1fc83e69772e96f266b5232"
+    },
+    {
+      "path": "90-function-grants/050-notifications.sql",
+      "sha256": "572a9bcaf5bde27680631286eb698e49707062007bb3bd35a002cb8560513bcd"
+    },
+    {
+      "path": "90-function-grants/060-federation.sql",
+      "sha256": "6765b0912ee81aa9869d7a841dfe78c5031093a63f8c327c2892ea68e0ec45cc"
+    },
+    {
+      "path": "90-function-grants/070-family.sql",
+      "sha256": "209588e252e40dba4bfd6d3c46c46c79fbf21076ae2fa43ed1a01d6f8be2626f"
+    },
+    {
+      "path": "90-function-grants/080-family-community.sql",
+      "sha256": "93e471fd3af37d7a970de8ade031eb27fb145906f92cb5e5fa57a4d44cd3f091"
+    },
+    {
+      "path": "90-function-grants/090-housing.sql",
+      "sha256": "ceef7f72149bfc031492f98cad3e7b5669f3ea23d212189abd2f80866a37da74"
+    },
+    {
+      "path": "90-function-grants/110-future-specializations.sql",
+      "sha256": "d0841e39c76a03758d5707ff98687e5411a327df5000924cccc588b2f2822947"
+    }
+  ],
+  "promotion_evidence": [
+    "docs/architecture/D12-DATABASE-BEHAVIOR-EVIDENCE.json",
+    "docs/architecture/D12-MANUAL-BROWSER-SMOKE-EVIDENCE.json",
+    "docs/architecture/D12-CANONICAL-PROMOTION-REVIEW.md"
+  ],
+  "invariants": {
+    "historical_migrations_immutable": true,
+    "customer_rows_included": false,
+    "storage_objects_included": false,
+    "credentials_included": false
+  }
+}
