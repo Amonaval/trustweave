@@ -191,7 +191,7 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
             const resolved=resolution.resolvedAttentionIds.includes(item.id);
             const conflicting=resolution.conflictingDecisionIds.includes(item.id);
             const rowChoices=[...new Map(item.sourceRefs.map(ref=>[`${ref.sheetKey}|${ref.rowNumber}`,ref])).values()];
-            const duplicate=item.code==="POSSIBLE_DUPLICATE_EMAIL"||item.code==="POSSIBLE_DUPLICATE_NAME";
+            const duplicate=item.code==="POSSIBLE_DUPLICATE_IDENTITY";
             return <div
               className={`issue-row ${item.severity==="blocking"||conflicting?"error":resolved?"":"warning"}`}
               data-testid={`qa-activation-attention-${item.code.toLowerCase()}`}
@@ -212,9 +212,20 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
                     disabled={busy}
                     onClick={()=>decide({attentionId:item.id,action:"keep_separate"})}
                   >
-                    Confirm separate people
+                    These are separate people
                   </button>
-                  <small>If these are the same person, leave unresolved for now rather than merging uncertain identity automatically.</small>
+                  {rowChoices.map(ref=>{
+                    const selected=decision?.action==="merge_person"&&decision.sheetKey===ref.sheetKey&&decision.rowNumber===ref.rowNumber;
+                    return <button
+                      className={`btn small ${selected?"primary":""}`}
+                      disabled={busy}
+                      key={`merge-${ref.sheetKey}-${ref.rowNumber}`}
+                      onClick={()=>decide({attentionId:item.id,action:"merge_person",sheetKey:ref.sheetKey,rowNumber:ref.rowNumber})}
+                    >
+                      Merge into row {ref.rowNumber}: {rowPreview(ref)}
+                    </button>;
+                  })}
+                  <small>Merge keeps the selected person as canonical, carries over only missing fields, rewrites references, and retains the losing source rows as evidence.</small>
                 </span>}
                 {item.severity==="review"&&!duplicate&&<span className="card-actions">
                   {rowChoices.map(ref=>{
@@ -260,7 +271,7 @@ export default function NetworkActivationAutopilot({onCommit,onCommitted}: Props
         <ShieldCheck/>
         <span>
           {candidate.trustStatement}
-          {resolution.skippedSourceRows.length>0&&` ${resolution.skippedSourceRows.length} losing conflicting source row${resolution.skippedSourceRows.length===1?" is":"s are"} excluded from the activation plan.`}
+          {resolution.skippedSourceRows.length>0&&` ${resolution.skippedSourceRows.length} superseded source row${resolution.skippedSourceRows.length===1?" is":"s are"} excluded from canonical writes but retained in activation evidence.`}
         </span>
       </div>
 
