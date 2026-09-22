@@ -12,7 +12,7 @@ A high score means "deserves stronger validation," not "build immediately."
 
 A newly discovered adjacent product must not be forced into the scorecard before its buyer/job is clear. The **Generic Data Transformation Engine** is therefore tracked as a parallel thesis first, with an independent proof gate before it receives a portfolio score.
 
-The consolidated architecture/D0–D12 baseline is now treated as leverage rather than the agenda. Founder decision on 2026-09-22 selected **V1 — Network Activation Autopilot** as the active product-value experiment. Product-thesis work can change future direction only after explicit Founder decisions backed by evidence.
+The consolidated architecture/D0–D12 baseline is leverage rather than the agenda. Founder decision on 2026-09-22 first selected **V1 — Network Activation Autopilot**; NAA-L1 is now source-implemented and parked. The portfolio has re-selected **FCA-L1 — MPF East public pilot proof** as the next bounded validation slice because Community / Association is the fastest accessible real-network proving ground and a concrete public-Playground blocker existed. Product-thesis work changes execution authority only through explicit evidence-backed re-selection.
 
 ## 2. Weighted evaluation framework
 
@@ -144,27 +144,31 @@ Canonical thesis:
 
 As of 2026-09-22, after D12 review closure and consolidation onto `main`:
 
-1. **Execute only NAA-L1 — Lean Source Mapping Bridge.** Prove that TrustWeave can take an ordinary supported Excel/CSV, ask the user to confirm a small mapping, safely transform the mapped subset and expose unresolved data. Stop the workstream after this proof instead of automatically building the full transformation engine.
-2. **Keep the broader generic X→Y transformation engine parked as a separate product thesis.** If it is later re-selected for implementation, it belongs in an independently usable codebase/repository and TrustWeave integrates through an adapter. Do not continue into it automatically after NAA-L1.
-3. **Do not build the broad Intelligence Fabric yet.** V1 must first prove that high-quality governed context can be created cheaply enough to make later intelligence credible.
-4. **Retain Governed Institutional Intelligence as V2 only if V1 produces strong product evidence.**
-5. **Keep TrustWeave Ops / Distributed Operations as a serious paid-wedge hypothesis**, but do not start a generic franchise/operations build before a design-partner problem justifies it.
-6. **Use Family Community / Association as the first TrustWeave activation laboratory** because households, representatives, annual membership and governance create richer institutional structure than a simple member directory.
-7. **Preserve Residential as a second operational proving ground**, not a parallel V1 implementation.
-8. **Do not return to broad architecture, D12 reconstruction, feature accumulation or new vertical work without a concrete value reason.**
+1. **NAA-L1 is source-implemented; keep Network Activation parked.** Manual/browser proof remains available later, but there is no automatic follow-on transformation mission.
+2. **Execute only FCA-L1 — MPF East public pilot proof.** Make the existing anonymous Community → realistic Playground journey demonstrable, preserve a lightweight shareable proof path, show it to real pilot/design-partner users, and stop.
+3. **Keep the broader generic X→Y transformation engine parked as a separate product thesis.** If it is later re-selected for implementation, it belongs in an independently usable codebase/repository and TrustWeave integrates through an adapter.
+4. **Do not build the broad Intelligence Fabric yet.** Use Community as a cheap validation environment first; implementation authority still requires evidence.
+5. **Retain Governed Institutional Intelligence as V2 only if trustworthy activation plus real-network usage produce strong product evidence.**
+6. **Keep TrustWeave Ops / Distributed Operations as a serious paid-wedge hypothesis**, but do not start a generic franchise/operations build before a design-partner problem justifies it.
+7. **Use Family Community / Association as the first TrustWeave activation laboratory** because households, representatives, annual membership and governance create richer institutional structure than a simple member directory.
+8. **Preserve Residential as a second operational proving ground**, not a parallel implementation program.
+9. **Do not return to broad architecture, D12 reconstruction, feature accumulation or new vertical work without a concrete value reason.**
 
 The portfolio sequence is now:
 
 ~~~text
 What do we execute now?
-    -> V1 Network Activation Autopilot
+    -> FCA-L1 — MPF East public pilot proof
 
-What does V1 need to prove?
-    -> messy existing records can become trustworthy governed context
-       with very little human setup and immediate useful insight
+What has just been parked?
+    -> V1 Network Activation Autopilot after NAA-L1 source implementation
 
-What becomes next only after that proof?
-    -> V2 Governed Institutional Intelligence
+What do we learn next?
+    -> can a real association/community leader understand and react to
+       a realistic TrustWeave network without training or login?
+
+What remains gated behind stronger evidence?
+    -> V2 Governed Institutional Intelligence / broad Intelligence Fabric
 
 What remains the strongest separate paid-wedge hypothesis?
     -> TrustWeave Ops / Distributed Operations

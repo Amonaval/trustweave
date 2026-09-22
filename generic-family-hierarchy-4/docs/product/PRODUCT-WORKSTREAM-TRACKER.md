@@ -26,7 +26,7 @@ For every product, vertical or architecture area:
 | Generic X→Y Transformation Engine | Strong parallel thesis; no independent implementation | None now | PARKED | Re-select only if NAA-L1 proves a reusable boundary or a non-TrustWeave buyer/use case appears |
 | Pattern Repair / smart bulk fixes | Product idea defined | None now | PARKED | Real files show repetitive repair dominates remaining effort |
 | Transformation Recipe / drift detection | Product idea defined | None now | PARKED | Same source format is imported repeatedly and remapping becomes real pain |
-| Family Community / Association | Strongest near-term activation proving vertical | Fix/release only what blocks an actual alpha/pilot | AVAILABLE | Concrete pilot/release blocker or user feedback |
+| **Family Community / Association** | Strongest near-term activation proving vertical; anonymous Productized Playground handoff repaired in source | **FCA-L1 — MPF East public pilot proof:** verify the public Community → realistic Playground journey and collect a small shareable proof pack; no feature expansion | **ACTIVE / BOUNDED** | Stop after one local proof + pilot-facing screenshots/feedback; resume build work only for a concrete pilot/release blocker |
 | Residential / Housing Society | Existing operational vertical with preserved reliability work | No broad expansion | PENDING | Release/pilot blocker or repeated user need |
 | School vertical | Architecture/readiness blueprint exists; implementation intentionally absent | None | PARKED | Explicit product/commercial priority with real user/design partner |
 | Other new verticals / org use cases | Ideas/foundation exist | None | PARKED | Evidence-backed buyer/problem outranks current work |
@@ -38,6 +38,20 @@ For every product, vertical or architecture area:
 | Connected reliability / QA | Preserved unresolved gates exist | Run only when required by release/change risk | GATED | Alpha/release candidate or critical path changed |
 | Autonomous-company runtime | C1–C10 proof completed | None | PARKED | A concrete company-operating problem justifies more automation |
 | PDF/OCR/connectors/generic AI ingestion | Opportunity inventory only | None | PARKED | Real customer input cannot be solved with supported tabular files |
+
+## Selected next slice — FCA-L1: MPF East public pilot proof
+
+Why this outranks other open work now:
+
+- NAA-L1 is source-implemented and Network Activation is parked;
+- Community / Association is the fastest accessible real-network proving ground in the portfolio;
+- a concrete anonymous-routing defect blocked the realistic Family Community Playground from public Discovery;
+- the fix requires no migration, paid service, new dependency or feature expansion;
+- the next meaningful evidence is a real person reacting to the product, not another architecture layer.
+
+**Lean stop condition:** one local anonymous journey from Discovery → Family Community → realistic MPF East Playground works, a small 8–12 screenshot proof pack can be produced if useful, and the result is shown to pilot/design-partner users. Then re-select from the whole portfolio based on evidence.
+
+The screenshot helper under `qa/showcase/` is best-effort tooling only. It must not become a new QA program or block higher-value work.
 
 ## Network Activation alpha finish line
 

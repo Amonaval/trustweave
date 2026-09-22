@@ -6,11 +6,20 @@ A feature is strategically valuable only when it helps answer a painful network 
 
 # Founder Compass
 
+## 2026-09-22 portfolio re-selection — FCA-L1 public pilot proof
+
+NAA-L1 is source-implemented and **Network Activation is parked**. The lean-alpha portfolio rule has now re-selected **FCA-L1 — MPF East public pilot proof** as the single active bounded slice.
+
+This is a validation move, not a Community feature program: make the existing anonymous Discovery → Family Community → realistic Playground journey work, preserve a lightweight shareable capture path, show the existing product to real pilot/design-partner users, and stop. Do not broaden Community, Housing, Intelligence, School, D12 or the generic transformation thesis unless evidence from this or another concrete blocker re-selects them.
+
+No paid dependency, external AI, new infrastructure, database mutation or billable workflow is authorized for FCA-L1.
+
+
 ## 2026-09-22 binding execution rule — trustworthy data adaptation before activation
 
 The consolidated D0–D12 architecture is leverage, not the roadmap.
 
-The active TrustWeave product experiment remains **V1 — Network Activation Autopilot**, but V1 is not complete merely because the governed compiler can consume a TrustWeave-shaped workbook.
+At that checkpoint, the active TrustWeave product experiment was **V1 — Network Activation Autopilot**. NAA-L1 has since been source-implemented and parked by the portfolio re-selection above; the rules in this section remain the contract if Network Activation is resumed.
 
 The product must help with the user's existing data rather than first asking the user to perform a large manual migration.
 

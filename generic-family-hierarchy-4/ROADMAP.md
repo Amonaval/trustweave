@@ -1,6 +1,37 @@
 # TrustWeave — Roadmap
 
-## Current priority — V1 Network Activation Autopilot (2026-09-22)
+## Current priority — FCA-L1: MPF East public pilot proof (2026-09-22)
+
+This is the current lean-alpha selection after NAA-L1 source implementation.
+
+Prove only this:
+
+> Can a prospective Community / Association leader understand TrustWeave from the public front door, enter a realistic MPF Pune East Playground without login, and see enough existing value to react, share, or agree to a pilot conversation?
+
+In scope:
+
+- keep the anonymous Productized Playground handoff working for Family Community / Association and Housing;
+- preserve a zero-cost, local-only MPF East screenshot helper for a small pilot proof pack;
+- verify the touched lint baseline remains clean;
+- perform one local manual/browser proof when convenient;
+- use the result for real pilot/design-partner feedback.
+
+Not in scope:
+
+- new Community features;
+- broad connected QA or reliability reopening;
+- database migrations or Supabase mutation;
+- Network Activation follow-on work;
+- Intelligence Fabric implementation;
+- School or new vertical work;
+- paid services, paid models, metered workflows or new infrastructure.
+
+### Stop condition
+
+Once the existing public Community → MPF East Playground can be demonstrated and a small proof pack can be shown to real users, **stop building and collect evidence**. Re-select the next work item from the whole portfolio using the workstream tracker.
+
+
+## Previous bounded priority — V1 Network Activation Autopilot — PARKED (2026-09-22)
 
 TrustWeave is still pre-release. Network Activation should therefore receive **one bounded 20–30% effort / 70–80% impact slice**, not a full transformation-platform program.
 

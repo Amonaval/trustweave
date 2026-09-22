@@ -1,8 +1,19 @@
 # TrustWeave — Current State
 
-## 2026-09-22 — V1 Network Activation Autopilot foundation implemented; source-adaptation layer now required
+## 2026-09-22 — FCA-L1 selected: MPF East public pilot proof
 
-The active product mission remains **V1 — Network Activation Autopilot** on branch `network-activation-autopilot`. The implemented work is the governed lower half: candidate-network compiler, row/column provenance, identity/domain ambiguity handling, safe person merging, evidence-first activation, rerun protection, representative graph synchronization and deterministic first Institutional Intelligence. This foundation is retained.
+NAA-L1 is implemented in source and Network Activation is parked. Portfolio re-selection now makes **FCA-L1 — MPF East public pilot proof** the single bounded active slice.
+
+Source repair landed on `main` in `1e360eca`: the anonymous Discovery guard no longer masks Productized or Alumni demo state, so Family Community / Association and Housing Playground handoffs can reach their existing vertical shells before the public landing page is considered. The same commit removes the currently reported TrustWeave lint failures in `capabilities/import/productized-workbook.ts` by explicitly stringifying unknown workbook values before interpolation.
+
+The Founder-provided MPF East screenshot helper is preserved under `qa/showcase/` as **best-effort local tooling**, with only obvious correctness cleanup. It is not a release gate and was not executed here. No browser suite, connected QA, database mutation, deployment, GitHub workflow or paid external service was run.
+
+**Lean stop condition:** locally prove Discovery → Family Community → realistic MPF East Playground, optionally retain the best 8–12 screenshots for pilot sharing, then gather real reaction/feedback and re-select the portfolio. Do not expand Community features merely because this slice is active.
+
+
+## 2026-09-22 — Historical V1 Network Activation foundation checkpoint
+
+At this historical checkpoint, the active product mission was **V1 — Network Activation Autopilot** on branch `network-activation-autopilot`. The implemented work is the governed lower half: candidate-network compiler, row/column provenance, identity/domain ambiguity handling, safe person merging, evidence-first activation, rerun protection, representative graph synchronization and deterministic first Institutional Intelligence. This foundation is retained.
 
 The prior proving slice exposed an important product gap: requiring a TrustWeave-shaped workbook simply moves migration work to the user. Full V1 therefore now requires a generic source-adaptation + transformation/repair layer that can start from supported arbitrary Excel/CSV, ask the user for small semantic confirmations, perform the repetitive work at scale, isolate unresolved data and produce partial safe output. The generic core must remain separable from TrustWeave and may later become an independent X→Y data-transformation product. No standalone repository/infrastructure build is authorized yet.
 
