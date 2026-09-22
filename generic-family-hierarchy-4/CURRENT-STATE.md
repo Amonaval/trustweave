@@ -1,14 +1,14 @@
 # TrustWeave — Current State
 
-## 2026-09-22 — V1 Network Activation Autopilot source-complete candidate
+## 2026-09-22 — V1 Network Activation Autopilot foundation implemented; source-adaptation layer now required
 
-The active product mission is now **V1 — Network Activation Autopilot**, implemented on branch `network-activation-autopilot` for Family Community / Cultural Association. V1 reuses the existing guided-workbook parser and governed Family Community APIs, but adds a candidate-network compiler, row/column provenance, consolidated identity ambiguity, household/membership/representative/payment/leadership conflict detection, in-product human resolution, safe person merging with reference rewriting, evidence-first activation, rerun-safe leadership handling, current-representative graph synchronization, non-empty-network collision guards and a deterministic first Institutional Intelligence report.
+The active product mission remains **V1 — Network Activation Autopilot** on branch `network-activation-autopilot`. The implemented work is the governed lower half: candidate-network compiler, row/column provenance, identity/domain ambiguity handling, safe person merging, evidence-first activation, rerun protection, representative graph synchronization and deterministic first Institutional Intelligence. This foundation is retained.
 
-The proving slice is intentionally narrow: structured Association workbook only. No PDF/WhatsApp/Drive ingestion, generic chatbot, paid model/API dependency, Residential activation or new vertical platform work has been added.
+The prior proving slice exposed an important product gap: requiring a TrustWeave-shaped workbook simply moves migration work to the user. Full V1 therefore now requires a generic source-adaptation + transformation/repair layer that can start from supported arbitrary Excel/CSV, ask the user for small semantic confirmations, perform the repetitive work at scale, isolate unresolved data and produce partial safe output. The generic core must remain separable from TrustWeave and may later become an independent X→Y data-transformation product. No standalone repository/infrastructure build is authorized yet.
 
 Additive migration `124_v1_network_activation_evidence.sql` reuses the existing governed evidence tables and is **not applied to any Supabase project**. No workflows, connected QA, browser suites or database/runtime mutation were executed in this implementation session. Source implementation is therefore not represented as real-world product proof. Canonical detail: `docs/product/V1-NETWORK-ACTIVATION-AUTOPILOT.md`.
 
-The next value-bearing checkpoint is one explicitly authorized real Association artifact-pack activation, measuring human decisions, reconstruction usefulness, trust/provenance and setup effort. Do not expand V1 or begin broad V2 intelligence work before that evidence exists.
+The next value-bearing checkpoint is **not database activation**. It is zero-mutation validation of arbitrary-source mapping/repair: several differently shaped workbooks, one target contract, small user-confirmed mappings/rules, transformed output, exception report, and recipe reuse/drift behavior. Migration 124 remains unapplied. Do not begin broad V2 intelligence work before this layer proves trustworthy value.
 
 ## 2026-09-22 — D12 founder review closure
 
