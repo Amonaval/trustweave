@@ -1,5 +1,20 @@
 # TrustWeave — Current State
 
+## 2026-09-22 — V1 Network Activation Autopilot source-complete candidate
+
+The active product mission is now **V1 — Network Activation Autopilot**, implemented on branch `network-activation-autopilot` for Family Community / Cultural Association. V1 reuses the existing guided-workbook parser and governed Family Community APIs, but adds a candidate-network compiler, row/column provenance, consolidated identity ambiguity, household/membership/representative/payment/leadership conflict detection, in-product human resolution, safe person merging with reference rewriting, evidence-first activation, rerun-safe leadership handling, current-representative graph synchronization, non-empty-network collision guards and a deterministic first Institutional Intelligence report.
+
+The proving slice is intentionally narrow: structured Association workbook only. No PDF/WhatsApp/Drive ingestion, generic chatbot, paid model/API dependency, Residential activation or new vertical platform work has been added.
+
+Additive migration `124_v1_network_activation_evidence.sql` reuses the existing governed evidence tables and is **not applied to any Supabase project**. No workflows, connected QA, browser suites or database/runtime mutation were executed in this implementation session. Source implementation is therefore not represented as real-world product proof. Canonical detail: `docs/product/V1-NETWORK-ACTIVATION-AUTOPILOT.md`.
+
+The next value-bearing checkpoint is one explicitly authorized real Association artifact-pack activation, measuring human decisions, reconstruction usefulness, trust/provenance and setup effort. Do not expand V1 or begin broad V2 intelligence work before that evidence exists.
+
+## 2026-09-22 — D12 founder review closure
+
+D12 is review-closed. The fresh reconstruction demonstrated structural/security/API-contract parity strongly enough for the architecture/recoverability purpose. Formal exhaustive browser certification is deliberately deferred rather than represented as complete. Do not restart a large reconstruction/QA program without a concrete product reason. The historical golden Supabase remains the preferred real environment for existing users/data; the reconstructed D12 Supabase remains recovery/reference.
+
+
 ## 2026-09-20 — D12 final fresh bootstrap and catalog parity PASS
 
 The corrected committed release at `ce5eddfbedd2a1ab3a92bbd58ac24ca78e57bfe1` replayed on the genuinely empty Personal project `TrustWeave D12 Final ACL Proof` (`yqwitkoxyrujbzpjwuji`). All 94 direct SQL files and seven owner-context Storage policies applied. The full golden structural/security/API comparator passed with zero differences and warnings; CI passed. Earlier Clean Replay and the first ACL diagnostic project are paused; golden `OS Network` remains read-only. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md`. The managed-SQL receipt QA adapter passes against the archived evidence and 23 focused guard tests. The promotion gate now recognizes this replay and validates its bootstrap and capture bytes; four promotion guard tests pass. A checkout and dependencies are available. The candidate is healthy with zero Auth users/networks, but direct candidate API access from this workspace times out, the dashboard browser is at sign-in, and no local service key/QA environment is available. Connected QA was not run, promotion readiness is `NOT_READY`, and D12-F remains open.
