@@ -29,5 +29,11 @@ export async function executeFamilyAssociationAdminCommand(ctx:RequestContext,c:
    const {data,error}=await ctx.supabase.rpc("add_fca_finance_entry",{p_year_id:c.input.yearId,p_entry_type:c.input.entryType,p_amount:c.input.amount,p_description:c.input.description||null,p_visibility:c.input.visibility});
    if(error)throw error;return {id:String(data)};
   }
+  case "recordActivationEvidence":{
+   const {data,error}=await ctx.supabase.rpc("submit_family_association_activation_evidence",{p_source:c.input.source,p_records:c.input.records});
+   if(error)throw error;
+   const result=(data||{}) as any;
+   return {sourceId:result.sourceId?String(result.sourceId):undefined,insertedEvidence:Number(result.insertedEvidence||0)};
+  }
  }
 }
