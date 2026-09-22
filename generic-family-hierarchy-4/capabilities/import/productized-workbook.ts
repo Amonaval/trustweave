@@ -9,7 +9,7 @@ function buildEntity(row:ParsedImportRow,sheet:ImportSheetSchema,schemaVersion:s
 
 function membershipYearDates(label:string){
  const clean=label.trim();
- const match=clean.match(/^(\d{4})\s*[-/]\s*(\d{2}|\d{4})$/);
+ const match=clean.match(/^(\d{4})\s*[-/–—]\s*(\d{2}|\d{4})$/);
  if(!match)return null;
  const startYear=Number(match[1]);
  let endYear=Number(match[2]);
@@ -25,13 +25,51 @@ function membershipYearRank(label:string){const dates=membershipYearDates(label)
 
 export async function commitProductizedWorkbook(review:ImportReview):Promise<ImportCommitResult>{
  if(!review.canCommit)throw new Error("Resolve import validation errors before committing.");
+
+ const existing=await fetchNetworkAffiliatedEntities();
+ const stableMap=new Map<string,string>();
+ for(const e of existing){
+  const sid=String(e.entity.metadata?.importStableId||"").trim().toLowerCase();
+  if(sid)stableMap.set(`${e.entity.kind}|${sid}`,e.entity.id);
+ }
+
+ // V1 is deliberately conservative when activating into a non-empty network.
+ // Stable import IDs are safe rerun keys. A new workbook row that resembles an
+ // existing manually-created Family/Person must be reconciled explicitly instead
+ // of silently creating a second identity.
+ if(review.schema.verticalKind==="family-association"){
+  const norm=(value:unknown)=>String(value??"").trim().toLowerCase().replace(/\s+/g," ");
+  const phone=(value:unknown)=>String(value??"").replace(/\D+/g,"").replace(/^91(?=\d{10}$)/,"");
+  for(const sheet of review.sheets.filter(s=>s.schema.recordType==="entity")){
+   for(const row of sheet.rows.filter(r=>r.status!=="rejected")){
+    const item=buildEntity(row,sheet.schema,review.schema.version);
+    if(!item.label||!item.stableId)continue;
+    if(stableMap.has(`${item.kind}|${item.stableId.toLowerCase()}`))continue;
+    const emailKey=norm(item.metadata.email);
+    const phoneKey=phone(item.metadata.phone);
+    const collisions=existing.filter(e=>{
+     if(e.entity.kind!==item.kind)return false;
+     if(norm(e.entity.label)===norm(item.label))return true;
+     if(item.kind!=="person")return false;
+     const existingEmail=norm(e.entity.metadata?.email);
+     const existingPhone=phone(e.entity.metadata?.phone);
+     return Boolean((emailKey&&existingEmail===emailKey)||(phoneKey&&existingPhone===phoneKey));
+    });
+    if(collisions.length){
+     throw new Error(`Activation stopped before canonical writes: “${item.label}” may already exist in this network. Reconcile the existing record explicitly before importing stable ID ${item.stableId}.`);
+    }
+   }
+  }
+ }
+
  let activationEvidenceCount=0;
  if(review.schema.verticalKind==="family-association"){
   const evidence=buildActivationEvidencePayload(review);
   const recorded=await recordFcaActivationEvidence(evidence.source,evidence.records);
   activationEvidenceCount=recorded.insertedEvidence;
  }
-const existing=await fetchNetworkAffiliatedEntities();const stableMap=new Map<string,string>();for(const e of existing){const sid=String(e.entity.metadata?.importStableId||"").trim().toLowerCase();if(sid)stableMap.set(`${e.entity.kind}|${sid}`,e.entity.id)}const refMap=new Map<string,string>();let created=0,updated=0,relationships=0,domainRecords=0,skipped=0;
+
+ const refMap=new Map<string,string>();let created=0,updated=0,relationships=0,domainRecords=0,skipped=0;
  for(const sheet of review.sheets.filter(s=>s.schema.recordType==="entity")){for(const row of sheet.rows.filter(r=>r.status!=="rejected")){const item=buildEntity(row,sheet.schema,review.schema.version);if(!item.label){skipped++;continue}const existingId=item.stableId?stableMap.get(`${item.kind}|${item.stableId.toLowerCase()}`):undefined;const id=await upsertNetworkEntity({id:existingId,kind:item.kind,label:item.label,metadata:item.metadata,affiliations:item.affiliations});if(existingId)updated++;else created++;if(item.stableId){refMap.set(item.stableId.toLowerCase(),id);stableMap.set(`${item.kind}|${item.stableId.toLowerCase()}`,id)}}}
  const existingRelationships=await fetchNetworkEntityRelationships();const edgeKeys=new Set(existingRelationships.map(r=>`${r.fromEntityId}|${r.toEntityId}|${r.relationshipType}`));for(const sheet of review.sheets.filter(s=>s.schema.recordType==="relationship")){for(const row of sheet.rows.filter(r=>r.status!=="rejected")){const from=refMap.get(String(row.values.from_id||"").toLowerCase())||refMap.get(String(row.values.fromRef||"").toLowerCase());const to=refMap.get(String(row.values.to_id||"").toLowerCase())||refMap.get(String(row.values.toRef||"").toLowerCase());const rel=String(row.values.relationship||row.values.relationship_type||"").trim();if(!from||!to||!rel){skipped++;continue}const key=`${from}|${to}|${rel}`;if(edgeKeys.has(key)){skipped++;continue}await createNetworkEntityRelationship(from,to,rel,{importSchemaVersion:review.schema.version});edgeKeys.add(key);relationships++}}
 
