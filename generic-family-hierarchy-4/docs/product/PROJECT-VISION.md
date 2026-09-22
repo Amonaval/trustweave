@@ -289,3 +289,11 @@ The structural model is not one hierarchy. Both major dimensions are many-to-man
 `Person ↔ Network` and `Network ↔ Umbrella/Federation`. A person may participate in many unrelated networks; each network independently affiliates with appropriate domain umbrellas. M6 peer bridges remain a separate horizontal trust edge. NF federation must never imply child-graph disclosure.
 
 Traction will determine product-market fit and whether this becomes a product company; traction is not required to accurately call the present reusable system a product.
+
+## 2026-09-20 commercialization update
+
+The long-term vision remains a private, federated Trusted Network OS. The commercialization strategy is now more disciplined:
+
+> **Use Family, Community and Residential to prove trust, federation and operational depth; pursue Multi-location / Franchise Operations as the first serious paid wedge; expand later into a Promoter / Business Group Command Center.**
+
+The first commercial product should stay small: location network, SOP/audit, issue/corrective action, compliance calendar, exception dashboard and AI COO brief. Success is not another vertical existing in source; success is a real operator saying the product removes repeated manual work and is worth paying for.

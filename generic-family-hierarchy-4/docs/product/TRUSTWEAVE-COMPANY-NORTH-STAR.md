@@ -294,3 +294,15 @@ The desired founder experience is:
 ## Final north-star statement
 
 > **TrustWeave organizes the trusted networks that make up human life. One person can participate in many private networks; each network keeps its own governance and data; bridges expose only what is deliberately permitted; reusable Network OS primitives make new verticals inexpensive to build; and AI helps people and organizations operate this complexity rather than adding another layer of work.**
+
+## Commercialization thesis — wedge is not the category
+
+The Company North Star remains **Trusted Network OS / Life Network OS**. Commercial focus is narrower by design.
+
+> **Model every operating unit as a private network. Connect units into governed networks of networks. Let AI understand authorized activity across the organization and surface the few things leadership should act on.**
+
+**First paid wedge:** TrustWeave Ops for founder-led 10–50 location operators: location hierarchy, SOP/audits, issues/corrective actions, compliance/renewals, exception visibility and AI COO brief.
+
+**Second paid wedge:** Promoter / Business Group Command Center after connectors and data-quality controls can safely ingest source-system truth.
+
+Family proves relationship depth and trust; MPF proves federation; Residential proves recurring operations; Distributed Operations monetizes those primitives against stronger buyer pain.
