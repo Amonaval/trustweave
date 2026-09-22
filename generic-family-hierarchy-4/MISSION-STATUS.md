@@ -1,10 +1,11 @@
 # TrustWeave — Mission Status
 
-**Updated:** 2026-09-20
+**Updated:** 2026-09-22
 
 | Mission | Status | Meaning |
 |---|---|---|
-| **D12 — Modular Database Architecture / Migration OS** | **FRESH BOOTSTRAP/CATALOG PASS; BEHAVIOR/BROWSER VERIFY** | Corrected release replayed on empty disposable with zero structural/security/API differences; connected QA and D12-F promotion remain open. |
+| **V1 — Network Activation Autopilot** | **LOWER LAYER IMPLEMENTED / ONE LEAN MAPPING SLICE NEXT** | Governed compile/resolve/activate/intelligence foundation exists. NAA-L1 only: ordinary XLSX/CSV → user-assisted source/target mapping → safe normalized candidate + unresolved summary. Broader repair/recipe/standalone work is parked. Migration 124 remains unapplied. |
+| **D12 — Modular Database Architecture / Migration OS** | **REVIEW-CLOSED / FORMAL EXHAUSTIVE CERTIFICATION DEFERRED** | Fresh Supabase reconstruction demonstrated structural/security/API-contract parity. Do not restart broad reconstruction/browser certification without a concrete product reason; golden remains the preferred real data environment and the D12 project remains recovery/reference. |
 | Mission 1 — Runtime Defect & Seed Integrity | PRESERVED / RUNTIME RETEST OUTSTANDING | Source fixes/evidence remain available; no false runtime certification. |
 | Mission 2 — Slow Full Product User Regression | CONNECTED / REPAIR VERIFY | First focused connected run completed; bounded Housing, notification, harness and accessibility repairs await staging migration + rerun. |
 | M3-A — Architecture Inventory | COMPLETE | Shared/capability/vertical boundaries and convergence opportunities documented. |
@@ -22,11 +23,12 @@
 
 ## Active objective
 
-Stabilize every critical Residential and Family Community flow using the configured reliability runner, repair reproducible product defects, and establish the regression baseline required for the remaining reusable product architecture work.
+Execute only **NAA-L1 — Lean Source Mapping Bridge**: reuse existing/open-source plumbing where useful, let the human confirm a small source → TrustWeave mapping, apply it safely across the file, and expose unresolved data. Then park this workstream and choose the next priority globally. Incomplete safe output is acceptable; wrong trusted data is not.
 
 ## Current guardrails
 
 - Historical migrations are immutable.
+- V1 migration 124 is source-only until the Founder explicitly authorizes a database change.
 - Source proof is never called runtime proof.
 - Independent review cannot be self-certified.
 - D3 irreversible/privacy/security/legal/financial/constitution decisions remain founder gates until explicitly delegated.
@@ -62,3 +64,13 @@ Founder interventions remain **0**. Manual error relays remain **0**. One candid
 | C10 Zero-Touch Demonstration | CLOSE | Broad intent to 44px public journeys, five browser personas and release-ready rehearsal |
 
 Founder interventions: **0**. Manual error relays: **0**. Optional Founder interventions: **0**.
+
+## Network Activation Autopilot mission queue
+
+Lean scope + parked backlog:
+
+docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
+
+Current checkpoint: **governed lower layer complete; NAA-L1 is the single selected follow-up.**
+
+Migration 124 remains source-only and is not part of NAA-1.
