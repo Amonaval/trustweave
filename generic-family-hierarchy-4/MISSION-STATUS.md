@@ -4,7 +4,7 @@
 
 | Mission | Status | Meaning |
 |---|---|---|
-| **V1 — Network Activation Autopilot** | **SOURCE-COMPLETE CANDIDATE / VALUE VALIDATION PENDING** | Family Community activation now compiles existing records, surfaces ambiguity, preserves provenance, activates through governed contracts and produces first deterministic institutional intelligence. Migration 124 and one real artifact-pack proof remain explicitly unexecuted. |
+| **V1 — Network Activation Autopilot** | **LOWER LAYER IMPLEMENTED / SOURCE-ADAPTATION + REPAIR NEXT** | Governed compile/resolve/activate/intelligence foundation exists. Full V1 still needs generic arbitrary-source mapping, user-confirmed transformation rules, bulk repair, partial safe export and exception handling before runtime activation is the meaningful next proof. Migration 124 remains unapplied. |
 | **D12 — Modular Database Architecture / Migration OS** | **REVIEW-CLOSED / FORMAL EXHAUSTIVE CERTIFICATION DEFERRED** | Fresh Supabase reconstruction demonstrated structural/security/API-contract parity. Do not restart broad reconstruction/browser certification without a concrete product reason; golden remains the preferred real data environment and the D12 project remains recovery/reference. |
 | Mission 1 — Runtime Defect & Seed Integrity | PRESERVED / RUNTIME RETEST OUTSTANDING | Source fixes/evidence remain available; no false runtime certification. |
 | Mission 2 — Slow Full Product User Regression | CONNECTED / REPAIR VERIFY | First focused connected run completed; bounded Housing, notification, harness and accessibility repairs await staging migration + rerun. |
@@ -23,7 +23,7 @@
 
 ## Active objective
 
-Validate whether **Network Activation Autopilot** can turn an existing Association's imperfect records into a trustworthy governed network with very little human work and immediately useful institutional context. Engineering completeness is not the goal; product learning, adoption leverage and trust are.
+Build/validate the missing **source-adaptation + transformation/repair layer** so Network Activation Autopilot can start from the user's existing supported Excel/CSV rather than requiring manual conversion to a TrustWeave template. The human supplies small amounts of semantic meaning; the system performs the repetitive work. Incomplete safe output is acceptable; wrong trusted data is not.
 
 ## Current guardrails
 
