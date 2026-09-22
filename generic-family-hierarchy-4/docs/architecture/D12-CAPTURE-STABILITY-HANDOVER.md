@@ -272,3 +272,79 @@ Do not repeat capture stabilization, Docker/Postgres setup, module-ownership bra
 5. Promote nothing to canonical/current bootstrap until all five parity layers pass.
 
 The existing golden Supabase project remains read-only fallback. School/education remains blocked until D12 parity is proven.
+
+
+## Candidate parity pipeline checkpoint — 2026-09-20
+
+D12 repository-side preparation is now complete through the canonical-promotion readiness gate. The golden database remains untouched.
+
+### Application RPC proof
+
+A static scan of all 78 current remote/service/route/client TypeScript/JavaScript files found 327 distinct Supabase RPC names. Compared with 460 distinct live public function names from the golden primary capture, exactly two current RPC names are absent live:
+
+- `set_network_notification_role`;
+- `remove_network_notification_role`.
+
+No other current static application RPC name is missing from the golden function catalog.
+
+### Guarded D12 pipeline added
+
+- `scripts/d12-prepare-candidate.py`
+  - runs classifier + reconstruction;
+  - fails on invalid module graph/FK ownership;
+  - fails on unreviewed source/live differences;
+  - verifies capture hashes, drift repairs, bootstrap functions and phase order;
+  - writes `.d12-work/candidate/static-gate.json`.
+- `scripts/d12-apply-candidate.py`
+  - disposable Supabase only;
+  - DB URL is read from local `D12_CANDIDATE_DATABASE_URL`, never argv/chat/Git;
+  - requires candidate + golden project refs and refuses if they match;
+  - verifies the DB hostname belongs to the candidate ref;
+  - requires static gate PASS;
+  - applies all generated SQL in one `psql --single-transaction` run.
+- `scripts/d12-capture-candidate.py`
+  - recaptures primary + supplement catalogs from the disposable candidate using the repository's read-only capture SQL.
+- `scripts/d12-compare-catalogs.py`
+  - structural, security and API/contract golden-vs-candidate parity;
+  - expects only the two notification mutators as intentional candidate additions;
+  - keeps Supabase-managed environment metadata separate from application-schema failures.
+- `scripts/d12-verify-candidate.py`
+  - one-command candidate recapture + catalog comparison after apply.
+- `qa/db/d12-notification-role-contract.mjs`
+  - directly proves assign/read/remove behavior and member denial for the restored notification-role mutators in both Housing and Family Community.
+- `qa/run-d12-candidate-parity.mjs`
+  - requires catalog parity PASS;
+  - requires dedicated local `.env.d12-candidate`;
+  - proves candidate project-ref safety;
+  - reuses configured two-vertical connected reliability + Playwright/resilient crawl;
+  - runs the targeted notification-role repair proof.
+- `scripts/d12-promotion-gate.py`
+  - requires static, catalog and behavioral/browser PASS evidence;
+  - emits `READY_FOR_CANONICAL_PROMOTION_REVIEW`;
+  - performs no automatic promotion.
+
+### Safety and CI
+
+TrustWeave CI now syntax-validates all D12 Python tools and the D12 runtime parity JavaScript tools. Existing product CI continues to run architecture, documentation, artifact, TypeScript, lint, unit and production-build gates.
+
+The disposable apply/capture tooling never accepts the candidate database URL on the command line and never records secrets in receipts.
+
+### Current action boundary
+
+Repository-side work no longer needs database credentials. The next real execution gate requires a **new disposable Supabase project**.
+
+Founder action at that point is limited to:
+
+1. create a fresh disposable Supabase project;
+2. retain its project ref;
+3. keep its database connection URL locally in `D12_CANDIDATE_DATABASE_URL`;
+4. prepare local `.env.d12-candidate` for the existing QA tooling when behavioral/browser parity begins.
+
+Do not share the DB password, connection URL, service-role key, anon key, or test-user credentials in chat or Git.
+
+### Effort guidance from this checkpoint
+
+- D12-C disposable apply: **Medium** normally; switch to High only if SQL replay exposes dependency/security defects.
+- D12-D structural/security/API catalog parity: **High for the first comparison**, because any mismatch needs architecture-level classification; Medium for clean reruns.
+- D12-E behavioral/browser parity: **Medium**, using existing two-vertical QA.
+- D12-F canonical promotion review + bootstrap cutover plan: **High**, because this is the irreversible source-of-truth decision boundary (historical migrations still remain immutable).

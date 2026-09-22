@@ -13,7 +13,23 @@ This directory is the **candidate current-state database source**, not a replace
 
 ## Generation
 
-Run from `generic-family-hierarchy-4`:
+For the guarded path, run from `generic-family-hierarchy-4`:
+
+```bash
+python scripts/d12-prepare-candidate.py "<primary.csv>" --supplement "<supplement.csv>"
+```
+
+This runs classification + reconstruction together and writes `.d12-work/candidate/static-gate.json`. It fails closed on:
+
+- invalid/cyclic canonical module dependencies;
+- captured FK edges not declared in `modules.json`;
+- current application RPC names missing live beyond the two reviewed notification mutators;
+- unreviewed `MISSING`, `DRIFT`, `EXTRA`, or `DIFFERENT-BY-DESIGN` objects;
+- capture-hash mismatch;
+- unexpected source-drift repairs;
+- invalid phase ordering or incomplete generated manifest.
+
+The lower-level commands remain available for investigation:
 
 ```bash
 python scripts/d12-classify-catalog.py "<primary.csv>" --supplement "<supplement.csv>" --out .d12-work/classification.json
@@ -44,6 +60,36 @@ Current phase order:
 The split is intentional. Identity sequences must not be pre-created; expression dependencies such as `current_network_id()` must exist before table creation; all tables must exist before foreign keys; and function-body validation is deferred while the complete live function graph is recreated.
 
 The generator normalizes application-facing ACLs before replaying captured grants. Built-in Storage relation ACLs remain Supabase-managed; their RLS state and user-defined policies are reconstructed.
+
+
+## Disposable candidate workflow
+
+After the guarded static gate passes, D12 still does **not** touch the golden project.
+
+Apply only to a newly created disposable Supabase project:
+
+```bash
+# Keep the connection URL local. Do not paste it into chat or Git.
+export D12_CANDIDATE_DATABASE_URL='postgresql://...'
+
+python scripts/d12-apply-candidate.py \
+  --candidate-project-ref "<new-project-ref>" \
+  --golden-project-ref "<existing-golden-project-ref>" \
+  --confirm APPLY-TO-DISPOSABLE-D12-CANDIDATE
+```
+
+The apply runner requires a PASS `.d12-work/candidate/static-gate.json`, validates that the connection hostname belongs to the declared candidate project, refuses the golden project ref, and applies the manifest in a single `psql` transaction.
+
+Then recapture and compare the disposable database in one command:
+
+```bash
+python scripts/d12-verify-candidate.py "<golden-primary.csv>" \
+  --golden-supplement "<golden-supplement.csv>" \
+  --candidate-project-ref "<new-project-ref>" \
+  --golden-project-ref "<existing-golden-project-ref>"
+```
+
+That command creates fresh candidate captures and runs the structural/security/API catalog parity gate. A PASS is still **not canonical promotion**; behavioral and product/browser parity remain required.
 
 ## Promotion rule
 
