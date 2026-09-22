@@ -277,7 +277,7 @@ export default function NetworkApp() {
       }
     })();
     return ()=>{cancelled=true};
-  },[ready,auth?.id,network?.id,routeRevision,verifiedRoute,routeMembership]);
+  },[ready,auth?.id,auth?.platform_owner,network?.id,routeRevision,verifiedRoute,routeMembership]);
   const toggleLargeText = () => setLargeText(current => {
     const next = !current;
     try { localStorage.setItem("family-large-text", next ? "1" : "0"); } catch {}
@@ -1160,7 +1160,7 @@ export default function NetworkApp() {
   const requestedRoute=typeof window!=="undefined"?parseNetworkRoute(window.location.pathname):null;
   let cachedRouteDenied=false;
   if(requestedRoute&&requestedRoute!=="invalid"&&auth?.id&&verifiedRoute===`${auth.id}:${requestedRoute.networkId}`&&routeMembership){
-    try{authorizeNetworkSurface(requestedRoute,[routeMembership])}catch{cachedRouteDenied=true}
+    try{authorizeNetworkSurface(requestedRoute,[routeMembership],{platformOwner:!!auth?.platform_owner})}catch{cachedRouteDenied=true}
   }
   if(routeError||requestedRoute==="invalid"||cachedRouteDenied)return <main className="landing"><section className="landing-card"><h1>Page unavailable</h1><p>{routeError||"This link is not available to your account."}</p><a href="/">Go to TrustWeave</a></section></main>;
   if(requestedRoute&&auth?.id&&verifiedRoute!==`${auth.id}:${requestedRoute.networkId}`)
