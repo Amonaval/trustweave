@@ -100,3 +100,17 @@ These exact historical labels remain only for accepted source-gate compatibility
 Generation 2 is now complete. C8 must make the existing decisions, failures, opportunities and incident lessons searchable and automatically relevant to planning. C9 turns that state into one human-facing cockpit. C10 then consumes the highest-value safe opportunity and demonstrates the entire loop on a real TrustWeave change.
 
 Generation 3 is complete pending final candidate closure. The next roadmap decision returns to the Founder/company portfolio: pilot rollout remains gated by explicit production authority, while routine discovery, debate, implementation, browser QA, review and packaging can now proceed autonomously.
+
+## Parallel commercial discovery track — product-thesis, not current execution authority
+
+The active reliability / architecture program above remains engineering authority. In parallel, validate the first paid wedge before authorizing another broad vertical.
+
+1. Interview / observe 3–5 founder-led multi-location operators.
+2. Obtain hierarchy, weekly MIS, SOP/audit, issue tracker, compliance calendar and review workflow from at least one design partner.
+3. Map the buyer's Monday-morning operating review to existing TrustWeave primitives.
+4. Seek a concrete pull signal: data access, design-partner commitment, LOI, paid discovery or paid trial.
+5. Only then authorize the smallest TrustWeave Ops slice: location hierarchy, audit/SOP, issue/corrective action, compliance/renewals, exception dashboard, AI COO brief.
+6. Measure manual follow-ups removed, closure time, leadership time saved and willingness to renew/pay.
+7. Expand toward a Promoter / Business Group Command Center only after connector/data-quality maturity.
+
+This track must not interrupt current Residential / Family Community reliability work or database/bootstrap closure.
