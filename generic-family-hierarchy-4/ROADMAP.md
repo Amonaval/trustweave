@@ -64,6 +64,25 @@ Detailed contracts:
 - `docs/product/V1-NETWORK-ACTIVATION-AUTOPILOT.md`
 - `docs/product/GENERIC-DATA-TRANSFORMATION-ENGINE-THESIS.md`
 
+### Reuse-before-build execution rule
+
+Before implementing V1-A0/A1 plumbing, perform a bounded open-source adoption spike.
+
+Current candidates:
+
+- existing SheetJS/XLSX dependency for spreadsheet parsing/writing;
+- `react-spreadsheet-import` as a fast proof for upload → header mapping → validation UX;
+- OpenRefine as the maturity benchmark for cleaning, clustering, reusable operations and local/private data handling, but not as the embedded core unless its integration boundary proves stable enough;
+- Frictionless/DuckDB-class utilities only where they materially reduce custom validation/profiling/large-file transformation work without creating a second operational stack.
+
+The spike must compare **reuse cost vs ownership cost**, not merely feature count.
+
+Do not add dependencies simply because they are open source. Reject components that are stale, insecure, operationally heavy, incompatible with the TrustWeave stack, or that force unsafe semantic assumptions.
+
+Own only the differentiated layer: transformation recipe, human decisions, trust/provenance, pattern repair orchestration, partial safe output, drift detection and target adapters.
+
+Paid import/data products may be reconsidered when a paying customer exists, but billable evaluation/provisioning requires explicit Founder approval first.
+
 ### Parallel product thesis — Generic Data Transformation Engine
 
 The V1-A0/A1 capability is strategically separable from TrustWeave.
