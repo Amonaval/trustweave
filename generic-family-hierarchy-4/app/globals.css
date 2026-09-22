@@ -1480,3 +1480,32 @@ html[data-theme="dark"] .hs-manage-tabs{background:color-mix(in srgb,var(--surfa
 .progressive-card-grid>.card{margin:0}
 @media(max-width:760px){.progressive-card-grid{grid-template-columns:1fr}.responsive-section-tab-buttons{display:none}.responsive-section-tab-select{display:grid;gap:5px;padding:9px 11px;border:1px solid var(--line);border-radius:13px;background:var(--surface-raised)}.responsive-section-tab-select>span{font-size:9px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.06em}.responsive-section-tab-select select{width:100%;border:0;background:transparent;color:var(--text);font-weight:850;outline:0}.responsive-section-tab-select small{color:var(--muted);line-height:1.35}.section-workspace-head{flex-direction:column}}
 .family-admin-section-tabs{margin-top:0}
+
+
+/* FCA-L1 field feedback — mobile/residential/public-shell usability hardening. */
+.language-switcher.compact{background:var(--surface-raised);color:var(--text)}
+.language-switcher.compact select{color:inherit;background:transparent}
+html[data-theme="dark"] .language-switcher.compact{background:var(--surface);border-color:var(--line);color:var(--text)}
+html[data-theme="dark"] .language-switcher select,html[data-theme="dark"] .theme-select select{color:var(--text);background:var(--surface)}
+html[data-theme="dark"] .public-discovery{color:var(--text)}
+html[data-theme="dark"] .public-discovery-topbar{background:color-mix(in srgb,var(--bg) 91%,transparent);border-color:var(--line)}
+html[data-theme="dark"] .public-discovery-topbar nav,html[data-theme="dark"] .public-role-grid>button,html[data-theme="dark"] .public-guide-levels,html[data-theme="dark"] .public-guide-card,html[data-theme="dark"] .public-member-grid>article,html[data-theme="dark"] .public-journey-flow article{background:var(--surface);border-color:var(--line);color:var(--text)}
+html[data-theme="dark"] .public-discovery-topbar nav button.active,html[data-theme="dark"] .public-discovery-topbar nav button:hover{background:var(--surface-raised);color:var(--text)}
+html[data-theme="dark"] .public-orbit{background:var(--surface-raised);border-color:var(--line);color:var(--text);box-shadow:var(--shadow-md)}
+html[data-theme="dark"] .public-hero-visual:before,html[data-theme="dark"] .public-hero-visual:after{border-color:color-mix(in srgb,var(--brand) 35%,transparent)}
+@media(max-width:800px){
+ .product-mobile-nav{height:auto!important;min-height:64px;box-sizing:border-box;padding-bottom:max(6px,env(safe-area-inset-bottom));overflow:visible!important;align-items:stretch}
+ .product-mobile-nav button{min-width:0!important;min-height:56px;padding:6px 2px!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--muted-contrast)}
+ .product-mobile-nav button.active{color:var(--product,var(--brand))}
+}
+@media(max-width:560px){
+ .housing-society-network .hs-chairman-hero{gap:12px;padding:16px;border-radius:18px}
+ .housing-society-network .hs-chairman-hero h1{font-size:26px;line-height:1.05}
+ .housing-society-network .hs-chairman-hero p{font-size:12px;line-height:1.45}
+ .housing-society-network .hs-chairman-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:13px}
+ .housing-society-network .hs-chairman-actions .btn{width:100%;min-width:0;padding:8px 6px;font-size:10px}
+ .housing-society-network .hs-chairman-status{padding:13px;grid-template-columns:auto 1fr}
+ .housing-society-network .hs-chairman-status>strong{font-size:34px}
+ .housing-society-network .hs-chairman-status>div{margin-top:10px;padding-top:9px}
+ .public-top-actions{gap:4px}.public-top-actions .theme-select{padding:5px}.public-top-actions .theme-select select{max-width:24px;color:transparent}
+}

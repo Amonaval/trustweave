@@ -25,6 +25,7 @@ import {
 import type {NetworkVerticalKind} from "../core/verticals/contracts";
 import {useLanguage} from "../lib/i18n";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 type ExploreKey="overview"|"housing"|"community"|"member"|"guide";
 type LocalCopy={
@@ -94,7 +95,7 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore}:{onSignIn:()=
         <button className={section==="community"?"active":""} onClick={()=>setSection("community")}>{c.exploreCommunity}</button>
         <button className={section==="guide"?"active":""} onClick={()=>setSection("guide")}>{c.productGuide}</button>
       </nav>
-      <div className="public-top-actions"><LanguageSwitcher compact/><button className="btn" data-testid="qa-open-auth" onClick={onSignIn}>{c.signIn}</button></div>
+      <div className="public-top-actions"><ThemeSwitcher compact/><LanguageSwitcher compact/><button className="btn" data-testid="qa-open-auth" onClick={onSignIn}>{c.signIn}</button></div>
     </header>
 
     {section==="overview"&&<>
