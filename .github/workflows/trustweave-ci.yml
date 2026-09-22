@@ -42,6 +42,9 @@ jobs:
           cache: npm
           cache-dependency-path: generic-family-hierarchy-4/package-lock.json
 
+      - name: Reject committed secrets
+        run: node scripts/check-no-committed-secrets.mjs
+
       - name: Install locked dependencies
         run: npm ci
 
@@ -56,8 +59,8 @@ jobs:
       - name: Verify D12 runtime parity tooling syntax
         run: node --check qa/run-d12-candidate-parity.mjs && node --check qa/db/d12-notification-role-contract.mjs && node --test qa/unit/d12-evidence-contracts.test.mjs
 
-      - name: Test D12 database URL guard
-        run: python -m unittest discover -s qa/unit -p test_d12_db_url.py
+      - name: Test D12 database URL and promotion guards
+        run: python -m unittest discover -s qa/unit -p 'test_d12_*.py'
 
       - name: Verify committed D12 bootstrap integrity
         run: python scripts/d12-validate-bootstrap.py

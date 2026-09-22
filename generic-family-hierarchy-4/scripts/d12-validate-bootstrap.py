@@ -24,6 +24,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
 from typing import Any
 
 
@@ -84,8 +85,50 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def sha256_bytes(value: bytes) -> str:
+    return hashlib.sha256(value).hexdigest()
+
+
+def sha256_git_text(path: Path) -> str:
+    """Hash LF-normalized text; used for pure-text cross-platform checks."""
+    return sha256_bytes(path.read_bytes().replace(b"\r\n", b"\n"))
+
+
+def matches_reviewed_content(local: bytes, blob: bytes, expected: str) -> bool:
+    return (
+        sha256_bytes(blob) == expected
+        and local.replace(b"\r\n", b"\n") == blob.replace(b"\r\n", b"\n")
+    )
+
+
+def matches_reviewed_git_bytes(path: Path, expected: str, project: Path) -> bool:
+    """Accept an EOL-transformed checkout only when its Git blob is reviewed."""
+    local = path.read_bytes()
+    if sha256_bytes(local) == expected:
+        return True
+    try:
+        relative = path.resolve().relative_to(project.resolve()).as_posix()
+    except ValueError:
+        return False
+    prefix_result = subprocess.run(
+        ["git", "rev-parse", "--show-prefix"],
+        cwd=project,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if prefix_result.returncode != 0:
+        return False
+    prefix = prefix_result.stdout.strip().replace("\\", "/")
+    git_path = f"{prefix}{relative}" if prefix else relative
+    result = subprocess.run(
+        ["git", "show", f"HEAD:{git_path}"],
+        cwd=project,
+        capture_output=True,
+        check=False,
+    )
+    blob = result.stdout
+    return result.returncode == 0 and matches_reviewed_content(local, blob, expected)
 
 
 def safe_relative(root: Path, rel: str) -> Path:
@@ -100,6 +143,7 @@ def safe_relative(root: Path, rel: str) -> Path:
 
 
 def validate(root: Path) -> dict[str, Any]:
+    project = Path(__file__).resolve().parent.parent
     errors: list[str] = []
     warnings: list[str] = []
     manifest_path = root / "manifest.json"
@@ -228,8 +272,8 @@ def validate(root: Path) -> dict[str, Any]:
             continue
 
         expected_hash = str(row.get("sha256") or "")
-        actual_hash = sha256(path)
-        if actual_hash != expected_hash:
+        actual_hash = sha256_bytes(path.read_bytes())
+        if not matches_reviewed_git_bytes(path, expected_hash, project):
             errors.append(
                 f"checksum mismatch: {rel}: expected {expected_hash}, got {actual_hash}"
             )

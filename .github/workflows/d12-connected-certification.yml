@@ -1,0 +1,161 @@
+name: D12 Connected Certification
+# D12 QA credential is supplied only through the repository Actions secret.
+
+on:
+  push:
+    branches:
+      - llm-push
+    paths:
+      - "generic-family-hierarchy-4/**"
+      - ".github/workflows/d12-connected-certification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: d12-connected-certification
+  cancel-in-progress: false
+
+jobs:
+  secret-ready:
+    name: Check D12 readiness
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+      head_match: ${{ steps.head.outputs.head_match }}
+    steps:
+      - id: check
+        env:
+          D12_QA_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
+        run: |
+          if [ -n "$D12_QA_PASSWORD" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "D12 connected certification is paused until repository secret D12_QA_PASSWORD is configured."
+          fi
+      - id: head
+        env:
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
+        run: |
+          HEAD_SHA="$(git ls-remote "https://github.com/$REPO.git" "refs/heads/$BRANCH" | cut -f1)"
+          if [ "$HEAD_SHA" = "$SHA" ]; then
+            echo "head_match=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "head_match=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping stale D12 push $SHA; current branch head is $HEAD_SHA."
+          fi
+
+  connected:
+    needs: secret-ready
+    if: needs.secret-ready.outputs.ready == 'true' && needs.secret-ready.outputs.head_match == 'true'
+    name: Connected two-vertical certification
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    defaults:
+      run:
+        working-directory: generic-family-hierarchy-4
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: https://yqwitkoxyrujbzpjwuji.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: sb_publishable_RcmElSWIScJqnJ9VtuEf7A_kViTHWvk
+      QA_MODE: staging
+      QA_ALLOW_MUTATION: "true"
+      QA_STAGING_PROJECT_REF: yqwitkoxyrujbzpjwuji
+      QA_RUN_NAMESPACE: d12
+      QA_BASE_URL: http://127.0.0.1:3000
+      QA_OWNER_EMAIL: qa-owner-d12@example.test
+      QA_OWNER_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
+      QA_ADMIN_EMAIL: qa-admin-d12@example.test
+      QA_ADMIN_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
+      QA_MEMBER_EMAIL: qa-member-d12@example.test
+      QA_MEMBER_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
+      QA_INVITEE_EMAIL: qa-invitee-d12@example.test
+      QA_INVITEE_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
+      QA_TENANT_B_OWNER_EMAIL: qa-tenant-b-owner-d12@example.test
+      QA_TENANT_B_OWNER_PASSWORD: ${{ secrets.D12_QA_PASSWORD }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: generic-family-hierarchy-4/package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Install connected QA browser dependencies
+        run: |
+          npm install --no-save --package-lock=false @axe-core/playwright@4.10.2
+          npx playwright install --with-deps chromium
+
+      - name: Materialize reviewed D12 fixture metadata
+        run: |
+          mkdir -p qa-results/fixtures
+          cat > qa-results/fixtures/seed-state.json <<'JSON'
+          {
+            "version": 1,
+            "namespace": "d12",
+            "generatedAt": "2026-09-21T00:00:00.000Z",
+            "users": {
+              "owner": {"id": "e686974d-d843-44c6-9f87-405a290eebf7", "email": "qa-owner-d12@example.test"},
+              "admin": {"id": "fd807667-3336-47e8-8061-1f48e6cc15d0", "email": "qa-admin-d12@example.test"},
+              "member": {"id": "5518d693-ec4d-4f6d-9b29-3e084ed0d49f", "email": "qa-member-d12@example.test"},
+              "invitee": {"id": "4d875434-ecff-477a-bc1b-d4c6ec941c69", "email": "qa-invitee-d12@example.test"},
+              "tenantB": {"id": "27a81b2b-f066-49f1-bb2b-8438f4de0978", "email": "qa-tenant-b-owner-d12@example.test"}
+            },
+            "networks": {
+              "housing-society": {
+                "id": "58b3ce48-5828-4a9c-bcf2-1573efa3a912",
+                "name": "QA Housing Society [d12]",
+                "kind": "housing-society",
+                "marker": "QA-Unit-d12"
+              },
+              "family-association": {
+                "id": "1bcfa065-33b8-4800-bdf4-98eb0be9ebf1",
+                "name": "QA Family Association [d12]",
+                "kind": "family-association",
+                "marker": "QA-Family-d12"
+              }
+            },
+            "tenantB": {
+              "id": "02a89462-5f4f-4015-83b5-46789e4f9c48",
+              "name": "QA Isolation Tenant B [d12]",
+              "kind": "family"
+            }
+          }
+          JSON
+
+      - name: Run targeted Housing persistence preflight
+        run: npx playwright test qa/e2e/28-mission2-housing-user-journeys.spec.ts --project=chromium-desktop --workers=1 --grep "notice, complaint\\+photo"
+
+      - name: Run connected reliability certification
+        run: npm run qa:reliability -- --headless
+
+      - name: Run D12 notification role contract
+        run: node qa/db/d12-notification-role-contract.mjs
+
+      - name: Write D12 connected parity summary
+        env:
+          D12_GOLDEN_PROJECT_REF: yyhwcqpzplebittvxzzl
+        run: node qa/write-d12-connected-summary.mjs
+
+      - name: Upload connected evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: d12-connected-evidence
+          path: |
+            generic-family-hierarchy-4/qa-results/reliability/
+            generic-family-hierarchy-4/qa-results/resilient-crawl/
+            generic-family-hierarchy-4/qa-results/d12-candidate-parity/
+            generic-family-hierarchy-4/qa-results/html/
+            generic-family-hierarchy-4/qa-results/artifacts/
+          if-no-files-found: warn
