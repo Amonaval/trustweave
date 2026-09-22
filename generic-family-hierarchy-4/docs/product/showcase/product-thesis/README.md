@@ -11,6 +11,7 @@ These are strategy communication artifacts; they do not override PRODUCT-CONSTIT
 - ../../TRUSTWEAVE-COMMERCIAL-THESIS-DISTRIBUTED-OPERATIONS-OS.md — near-term commercial wedge: distributed operations / AI COO.
 - ../../TRUSTWEAVE-AI-NATIVE-TRUSTED-NETWORK-INTELLIGENCE-THESIS.md — high-potential long-term AI-native category thesis.
 - ../../TRUSTWEAVE-PRODUCT-THESIS-EVALUATION-PORTFOLIO.md — weighted idea scorecard, validation gates and current portfolio decision.
+- ../../TRUSTWEAVE-DAY1-REASSESSMENT-AND-ADJACENT-AI-DIRECTIONS.md — zero-sunk-cost critique plus adjacent directions: agent authority, federated human search, institutional memory, agent coordination and Network Compiler.
 
 ## Showcase assets
 
