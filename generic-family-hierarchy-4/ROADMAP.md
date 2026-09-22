@@ -1,10 +1,58 @@
 # TrustWeave — Roadmap
 
-## Current priority — D12 database architecture (2026-09-20)
+## Current priority — V1 Network Activation Autopilot (2026-09-22)
 
-The corrected canonical bootstrap passed full structural, security and API catalog parity after a fresh install on disposable project `yqwitkoxyrujbzpjwuji`. The golden project remains read-only; earlier replay projects are paused. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md` for commit and capture evidence.
+TrustWeave's current execution priority is no longer architecture accumulation or D12 certification. It is the first bounded product-value experiment derived from the consolidated architecture:
 
-The managed-SQL receipt adapter passes against the archived evidence, and the promotion gate now accepts the reviewed replay but remains `NOT_READY` until connected evidence exists. Next run the candidate app in an environment that reaches its API, configure its local QA key and seed, then execute bounded owner/admin/member behavior and browser journeys for Housing Society and Family Community. Reconcile all five evidence layers before D12-F promotion; School SQL stays deferred until this stability gate closes.
+> Can TrustWeave turn an existing Association's imperfect operational records into a trustworthy governed network with dramatically less human setup, while preserving ambiguity/provenance and immediately surfacing useful institutional context?
+
+### V1-A — Compile — source implemented
+
+- Family Community activation workbook v2;
+- candidate-network compiler;
+- source/row/column provenance;
+- deterministic duplicate/conflict detection;
+- no paid model/provider dependency.
+
+### V1-B — Resolve — source implemented
+
+- one Ambiguity Inbox rather than spreadsheet-repair loops;
+- explicit canonical-row choices for conflicting institutional records;
+- consolidated identity ambiguity;
+- safe human-selected person merge with typed reference rewriting;
+- superseded source rows preserved as evidence.
+
+### V1-C — Activate & Prove — source implemented
+
+- evidence is persisted before canonical writes;
+- canonical writes reuse existing network/FCA contracts;
+- representative graph semantics are synchronized;
+- leadership reruns avoid duplicate terms;
+- existing manual identities fail closed rather than being silently duplicated;
+- first deterministic Institutional Intelligence report surfaces gaps/history with source references.
+
+Detailed source state: `docs/product/V1-NETWORK-ACTIVATION-AUTOPILOT.md`.
+
+### Runtime/value gate — not yet authorized
+
+Migration `124_v1_network_activation_evidence.sql` has not been applied. No Supabase project, workflow, browser suite or connected QA was run for V1.
+
+The next checkpoint is not another feature batch. It is one explicitly authorized real Association activation pack and a product scorecard covering:
+
+1. automatic reconstruction rate;
+2. meaningful human decisions required;
+3. incorrect assumptions avoided;
+4. setup time saved;
+5. immediate institutional usefulness;
+6. organizer trust in provenance;
+7. willingness to activate another chapter/network.
+
+Do **not** begin broad V2 Governed Institutional Intelligence, Residential Autopilot, PDF/WhatsApp/Drive ingestion, new vertical work or generic AI/RAG expansion until V1 produces real product evidence.
+
+## D12 architecture/recoverability — review-closed
+
+D12 successfully demonstrated fresh-project structural/security/API-contract parity. Formal exhaustive browser certification remains deferred by Founder decision, not falsely complete. The historical golden Supabase remains the preferred real environment for existing data/users; the D12 project remains a recovery/reference environment. Restart D12 only for a concrete product/recovery reason.
+
 
 ## Active architecture priority — M3-D (2026-09-19)
 
