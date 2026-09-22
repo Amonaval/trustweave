@@ -6,6 +6,74 @@ A feature is strategically valuable only when it helps answer a painful network 
 
 # Founder Compass
 
+## 2026-09-22 binding execution rule — trustworthy data adaptation before activation
+
+The consolidated D0–D12 architecture is leverage, not the roadmap.
+
+The active TrustWeave product experiment remains **V1 — Network Activation Autopilot**, but V1 is not complete merely because the governed compiler can consume a TrustWeave-shaped workbook.
+
+The product must help with the user's existing data rather than first asking the user to perform a large manual migration.
+
+Binding rules:
+
+- accept supported arbitrary Excel/CSV structures through a source-adaptation layer before the governed compiler;
+- do not hard-code domain synonym dictionaries in the generic transformation core;
+- the generic source → target transformation engine must be separable, independently usable and pluggable; TrustWeave is one consumer through an adapter;
+- humans may be asked for small, high-leverage semantic work such as mapping columns, defining ambiguous codes, approving rules and supplying truly missing facts;
+- machines own the repetitive work across large datasets;
+- prefer one confirmed rule applied to hundreds of rows over hundreds of manual edits;
+- deterministic transformations may be automated only when meaning is preserved and provenance is retained;
+- semantic suggestions remain suggestions until confirmed at the appropriate scope;
+- allow unmapped columns, unresolved rows, partial safe output and highlighted completion work;
+- **incomplete data is acceptable; wrong trusted data is not**;
+- never increase apparent completion by inventing semantic meaning;
+- preserve original source separately from transformed/canonical values;
+- every bulk repair must show its rule, rationale and affected scope;
+- generated completion workbooks/review reports are valid product outcomes even before TrustWeave activation;
+- no paid/external AI dependency is authorized by this product direction;
+- before building commodity capability, evaluate mature open-source options first; default sequence is **adopt → compose → extend → build**;
+- every implementation mission that could reuse external capability must record the candidates considered, license/security/maintenance/runtime implications and explicit adopt/compose/extend/build decision before custom implementation;
+- if the generic X → Y engine moves from thesis to implementation, its codebase is separate and independently usable; TrustWeave integrates only through an adapter;
+- building from scratch requires a reason: no suitable component, unacceptable integration/ownership risk, or genuine differentiation/moat;
+- paid dependencies are allowed only when commercial/customer economics justify them and the Founder explicitly approves the cost before any billable use;
+- do not create a standalone repository, provision infrastructure, select a paid model/provider or broaden into generic OCR/connectors without explicit Founder authorization;
+- do not build broad V2 Intelligence until V1 demonstrates trustworthy messy-source → governed-context conversion with low human effort.
+
+Canonical product contracts:
+
+- `V1-NETWORK-ACTIVATION-AUTOPILOT.md`
+- `GENERIC-DATA-TRANSFORMATION-ENGINE-THESIS.md`
+- `PRODUCT-WORKSTREAM-TRACKER.md`
+
+### Lean-alpha portfolio rule
+
+TrustWeave is pre-release. A workstream having more possible work does **not** mean the workstream should be completed before moving elsewhere.
+
+For each product/architecture/vertical area:
+
+- keep at most one highest-leverage active slice;
+- prefer the ~20–30% effort that can unlock ~70–80% of product learning or user value;
+- once that slice proves or disproves the hypothesis, **stop and re-select from the whole product portfolio**;
+- record remaining ideas as parked/pending with a concrete resume trigger;
+- do not automatically chain follow-on missions in the same category;
+- architecture is leverage; completeness is not the goal of an unreleased alpha;
+- release blockers, security/privacy failures and demonstrated user pain may override the effort/value heuristic.
+
+The canonical cross-product backlog/status surface is `PRODUCT-WORKSTREAM-TRACKER.md`.
+
+### Git history / commit batching rule
+
+Commit history is a long-lived product asset and must remain reviewable.
+
+- commit by coherent product/engineering outcome, not by individual file/tool write;
+- a normal bounded mission should usually land in **1–5 meaningful commits**;
+- even a larger mission should normally remain within roughly **5–10 commits** unless rollback, security, migration safety or bisectability clearly justify more;
+- decide commit batches before starting substantial repository mutations;
+- when connector APIs would otherwise create one commit per file, prefer Git blob/tree/commit batching;
+- avoid hundreds of micro-commits that make future history, review and archaeology noisy;
+- if a branch accumulates noisy exploratory history, create a clean batched replacement branch before merge rather than preserving accidental tool-level granularity.
+
+
 ## Objective Hierarchy
 
 During the family-first release period, when priorities conflict: 1. **Help a
@@ -281,3 +349,11 @@ This sharpens the existing Founder rule that **Organizational Intelligence and F
 5. Do **not** start another broad commercial vertical before buyer evidence.
 
 Before building, ask a real operator for hierarchy, MIS, SOP/audit checklist, issue tracker, compliance calendar and Monday-review workflow. Preferred build signal: design-partner access plus LOI, paid discovery, paid trial or another concrete pull signal.
+
+## 2026-09-22 product-learning handoff
+
+The complete reasoning, user/buyer critique, reuse map, kill criteria and NAA-0→NAA-12 mission queue are preserved in:
+
+- docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
+
+Use that artifact when resuming Network Activation Autopilot so the team does not regress into a TrustWeave-template importer or rebuild commodity spreadsheet tooling.

@@ -1,5 +1,20 @@
 # TrustWeave — Current State
 
+## 2026-09-22 — V1 Network Activation Autopilot foundation implemented; source-adaptation layer now required
+
+The active product mission remains **V1 — Network Activation Autopilot** on branch `network-activation-autopilot`. The implemented work is the governed lower half: candidate-network compiler, row/column provenance, identity/domain ambiguity handling, safe person merging, evidence-first activation, rerun protection, representative graph synchronization and deterministic first Institutional Intelligence. This foundation is retained.
+
+The prior proving slice exposed an important product gap: requiring a TrustWeave-shaped workbook simply moves migration work to the user. Full V1 therefore now requires a generic source-adaptation + transformation/repair layer that can start from supported arbitrary Excel/CSV, ask the user for small semantic confirmations, perform the repetitive work at scale, isolate unresolved data and produce partial safe output. The generic core must remain separable from TrustWeave and may later become an independent X→Y data-transformation product. No standalone repository/infrastructure build is authorized yet.
+
+Additive migration `124_v1_network_activation_evidence.sql` reuses the existing governed evidence tables and is **not applied to any Supabase project**. No workflows, connected QA, browser suites or database/runtime mutation were executed in this implementation session. Source implementation is therefore not represented as real-world product proof. Canonical detail: `docs/product/V1-NETWORK-ACTIVATION-AUTOPILOT.md`.
+
+The next value-bearing checkpoint is **not database activation**. It is zero-mutation validation of arbitrary-source mapping/repair: several differently shaped workbooks, one target contract, small user-confirmed mappings/rules, transformed output, exception report, and recipe reuse/drift behavior. Migration 124 remains unapplied. Do not begin broad V2 intelligence work before this layer proves trustworthy value.
+
+## 2026-09-22 — D12 founder review closure
+
+D12 is review-closed. The fresh reconstruction demonstrated structural/security/API-contract parity strongly enough for the architecture/recoverability purpose. Formal exhaustive browser certification is deliberately deferred rather than represented as complete. Do not restart a large reconstruction/QA program without a concrete product reason. The historical golden Supabase remains the preferred real environment for existing users/data; the reconstructed D12 Supabase remains recovery/reference.
+
+
 ## 2026-09-20 — D12 final fresh bootstrap and catalog parity PASS
 
 The corrected committed release at `ce5eddfbedd2a1ab3a92bbd58ac24ca78e57bfe1` replayed on the genuinely empty Personal project `TrustWeave D12 Final ACL Proof` (`yqwitkoxyrujbzpjwuji`). All 94 direct SQL files and seven owner-context Storage policies applied. The full golden structural/security/API comparator passed with zero differences and warnings; CI passed. Earlier Clean Replay and the first ACL diagnostic project are paused; golden `OS Network` remains read-only. See `docs/architecture/D12-FRESH-REPLAY-2026-09-20.md`. The managed-SQL receipt QA adapter passes against the archived evidence and 23 focused guard tests. The promotion gate now recognizes this replay and validates its bootstrap and capture bytes; four promotion guard tests pass. A checkout and dependencies are available. The candidate is healthy with zero Auth users/networks, but direct candidate API access from this workspace times out, the dashboard browser is at sign-in, and no local service key/QA environment is available. Connected QA was not run, promotion readiness is `NOT_READY`, and D12-F remains open.
@@ -167,3 +182,25 @@ The next active generation is C8–C10: memory that automatically informs planni
 ## 2026-09-16 — Autonomous Company Generation 3
 
 M3-C8 through M3-C10 are implemented. Durable, cited company memory now informs planning automatically; `/company` gives the Founder a concise spectator cockpit; and one broad product intent flowed through evidence retrieval, five-role debate, governed execution, five real role/device journeys, independent review and local release rehearsal. The selected user outcome raises every visible public Discovery action to a 44px minimum across Housing Society, Family Community and shared member/guide paths without migrations or production effects.
+
+## 2026-09-22 — Network Activation Autopilot discussion closure
+
+The source-adaptation discussion is now canonicalized.
+
+Key outcome:
+
+- the existing governed compiler/activation work is the lower half, not the complete Autopilot;
+- the missing hero layer is arbitrary-source → target adaptation, repair and exception handling;
+- the broader generic X→Y transformation engine remains a parked separate-product thesis; if later selected for implementation it must be independently usable and separated from TrustWeave;
+- TrustWeave becomes one adapter/consumer;
+- small semantic questions to the user are desirable when they avoid unsafe inference;
+- partial safe output is valid;
+- wrong trusted data is unacceptable;
+- reuse-before-build is binding: adopt → compose → extend → build;
+- paid capability may be commercially rational later but remains Founder/cost gated.
+
+**NAA-L1 is the only selected next Network Activation slice:** lean source mapping from ordinary XLSX/CSV into the existing TrustWeave activation target. After that proof, park the workstream and re-select from the product portfolio.
+
+Canonical handoff:
+
+docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
