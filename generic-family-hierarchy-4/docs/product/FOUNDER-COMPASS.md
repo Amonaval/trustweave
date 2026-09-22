@@ -6,6 +6,14 @@ A feature is strategically valuable only when it helps answer a painful network 
 
 # Founder Compass
 
+## 2026-09-23 visual adoption experiment — MPF Visual Life
+
+FCA-VIS1 tests whether governed community data becomes something members voluntarily browse when Home feels alive rather than administrative.
+
+Rules: use real people/events/memories as the visual material; keep governance and sensitive workflows calm; preserve private signed-media behavior; prefer a few useful visual forms over dashboard-chart spam; motion must be restrained and reduced-motion aware; no paid image transformation/external media service/new infrastructure; and this mission does not authorize a product-wide redesign.
+
+Success question: with one cover, several member photos and a few event/memory/post images, does MPF Home feel meaningfully more human, interesting and return-worthy?
+
 ## 2026-09-22 portfolio re-selection — FCA-L1 public pilot proof
 
 NAA-L1 is source-implemented and **Network Activation is parked**. The lean-alpha portfolio rule has now re-selected **FCA-L1 — MPF East public pilot proof** as the single active bounded slice.
