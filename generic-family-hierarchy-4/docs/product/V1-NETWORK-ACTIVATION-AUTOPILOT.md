@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-22  
 **Execution branch:** `network-activation-autopilot`  
-**Product status:** **SOURCE-COMPLETE CANDIDATE / REAL-WORLD VALUE VALIDATION PENDING**  
+**Product status:** **GOVERNED COMPILER FOUNDATION IMPLEMENTED / ARBITRARY-SOURCE ADAPTATION + REPAIR LAYER NOT YET IMPLEMENTED**  
 **Primary proving vertical:** Family Community / Cultural Association  
 **Runtime/database effects in this implementation session:** none
 
@@ -10,7 +10,7 @@
 
 A real institution should not need to manually rebuild itself inside TrustWeave.
 
-V1 tests whether TrustWeave can take the structured records an Association already has, reconstruct a governed network with very little administrator work, preserve uncertainty and provenance, and immediately produce useful institutional observations.
+V1 tests whether TrustWeave can take the records an organization already has — without first forcing the user to manually migrate them into a TrustWeave-shaped workbook — convert as much as is safely possible with small amounts of human semantic guidance, reconstruct a governed network, preserve uncertainty/provenance, and immediately produce useful institutional observations.
 
 The product promise is:
 
@@ -20,36 +20,48 @@ V1 is intentionally a product/value experiment, not another architecture program
 
 ## Current proving slice
 
-The current V1 slice accepts the existing Family Association activation workbook rather than attempting every possible source format.
+The first implementation built the **lower half** of the product correctly: a governed compiler and activation path for a known Family Association schema.
 
-The workbook can represent:
+That implementation is retained, but it is no longer considered the complete V1 product.
 
-- families / households;
-- people;
-- household membership;
-- annual Association membership;
-- family representative;
-- payment state / amount / reference;
-- current and historical leadership roles.
+The actual V1 must accept supported arbitrary Excel/CSV structures and help the user adapt them into the canonical activation model.
 
-The proving slice deliberately does **not** yet include PDF interpretation, WhatsApp ingestion, Google Drive connectors, generic OCR, a general chatbot or paid model APIs.
+A user may be asked for small, high-leverage semantic work such as:
 
-Those become candidates only if the structured activation experience proves valuable.
+- what one row represents;
+- which source sheet matters;
+- which source column maps to which target field;
+- what an ambiguous code/value means;
+- whether a proposed bulk transformation rule is correct;
+- which columns may be ignored.
+
+A user must **not** be required to manually rebuild thousands of rows into the TrustWeave template before V1 can help.
+
+The proving slice still deliberately excludes PDF interpretation, WhatsApp/Drive connectors, generic OCR, broad RAG/chat and paid model APIs.
+
+Canonical generic-engine contract:
+
+`docs/product/GENERIC-DATA-TRANSFORMATION-ENGINE-THESIS.md`
 
 ## End-to-end flow
 
 ```text
-Existing Association workbook
+Arbitrary supported Excel / CSV
         ↓
-Existing deterministic workbook parser
+V1-A0 Structure Discovery
         ↓
-Candidate Network Compiler
+Assisted Source → Target Mapping
+(user confirms meaning where needed)
         ↓
-Candidate facts + row-level provenance
+V1-A1 Transform + Repair
+(deterministic normalization + confirmed bulk rules)
         ↓
-Ambiguity Inbox
+Safe normalized activation model
++ unresolved exception set
         ↓
-Human resolves only unsafe decisions
+V1-B Governed Candidate Network Compiler
+        ↓
+Domain ambiguity / identity review
         ↓
 Resolved Activation Plan
         ↓
@@ -60,14 +72,22 @@ Existing TrustWeave governed APIs/contracts
 People + families + relationships
 + membership + representative + leadership history
         ↓
-First Institutional Intelligence report
+V1-D First Institutional Intelligence
 ```
 
-## V1-A — Compile — implemented in source
+The generic adaptation layer should ultimately live as an independently usable product/component. TrustWeave should consume it through a thin adapter rather than embedding TrustWeave vocabulary into the generic core.
 
-`core/activation-autopilot/compiler.ts` converts a validated workbook into a candidate network.
+## V1-A0 — Understand & Map — required next layer
 
-It records:
+Before the existing compiler runs, V1 needs a generic source-adaptation layer that can inspect supported arbitrary Excel/CSV input and construct a user-confirmed mapping into a target schema.
+
+This layer must not rely on hard-coded Association synonym dictionaries. It may suggest mappings, but semantic mappings become trusted only through deterministic evidence or human confirmation.
+
+The current `core/activation-autopilot/compiler.ts` remains the downstream governed compiler for an already normalized activation model.
+
+The existing governed compiler records:
+
+
 
 - exact candidate facts;
 - source file;
@@ -89,6 +109,32 @@ Current deterministic ambiguity detection includes:
 - ordinary parser/schema blockers.
 
 No ambiguity is silently upgraded into canonical truth.
+
+## V1-A1 — Transform & Repair — required next layer
+
+The engine should perform the high-volume work after mapping:
+
+- deterministic normalization;
+- confirmed source-to-target mapping;
+- value mapping;
+- split/merge transforms where explicitly defined;
+- validation;
+- broken-reference detection;
+- grouped exception discovery;
+- pattern-based repair proposals;
+- bulk application of user-confirmed rules.
+
+The product should prefer asking the user to approve one rule over asking them to edit hundreds of rows.
+
+When safe completion is partial, the engine may produce:
+
+- safe normalized output;
+- an approximately completed target workbook with unresolved cells/rows highlighted;
+- a companion review report listing missing, invalid, conflicting, unmapped and ignored data.
+
+It is acceptable to process only the safe subset.
+
+**Incomplete data is acceptable. Wrong trusted data is not.**
 
 ## V1-B — Resolve — implemented in source
 
@@ -200,13 +246,21 @@ This is intentionally deterministic. It does not use a generic LLM/chatbot and t
 
 Family Community's existing **Data & import** admin surface now routes to `NetworkActivationAutopilot`.
 
-The UX is intentionally:
+The complete V1 UX should be:
 
-1. analyze existing records;
-2. preview reconstructed network;
-3. review only ambiguous items;
-4. activate governed network;
-5. show immediate institutional intelligence.
+1. upload the organization's existing workbook/CSV;
+2. discover sheets/structure and ask only necessary structural questions;
+3. propose source → target mappings;
+4. let the user confirm/adjust/ignore mappings;
+5. process all rows using deterministic and confirmed rules;
+6. present bulk repair suggestions and unresolved exceptions;
+7. optionally export a partially completed target workbook + review report;
+8. pass only the safe normalized model into the governed candidate compiler;
+9. resolve remaining domain/identity ambiguity;
+10. activate the governed network;
+11. show immediate institutional intelligence.
+
+The current implementation begins effectively at step 8.
 
 The old guided importer remains available to other productized verticals.
 
@@ -214,14 +268,20 @@ The old guided importer remains available to other productized verticals.
 
 V1 is governed by these rules:
 
-1. AI/inference never writes directly to canonical network state.
-2. Deterministic work remains deterministic.
-3. Ambiguity stops for explicit human judgment.
-4. A human-selected merge may fill blanks but may not overwrite conflicting non-empty values.
-5. Source evidence survives canonical conflict resolution.
-6. Existing manually governed state is not silently overwritten.
-7. Domain writes go through existing TrustWeave contracts.
-8. No paid/external AI provider is required for the current V1 slice.
+1. The user must not be forced to manually migrate large source files into a TrustWeave template before the product can help.
+2. The generic adaptation core must not hard-code TrustWeave/Association semantic synonym dictionaries.
+3. Humans may be asked for small, high-leverage semantic confirmations; the system should perform the repetitive data work.
+4. Semantic uncertainty is never converted into trusted data merely to increase completion percentage.
+5. AI/inference never writes directly to canonical network state.
+6. Deterministic work remains deterministic.
+7. Suggested mappings/rules are previewed and confirmed at the appropriate scope before semantic use.
+8. Ambiguity stops for explicit human judgment.
+9. Partial safe processing/export is a valid successful outcome.
+10. A human-selected merge may fill blanks but may not overwrite conflicting non-empty values.
+11. Source evidence survives canonical conflict resolution.
+12. Existing manually governed state is not silently overwritten.
+13. Domain writes go through existing TrustWeave contracts.
+14. No paid/external AI provider is required for V1.
 
 ## Source contract
 
@@ -291,8 +351,10 @@ It is a real organizer saying:
 
 ## Current decision boundary
 
-V1 source implementation is sufficient to stop feature expansion.
+The governed compiler/activation foundation is sufficient; do not expand that lower layer further without evidence.
 
-The next value-bearing step is **real artifact-pack validation**, not more platform construction.
+The next V1 problem is now clearly **arbitrary-source adaptation + assisted transformation/repair**, not more TrustWeave domain architecture.
 
-Do not begin V2 Governed Institutional Intelligence as a broad mission until V1 produces credible real-user/product evidence.
+The generic source-to-target engine is a parallel product thesis with a strict separation boundary. Do not create its standalone repository, infrastructure or broad feature set until explicitly authorized.
+
+Do not begin V2 Governed Institutional Intelligence as a broad mission until V1 can demonstrate that genuinely messy source data can be converted into trustworthy governed context with low human effort.
