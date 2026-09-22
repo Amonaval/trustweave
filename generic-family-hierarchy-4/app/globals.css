@@ -1682,3 +1682,10 @@ html[data-theme="dark"] .association-stat-grid article,
 html[data-theme="dark"] .association-announcement-list article,
 html[data-theme="dark"] .association-community-card,
 html[data-theme="dark"] .association-family-card{background:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important}
+
+
+/* Family mobile parity: four primary destinations + More. */
+@media(max-width:800px){
+ .mobile-bottom-nav.family-mobile-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;overflow:visible!important}
+ .mobile-bottom-nav.family-mobile-nav button{min-width:0!important;width:auto!important;flex:none!important}
+}

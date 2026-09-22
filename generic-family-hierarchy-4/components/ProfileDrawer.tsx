@@ -41,6 +41,7 @@ export default function ProfileDrawer({
   memories,
   network,
   viewerMemberId,
+  authenticatedEmail,
   simple = false,
   onClose,
   onBack,
@@ -64,6 +65,7 @@ export default function ProfileDrawer({
   memories?: Memory[];
   network?: NetworkSettings | null;
   viewerMemberId?: string;
+  authenticatedEmail?: string;
   simple?: boolean;
   onClose: () => void;
   onBack?: () => void;
@@ -89,6 +91,8 @@ export default function ProfileDrawer({
   const visibleAtPreview = (required?: "public" | "member" | "admin" | null) => previewRank >= visibilityRank[required || "member"];
   const showProfileDetails = visibleAtPreview(member.profile_visibility || "member");
   const showContactDetails = canViewPrivateContact && visibleAtPreview(member.contact_visibility || "admin");
+  const ownProfile = !!viewerMemberId && viewerMemberId===member.id;
+  const displayedEmail = member.email || (ownProfile ? authenticatedEmail : undefined);
   const visibleEvents = (events || []).filter(e => visibleAtPreview(e.visibility || "member"));
   const visibleMemories = (memories || []).filter(m => visibleAtPreview(m.visibility || "member"));
   const relationshipToViewer = viewerMemberId ? describeRelationshipToViewer(members, relationships, viewerMemberId, member.id) : null;
@@ -193,7 +197,7 @@ export default function ProfileDrawer({
             </div>
             <div className="detail">
               <div className="detail-label">{copy.email}</div>
-              <div className="detail-value">{member.email || "—"}</div>
+              <div className="detail-value">{displayedEmail || "—"}</div>
             </div>
           </div>
         )}

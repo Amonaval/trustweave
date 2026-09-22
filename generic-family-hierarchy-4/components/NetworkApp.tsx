@@ -1153,7 +1153,7 @@ export default function NetworkApp() {
         <div className="loading-mark"><TreePine size={30} /></div>
         <div>
           <b>{tr("SetupBrandTxt")}</b>
-          <div className="page-subtitle">{t("LoadingFamilyTxt")}</div>
+          <div className="page-subtitle">{tr("LoadingTxt")}</div>
         </div>
       </div>
     );
@@ -1371,8 +1371,9 @@ export default function NetworkApp() {
           {canAdmin && <select className="select nx6-privacy-preview" aria-label={tr("PreviewProfilePrivacyAsTxt")} value={visibility} onChange={(e) => setVisibility(e.target.value as Visibility)}><option value="public">{tr("PublicPreviewTxt")}</option><option value="member">{tr("MemberPreviewTxt")}</option><option value="admin">{tr("AdminPreviewTxt")}</option></select>}
           <NetworkAccountMenu label={demoPreview?"Explore":auth?.email?.split("@")[0]||tr("MeTxt")} subtitle={demoPreview?"Playground":network?.membership_role||auth?.family_role||tr("FamilyMemberTxt")} items={[
             ...((canAdmin || experience!==tr("Simple3Txt"))?[{key:"profile",label:t("MyProfileTxt"),icon:<UserRoundPen size={16}/>,onClick:openMyProfile,hint:"Your family profile"}]:[]),
-            ...(isSupabaseConfigured&&!demoPreview&&auth?[{key:"networks",label:tr("MyNetworksTxt"),icon:<UsersRound size={16}/>,onClick:()=>void openMyNetworksHome(),hint:"All your private network contexts"}]:[]),
+            ...(isSupabaseConfigured&&auth?[{key:"networks",label:demoPreview?tr("BackToNetworkSelectionTxt"):tr("MyNetworksTxt"),icon:<UsersRound size={16}/>,onClick:()=>void openMyNetworksHome(),hint:demoPreview?"Leave the Playground and return to your networks":"All your private network contexts"}]:[]),
             ...(isSupabaseConfigured&&demoPreview&&!auth?[{key:"signin",label:tr("ShowcaseSignInTxt"),icon:<ArrowRight size={16}/>,onClick:openAnonymousSignIn,hint:"Sign in to create or join your own network"}]:[]),
+            ...(isPlatformOwner&&isSupabaseConfigured?[{key:"launch",label:tr("LaunchControlTxt"),icon:<Rocket size={16}/>,onClick:()=>setView("founder"),hint:"Platform-wide rollout controls"}]:[]),
             {key:"guide",label:tr("ExploreGuideTxt"),icon:<BookOpen size={16}/>,onClick:()=>{setGuideKey("");setView("guide")},hint:"Learn what this network can do"},
             ...(isSupabaseConfigured&&auth?[{key:"signout",label:t("SignOutTxt"),icon:<LogOut size={16}/>,onClick:async()=>{await signOut();setAuth(null);setNetwork(null);setProductizedDemo(null);setAlumniDemo(false);setSetupNeeded(true)},danger:true}]:[]),
           ]}/>
@@ -2068,15 +2069,16 @@ export default function NetworkApp() {
           )}
         </main>
       </div>
-      <nav className="mobile-bottom-nav has-admin">
-        {mobileBottomSurfaces.filter(surface=>{if(surface.featureKey&&!hasFeature(surface.featureKey as FeatureKey))return false;const minimum=surface.minimumExperience as ExperienceLevel|undefined;return !minimum||EXPERIENCE_RANK[experience]>=EXPERIENCE_RANK[minimum]}).map(surface=><button key={surface.viewId} className={view === surface.viewId ? "active" : ""} onClick={() => surface.viewId === "tree" ? openFamilyView() : setView(surface.viewId as View)}>{surfaceIcon(surface.iconToken,19)}<span>{localizedSurfaceLabel(surface,appLocale)}</span></button>)}
-        {(!demoPreview || !!auth) && <button className={selected?.id===auth?.member_id ? "active" : ""} onClick={openMyProfile}><UserRoundPen size={19}/><span>{language === "hi" ? "मैं" : language === "mr" ? "मी" : tr("MeTxt")}</span></button>}
-        <button className={showMobileMenu || appComposition.mobileMoreActiveViewIds.includes(view) ? "active" : ""} onClick={() => setShowMobileMenu(true)}><Menu size={19}/><span>{moreLabel}</span></button>
+      <nav className="mobile-bottom-nav family-mobile-nav">
+        {mobileBottomSurfaces.filter(surface=>{if(surface.featureKey&&!hasFeature(surface.featureKey as FeatureKey))return false;const minimum=surface.minimumExperience as ExperienceLevel|undefined;return !minimum||EXPERIENCE_RANK[experience]>=EXPERIENCE_RANK[minimum]}).map(surface=><button data-testid={`qa-mobile-nav-${surface.viewId}`} key={surface.viewId} className={view === surface.viewId ? "active" : ""} onClick={() => surface.viewId === "tree" ? openFamilyView() : setView(surface.viewId as View)}>{surfaceIcon(surface.iconToken,19)}<span>{localizedSurfaceLabel(surface,appLocale)}</span></button>)}
+        <button data-testid="qa-mobile-nav-more" className={showMobileMenu || appComposition.mobileMoreActiveViewIds.includes(view) ? "active" : ""} onClick={() => setShowMobileMenu(true)}><Menu size={19}/><span>{moreLabel}</span></button>
       </nav>
       {showMobileMenu && <div className="mobile-more-overlay" onMouseDown={(event) => event.target === event.currentTarget && setShowMobileMenu(false)}><section className="mobile-more-sheet" role="dialog" aria-modal="true" aria-label={moreLabel}>
         <div className="mobile-more-head"><div><span className="warm-kicker">{network?.name}</span><h2>{moreLabel}</h2></div><button className="icon-button" aria-label={tr("CloseTxt")} autoFocus onClick={() => setShowMobileMenu(false)}><X size={19}/></button></div>
         {mobileMoreSurfaces.map(surface=><button key={surface.viewId} className="mobile-more-action" onClick={() => { setView(surface.viewId as View); setShowMobileMenu(false); }}><span>{surfaceIcon(surface.iconToken)}{localizedSurfaceLabel(surface,appLocale)}</span><ArrowRight /></button>)}
-        {isPlatformOwner && isSupabaseConfigured && <button className="mobile-more-action" onClick={() => { setView("founder"); setShowMobileMenu(false); }}><span><Rocket />{tr("LaunchControlTxt")}</span><ArrowRight /></button>}
+        {(!demoPreview || !!auth) && <button data-testid="qa-mobile-more-profile" className="mobile-more-action" onClick={()=>{setShowMobileMenu(false);openMyProfile()}}><span><UserRoundPen />{tr("MyProfileTxt")}</span><ArrowRight /></button>}
+        {demoPreview && <button data-testid="qa-mobile-more-back-networks" className="mobile-more-action" onClick={async()=>{setShowMobileMenu(false);setDemoPreview(false);setDemoViewerId(undefined);setFocusId(undefined);setLineageOnly(false);setNetwork(null);setMembers([]);setRelationships([]);setSubmissions([]);if(auth)await openMyNetworksHome();else setSetupNeeded(true)}}><span><UsersRound />{tr("BackToNetworkSelectionTxt")}</span><ArrowRight /></button>}
+        {isPlatformOwner && isSupabaseConfigured && <button data-testid="qa-mobile-more-launch" className="mobile-more-action" onClick={() => { setView("founder"); setShowMobileMenu(false); }}><span><Rocket />{tr("LaunchControlTxt")}</span><ArrowRight /></button>}
         {isSupabaseConfigured && auth && !demoPreview && <button className="mobile-more-action" onClick={() => { setShowMobileMenu(false); void openMyNetworksHome(); }}><span><UsersRound />{tr("MyNetworksTxt")}</span><ArrowRight /></button>}
         {isSupabaseConfigured && auth && !demoPreview && <button className="mobile-more-action" onClick={async()=>{if(!window.confirm(`Leave ${network?.name||tr("ThisFamilyTxt")}? If you are its only account, the empty family will be archived.`))return;try{const action=await leaveCurrentFamily();setShowMobileMenu(false);await hydrate(await getAuthUser());notify(action==="archived"?"Family archived. You can create or join another family.":"You left the family.")}catch(e:any){notify(e.message||tr("CouldNotLeaveThisFamilyTxt"))}}}><span><LogOut />{tr("LeaveThisFamilyTxt")}</span><ArrowRight /></button>}
         <button className="mobile-more-action" onClick={() => { setGuideKey(""); setView("guide"); setShowMobileMenu(false); }}><span><BookOpen />{tr("ExploreGuideTxt")}</span><ArrowRight /></button>
@@ -2106,6 +2108,7 @@ export default function NetworkApp() {
           visibility={visibility}
           network={network}
           viewerMemberId={viewerMemberId || undefined}
+          authenticatedEmail={selected.id===auth?.member_id?auth?.email:undefined}
           simple={experience === "simple"}
           canViewPrivateContact={
             !isSupabaseConfigured ||
