@@ -32,6 +32,46 @@ It must eventually be capable of:
 
 TrustWeave is one consumer of this engine, not its owner.
 
+## 1A. Reuse-before-build rule
+
+This product follows **adopt → compose → extend → build** in that order.
+
+Before implementing any non-trivial capability:
+
+1. search for mature open-source libraries/products that already solve it;
+2. evaluate license, maintenance/activity, security posture, portability, data/privacy behavior and integration cost;
+3. prefer composing proven components when they satisfy the trust contract;
+4. extend/fork only when the extension surface is stable enough and ownership cost is justified;
+5. build from scratch only when no suitable component exists, integration would create greater long-term complexity, or the capability itself is part of the product's differentiation/moat.
+
+Commodity capabilities that should normally be reused rather than reinvented include:
+
+- XLSX/CSV parsing and writing;
+- table rendering/virtualization;
+- ordinary header matching;
+- basic schema/type validation;
+- common deterministic transforms;
+- similarity/string-distance primitives;
+- export formatting;
+- generic data profiling where a suitable library exists.
+
+Capabilities we may need to own because they express the product thesis include:
+
+- human-supervised X → Y transformation recipes;
+- decision provenance and trust state;
+- safe partial-completion semantics;
+- pattern-level repair proposals with affected-scope preview;
+- reusable confirmed semantic rules;
+- source/target drift detection;
+- exception orchestration;
+- host/target adapter contract.
+
+Open source is the default preference, not a religion. A paid dependency/product may be considered when there is a real paying customer or clear commercial justification and the build-vs-buy economics favor adoption.
+
+**No paid or metered product/service may be activated, trialled with billable usage, provisioned or purchased without explicit Founder approval and a clear cost warning.** Customer willingness to pay changes the economic decision; it does not remove the approval gate.
+
+Dependency adoption must not weaken the core trust invariants. If an external library guesses semantic meaning without adequate control, we wrap/disable that behavior or do not use it.
+
 ## 2. Hard architectural boundary
 
 The generic engine must be independently usable and independently testable.
