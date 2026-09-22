@@ -199,7 +199,7 @@ Key outcome:
 - reuse-before-build is binding: adopt → compose → extend → build;
 - paid capability may be commercially rational later but remains Founder/cost gated.
 
-**NAA-L1 is the only selected next Network Activation slice:** lean source mapping from ordinary XLSX/CSV into the existing TrustWeave activation target. After that proof, park the workstream and re-select from the product portfolio.
+**NAA-L1 is now implemented in source:** ordinary XLSX/CSV inspection, user-controlled sheet/header/column mapping, deterministic validation and safe partial candidate handoff into the existing governed compiler. Network Activation is parked for portfolio re-selection; manual/browser proof remains deferred.
 
 Canonical handoff:
 

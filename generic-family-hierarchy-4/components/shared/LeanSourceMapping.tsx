@@ -1,6 +1,6 @@
 "use client";
 
-import {useMemo,useState} from "react";
+import {useState} from "react";
 import {AlertTriangle,FileSearch,ShieldCheck,UploadCloud} from "lucide-react";
 import type {ImportReview,ImportSchema,ImportSheetSchema} from "../../core/import/contracts";
 import {
@@ -75,18 +75,18 @@ export default function LeanSourceMapping({schema,onReview}:Props){
 
   const mappedTargets=mappings.filter(item=>item.sourceSheetName).length;
   const requiredTargetsMissing=schema.sheets.filter(target=>target.required&&!mappingFor(target.key)?.sourceSheetName);
-  const requiredColumnsMissing=useMemo(()=>schema.sheets.flatMap(target=>{
+  const requiredColumnsMissing=schema.sheets.flatMap(target=>{
     const mapping=mappingFor(target.key);
     if(!mapping?.sourceSheetName)return [];
     return target.columns.filter(column=>column.required&&mapping.columns[column.key]==null&&column.target!=="stableId")
       .map(column=>`${target.name} → ${column.label}`);
-  }),[mappings,schema]);
-  const previewIds=useMemo(()=>schema.sheets.flatMap(target=>{
+  });
+  const unmappedStableIds=schema.sheets.flatMap(target=>{
     const mapping=mappingFor(target.key);
     if(!mapping?.sourceSheetName||target.recordType!=="entity")return [];
     return target.columns.filter(column=>column.target==="stableId"&&mapping.columns[column.key]==null)
       .map(column=>`${target.name} → ${column.label}`);
-  }),[mappings,schema]);
+  });
 
   const build=()=>{
     if(!workbook)return;
@@ -185,7 +185,7 @@ export default function LeanSourceMapping({schema,onReview}:Props){
                     >
                       <option value="">
                         {column.target==="stableId"&&target.recordType==="entity"
-                          ?"Not mapped · generate preview ID only"
+                          ?"Not mapped · preview only"
                           :"Not mapped"}
                       </option>
                       {columns.map(sourceColumn=><option value={sourceColumn.index} key={sourceColumn.index}>
@@ -204,18 +204,18 @@ export default function LeanSourceMapping({schema,onReview}:Props){
         <div className="network-metric"><b>{mappedTargets}</b><span>Target sections mapped</span><small>{schema.sheets.length} available</small></div>
         <div className="network-metric"><b>{requiredTargetsMissing.length}</b><span>Required sections missing</span><small>Can still preview partial data</small></div>
         <div className="network-metric"><b>{requiredColumnsMissing.length}</b><span>Required fields unmapped</span><small>Remain blockers</small></div>
-        <div className="network-metric"><b>{previewIds.length}</b><span>Preview IDs generated</span><small>Map stable IDs before activation</small></div>
+        <div className="network-metric"><b>{unmappedStableIds.length}</b><span>Stable IDs unmapped</span><small>Preview works; activation stays blocked</small></div>
       </div>
 
-      {(requiredTargetsMissing.length>0||requiredColumnsMissing.length>0||previewIds.length>0)&&<div className="friendly-issues">
+      {(requiredTargetsMissing.length>0||requiredColumnsMissing.length>0||unmappedStableIds.length>0)&&<div className="friendly-issues">
         {requiredTargetsMissing.map(target=><div className="issue-row warning" key={`sheet-${target.key}`}>
           <AlertTriangle/><span><b>Required target not mapped</b>{target.name}</span>
         </div>)}
         {requiredColumnsMissing.slice(0,8).map(label=><div className="issue-row warning" key={label}>
           <AlertTriangle/><span><b>Required field not mapped</b>{label}</span>
         </div>)}
-        {previewIds.map(label=><div className="issue-row warning" key={`id-${label}`}>
-          <AlertTriangle/><span><b>Preview-only identity</b>{label}. TrustWeave can preview rows, but activation stays blocked until you map a stable identifier.</span>
+        {unmappedStableIds.map(label=><div className="issue-row warning" key={`id-${label}`}>
+          <AlertTriangle/><span><b>Stable identity not mapped</b>{label}. TrustWeave uses the source row only for preview grouping; activation stays blocked until you map a stable identifier.</span>
         </div>)}
       </div>}
 
