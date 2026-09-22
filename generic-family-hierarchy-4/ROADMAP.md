@@ -2,52 +2,109 @@
 
 ## Current priority — V1 Network Activation Autopilot (2026-09-22)
 
-TrustWeave's current execution priority is no longer architecture accumulation or D12 certification. It is the first bounded product-value experiment derived from the consolidated architecture:
+TrustWeave's current execution priority is the product-value experiment derived from the consolidated architecture:
 
-> Can TrustWeave turn an existing Association's imperfect operational records into a trustworthy governed network with dramatically less human setup, while preserving ambiguity/provenance and immediately surfacing useful institutional context?
+> Can TrustWeave take the organization's existing messy files, ask the human only for meaning that cannot be known safely, perform the repetitive transformation work at scale, and produce trustworthy governed context without requiring a manual template migration first?
 
-### V1-A — Compile — source implemented
+### V1-A0 — Understand & Map — NEXT PRODUCT LAYER
 
-- Family Community activation workbook v2;
+Required behavior:
+
+- accept supported arbitrary Excel/CSV rather than only a TrustWeave-shaped workbook;
+- discover workbook/sheet/header structure;
+- let the user identify what a sheet/row represents when unclear;
+- propose source → target column mappings;
+- let the user confirm, change, ignore or defer mappings;
+- do not hard-code Association-specific synonym dictionaries in the generic engine;
+- treat mapping as human-supervised semantic work, not a guessing contest.
+
+### V1-A1 — Transform & Repair — NEXT PRODUCT LAYER
+
+Required behavior:
+
+- perform deterministic normalization;
+- execute confirmed column/value/transformation rules across large datasets;
+- discover repeated quality patterns;
+- propose bulk repair rules with rationale + affected-row preview;
+- allow partial safe processing;
+- isolate unresolved exceptions;
+- generate safe normalized output;
+- support an 80–95%-completed target workbook with unresolved work highlighted;
+- support a companion review report for missing, invalid, conflicting, unmapped and ignored data.
+
+**Invariant:** incomplete is acceptable; wrong trusted data is not.
+
+### V1-B — Governed Compile & Resolve — FOUNDATION IMPLEMENTED
+
+Implemented lower layer:
+
 - candidate-network compiler;
-- source/row/column provenance;
+- row/column provenance;
 - deterministic duplicate/conflict detection;
-- no paid model/provider dependency.
-
-### V1-B — Resolve — source implemented
-
-- one Ambiguity Inbox rather than spreadsheet-repair loops;
-- explicit canonical-row choices for conflicting institutional records;
+- Ambiguity Inbox;
+- explicit canonical-row choices;
 - consolidated identity ambiguity;
 - safe human-selected person merge with typed reference rewriting;
 - superseded source rows preserved as evidence.
 
-### V1-C — Activate & Prove — source implemented
+### V1-C — Activate — FOUNDATION IMPLEMENTED
 
-- evidence is persisted before canonical writes;
-- canonical writes reuse existing network/FCA contracts;
-- representative graph semantics are synchronized;
-- leadership reruns avoid duplicate terms;
-- existing manual identities fail closed rather than being silently duplicated;
-- first deterministic Institutional Intelligence report surfaces gaps/history with source references.
+- evidence-first activation path;
+- existing governed network/FCA contracts;
+- representative graph synchronization;
+- leadership rerun safety;
+- fail-closed collision behavior for existing manual identities.
 
-Detailed source state: `docs/product/V1-NETWORK-ACTIVATION-AUTOPILOT.md`.
+### V1-D — Immediate Institutional Value — FOUNDATION IMPLEMENTED
 
-### Runtime/value gate — not yet authorized
+The current deterministic report demonstrates the shape of post-activation value, but it is not yet the primary proof. First prove that messy source data can become trustworthy context with low human effort.
 
-Migration `124_v1_network_activation_evidence.sql` has not been applied. No Supabase project, workflow, browser suite or connected QA was run for V1.
+Detailed contracts:
 
-The next checkpoint is not another feature batch. It is one explicitly authorized real Association activation pack and a product scorecard covering:
+- `docs/product/V1-NETWORK-ACTIVATION-AUTOPILOT.md`
+- `docs/product/GENERIC-DATA-TRANSFORMATION-ENGINE-THESIS.md`
 
-1. automatic reconstruction rate;
-2. meaningful human decisions required;
-3. incorrect assumptions avoided;
-4. setup time saved;
-5. immediate institutional usefulness;
-6. organizer trust in provenance;
-7. willingness to activate another chapter/network.
+### Parallel product thesis — Generic Data Transformation Engine
 
-Do **not** begin broad V2 Governed Institutional Intelligence, Residential Autopilot, PDF/WhatsApp/Drive ingestion, new vertical work or generic AI/RAG expansion until V1 produces real product evidence.
+The V1-A0/A1 capability is strategically separable from TrustWeave.
+
+Long-term product shape:
+
+```text
+arbitrary supported source X
+        ↓
+human-supervised mapping + reusable transformation recipe
+        ↓
+cleaned/validated target Y
+```
+
+The generic engine must be independently usable and pluggable. TrustWeave supplies one target adapter and consumes its safe output.
+
+This direction does **not** yet authorize a separate repository, service, infrastructure, paid AI dependency, connectors or generic SaaS build. First prove the transformation experience cheaply.
+
+### Next validation gate — zero database mutation
+
+Before migration 124 or connected activation:
+
+1. use several genuinely different source workbook shapes;
+2. define a target schema/workbook;
+3. measure how many mappings/questions the human must answer;
+4. apply confirmed rules across all rows;
+5. measure safe completion percentage;
+6. inspect unresolved/error output;
+7. export the transformed target and review report;
+8. repeat with a second file from a similar source to test recipe reuse/drift detection.
+
+A useful target is not "100% automatic."
+
+A useful target is:
+
+> The human answers a small number of semantic questions; the product safely performs orders of magnitude more data work.
+
+Migration `124_v1_network_activation_evidence.sql` remains unapplied. No database/runtime mutation is authorized by this roadmap update.
+
+Do **not** begin broad V2 Governed Institutional Intelligence, Residential Autopilot, PDF/WhatsApp/Drive ingestion, new vertical work or generic AI/RAG expansion until the adaptation/repair layer proves trustworthy value.
+
 
 ## D12 architecture/recoverability — review-closed
 
