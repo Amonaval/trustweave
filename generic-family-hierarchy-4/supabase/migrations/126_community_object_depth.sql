@@ -84,7 +84,7 @@ language sql security definer stable set search_path='' as $$
             where e.network_id=gm.network_id and e.owner_user_id=gm.user_id and e.kind='person'
             order by e.updated_at desc limit 1),
           'Member'
-        )::text,
+        )::text as member_label,
         gm.role,
         gm.created_at
    from public.network_group_memberships gm
@@ -146,7 +146,7 @@ language sql security definer stable set search_path='' as $$
             where e.network_id=r.network_id and e.owner_user_id=r.user_id and e.kind='person'
             order by e.updated_at desc limit 1),
           'Member'
-        )::text,
+        )::text as member_label,
         r.response,
         r.updated_at
    from public.network_activity_rsvps r
