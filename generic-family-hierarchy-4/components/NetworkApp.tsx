@@ -9,6 +9,7 @@ import {
   Building2,
   ShieldCheck,
   Upload,
+  ImagePlus,
   Download,
   Plus,
   X,
