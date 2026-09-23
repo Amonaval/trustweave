@@ -153,3 +153,17 @@ Use:
 - SUPERSEDED
 
 Additional qualifiers may describe blockers, but must not blur source vs runtime proof.
+
+## Public vs confidential artifacts — permanent rule
+
+The repository currently maintains public-safe product/evolution artifacts including:
+- `TRUSTWEAVE-PUBLIC-PRODUCT-PROFILE.html`;
+- `TRUSTWEAVE-PRODUCT-EVOLUTION-JOURNEY.html`.
+
+When a **major public-safe** product milestone materially changes the external story, keep those artifacts current.
+
+Do not copy every internal mission/status change into them.
+
+Never expose confidential Founder strategy, pricing tactics, IP-defense analysis, private user/customer information, credentials, unreleased security detail, or sensitive commercial plans merely to satisfy documentation completeness.
+
+Public artifacts explain **value and verified evolution**. Canonical internal Markdown explains company strategy and operating truth.

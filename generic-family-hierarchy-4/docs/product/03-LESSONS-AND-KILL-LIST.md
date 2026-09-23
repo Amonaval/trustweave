@@ -185,3 +185,42 @@ When something fails:
 5. verify the affected journey;
 6. capture a durable lesson only if it generalizes;
 7. stop when the mission question is answered.
+
+## Recovered durable rules from earlier TrustWeave work
+
+These rules were repeatedly established before the current Knowledge OS and remain valid unless a higher-authority decision supersedes them.
+
+### Release and rollout
+- every meaningful advanced/releasable capability must have an intentional Launch Control/release path;
+- unknown rollout state fails closed;
+- **deployment is not release**;
+- Launch Control controls exposure, not security authorization;
+- entitlement, code delivery and backend/data activation are separate concerns.
+
+### Community / vertical reuse
+- MPF is a real proving customer/configuration, **not a reason to hard-code MPF into the generic Community/Association engine**;
+- fixes whose semantics are shared across MPF, Residential, Alumni or future verticals belong in the shared capability once;
+- “connected” networks remain independent; connected never means merged private graphs.
+
+### Navigation / routes
+- direct links, refresh, browser back/forward, auth-return state and privacy-safe canonical URLs are part of product correctness;
+- a share action that cannot return an authorized user to the exact useful object is incomplete.
+
+### QA / defects
+- default QA must remain compact and free-tier-safe while the product is small: tiny deterministic data, limited roles, low concurrency, session reuse and no accidental stress/load/auth loops;
+- distinguish harness/environment/connectivity failures from product defects before changing product code;
+- a real product defect that could recur should produce durable regression protection;
+- seed/import failures are product functionality defects when the seed/import journey is part of the product.
+
+### Public vs confidential knowledge
+- public profile/evolution artifacts explain customer value and public-safe product history;
+- confidential Founder strategy, IP-defense ideas, security-sensitive implementation detail and unreleased commercial tactics do not belong in public artifacts;
+- major public-safe product milestones should keep the public product profile/evolution story current without duplicating all internal status.
+
+### Governance semantics
+- ordinary member polls and election-grade governance are not the same product;
+- statutory/formal elections require the appropriate eligibility, privacy, one-vote/tamper/audit/publication controls before the product claims that level of assurance.
+
+### Global ambition
+- build core abstractions and product identity for global portability even when current pilots are Indian;
+- do not confuse the current pilot geography with the final addressable market.

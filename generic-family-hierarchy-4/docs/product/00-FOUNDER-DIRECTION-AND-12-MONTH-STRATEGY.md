@@ -207,3 +207,17 @@ TrustWeave is building a compounding loop:
 > **real networks create requirements → reusable capabilities solve them → more networks become cheap to launch → network context gets richer → AI becomes more valuable → commercial value increases → the platform compounds.**
 
 That loop is the company strategy.
+
+## Global product and commercialization posture
+
+The proving networks are currently Indian, but the product architecture and eventual commercial identity must remain globally portable.
+
+Commercial name/domain/brand decisions should aim for:
+- distinctive and pronounceable international identity;
+- domain/company/trademark/app-store viability when the commercial gate is reached;
+- credible fit for both consumer/community and institutional/business use;
+- no dependence on one Indian community, regulation or vocabulary for the core category.
+
+India is an excellent proving ground. It is not a hard boundary for the eventual market.
+
+Adjacent experiments or side products should normally consume **no more than roughly 20–25% of product effort** unless explicit portfolio re-selection makes them the primary company direction.

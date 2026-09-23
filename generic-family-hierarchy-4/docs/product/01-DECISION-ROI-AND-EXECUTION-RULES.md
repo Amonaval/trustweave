@@ -197,3 +197,45 @@ Before coding, answer:
 10. If we do nothing, what meaningful outcome is lost?
 
 If these answers are weak, do not start coding.
+
+## 21. Release-control rule
+
+**DEPLOY ≠ RELEASE.**
+
+A capability may exist in source, a preview, a database or even a production bundle without being released to users.
+
+For material/advanced capability, keep these concerns distinct:
+1. capability/catalog registration;
+2. entitlement / Launch Control state;
+3. code/dependency delivery;
+4. backend/data activation;
+5. runtime visibility/route gating;
+6. actual authorization at RLS/RPC/server boundaries.
+
+Launch Control must fail closed when its state is unknown. It never substitutes for authorization.
+
+## 22. Protected-branch rule
+
+Routine work belongs on a mission/working branch. Treat `main` as protected current truth.
+
+Do not merge/promote to `main`, production, or another protected environment merely because source work is complete. Promotion remains an explicit release decision under the current Founder/production gate.
+
+## 23. Adjacent-work budget
+
+Preserve valuable adjacent ideas, but do not let them silently become the main company.
+
+Unless the portfolio is explicitly re-selected, exploratory side products / speculative adjacent directions should normally remain within roughly **20–25% of effort**.
+
+## 24. Context-budget rule
+
+Context is a finite engineering resource.
+
+Use:
+- a very small always-on strategic/control map;
+- progressive retrieval of mission/product/architecture detail;
+- exact source/diff/search slices instead of loading whole repositories/logs;
+- deterministic scripts for facts;
+- high-signal tool outputs;
+- compact durable checkpoints rather than repeated conversational re-explanation.
+
+If a rule is repeatedly needed, promote it into the repository or a mechanical check rather than spending tokens rediscovering it.

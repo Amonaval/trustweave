@@ -178,3 +178,18 @@ Binding rules:
 - Family, Community and Residential remain strategic products and proving grounds.
 - Business-group functionality waits until connector/data-quality maturity is proven.
 - Paid proof outranks speculative enterprise infrastructure.
+
+## Release / exposure constitution — recovered durable rule
+
+Every advanced or selectively released capability must have an intentional exposure contract. **DEPLOY ≠ RELEASE.**
+
+Where applicable, release requires:
+- capability/catalog registration;
+- persisted Launch Control state;
+- fail-closed runtime gating;
+- direct-route/deep-link gating;
+- backend/data activation compatible with the release state.
+
+Launch Control is a product exposure mechanism, not an authorization system. RLS/RPC/server boundaries remain authoritative.
+
+Public Discovery/Playground should expose only released/approved product experiences. Real-customer configuration such as MPF Pune East must strengthen the generic Community product rather than fork it into customer-specific code.

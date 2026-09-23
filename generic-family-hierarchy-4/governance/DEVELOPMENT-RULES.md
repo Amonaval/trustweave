@@ -427,3 +427,35 @@ A material mission must leave a durable human-readable mission record before clo
 6. Long data collections should use filtering, caps/pagination or contained table/list regions. Do not confuse data scrolling with feature navigation.
 7. This rule is cross-vertical: Family, Family Community / Association, Housing Society, Alumni and every current/future productized vertical must follow it.
 8. `npm run validate:ux-progressive` is a release source gate. New shared or vertical UX work must preserve it.
+
+## Recovered permanent delivery rules — 2026-09-23
+
+### Protected branch / release
+- perform routine work on an explicit mission/working branch;
+- treat `main` as protected current truth;
+- source completion does not authorize merge, deployment or production release;
+- **DEPLOY ≠ RELEASE**;
+- production/protected promotion follows the current Founder/release gate.
+
+### Free-tier-safe QA
+While free-tier resources are sufficient:
+- prefer tiny deterministic datasets and limited representative roles;
+- use low concurrency / one worker when appropriate;
+- reuse authenticated sessions instead of repeatedly hitting auth;
+- avoid load/stress/destructive loops unless explicitly required;
+- verify the exact target project/environment before any mutation;
+- never use the golden/working customer environment as a disposable QA target.
+
+### Defect-to-regression rule
+A reproducible product defect that has realistic recurrence risk should leave durable regression protection at the cheapest appropriate layer: unit/contract/source/runtime/route/security check.
+
+Do not turn environment/connectivity/harness failures into product regression tests until they are correctly classified.
+
+### Route-first product correctness
+For changed navigation/share/notification/auth journeys, verify direct URL entry, refresh, back/forward, auth return and network/object context where applicable.
+
+### Seed/import correctness
+If seed/import/onboarding is a supported product journey, failures in that journey are product defects—not merely test-data inconvenience. Prefer idempotent reruns and structured diagnostics.
+
+### Generic-customer rule
+Real pilots inform generic capability. Do not hard-code MPF Pune East, Majestique Marbella or another design partner into shared business logic when configuration/adapters preserve the domain correctly.

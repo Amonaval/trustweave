@@ -220,3 +220,24 @@ The goal is not zero architectural discussion. The goal is that routine decision
 ## 12. Machine policy
 
 `governance/architecture-policy.json` is the machine-readable projection of this constitution. The Markdown constitution remains normative; the JSON may only make deterministic subsets stricter/easier to evaluate, never silently broaden permissions. If they disagree, this constitution wins and the projection must be repaired.
+
+## Delivery / activation separation — recovered durable rule
+
+For capabilities that may be selectively enabled, model these independently:
+
+1. **entitlement/exposure** — who should see/use it;
+2. **code/dependency delivery** — whether its bundle/runtime code is loaded;
+3. **backend/data activation** — whether supporting schema/services/data contracts are active;
+4. **authorization** — what the authenticated actor is actually permitted to read/change.
+
+Do not use a frontend feature flag or Launch Control as authorization.
+
+Prefer dynamic/lazy delivery of vertical-specific or advanced code so ordinary users load common platform code plus the selected network experience, not every vertical.
+
+## Route contract
+
+A route is part of the product API.
+
+Direct links, refresh, browser back/forward, auth redirects/return targets, notification/share deep links and future mobile links must preserve network + object context using privacy-safe canonical URLs.
+
+A feature that works only when entered through one transient UI sequence is not fully integrated.

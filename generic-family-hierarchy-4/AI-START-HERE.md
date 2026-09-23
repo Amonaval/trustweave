@@ -15,7 +15,9 @@ Autonomous-company maturity, D12 recovery, architecture convergence, Network Act
 5. `ROADMAP.md` + `docs/product/PRODUCT-WORKSTREAM-TRACKER.md` — sequencing and parked options when planning.
 6. `docs/product/02-COMPANY-SCORECARD-AND-STAGE-GATES.md` — evidence/stage gates when selecting or reviewing strategy.
 7. `docs/product/03-LESSONS-AND-KILL-LIST.md` — durable failure patterns before repeating old work.
-8. Only then load architecture/governance/source/history required by the task.
+8. For company/autonomy design, read `docs/product/04-ONE-PERSON-AI-COMPANY-OPERATING-MODEL.md`.
+9. For material engineering/agentic-delivery design, read `docs/product/05-AGENTIC-AIDLC-AND-QUALITY-STANDARD.md`.
+10. Only then load architecture/governance/source/history required by the task.
 
 For engineering work, continue with `ARCHITECTURE-CONSTITUTION.md`, `AGENTIC-COMPANY-OS.md`, `MISSION-LIFECYCLE.md`, `governance/DEVELOPMENT-RULES.md` and relevant source/evidence.
 
@@ -49,3 +51,15 @@ TrustWeave's next-year compounding loop is:
 > **real networks create requirements → reusable capabilities solve them → more networks become cheap to launch → permissioned network context gets richer → AI becomes more valuable → commercial value increases → the platform compounds.**
 
 The immediate proof is MPF Pune East + Majestique Marbella real usage, not another broad internal program.
+
+## Recovered durable reminders
+
+- **DEPLOY ≠ RELEASE.**
+- Launch Control fails closed for exposure but never substitutes for authorization.
+- Entitlement/exposure, code delivery, backend/data activation and authorization are separate contracts.
+- Work on a mission branch; protect `main` and production.
+- Direct/deep links, refresh/back-forward and auth return are product contracts.
+- Default QA is compact/free-tier-safe; never abuse a working/golden environment.
+- MPF/Marbella are proving configurations; shared semantics stay generic.
+- Recurring real defects should become regression protection.
+- Keep public product artifacts current for major public-safe milestones, but never leak confidential Founder strategy.

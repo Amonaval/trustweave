@@ -505,3 +505,22 @@ Generation 2 applies the rule to the public Discovery journeys. Layout density, 
 ## Public action target contract
 
 All visible `button` and `a` actions inside public Discovery must render at least 44px high. The contract applies to desktop and mobile across the overview, Housing Society, Family Community, everyday member and Product Guide journeys. C10 verifies the rendered dimensions in Chromium rather than inferring them from CSS.
+
+## Route and deep-link UX rule
+
+Navigation is part of UX correctness, not plumbing.
+
+For important objects/actions, preserve:
+- privacy-safe canonical URL/context;
+- direct entry;
+- refresh;
+- browser back/forward;
+- auth return;
+- notification/share deep link;
+- understandable failure when the user lacks access.
+
+Do not ship a “Share” control whose result is only detached text when an authorized deep link is the useful product outcome.
+
+## Pilot-specific configuration rule
+
+Use MPF Pune East and Majestique Marbella to discover and prove user experience, but keep reusable UI/business behavior generic where semantics match. Brand/content/data/config may be network-specific; shared lifecycle should not be.

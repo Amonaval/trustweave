@@ -8,6 +8,8 @@ This directory owns the canonical product/company narrative.
 2. `01-DECISION-ROI-AND-EXECUTION-RULES.md` — prioritization, effort, cost and anti-drift rules.
 3. `02-COMPANY-SCORECARD-AND-STAGE-GATES.md` — adoption/repeatability/commercial/AI outcome gates.
 4. `03-LESSONS-AND-KILL-LIST.md` — mistakes already paid for and deliberate kill list.
+5. `04-ONE-PERSON-AI-COMPANY-OPERATING-MODEL.md` — how one Founder + governed AI operates the digital company.
+6. `05-AGENTIC-AIDLC-AND-QUALITY-STANDARD.md` — spec/context/harness/eval/security/performance delivery overlay.
 
 ## Product leadership / narrative
 
