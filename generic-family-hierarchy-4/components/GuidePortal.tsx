@@ -7,18 +7,20 @@ import {FUTURE_INTERESTS,GUIDE_ENTRIES,GUIDE_GOALS,GUIDE_SECTIONS,IDEAS_FOR_FAMI
 import GuideFeedback from "./GuideFeedback";
 import ResponsiveSectionTabs from "./shared/ResponsiveSectionTabs";
 import {submitGuideFeedback} from "../lib/remote";
+import {usePlatformDesign} from "./PlatformDesignProvider";
 
 type Props={audience:GuideAudience;experience:string;demo:boolean;featureVisible:(key:string)=>boolean;initialKey?:string;onOpenFeature:(action?:string)=>void;onTryPlayground:(key?:string)=>void;onNotify:(s:string)=>void};
 const statusLabel=(s:GuideEntry["status"])=>s==="live"?"Live":s==="live_verify"?"Live · verify deployment":s==="partial"?"Partial":"Being explored";
 export default function GuidePortal({audience,experience,demo,featureVisible,initialKey,onOpenFeature,onTryPlayground,onNotify}:Props){
  const {t:tr}=useLanguage();
+ const {asset}=usePlatformDesign();const guideBanner=asset("platform.guide.banner");
  const visible=useMemo(()=>GUIDE_ENTRIES.filter(e=>guideVisibleTo(e,audience,featureVisible)),[audience,featureVisible]);
  const [query,setQuery]=useState(""),[selected,setSelected]=useState(initialKey||""),[personaOpen,setPersonaOpen]=useState<string>(""),[mode,setMode]=useState<"overview"|"library"|"privacy">(initialKey?"library":"overview"),[overviewSection,setOverviewSection]=useState<"discover"|"people"|"build"|"ideas">("discover");
  const results=useMemo(()=>searchGuides(query,visible),[query,visible]);
  const selectedEntry=visible.find(e=>e.key===selected);
  const openEntry=(key:string)=>{setSelected(key);setMode("library");window.setTimeout(()=>document.getElementById("guide-detail")?.scrollIntoView({behavior:"smooth",block:"start"}),20)};
  return <div className="guide-portal">
-  <section className="guide-hero">
+  <section className={`guide-hero ${guideBanner?"has-platform-guide-banner":""}`} style={guideBanner?{backgroundImage:`linear-gradient(100deg,rgba(18,55,47,.94),rgba(18,55,47,.58)),url("${guideBanner}")`}:undefined}>
    <div><span className="warm-kicker"><Compass size={14}/> {tr("ExploreGuideTxt")}</span><h1>{tr("YourFamilyIsMoreThanATreeTxt")}</h1><p>{tr("FamilyNetworkIsAPrivateLivingFamilyTxt")}</p><div className="guide-pillars"><span><Waypoints/>{tr("KnowYourFamilyTxt")}</span><span><Heart/>{tr("RememberYourStoryTxt")}</span><span><Users/>{tr("StayConnectedTxt")}</span><span><Sparkles/>{tr("BuildItTogetherTxt")}</span></div></div>
    <div className="guide-hero-note"><b>{tr("PowerfulUnderneathEffortlessOnTheSurfaceTxt")}</b><span>{tr("UseTheGuideByGoalByFeatureTxt")}</span></div>
   </section>

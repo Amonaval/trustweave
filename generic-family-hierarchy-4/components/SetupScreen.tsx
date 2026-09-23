@@ -51,7 +51,7 @@ export default function SetupScreen({ onCreate,onExploreDemo,onJoinCode,claimabl
  const {t:tr}=useLanguage();
   const {t}=useLanguage();
   const {asset}=usePlatformDesign();
-  const landingBackground=asset("landing.background"),brandLogo=asset("brand.logo"),brandMark=asset("brand.mark");
+  const landingBackground=asset("landing.background"),landingHero=asset("landing.hero"),brandLogo=asset("brand.logo"),brandMark=asset("brand.mark");
   const playgroundThumbnail=(kind:NetworkVerticalKind)=>asset(`playground.${kind}.thumbnail`);
   const playgroundIcon=(kind:NetworkVerticalKind)=>asset(`playground.${kind}.icon`);
   const c = {
@@ -115,7 +115,7 @@ export default function SetupScreen({ onCreate,onExploreDemo,onJoinCode,claimabl
   return <div className={`family-onboarding alpha-entry ${landingBackground?"has-platform-background":""}`} style={landingBackground?{backgroundImage:`url("${landingBackground}")`}:undefined} data-testid="qa-setup-shell">
     <header className="onboarding-topbar"><div className="onboarding-brand">{brandLogo?<img className="platform-brand-image" src={brandLogo} alt={c.brand}/>:<><span>{brandMark?<img className="platform-brand-mark" src={brandMark} alt=""/>:<TreePine size={20}/>}</span>{c.brand}</>}</div><div className="onboarding-account-actions">{onOpenGuide&&<button className="btn small" onClick={onOpenGuide}><BookOpen size={15}/> {tr("ExploreGuideTxt")}</button>}<ThemeSwitcher compact/><LanguageSwitcher/>{shared&&!canSetup&&onSignIn&&<button className="btn primary small" data-testid="qa-setup-signin" onClick={onSignIn}>{tr("ShowcaseSignInTxt")} <ArrowRight size={15}/></button>}{shared&&canSetup&&onSignOut&&<button className="btn small" onClick={()=>onSignOut()}><LogOut size={15}/> {tr("SignOutTxt")}</button>}</div></header>
     <main className={`onboarding-wrap onboarding-wrap-${path}`} data-testid="qa-start-flow">
-      <section className="onboarding-story"><span className="warm-kicker"><Heart size={13} fill="currentColor"/> {tr("SetupMadeForTxt")}</span><h1>{path==="entry"?t("NetworkOneTapTxt"):path==="join"?t("JoinYourFamilyTxt"):path==="productized"?productizedCreateCopy(productizedKind).title:t("CreateFamilySpaceTxt")}</h1><p>{path==="entry"?t("SetupEntryDescTxt"):path==="join"?t("SetupJoinDescTxt"):path==="productized"?productizedCreateCopy(productizedKind).description:t("SetupCreateDescTxt")}</p></section>
+      <section className={`onboarding-story ${landingHero?"has-platform-hero":""}`} style={landingHero?{backgroundImage:`linear-gradient(100deg,rgba(248,250,252,.96),rgba(248,250,252,.72)),url("${landingHero}")`}:undefined}><span className="warm-kicker"><Heart size={13} fill="currentColor"/> {tr("SetupMadeForTxt")}</span><h1>{path==="entry"?t("NetworkOneTapTxt"):path==="join"?t("JoinYourFamilyTxt"):path==="productized"?productizedCreateCopy(productizedKind).title:t("CreateFamilySpaceTxt")}</h1><p>{path==="entry"?t("SetupEntryDescTxt"):path==="join"?t("SetupJoinDescTxt"):path==="productized"?productizedCreateCopy(productizedKind).description:t("SetupCreateDescTxt")}</p></section>
       <section className="onboarding-card alpha-entry-card">
       {path==="entry"&&<>
         <div className="setup-heading"><div className="brand-mark">{brandMark?<img className="platform-brand-mark" src={brandMark} alt=""/>:<TreePine size={24}/>}</div><div><span className="setup-eyebrow">{tr("WelcomeTxt")}</span><h2>{t("WhatWouldYouLikeTxt")}</h2></div></div>

@@ -126,3 +126,26 @@ Source work includes migration `126_community_object_depth.sql` plus common UI/r
 - MPF and Residential Home event entry points route to the same shared detail experience.
 
 Migration 126 is **committed source only and not applied to any Supabase project**. Runtime edit/delete/group-member features require an explicit later environment decision.
+
+
+## 2026-09-23 — VIS2 Founder Design Studio + Family Community reuse
+
+Founder direction: visual presentation should be controllable without repeated source edits, while vertical capability depth should converge through existing shared engines instead of new Family-specific features.
+
+Source work:
+- one **Platform Design Studio** inside Founder Launch Control;
+- global managed slots for platform logo/mark, landing background + hero, and Guide banner;
+- per-vertical managed Playground slots for banner, discovery thumbnail, featured-event fallback and icon;
+- curated platform-wide font, layout density, hero treatment and corner presets;
+- existing compressed WebP / EXIF-stripping client pipeline and existing `community-media` bucket are reused; no external image service or paid transformation;
+- migration `127_platform_design_studio.sql` is source-only and supplies the platform-owner settings/asset registry plus narrowly scoped storage access for public platform visuals;
+- actual network cover editing is generalized across Family, Alumni, Association, Family Community, Residential and the remaining productized verticals through the existing `network_branding/cover` media binding;
+- Family Community keeps its existing legacy Family Memories + quiet digest, but now composes the existing shared Posts and Network Activity/Groups experiences for posts, comments, likes, events, RSVP, shared memories/moments and groups;
+- Family navigation is relabelled from **Memories** to **Community** so the reused event/post surfaces are discoverable;
+- no new Family-only Events implementation or duplicate lifecycle backend was introduced.
+
+Activation boundary:
+- existing network cover and shared Community functions use existing media/activity contracts;
+- LIFE2 edit/delete/member-depth still depends on migration 126 where those RPCs are needed;
+- Platform Design Studio persistence/upload requires migration 127;
+- migration 127 was **not applied**, no deployment/workflow was run, and all visual consumers retain existing fallbacks when the contract is absent.
