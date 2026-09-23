@@ -12,19 +12,35 @@ export type PlatformDesignSnapshot={settings:PlatformDesignSettings;assets:Platf
 export type PlatformVisualSlot={key:string;label:string;description:string;aspect:string};
 
 export const DEFAULT_PLATFORM_DESIGN:PlatformDesignSettings={font_key:"humanist",layout_key:"balanced",hero_key:"immersive",corner_key:"rounded"};
+
 export const PLATFORM_GLOBAL_SLOTS:PlatformVisualSlot[]=[
- {key:"brand.logo",label:"Platform logo",description:"Wide logo used in the landing header when available.",aspect:"3:1"},
- {key:"brand.mark",label:"Platform mark / icon",description:"Square brand mark used in compact identity surfaces.",aspect:"1:1"},
- {key:"landing.background",label:"Landing background",description:"Full-page entry background behind network selection and Playground discovery.",aspect:"16:9"},
- {key:"landing.hero",label:"Landing hero",description:"High-level platform visual for prominent discovery surfaces.",aspect:"16:9"},
- {key:"platform.guide.banner",label:"Guide banner",description:"Reusable high-level visual for product exploration and guide surfaces.",aspect:"16:9"},
+ {key:"brand.logo",label:"Platform logo",description:"Wide TrustWeave logo for platform-level entry and exploration surfaces.",aspect:"3:1"},
+ {key:"brand.mark",label:"Platform mark / icon",description:"Square TrustWeave mark for compact platform identity surfaces.",aspect:"1:1"},
+ {key:"landing.background",label:"Landing background",description:"Full-page background behind the public product front door.",aspect:"16:9"},
+ {key:"landing.hero",label:"Landing hero",description:"High-level platform visual used by product discovery.",aspect:"16:9"},
+ {key:"platform.guide.banner",label:"Explore & Guide banner",description:"Platform-level visual for the public Product / Guide experience.",aspect:"16:9"},
 ];
-export function platformVerticalSlots(kind:NetworkVerticalKind):PlatformVisualSlot[]{return[
- {key:`playground.${kind}.banner`,label:"Playground banner",description:"Hero/background image inside this vertical's Playground.",aspect:"16:9"},
- {key:`playground.${kind}.thumbnail`,label:"Playground thumbnail",description:"Discovery-card image shown before a visitor opens this Playground.",aspect:"4:3"},
- {key:`playground.${kind}.event`,label:"Playground event image",description:"Fallback visual for the featured/sample event when sample data has no photo.",aspect:"16:9"},
- {key:`playground.${kind}.icon`,label:"Playground icon",description:"Optional square visual mark for this vertical.",aspect:"1:1"},
+
+export function platformVerticalDefaultSlots(kind:NetworkVerticalKind):PlatformVisualSlot[]{return[
+ {key:`vertical.${kind}.banner`,label:"Default banner",description:"Default hero/banner for this vertical. Real networks can override it with their own cover.",aspect:"16:9"},
+ {key:`vertical.${kind}.thumbnail`,label:"Default product thumbnail",description:"Default discovery image for this vertical across the product gallery.",aspect:"4:3"},
+ {key:`vertical.${kind}.event`,label:"Default event visual",description:"Fallback event image when a showcase or network event has no image.",aspect:"16:9"},
+ {key:`vertical.${kind}.icon`,label:"Vertical logo / mark",description:"Default square visual identity for this vertical.",aspect:"1:1"},
+ {key:`vertical.${kind}.story.1`,label:"Story image 1",description:"Primary visual story / infographic for explaining this vertical.",aspect:"16:9"},
+ {key:`vertical.${kind}.story.2`,label:"Story image 2",description:"Second product story image. Useful for deeper Family or vertical explanation.",aspect:"16:9"},
+ {key:`vertical.${kind}.story.3`,label:"Story image 3",description:"Third product story image.",aspect:"16:9"},
+ {key:`vertical.${kind}.story.4`,label:"Story image 4",description:"Fourth product story image.",aspect:"16:9"},
 ]}
+
+export function platformPlaygroundSlots(kind:NetworkVerticalKind):PlatformVisualSlot[]{return[
+ {key:`playground.${kind}.banner`,label:"Playground banner override",description:"Optional showcase-only hero. If empty, the vertical default banner is used.",aspect:"16:9"},
+ {key:`playground.${kind}.thumbnail`,label:"Playground thumbnail override",description:"Optional showcase-only discovery image. If empty, the vertical default thumbnail is used.",aspect:"4:3"},
+ {key:`playground.${kind}.event`,label:"Playground event override",description:"Optional showcase event visual. If empty, the vertical default event image is used.",aspect:"16:9"},
+ {key:`playground.${kind}.icon`,label:"Playground mark override",description:"Optional showcase mark. If empty, the vertical default mark is used.",aspect:"1:1"},
+]}
+
+/** Compatibility alias for older callers. */
+export const platformVerticalSlots=platformPlaygroundSlots;
 
 function required(){if(!supabase)throw new Error("Shared Supabase mode is required for platform design.");return supabase}
 function normalizeSettings(value:any):PlatformDesignSettings{return{
@@ -60,3 +76,6 @@ export async function removePlatformVisual(slotKey:string){
  const s=required();const {data,error}=await s.rpc("remove_platform_visual_asset",{p_slot_key:slotKey});if(error)throw error;const d=data as any,paths=[d?.object_path,d?.thumbnail_path].filter(Boolean);if(paths.length){const removed=await s.storage.from("community-media").remove(paths);if(removed.error)throw removed.error}
 }
 export function platformAssetUrl(snapshot:PlatformDesignSnapshot|undefined|null,slot:string){return snapshot?.assets.find(a=>a.slot_key===slot)?.url||undefined}
+export function platformAssetUrlAny(snapshot:PlatformDesignSnapshot|undefined|null,slots:readonly string[]){for(const slot of slots){const url=platformAssetUrl(snapshot,slot);if(url)return url}return undefined}
+export function verticalDefaultAssetKey(kind:NetworkVerticalKind,part:"banner"|"thumbnail"|"event"|"icon"){return `vertical.${kind}.${part}`}
+export function playgroundAssetKey(kind:NetworkVerticalKind,part:"banner"|"thumbnail"|"event"|"icon"){return `playground.${kind}.${part}`}

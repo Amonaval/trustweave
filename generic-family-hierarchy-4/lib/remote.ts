@@ -574,7 +574,9 @@ export async function fetchLivingLoopMetrics(days=30):Promise<Record<string,numb
 
 export async function fetchNotifications(input?:{limit?:number;unreadOnly?:boolean}): Promise<Notification[]> {
   if (!supabase) return [];
-  const { data, error } = await supabase.rpc("get_my_notifications", input?{p_limit:input.limit||80,p_unread_only:!!input.unreadOnly}:undefined);
+  // Always send the named arguments. Historical schemas may still expose a no-arg
+  // compatibility overload; an empty RPC body makes PostgREST unable to choose.
+  const { data, error } = await supabase.rpc("get_my_notifications", {p_limit:input?.limit||80,p_unread_only:!!input?.unreadOnly});
   if (error) throw error;
   return (data || []) as Notification[];
 }

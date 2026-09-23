@@ -1785,3 +1785,27 @@ html[data-theme="dark"] .family-onboarding.has-platform-background:before{backgr
 html[data-theme="dark"] .onboarding-story.has-platform-hero{background-blend-mode:multiply}
 .guide-hero.has-platform-guide-banner{background-size:cover;background-position:center;color:#fff;overflow:hidden}
 .guide-hero.has-platform-guide-banner h1{color:#fff}.guide-hero.has-platform-guide-banner p{color:rgba(255,255,255,.82)}.guide-hero.has-platform-guide-banner .guide-pillars span,.guide-hero.has-platform-guide-banner .guide-hero-note{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(10px)}
+
+
+/* VIS3 — platform exploration/design scope refinements */
+.vertical-launch-switch{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:8px 10px}
+.vertical-launch-options{display:flex!important;flex-wrap:nowrap!important;gap:4px;min-width:0;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;padding-bottom:2px}
+.vertical-launch-options button{flex:0 0 auto;white-space:nowrap;padding:7px 9px!important;font-size:10px!important;line-height:1.15}
+.vertical-launch-switch>span{white-space:nowrap;font-size:10px!important;margin-left:0!important}
+@media(max-width:800px){.vertical-launch-switch{grid-template-columns:1fr}.vertical-launch-switch>span{width:auto!important;padding:2px 3px 4px!important}.vertical-launch-options{width:100%;}}
+
+.platform-design-scope-tabs{padding:7px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.platform-design-scope-tabs>button{border:1px solid transparent;background:transparent;color:inherit;border-radius:13px;padding:10px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:center;text-align:left;cursor:pointer}
+.platform-design-scope-tabs>button>svg{width:17px;height:17px;color:var(--muted)}
+.platform-design-scope-tabs>button>span{display:grid;gap:2px}.platform-design-scope-tabs b{font-size:11px}.platform-design-scope-tabs small{font-size:8px;color:var(--muted);line-height:1.25}
+.platform-design-scope-tabs>button.active{background:var(--brand-soft);border-color:color-mix(in srgb,var(--brand) 22%,var(--line));color:var(--brand)}.platform-design-scope-tabs>button.active svg{color:var(--brand)}
+.platform-design-vertical-picker{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,250px);gap:18px;align-items:center}
+.platform-design-vertical-picker h3{margin:4px 0}.platform-design-vertical-picker p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}
+.platform-network-design-boundary{display:grid;gap:18px}.platform-network-design-boundary h3{margin:5px 0}.platform-network-design-boundary p{margin:0;color:var(--muted);line-height:1.6;max-width:900px}
+.design-precedence{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:13px;border-radius:14px;background:var(--surface-soft);font-size:11px}.design-precedence>b{margin-right:4px}.design-precedence span{padding:6px 9px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}.design-precedence i{font-style:normal;color:var(--muted)}
+.platform-visual-preview{position:relative}.platform-visual-preview>em{position:absolute;right:8px;top:8px;padding:4px 6px;border-radius:999px;background:rgba(15,23,42,.72);color:#fff;font-size:8px;font-style:normal;font-weight:800}
+@media(max-width:760px){.platform-design-scope-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.platform-design-vertical-picker{grid-template-columns:1fr}}
+@media(max-width:460px){.platform-design-scope-tabs{grid-template-columns:1fr 1fr}.platform-design-scope-tabs>button{padding:8px}.platform-design-scope-tabs small{display:none}}
+
+.view-detail-action{margin-left:auto!important;padding:4px 6px!important;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:7px!important;display:inline-flex!important;align-items:center!important;gap:3px!important;font-size:.63rem!important;line-height:1!important;font-weight:700!important;color:var(--accent,var(--product,#315fa5))!important;min-height:24px!important}
+.view-detail-action:hover{background:color-mix(in srgb,var(--accent,var(--product,#315fa5)) 8%,transparent)!important}.view-detail-action svg{width:12px!important;height:12px!important}.view-detail-action span{white-space:nowrap}
