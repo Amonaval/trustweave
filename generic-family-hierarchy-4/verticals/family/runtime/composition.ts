@@ -9,7 +9,7 @@ export const FAMILY_APP_COMPOSITION = {
   primaryNavigation: [
     {viewId:"home",featureKey:"core.home",iconToken:"home",label:label("Home","आज","आज"),minimumExperience:"simple"},
     {viewId:"tree",featureKey:"core.family",capability:"domain.kinship",iconToken:"tree",label:label("Family","परिवार","कुटुंब"),minimumExperience:"simple"},
-    {viewId:"community",featureKey:"remember.memories",iconToken:"memories",label:label("Memories","यादें","आठवणी"),minimumExperience:"connected"},
+    {viewId:"community",featureKey:"remember.memories",iconToken:"memories",label:label("Community","समुदाय","समुदाय"),minimumExperience:"connected"},
     {viewId:"directory",featureKey:"core.directory",iconToken:"directory",label:label("Find family","परिवार खोजें","कुटुंब शोधा"),minimumExperience:"explorer"},
   ],
   mobileMoreNavigation: [

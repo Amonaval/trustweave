@@ -123,6 +123,8 @@ import {PRODUCTIZED_RUNTIME_META} from "../templates/productized/runtime-meta";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "../lib/i18n";
 import {defaultFeatureMap, EffectiveFeatureMap, ExperienceLevel, FeatureKey, isFeatureAvailable, EXPERIENCE_LABELS, EXPERIENCE_RANK, FEATURE_BY_KEY} from "../lib/features";
+import {fetchEntityMediaAssets,removeMediaAsset,uploadMediaAsset,type NetworkMediaAsset} from "../lib/storage";
+import {usePlatformDesign} from "./PlatformDesignProvider";
 const AlumniNetworkApp = dynamic(() => import("./AlumniNetworkApp"), {ssr:false});
 const TemplateNetworkApp = dynamic(() => import("./TemplateNetworkApp"), {ssr:false});
 const MapView = dynamic(() => import("./MapView"), { ssr: false });
@@ -139,6 +141,7 @@ const uuid = () =>
 
 export default function NetworkApp() {
  const {t:tr}=useLanguage();
+  const {asset}=usePlatformDesign();
   const nx1=useNxEnabled("NX-1");
   const { t, language } = useLanguage();
   const moreLabel = language === "hi" ? "और" : language === "mr" ? "अधिक" : "More";
@@ -173,6 +176,7 @@ export default function NetworkApp() {
     [demoPreview,setDemoPreview]=useState(false),
     [demoViewerId,setDemoViewerId]=useState<string | undefined>(undefined),
     [editingMember, setEditingMember] = useState<Member | undefined>();
+  const [familyCover,setFamilyCover]=useState<NetworkMediaAsset|null>(null),[familyCoverBusy,setFamilyCoverBusy]=useState(false);
   const [routeRevision,setRouteRevision]=useState(0);
   const [verifiedRoute,setVerifiedRoute]=useState("");
   const [routeMembership,setRouteMembership]=useState<NeutralNetworkMembership|null>(null);
@@ -227,6 +231,7 @@ export default function NetworkApp() {
     [notifications, setNotifications] = useState<Notification[]>([]);
   const cfg = getNetworkConfig(network);
   const activeVerticalKind = resolveNetworkVerticalKind(network);
+  useEffect(()=>{if(!isSupabaseConfigured||demoPreview||!network||activeVerticalKind!=="family"){setFamilyCover(null);return;}let alive=true;fetchEntityMediaAssets("network_branding",["cover"]).then(rows=>{if(alive)setFamilyCover(rows[0]||null)}).catch(()=>{if(alive)setFamilyCover(null)});return()=>{alive=false}},[demoPreview,network?.id,activeVerticalKind]);
   const verticalRuntime = getRenderableVerticalRuntime(activeVerticalKind);
   const appComposition = verticalRuntime.app;
   const appLocale = language === "hi" ? "hi" : language === "mr" ? "mr" : "en";
@@ -287,6 +292,7 @@ export default function NetworkApp() {
     setToast(x);
     setTimeout(() => setToast(""), 3000);
   };
+  const changeFamilyCover=async(file:File)=>{if(!isSupabaseConfigured||demoPreview||activeVerticalKind!=="family")return;setFamilyCoverBusy(true);let next:NetworkMediaAsset|undefined;try{next=await uploadMediaAsset(file,"other",{entityType:"network_branding",entityId:"cover"});const previous=familyCover;setFamilyCover(next);notify("Family cover updated.");if(previous&&previous.assetId!==next.assetId)void removeMediaAsset(previous).catch(()=>{})}catch(e:any){if(next)void removeMediaAsset(next).catch(()=>{});notify(e.message||"Could not update family cover.")}finally{setFamilyCoverBusy(false)}};
   const hydrate = async (u: any) => {
     setAuth(u);
     if(repository.mode === "shared" && u){try{setTrustedIdentity(await buildTrustedPersonIdentity(u))}catch{setTrustedIdentity(null)}}else setTrustedIdentity(null);
@@ -1420,7 +1426,7 @@ export default function NetworkApp() {
           {hasFeature("celebrate.special_days") && view !== "tree" && view !== "home" && <UpcomingWidget items={upcoming} onSelect={openMember} />}
           {view === "home" && canAdmin && !demoPreview && !quickStartDismissed && members.length < 5 && <QuickFamilyStart viewer={viewerMemberId?members.find(m=>m.id===viewerMemberId):undefined} suggestedName={auth?.email?.split("@")[0]||""} onAddMyself={addMyselfFirst} onAddRelative={addCloseRelative} onImport={()=>setShowImport(true)} onBuildTogether={hasFeature("contribute.branch_intake")?()=>setShowFamilyIntake(true):undefined} onDismiss={()=>setQuickStartDismissed(true)}/>}
           {view === "intelligence" && <NetworkIntelligenceCenter kind="family" entities={familyIntelligenceEntities} relationships={familyIntelligenceRelationships} activities={familyIntelligenceActivities} dimensionKeys={["generation","city","country","profession"]} onGo={target=>{if(target==="connections")setView("tree");else if(target==="contribute")setView("participation");else if(target==="community")setView("community");else if(target==="directory")setView("directory");else if(target==="explorer")setView("tree");}} onEntityOpen={entity=>{const member=members.find(m=>m.id===entity.entity.id);if(member)openMember(member)}}/>}
-          {view === "home" && <FamilyHome members={members} relationships={relationships} events={allLifeEvents} memories={demoPreview?memories:undefined} networkName={network?.name} viewerMemberId={viewerMemberId} onSelect={openMember} onGo={(v)=>{if(v==="community"&&!hasFeature("remember.memories"))return;if(v==="participation"&&!hasFeature("contribute.help_family"))return;setView(v)}} onAddRelative={()=>setShowForm(true)} showMemories={hasFeature("remember.memories")} showSpecialDays={hasFeature("celebrate.special_days")} showContributions={hasFeature("contribute.help_family")} showSharing={hasFeature("share.family")} showFamilyPulse={hasFeature("remember.family_pulse")} showQuietDigest={hasFeature("remember.quiet_digest")} canAddRelative={canAdmin||experience!==tr("Simple3Txt")} simple={experience==="simple"} readOnly={demoPreview} />}
+          {view === "home" && <FamilyHome members={members} relationships={relationships} events={allLifeEvents} memories={demoPreview?memories:undefined} networkName={network?.name} viewerMemberId={viewerMemberId} onSelect={openMember} onGo={(v)=>{if(v==="community"&&!hasFeature("remember.memories"))return;if(v==="participation"&&!hasFeature("contribute.help_family"))return;setView(v)}} onAddRelative={()=>setShowForm(true)} showMemories={hasFeature("remember.memories")} showSpecialDays={hasFeature("celebrate.special_days")} showContributions={hasFeature("contribute.help_family")} showSharing={hasFeature("share.family")} showFamilyPulse={hasFeature("remember.family_pulse")} showQuietDigest={hasFeature("remember.quiet_digest")} canAddRelative={canAdmin||experience!==tr("Simple3Txt")} simple={experience==="simple"} readOnly={demoPreview} coverUrl={demoPreview?asset("playground.family.banner"):(familyCover?.url||undefined)} eventImageUrl={demoPreview?asset("playground.family.event"):undefined} coverBusy={familyCoverBusy} onCoverChange={canAdmin&&isSupabaseConfigured&&!demoPreview?changeFamilyCover:undefined} />}
           {view === "tree" && (
             <section className="tree-page">
               {cfg.network_template === "family" && (

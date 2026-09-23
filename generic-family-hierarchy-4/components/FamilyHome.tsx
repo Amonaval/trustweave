@@ -1,6 +1,6 @@
 "use client";
 import {useEffect,useMemo,useState} from "react";
-import {Cake,ChevronRight,Heart,Image,MapPin,Plus,Sparkles,Users,UsersRound} from "lucide-react";
+import {Cake,ChevronRight,Heart,Image,ImagePlus,MapPin,Plus,Sparkles,Users,UsersRound} from "lucide-react";
 import type {LifeEvent,Member,Memory,Relationship} from "../lib/types";
 import {getNetworkRepository} from "../lib/repository";
 import {useLanguage} from "../lib/i18n";
@@ -16,11 +16,12 @@ type Props={
  members:Member[];events:LifeEvent[];memories?:Memory[];relationships?:Relationship[];networkName?:string;viewerMemberId?:string;
  onSelect:(m:Member)=>void;onGo:(v:HomeView)=>void;onAddRelative:()=>void;
  showMemories?:boolean;showSpecialDays?:boolean;showContributions?:boolean;showSharing?:boolean;showFamilyPulse?:boolean;showQuietDigest?:boolean;canAddRelative?:boolean;simple?:boolean;readOnly?:boolean;
+ coverUrl?:string;eventImageUrl?:string;onCoverChange?:(file:File)=>Promise<void>|void;coverBusy?:boolean;
 };
 
 function initials(name:string){return name.split(/\s+/).map(x=>x[0]).filter(Boolean).slice(0,2).join("").toUpperCase();}
 
-export default function FamilyHome({members,events,memories:providedMemories,relationships=[],networkName,viewerMemberId,onSelect,onGo,onAddRelative,showMemories=true,showSpecialDays=true,showContributions=true,showFamilyPulse=true,showQuietDigest=true,canAddRelative=true,simple=false,readOnly=false}:Props){
+export default function FamilyHome({members,events,memories:providedMemories,relationships=[],networkName,viewerMemberId,onSelect,onGo,onAddRelative,showMemories=true,showSpecialDays=true,showContributions=true,showFamilyPulse=true,showQuietDigest=true,canAddRelative=true,simple=false,readOnly=false,coverUrl,eventImageUrl,onCoverChange,coverBusy=false}:Props){
  const {t:tr}=useLanguage();
  const nx2=useNxEnabled("NX-2"),nx3=useNxEnabled("NX-3"),nx5=useNxEnabled("NX-5"),nx6=useNxEnabled("NX-6");
  const {language}=useLanguage();
@@ -42,8 +43,8 @@ export default function FamilyHome({members,events,memories:providedMemories,rel
   return [...birthdays,...anniversaries].sort((a,b)=>a.days-b.days)[0];
  },[members,events,language]);
  return <section className={`family-home nx6-family-home ${simple?"simple-family-home":""}`}>
-  <section className="nx6-family-hero">
-   <div className="nx6-family-hero-copy"><span className="warm-kicker"><Sparkles size={12}/>{copy.kicker}</span><h1>{networkName||copy.kicker}</h1>{viewer&&<p className="nx6-you-line">{tr("YouAreTxt")}{" "}<b>{viewer.full_name.split(/\s+/)[0]}</b> {tr("HereStartWithThePeopleClosestToTxt")}</p>}<p>{copy.sub}</p><div className="nx6-hero-actions"><button className="btn primary" onClick={()=>onGo("tree")}><UsersRound size={16}/>{copy.tree}</button>{showMemories&&<button className="btn nx6-ghost-btn" onClick={()=>onGo("community")}><Heart size={16}/>{copy.memory}</button>}{canAddRelative&&<button className="btn nx6-ghost-btn" onClick={onAddRelative}><Plus size={16}/>{copy.relative}</button>}</div></div>
+  <section className={`nx6-family-hero ${coverUrl?"has-cover":""}`} style={coverUrl?{backgroundImage:`linear-gradient(105deg,rgba(15,55,46,.94),rgba(24,86,70,.64)),url("${coverUrl}")`}:undefined}>
+   <div className="nx6-family-hero-copy">{onCoverChange&&<label className="network-cover-edit"><ImagePlus size={15}/><span>{coverBusy?"Updating…":coverUrl?"Change cover":"Add family cover"}</span><input type="file" accept="image/jpeg,image/png,image/webp" disabled={coverBusy} onChange={e=>{const file=e.target.files?.[0];if(file)void onCoverChange(file);e.currentTarget.value=""}}/></label>}<span className="warm-kicker"><Sparkles size={12}/>{copy.kicker}</span><h1>{networkName||copy.kicker}</h1>{viewer&&<p className="nx6-you-line">{tr("YouAreTxt")}{" "}<b>{viewer.full_name.split(/\s+/)[0]}</b> {tr("HereStartWithThePeopleClosestToTxt")}</p>}<p>{copy.sub}</p><div className="nx6-hero-actions"><button className="btn primary" onClick={()=>onGo("tree")}><UsersRound size={16}/>{copy.tree}</button>{showMemories&&<button className="btn nx6-ghost-btn" onClick={()=>onGo("community")}><Heart size={16}/>{copy.memory}</button>}{canAddRelative&&<button className="btn nx6-ghost-btn" onClick={onAddRelative}><Plus size={16}/>{copy.relative}</button>}</div></div>
    <div className="nx6-family-proof"><div className="nx6-face-stack">{heroMembers.map(m=><button key={m.id} onClick={()=>onSelect(m)} title={m.full_name}>{m.photo_url?<img src={m.photo_url} alt=""/>:<span>{initials(m.full_name)}</span>}</button>)}</div><strong>{members.length}</strong><span>{copy.people} · {generations} {copy.generations}</span><small>{tr("PrivateToThisFamilyNetworkTxt")}</small></div>
   </section>
 
@@ -60,7 +61,7 @@ export default function FamilyHome({members,events,memories:providedMemories,rel
   {(simple||showSpecialDays||showMemories||showContributions)&&<section className="nx6-family-now">
    <div className="nx6-section-head"><div><span className="warm-kicker">{tr("AtAGlanceTxt")}</span><h2>{tr("FamilyMomentsAndSmallActionsTxt")}</h2></div><p>{tr("UsefulThingsWithoutANoisyFeedTxt")}</p></div>
    <div className="nx6-now-grid">
-    {showSpecialDays&&upcoming&&<button className="nx6-now-card special" onClick={()=>onSelect(upcoming.member)}><span className="nx6-now-icon"><Cake size={20}/></span><span><small>{copy.today}</small><b>{upcoming.member.full_name}</b><em>{upcoming.label} · {upcoming.days===0?tr("TodayTxt"):`${upcoming.days} day${upcoming.days===1?'':'s'} away`} · {upcoming.next.toLocaleDateString(language==='hi'?'hi-IN':language==='mr'?'mr-IN':'en-IN',{day:'numeric',month:'short'})}</em></span><ChevronRight size={17}/></button>}
+    {showSpecialDays&&upcoming&&<button className="nx6-now-card special" onClick={()=>onSelect(upcoming.member)}><span className="nx6-now-icon">{eventImageUrl?<img src={eventImageUrl} alt=""/>:<Cake size={20}/>}</span><span><small>{copy.today}</small><b>{upcoming.member.full_name}</b><em>{upcoming.label} · {upcoming.days===0?tr("TodayTxt"):`${upcoming.days} day${upcoming.days===1?'':'s'} away`} · {upcoming.next.toLocaleDateString(language==='hi'?'hi-IN':language==='mr'?'mr-IN':'en-IN',{day:'numeric',month:'short'})}</em></span><ChevronRight size={17}/></button>}
     {showMemories&&<button className="nx6-now-card memory" onClick={()=>onGo("community")}><span className="nx6-now-icon">{recent?.photo_url?<img src={recent.photo_url} alt=""/>:<Image size={20}/>}</span><span><small>{copy.recent}</small><b>{recent?.title||tr("PreserveTheFirstFamilyMemoryTxt")}</b><em>{recent?.story?.slice(0,72)||tr("APhotoAndTwoLinesAreEnoughTxt")}</em></span><ChevronRight size={17}/></button>}
     {showContributions&&<button className="nx6-now-card help" onClick={()=>onGo("participation")}><span className="nx6-now-icon"><Sparkles size={20}/></span><span><small>{copy.help}</small><b>{incomplete?`Help complete ${incomplete.full_name}`:tr("KeepTheFamilyKnowledgeGrowingTxt")}</b><em>{copy.helpBody}</em></span><ChevronRight size={17}/></button>}
    </div>
