@@ -1,0 +1,7 @@
+# TrustWeave current post-D12 bootstrap tail
+# Base prerequisite: bootstrap/CURRENT release first.
+
+00-database.sql
+
+# Hosted Supabase owner-context phase:
+10-storage-owner-context.sql

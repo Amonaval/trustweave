@@ -193,3 +193,27 @@ Repair closure:
 Activation boundary:
 - migration 129 is committed source-only and was not applied;
 - no deployment, workflow, test suite, storage upload, or external paid resource was invoked.
+
+
+## 2026-09-23 — VIS3 media runtime closure + bootstrap synchronization
+
+Founder confirmed the Platform Design Studio image upload issue is resolved after the focused runtime SQL patch.
+
+Finalized state:
+- migration `130_vis3_platform_media_storage_final.sql` is the source-of-truth repair matching the successful runtime patch;
+- platform media authorization is owned by explicit Storage RLS for `platform/<signed-in-platform-owner>/...`;
+- the shared `a5_storage_guard` no longer duplicates platform-owner authorization, while normal network media retains the strong Mission-2 tenant/member/uploader/path/MIME/quota checks;
+- migrations 128 and 129 remain historical evidence but their platform-storage guard variants are superseded by migration 130;
+- Platform Design Studio client diagnostics now point to migration 130;
+- Residential Playground identity is **Majestique Marbella** across showcase JSON, productized config and runtime metadata;
+- the immutable D12 bootstrap remains the 001..123 base; `supabase/bootstrap/POST_CURRENT` now points to a consolidated 124..130 current-state tail;
+- the bootstrap tail intentionally uses final effective contracts instead of blindly replaying superseded 125/128/129 behavior.
+
+Database discipline going forward:
+- runtime-prove DB changes first;
+- then add the final repair migration if required;
+- then synchronize `supabase/bootstrap/post-current` before mission closure;
+- never put experimental/unproven SQL into bootstrap;
+- later canonical regeneration may absorb the tail into a new immutable bootstrap release.
+
+No GitHub Actions, deployment, paid service, or automatic Supabase migration application was performed by this source update.

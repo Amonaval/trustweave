@@ -108,7 +108,7 @@ supabase/bootstrap/
       └─ 90-function-grants/
 ```
 
-`CURRENT` contains the release directory that should be used for a new project.
+`CURRENT` contains the immutable base release directory. `POST_CURRENT`, when present, names the consolidated runtime-proven delta that must be applied after the base release for a brand-new project.
 
 ---
 
@@ -224,8 +224,9 @@ Before applying:
 3. confirm the selected release matches `CURRENT`;
 4. review `manifest.json`;
 5. follow `APPLY_ORDER.txt`;
-6. keep all passwords/connection strings local;
-7. never commit secrets.
+6. if `POST_CURRENT` exists, review its `README.md` and apply its database-context SQL after the base release, followed by its Storage owner-context SQL;
+7. keep all passwords/connection strings local;
+8. never commit secrets.
 
 ### Repository integrity gate
 
@@ -342,7 +343,11 @@ new migrations:
 
 A database created from the D12 bootstrap would then run migrations 124+.
 
-A future bootstrap release may roll those changes into a new current-state package, but migrations 124–126 still remain in history.
+For TrustWeave, runtime-proven changes after the immutable D12 cut point are also consolidated under `supabase/bootstrap/post-current/<POST_CURRENT>/`. This keeps new Supabase projects aligned without modifying the certified D12 release.
+
+**Synchronization rule:** do not put speculative SQL patches into the bootstrap tail. First prove the database behavior in the intended runtime. Then update the historical migration with a new final repair migration where required and fold only the **final effective state** into `POST_CURRENT` before mission closure.
+
+A future fully regenerated canonical bootstrap release may absorb the tail and reset `POST_CURRENT`, while the historical migrations remain in history.
 
 ---
 
@@ -386,7 +391,7 @@ Normal product work should continue to create incremental migrations.
 | Situation | Use |
 | --- | --- |
 | Upgrade an existing TrustWeave DB | `supabase/migrations/` |
-| Create a new empty TrustWeave DB | `supabase/bootstrap/CURRENT` release |
+| Create a new empty TrustWeave DB | `supabase/bootstrap/CURRENT` release, then `POST_CURRENT` tail when present |
 | Investigate architecture ownership | `db/canonical/modules.json` |
 | Reconstruct/compare live state | D12 canonical tooling |
 | Fix an already-deployed schema | new migration |
