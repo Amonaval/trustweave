@@ -4,6 +4,7 @@ import {fetchEntityMediaAssets} from "../../lib/storage";
 import {requestPushDelivery} from "../../lib/push";
 function required(){if(!supabase)throw new Error("Shared Supabase mode is required for network activity.");return supabase}
 export type NetworkGroup={id:string;name:string;groupType:string;description?:string|null;memberCount:number;myMember?:boolean};
+export type NetworkGroupMember={userId:string;memberLabel:string;role:"member"|"lead";joinedAt:string};
 export async function fetchNetworkActivities(type?:NetworkActivityType){
  const s=required();const [{data,error},flagsResult]=await Promise.all([s.rpc("get_network_activities",{p_activity_type:type||null}),s.rpc("get_network_activity_social_flags")]);if(error)throw error;
  const rows=(data||[]).map((r:any)=>({id:String(r.id),type:r.activity_type,title:r.title,body:r.body,startsAt:r.starts_at,endsAt:r.ends_at,place:r.place,visibility:r.visibility,createdBy:r.created_by,myRsvp:r.my_rsvp,goingCount:Number(r.going_count||0),myLiked:Boolean(r.my_liked),likeCount:Number(r.like_count||0),commentCount:Number(r.comment_count||0)})) as NetworkActivity[];
@@ -15,6 +16,8 @@ export async function fetchNetworkActivities(type?:NetworkActivityType){
 }
 export async function createNetworkActivity(input:{type:NetworkActivityType;title:string;body?:string;startsAt?:string;endsAt?:string;place?:string;visibility?:"members"|"private"}){const s=required();const {data,error}=await s.rpc("create_network_activity",{p_activity_type:input.type,p_title:input.title,p_body:input.body||null,p_starts_at:input.startsAt||null,p_ends_at:input.endsAt||null,p_place:input.place||null,p_visibility:input.visibility||"members"});if(error)throw error;return String(data)}
 export async function respondNetworkEvent(activityId:string,response:"going"|"maybe"|"declined"){const s=required();const {error}=await s.rpc("respond_network_event",{p_activity_id:activityId,p_response:response});if(error)throw error}
+export async function updateNetworkActivity(activityId:string,input:{title:string;body?:string;startsAt?:string;endsAt?:string;place?:string}){const s=required();const {error}=await s.rpc("update_network_activity",{p_activity_id:activityId,p_title:input.title,p_body:input.body||null,p_starts_at:input.startsAt||null,p_ends_at:input.endsAt||null,p_place:input.place||null});if(error)throw error}
+export async function deleteNetworkActivity(activityId:string){const s=required();const {error}=await s.rpc("delete_network_activity",{p_activity_id:activityId});if(error)throw error}
 export type NetworkEventRsvp={userId:string;memberLabel:string;response:"going"|"maybe"|"declined";updatedAt:string};
 export async function fetchNetworkEventRsvps(activityId:string){const s=required();const {data,error}=await s.rpc("get_network_event_rsvps",{p_activity_id:activityId});if(error)throw error;return (data||[]).map((r:any)=>({userId:String(r.user_id),memberLabel:String(r.member_label||"Member"),response:r.response,updatedAt:r.updated_at})) as NetworkEventRsvp[]}
 export async function fetchNetworkGroups(){const s=required();const {data,error}=await s.rpc("get_network_groups");if(error)throw error;return (data||[]).map((r:any)=>({id:String(r.id),name:String(r.name),groupType:String(r.group_type),description:r.description,memberCount:Number(r.member_count||0),myMember:Boolean(r.my_member)})) as NetworkGroup[]}
@@ -27,6 +30,7 @@ export type NetworkActivityComment={id:string;body:string;createdAt:string;autho
 export async function toggleNetworkActivityLike(activityId:string){const s=required();const {data,error}=await s.rpc("toggle_network_activity_like",{p_activity_id:activityId});if(error)throw error;return Boolean(data)}
 export async function addNetworkActivityComment(activityId:string,body:string){const s=required();const {data,error}=await s.rpc("add_network_activity_comment",{p_activity_id:activityId,p_body:body});if(error)throw error;return String(data)}
 export async function fetchNetworkActivityComments(activityId:string){const s=required();const {data,error}=await s.rpc("get_network_activity_comments",{p_activity_id:activityId});if(error)throw error;return (data||[]).map((r:any)=>({id:String(r.id),body:String(r.body),createdAt:r.created_at,authorLabel:String(r.author_label||"Member"),isMine:Boolean(r.is_mine)})) as NetworkActivityComment[]}
+export async function deleteNetworkActivityComment(commentId:string){const s=required();const {error}=await s.rpc("delete_network_activity_comment",{p_comment_id:commentId});if(error)throw error}
 
 export async function createNetworkPost(input:{title:string;body?:string;importance?:"normal"|"important"|"urgent";notifyAll?:boolean}){
  const s=required();const {data,error}=await s.rpc("create_network_post",{p_title:input.title,p_body:input.body||null,p_importance:input.importance||"normal",p_notify_all:!!input.notifyAll});if(error)throw error;

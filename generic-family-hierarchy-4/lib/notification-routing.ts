@@ -1,19 +1,19 @@
 import type {Notification} from "./types";
-import {networkSurfaceHref} from "./network-routes";
+import {networkObjectHref,networkSurfaceHref,type NetworkObjectType} from "./network-routes";
 
-export type NotificationDeepLink={networkId?:string;surface?:string;itemId?:string};
+export type NotificationDeepLink={networkId?:string;surface?:string;itemId?:string;objectType?:NetworkObjectType};
 
 export function buildNotificationDeepLink(input:NotificationDeepLink){
  if(input.networkId){
   try{
-   const href=networkSurfaceHref(input.networkId,input.surface||"home");
-   // A resource ID needs an owner-specific authorized detail route before it enters a URL.
-   return href;
+   if(input.itemId)return networkObjectHref(input.networkId,input.surface||"home",input.objectType||"activity",input.itemId);
+   return networkSurfaceHref(input.networkId,input.surface||"home");
   }catch{/* Historical/non-UUID demo identifiers retain the legacy link. */}
  }
  const params=new URLSearchParams();
  if(input.networkId)params.set("twNetwork",input.networkId);
  if(input.surface)params.set("twSurface",input.surface);
+ if(input.objectType)params.set("twObject",input.objectType);
  if(input.itemId)params.set("twItem",input.itemId);
  const query=params.toString();
  return query?`/?${query}`:"/";
@@ -22,13 +22,14 @@ export function buildNotificationDeepLink(input:NotificationDeepLink){
 export function readNotificationDeepLink(search?:string):NotificationDeepLink{
  if(typeof window==="undefined"&&!search)return {};
  const params=new URLSearchParams(search??window.location.search);
- return {networkId:params.get("twNetwork")||undefined,surface:params.get("twSurface")||undefined,itemId:params.get("twItem")||undefined};
+ const rawObject=params.get("twObject");const objectType=rawObject==="activity"||rawObject==="post"||rawObject==="group"?rawObject:undefined;
+ return {networkId:params.get("twNetwork")||undefined,surface:params.get("twSurface")||undefined,itemId:params.get("twItem")||undefined,objectType};
 }
 
 export function clearNotificationDeepLink(){
  if(typeof window==="undefined")return;
  const url=new URL(window.location.href);
- ["twNetwork","twSurface","twItem"].forEach(k=>url.searchParams.delete(k));
+ ["twNetwork","twSurface","twItem","twObject"].forEach(k=>url.searchParams.delete(k));
  window.history.replaceState({},"",`${url.pathname}${url.search}${url.hash}`);
 }
 
@@ -62,6 +63,7 @@ export function resolveNotificationDeepLink(notification: Pick<Notification,"net
  let networkId=notification.network_id;
  let surface=inferNotificationSurface(notification);
  let itemId=notification.entity_id;
+ let objectType:NetworkObjectType|undefined=notification.entity_type==="group"?"group":notification.entity_type==="post"?"post":notification.entity_type==="activity"||notification.entity_type==="event"?"activity":undefined;
 
  if(stored){
   try{
@@ -70,6 +72,7 @@ export function resolveNotificationDeepLink(notification: Pick<Notification,"net
    networkId=url.searchParams.get("twNetwork")||networkId;
    surface=url.searchParams.get("twSurface")||surface;
    itemId=url.searchParams.get("twItem")||itemId;
+   const storedObject=url.searchParams.get("twObject");if(storedObject==="activity"||storedObject==="post"||storedObject==="group")objectType=storedObject;
    const hasTrustWeaveParams=url.searchParams.has("twNetwork")||url.searchParams.has("twSurface")||url.searchParams.has("twItem");
    // Preserve genuine application paths, but enrich partial root/query deep links.
    // Only same-origin application paths can be used as an internal destination.
@@ -78,5 +81,5 @@ export function resolveNotificationDeepLink(notification: Pick<Notification,"net
    // Fall through to deterministic in-app routing below.
   }
  }
- return buildNotificationDeepLink({networkId,surface,itemId});
+ return buildNotificationDeepLink({networkId,surface,itemId,objectType});
 }

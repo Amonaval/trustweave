@@ -23,3 +23,17 @@ export function navigateNetworkSurface(networkId:string,surface:string,replace=f
  window.history[replace?"replaceState":"pushState"]({},"",href);
  window.dispatchEvent(new Event("trustweave:route"));
 }
+
+export type NetworkObjectType="activity"|"post"|"group";
+export function networkObjectHref(networkId:string,surface:string,objectType:NetworkObjectType,itemId:string):string{
+ if(!opaqueId.test(itemId))throw new Error("Invalid community object identifier");
+ const href=networkSurfaceHref(networkId,surface);
+ const params=new URLSearchParams({twObject:objectType,twItem:itemId});
+ return `${href}?${params.toString()}`;
+}
+export function navigateNetworkObject(networkId:string,surface:string,objectType:NetworkObjectType,itemId:string,replace=false):void{
+ if(typeof window==="undefined")return;
+ const href=networkObjectHref(networkId,surface,objectType,itemId);
+ window.history[replace?"replaceState":"pushState"]({},"",href);
+ window.dispatchEvent(new Event("trustweave:route"));
+}
