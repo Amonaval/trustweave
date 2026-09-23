@@ -1,18 +1,19 @@
 "use client";
 import {useLanguage} from "../lib/i18n";
 import {useEffect,useMemo,useState} from "react";
-import {Flag,FlaskConical,MessageSquareText,Radio,RefreshCw,Rocket,ShieldCheck,Sparkles,Trash2,UserPlus,Users,WandSparkles,Network,Palette,SlidersHorizontal,Settings2} from "lucide-react";
+import {Flag,FlaskConical,Images,MessageSquareText,Radio,RefreshCw,Rocket,ShieldCheck,Sparkles,Trash2,UserPlus,Users,WandSparkles,Network,Palette,SlidersHorizontal,Settings2} from "lucide-react";
 import {LaunchState} from "../lib/features";
 import type {FeatureDefinition} from "../core/features/contracts";
 import type {NetworkVerticalKind} from "../core/verticals/contracts";
 import {getVerticalDefinition} from "../app-shell/vertical-registry";
 import {getVerticalAppComposition} from "../app-shell/vertical-runtime";
+import PlatformDesignStudio from "./PlatformDesignStudio";
 import {addPlatformOwnerByEmail,applyAlphaDay1LaunchPreset,fetchPlatformNetworkTargets,fetchPlatformVerticalLaunchConsole,fetchPlatformOwnerAudit,fetchPlatformOwners,fetchPlatformRolloutAudit,fetchPlatformFamilyCreationRequests,reviewFamilyCreationRequest,fetchFamilyCreationPolicy,setFamilyCreationPolicy,fetchPlatformGuideFeedback,fetchGuideFeedbackSignals,updatePlatformGuideFeedbackStatus,PlatformGuideFeedback,fetchPlaygroundLaunchConsole,setPlaygroundFeatureVisibility,PlaygroundFeatureRow,PlatformFamilyCreationRequest,PlatformFamilyTarget,PlatformLaunchFeature,PlatformOwnerAuditRow,PlatformOwnerRow,PlatformRolloutAudit,removePlatformOwner,setPlatformVerticalBundleRollout,setPlatformFeatureRollout,fetchPlatformShowcaseVerticalSettings,setPlatformShowcaseVerticalSetting,getDefaultShowcaseVerticalSetting,ShowcaseVerticalSetting,ShowcasePaletteKey,fetchPlatformNetworkRegistry,fetchNetworkCreationPolicy,setNetworkCreationPolicy,reviewNetworkCreation,PlatformNetworkRegistryRow} from "../lib/remote";
 
 const STATES:LaunchState[]=["hidden","test","pilot","released"];
 const ACTIVE_VERTICALS:NetworkVerticalKind[]=["family","housing-society","family-association","association","alumni","organization","business-trust","franchise","professional"];
 const stateHelp:Record<LaunchState,string>={hidden:"Nobody sees it.",test:"Only platform owners see it.",pilot:"Only selected pilot networks see it.",released:"Available to all eligible networks."};
-type ConsoleSection="networks"|"showcase"|"rollout"|"governance";
+type ConsoleSection="networks"|"showcase"|"design"|"rollout"|"governance";
 type RegistryStatus="all"|"pending"|"approved"|"rejected";
 
 export default function FounderLaunchConsole({onChanged,onNotify,initialVertical="family"}:{onChanged:()=>Promise<void>|void;onNotify:(message:string)=>void;initialVertical?:NetworkVerticalKind}){
@@ -64,6 +65,7 @@ export default function FounderLaunchConsole({onChanged,onNotify,initialVertical
   <nav className="founder-console-tabs card" aria-label={tr("LC2SectionsAriaTxt")}>
    <button className={section==="networks"?"active":""} onClick={()=>setSection("networks")}><Network size={17}/><span><b>{tr("LC2NetworksApprovalsTxt")}</b><small>{pendingCount} {tr("LC2PendingTxt")} · {networkRegistry.length} {tr("LC2TotalTxt")}</small></span></button>
    <button className={section==="showcase"?"active":""} onClick={()=>setSection("showcase")}><Palette size={17}/><span><b>{tr("LC2ShowcaseTxt")}</b><small>{tr("LC2ShowcaseDescTxt")}</small></span></button>
+   <button className={section==="design"?"active":""} onClick={()=>setSection("design")}><Images size={17}/><span><b>Design Studio</b><small>Images, brand, typography & layout</small></span></button>
    <button className={section==="rollout"?"active":""} onClick={()=>setSection("rollout")}><SlidersHorizontal size={17}/><span><b>{tr("LC2FeatureRolloutTxt")}</b><small>{tr("LC2FeatureRolloutDescTxt")}</small></span></button>
    <button className={section==="governance"?"active":""} onClick={()=>setSection("governance")}><Settings2 size={17}/><span><b>{tr("LC2GovernanceTxt")}</b><small>{tr("LC2GovernanceDescTxt")}</small></span></button>
   </nav>
@@ -98,6 +100,8 @@ export default function FounderLaunchConsole({onChanged,onNotify,initialVertical
    {verticalSwitcher}
    <section className="card playground-feature-control"><div className="section-title"><div><span className="warm-kicker"><FlaskConical size={13}/> {tr("PlaygroundShowcaseTxt")}</span><h2>{LAUNCH_COMPOSITION.playgroundTitle}</h2><p className="page-subtitle">{tr("LC2PlaygroundFineTuneTxt")}</p></div><div className="card-actions"><button className="btn small" disabled={busy} onClick={()=>setAllPlayground(false)}>{tr("HideAllTxt")}</button><button className="btn primary small" disabled={busy} onClick={()=>setAllPlayground(true)}>{tr("ShowAllTxt")}</button></div></div><div className="family-feature-list">{FEATURE_REGISTRY.filter(f=>!PLAYGROUND_EXCLUDED_BUNDLES.includes(f.bundle)).map(feature=>{const row=playgroundByKey.get(feature.key);const backendReady=Boolean(row);const loading=busy&&playgroundRows.length===0;const enabled=row?.enabled===true;return <div className="admin-setting" key={feature.key}><span><b>{feature.label}</b><small>{feature.description} · {loading?tr("LoadingPlaygroundRegistryTxt"):backendReady?tr("PlaygroundOnlyTxt"):tr("DatabaseUpdateRequiredBeforeThisControlCanTxt")}</small></span><input type="checkbox" checked={enabled} disabled={busy||!backendReady} onChange={e=>togglePlayground(feature.key,e.target.checked)}/></div>})}</div></section>
   </>}
+
+  {section==="design"&&<><section className="card platform-design-context"><span className="warm-kicker"><Images size={13}/> One visual control plane</span><h2>Platform & Playground presentation</h2><p>Global visuals apply to the entry experience; the vertical selector controls Playground-specific banners, thumbnails, event imagery and icons.</p></section>{verticalSwitcher}<PlatformDesignStudio verticalKind={verticalKind} onNotify={onNotify}/></>}
 
   {section==="rollout"&&<>
    {verticalSwitcher}

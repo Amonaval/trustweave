@@ -1,5 +1,6 @@
 import NetworkApp from "../components/NetworkApp";
+import PlatformDesignProvider from "../components/PlatformDesignProvider";
 
 export default function Home() {
-  return <NetworkApp />;
+  return <PlatformDesignProvider><NetworkApp /></PlatformDesignProvider>;
 }
