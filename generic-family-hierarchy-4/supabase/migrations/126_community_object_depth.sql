@@ -157,3 +157,74 @@ language sql security definer stable set search_path='' as $$
 $$;
 revoke all on function public.get_network_event_rsvps(uuid) from public,anon;
 grant execute on function public.get_network_event_rsvps(uuid) to authenticated;
+
+
+-- Admin-managed group membership keeps committees and working groups useful
+-- without duplicating vertical-specific membership implementations.
+create or replace function public.add_network_group_member(
+  p_group_id uuid,
+  p_user_id uuid,
+  p_role text default 'member'
+) returns void
+language plpgsql security definer set search_path='' as $$
+declare nid uuid:=public.current_network_id();
+begin
+  if auth.uid() is null or nid is null or not public.is_network_admin(nid) then
+    raise exception 'Network admin access required.' using errcode='42501';
+  end if;
+  if p_role not in ('member','lead') then raise exception 'Invalid group role.' using errcode='22023'; end if;
+  if not exists(select 1 from public.network_groups where id=p_group_id and network_id=nid) then
+    raise exception 'Group not found.' using errcode='P0002';
+  end if;
+  if not exists(select 1 from public.network_memberships where network_id=nid and user_id=p_user_id and status='active') then
+    raise exception 'User is not an active network member.' using errcode='22023';
+  end if;
+  insert into public.network_group_memberships(group_id,network_id,user_id,role)
+  values(p_group_id,nid,p_user_id,p_role)
+  on conflict(group_id,user_id) do update set role=excluded.role;
+  insert into public.audit_log(network_id,actor_id,action,details)
+  values(nid,auth.uid(),'network_group_member_added',jsonb_build_object('group_id',p_group_id,'user_id',p_user_id,'role',p_role));
+end $$;
+revoke all on function public.add_network_group_member(uuid,uuid,text) from public,anon;
+grant execute on function public.add_network_group_member(uuid,uuid,text) to authenticated;
+
+create or replace function public.set_network_group_member_role(
+  p_group_id uuid,
+  p_user_id uuid,
+  p_role text
+) returns void
+language plpgsql security definer set search_path='' as $$
+declare nid uuid:=public.current_network_id();
+begin
+  if auth.uid() is null or nid is null or not public.is_network_admin(nid) then
+    raise exception 'Network admin access required.' using errcode='42501';
+  end if;
+  if p_role not in ('member','lead') then raise exception 'Invalid group role.' using errcode='22023'; end if;
+  update public.network_group_memberships
+     set role=p_role
+   where group_id=p_group_id and network_id=nid and user_id=p_user_id;
+  if not found then raise exception 'Group member not found.' using errcode='P0002'; end if;
+  insert into public.audit_log(network_id,actor_id,action,details)
+  values(nid,auth.uid(),'network_group_member_role_updated',jsonb_build_object('group_id',p_group_id,'user_id',p_user_id,'role',p_role));
+end $$;
+revoke all on function public.set_network_group_member_role(uuid,uuid,text) from public,anon;
+grant execute on function public.set_network_group_member_role(uuid,uuid,text) to authenticated;
+
+create or replace function public.remove_network_group_member(
+  p_group_id uuid,
+  p_user_id uuid
+) returns void
+language plpgsql security definer set search_path='' as $$
+declare nid uuid:=public.current_network_id();
+begin
+  if auth.uid() is null or nid is null or not public.is_network_admin(nid) then
+    raise exception 'Network admin access required.' using errcode='42501';
+  end if;
+  delete from public.network_group_memberships
+   where group_id=p_group_id and network_id=nid and user_id=p_user_id;
+  if not found then raise exception 'Group member not found.' using errcode='P0002'; end if;
+  insert into public.audit_log(network_id,actor_id,action,details)
+  values(nid,auth.uid(),'network_group_member_removed',jsonb_build_object('group_id',p_group_id,'user_id',p_user_id));
+end $$;
+revoke all on function public.remove_network_group_member(uuid,uuid) from public,anon;
+grant execute on function public.remove_network_group_member(uuid,uuid) to authenticated;

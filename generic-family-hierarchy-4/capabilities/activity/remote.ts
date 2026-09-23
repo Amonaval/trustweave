@@ -25,6 +25,9 @@ export async function createNetworkGroup(input:{name:string;groupType?:string;de
 
 export async function joinNetworkGroup(groupId:string){const s=required();const {error}=await s.rpc("join_network_group",{p_group_id:groupId});if(error)throw error}
 export async function leaveNetworkGroup(groupId:string){const s=required();const {error}=await s.rpc("leave_network_group",{p_group_id:groupId});if(error)throw error}
+export async function addNetworkGroupMember(groupId:string,userId:string,role:"member"|"lead"="member"){const s=required();const {error}=await s.rpc("add_network_group_member",{p_group_id:groupId,p_user_id:userId,p_role:role});if(error)throw error}
+export async function setNetworkGroupMemberRole(groupId:string,userId:string,role:"member"|"lead"){const s=required();const {error}=await s.rpc("set_network_group_member_role",{p_group_id:groupId,p_user_id:userId,p_role:role});if(error)throw error}
+export async function removeNetworkGroupMember(groupId:string,userId:string){const s=required();const {error}=await s.rpc("remove_network_group_member",{p_group_id:groupId,p_user_id:userId});if(error)throw error}
 
 export type NetworkActivityComment={id:string;body:string;createdAt:string;authorLabel:string;isMine:boolean};
 export async function toggleNetworkActivityLike(activityId:string){const s=required();const {data,error}=await s.rpc("toggle_network_activity_like",{p_activity_id:activityId});if(error)throw error;return Boolean(data)}

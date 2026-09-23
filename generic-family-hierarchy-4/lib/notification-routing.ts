@@ -63,7 +63,9 @@ export function resolveNotificationDeepLink(notification: Pick<Notification,"net
  let networkId=notification.network_id;
  let surface=inferNotificationSurface(notification);
  let itemId=notification.entity_id;
- let objectType:NetworkObjectType|undefined=notification.entity_type==="group"?"group":notification.entity_type==="post"?"post":notification.entity_type==="activity"||notification.entity_type==="event"?"activity":undefined;
+ const notificationType=notification.type||"";
+ const metadataCategory=metadataText(notification.metadata?.category);
+ let objectType:NetworkObjectType|undefined=notification.entity_type==="group"||metadataCategory==="groups"?"group":notification.entity_type==="post"||metadataCategory==="posts"||notificationType.startsWith("community_post")||notificationType.startsWith("post_")?"post":notification.entity_type==="activity"||notification.entity_type==="event"?"activity":undefined;
 
  if(stored){
   try{

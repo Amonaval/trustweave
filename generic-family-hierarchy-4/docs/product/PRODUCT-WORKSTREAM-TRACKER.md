@@ -118,10 +118,10 @@ Founder direction: do not solve event/post/group depth independently in MPF, Res
 
 Source work includes migration `126_community_object_depth.sql` plus common UI/routing:
 - creator/admin edit + delete for activities and posts;
-- group view, description, members, join/leave, admin edit/delete;
+- group view, description, members, join/leave, admin edit/delete, add/remove members and member/lead role management;
 - proper attendee detail for events;
 - proper comment surface instead of browser prompts;
-- share URLs that deep-link to the exact authorized object;
+- share URLs that deep-link to the exact authorized object, including post-aware notification routing;
 - image lightbox and shared detail drawer;
 - MPF and Residential Home event entry points route to the same shared detail experience.
 
