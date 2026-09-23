@@ -18,7 +18,7 @@ Canonical selection rules:
 
 | Workstream | Status | Current meaning |
 |---|---|---|
-| **FCA-L1 — MPF Pune East pilot proof** | **ACTIVE** | Single bounded product priority. Finish concrete blockers → representative/full data → real use/feedback → stop/re-select. |
+| **FCA-L1 — MPF Pune East pilot proof** | **IMPLEMENTED / RUNTIME VERIFY** | Seven recorded blockers are source-resolved; canonical 20-family Playground + read-only President/member preview are implemented. Targeted manual/runtime proof and real-user feedback remain. |
 | **Majestique Marbella Residential proof** | **PRESERVED / PARALLEL PROVING** | Maintain readiness and fix evidence-backed real-use blockers; do not open a broad Residential feature program. |
 | VIS3 / Media / Discovery | **SOURCE-GATED + FOCUSED RUNTIME PROOF** | Substantially closed; migration 130 platform upload behavior was runtime-proven. Reopen only for concrete failure. |
 | LIFE2 Shared Community Objects | **SOURCE-GATED** | Shared lifecycle/depth exists in source; environment-specific DB/runtime availability must be verified before pilot claims. |
@@ -42,6 +42,14 @@ Canonical selection rules:
 - Do not run workflows/broad QA or mutate Supabase automatically.
 - No potentially billable resource without explicit Founder warning and consent.
 - Default to 1–5 coherent commits.
+
+## FCA-L1 implementation checkpoint
+
+Candidate branch: `fca-l1-mpf-pilot`.
+
+Source candidate now uses the canonical 20-family/67-person launch dataset for the public Family Community Playground and keeps object detail, Funds and Member Decisions local/read-only in demo mode. The dedicated FCA-L1 source gate exists but has **not been executed**; no build/browser/runtime certification is claimed.
+
+Validation contract: `docs/product/FCA-L1-MPF-PILOT-VALIDATION.md`.
 
 ## FCA-L1 stop condition
 
