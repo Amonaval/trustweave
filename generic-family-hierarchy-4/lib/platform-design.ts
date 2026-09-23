@@ -66,7 +66,7 @@ export async function uploadPlatformVisual(slotKey:string,file:File){
  const s=required();const {data:{user}}=await s.auth.getUser();if(!user)throw new Error("Sign in as a platform owner before changing platform visuals.");
  const prepared=await prepareFamilyImage(file,320*1024);
  const safe=slotKey.replace(/[^a-z0-9._-]+/gi,"-").toLowerCase(),path=`platform/${user.id}/${safe}/${crypto.randomUUID()}.webp`;
- const bucket=s.storage.from("community-media");const uploaded=await bucket.upload(path,prepared,{cacheControl:"86400",upsert:false,contentType:"image/webp"});if(uploaded.error){const message=uploaded.error.message||"";if(/22023|database|size could not be verified|network media path/i.test(message))throw new Error("Platform media storage guard is out of date. Apply migration 129_vis3_media_core_repair.sql, then retry.");throw uploaded.error;}
+ const bucket=s.storage.from("community-media");const uploaded=await bucket.upload(path,prepared,{cacheControl:"86400",upsert:false,contentType:"image/webp"});if(uploaded.error){const message=uploaded.error.message||"";if(/22023|database|size could not be verified|network media path/i.test(message))throw new Error("Platform media storage guard is out of date. Apply migration 130_vis3_platform_media_storage_final.sql, then retry.");throw uploaded.error;}
  try{
   const {data,error}=await s.rpc("set_platform_visual_asset",{p_slot_key:slotKey,p_object_path:path,p_thumbnail_path:null,p_mime_type:"image/webp",p_bytes:prepared.size,p_thumbnail_bytes:0,p_width:null,p_height:null});
   if(error)throw error;const previous=data as any;const old=[previous?.previous_object_path,previous?.previous_thumbnail_path].filter((x:any)=>x&&x!==path);if(old.length)void bucket.remove(old).catch(()=>{});
