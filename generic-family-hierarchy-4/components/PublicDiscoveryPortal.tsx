@@ -87,29 +87,51 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false
   const [section,setSection]=useState<ExploreKey>(initialSection);
   const [guideLevel,setGuideLevel]=useState<"simple"|"detailed"|"deep">("simple");
   const [storyIndex,setStoryIndex]=useState(0);
-  const guideCards=useMemo(()=>guideLevel==="simple"?[
-    [c.startHere,"TrustWeave is a private operating system for the networks you already belong to: family, community and residential life. Each network keeps its own membership and privacy boundary."],
-    ["What TrustWeave can do","Keep people, structure, communication, money, participation, media and history connected so users do not have to reconstruct context across spreadsheets and chats."],
-    ["How people use it","Start from a familiar daily outcome — a complaint, renewal, event, payment, visitor, vote or family update — and move deeper only when needed."],
-    [c.privacy,"Networks are private by default. Membership, role permissions, private media and tenant isolation control who can see or change data."],
-    [c.gettingStarted,"Explore a read-only Playground first. Sign in only when you want to create, join or operate a real persisted network."],
-  ]:guideLevel==="detailed"?[
-    ["Housing Society","Property structure, residents, notices, complaints, amenities, maintenance, governance, elections, security, assets, compliance and community life use one network context."],
-    ["Family Community / Association","Families, people, annual membership, renewals, committee service, funds, events, posts, elections and memories share one community context."],
-    ["Family","People, kinship, memories, places, timeline and guided contribution remain family-specific instead of being forced into an organization model."],
-    ["Operational trust","Official records are role-governed; personal/member surfaces expose only the context appropriate to the current user and active network."],
-    ["Launch model","Launch Control decides which verticals can be discovered, created or opened as Playground samples. It does not erase existing memberships or capabilities."],
-  ]:[
-    ["Capability Catalog","Shared engines provide identity, participation, notifications, media, funds, voting and activity primitives while each vertical keeps its own domain contracts and UX."],
-    ["Product Journey","TrustWeave evolved from a family network into a private Network OS with specialized verticals and governed cross-network capability rather than one giant public graph."],
-    ["UX Handbook","Progressive disclosure keeps daily tasks simple while admin, governance and technical depth remain available to the roles that need them."],
-    ["Technical / CTO view","The product uses network-scoped contracts, tenant-aware RPCs, row-level security, private media authorization and explicit launch/runtime certification gates."],
-    [c.evolution,"Release evidence, runtime gates and living product documents are maintained as part of product closure rather than separate from engineering."],
-  ],[guideLevel,c]);
-  const visualStories=useMemo(()=>ACTIVE_VERTICALS.flatMap(kind=>[1,2,3,4].map(index=>({kind,index,url:asset(`vertical.${kind}.story.${index}`)})).filter(item=>!!item.url)),[asset]);
-  const storyKind=STORY_KINDS[storyIndex%STORY_KINDS.length],story=storyCopy[storyKind],storyUrl=storyImage(storyKind,1);
-  const previousStory=()=>setStoryIndex(v=>(v-1+STORY_KINDS.length)%STORY_KINDS.length),nextStory=()=>setStoryIndex(v=>(v+1)%STORY_KINDS.length);
-  const VerticalIcon=({kind}:{kind:NetworkVerticalKind})=>kind==="family"?<HeartHandshake/>:kind==="housing-society"?<Building2/>:(kind==="family-association"||kind==="association")?<UsersRound/>:kind==="alumni"?<GraduationCap/>:(kind==="professional"||kind==="organization")?<BriefcaseBusiness/>:<Store/>;
+  const guideCards=useMemo<Array<[string,string]>>(()=>{
+    if(guideLevel==="simple")return[
+      [c.startHere,"TrustWeave is a private operating system for the networks you already belong to: family, community and residential life. Each network keeps its own membership and privacy boundary."],
+      ["What TrustWeave can do","Keep people, structure, communication, money, participation, media and history connected so users do not have to reconstruct context across spreadsheets and chats."],
+      ["How people use it","Start from a familiar daily outcome — a complaint, renewal, event, payment, visitor, vote or family update — and move deeper only when needed."],
+      [c.privacy,"Networks are private by default. Membership, role permissions, private media and tenant isolation control who can see or change data."],
+      [c.gettingStarted,"Explore a read-only Playground first. Sign in only when you want to create, join or operate a real persisted network."],
+    ];
+    if(guideLevel==="detailed")return[
+      ["Housing Society","Property structure, residents, notices, complaints, amenities, maintenance, governance, elections, security, assets, compliance and community life use one network context."],
+      ["Family Community / Association","Families, people, annual membership, renewals, committee service, funds, events, posts, elections and memories share one community context."],
+      ["Family","People, kinship, memories, places, timeline and guided contribution remain family-specific instead of being forced into an organization model."],
+      ["Operational trust","Official records are role-governed; personal/member surfaces expose only the context appropriate to the current user and active network."],
+      ["Launch model","Launch Control decides which verticals can be discovered, created or opened as Playground samples. It does not erase existing memberships or capabilities."],
+    ];
+    return[
+      ["Capability Catalog","Shared engines provide identity, participation, notifications, media, funds, voting and activity primitives while each vertical keeps its own domain contracts and UX."],
+      ["Product Journey","TrustWeave evolved from a family network into a private Network OS with specialized verticals and governed cross-network capability rather than one giant public graph."],
+      ["UX Handbook","Progressive disclosure keeps daily tasks simple while admin, governance and technical depth remain available to the roles that need them."],
+      ["Technical / CTO view","The product uses network-scoped contracts, tenant-aware RPCs, row-level security, private media authorization and explicit launch/runtime certification gates."],
+      [c.evolution,"Release evidence, runtime gates and living product documents are maintained as part of product closure rather than separate from engineering."],
+    ];
+  },[guideLevel,c]);
+
+  const visualStories=useMemo(
+    ()=>ACTIVE_VERTICALS.flatMap(kind=>
+      [1,2,3,4]
+        .map(index=>({kind,index,url:asset(`vertical.${kind}.story.${index}`)}))
+        .filter(item=>Boolean(item.url))
+    ),
+    [asset],
+  );
+  const storyKind=STORY_KINDS[storyIndex%STORY_KINDS.length];
+  const story=storyCopy[storyKind];
+  const storyUrl=storyImage(storyKind,1);
+  const previousStory=()=>setStoryIndex(value=>(value-1+STORY_KINDS.length)%STORY_KINDS.length);
+  const nextStory=()=>setStoryIndex(value=>(value+1)%STORY_KINDS.length);
+  const verticalIcon=(kind:NetworkVerticalKind):ReactNode=>{
+    if(kind==="family")return <HeartHandshake/>;
+    if(kind==="housing-society")return <Building2/>;
+    if(kind==="family-association"||kind==="association")return <UsersRound/>;
+    if(kind==="alumni")return <GraduationCap/>;
+    if(kind==="professional"||kind==="organization")return <BriefcaseBusiness/>;
+    return <Store/>;
+  };
 
   return <main className="public-discovery" data-testid="qa-public-discovery">
     <header className="public-discovery-topbar">
@@ -137,7 +159,7 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false
        <div className="public-story-carousel">
         <button className="public-story-arrow previous" aria-label="Previous story" onClick={previousStory}><ChevronLeft/></button>
         <article className="public-story-slide">
-         <div className="public-story-media">{storyUrl?<img src={storyUrl} alt=""/>:<div className="public-story-placeholder"><VerticalIcon kind={storyKind}/><span>{getVerticalDefinition(storyKind).displayName}</span></div>}</div>
+         <div className="public-story-media">{storyUrl?<img src={storyUrl} alt=""/>:<div className="public-story-placeholder">{verticalIcon(storyKind)}<span>{getVerticalDefinition(storyKind).displayName}</span></div>}</div>
          <div className="public-story-copy"><span className="warm-kicker">{story.eyebrow}</span><h3>{story.title}</h3><p>{story.body}</p><div className="card-actions"><button className="btn primary small" onClick={()=>void onExplore(storyKind,storyKind==="family"?"public":undefined)}><PlayCircle size={14}/> Try Playground</button>{storyKind==="housing-society"&&<button className="btn small" onClick={()=>setSection("housing")}>See journey <ArrowRight size={13}/></button>}{storyKind==="family-association"&&<button className="btn small" onClick={()=>setSection("community")}>See journey <ArrowRight size={13}/></button>}</div></div>
         </article>
         <button className="public-story-arrow next" aria-label="Next story" onClick={nextStory}><ChevronRight/></button>
@@ -149,7 +171,7 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false
         <button onClick={()=>setSection("community")}><span className="public-role-icon"><UsersRound/></span><div><h3>{c.communityTitle}</h3><p>{c.communityLead}</p><b>{c.how}<ArrowRight size={15}/></b></div></button>
         <button onClick={()=>setSection("member")}><span className="public-role-icon"><Home/></span><div><h3>{c.memberTitle}</h3><p>{c.memberLead}</p><b>{c.how}<ArrowRight size={15}/></b></div></button>
       </div></section>
-      <section className="public-product-gallery"><div className="public-section-head"><span>Explore network types</span><h2>Start from the network you already understand</h2><p>Every vertical has its own domain experience while reusing shared identity, activity, media and trust foundations.</p></div><div className="public-product-gallery-grid">{ACTIVE_VERTICALS.map(kind=>{const image=verticalImage(kind,"thumbnail")||verticalImage(kind,"banner");return <article key={kind}><button onClick={()=>void onExplore(kind,kind==="family"?"public":undefined)}>{image?<span className="public-product-image"><img src={image} alt=""/></span>:<span className="public-product-image fallback"><VerticalIcon kind={kind}/></span>}<span className="public-product-info"><b>{getVerticalDefinition(kind).displayName}</b><small>Open read-only Playground</small><em><PlayCircle size={13}/> Explore</em></span></button></article>})}</div></section>
+      <section className="public-product-gallery"><div className="public-section-head"><span>Explore network types</span><h2>Start from the network you already understand</h2><p>Every vertical has its own domain experience while reusing shared identity, activity, media and trust foundations.</p></div><div className="public-product-gallery-grid">{ACTIVE_VERTICALS.map(kind=>{const image=verticalImage(kind,"thumbnail")||verticalImage(kind,"banner");return <article key={kind}><button onClick={()=>void onExplore(kind,kind==="family"?"public":undefined)}>{image?<span className="public-product-image"><img src={image} alt=""/></span>:<span className="public-product-image fallback">{verticalIcon(kind)}</span>}<span className="public-product-info"><b>{getVerticalDefinition(kind).displayName}</b><small>Open read-only Playground</small><em><PlayCircle size={13}/> Explore</em></span></button></article>})}</div></section>
     </>}
 
     {section==="housing"&&<section className="public-detail-page" data-testid="qa-public-housing"><button className="public-back" onClick={()=>setSection("overview")}>← TrustWeave</button><div className="public-detail-hero"><span className="public-role-icon"><Building2/></span><div><span className="warm-kicker">Housing Society</span><h1>{c.housingTitle}</h1><p>{c.housingLead}</p><div className="public-detail-actions"><button className="btn primary" onClick={()=>void onExplore("housing-society")}><PlayCircle size={16}/>Explore realistic society Playground</button><button className="btn" onClick={()=>setSection("guide")}><BookOpen size={16}/>{c.productGuide}</button>{!signedIn&&{!signedIn&&<button className="btn ghost" onClick={onSignIn}>{c.signIn}<ArrowRight size={15}/></button>}}</div></div></div><div className="public-section-head compact"><span>{c.how}</span><h2>One operating story instead of eight disconnected tools</h2></div><Journey rows={housingFlow}/><div className="public-safe-note"><ShieldCheck/><div><b>Private by network</b><p>Resident identity, finance, complaints, visitors and private media stay scoped to the active society and role permissions. A Playground is read-only; a real society uses persisted domain APIs.</p></div></div></section>}
