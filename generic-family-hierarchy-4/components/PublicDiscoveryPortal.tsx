@@ -1,6 +1,6 @@
 "use client";
 
-import {useMemo,useState,type ReactNode} from "react";
+import {useEffect,useMemo,useState,type ReactNode} from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -32,9 +32,10 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeSwitcher from "./ThemeSwitcher";
 import {getVerticalDefinition} from "../app-shell/vertical-registry";
 import {usePlatformDesign} from "./PlatformDesignProvider";
+import {fetchShowcaseVerticalSettings,getDefaultShowcaseVerticalSetting,type ShowcaseVerticalSetting} from "../lib/remote";
 
 type ExploreKey="overview"|"housing"|"community"|"member"|"guide";
-const ACTIVE_VERTICALS:NetworkVerticalKind[]=["family","housing-society","family-association","association","alumni","organization","business-trust","franchise","professional"];
+const DISCOVERY_VERTICALS:NetworkVerticalKind[]=["family","housing-society","family-association","association","alumni","organization","business-trust","franchise","professional"];
 const STORY_KINDS:NetworkVerticalKind[]=["family","family-association","housing-society","alumni","professional"];
 const storyCopy:Record<string,{eyebrow:string;title:string;body:string}>={
  family:{eyebrow:"Families",title:"A living family network, not only a tree",body:"Keep people, relationships, memories, events, places and family history connected in one private space."},
@@ -76,6 +77,15 @@ const communityFlow:[ReactNode,string,string][]= [
 
 function Journey({rows}:{rows:[ReactNode,string,string][]}){return <div className="public-journey-flow">{rows.map(([icon,title,body],index)=><article key={title}><span className="public-journey-number">{index+1}</span><span className="public-journey-icon">{icon}</span><div><b>{title}</b><p>{body}</p></div>{index<rows.length-1&&<ChevronRight className="public-journey-arrow" size={17}/>}</article>)}</div>}
 
+function VerticalIcon({kind}:{kind:NetworkVerticalKind}){
+  if(kind==="family")return <HeartHandshake/>;
+  if(kind==="housing-society")return <Building2/>;
+  if(kind==="family-association"||kind==="association")return <UsersRound/>;
+  if(kind==="alumni")return <GraduationCap/>;
+  if(kind==="professional"||kind==="organization")return <BriefcaseBusiness/>;
+  return <Store/>;
+}
+
 export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false,initialSection="overview",onBack}:{onSignIn:()=>void;onExplore:(kind:NetworkVerticalKind,familyVariant?:"public"|"setup")=>Promise<boolean>|boolean;signedIn?:boolean;initialSection?:ExploreKey;onBack?:()=>void}){
   const {language}=useLanguage();
   const lang=(language==="hi"||language==="mr"?language:"en") as "en"|"hi"|"mr";
@@ -87,7 +97,31 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false
   const [section,setSection]=useState<ExploreKey>(initialSection);
   const [guideLevel,setGuideLevel]=useState<"simple"|"detailed"|"deep">("simple");
   const [storyIndex,setStoryIndex]=useState(0);
-  const guideCards=useMemo<Array<[string,string]>>(()=>{
+  const [showcaseSettings,setShowcaseSettings]=useState<ShowcaseVerticalSetting[]|null>(null);
+  useEffect(()=>{let active=true;fetchShowcaseVerticalSettings().then(rows=>{if(active)setShowcaseSettings(rows)}).catch(()=>{if(active)setShowcaseSettings([])});return()=>{active=false}},[]);
+  const releasedKinds=useMemo(()=>DISCOVERY_VERTICALS.filter(kind=>{
+    const configured=showcaseSettings?.find(row=>row.vertical_kind===kind);
+    return (configured||getDefaultShowcaseVerticalSetting(kind)).playground_enabled;
+  }),[showcaseSettings]);
+  const storyKinds=useMemo(()=>STORY_KINDS.filter(kind=>releasedKinds.includes(kind)),[releasedKinds]);
+  const recommendedPlayground=releasedKinds.includes("family")?"family":releasedKinds[0];
+  const goSection=(next:ExploreKey)=>{
+    setSection(next);
+    if(!signedIn&&typeof window!=="undefined"){
+      const href=next==="overview"?"/":`/?explore=${encodeURIComponent(next)}`;
+      if(`${window.location.pathname}${window.location.search}`!==href)window.history.pushState({},"",href);
+    }
+  };
+  useEffect(()=>{
+    if(signedIn||typeof window==="undefined")return;
+    const sync=()=>{
+      const raw=new URLSearchParams(window.location.search).get("explore");
+      const next:ExploreKey=raw==="housing"||raw==="community"||raw==="member"||raw==="guide"?raw:"overview";
+      setSection(next);
+    };
+    sync();window.addEventListener("popstate",sync);return()=>window.removeEventListener("popstate",sync);
+  },[signedIn]);
+  const guideCards=useMemo(()=>{
     if(guideLevel==="simple")return[
       [c.startHere,"TrustWeave is a private operating system for the networks you already belong to: family, community and residential life. Each network keeps its own membership and privacy boundary."],
       ["What TrustWeave can do","Keep people, structure, communication, money, participation, media and history connected so users do not have to reconstruct context across spreadsheets and chats."],
@@ -111,35 +145,22 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false
     ];
   },[guideLevel,c]);
 
-  const visualStories=useMemo(
-    ()=>ACTIVE_VERTICALS.flatMap(kind=>
-      [1,2,3,4]
-        .map(index=>({kind,index,url:asset(`vertical.${kind}.story.${index}`)}))
-        .filter(item=>Boolean(item.url))
-    ),
-    [asset],
-  );
-  const storyKind=STORY_KINDS[storyIndex%STORY_KINDS.length];
+  const visualStories=useMemo(()=>releasedKinds.flatMap(kind=>[1,2,3,4]
+    .map(index=>({kind,index,url:asset(`vertical.${kind}.story.${index}`)}))
+    .filter(item=>Boolean(item.url))),[asset,releasedKinds]);
+  const storyKind=storyKinds[storyIndex%Math.max(1,storyKinds.length)]||"family";
   const story=storyCopy[storyKind];
   const storyUrl=storyImage(storyKind,1);
-  const previousStory=()=>setStoryIndex(value=>(value-1+STORY_KINDS.length)%STORY_KINDS.length);
-  const nextStory=()=>setStoryIndex(value=>(value+1)%STORY_KINDS.length);
-  const verticalIcon=(kind:NetworkVerticalKind):ReactNode=>{
-    if(kind==="family")return <HeartHandshake/>;
-    if(kind==="housing-society")return <Building2/>;
-    if(kind==="family-association"||kind==="association")return <UsersRound/>;
-    if(kind==="alumni")return <GraduationCap/>;
-    if(kind==="professional"||kind==="organization")return <BriefcaseBusiness/>;
-    return <Store/>;
-  };
+  const previousStory=()=>setStoryIndex(value=>(value-1+Math.max(1,storyKinds.length))%Math.max(1,storyKinds.length));
+  const nextStory=()=>setStoryIndex(value=>(value+1)%Math.max(1,storyKinds.length));
 
-  return <main className="public-discovery" data-testid="qa-public-discovery">
+  return (\n  <main className="public-discovery" data-testid="qa-public-discovery">
     <header className="public-discovery-topbar">
-      <button className="public-brand" onClick={()=>setSection("overview")}>{brandLogo?<img className="public-brand-logo" src={brandLogo} alt="TrustWeave"/>:<span>{brandMark?<img src={brandMark} alt=""/>:<Layers3 size={22}/>}</span>}<div><b>TrustWeave</b><small>{c.privateOs}</small></div></button>
+      <button className="public-brand" onClick={()=>goSection("overview")}>{brandLogo?<img className="public-brand-logo" src={brandLogo} alt="TrustWeave"/>:<span>{brandMark?<img src={brandMark} alt=""/>:<Layers3 size={22}/>}</span>}<div><b>TrustWeave</b><small>{c.privateOs}</small></div></button>
       <nav aria-label="Product exploration">
-        <button className={section==="housing"?"active":""} onClick={()=>setSection("housing")}>{c.exploreHousing}</button>
-        <button className={section==="community"?"active":""} onClick={()=>setSection("community")}>{c.exploreCommunity}</button>
-        <button className={section==="guide"?"active":""} onClick={()=>setSection("guide")}>{c.productGuide}</button>
+        {releasedKinds.includes("housing-society")&&<button className={section==="housing"?"active":""} onClick={()=>goSection("housing")}>{c.exploreHousing}</button>}
+        {releasedKinds.includes("family-association")&&<button className={section==="community"?"active":""} onClick={()=>goSection("community")}>{c.exploreCommunity}</button>}
+        <button className={section==="guide"?"active":""} onClick={()=>goSection("guide")}>{c.productGuide}</button>
       </nav>
       <div className="public-top-actions"><ThemeSwitcher compact/><LanguageSwitcher compact/>{signedIn?<button className="btn" onClick={onBack}><ChevronLeft size={15}/> Back to my network</button>:<button className="btn" data-testid="qa-open-auth" onClick={onSignIn}>{c.signIn}</button>}</div>
     </header>
@@ -147,40 +168,38 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false
     {section==="overview"&&<>
       <section className={`public-hero ${landingHero?"has-managed-visual":""}`} style={landingHero?{backgroundImage:`linear-gradient(100deg,color-mix(in srgb,var(--surface) 98%,transparent),color-mix(in srgb,var(--surface) 78%,transparent)),url("${landingHero}")`}:undefined}>
         <div className="public-hero-copy"><span className="warm-kicker"><LockKeyhole size={13}/>{c.privateOs}</span><h1>{c.hero}</h1><p>{c.lead}</p><div className="public-hero-actions">
-          <button className="btn primary" data-testid="qa-explore-housing" onClick={()=>setSection("housing")}><Building2 size={17}/>{c.exploreHousing}</button>
-          <button className="btn" data-testid="qa-explore-community" onClick={()=>setSection("community")}><UsersRound size={17}/>{c.exploreCommunity}</button>
-          <button className="btn" data-testid="qa-public-playground" onClick={()=>void onExplore("family","public")}><PlayCircle size={17}/>{c.tryPlayground}</button>
-          <button className="btn ghost" data-testid="qa-product-guide" onClick={()=>setSection("guide")}><BookOpen size={17}/>{c.productGuide}</button>
+          <button className="btn primary" data-testid="qa-product-guide" onClick={()=>goSection("guide")}><BookOpen size={17}/>{c.productGuide}</button>
+          <button className="btn" data-testid="qa-public-playground" disabled={!recommendedPlayground} onClick={()=>{if(recommendedPlayground)void onExplore(recommendedPlayground,recommendedPlayground==="family"?"public":undefined)}}><PlayCircle size={17}/>{c.tryPlayground}</button>
+          <button className="btn ghost" onClick={()=>document.getElementById("product-stories")?.scrollIntoView({behavior:"smooth",block:"start"})}><Sparkles size={17}/>See product stories</button>
         </div><div className="public-trust-note"><ShieldCheck size={17}/><span>{c.proof}</span></div></div>
         <aside className="public-hero-visual" aria-label="TrustWeave connected private networks">{landingHero&&<img className="public-managed-hero-image" src={landingHero} alt=""/>}<div className="public-os-core"><Layers3 size={29}/><b>TrustWeave</b><small>Private Network OS</small></div><div className="public-orbit housing"><Building2/><span>Housing Society</span></div><div className="public-orbit community"><UsersRound/><span>Family Community</span></div><div className="public-orbit family"><HeartHandshake/><span>Family</span></div></aside>
       </section>
-      <section className="public-story-section" aria-label="TrustWeave product stories">
+      {storyKinds.length>0&&<section id="product-stories" className="public-story-section" aria-label="TrustWeave product stories">
        <div className="public-section-head"><span>See the product</span><h2>Different private networks. One coherent experience.</h2><p>Use real product visuals to explain each vertical quickly. The carousel is manual by design—no distracting auto-rotation.</p></div>
        <div className="public-story-carousel">
         <button className="public-story-arrow previous" aria-label="Previous story" onClick={previousStory}><ChevronLeft/></button>
         <article className="public-story-slide">
-         <div className="public-story-media">{storyUrl?<img src={storyUrl} alt=""/>:<div className="public-story-placeholder">{verticalIcon(storyKind)}<span>{getVerticalDefinition(storyKind).displayName}</span></div>}</div>
-         <div className="public-story-copy"><span className="warm-kicker">{story.eyebrow}</span><h3>{story.title}</h3><p>{story.body}</p><div className="card-actions"><button className="btn primary small" onClick={()=>void onExplore(storyKind,storyKind==="family"?"public":undefined)}><PlayCircle size={14}/> Try Playground</button>{storyKind==="housing-society"&&<button className="btn small" onClick={()=>setSection("housing")}>See journey <ArrowRight size={13}/></button>}{storyKind==="family-association"&&<button className="btn small" onClick={()=>setSection("community")}>See journey <ArrowRight size={13}/></button>}</div></div>
+         <div className="public-story-media">{storyUrl?<img src={storyUrl} alt=""/>:<div className="public-story-placeholder"><VerticalIcon kind={storyKind}/><span>{getVerticalDefinition(storyKind).displayName}</span></div>}</div>
+         <div className="public-story-copy"><span className="warm-kicker">{story.eyebrow}</span><h3>{story.title}</h3><p>{story.body}</p><div className="card-actions"><button className="btn primary small" onClick={()=>void onExplore(storyKind,storyKind==="family"?"public":undefined)}><PlayCircle size={14}/> Try Playground</button>{storyKind==="housing-society"&&<button className="btn small" onClick={()=>goSection("housing")}>See journey <ArrowRight size={13}/></button>}{storyKind==="family-association"&&<button className="btn small" onClick={()=>goSection("community")}>See journey <ArrowRight size={13}/></button>}</div></div>
         </article>
         <button className="public-story-arrow next" aria-label="Next story" onClick={nextStory}><ChevronRight/></button>
        </div>
-       <div className="public-story-dots">{STORY_KINDS.map((kind,index)=><button key={kind} className={storyIndex===index?"active":""} aria-label={`Show ${getVerticalDefinition(kind).displayName}`} onClick={()=>setStoryIndex(index)}/>)}</div>
-      </section>
+       <div className="public-story-dots">{storyKinds.map((kind,index)=><button key={kind} className={storyIndex===index?"active":""} aria-label={`Show ${getVerticalDefinition(kind).displayName}`} onClick={()=>setStoryIndex(index)}/>)}</div>
+      </section>}
       <section className="public-role-section"><div className="public-section-head"><span>{c.choose}</span><h2>Start with the outcome you care about</h2><p>TrustWeave reveals depth progressively. You do not need to understand the whole platform to get value from one network.</p></div><div className="public-role-grid">
-        <button onClick={()=>setSection("housing")}><span className="public-role-icon"><Building2/></span><div><h3>{c.housingTitle}</h3><p>{c.housingLead}</p><b>{c.how}<ArrowRight size={15}/></b></div></button>
-        <button onClick={()=>setSection("community")}><span className="public-role-icon"><UsersRound/></span><div><h3>{c.communityTitle}</h3><p>{c.communityLead}</p><b>{c.how}<ArrowRight size={15}/></b></div></button>
-        <button onClick={()=>setSection("member")}><span className="public-role-icon"><Home/></span><div><h3>{c.memberTitle}</h3><p>{c.memberLead}</p><b>{c.how}<ArrowRight size={15}/></b></div></button>
+        {releasedKinds.includes("housing-society")&&<button onClick={()=>goSection("housing")}><span className="public-role-icon"><Building2/></span><div><h3>{c.housingTitle}</h3><p>{c.housingLead}</p><b>{c.how}<ArrowRight size={15}/></b></div></button>}
+        {releasedKinds.includes("family-association")&&<button onClick={()=>goSection("community")}><span className="public-role-icon"><UsersRound/></span><div><h3>{c.communityTitle}</h3><p>{c.communityLead}</p><b>{c.how}<ArrowRight size={15}/></b></div></button>}
+        {releasedKinds.includes("family")&&<button onClick={()=>goSection("member")}><span className="public-role-icon"><Home/></span><div><h3>{c.memberTitle}</h3><p>{c.memberLead}</p><b>{c.how}<ArrowRight size={15}/></b></div></button>}
       </div></section>
-      <section className="public-product-gallery"><div className="public-section-head"><span>Explore network types</span><h2>Start from the network you already understand</h2><p>Every vertical has its own domain experience while reusing shared identity, activity, media and trust foundations.</p></div><div className="public-product-gallery-grid">{ACTIVE_VERTICALS.map(kind=>{const image=verticalImage(kind,"thumbnail")||verticalImage(kind,"banner");return <article key={kind}><button onClick={()=>void onExplore(kind,kind==="family"?"public":undefined)}>{image?<span className="public-product-image"><img src={image} alt=""/></span>:<span className="public-product-image fallback">{verticalIcon(kind)}</span>}<span className="public-product-info"><b>{getVerticalDefinition(kind).displayName}</b><small>Open read-only Playground</small><em><PlayCircle size={13}/> Explore</em></span></button></article>})}</div></section>
+      <section className="public-product-gallery"><div className="public-section-head"><span>Explore network types</span><h2>Start from the network you already understand</h2><p>Every vertical has its own domain experience while reusing shared identity, activity, media and trust foundations.</p></div><div className="public-product-gallery-grid">{releasedKinds.map(kind=>{const image=verticalImage(kind,"thumbnail")||verticalImage(kind,"banner");return <article key={kind}><button onClick={()=>void onExplore(kind,kind==="family"?"public":undefined)}>{image?<span className="public-product-image"><img src={image} alt=""/></span>:<span className="public-product-image fallback"><VerticalIcon kind={kind}/></span>}<span className="public-product-info"><b>{getVerticalDefinition(kind).displayName}</b><small>Open read-only Playground</small><em><PlayCircle size={13}/> Explore</em></span></button></article>})}</div></section>
     </>}
 
-    {section==="housing"&&<section className="public-detail-page" data-testid="qa-public-housing"><button className="public-back" onClick={()=>setSection("overview")}>← TrustWeave</button><div className="public-detail-hero"><span className="public-role-icon"><Building2/></span><div><span className="warm-kicker">Housing Society</span><h1>{c.housingTitle}</h1><p>{c.housingLead}</p><div className="public-detail-actions"><button className="btn primary" onClick={()=>void onExplore("housing-society")}><PlayCircle size={16}/>Explore realistic society Playground</button><button className="btn" onClick={()=>setSection("guide")}><BookOpen size={16}/>{c.productGuide}</button>{!signedIn&&{!signedIn&&<button className="btn ghost" onClick={onSignIn}>{c.signIn}<ArrowRight size={15}/></button>}}</div></div></div><div className="public-section-head compact"><span>{c.how}</span><h2>One operating story instead of eight disconnected tools</h2></div><Journey rows={housingFlow}/><div className="public-safe-note"><ShieldCheck/><div><b>Private by network</b><p>Resident identity, finance, complaints, visitors and private media stay scoped to the active society and role permissions. A Playground is read-only; a real society uses persisted domain APIs.</p></div></div></section>}
+    {section==="housing"&&<section className="public-detail-page" data-testid="qa-public-housing"><button className="public-back" onClick={()=>goSection("overview")}>← TrustWeave</button><div className="public-detail-hero"><span className="public-role-icon"><Building2/></span><div><span className="warm-kicker">Housing Society</span><h1>{c.housingTitle}</h1><p>{c.housingLead}</p><div className="public-detail-actions"><button className="btn primary" onClick={()=>void onExplore("housing-society")}><PlayCircle size={16}/>Explore realistic society Playground</button><button className="btn" onClick={()=>goSection("guide")}><BookOpen size={16}/>{c.productGuide}</button>{!signedIn&&<button className="btn ghost" onClick={onSignIn}>{c.signIn}<ArrowRight size={15}/></button>}</div></div></div><div className="public-section-head compact"><span>{c.how}</span><h2>One operating story instead of eight disconnected tools</h2></div><Journey rows={housingFlow}/><div className="public-safe-note"><ShieldCheck/><div><b>Private by network</b><p>Resident identity, finance, complaints, visitors and private media stay scoped to the active society and role permissions. A Playground is read-only; a real society uses persisted domain APIs.</p></div></div></section>}
 
-    {section==="community"&&<section className="public-detail-page" data-testid="qa-public-community"><button className="public-back" onClick={()=>setSection("overview")}>← TrustWeave</button><div className="public-detail-hero"><span className="public-role-icon"><UsersRound/></span><div><span className="warm-kicker">Family Community / Association</span><h1>{c.communityTitle}</h1><p>{c.communityLead}</p><div className="public-detail-actions"><button className="btn primary" onClick={()=>void onExplore("family-association")}><PlayCircle size={16}/>Explore realistic community Playground</button><button className="btn" onClick={()=>setSection("guide")}><BookOpen size={16}/>{c.productGuide}</button><button className="btn ghost" onClick={onSignIn}>{c.signIn}<ArrowRight size={15}/></button></div></div></div><div className="public-section-head compact"><span>{c.how}</span><h2>Family membership, community life and institutional history stay connected</h2></div><Journey rows={communityFlow}/><div className="public-safe-note"><ShieldCheck/><div><b>Family-centric, not a flat member list</b><p>The family can be the annual membership unit while representative, spouse, children and committee members remain distinct people with their own profile and privacy context.</p></div></div></section>}
+    {section==="community"&&<section className="public-detail-page" data-testid="qa-public-community"><button className="public-back" onClick={()=>goSection("overview")}>← TrustWeave</button><div className="public-detail-hero"><span className="public-role-icon"><UsersRound/></span><div><span className="warm-kicker">Family Community / Association</span><h1>{c.communityTitle}</h1><p>{c.communityLead}</p><div className="public-detail-actions"><button className="btn primary" onClick={()=>void onExplore("family-association")}><PlayCircle size={16}/>Explore realistic community Playground</button><button className="btn" onClick={()=>goSection("guide")}><BookOpen size={16}/>{c.productGuide}</button>{!signedIn&&<button className="btn ghost" onClick={onSignIn}>{c.signIn}<ArrowRight size={15}/></button>}</div></div></div><div className="public-section-head compact"><span>{c.how}</span><h2>Family membership, community life and institutional history stay connected</h2></div><Journey rows={communityFlow}/><div className="public-safe-note"><ShieldCheck/><div><b>Family-centric, not a flat member list</b><p>The family can be the annual membership unit while representative, spouse, children and committee members remain distinct people with their own profile and privacy context.</p></div></div></section>}
 
-    {section==="member"&&<section className="public-detail-page" data-testid="qa-public-member"><button className="public-back" onClick={()=>setSection("overview")}>← TrustWeave</button><div className="public-detail-hero"><span className="public-role-icon"><Home/></span><div><span className="warm-kicker">Everyday member experience</span><h1>{c.memberTitle}</h1><p>{c.memberLead}</p><div className="public-detail-actions"><button className="btn primary" onClick={()=>void onExplore("family","public")}><PlayCircle size={16}/>{c.tryPlayground}</button><button className="btn" onClick={()=>setSection("guide")}><BookOpen size={16}/>{c.productGuide}</button></div></div></div><div className="public-member-grid">{[["Today","See current notices, upcoming events, dues, visitors, requests and activity instead of searching old chats."],["My context","Open your home, family, profile and the people immediately relevant to you."],["Participate","RSVP, comment, vote, pay, report an issue or contribute without being exposed to admin complexity."],["Return exactly","Notifications take you back to the exact complaint, post, fund or election rather than a generic dashboard."],["Stay private","Your access follows the network you are in, your role and the visibility of the underlying record."]].map(([title,body])=><article key={title}><CheckCircle2/><div><b>{title}</b><p>{body}</p></div></article>)}</div></section>}
+    {section==="member"&&<section className="public-detail-page" data-testid="qa-public-member"><button className="public-back" onClick={()=>goSection("overview")}>← TrustWeave</button><div className="public-detail-hero"><span className="public-role-icon"><Home/></span><div><span className="warm-kicker">Everyday member experience</span><h1>{c.memberTitle}</h1><p>{c.memberLead}</p><div className="public-detail-actions"><button className="btn primary" onClick={()=>void onExplore("family","public")}><PlayCircle size={16}/>{c.tryPlayground}</button><button className="btn" onClick={()=>goSection("guide")}><BookOpen size={16}/>{c.productGuide}</button></div></div></div><div className="public-member-grid">{[["Today","See current notices, upcoming events, dues, visitors, requests and activity instead of searching old chats."],["My context","Open your home, family, profile and the people immediately relevant to you."],["Participate","RSVP, comment, vote, pay, report an issue or contribute without being exposed to admin complexity."],["Return exactly","Notifications take you back to the exact complaint, post, fund or election rather than a generic dashboard."],["Stay private","Your access follows the network you are in, your role and the visibility of the underlying record."]].map(([title,body])=><article key={title}><CheckCircle2/><div><b>{title}</b><p>{body}</p></div></article>)}</div></section>}
 
-    {section==="guide"&&<section className="public-guide-page" data-testid="qa-public-product-guide"><button className="public-back" onClick={()=>setSection("overview")}>← TrustWeave</button><div className="public-guide-head"><div><span className="warm-kicker"><BookOpen size={13}/>{c.productGuide}</span><h1>Understand TrustWeave at the depth you need</h1><p>This is a curated in-product knowledge center. It explains released product behavior without exposing founder-private strategy, confidential architecture, anti-abuse internals or unreleased IP material.</p></div><div className="public-guide-levels"><button className={guideLevel==="simple"?"active":""} onClick={()=>setGuideLevel("simple")}>{c.simple}<small>Members & residents</small></button><button className={guideLevel==="detailed"?"active":""} onClick={()=>setGuideLevel("detailed")}>{c.detailed}<small>Chairmen & Presidents</small></button><button className={guideLevel==="deep"?"active":""} onClick={()=>setGuideLevel("deep")}>{c.deep}<small>Product & technical</small></button></div></div><div className="public-guide-grid">{guideCards.map(([title,body],index)=><article key={title}><span>{index+1}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div>{visualStories.length>0&&<section className="public-visual-story-library"><div className="public-section-head compact"><span>Visual product stories</span><h2>Shareable product explanations</h2><p>These managed story images are ideal for WhatsApp groups, committees, family groups and product walkthroughs.</p></div><div className="public-visual-story-rail">{visualStories.map(item=><figure key={`${item.kind}-${item.index}`}><img src={item.url!} alt=""/><figcaption><b>{getVerticalDefinition(item.kind).displayName}</b><span>Story {item.index}</span></figcaption></figure>)}</div></section>}<section className="public-guide-next"><div><span className="warm-kicker">Next</span><h2>Explore before you commit</h2><p>Open a read-only Playground for a realistic vertical, then sign in when you are ready to create or join a persisted network.</p></div><div><button className="btn" onClick={()=>void onExplore("housing-society")}><Building2 size={16}/>Housing Society</button><button className="btn" onClick={()=>void onExplore("family-association")}><UsersRound size={16}/>Family Community</button>{signedIn?<button className="btn primary" onClick={onBack}><ChevronLeft size={16}/>Back to network</button>:<button className="btn primary" onClick={onSignIn}>{c.signIn}<ArrowRight size={16}/></button>}</div></section></section>}
+    {section==="guide"&&<section className="public-guide-page" data-testid="qa-public-product-guide"><button className="public-back" onClick={()=>goSection("overview")}>← TrustWeave</button><div className="public-guide-head"><div><span className="warm-kicker"><BookOpen size={13}/>{c.productGuide}</span><h1>Understand TrustWeave at the depth you need</h1><p>This is a curated in-product knowledge center. It explains released product behavior without exposing founder-private strategy, confidential architecture, anti-abuse internals or unreleased IP material.</p></div><div className="public-guide-levels"><button className={guideLevel==="simple"?"active":""} onClick={()=>setGuideLevel("simple")}>{c.simple}<small>Members & residents</small></button><button className={guideLevel==="detailed"?"active":""} onClick={()=>setGuideLevel("detailed")}>{c.detailed}<small>Chairmen & Presidents</small></button><button className={guideLevel==="deep"?"active":""} onClick={()=>setGuideLevel("deep")}>{c.deep}<small>Product & technical</small></button></div></div><div className="public-guide-grid">{guideCards.map(([title,body],index)=><article key={title}><span>{index+1}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div>{visualStories.length>0&&<section className="public-visual-story-library"><div className="public-section-head compact"><span>Visual product stories</span><h2>Shareable product explanations</h2><p>These managed story images are ideal for WhatsApp groups, committees, family groups and product walkthroughs.</p></div><div className="public-visual-story-rail">{visualStories.map(item=><figure key={`${item.kind}-${item.index}`}><img src={item.url!} alt=""/><figcaption><b>{getVerticalDefinition(item.kind).displayName}</b><span>Story {item.index}</span></figcaption></figure>)}</div></section>}<section className="public-guide-next"><div><span className="warm-kicker">Next</span><h2>Explore before you commit</h2><p>Open a read-only Playground for a realistic vertical, then sign in when you are ready to create or join a persisted network.</p></div><div><button className="btn" onClick={()=>void onExplore("housing-society")}><Building2 size={16}/>Housing Society</button><button className="btn" onClick={()=>void onExplore("family-association")}><UsersRound size={16}/>Family Community</button>{signedIn?<button className="btn primary" onClick={onBack}><ChevronLeft size={16}/>Back to network</button>:<button className="btn primary" onClick={onSignIn}>{c.signIn}<ArrowRight size={16}/></button>}</div></section></section>}
     <footer className="public-artifact-footer"><div><BookOpen size={18}/><span><b>Product journey & documentation</b><small>Explore the current profile, evolution, capabilities and Founder operating model.</small></span></div><a className="btn" data-testid="qa-product-artifacts" href="/artifacts">Open artifact library <ArrowRight size={15}/></a></footer>
-  </main>;
-}
+  </main>\n  );\n}\n

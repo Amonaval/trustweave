@@ -7,7 +7,7 @@ const find=(viewId:string)=>[...base.primaryNavigation,...base.mobileMoreNavigat
 const relabel=(surface:VerticalSurfaceDescriptor,en:string,hi:string,mr:string):VerticalSurfaceDescriptor=>({...surface,label:label(en,hi,mr)});
 const meSurface:VerticalSurfaceDescriptor={viewId:"me",featureKey:"family-association.core.me",iconToken:"user",label:label("Me & My Family","मैं और मेरा परिवार","मी आणि माझे कुटुंब")};
 const fundsSurface:VerticalSurfaceDescriptor={viewId:"funds",iconToken:"settings",label:label("Funds & Collections","फंड और संग्रह","निधी आणि संकलन")};
-const electionsSurface:VerticalSurfaceDescriptor={viewId:"elections",iconToken:"settings",label:label("Elections & Voting","चुनाव और मतदान","निवडणूक आणि मतदान")};
+const electionsSurface:VerticalSurfaceDescriptor={viewId:"elections",iconToken:"settings",label:label("Member Decisions","सदस्य निर्णय","सदस्य निर्णय")};
 const mediaSurface:VerticalSurfaceDescriptor={viewId:"media",iconToken:"settings",label:label("Media & Storage","मीडिया और स्टोरेज","मीडिया आणि स्टोरेज"),adminOnly:true};
 export const FAMILY_ASSOCIATION_APP_COMPOSITION={
  ...base,

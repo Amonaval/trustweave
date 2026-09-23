@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import {
   Search,
@@ -118,7 +118,7 @@ import { validateImportRows, validateNetwork } from "../lib/validation";
 import {createAlumniNetwork,fetchClaimableAlumniProfiles,claimAlumniProfile,acceptAlumniInvitation,type ClaimableAlumniProfile} from "../verticals/alumni/data/remote";
 import {createTemplateNetwork,joinProductizedNetworkByCode} from "../capabilities/template-product/remote";
 import {acceptNetworkInvitation} from "../capabilities/participation/remote";
-import {isProductizedVerticalKind,type ProductizedVerticalKind} from "../core/verticals/kinds";
+import {isNetworkVerticalKind,isProductizedVerticalKind,type ProductizedVerticalKind} from "../core/verticals/kinds";
 import {PRODUCTIZED_RUNTIME_META} from "../templates/productized/runtime-meta";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "../lib/i18n";
@@ -180,6 +180,7 @@ export default function NetworkApp() {
     [editingMember, setEditingMember] = useState<Member | undefined>();
   const [familyCover,setFamilyCover]=useState<NetworkMediaAsset|null>(null),[familyCoverBusy,setFamilyCoverBusy]=useState(false);
   const [routeRevision,setRouteRevision]=useState(0);
+  const publicPlaygroundHandled=useRef(false);
   const [verifiedRoute,setVerifiedRoute]=useState("");
   const [routeMembership,setRouteMembership]=useState<NeutralNetworkMembership|null>(null);
   const [routeError,setRouteError]=useState("");
@@ -1141,6 +1142,10 @@ export default function NetworkApp() {
     try{
       const showcase=await getShowcaseVerticalSetting(kind);
       if(!showcase.playground_enabled){notify(tr("ShowcasePlaygroundNotAvailableTxt"));return false;}
+      if(!auth&&typeof window!=="undefined"){
+        const href=`/?playground=${encodeURIComponent(kind)}`;
+        if(`${window.location.pathname}${window.location.search}`!==href)window.history.pushState({},"",href);
+      }
       setShowMyNetworks(false);setSetupNeeded(false);setDemoPreview(false);setProductizedDemo(null);setAlumniDemo(false);
       if(kind==="family"){if(familyVariant==="public")enterPublicPlayground();else enterSetupPlayground();return true;}
       if(kind==="alumni"){const alumni=getVerticalDefinition("alumni");setAlumniDemo(true);setProductizedDemo(null);setNetwork({id:"alumni-playground",name:"Sample Alumni Network",description:tr("ReadOnlySampleAlumniCommunityTxt"),entity_label:alumni.legacyNetworkLabels.entityLabel,entity_label_plural:alumni.legacyNetworkLabels.entityLabelPlural,level_label:alumni.legacyNetworkLabels.levelLabel,level_label_plural:alumni.legacyNetworkLabels.levelLabelPlural,parent_label:alumni.legacyNetworkLabels.parentLabel,child_label:alumni.legacyNetworkLabels.childLabel,peer_label:alumni.legacyNetworkLabels.peerLabel,network_template:"alumni",vertical_kind:"alumni",membership_role:"member"});setMembers([]);setRelationships([]);setSubmissions([]);return true;}
@@ -1148,6 +1153,14 @@ export default function NetworkApp() {
       return false;
     }finally{setShellBusy("")}
   };
+  useEffect(()=>{
+    if(!ready||auth?.id||publicPlaygroundHandled.current||typeof window==="undefined")return;
+    const raw=new URLSearchParams(window.location.search).get("playground");
+    if(!raw)return;
+    publicPlaygroundHandled.current=true;
+    if(!isNetworkVerticalKind(raw)){window.history.replaceState({},"","/");return;}
+    void openNetworkPlayground(raw,raw==="family"?"public":"setup");
+  },[ready,auth?.id,openNetworkPlayground]);
   const openAnonymousSignIn=()=>{
     setDemoPreview(false);
     setDemoViewerId(undefined);

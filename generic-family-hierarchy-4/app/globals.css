@@ -1819,7 +1819,7 @@ html[data-theme="dark"] .onboarding-story.has-platform-hero{background-blend-mod
 
 .public-brand-logo{max-width:138px;max-height:32px;object-fit:contain}.public-brand>span img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
 .public-hero.has-managed-visual{background-size:cover;background-position:center;overflow:hidden}.public-hero.has-managed-visual .public-hero-copy{position:relative;z-index:2}
-.public-hero-visual{overflow:hidden}.public-managed-hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.16;filter:saturate(.8)}.public-hero-visual>*:not(.public-managed-hero-image){position:relative;z-index:1}
+.public-hero-visual{overflow:hidden}.public-managed-hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.16;filter:saturate(.8)}.public-hero-visual>*:not(.public-managed-hero-image){z-index:1}
 
 .public-story-section,.public-product-gallery{max-width:1240px;margin:34px auto 0;padding-inline:clamp(14px,3vw,28px)}
 .public-story-carousel{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center}
