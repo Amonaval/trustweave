@@ -51,7 +51,7 @@ begin
     raise exception 'Only the creator or a network administrator can delete this item.' using errcode='42501';
   end if;
   delete from public.network_activity_comments where activity_id=p_activity_id and network_id=nid;
-  delete from public.network_activity_likes where activity_id=p_activity_id and network_id=nid;
+  delete from public.network_activity_reactions where activity_id=p_activity_id and network_id=nid;
   delete from public.network_activity_rsvps where activity_id=p_activity_id and network_id=nid;
   delete from public.network_activities where id=p_activity_id and network_id=nid;
   insert into public.audit_log(network_id,actor_id,action,details)
