@@ -121,7 +121,8 @@ export async function uploadMediaAsset(file:File,kind:MediaKind,opts:{entityType
     let result=await bucket.upload(path,main.file,{cacheControl:'86400',upsert:false,contentType:'image/webp'});if(result.error)throw result.error;mainUploaded=true;
     result=await bucket.upload(thumbnailPath,thumb.file,{cacheControl:'86400',upsert:false,contentType:'image/webp'});if(result.error)throw result.error;thumbUploaded=true;
     const assetId=await registerAsset({bucket:preset.bucket,path,thumbnailPath,kind,entityType:opts.entityType,entityId:opts.entityId,bytes:main.file.size,thumbnailBytes:thumb.file.size,width:main.width,height:main.height});
-    return {assetId,bucket:preset.bucket,path,thumbnailPath,kind,entityType:opts.entityType,entityId:opts.entityId,mimeType:'image/webp',bytes:main.file.size,thumbnailBytes:thumb.file.size,width:main.width,height:main.height};
+    const [url,thumbnailUrl]=await Promise.all([getSignedPhotoUrl(path,preset.bucket),getSignedPhotoUrl(thumbnailPath,preset.bucket)]);
+    return {assetId,bucket:preset.bucket,path,thumbnailPath,kind,entityType:opts.entityType,entityId:opts.entityId,mimeType:'image/webp',bytes:main.file.size,thumbnailBytes:thumb.file.size,width:main.width,height:main.height,url,thumbnailUrl};
   }catch(error){
     const remove:string[]=[];if(mainUploaded)remove.push(path);if(thumbUploaded)remove.push(thumbnailPath);if(remove.length){try{await bucket.remove(remove)}catch{}}throw error;
   }

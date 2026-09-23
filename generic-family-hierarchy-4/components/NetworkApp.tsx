@@ -125,12 +125,13 @@ import { useLanguage } from "../lib/i18n";
 import {defaultFeatureMap, EffectiveFeatureMap, ExperienceLevel, FeatureKey, isFeatureAvailable, EXPERIENCE_LABELS, EXPERIENCE_RANK, FEATURE_BY_KEY} from "../lib/features";
 import {fetchEntityMediaAssets,removeMediaAsset,uploadMediaAsset,type NetworkMediaAsset} from "../lib/storage";
 import {usePlatformDesign} from "./PlatformDesignProvider";
+import MediaManagementPanel from "./shared/MediaManagementPanel";
 const AlumniNetworkApp = dynamic(() => import("./AlumniNetworkApp"), {ssr:false});
 const TemplateNetworkApp = dynamic(() => import("./TemplateNetworkApp"), {ssr:false});
 const MapView = dynamic(() => import("./MapView"), { ssr: false });
 const ImportModal = dynamic(() => import("./ImportModal"), { ssr: false });
 const repository = getNetworkRepository();
-type View = "home" | "intelligence" | "tree" | "directory" | "map" | "community" | "umbrella" | "timeline" | "participation" | "admin" | "founder" | "guide";
+type View = "home" | "intelligence" | "tree" | "directory" | "map" | "community" | "umbrella" | "timeline" | "participation" | "media" | "admin" | "founder" | "guide";
 type Visibility = "public" | "member" | "admin";
 type FamilyAdvancedSection = "health" | "privacy" | "governance" | "data";
 const esc = (v: string) => `"${String(v ?? "").replaceAll('"', '""')}"`;
@@ -305,7 +306,7 @@ export default function NetworkApp() {
       try{setFeatureAnnouncements(await fetchMyFeatureAnnouncements())}catch{}
     }catch(e:any){notify(e.message||"Could not refresh platform feature availability.")}
   };
-  const changeFamilyCover=async(file:File)=>{if(!isSupabaseConfigured||demoPreview||activeVerticalKind!=="family")return;setFamilyCoverBusy(true);let next:NetworkMediaAsset|undefined;try{next=await uploadMediaAsset(file,"other",{entityType:"network_branding",entityId:"cover"});const previous=familyCover;setFamilyCover(next);notify("Family cover updated.");if(previous&&previous.assetId!==next.assetId)void removeMediaAsset(previous).catch(()=>{})}catch(e:any){if(next)void removeMediaAsset(next).catch(()=>{});notify(e.message||"Could not update family cover.")}finally{setFamilyCoverBusy(false)}};
+  const changeFamilyCover=async(file:File)=>{if(!isSupabaseConfigured||demoPreview||activeVerticalKind!=="family")return;setFamilyCoverBusy(true);let next:NetworkMediaAsset|undefined;try{next=await uploadMediaAsset(file,"other",{entityType:"network_branding",entityId:"cover"});const previous=familyCover;setFamilyCover(next);notify("Family cover updated. Opening Media & Storage.");if(previous&&previous.assetId!==next.assetId)await removeMediaAsset(previous).catch(()=>{});setView("media")}catch(e:any){if(next)void removeMediaAsset(next).catch(()=>{});notify(e.message||"Could not update family cover.")}finally{setFamilyCoverBusy(false)}};
   const hydrate = async (u: any) => {
     setAuth(u);
     if(repository.mode === "shared" && u){try{setTrustedIdentity(await buildTrustedPersonIdentity(u))}catch{setTrustedIdentity(null)}}else setTrustedIdentity(null);
@@ -1312,6 +1313,7 @@ export default function NetworkApp() {
     if(token==="places")return <MapPinned size={size}/>;
     if(token==="community")return <UsersRound size={size}/>;
     if(token==="contribute")return <GitBranch size={size}/>;
+    if(token==="media")return <ImagePlus size={size}/>;
     if(token==="admin")return <Settings2 size={size}/>;
     return <ArrowRight size={size}/>;
   };
@@ -1419,6 +1421,7 @@ export default function NetworkApp() {
           {canAdmin && hasFeature("admin.center") && <div className="admin-nav-separator">
             <div className="sidebar-section-label">{tr("FamilyManagementTxt")}</div>
             <button data-testid="qa-nav-admin" className={`nav-btn admin-nav ${view === "admin" ? "active" : ""}`} onClick={() => setView("admin")}><ShieldCheck size={17}/> {tr("ManageFamilyTxt")}</button>
+            <button data-testid="qa-nav-media" className={`nav-btn admin-nav ${view === "media" ? "active" : ""}`} onClick={() => setView("media")}><ImagePlus size={17}/> {tr("E8MediaStorageTxt")}</button>
           </div>}
           {isPlatformOwner && isSupabaseConfigured && <div className="admin-nav-separator founder-nav-area">
             <div className="sidebar-section-label">{tr("PlatformTxt")}</div>
@@ -1770,6 +1773,7 @@ export default function NetworkApp() {
               onNotify={notify}
             />
           )}
+          {view === "media" && canAdmin && !demoPreview && <MediaManagementPanel onNotify={notify}/>}
           {view === "founder" && isPlatformOwner && isSupabaseConfigured && <><FeatureGuide entry={GUIDE_ENTRIES.find(e=>e.key===appComposition.guide.launchControlGuideKey)} onOpenGuide={openGuide} onOpenFeature={openGuideFeature}/><FounderLaunchConsole onChanged={refreshFeatureState} onNotify={notify}/></>}
           {view === "admin" && canAdmin && hasFeature("admin.center") && (
             <section>

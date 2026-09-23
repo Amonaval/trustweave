@@ -157,7 +157,7 @@ Founder direction: continue visible, transformational experience work and make t
 
 This bounded slice:
 - upgrades the anonymous/signed-in Product Front Door rather than creating a separate marketing site;
-- adds a restrained manual Product Story carousel and an all-vertical visual gallery;
+- adds a restrained manual Product Story carousel and a launch-controlled gallery that shows only released Playgrounds;
 - reserves up to four managed story/infographic images per vertical so earlier Family/MPF/Residential share visuals have a durable in-product home;
 - keeps carousel motion manual-first with no auto-rotation;
 - makes **Explore & Guide** and **Launch Control** platform-level workspaces, independent of whichever network is currently active;
@@ -173,3 +173,23 @@ Activation boundary:
 - exact previously-generated Library/Project images are not regenerated or silently substituted;
 - upload those originals through Design Studio after migration 128 is intentionally applied;
 - no deployment, workflow, test suite or external paid resource was invoked.
+
+
+## 2026-09-23 — VIS3 repair & shared media core
+
+Founder review found that the first VIS3 pass exposed unreleased verticals, duplicated hero journeys, regressed absolute hero-orbit positioning, left public navigation without URL context, and kept Media & Storage too vertical-specific.
+
+Repair closure:
+- public discovery now reads existing Showcase / Launch Control settings and exposes only `playground_enabled` verticals;
+- every public Playground CTA passes its exact vertical kind; anonymous exploration uses `?explore=` / `?playground=` URLs;
+- the public hero is platform-level again; Housing / Family Community role journeys remain in the outcome section;
+- the managed-hero z-index rule no longer changes `.public-orbit` elements from absolute to relative positioning;
+- Family Community uses member-decision / committee-selection language while Housing Society retains its separate Maharashtra-specific guidance;
+- Media & Storage is a shared admin capability for Family, Alumni and every productized vertical;
+- network cover uploads return signed URLs immediately and open the network Media & Storage inventory after success;
+- Design Studio lists directly uploaded assets for the active Platform / Vertical / Playground scope;
+- migration `129_vis3_media_core_repair.sql` restores the stronger migration-116 tenant-media guard and safely supports Platform Design Studio uploads when Storage metadata size is not yet present in the BEFORE trigger.
+
+Activation boundary:
+- migration 129 is committed source-only and was not applied;
+- no deployment, workflow, test suite, storage upload, or external paid resource was invoked.

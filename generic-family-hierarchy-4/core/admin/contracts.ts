@@ -6,6 +6,7 @@ const base:readonly NetworkAdminModule[]=[
  {id:"members",labelToken:"XP4MembersRolesTxt",descriptionToken:"XP4MembersRolesDescTxt"},
  {id:"invitations",labelToken:"XP4InvitationsClaimsTxt",descriptionToken:"XP4InvitationsClaimsDescTxt"},
  {id:"import",labelToken:"XP4ImportTxt",descriptionToken:"XP4ImportDescTxt"},
+ {id:"media",labelToken:"E8MediaStorageTxt",descriptionToken:"E8MediaStorageDescTxt"},
  {id:"privacy",labelToken:"XP4PrivacyTxt",descriptionToken:"XP4PrivacyDescTxt"},
  {id:"corrections",labelToken:"XP4CorrectionsTxt",descriptionToken:"XP4CorrectionsDescTxt"},
  {id:"export",labelToken:"XP4ExportTxt",descriptionToken:"XP4ExportDescTxt"},

@@ -13,7 +13,7 @@ const maintenanceSurface:VerticalSurfaceDescriptor={viewId:"maintenance",feature
 const governanceSurface:VerticalSurfaceDescriptor={viewId:"governance",featureKey:"housing-society.governance.meetings",iconToken:"book-open",label:label("Committee & Meetings","समिति व बैठकें","समिती व बैठका")};
 const securitySurface:VerticalSurfaceDescriptor={viewId:"security",featureKey:"housing-society.security.visitors",iconToken:"settings",label:label("Visitors & Security","आगंतुक व सुरक्षा","पाहुणे व सुरक्षा")};
 const electionsSurface:VerticalSurfaceDescriptor={viewId:"elections",iconToken:"settings",label:label("Elections & Voting","चुनाव और मतदान","निवडणूक आणि मतदान")};
-const mediaSurface:VerticalSurfaceDescriptor={viewId:"media",iconToken:"settings",label:label("Media & Storage","मीडिया और स्टोरेज","मीडिया आणि स्टोरेज"),adminOnly:true};
+const mediaSurface=relabel(find("media"),"Media & Storage","मीडिया और स्टोरेज","मीडिया आणि स्टोरेज");
 export const HOUSING_SOCIETY_APP_COMPOSITION={
  ...base,
  primaryNavigation:[
