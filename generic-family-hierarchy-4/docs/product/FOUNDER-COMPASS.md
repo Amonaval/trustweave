@@ -6,6 +6,12 @@ A feature is strategically valuable only when it helps answer a painful network 
 
 # Founder Compass
 
+## 2026-09-23 shared Community Object doctrine
+
+Events, posts, memories, milestones and groups are cross-vertical primitives. Their detail, edit/delete lifecycle, comments, RSVP participation, membership inspection and deep-link sharing must be implemented once in the shared Network OS/community layer. Vertical code may provide vocabulary, policy and domain-specific composition, but must not fork generic community object behavior.
+
+MPF and Residential are the first validation consumers of LIFE2. A fix proven there should automatically remain available to Alumni, Association, Professional, Franchise, Organization and other productized verticals that opt into the shared Community surface.
+
 ## 2026-09-23 visual adoption experiment — MPF Visual Life
 
 FCA-VIS1 tests whether governed community data becomes something members voluntarily browse when Home feels alive rather than administrative.

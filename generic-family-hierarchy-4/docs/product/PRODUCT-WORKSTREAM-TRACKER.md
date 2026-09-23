@@ -26,8 +26,8 @@ For every product, vertical or architecture area:
 | Generic X→Y Transformation Engine | Strong parallel thesis; no independent implementation | None now | PARKED | Re-select only if NAA-L1 proves a reusable boundary or a non-TrustWeave buyer/use case appears |
 | Pattern Repair / smart bulk fixes | Product idea defined | None now | PARKED | Real files show repetitive repair dominates remaining effort |
 | Transformation Recipe / drift detection | Product idea defined | None now | PARKED | Same source format is imported repeatedly and remapping becomes real pain |
-| **Family Community / Association** | Field-feedback blockers substantially closed; editable media foundation exists; MPF Home still needed stronger voluntary-browsing appeal | **FCA-VIS1 — MPF Visual Life Home:** make Home photo-first, people-first and celebration/event/story-led using existing governed media/profile data, with intentional placeholders and no new backend dependency | **ACTIVE / BOUNDED** | Stop after live visual review with a small set of representative cover/member/event/memory images; continue only if browse appeal materially improves |
-| Residential / Housing Society | Existing operational vertical; founder usage exposed mobile-home, shared navigation/theme and election-understanding blockers | Fix only the observed cross-cutting/pilot blockers inside FCA-L1 closure | PENDING / SHARED FIXES ONLY | Re-select Residential broadly only for a new concrete pilot blocker or repeated user need |
+| **Family Community / Association** | MPF Visual Life Home source landed; next gap is object depth rather than more decorative breadth | Consume **LIFE2 shared Community Objects** for real event/post/memory/group detail, lifecycle and sharing | **ACTIVE CONSUMER / BOUNDED** | Validate the shared object experience in MPF after migration 126 is intentionally applied; do not fork MPF-specific lifecycle code |
+| Residential / Housing Society | Operational vertical with the same Community engine as MPF | Consume **LIFE2 shared Community Objects** for society events/posts/groups; no duplicate Residential implementation | **ACTIVE CONSUMER / SHARED** | Validate through the same shared detail/lifecycle contract; Residential-only work remains limited to domain-specific operations |
 | School vertical | Architecture/readiness blueprint exists; implementation intentionally absent | None | PARKED | Explicit product/commercial priority with real user/design partner |
 | Other new verticals / org use cases | Ideas/foundation exist | None | PARKED | Evidence-backed buyer/problem outranks current work |
 | Governed Institutional Intelligence / V2 | Initial deterministic intelligence shape exists | None | PARKED | Trustworthy real activated context + repeated institutional questions |
@@ -35,6 +35,7 @@ For every product, vertical or architecture area:
 | Architecture — code split / lazy loading | Meaningful D7 work already completed | Only measured bottlenecks | PENDING | Bundle/performance evidence crosses agreed threshold |
 | Architecture — shared components / CSS / cleanup | Open convergence opportunities exist | Opportunistic only | PENDING | Repeated maintenance cost or touched-area refactor creates clear leverage |
 | Architecture — database/D12 recovery | Review-closed baseline exists | None | PARKED | Concrete recovery/bootstrap/product reason |
+| **Shared Community Objects** | `network_activities` / `network_groups` already power productized verticals, but objects previously ended at create/display/join | **LIFE2:** shared detail drawer, creator/admin edit-delete, comments, RSVP names, group members/details, explicit join/leave, real deep-link sharing | **ACTIVE / BOUNDED** | Stop after MPF + Residential prove the same implementation; extend only through shared contracts, never per vertical |
 | Connected reliability / QA | Preserved unresolved gates exist | Run only when required by release/change risk | GATED | Alpha/release candidate or critical path changed |
 | Autonomous-company runtime | C1–C10 proof completed | None | PARKED | A concrete company-operating problem justifies more automation |
 | PDF/OCR/connectors/generic AI ingestion | Opportunity inventory only | None | PARKED | Real customer input cannot be solved with supported tabular files |
@@ -109,3 +110,19 @@ Implemented source direction:
 - no new backend, image service, external API, paid dependency or Residential redesign.
 
 Stop after live review with representative MPF content. Do not automatically expand the visual redesign across the product.
+
+
+## 2026-09-23 — LIFE2 shared Community Object depth
+
+Founder direction: do not solve event/post/group depth independently in MPF, Residential, Alumni or future verticals. All productized verticals already reuse the same generic activity/group engine, so lifecycle must live once in the shared layer.
+
+Source work includes migration `126_community_object_depth.sql` plus common UI/routing:
+- creator/admin edit + delete for activities and posts;
+- group view, description, members, join/leave, admin edit/delete;
+- proper attendee detail for events;
+- proper comment surface instead of browser prompts;
+- share URLs that deep-link to the exact authorized object;
+- image lightbox and shared detail drawer;
+- MPF and Residential Home event entry points route to the same shared detail experience.
+
+Migration 126 is **committed source only and not applied to any Supabase project**. Runtime edit/delete/group-member features require an explicit later environment decision.
