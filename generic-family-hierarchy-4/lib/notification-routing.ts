@@ -6,7 +6,7 @@ export type NotificationDeepLink={networkId?:string;surface?:string;itemId?:stri
 export function buildNotificationDeepLink(input:NotificationDeepLink){
  if(input.networkId){
   try{
-   if(input.itemId)return networkObjectHref(input.networkId,input.surface||"home",input.objectType||"activity",input.itemId);
+   if(input.itemId&&input.objectType)return networkObjectHref(input.networkId,input.surface||"home",input.objectType,input.itemId);
    return networkSurfaceHref(input.networkId,input.surface||"home");
   }catch{/* Historical/non-UUID demo identifiers retain the legacy link. */}
  }
