@@ -105,7 +105,12 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false
   }),[showcaseSettings]);
   const storyKinds=useMemo(()=>STORY_KINDS.filter(kind=>releasedKinds.includes(kind)),[releasedKinds]);
   const recommendedPlayground=releasedKinds.includes("family")?"family":releasedKinds[0];
-  const goSection=(next:ExploreKey)=>{
+  const sectionAvailable=(next:ExploreKey)=>next==="overview"||next==="guide"
+    ||next==="housing"&&releasedKinds.includes("housing-society")
+    ||next==="community"&&releasedKinds.includes("family-association")
+    ||next==="member"&&releasedKinds.includes("family");
+  const goSection=(requested:ExploreKey)=>{
+    const next=sectionAvailable(requested)?requested:"overview";
     setSection(next);
     if(!signedIn&&typeof window!=="undefined"){
       const href=next==="overview"?"/":`/?explore=${encodeURIComponent(next)}`;
@@ -116,11 +121,13 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false
     if(signedIn||typeof window==="undefined")return;
     const sync=()=>{
       const raw=new URLSearchParams(window.location.search).get("explore");
-      const next:ExploreKey=raw==="housing"||raw==="community"||raw==="member"||raw==="guide"?raw:"overview";
+      const requested:ExploreKey=raw==="housing"||raw==="community"||raw==="member"||raw==="guide"?raw:"overview";
+      const next=sectionAvailable(requested)?requested:"overview";
       setSection(next);
+      if(next!==requested)window.history.replaceState({},"","/");
     };
     sync();window.addEventListener("popstate",sync);return()=>window.removeEventListener("popstate",sync);
-  },[signedIn]);
+  },[signedIn,releasedKinds]);
   const guideCards=useMemo(()=>{
     if(guideLevel==="simple")return[
       [c.startHere,"TrustWeave is a private operating system for the networks you already belong to: family, community and residential life. Each network keeps its own membership and privacy boundary."],
@@ -154,7 +161,8 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false
   const previousStory=()=>setStoryIndex(value=>(value-1+Math.max(1,storyKinds.length))%Math.max(1,storyKinds.length));
   const nextStory=()=>setStoryIndex(value=>(value+1)%Math.max(1,storyKinds.length));
 
-  return (\n  <main className="public-discovery" data-testid="qa-public-discovery">
+  return (
+  <main className="public-discovery" data-testid="qa-public-discovery">
     <header className="public-discovery-topbar">
       <button className="public-brand" onClick={()=>goSection("overview")}>{brandLogo?<img className="public-brand-logo" src={brandLogo} alt="TrustWeave"/>:<span>{brandMark?<img src={brandMark} alt=""/>:<Layers3 size={22}/>}</span>}<div><b>TrustWeave</b><small>{c.privateOs}</small></div></button>
       <nav aria-label="Product exploration">
@@ -202,4 +210,6 @@ export default function PublicDiscoveryPortal({onSignIn,onExplore,signedIn=false
 
     {section==="guide"&&<section className="public-guide-page" data-testid="qa-public-product-guide"><button className="public-back" onClick={()=>goSection("overview")}>← TrustWeave</button><div className="public-guide-head"><div><span className="warm-kicker"><BookOpen size={13}/>{c.productGuide}</span><h1>Understand TrustWeave at the depth you need</h1><p>This is a curated in-product knowledge center. It explains released product behavior without exposing founder-private strategy, confidential architecture, anti-abuse internals or unreleased IP material.</p></div><div className="public-guide-levels"><button className={guideLevel==="simple"?"active":""} onClick={()=>setGuideLevel("simple")}>{c.simple}<small>Members & residents</small></button><button className={guideLevel==="detailed"?"active":""} onClick={()=>setGuideLevel("detailed")}>{c.detailed}<small>Chairmen & Presidents</small></button><button className={guideLevel==="deep"?"active":""} onClick={()=>setGuideLevel("deep")}>{c.deep}<small>Product & technical</small></button></div></div><div className="public-guide-grid">{guideCards.map(([title,body],index)=><article key={title}><span>{index+1}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div>{visualStories.length>0&&<section className="public-visual-story-library"><div className="public-section-head compact"><span>Visual product stories</span><h2>Shareable product explanations</h2><p>These managed story images are ideal for WhatsApp groups, committees, family groups and product walkthroughs.</p></div><div className="public-visual-story-rail">{visualStories.map(item=><figure key={`${item.kind}-${item.index}`}><img src={item.url!} alt=""/><figcaption><b>{getVerticalDefinition(item.kind).displayName}</b><span>Story {item.index}</span></figcaption></figure>)}</div></section>}<section className="public-guide-next"><div><span className="warm-kicker">Next</span><h2>Explore before you commit</h2><p>Open a read-only Playground for a realistic vertical, then sign in when you are ready to create or join a persisted network.</p></div><div>{releasedKinds.includes("housing-society")&&<button className="btn" onClick={()=>void onExplore("housing-society")}><Building2 size={16}/>Housing Society</button>}{releasedKinds.includes("family-association")&&<button className="btn" onClick={()=>void onExplore("family-association")}><UsersRound size={16}/>Family Community</button>}{signedIn?<button className="btn primary" onClick={onBack}><ChevronLeft size={16}/>Back to network</button>:<button className="btn primary" onClick={onSignIn}>{c.signIn}<ArrowRight size={16}/></button>}</div></section></section>}
     <footer className="public-artifact-footer"><div><BookOpen size={18}/><span><b>Product journey & documentation</b><small>Explore the current profile, evolution, capabilities and Founder operating model.</small></span></div><a className="btn" data-testid="qa-product-artifacts" href="/artifacts">Open artifact library <ArrowRight size={15}/></a></footer>
-  </main>\n  );\n}\n
+  </main>
+  );
+}
