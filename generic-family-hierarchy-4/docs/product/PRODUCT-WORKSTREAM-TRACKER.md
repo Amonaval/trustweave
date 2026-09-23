@@ -12,7 +12,9 @@
 
 Canonical strategy: `00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`.
 
-This tracker preserves options; it does not grant execution authority.
+This tracker preserves product/workstream options; it does not grant execution authority.
+
+Cross-cutting future AI/company/engineering leverage opportunities are kept separately in `06-STRATEGIC-LEVERAGE-OPPORTUNITY-REGISTER.md` so they remain discoverable without polluting the active product backlog.
 
 
 **Date:** 2026-09-23  

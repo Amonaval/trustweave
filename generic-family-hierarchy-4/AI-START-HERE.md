@@ -19,6 +19,8 @@ Autonomous-company maturity, D12 recovery, architecture convergence, Network Act
 9. For material engineering/agentic-delivery design, read `docs/product/05-AGENTIC-AIDLC-AND-QUALITY-STANDARD.md`.
 10. Only then load architecture/governance/source/history required by the task.
 
+**Strategic-review only:** when explicitly reviewing company/engineering leverage, maturity or future opportunities, also scan `docs/product/06-STRATEGIC-LEVERAGE-OPPORTUNITY-REGISTER.md`. Do not load it for routine missions.
+
 For engineering work, continue with `ARCHITECTURE-CONSTITUTION.md`, `AGENTIC-COMPANY-OS.md`, `MISSION-LIFECYCLE.md`, `governance/DEVELOPMENT-RULES.md` and relevant source/evidence.
 
 ## Working doctrine

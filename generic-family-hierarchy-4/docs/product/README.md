@@ -10,6 +10,7 @@ This directory owns the canonical product/company narrative.
 4. `03-LESSONS-AND-KILL-LIST.md` — mistakes already paid for and deliberate kill list.
 5. `04-ONE-PERSON-AI-COMPANY-OPERATING-MODEL.md` — how one Founder + governed AI operates the digital company.
 6. `05-AGENTIC-AIDLC-AND-QUALITY-STANDARD.md` — spec/context/harness/eval/security/performance delivery overlay.
+7. `06-STRATEGIC-LEVERAGE-OPPORTUNITY-REGISTER.md` — high-leverage future ideas with activation triggers; **review strategically, not before ordinary missions**.
 
 ## Product leadership / narrative
 

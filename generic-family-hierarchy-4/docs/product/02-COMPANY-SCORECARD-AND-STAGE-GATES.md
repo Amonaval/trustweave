@@ -126,3 +126,4 @@ If counts are high but engagement/reuse/payment evidence is weak, it is not succ
 8. What should we stop doing?
 9. Did evidence change the next mission?
 10. Are we closer to repeated usage, repeatability and willingness to pay?
+11. At monthly/stage-gate reviews only: has evidence activated anything in `06-STRATEGIC-LEVERAGE-OPPORTUNITY-REGISTER.md`?
