@@ -149,3 +149,27 @@ Activation boundary:
 - LIFE2 edit/delete/member-depth still depends on migration 126 where those RPCs are needed;
 - Platform Design Studio persistence/upload requires migration 127;
 - migration 127 was **not applied**, no deployment/workflow was run, and all visual consumers retain existing fallbacks when the contract is absent.
+
+
+## 2026-09-23 — VIS3 Product Front Door & platform-level exploration
+
+Founder direction: continue visible, transformational experience work and make the accumulated product depth understandable before a user commits to a network.
+
+This bounded slice:
+- upgrades the anonymous/signed-in Product Front Door rather than creating a separate marketing site;
+- adds a restrained manual Product Story carousel and an all-vertical visual gallery;
+- reserves up to four managed story/infographic images per vertical so earlier Family/MPF/Residential share visuals have a durable in-product home;
+- keeps carousel motion manual-first with no auto-rotation;
+- makes **Explore & Guide** and **Launch Control** platform-level workspaces, independent of whichever network is currently active;
+- separates Design Studio into Platform, Vertical defaults, Playground overrides and Network-specific identity;
+- makes Playground visuals inherit vertical defaults instead of requiring duplicate images;
+- preserves network-specific imagery inside the existing private network media boundary;
+- repairs the platform-image storage guard and notification RPC overload in source-only migration `128_vis3_platform_runtime_repairs.sql`;
+- compacts the Launch Control vertical selector and shared object detail action;
+- records prior share-image/PDF migration targets in `VIS3-SHARE-ASSET-MAP.md`.
+
+Activation boundary:
+- migration 128 is committed source only and not applied;
+- exact previously-generated Library/Project images are not regenerated or silently substituted;
+- upload those originals through Design Studio after migration 128 is intentionally applied;
+- no deployment, workflow, test suite or external paid resource was invoked.

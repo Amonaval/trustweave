@@ -52,8 +52,8 @@ export default function SetupScreen({ onCreate,onExploreDemo,onJoinCode,claimabl
   const {t}=useLanguage();
   const {asset}=usePlatformDesign();
   const landingBackground=asset("landing.background"),landingHero=asset("landing.hero"),brandLogo=asset("brand.logo"),brandMark=asset("brand.mark");
-  const playgroundThumbnail=(kind:NetworkVerticalKind)=>asset(`playground.${kind}.thumbnail`);
-  const playgroundIcon=(kind:NetworkVerticalKind)=>asset(`playground.${kind}.icon`);
+  const playgroundThumbnail=(kind:NetworkVerticalKind)=>asset(`playground.${kind}.thumbnail`)||asset(`vertical.${kind}.thumbnail`)||asset(`vertical.${kind}.banner`);
+  const playgroundIcon=(kind:NetworkVerticalKind)=>asset(`playground.${kind}.icon`)||asset(`vertical.${kind}.icon`);
   const c = {
     brand:t("SetupBrandTxt"),madeFor:t("SetupMadeForTxt"),hero:t("SetupHeroTxt"),heroCopy:t("SetupHeroCopyTxt"),
     simple:t("SetupSimpleTxt"),privacy:t("SetupPrivacyTxt"),excel:t("SetupExcelTxt"),step1:t("SetupStep1Txt"),step2:t("SetupStep2Txt"),

@@ -169,6 +169,8 @@ export default function NetworkApp() {
     [myFamilies,setMyFamilies]=useState<NetworkMembership[]>([]),
     [trustedIdentity,setTrustedIdentity]=useState<TrustedPersonIdentity|null>(null),
     [showMyNetworks,setShowMyNetworks]=useState(false),
+    [platformExploreOpen,setPlatformExploreOpen]=useState(false),
+    [platformLaunchOpen,setPlatformLaunchOpen]=useState(false),
     [alumniDemo,setAlumniDemo]=useState(false),
     [productizedDemo,setProductizedDemo]=useState<ProductizedVerticalKind|null>(null),
     [pendingAlumniInvite,setPendingAlumniInvite]=useState<string>(""),
@@ -291,6 +293,16 @@ export default function NetworkApp() {
   const notify = (x: string) => {
     setToast(x);
     setTimeout(() => setToast(""), 3000);
+  };
+  const refreshGlobalPlatformFeatures=async()=>{
+    if(!isSupabaseConfigured)return;
+    try{
+      const rows=await fetchEffectivePlatformFeatures();
+      const map=defaultFeatureMap(false);
+      rows.forEach(row=>{const key=row.feature_key as FeatureKey;if(map[key])map[key]={key,rollout_state:row.rollout_state,enabled:row.enabled}});
+      setPlatformFeatures(map);
+      try{setFeatureAnnouncements(await fetchMyFeatureAnnouncements())}catch{}
+    }catch(e:any){notify(e.message||"Could not refresh platform feature availability.")}
   };
   const changeFamilyCover=async(file:File)=>{if(!isSupabaseConfigured||demoPreview||activeVerticalKind!=="family")return;setFamilyCoverBusy(true);let next:NetworkMediaAsset|undefined;try{next=await uploadMediaAsset(file,"other",{entityType:"network_branding",entityId:"cover"});const previous=familyCover;setFamilyCover(next);notify("Family cover updated.");if(previous&&previous.assetId!==next.assetId)void removeMediaAsset(previous).catch(()=>{})}catch(e:any){if(next)void removeMediaAsset(next).catch(()=>{});notify(e.message||"Could not update family cover.")}finally{setFamilyCoverBusy(false)}};
   const hydrate = async (u: any) => {
@@ -1207,6 +1219,9 @@ export default function NetworkApp() {
         )}
       </div>
     );
+  if(platformExploreOpen) return <PublicDiscoveryPortal signedIn={!!auth} initialSection="guide" onBack={()=>setPlatformExploreOpen(false)} onSignIn={()=>setShowAuth(true)} onExplore={async(kind,familyVariant)=>{setPlatformExploreOpen(false);return openNetworkPlayground(kind,familyVariant)}}/>;
+  if(platformLaunchOpen&&auth?.platform_owner) return <div className="platform-global-workspace"><header className="platform-global-workspace-head"><div><span className="warm-kicker"><Rocket size={13}/> Platform</span><h1>Launch Control</h1><p>Platform-wide release, showcase and design controls. This workspace is independent of the active network.</p></div><button className="btn" onClick={()=>setPlatformLaunchOpen(false)}><ArrowRight size={15} style={{transform:"rotate(180deg)"}}/> Back to network</button></header><FounderLaunchConsole onChanged={refreshGlobalPlatformFeatures} onNotify={notify}/></div>;
+
   const openMyNetworksHome=async()=>{
     if(!auth){setSetupNeeded(true);return;}
     setShellBusy(tr("LoadingTxt"));
@@ -1222,26 +1237,17 @@ export default function NetworkApp() {
   };
   const canAdmin = !demoPreview && (!isSupabaseConfigured || network?.membership_role === "owner" || network?.membership_role === "admin" || auth?.role === "admin");
   const isPlatformOwner = !isSupabaseConfigured || !!auth?.platform_owner;
-  if(showMyNetworks && trustedIdentity) return <MyNetworksHome identity={trustedIdentity} onOpenNetwork={openMembershipFromHome} onAddNetwork={()=>{window.history.pushState({},"","/?setup=1");setShowMyNetworks(false);setNetwork(null);setSetupNeeded(true)}} onExploreDemo={openNetworkPlayground} onSignOut={async()=>{setShowMyNetworks(false);setTrustedIdentity(null);setAuth(null);setNetwork(null);setMembers([]);setRelationships([]);setSubmissions([]);setProductizedDemo(null);setAlumniDemo(false);setDemoPreview(false);setSetupNeeded(true);if(typeof window!=="undefined")window.history.replaceState({},"","/");await signOut().catch(()=>{})}} onDeleted={async()=>{const identity=await buildTrustedPersonIdentity(await getAuthUser());setTrustedIdentity(identity);await hydrate(await getAuthUser())}}/>;
+  if(showMyNetworks && trustedIdentity) return <MyNetworksHome identity={trustedIdentity} onOpenNetwork={openMembershipFromHome} onAddNetwork={()=>{window.history.pushState({},"","/?setup=1");setShowMyNetworks(false);setNetwork(null);setSetupNeeded(true)}} onExploreDemo={openNetworkPlayground} onExplorePlatform={()=>setPlatformExploreOpen(true)} onOpenPlatformLaunch={auth?.platform_owner?()=>setPlatformLaunchOpen(true):undefined} onSignOut={async()=>{setShowMyNetworks(false);setTrustedIdentity(null);setAuth(null);setNetwork(null);setMembers([]);setRelationships([]);setSubmissions([]);setProductizedDemo(null);setAlumniDemo(false);setDemoPreview(false);setSetupNeeded(true);if(typeof window!=="undefined")window.history.replaceState({},"","/");await signOut().catch(()=>{})}} onDeleted={async()=>{const identity=await buildTrustedPersonIdentity(await getAuthUser());setTrustedIdentity(identity);await hydrate(await getAuthUser())}}/>;
   // Vertical handoff must happen before any Family-only feature evaluation.
   // G5 bugfix: evaluating Alumni surface keys through lib/features (the Family compatibility facade)
   // throws by design. Alumni owns its own feature catalog/runtime and UI workspace.
-  if(network && activeVerticalKind==="alumni" && !setupNeeded) return <AlumniNetworkApp network={network} auth={auth} demo={alumniDemo} onNetworkChanged={async()=>{setAlumniDemo(false);const u=await getAuthUser();if(u?.active_network_id)navigateNetworkSurface(u.active_network_id,"home");await hydrate(u);setViewState("home")}} onOpenNetworkLobby={openMyNetworksHome} onSignIn={!auth?openAnonymousSignIn:undefined} onSignOut={async()=>{await signOut();setAuth(null);setNetwork(null);setSetupNeeded(true)}}/>;
+  if(network && activeVerticalKind==="alumni" && !setupNeeded) return <AlumniNetworkApp network={network} auth={auth} demo={alumniDemo} onOpenPlatformGuide={()=>setPlatformExploreOpen(true)} onOpenPlatformLaunch={()=>setPlatformLaunchOpen(true)} onNetworkChanged={async()=>{setAlumniDemo(false);const u=await getAuthUser();if(u?.active_network_id)navigateNetworkSurface(u.active_network_id,"home");await hydrate(u);setViewState("home")}} onOpenNetworkLobby={openMyNetworksHome} onSignIn={!auth?openAnonymousSignIn:undefined} onSignOut={async()=>{await signOut();setAuth(null);setNetwork(null);setSetupNeeded(true)}}/>;
   // G8: productized verticals hand off before Family-only feature evaluation, exactly like Alumni.
-  if(network && isProductizedVerticalKind(activeVerticalKind) && !setupNeeded) return <TemplateNetworkApp network={network} auth={auth} kind={activeVerticalKind} demo={productizedDemo===activeVerticalKind} onNetworkChanged={async()=>{setProductizedDemo(null);const u=await getAuthUser();if(u?.active_network_id)navigateNetworkSurface(u.active_network_id,"home");await hydrate(u);setViewState("home")}} onOpenNetworkLobby={openMyNetworksHome} onSignIn={!auth?openAnonymousSignIn:undefined} onSignOut={async()=>{await signOut();setAuth(null);setNetwork(null);setSetupNeeded(true)}}/>;
+  if(network && isProductizedVerticalKind(activeVerticalKind) && !setupNeeded) return <TemplateNetworkApp network={network} auth={auth} kind={activeVerticalKind} demo={productizedDemo===activeVerticalKind} onOpenPlatformGuide={()=>setPlatformExploreOpen(true)} onOpenPlatformLaunch={()=>setPlatformLaunchOpen(true)} onNetworkChanged={async()=>{setProductizedDemo(null);const u=await getAuthUser();if(u?.active_network_id)navigateNetworkSurface(u.active_network_id,"home");await hydrate(u);setViewState("home")}} onOpenNetworkLobby={openMyNetworksHome} onSignIn={!auth?openAnonymousSignIn:undefined} onSignOut={async()=>{await signOut();setAuth(null);setNetwork(null);setSetupNeeded(true)}}/>;
   const experience:ExperienceLevel = demoPreview ? "explorer" : (experiencePreview || (!isSupabaseConfigured ? "explorer" : (auth?.experience_level || "simple")));
   // Defensive guard for transient setup/switch states: Family feature runtime never receives another vertical's key.
   const hasFeature=(key:FeatureKey)=>activeVerticalKind==="family"&&isFeatureAvailable(key,demoPreview?playgroundFeatures:platformFeatures,experience,canAdmin);
-  const refreshFeatureState=async()=>{
-    if(!isSupabaseConfigured)return;
-    try{
-      const rows=await fetchEffectivePlatformFeatures();
-      const map=defaultFeatureMap(false);
-      rows.forEach(row=>{const key=row.feature_key as FeatureKey;if(map[key])map[key]={key,rollout_state:row.rollout_state,enabled:row.enabled}});
-      setPlatformFeatures(map);
-      try{setFeatureAnnouncements(await fetchMyFeatureAnnouncements())}catch{}
-    }catch(e:any){notify(e.message||"Could not refresh feature availability.")}
-  };
+  const refreshFeatureState=refreshGlobalPlatformFeatures;
   const activeAnnouncement=featureAnnouncements.find(item=>hasFeature(item.feature_key as FeatureKey));
   const openAnnouncedFeature=(key:FeatureKey)=>{
     const target=appComposition.whatsNew.featureToView[key] || (key.startsWith("admin.") ? "admin" : appComposition.whatsNew.defaultView);
@@ -1339,7 +1345,7 @@ export default function NetworkApp() {
           onCreateProductized={async(kind,name,contextValue,description)=>{if(!(await getShowcaseVerticalSetting(kind)).create_enabled)throw new Error(tr("ShowcaseCreationNotAvailableTxt"));const creation=await createTemplateNetwork(kind,name,contextValue,description);if(creation.approvalStatus==="pending"){await enterFamilyLobby();setNetwork(null);setSetupNeeded(false);setShowMyNetworks(true);setTrustedIdentity(await buildTrustedPersonIdentity(await getAuthUser()));notify(tr("NetworkWaitingForApprovalTxt"));return;}await setActiveNetwork(creation.networkId);let fresh=await getAuthUser();if(fresh?.active_network_id!==creation.networkId){await setActiveNetwork(creation.networkId);fresh=await getAuthUser();}if(fresh?.active_network_id!==creation.networkId)throw new Error("The network was created, but your account could not activate it. Apply migration 102 and retry.");setShowMyNetworks(false);setSetupNeeded(false);setProductizedDemo(null);setAlumniDemo(false);setDemoPreview(false);navigateNetworkSurface(creation.networkId,"home");await hydrate(fresh);setViewState("home");notify(`${name} is ready.`)}}
           onExploreProductizedDemo={(kind)=>void openNetworkPlayground(kind)}
           onJoinProductizedCode={async(code)=>{await joinProductizedNetworkByCode(code);setProductizedDemo(null);setAlumniDemo(false);setDemoPreview(false);await openActiveNetworkHome();notify(tr("NetworkJoinedWelcomeTxt"))}}
-          onOpenGuide={async()=>{if(await openNetworkPlayground("family")){setGuideKey("");setView("guide")}}}
+          onOpenGuide={()=>setPlatformExploreOpen(true)}
           onCreate={createNetwork}
         />}
         {toast && (
@@ -1379,8 +1385,8 @@ export default function NetworkApp() {
             ...((canAdmin || experience!==tr("Simple3Txt"))?[{key:"profile",label:t("MyProfileTxt"),icon:<UserRoundPen size={16}/>,onClick:openMyProfile,hint:"Your family profile"}]:[]),
             ...(isSupabaseConfigured&&auth?[{key:"networks",label:demoPreview?tr("BackToNetworkSelectionTxt"):tr("MyNetworksTxt"),icon:<UsersRound size={16}/>,onClick:()=>void openMyNetworksHome(),hint:demoPreview?"Leave the Playground and return to your networks":"All your private network contexts"}]:[]),
             ...(isSupabaseConfigured&&demoPreview&&!auth?[{key:"signin",label:tr("ShowcaseSignInTxt"),icon:<ArrowRight size={16}/>,onClick:openAnonymousSignIn,hint:"Sign in to create or join your own network"}]:[]),
-            ...(isPlatformOwner&&isSupabaseConfigured?[{key:"launch",label:tr("LaunchControlTxt"),icon:<Rocket size={16}/>,onClick:()=>setView("founder"),hint:"Platform-wide rollout controls"}]:[]),
-            {key:"guide",label:tr("ExploreGuideTxt"),icon:<BookOpen size={16}/>,onClick:()=>{setGuideKey("");setView("guide")},hint:"Learn what this network can do"},
+            ...(isPlatformOwner&&isSupabaseConfigured?[{key:"launch",label:tr("LaunchControlTxt"),icon:<Rocket size={16}/>,onClick:()=>setPlatformLaunchOpen(true),hint:"Platform-wide rollout and design controls"}]:[]),
+            {key:"guide",label:tr("ExploreGuideTxt"),icon:<BookOpen size={16}/>,onClick:()=>setPlatformExploreOpen(true),hint:"Explore TrustWeave products, roles and guides"},
             ...(isSupabaseConfigured&&auth?[{key:"signout",label:t("SignOutTxt"),icon:<LogOut size={16}/>,onClick:async()=>{await signOut();setAuth(null);setNetwork(null);setProductizedDemo(null);setAlumniDemo(false);setSetupNeeded(true)},danger:true}]:[]),
           ]}/>
         </div>}
@@ -1396,14 +1402,14 @@ export default function NetworkApp() {
           >{icon} {label}</button>)}
           {(!demoPreview || !!auth) && hasFeature("core.profile") && <button className={`nav-btn ${selected?.id===auth?.member_id ? "active" : ""}`} onClick={openMyProfile}><UserRoundPen size={17}/> {tr("MeTxt")}</button>}
           {desktopMoreSurfaces.length>0&&<details open={desktopMoreOpen||desktopMoreSurfaces.some(surface=>surface.viewId===view)} onToggle={e=>setDesktopMoreOpen(e.currentTarget.open)} className={`family-nav-more ${desktopMoreSurfaces.some(surface=>surface.viewId===view)?"active":""}`}><summary><Layers3 size={17}/><span>{tr("MoreTxt")}</span></summary><div>{desktopMoreSurfaces.map(surface=><button data-testid={`qa-nav-${surface.viewId}`} key={surface.viewId} className={`nav-btn ${view===surface.viewId?"active":""}`} onClick={()=>setView(surface.viewId as View)}>{surfaceIcon(surface.iconToken)} {localizedSurfaceLabel(surface,appLocale)}</button>)}</div></details>}
-          {hasFeature("core.guide")&&<button className={`nav-btn guide-nav ${view === "guide" ? "active" : ""}`} onClick={() => {setGuideKey("");setView("guide")}}><BookOpen size={17}/> {tr("ExploreGuideTxt")}</button>}
+          <button className="nav-btn guide-nav" onClick={()=>setPlatformExploreOpen(true)}><BookOpen size={17}/> {tr("ExploreGuideTxt")}</button>
           {canAdmin && hasFeature("admin.center") && <div className="admin-nav-separator">
             <div className="sidebar-section-label">{tr("FamilyManagementTxt")}</div>
             <button data-testid="qa-nav-admin" className={`nav-btn admin-nav ${view === "admin" ? "active" : ""}`} onClick={() => setView("admin")}><ShieldCheck size={17}/> {tr("ManageFamilyTxt")}</button>
           </div>}
           {isPlatformOwner && isSupabaseConfigured && <div className="admin-nav-separator founder-nav-area">
             <div className="sidebar-section-label">{tr("PlatformTxt")}</div>
-            <button className={`nav-btn founder-nav ${view === "founder" ? "active" : ""}`} onClick={() => setView("founder")}><Rocket size={17}/> {tr("LaunchControlTxt")}</button>
+            <button className="nav-btn founder-nav" onClick={()=>setPlatformLaunchOpen(true)}><Rocket size={17}/> {tr("LaunchControlTxt")}</button>
           </div>}
           {canAdmin && <div className="experience-preview">
             <label htmlFor="member-experience-preview">{tr("PreviewMemberExperienceTxt")}</label>
@@ -1426,7 +1432,7 @@ export default function NetworkApp() {
           {hasFeature("celebrate.special_days") && view !== "tree" && view !== "home" && <UpcomingWidget items={upcoming} onSelect={openMember} />}
           {view === "home" && canAdmin && !demoPreview && !quickStartDismissed && members.length < 5 && <QuickFamilyStart viewer={viewerMemberId?members.find(m=>m.id===viewerMemberId):undefined} suggestedName={auth?.email?.split("@")[0]||""} onAddMyself={addMyselfFirst} onAddRelative={addCloseRelative} onImport={()=>setShowImport(true)} onBuildTogether={hasFeature("contribute.branch_intake")?()=>setShowFamilyIntake(true):undefined} onDismiss={()=>setQuickStartDismissed(true)}/>}
           {view === "intelligence" && <NetworkIntelligenceCenter kind="family" entities={familyIntelligenceEntities} relationships={familyIntelligenceRelationships} activities={familyIntelligenceActivities} dimensionKeys={["generation","city","country","profession"]} onGo={target=>{if(target==="connections")setView("tree");else if(target==="contribute")setView("participation");else if(target==="community")setView("community");else if(target==="directory")setView("directory");else if(target==="explorer")setView("tree");}} onEntityOpen={entity=>{const member=members.find(m=>m.id===entity.entity.id);if(member)openMember(member)}}/>}
-          {view === "home" && <FamilyHome members={members} relationships={relationships} events={allLifeEvents} memories={demoPreview?memories:undefined} networkName={network?.name} viewerMemberId={viewerMemberId} onSelect={openMember} onGo={(v)=>{if(v==="community"&&!hasFeature("remember.memories"))return;if(v==="participation"&&!hasFeature("contribute.help_family"))return;setView(v)}} onAddRelative={()=>setShowForm(true)} showMemories={hasFeature("remember.memories")} showSpecialDays={hasFeature("celebrate.special_days")} showContributions={hasFeature("contribute.help_family")} showSharing={hasFeature("share.family")} showFamilyPulse={hasFeature("remember.family_pulse")} showQuietDigest={hasFeature("remember.quiet_digest")} canAddRelative={canAdmin||experience!==tr("Simple3Txt")} simple={experience==="simple"} readOnly={demoPreview} coverUrl={demoPreview?asset("playground.family.banner"):(familyCover?.url||undefined)} eventImageUrl={demoPreview?asset("playground.family.event"):undefined} coverBusy={familyCoverBusy} onCoverChange={canAdmin&&isSupabaseConfigured&&!demoPreview?changeFamilyCover:undefined} />}
+          {view === "home" && <FamilyHome members={members} relationships={relationships} events={allLifeEvents} memories={demoPreview?memories:undefined} networkName={network?.name} viewerMemberId={viewerMemberId} onSelect={openMember} onGo={(v)=>{if(v==="community"&&!hasFeature("remember.memories"))return;if(v==="participation"&&!hasFeature("contribute.help_family"))return;setView(v)}} onAddRelative={()=>setShowForm(true)} showMemories={hasFeature("remember.memories")} showSpecialDays={hasFeature("celebrate.special_days")} showContributions={hasFeature("contribute.help_family")} showSharing={hasFeature("share.family")} showFamilyPulse={hasFeature("remember.family_pulse")} showQuietDigest={hasFeature("remember.quiet_digest")} canAddRelative={canAdmin||experience!==tr("Simple3Txt")} simple={experience==="simple"} readOnly={demoPreview} coverUrl={demoPreview?(asset("playground.family.banner")||asset("vertical.family.banner")):(familyCover?.url||asset("vertical.family.banner"))} eventImageUrl={demoPreview?(asset("playground.family.event")||asset("vertical.family.event")):asset("vertical.family.event")} coverBusy={familyCoverBusy} onCoverChange={canAdmin&&isSupabaseConfigured&&!demoPreview?changeFamilyCover:undefined} />}
           {view === "tree" && (
             <section className="tree-page">
               {cfg.network_template === "family" && (
@@ -2084,10 +2090,10 @@ export default function NetworkApp() {
         {mobileMoreSurfaces.map(surface=><button key={surface.viewId} className="mobile-more-action" onClick={() => { setView(surface.viewId as View); setShowMobileMenu(false); }}><span>{surfaceIcon(surface.iconToken)}{localizedSurfaceLabel(surface,appLocale)}</span><ArrowRight /></button>)}
         {(!demoPreview || !!auth) && <button data-testid="qa-mobile-more-profile" className="mobile-more-action" onClick={()=>{setShowMobileMenu(false);openMyProfile()}}><span><UserRoundPen />{tr("MyProfileTxt")}</span><ArrowRight /></button>}
         {demoPreview && <button data-testid="qa-mobile-more-back-networks" className="mobile-more-action" onClick={async()=>{setShowMobileMenu(false);setDemoPreview(false);setDemoViewerId(undefined);setFocusId(undefined);setLineageOnly(false);setNetwork(null);setMembers([]);setRelationships([]);setSubmissions([]);if(auth)await openMyNetworksHome();else setSetupNeeded(true)}}><span><UsersRound />{tr("BackToNetworkSelectionTxt")}</span><ArrowRight /></button>}
-        {isPlatformOwner && isSupabaseConfigured && <button data-testid="qa-mobile-more-launch" className="mobile-more-action" onClick={() => { setView("founder"); setShowMobileMenu(false); }}><span><Rocket />{tr("LaunchControlTxt")}</span><ArrowRight /></button>}
+        {isPlatformOwner && isSupabaseConfigured && <button data-testid="qa-mobile-more-launch" className="mobile-more-action" onClick={() => { setPlatformLaunchOpen(true); setShowMobileMenu(false); }}><span><Rocket />{tr("LaunchControlTxt")}</span><ArrowRight /></button>}
         {isSupabaseConfigured && auth && !demoPreview && <button className="mobile-more-action" onClick={() => { setShowMobileMenu(false); void openMyNetworksHome(); }}><span><UsersRound />{tr("MyNetworksTxt")}</span><ArrowRight /></button>}
         {isSupabaseConfigured && auth && !demoPreview && <button className="mobile-more-action" onClick={async()=>{if(!window.confirm(`Leave ${network?.name||tr("ThisFamilyTxt")}? If you are its only account, the empty family will be archived.`))return;try{const action=await leaveCurrentFamily();setShowMobileMenu(false);await hydrate(await getAuthUser());notify(action==="archived"?"Family archived. You can create or join another family.":"You left the family.")}catch(e:any){notify(e.message||tr("CouldNotLeaveThisFamilyTxt"))}}}><span><LogOut />{tr("LeaveThisFamilyTxt")}</span><ArrowRight /></button>}
-        <button className="mobile-more-action" onClick={() => { setGuideKey(""); setView("guide"); setShowMobileMenu(false); }}><span><BookOpen />{tr("ExploreGuideTxt")}</span><ArrowRight /></button>
+        <button className="mobile-more-action" onClick={() => { setPlatformExploreOpen(true); setShowMobileMenu(false); }}><span><BookOpen />{tr("ExploreGuideTxt")}</span><ArrowRight /></button>
         <button className="mobile-more-action" onClick={toggleLargeText}><span><BookOpen />{largeText ? (language==='hi'?'सामान्य टेक्स्ट':language==='mr'?'सामान्य मजकूर':tr("NormalTextSizeTxt")) : (language==='hi'?'बड़ा टेक्स्ट':language==='mr'?'मोठा मजकूर':tr("LargerTextTxt"))}</span><ArrowRight /></button>
         <div className="mobile-more-setting"><LanguageSwitcher /></div>
         {!canAdmin&&<label className="mobile-more-setting friendly-experience-setting"><span>{language==='hi'?'ऐप में कितना दिखे?':language==='mr'?'अॅपमध्ये किती दाखवायचे?':tr("HowMuchWouldYouLikeToSeeTxt")}</span><select className="select" value={experience} onChange={e=>changeMyExperience(e.target.value as ExperienceLevel)}><option value="simple">{language==='hi'?'सरल — बस जरूरी चीजें':language==='mr'?'सोपे — फक्त महत्त्वाचे':tr("SimpleJustTheEssentialsTxt")}</option><option value="connected">{language==='hi'?'और परिवार — यादें और खास दिन':language==='mr'?'अधिक कुटुंब — आठवणी आणि खास दिवस':tr("MoreFamilyMemoriesAndMomentsTxt")}</option><option value="explorer">{language==='hi'?'सब देखें — सभी सदस्य सुविधाएँ':language==='mr'?'सगळे पहा — सर्व सदस्य सुविधा':tr("EverythingAllMemberFeaturesTxt")}</option></select><small>{language==='hi'?'इसे कभी भी बदल सकते हैं।':language==='mr'?'हे कधीही बदलू शकता.':tr("YouCanChangeThisAnytimeTxt")}</small></label>}
