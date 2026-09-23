@@ -1,5 +1,22 @@
 # TrustWeave — Product Workstream Tracker
 
+## Company strategy overlay — 2026-09-23
+
+**Active company constraint:** convert capability breadth into real usage and repeatability.
+
+1. FCA-L1 / MPF Pune East is the current bounded product mission.
+2. Majestique Marbella is the parallel Residential proving network.
+3. Real requirements that are **Generic + Easy + Impactful** outrank speculative backlog work.
+4. Network Activation, D12, autonomy, architecture convergence, School, Business and AI/Intelligence remain tracked but do not become NEXT without evidence.
+5. Long-term sequence is adoption → habit → repeatability → commercial path → Preschool/School → AI-powered value/hardening → business expansion.
+
+Canonical strategy: `00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`.
+
+This tracker preserves product/workstream options; it does not grant execution authority.
+
+Cross-cutting future AI/company/engineering leverage opportunities are kept separately in `06-STRATEGIC-LEVERAGE-OPPORTUNITY-REGISTER.md` so they remain discoverable without polluting the active product backlog.
+
+
 **Date:** 2026-09-23  
 **Purpose:** Keep open work visible without turning every category into a serial mission program.
 

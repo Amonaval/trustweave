@@ -1,5 +1,16 @@
 # TrustWeave Documentation Governance
 
+## Strategy authority addition — 2026-09-23
+
+The canonical long-term Founder direction lives at `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`; durable prioritization/effort rules live at `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`; outcome/stage measurement lives at `docs/product/02-COMPANY-SCORECARD-AND-STAGE-GATES.md`; durable failure patterns live at `docs/product/03-LESSONS-AND-KILL-LIST.md`.
+
+These are product-strategy authorities under the current explicit Founder decision and Product Constitution. Other files should link to them rather than copying the full strategy.
+
+A `NEXT-SESSION-*` handoff is temporary navigation/evidence. It never outranks current source, runtime evidence, constitutions, Founder strategy, current state or mission status. Durable knowledge from a handoff must be promoted into its canonical owner.
+
+The Knowledge OS objective remains: **smaller, smarter, more decision-useful context**, not more Markdown.
+
+
 **Status:** BINDING — M3-B3 Knowledge OS authority
 
 ## 1. Goal
@@ -142,3 +153,17 @@ Use:
 - SUPERSEDED
 
 Additional qualifiers may describe blockers, but must not blur source vs runtime proof.
+
+## Public vs confidential artifacts — permanent rule
+
+The repository currently maintains public-safe product/evolution artifacts including:
+- `TRUSTWEAVE-PUBLIC-PRODUCT-PROFILE.html`;
+- `TRUSTWEAVE-PRODUCT-EVOLUTION-JOURNEY.html`.
+
+When a **major public-safe** product milestone materially changes the external story, keep those artifacts current.
+
+Do not copy every internal mission/status change into them.
+
+Never expose confidential Founder strategy, pricing tactics, IP-defense analysis, private user/customer information, credentials, unreleased security detail, or sensitive commercial plans merely to satisfy documentation completeness.
+
+Public artifacts explain **value and verified evolution**. Canonical internal Markdown explains company strategy and operating truth.

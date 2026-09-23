@@ -1,76 +1,64 @@
 # TrustWeave — Mission Status
 
-**Updated:** 2026-09-22
-
-| Mission | Status | Meaning |
-|---|---|---|
-| **V1 — Network Activation Autopilot** | **NAA-L1 SOURCE IMPLEMENTED / PARKED** | Ordinary XLSX/CSV can now be inspected and explicitly mapped into TrustWeave activation targets, validated and previewed without semantic guessing. Manual/browser proof is deferred; broader repair/recipe/standalone work remains parked. Migration 124 remains unapplied. |
-| **D12 — Modular Database Architecture / Migration OS** | **REVIEW-CLOSED / FORMAL EXHAUSTIVE CERTIFICATION DEFERRED** | Fresh Supabase reconstruction demonstrated structural/security/API-contract parity. Do not restart broad reconstruction/browser certification without a concrete product reason; golden remains the preferred real data environment and the D12 project remains recovery/reference. |
-| Mission 1 — Runtime Defect & Seed Integrity | PRESERVED / RUNTIME RETEST OUTSTANDING | Source fixes/evidence remain available; no false runtime certification. |
-| Mission 2 — Slow Full Product User Regression | CONNECTED / REPAIR VERIFY | First focused connected run completed; bounded Housing, notification, harness and accessibility repairs await staging migration + rerun. |
-| M3-A — Architecture Inventory | COMPLETE | Shared/capability/vertical boundaries and convergence opportunities documented. |
-| M3-B1 — Constitutions | COMPLETE | Product/architecture authority is binding. |
-| M3-B2 — Agentic Company OS | COMPLETE | Engineering roles, repair limits and approvals are binding. |
-| M3-B3 — Knowledge OS | COMPLETE / OPERATING | Canonical documentation authority and drift checks exist. |
-| M3-B4 — Quality OS | COMPLETE / OPERATING | Mission-scoped gates/evidence/failure classification exist. |
-| M3-B5 — Execution Harness | COMPLETE / OPERATING FOUNDATION | Git/worktree/CI/evidence control plane is defined and partially executable. |
-| M3-B6 — Progressive Selector Convergence | VERIFY | Product refactor implemented/source-green; environment/runtime/independent review still block closure. |
-| **M3-C0 — Control Surface Reset** | **VERIFY / ACTIVE** | Root hygiene + generic mission runtime + autonomy north star implemented; independent review remains required before formal close. |
-| M3-C1→C10 — Autonomous Company Runtime | COMPLETE | Company Brain, Executive Council, environment/self-repair, product critic, risk/release/memory/cockpit and zero-touch proof completed. |
-| M3-C11 — Continuous Portfolio Loop | DEFERRED | Consider only after product reliability and pilot evidence; not the current priority. |
-| **Reliability R1 — Two-vertical QA control plane** | **CONNECTED / REPAIR VERIFY** | First run: 19 passed, 5 failed, 7 not run; crawler 5/6 shards passed. Repair batch is source-green; migration 122 and focused connected rerun remain. |
-| Reusable Product Architecture — remaining M3-B/C/D/E | ACTIVE / PROTECTED | Workspace, async lifecycle, shared business components, CSS ownership and contracts remain required; AI-company work did not supersede them. |
+**Updated:** 2026-09-23
 
 ## Active objective
 
-**NAA-L1 source implementation is complete.** Network Activation should now remain parked unless validation exposes a concrete blocker. Re-select the next priority globally. Incomplete safe output remains acceptable; wrong trusted data is not.
+**FCA-L1 — MPF Pune East flagship/pilot proof: ACTIVE**
+
+Outcome: make the existing Community product genuinely usable/showable with representative or full-fidelity MPF Pune East data, close only concrete pilot blockers, and collect real-user evidence.
+
+Parallel proving network: **Majestique Marbella — Residential / Housing Society**.
+
+Canonical selection rules:
+- `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`
+- `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`
+
+## Portfolio status
+
+| Workstream | Status | Current meaning |
+|---|---|---|
+| **FCA-L1 — MPF Pune East pilot proof** | **ACTIVE** | Single bounded product priority. Finish concrete blockers → representative/full data → real use/feedback → stop/re-select. |
+| **Majestique Marbella Residential proof** | **PRESERVED / PARALLEL PROVING** | Maintain readiness and fix evidence-backed real-use blockers; do not open a broad Residential feature program. |
+| VIS3 / Media / Discovery | **SOURCE-GATED + FOCUSED RUNTIME PROOF** | Substantially closed; migration 130 platform upload behavior was runtime-proven. Reopen only for concrete failure. |
+| LIFE2 Shared Community Objects | **SOURCE-GATED** | Shared lifecycle/depth exists in source; environment-specific DB/runtime availability must be verified before pilot claims. |
+| V1 Network Activation Autopilot | **PAUSED** | NAA-L1 source mapping implemented. Resume only if onboarding evidence re-selects it. |
+| D12 Database/Migration OS | **PAUSED** | Recoverability/structural proof answered the main question; exhaustive certification deliberately not current. |
+| Autonomous Company Runtime / M3-C | **IMPLEMENTED / PRESERVED** | Valuable delivery capability; not the company/product priority. |
+| Reusable Architecture Convergence | **PRESERVED** | Apply opportunistically from repeated needs; no broad convergence mission is current. |
+| Reliability R1 / broad connected QA | **PAUSED / EVIDENCE-TRIGGERED** | Use targeted verification for current journeys; broad reruns only from concrete risk. |
+| School / Preschool | **PLANNED** | Serious next proving vertical after flagship adoption/repeatability evidence. |
+| Business / small franchise verticals | **PLANNED** | Later expansion from buyer pain + reusable operating primitives. |
+| AI-powered Network Intelligence | **PLANNED / CONTINUOUS THESIS** | Build meaningful context-powered value as real network data/workflows mature; avoid generic chatbot work. |
 
 ## Current guardrails
 
+- One active bounded product mission.
+- **Generic + Easy + Impactful** requirements receive priority when backed by evidence.
+- Default alpha/pilot scope: roughly 20–30% of theoretical perfect effort for 70–80% impact/learning, except high-consequence security/privacy/data-integrity work.
+- Source proof ≠ runtime proof ≠ pilot validation.
 - Historical migrations are immutable.
-- V1 migration 124 is source-only until the Founder explicitly authorizes a database change.
-- Source proof is never called runtime proof.
-- Independent review cannot be self-certified.
-- D3 irreversible/privacy/security/legal/financial/constitution decisions remain founder gates until explicitly delegated.
-- B6 certification blockers remain visible while M3-C advances.
+- Bootstrap contains accepted effective state, never experiments.
+- Do not run workflows/broad QA or mutate Supabase automatically.
+- No potentially billable resource without explicit Founder warning and consent.
+- Default to 1–5 coherent commits.
 
-## M3-C checkpoint 1
+## FCA-L1 stop condition
 
-| Mission | Status | Proof |
-| --- | --- | --- |
-| C1 Company Brain | CLOSE | Fresh-process interruption/resume and candidate-bound closure |
-| C2 Executive Council | CLOSE | Five competing roles, durable dissent, D3 held |
-| C3 Environment Manager | CLOSE | Locked dependency recovery, real Next preview and Chromium proof |
-| C4 Self-Healing Swarm | CLOSE | Seeded defect repaired within scope and retry budget |
+Stop building and re-select when:
 
-Founder interventions: **0**. Manual error relays: **0**. Production/database effects: **0**.
+1. remaining observed pilot blockers are closed or explicitly classified;
+2. Discovery → Family Community → MPF Pune East experience is understandable;
+3. President/committee and ordinary-member critical journeys are credible enough for a small real pilot;
+4. representative/full-fidelity data makes the network feel real;
+5. at least one real-user feedback/usage cycle produces evidence.
 
-## M3-C checkpoint 2
+Do not turn FCA-L1 into an unlimited Community roadmap.
 
-| Mission | Status | Proof |
-| --- | --- | --- |
-| C5 User / Pilot Critic | CLOSE | Seven real-browser personas; five measured opportunities |
-| C6 Independent Risk Board | CLOSE | Eleven dimensions; seeded blockers rejected; builder separation |
-| C7 Release / Rollback / Incident | CLOSE | Local preview-to-ready plus exact rollback and postmortem rehearsal |
+## Re-selection rule
 
-Founder interventions remain **0**. Manual error relays remain **0**. One candidate was correctly rejected during C6 and repaired; the rejection is retained as evidence.
+The next workstream is chosen from current evidence across the entire portfolio—not from the oldest unfinished mission.
 
-## M3-C checkpoint 3
+Primary question:
 
-| Mission | Status | Proof |
-| --- | --- | --- |
-| C8 Company Memory | CLOSE | Cited mission, review and user evidence automatically applied to planning |
-| C9 Founder Cockpit | CLOSE | Real `/company` route, mobile proof, optional drill-down, no exposed control/secrets |
-| C10 Zero-Touch Demonstration | CLOSE | Broad intent to 44px public journeys, five browser personas and release-ready rehearsal |
-
-Founder interventions: **0**. Manual error relays: **0**. Optional Founder interventions: **0**.
-
-## Network Activation Autopilot mission queue
-
-Lean scope + parked backlog:
-
-docs/product/NETWORK-ACTIVATION-AUTOPILOT-DISCUSSION-SYNTHESIS-AND-MISSION-QUEUE.md
-
-Current checkpoint: **governed lower layer + NAA-L1 source mapping implemented; workstream parked.**
-
-Migration 124 remains source-only and is not part of NAA-1.
+> **What next move most improves real adoption, reusable capability depth, repeatability, trust or commercial proof for reasonable complexity and Founder effort?**

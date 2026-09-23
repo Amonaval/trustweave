@@ -1,5 +1,14 @@
 # Generic Network OS — Product Constitution
 
+## Strategic anchor — 2026-09-23
+
+The canonical company direction is now `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`; prioritization/effort rules are in `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+
+For product prioritization, **Generic + Easy + Impactful** is the default high-leverage test. Real MPF Pune East and Majestique Marbella usage now outranks speculative breadth. Apply the 20–30% effort / 70–80% impact-learning lean rule for alpha work except where trust, security, privacy or irreversible correctness requires higher assurance.
+
+The durable strategy is real adoption → reusable platform depth → repeatable onboarding → commercial proof → AI-powered value. Calendar targets may be groomed from evidence; this direction must not be silently displaced by an older architecture, QA or autonomy program.
+
+
 **Status:** BINDING — M3-B1 execution authority
 
 This document governs **product prioritization**. Existing security, privacy and architecture invariants remain binding.
@@ -169,3 +178,18 @@ Binding rules:
 - Family, Community and Residential remain strategic products and proving grounds.
 - Business-group functionality waits until connector/data-quality maturity is proven.
 - Paid proof outranks speculative enterprise infrastructure.
+
+## Release / exposure constitution — recovered durable rule
+
+Every advanced or selectively released capability must have an intentional exposure contract. **DEPLOY ≠ RELEASE.**
+
+Where applicable, release requires:
+- capability/catalog registration;
+- persisted Launch Control state;
+- fail-closed runtime gating;
+- direct-route/deep-link gating;
+- backend/data activation compatible with the release state.
+
+Launch Control is a product exposure mechanism, not an authorization system. RLS/RPC/server boundaries remain authoritative.
+
+Public Discovery/Playground should expose only released/approved product experiences. Real-customer configuration such as MPF Pune East must strengthen the generic Community product rather than fork it into customer-specific code.

@@ -1,5 +1,14 @@
 # TrustWeave — Agentic Company & Engineering OS
 
+## Strategic anchor — 2026-09-23
+
+The canonical company direction is now `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`; prioritization/effort rules are in `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+
+Autonomy is an execution multiplier, **not the company mission**. Judge the AI/company OS by lower Founder coordination, faster high-value missions, preserved trust and better real-network outcomes. Do not continue autonomy work merely to increase autonomy maturity when adoption/pilot evidence is the higher-value company constraint.
+
+The durable strategy is real adoption → reusable platform depth → repeatable onboarding → commercial proof → AI-powered value. Calendar targets may be groomed from evidence; this direction must not be silently displaced by an older architecture, QA or autonomy program.
+
+
 **Status:** BINDING — M3-B1/B2 accepted for execution  
 **Objective:** Let the founder/architect provide intent and exceptional decisions while the engineering system plans, builds, verifies, reviews, documents and prepares release evidence with minimal human participation.
 
@@ -275,3 +284,36 @@ M3-C expands the engineering OS into an autonomous-company operating model. The 
 The founder remains the owner of vision, values, product identity and D3 irreversible decisions. The default objective is that routine work produces **zero founder interventions and zero manual error relay**. The AI system should discover, debate, decide, execute, verify, criticize, repair, release, observe and learn; the founder sees the rationale/evidence through a spectator surface and can intervene at any time.
 
 `governance/autonomy-policy.json` is the executable projection of this north star. `missions/mission-003/m3-c/mission-set.json` is the staged path from the current L1/L2 boundary toward governed continuous autonomy.
+
+## 13. One-Person + AI Company extension
+
+The engineering OS is one subsystem of a broader company OS.
+
+Canonical direction:
+- `docs/product/04-ONE-PERSON-AI-COMPANY-OPERATING-MODEL.md`
+- `docs/product/05-AGENTIC-AIDLC-AND-QUALITY-STANDARD.md`
+
+The goal is not maximum agents. It is minimum Founder coordination with preserved judgment, trust and product alignment.
+
+In addition to engineering, the AI company may prepare and operate bounded work across product, research, customer feedback/support, market analysis, sales/pilot preparation, content/documentation and administrative research.
+
+Existing D3 gates remain binding for money, legal commitments, production/destructive actions, privacy/security risk acceptance, durable strategic changes and other consequential decisions.
+
+### Company-agent evaluation
+
+Autonomy itself must be regression-tested.
+
+Maintain/extend golden scenarios for:
+- priority selection;
+- stale-context rejection;
+- cost/spend protection;
+- production/main protection;
+- privacy/network isolation;
+- Launch Control vs authorization;
+- migration immutability;
+- source/runtime/pilot evidence honesty;
+- correct failure classification;
+- stop-condition compliance;
+- efficient context/tool use.
+
+A more autonomous system that violates these is less mature, not more mature.

@@ -1,5 +1,14 @@
 # G9 PRODUCT VISION UPDATE
 
+## Strategic anchor — 2026-09-23
+
+The canonical company direction is `00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`; prioritization/effort rules are in `01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+
+The long-term Trusted/Life Network OS vision is unchanged. Execution is now explicit: prove repeated use in MPF + Marbella → make additional networks cheaper through reusable capabilities → establish commercial pull → prove Preschool/School → add deeply contextual AI and measured hardening → expand into business networks.
+
+The durable strategy is real adoption → reusable platform depth → repeatable onboarding → commercial proof → AI-powered value. Dates/counts may be groomed from evidence; the direction must not be silently displaced by older architecture, QA or autonomy programs.
+
+
 The product is no longer merely a Generic Network OS. Its differentiating direction is a **Network Decision & Action Layer**: convert relationships, affiliations and captured outcomes into the right person, path, evidence and next action. The graph is infrastructure; repeated decision advantage is the product value.
 
 ---

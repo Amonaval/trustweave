@@ -1,5 +1,14 @@
 # TrustWeave — Architecture Constitution
 
+## Strategic anchor — 2026-09-23
+
+The canonical company direction is now `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`; prioritization/effort rules are in `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+
+Architecture exists to reduce time-to-value, preserve trust and make additional networks/verticals cheaper to launch. Prefer Adopt → Compose → Extend → Build, keep domain semantics intact, minimize runtime/dependency footprint, and introduce Kafka/Jenkins/queues/new infrastructure/paid tiers only from measured need—not roadmap age or architectural fashion.
+
+The durable strategy is real adoption → reusable platform depth → repeatable onboarding → commercial proof → AI-powered value. Calendar targets may be groomed from evidence; this direction must not be silently displaced by an older architecture, QA or autonomy program.
+
+
 **Status:** BINDING — M3-B1/B2 accepted for execution  
 **Effective scope:** TrustWeave / Generic Network OS  
 **Predecessor evidence:** `missions/mission-003/M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`  
@@ -211,3 +220,24 @@ The goal is not zero architectural discussion. The goal is that routine decision
 ## 12. Machine policy
 
 `governance/architecture-policy.json` is the machine-readable projection of this constitution. The Markdown constitution remains normative; the JSON may only make deterministic subsets stricter/easier to evaluate, never silently broaden permissions. If they disagree, this constitution wins and the projection must be repaired.
+
+## Delivery / activation separation — recovered durable rule
+
+For capabilities that may be selectively enabled, model these independently:
+
+1. **entitlement/exposure** — who should see/use it;
+2. **code/dependency delivery** — whether its bundle/runtime code is loaded;
+3. **backend/data activation** — whether supporting schema/services/data contracts are active;
+4. **authorization** — what the authenticated actor is actually permitted to read/change.
+
+Do not use a frontend feature flag or Launch Control as authorization.
+
+Prefer dynamic/lazy delivery of vertical-specific or advanced code so ordinary users load common platform code plus the selected network experience, not every vertical.
+
+## Route contract
+
+A route is part of the product API.
+
+Direct links, refresh, browser back/forward, auth redirects/return targets, notification/share deep links and future mobile links must preserve network + object context using privacy-safe canonical URLs.
+
+A feature that works only when entered through one transient UI sequence is not fully integrated.

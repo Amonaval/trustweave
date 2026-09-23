@@ -1,48 +1,58 @@
-# TrustWeave Documentation — Current Map
+# TrustWeave Documentation Map
 
-The repository root is intentionally a **small AI control surface**, not a document dump. Start with `AI-START-HERE.md`.
+TrustWeave documentation is intentionally structured so a new human/AI session can recover company direction and current work without replaying chat history.
 
-## Root control surface
+## Always start
 
-- `AI-START-HERE.md` — bootstrap/read order.
-- `PRODUCT-CONSTITUTION.md` — product invariants.
-- `ARCHITECTURE-CONSTITUTION.md` — technical boundaries.
-- `AGENTIC-COMPANY-OS.md` — autonomous operating model.
-- `MISSION-LIFECYCLE.md` — mission state/evidence model.
-- `CURRENT-STATE.md`, `MISSION-STATUS.md`, `ROADMAP.md` — descriptive truth and sequencing.
-- `README.md` — repository entry point.
-- `DOCUMENTATION.md` — this map.
+1. `AI-START-HERE.md`
+2. `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`
+3. `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`
+4. `PRODUCT-CONSTITUTION.md`
+5. `CURRENT-STATE.md`
+6. `MISSION-STATUS.md`
 
-## Governance
+Load the rest progressively.
 
-- `governance/DOCUMENTATION-GOVERNANCE.md`
+## Canonical strategy layer
+
+- `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md` — durable Founder/company direction.
+- `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md` — lean effort, 20/80 leverage, Generic+Easy+Impactful, cost and stop rules.
+- `docs/product/02-COMPANY-SCORECARD-AND-STAGE-GATES.md` — adoption/repeatability/commercial/AI measurement.
+- `docs/product/03-LESSONS-AND-KILL-LIST.md` — mistakes already paid for and work to avoid.
+
+## Binding operating layer
+
+- `PRODUCT-CONSTITUTION.md`
+- `ARCHITECTURE-CONSTITUTION.md`
+- `AGENTIC-COMPANY-OS.md`
+- `MISSION-LIFECYCLE.md`
 - `governance/DEVELOPMENT-RULES.md`
-- `governance/*.json` — executable policy projections.
+- `governance/DOCUMENTATION-GOVERNANCE.md`
 
-## Active work
+## Current truth / sequencing
 
-- `missions/mission-003/m3-c/` — Autonomous Company Runtime / Founder Spectator Mode.
-- `missions/mission-003/m3-b6-e1/` — prior selector-convergence workload; certification blockers remain preserved rather than waived.
+- `CURRENT-STATE.md`
+- `MISSION-STATUS.md`
+- `ROADMAP.md`
+- `docs/product/PRODUCT-WORKSTREAM-TRACKER.md`
 
-## Product narrative
+## Product knowledge
 
-Canonical product narrative lives under `docs/product/`. Root mirrors are not maintained.
+Use `docs/product/README.md` as the index for CEO/CTO vision, UX, capabilities, Founder compass, mission history and user-facing guidance.
 
-- `docs/product/FOUNDER-AUTONOMOUS-WORKING-MODEL.md` — how the Founder and autonomous company now work.
-- `/artifacts` — deployed artifact library generated from the approved root HTML narratives.
-- `public/artifacts/` — Vercel-served projections; update with `npm run artifacts:sync` and verify with `npm run artifacts:check`.
+## Evidence and history
 
-## History and evidence
+- Active mission evidence: `missions/` and `release-evidence/`.
+- Historical root documents: `history/root-legacy/`.
+- Legacy immutable evidence: `archive/` where compatibility requires it.
+- `NEXT-SESSION-*` files are temporary handoff/navigation evidence, not strategic authority.
 
-- `history/root-legacy/` — single landing zone for Markdown removed from root during M3-C0 cleanup.
-- `archive/` — older immutable mission/evidence paths retained because legacy source gates refer to them.
-- `release-evidence/` — generated mission evidence.
+## Knowledge rule
 
-Historical documents never override constitutions, current source/runtime evidence, or the active mission contract.
+**One durable fact should have one canonical owner.**
 
-## Commercial product thesis
+Do not copy the same strategy/status across many files. Link to the canonical owner and update only the short anchor when authority changes.
 
-- `docs/product/TRUSTWEAVE-COMMERCIAL-THESIS-DISTRIBUTED-OPERATIONS-OS.md` — canonical commercialization direction.
-- `docs/product/showcase/product-thesis/` — human-readable DOCX/PDF summaries and strategy visual.
+Root Markdown remains capped and reserved for bootstrap, constitutions, lifecycle and current descriptive truth. New product strategy/narrative belongs under `docs/product/`.
 
-These are strategic/product communication artifacts. They do not override runtime evidence, CURRENT-STATE, constitutions or mission contracts.
+The objective is not comprehensive prose. It is **minimum context that reliably produces aligned, high-value decisions**.

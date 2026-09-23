@@ -1,38 +1,43 @@
 # TrustWeave / Generic Network OS
 
-TrustWeave is a private Network OS for isolated, governed communities such as families, cultural/community associations and residential societies, with a shared platform for identity, relationships, participation, engagement, governance and future cross-network collaboration.
+TrustWeave is a private, federated Network OS for the trusted networks of human life: families, communities/associations, residential societies, schools, professional/business networks and future governed network types.
 
-## Current phase
+## Current company phase
 
-**M3-C — Autonomous Company Runtime / Founder Spectator Mode** is active.
+**Flagship adoption & repeatability.**
 
-The product baseline remains protected. M3-B1→B5 established machine-operable engineering governance; M3-B6 implemented the first governed UI refactor but still carries dependency/runtime/independent-review certification blockers. M3-C is now focused on making AI operate the project end-to-end with minimal founder coordination.
+The immediate product objective is **FCA-L1 — MPF Pune East public/pilot proof**, with **Majestique Marbella** as the parallel Residential proving network.
+
+The company is moving from proving that many capabilities can be built to proving that:
+
+> **People use it. Different networks reuse it. Someone will pay for it.**
+
+Architecture, autonomous-company tooling, D12/recovery, QA systems and future verticals remain important enabling assets. They are not the company mission by themselves.
 
 ## Start here
 
-AI/automation should read `AI-START-HERE.md` first. Humans can use `DOCUMENTATION.md` for the current documentation map.
+AI/automation must begin with `AI-START-HERE.md`.
 
-## Agentic control plane
+Humans can use `DOCUMENTATION.md` for the canonical knowledge map.
 
-```bash
-npm run agentic:list
-npm run agentic:status
-npm run agentic:mission
-npm run agentic:run:source
-npm run agentic:run:static
-npm run agentic:run:runtime
-```
+## Strategic authority
 
-Mission selection is driven by `missions/registry.json`; package scripts are not tied to one hardcoded mission.
-
-## Current authority
-
-- Product: `PRODUCT-CONSTITUTION.md`
+- Founder/company direction: `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`
+- Decision / ROI / execution rules: `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`
+- Company scorecard / stage gates: `docs/product/02-COMPANY-SCORECARD-AND-STAGE-GATES.md`
+- Lessons / kill list: `docs/product/03-LESSONS-AND-KILL-LIST.md`
+- Product constitution: `PRODUCT-CONSTITUTION.md`
 - Architecture: `ARCHITECTURE-CONSTITUTION.md`
 - Autonomous operating model: `AGENTIC-COMPANY-OS.md`
 - Mission lifecycle: `MISSION-LIFECYCLE.md`
-- Company autonomy policy: `governance/autonomy-policy.json`
 - Current truth: `CURRENT-STATE.md`
-- Program sequence: `ROADMAP.md`
+- Current mission status: `MISSION-STATUS.md`
+- Sequencing/backlog: `ROADMAP.md` + `docs/product/PRODUCT-WORKSTREAM-TRACKER.md`
 
-Historical root documentation is preserved under `history/root-legacy/`. Older immutable evidence paths remain under `archive/` where legacy gates depend on them.
+## Operating principle
+
+Real adoption → reusable capability depth → repeatable onboarding → commercial proof → AI-powered value → evidence-triggered scale.
+
+Prefer **Generic + Easy + Impactful**, lean 20–30% effort / 70–80% impact-learning slices, minimal Founder coordination and measured infrastructure growth.
+
+Historical root documentation is preserved under `history/root-legacy/`; older immutable evidence remains under `archive/` where legacy gates require it.

@@ -1,5 +1,14 @@
 # TrustWeave — CEO Product Brief
 
+## Strategic anchor — 2026-09-23
+
+The canonical company direction is `00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`; prioritization/effort rules are in `01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+
+TrustWeave is entering the adoption/repeatability phase. Near-term CEO outcome: MPF Pune East and Majestique Marbella become recurring-use proving networks; real-user requirements deepen shared capabilities; commercial identity/path starts maturing as evidence accumulates; Preschool/School and later business expansion follow proof rather than feature-count ambition.
+
+The durable strategy is real adoption → reusable platform depth → repeatable onboarding → commercial proof → AI-powered value. Dates/counts may be groomed from evidence; the direction must not be silently displaced by older architecture, QA or autonomy programs.
+
+
 **Current product stage:** Multi-vertical private Network OS with showcase-ready Family, Community/Association and Residential products; cross-vertical engagement stack implemented through E10.
 
 TrustWeave is a **private operating system for real-world networks**. It began as a family relationship product and evolved into a reusable platform for independently governed networks: families, cultural/community associations, housing societies, alumni groups, professional networks, organizations, business-trust ecosystems and franchise networks.

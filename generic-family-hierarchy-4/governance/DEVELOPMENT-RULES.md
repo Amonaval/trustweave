@@ -1,5 +1,10 @@
 # Development Rules
 
+## Company-strategy gate — 2026-09-23
+
+Implementation exists to serve real adoption, trust, repeatability and commercial learning. Before architecture/code optimization, verify the mission against the Founder Strategy and Decision/ROI rules.
+
+
 ## Model and Effort Selection
 
 Use the highest-capability available reasoning mode appropriate to mission risk. Architecture, security, migrations, major UX and cross-cutting refactors require deliberate/high-effort reasoning; routine deterministic checks should be delegated to scripts rather than repeated model deliberation. Model choice is an execution concern, not a historical-document dependency.
@@ -41,10 +46,20 @@ database error text to the user.
 ## Session Start
 
 1. Read `AI-START-HERE.md`.
-2. Resolve the active mission from `missions/registry.json`.
-3. Read `docs/product/PROJECT-VISION.md`, `docs/product/FOUNDER-COMPASS.md`, `ROADMAP.md` and `MISSION-STATUS.md` only as needed.
-4. Read relevant source/migrations and verify claims against code/runtime evidence.
-5. Continue the active mission unless higher-authority intent or an explicit gate changes priority.
+2. Always read `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md` and `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+3. Read `PRODUCT-CONSTITUTION.md`, `CURRENT-STATE.md` and `MISSION-STATUS.md`.
+4. Resolve the active mission/workstream only after company direction is loaded.
+5. Read architecture/governance/source/history progressively as the task requires.
+6. Verify claims against code/runtime evidence and continue only the selected bounded mission unless higher-authority evidence changes priority.
+
+### Founder/effort discipline
+
+- One active priority; parked work does not become NEXT automatically.
+- Default alpha slice: roughly 20–30% effort for 70–80% impact/learning.
+- Prefer Generic + Easy + Impactful shared improvements.
+- Default to 1–5 coherent commits; avoid tool-generated micro-commits.
+- Use the smallest QA/runtime evidence that proves the mission.
+- Do not use any potentially billable resource without explicit Founder warning and consent.
 
 ## Implementation
 
@@ -412,3 +427,35 @@ A material mission must leave a durable human-readable mission record before clo
 6. Long data collections should use filtering, caps/pagination or contained table/list regions. Do not confuse data scrolling with feature navigation.
 7. This rule is cross-vertical: Family, Family Community / Association, Housing Society, Alumni and every current/future productized vertical must follow it.
 8. `npm run validate:ux-progressive` is a release source gate. New shared or vertical UX work must preserve it.
+
+## Recovered permanent delivery rules — 2026-09-23
+
+### Protected branch / release
+- perform routine work on an explicit mission/working branch;
+- treat `main` as protected current truth;
+- source completion does not authorize merge, deployment or production release;
+- **DEPLOY ≠ RELEASE**;
+- production/protected promotion follows the current Founder/release gate.
+
+### Free-tier-safe QA
+While free-tier resources are sufficient:
+- prefer tiny deterministic datasets and limited representative roles;
+- use low concurrency / one worker when appropriate;
+- reuse authenticated sessions instead of repeatedly hitting auth;
+- avoid load/stress/destructive loops unless explicitly required;
+- verify the exact target project/environment before any mutation;
+- never use the golden/working customer environment as a disposable QA target.
+
+### Defect-to-regression rule
+A reproducible product defect that has realistic recurrence risk should leave durable regression protection at the cheapest appropriate layer: unit/contract/source/runtime/route/security check.
+
+Do not turn environment/connectivity/harness failures into product regression tests until they are correctly classified.
+
+### Route-first product correctness
+For changed navigation/share/notification/auth journeys, verify direct URL entry, refresh, back/forward, auth return and network/object context where applicable.
+
+### Seed/import correctness
+If seed/import/onboarding is a supported product journey, failures in that journey are product defects—not merely test-data inconvenience. Prefer idempotent reruns and structured diagnostics.
+
+### Generic-customer rule
+Real pilots inform generic capability. Do not hard-code MPF Pune East, Majestique Marbella or another design partner into shared business logic when configuration/adapters preserve the domain correctly.

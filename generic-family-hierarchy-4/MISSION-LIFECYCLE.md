@@ -1,5 +1,16 @@
 # TrustWeave — Mission Lifecycle
 
+## Strategy / ROI entry gate — 2026-09-23
+
+Before INTAKE becomes an executable mission, it must pass the Founder Strategy and Decision/ROI rules.
+
+A material mission must state: the real user/buyer outcome, why it is highest-value now, reuse opportunity, smallest valuable slice, evidence, stop condition, Founder/maintenance cost and explicit exclusions.
+
+Default alpha rule: spend roughly 20–30% of theoretical perfect effort to capture 70–80% of impact/learning, except for high-consequence security/privacy/data-integrity work.
+
+A documented backlog item is not execution authority. One bounded priority should remain active unless evidence forces re-selection.
+
+
 **Status:** BINDING — M3-B1/B2 accepted for execution  
 **Applies to:** material product, architecture, data, security, UX and engineering missions.
 
