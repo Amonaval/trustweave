@@ -1,5 +1,14 @@
 # G9 FOUNDER COMPASS UPDATE
 
+## Strategic anchor — 2026-09-23
+
+The canonical company direction is `00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`; prioritization/effort rules are in `01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+
+Founder direction explicitly prioritizes MPF Pune East + Majestique Marbella real usage, then repeatability and commercial proof. Use **Generic + Easy + Impactful**, the lean 20–30% effort / 70–80% impact-learning rule, and treat Founder time as a scarce company resource.
+
+The durable strategy is real adoption → reusable platform depth → repeatable onboarding → commercial proof → AI-powered value. Dates/counts may be groomed from evidence; the direction must not be silently displaced by older architecture, QA or autonomy programs.
+
+
 A feature is strategically valuable only when it helps answer a painful network question faster or better than the user's current manual process. G9 must prove: **Who knows? Who owns? Who solved this? Who can help? Who do I trust? What is missing or at risk?** If real buyers will not import data or run a pilot for those outcomes, stop adding platform breadth and narrow/freeze.
 
 ---

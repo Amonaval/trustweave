@@ -1,5 +1,14 @@
 # TrustWeave — Architecture Constitution
 
+## Strategic anchor — 2026-09-23
+
+The canonical company direction is now `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`; prioritization/effort rules are in `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+
+Architecture exists to reduce time-to-value, preserve trust and make additional networks/verticals cheaper to launch. Prefer Adopt → Compose → Extend → Build, keep domain semantics intact, minimize runtime/dependency footprint, and introduce Kafka/Jenkins/queues/new infrastructure/paid tiers only from measured need—not roadmap age or architectural fashion.
+
+The durable strategy is real adoption → reusable platform depth → repeatable onboarding → commercial proof → AI-powered value. Calendar targets may be groomed from evidence; this direction must not be silently displaced by an older architecture, QA or autonomy program.
+
+
 **Status:** BINDING — M3-B1/B2 accepted for execution  
 **Effective scope:** TrustWeave / Generic Network OS  
 **Predecessor evidence:** `missions/mission-003/M3-A-ARCHITECTURE-INVENTORY-AND-BOUNDARIES.md`  

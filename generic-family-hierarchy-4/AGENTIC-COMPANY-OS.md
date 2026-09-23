@@ -1,5 +1,14 @@
 # TrustWeave — Agentic Company & Engineering OS
 
+## Strategic anchor — 2026-09-23
+
+The canonical company direction is now `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`; prioritization/effort rules are in `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+
+Autonomy is an execution multiplier, **not the company mission**. Judge the AI/company OS by lower Founder coordination, faster high-value missions, preserved trust and better real-network outcomes. Do not continue autonomy work merely to increase autonomy maturity when adoption/pilot evidence is the higher-value company constraint.
+
+The durable strategy is real adoption → reusable platform depth → repeatable onboarding → commercial proof → AI-powered value. Calendar targets may be groomed from evidence; this direction must not be silently displaced by an older architecture, QA or autonomy program.
+
+
 **Status:** BINDING — M3-B1/B2 accepted for execution  
 **Objective:** Let the founder/architect provide intent and exceptional decisions while the engineering system plans, builds, verifies, reviews, documents and prepares release evidence with minimal human participation.
 

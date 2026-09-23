@@ -1,5 +1,12 @@
 # TrustWeave — Current User Experience Handbook
 
+## Continuous UX doctrine — 2026-09-23
+
+UX is a permanent company workstream, not a final polish phase. Prioritize comprehension, obvious next action, complete object lifecycle, mobile reachability, progressive disclosure, accessibility, emotional/human quality, performance and discoverability.
+
+Real pilot friction from MPF Pune East and Majestique Marbella outranks speculative redesign. A feature hidden behind narration, an incomplete create-only object, a meaningless share action or a dense admin wall is not finished simply because backend capability exists.
+
+
 **Updated:** 2026-09-12  
 **Audience:** product managers, designers, support, pilot operators and engineers validating user-visible behavior.
 

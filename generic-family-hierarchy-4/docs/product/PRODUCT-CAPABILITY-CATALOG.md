@@ -1,5 +1,12 @@
 # TrustWeave — Product Capability Catalog
 
+## Reading rule — 2026-09-23
+
+This catalog answers **what exists**, not **what should be built next**. Feature presence/status never grants execution priority.
+
+Use the Founder Strategy, Decision/ROI rules, current pilot evidence and Workstream Tracker to select work. Prefer completing, exposing and reusing existing capability before adding breadth.
+
+
 **Legend:** ✅ implemented · 🧪 implemented/source-gated or environment/pilot verification remains · ⏭ planned next · ⏸ intentionally paused/deferred
 
 ## Shared account / network platform

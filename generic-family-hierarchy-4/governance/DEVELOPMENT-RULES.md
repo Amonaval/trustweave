@@ -1,5 +1,10 @@
 # Development Rules
 
+## Company-strategy gate — 2026-09-23
+
+Implementation exists to serve real adoption, trust, repeatability and commercial learning. Before architecture/code optimization, verify the mission against the Founder Strategy and Decision/ROI rules.
+
+
 ## Model and Effort Selection
 
 Use the highest-capability available reasoning mode appropriate to mission risk. Architecture, security, migrations, major UX and cross-cutting refactors require deliberate/high-effort reasoning; routine deterministic checks should be delegated to scripts rather than repeated model deliberation. Model choice is an execution concern, not a historical-document dependency.
@@ -41,10 +46,20 @@ database error text to the user.
 ## Session Start
 
 1. Read `AI-START-HERE.md`.
-2. Resolve the active mission from `missions/registry.json`.
-3. Read `docs/product/PROJECT-VISION.md`, `docs/product/FOUNDER-COMPASS.md`, `ROADMAP.md` and `MISSION-STATUS.md` only as needed.
-4. Read relevant source/migrations and verify claims against code/runtime evidence.
-5. Continue the active mission unless higher-authority intent or an explicit gate changes priority.
+2. Always read `docs/product/00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md` and `docs/product/01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+3. Read `PRODUCT-CONSTITUTION.md`, `CURRENT-STATE.md` and `MISSION-STATUS.md`.
+4. Resolve the active mission/workstream only after company direction is loaded.
+5. Read architecture/governance/source/history progressively as the task requires.
+6. Verify claims against code/runtime evidence and continue only the selected bounded mission unless higher-authority evidence changes priority.
+
+### Founder/effort discipline
+
+- One active priority; parked work does not become NEXT automatically.
+- Default alpha slice: roughly 20–30% effort for 70–80% impact/learning.
+- Prefer Generic + Easy + Impactful shared improvements.
+- Default to 1–5 coherent commits; avoid tool-generated micro-commits.
+- Use the smallest QA/runtime evidence that proves the mission.
+- Do not use any potentially billable resource without explicit Founder warning and consent.
 
 ## Implementation
 

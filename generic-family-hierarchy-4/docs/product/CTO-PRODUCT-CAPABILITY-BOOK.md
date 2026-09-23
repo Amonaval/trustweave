@@ -1,5 +1,12 @@
 # TrustWeave — CTO Product Capability Book
 
+## CTO strategic anchor — 2026-09-23
+
+Architecture/capability decisions optimize for **real adoption + reusable leverage + repeatable onboarding + minimal operating footprint**.
+
+Prefer **Adopt → Compose → Extend → Build**. New scale technology is evidence-triggered, not calendar-triggered. AI architecture must protect TrustWeave's durable assets: permissioned network context, provenance, relationships, operational history and trust boundaries.
+
+
 **As of:** 2026-09-12  
 **Purpose:** engineering/product leadership summary of what the platform can do, what is shared, what is vertical-specific, and what is still gated.
 

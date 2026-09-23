@@ -1,5 +1,14 @@
 # TrustWeave — Company Purpose, CEO Thesis & North Star
 
+## Strategic anchor — 2026-09-23
+
+The canonical company direction is `00-FOUNDER-DIRECTION-AND-12-MONTH-STRATEGY.md`; prioritization/effort rules are in `01-DECISION-ROI-AND-EXECUTION-RULES.md`.
+
+The category remains private/federated Trusted Network OS. The next-year proof is sustained usage, reuse across materially different networks, repeatable onboarding, commercial pull and AI value grounded in permissioned network context—not maximum vertical count.
+
+The durable strategy is real adoption → reusable platform depth → repeatable onboarding → commercial proof → AI-powered value. Dates/counts may be groomed from evidence; the direction must not be silently displaced by older architecture, QA or autonomy programs.
+
+
 **Status:** CANONICAL PRODUCT/COMPANY NARRATIVE  
 **Updated:** 2026-09-19  
 **Audience:** Founder, AI CEO/CTO/Product/Architecture agents, future team, partners and strategic reviewers
