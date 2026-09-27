@@ -5,6 +5,7 @@ import { LanguageProvider } from "../lib/i18n";
 import { ThemeProvider } from "../components/ThemeProvider";
 import {NxReviewProvider} from "../lib/nx-review";
 import PwaRuntime from "../components/PwaRuntime";
+import RuntimeObservabilityBridge from "../tools/runtime-observability/react/RuntimeObservabilityBridge";
 
 
 export const viewport: Viewport = {
@@ -20,5 +21,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-theme="light"><body><ThemeProvider><LanguageProvider><NxReviewProvider>{children}<PwaRuntime/></NxReviewProvider></LanguageProvider></ThemeProvider></body></html>;
+  return <html lang="en" data-theme="light"><body><RuntimeObservabilityBridge><ThemeProvider><LanguageProvider><NxReviewProvider>{children}<PwaRuntime/></NxReviewProvider></LanguageProvider></ThemeProvider></RuntimeObservabilityBridge></body></html>;
 }
