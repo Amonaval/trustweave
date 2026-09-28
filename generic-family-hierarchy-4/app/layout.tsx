@@ -12,5 +12,5 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, view
 export const metadata: Metadata = { title: DEFAULT_CATALOG.SetupBrandTxt, description: DEFAULT_CATALOG.APrivateLivingHomeForYourFamilyTxt, manifest: "/manifest.json" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-theme="light"><body><TrustWeaveRuntimePreload/><TrustWeaveRuntime><ThemeProvider><LanguageProvider><NxReviewProvider>{children}<PwaRuntime/></NxReviewProvider></LanguageProvider></ThemeProvider></TrustWeaveRuntime></body></html>;
+  return <html lang="en" data-theme="light"><head><TrustWeaveRuntimePreload/></head><body><TrustWeaveRuntime><ThemeProvider><LanguageProvider><NxReviewProvider>{children}<PwaRuntime/></NxReviewProvider></LanguageProvider></ThemeProvider></TrustWeaveRuntime></body></html>;
 }
