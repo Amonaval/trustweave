@@ -5,7 +5,75 @@ import {startElementInspector} from './inspector';
 import type {Finding,RuntimeSnapshot} from '../core/types';
 type Tab='summary'|'pinpoint'|'inspect'|'react'|'why'|'vitals'|'loaf'|'network'|'resources'|'errors'|'console'|'actions'|'dom'|'memory'|'history'|'env';
 const tabs:Tab[]=['summary','pinpoint','inspect','react','why','vitals','loaf','network','resources','errors','console','actions','dom','memory','history','env'];
-export default function RuntimePanel(){const[s,setS]=useState<RuntimeSnapshot>(()=>runtimeStore.snapshot()),[open,setOpen]=useState(false),[tab,setTab]=useState<Tab>('summary'),[search,setSearch]=useState('');useEffect(()=>{const refresh=()=>setS(runtimeStore.snapshot()),u=runtimeStore.subscribe(refresh),t=setInterval(refresh,1000);return()=>{u();clearInterval(t)}},[]);const findings=useMemo(()=>runtimeStore.findings(s),[s]),critical=findings.filter(x=>x.severity==='critical').length,warnings=findings.filter(x=>x.severity==='warning').length;if(!open)return <button data-react-runtime-toolkit onClick={()=>setOpen(true)} style={st.badge}>{runtimeStore.config.brand} {critical?`• ${critical} critical`:warnings?`• ${warnings} warning`:'• healthy'}</button>;return <aside data-react-runtime-toolkit style={st.panel}><header style={st.header}><div><b>{runtimeStore.config.brand}</b><div style={st.dim}>browser + React fiber runtime intelligence · local only</div></div><button style={st.x} onClick={()=>setOpen(false)}>×</button></header><nav style={st.tabs}>{tabs.map(t=><button key={t} onClick={()=>setTab(t)} style={{...st.tab,...(tab===t?st.active:{})}}>{label(t)}</button>)}</nav><main style={st.main}>{content(tab,s,findings,search,setSearch)}</main><footer style={st.footer}><button style={st.btn} onClick={()=>runtimeStore.saveHistory('Manual snapshot')}>Save snapshot</button><button style={st.btn} onClick={()=>runtimeStore.measureMemory()}>Measure memory</button><button style={st.btn} onClick={()=>download(s,findings)}>⬇ JSON</button><button style={st.btn} onClick={()=>copy(s,findings)}>Copy</button><button style={st.btn} onClick={()=>runtimeStore.reset()}>Reset</button></footer></aside>}
+export default function RuntimePanel() {
+  const [s, setS] = useState<RuntimeSnapshot>(() => runtimeStore.snapshot());
+  const [open, setOpen] = useState(false);
+  const [tab, setTab] = useState<Tab>('summary');
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    const refresh = () => setS(runtimeStore.snapshot());
+    const unsubscribe = runtimeStore.subscribe(refresh);
+    const timer = setInterval(refresh, 1000);
+    return () => {
+      unsubscribe();
+      clearInterval(timer);
+    };
+  }, []);
+
+  const findings = useMemo(() => runtimeStore.findings(s), [s]);
+  const critical = findings.filter(x => x.severity === 'critical').length;
+  const warnings = findings.filter(x => x.severity === 'warning').length;
+
+  if (!open) {
+    return (
+      <button
+        data-react-runtime-toolkit
+        onClick={() => setOpen(true)}
+        style={st.badge}
+      >
+        {runtimeStore.config.brand}{' '}
+        {critical ? `• ${critical} critical` : warnings ? `• ${warnings} warning` : '• healthy'}
+      </button>
+    );
+  }
+
+  return (
+    <aside data-react-runtime-toolkit style={st.panel}>
+      <header style={st.header}>
+        <div>
+          <b>{runtimeStore.config.brand}</b>
+          <div style={st.dim}>browser + React fiber runtime intelligence · local only</div>
+        </div>
+        <button style={st.x} onClick={() => setOpen(false)}>×</button>
+      </header>
+
+      <nav style={st.tabs}>
+        {tabs.map(t => (
+          <button
+            key={t}
+            onClick={() => setTab(t)}
+            style={{...st.tab, ...(tab === t ? st.active : {})}}
+          >
+            {label(t)}
+          </button>
+        ))}
+      </nav>
+
+      <main style={st.main}>
+        {content(tab, s, findings, search, setSearch)}
+      </main>
+
+      <footer style={st.footer}>
+        <button style={st.btn} onClick={() => runtimeStore.saveHistory('Manual snapshot')}>Save snapshot</button>
+        <button style={st.btn} onClick={() => runtimeStore.measureMemory()}>Measure memory</button>
+        <button style={st.btn} onClick={() => download(s, findings)}>⬇ JSON</button>
+        <button style={st.btn} onClick={() => copy(s, findings)}>Copy</button>
+        <button style={st.btn} onClick={() => runtimeStore.reset()}>Reset</button>
+      </footer>
+    </aside>
+  );
+}
 function content(tab:Tab,s:RuntimeSnapshot,findings:Finding[],search:string,setSearch:(x:string)=>void){switch(tab){case'summary':return <><Grid items={[['Findings',findings.length],['React commits',s.commits.length],['Requests',s.network.length],['Errors',s.errors.length],['LoAFs',s.loafs.length],['DOM nodes',last(s.dom)?.nodes??0]]}/><Section title="Top concerns">{findings.length?findings.slice(0,7).map((x,i)=><FindingCard key={i} x={x}/>):<Good>No high-confidence issue yet. Exercise a real user flow.</Good>}</Section><Section title="Causal timeline">{timeline(s).slice(0,15).map((x,i)=><Row key={i} cols={x}/>)}</Section></>;
 case'pinpoint':return <>{findings.length?findings.map((x,i)=><FindingCard key={i} x={x}/>):<Good>No Pinpoint concern detected.</Good>}</>;
 case'inspect':return <><button style={st.primary} onClick={()=>startElementInspector()}>🎯 Pick element from page</button><p style={st.dim}>Maps DOM → React fiber → owning component. Reads current memoized props/state only; this private-fiber adapter is isolated from application logic.</p>{s.inspection?<><Grid items={[['Target',s.inspection.target],['Component',s.inspection.component||'DOM only'],['Rect',s.inspection.rect],['Source',s.inspection.source||'—']]}/><Section title="Component chain"><pre style={st.pre}>{s.inspection.componentChain.join(' → ')}</pre></Section><Section title="Live props"><KV obj={s.inspection.props}/></Section><Section title="Hook / state summary"><pre style={st.pre}>{s.inspection.hooks.join('\n')||'No readable hook state'}</pre></Section><Section title="DOM attributes"><KV obj={s.inspection.attributes}/></Section></>:<Good>No element selected.</Good>}</>;
