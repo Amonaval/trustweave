@@ -63,44 +63,58 @@ async function captureViewport(browser, viewport) {
   await settle();
   await shot('public-discovery', 'TrustWeave public landing / discovery');
 
-  await page.getByTestId('qa-explore-community').click();
-  await page.getByTestId('qa-public-community').waitFor({ state: 'visible', timeout: 10_000 });
-  await settle();
-  await shot('family-community-public-overview', 'Family Community / Association explanation before entering Playground');
+  // The public product gallery now exposes Playground directly from each card.
+  // Match the Family Community / Cultural Association card by content so this
+  // remains stable even if gallery ordering changes. Keep the current third-card
+  // position only as a fallback for local revisions with slightly different copy.
+  const gallery = page.locator('.public-product-gallery-grid').first();
+  await gallery.waitFor({ state: 'visible', timeout: 10_000 });
 
-  // Actual public flow is two-step:
-  // 1) Explore Family Community opens the contextual page.
-  // 2) From there, click the Playground CTA.
-  //
-  // Local revisions may label that CTA differently, so accept either wording.
-  const playgroundCandidates = [
-    page.getByRole('button', { name: /Try Playground/i }).first(),
-    page.getByRole('button', { name: /Explore realistic community Playground/i }).first(),
-    page.getByTestId('qa-public-community').getByRole('button', { name: /Playground/i }).first(),
-  ];
+  const namedCommunityCard = gallery
+    .locator('article')
+    .filter({ hasText: /Family Community\s*\/\s*Cultural Association/i })
+    .first();
+  const thirdGalleryCard = gallery.locator('article').nth(2);
+  const communityCard = await visible(namedCommunityCard)
+    ? namedCommunityCard
+    : thirdGalleryCard;
 
-  let enter = null;
-  for (const candidate of playgroundCandidates) {
-    if (await visible(candidate)) {
-      enter = candidate;
-      break;
-    }
-  }
-
-  if (!enter) {
+  if (!(await visible(communityCard))) {
     const diagnosticDir = path.join(outputRoot, viewport.name, '_diagnostics');
     await fs.mkdir(diagnosticDir, { recursive: true });
     await page.screenshot({
-      path: path.join(diagnosticDir, 'community-context-no-playground-button.png'),
+      path: path.join(diagnosticDir, 'community-gallery-card-not-found.png'),
       fullPage: true,
     }).catch(() => {});
     await fs.writeFile(
-      path.join(diagnosticDir, 'community-context-no-playground-button.html'),
+      path.join(diagnosticDir, 'community-gallery-card-not-found.html'),
       await page.content(),
       'utf8',
     ).catch(() => {});
     throw new Error(
-      `Family Community context opened, but no Playground CTA was found. ` +
+      `Family Community / Cultural Association gallery card was not found. ` +
+      `Diagnostics written to ${diagnosticDir}`,
+    );
+  }
+
+  const enter = communityCard
+    .getByRole('button', { name: /Playground/i })
+    .first();
+
+  if (!(await visible(enter))) {
+    const diagnosticDir = path.join(outputRoot, viewport.name, '_diagnostics');
+    await fs.mkdir(diagnosticDir, { recursive: true });
+    await page.screenshot({
+      path: path.join(diagnosticDir, 'community-gallery-no-playground-button.png'),
+      fullPage: true,
+    }).catch(() => {});
+    await fs.writeFile(
+      path.join(diagnosticDir, 'community-gallery-no-playground-button.html'),
+      await page.content(),
+      'utf8',
+    ).catch(() => {});
+    throw new Error(
+      `Family Community / Cultural Association card was found, but its Playground button was not. ` +
       `Diagnostics written to ${diagnosticDir}`,
     );
   }
