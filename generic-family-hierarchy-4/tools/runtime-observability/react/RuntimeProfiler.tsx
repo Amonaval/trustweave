@@ -1,7 +1,0 @@
-"use client";
-import {Profiler,useEffect,useId,useRef,type ReactNode} from 'react';
-import {runtimeObservabilityStore} from '../store';
-import {useRuntimeObservabilityEnabled} from './RuntimeObservabilityContext';
-const registered=new WeakSet<object>();
-const registry=typeof FinalizationRegistry!=='undefined'?new FinalizationRegistry<{name:string;instanceId:string}>(x=>runtimeObservabilityStore.recordMount({name:x.name,instanceId:x.instanceId,action:'gc',at:Date.now()})):null;
-export default function RuntimeProfiler({name,children,enabled}:{name:string;children:ReactNode;enabled?:boolean}){const inherited=useRuntimeObservabilityEnabled(),active=enabled??inherited,id=useId(),instanceId=`${name}-${id}`,probe=useRef<object>({});useEffect(()=>{if(!active)return;const token=probe.current;if(registry&&!registered.has(token)){registered.add(token);registry.register(token,{name,instanceId},token)}runtimeObservabilityStore.recordMount({name,instanceId,action:'mount',at:Date.now()});return()=>runtimeObservabilityStore.recordMount({name,instanceId,action:'unmount',at:Date.now()})},[active,instanceId,name]);if(!active)return <>{children}</>;return <Profiler id={name} onRender={(component,phase,actualDuration,baseDuration,startTime,commitTime)=>runtimeObservabilityStore.recordRender({name:component,phase,actualDurationMs:actualDuration,baseDurationMs:baseDuration,startTimeMs:startTime,commitTimeMs:commitTime,at:Date.now()})}>{children}</Profiler>}
