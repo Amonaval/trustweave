@@ -1,207 +1,27 @@
-import type {
-  DiagnosticFinding,
-  LongTaskSample,
-  MountSample,
-  NetworkSample,
-  RenderSample,
-  RuntimeErrorSample,
-  RuntimeSnapshot,
-} from "./types";
-
-const MAX_SAMPLES = 300;
-
-class RuntimeObservabilityStore {
-  private startedAt = Date.now();
-  private renders: RenderSample[] = [];
-  private network: NetworkSample[] = [];
-  private errors: RuntimeErrorSample[] = [];
-  private longTasks: LongTaskSample[] = [];
-  private mounts: MountSample[] = [];
-  private listeners = new Set<() => void>();
-
-  subscribe = (listener: () => void) => {
-    this.listeners.add(listener);
-    return () => this.listeners.delete(listener);
-  };
-
-  private emit() {
-    for (const listener of this.listeners) listener();
-  }
-
-  private push<T>(list: T[], item: T) {
-    list.push(item);
-    if (list.length > MAX_SAMPLES) list.splice(0, list.length - MAX_SAMPLES);
-    this.emit();
-  }
-
-  recordRender(sample: RenderSample) { this.push(this.renders, sample); }
-  recordNetwork(sample: NetworkSample) { this.push(this.network, sample); }
-  recordError(sample: RuntimeErrorSample) { this.push(this.errors, sample); }
-  recordLongTask(sample: LongTaskSample) { this.push(this.longTasks, sample); }
-  recordMount(sample: MountSample) { this.push(this.mounts, sample); }
-
-  reset() {
-    this.startedAt = Date.now();
-    this.renders = [];
-    this.network = [];
-    this.errors = [];
-    this.longTasks = [];
-    this.mounts = [];
-    this.emit();
-  }
-
-  snapshot(): RuntimeSnapshot {
-    return {
-      startedAt: this.startedAt,
-      renders: [...this.renders],
-      network: [...this.network],
-      errors: [...this.errors],
-      longTasks: [...this.longTasks],
-      mounts: [...this.mounts],
-      domNodes: typeof document === "undefined" ? 0 : document.getElementsByTagName("*").length,
-      route: typeof location === "undefined" ? "" : `${location.pathname}${location.search}`,
-    };
-  }
-
-  findings(snapshot = this.snapshot()): DiagnosticFinding[] {
-    const findings: DiagnosticFinding[] = [];
-
-    const renderGroups = new Map<string, RenderSample[]>();
-    for (const sample of snapshot.renders) {
-      const group = renderGroups.get(sample.name) ?? [];
-      group.push(sample);
-      renderGroups.set(sample.name, group);
-    }
-    for (const [name, samples] of renderGroups) {
-      const slow = samples.filter((sample) => sample.actualDurationMs >= 50);
-      if (slow.length) {
-        const worst = Math.max(...slow.map((sample) => sample.actualDurationMs));
-        findings.push({
-          severity: worst >= 150 ? "critical" : "warning",
-          title: `${name} has expensive React commits`,
-          detail: `${slow.length}/${samples.length} observed commits took at least 50ms.`,
-          evidence: `worst ${worst.toFixed(1)}ms`,
-        });
-      }
-    }
-
-    const slowNetwork = snapshot.network.filter((sample) => sample.durationMs >= 1000);
-    if (slowNetwork.length) {
-      const worst = slowNetwork.reduce((a, b) => a.durationMs > b.durationMs ? a : b);
-      findings.push({
-        severity: worst.durationMs >= 3000 ? "critical" : "warning",
-        title: "Slow network calls are blocking the experience",
-        detail: `${slowNetwork.length} request(s) exceeded 1s.`,
-        evidence: `${worst.method} ${shortUrl(worst.url)} ${worst.durationMs.toFixed(0)}ms`,
-      });
-    }
-
-    const repeats = new Map<string, NetworkSample[]>();
-    for (const sample of snapshot.network) {
-      if (sample.method !== "GET" && sample.method !== "HEAD") continue;
-      const key = `${sample.method} ${normalizeUrl(sample.url)}`;
-      const group = repeats.get(key) ?? [];
-      group.push(sample);
-      repeats.set(key, group);
-    }
-    for (const [key, samples] of repeats) {
-      if (samples.length >= 4) {
-        const windowMs = samples[samples.length - 1].at - samples[0].at;
-        if (windowMs <= 10000) {
-          findings.push({
-            severity: "warning",
-            title: "Repeated request burst detected",
-            detail: `${samples.length} equivalent requests occurred within ${(windowMs / 1000).toFixed(1)}s.`,
-            evidence: key,
-          });
-        }
-      }
-    }
-
-    if (snapshot.errors.length) {
-      const latest = snapshot.errors[snapshot.errors.length - 1];
-      findings.push({
-        severity: "critical",
-        title: "Browser runtime errors observed",
-        detail: `${snapshot.errors.length} error/rejection event(s) captured. Errors are observed only; they are not swallowed or recovered by this tool.`,
-        evidence: latest.message,
-      });
-    }
-
-    const recentLongTasks = snapshot.longTasks.filter((task) => Date.now() - task.at <= 30000);
-    if (recentLongTasks.length >= 3) {
-      const total = recentLongTasks.reduce((sum, task) => sum + task.durationMs, 0);
-      findings.push({
-        severity: total >= 1000 ? "critical" : "warning",
-        title: "Main thread is repeatedly blocked",
-        detail: `${recentLongTasks.length} long tasks occurred in the last 30s.`,
-        evidence: `${total.toFixed(0)}ms total long-task time`,
-      });
-    }
-
-    const remounts = rapidRemountFindings(snapshot.mounts);
-    findings.push(...remounts);
-
-    if (snapshot.domNodes >= 5000) {
-      findings.push({
-        severity: snapshot.domNodes >= 10000 ? "critical" : "warning",
-        title: "Large DOM detected",
-        detail: "A large DOM can amplify layout, style and memory costs.",
-        evidence: `${snapshot.domNodes.toLocaleString()} nodes`,
-      });
-    }
-
-    return findings.sort((a, b) => rank(b.severity) - rank(a.severity));
-  }
+import type {ConsoleSample,DiagnosticFinding,HistorySnapshot,InspectionSnapshot,InteractionSample,LongTaskSample,MountSample,NetworkSample,RenderSample,RuntimeErrorSample,RuntimeSnapshot,VitalsSnapshot} from "./types";
+const MAX=400;
+const emptyVitals=():VitalsSnapshot=>({cls:{value:0,at:Date.now()},longTasks:[]});
+class Store{
+ private startedAt=Date.now(); private renders:RenderSample[]=[]; private network:NetworkSample[]=[]; private errors:RuntimeErrorSample[]=[]; private console:ConsoleSample[]=[]; private longTasks:LongTaskSample[]=[]; private mounts:MountSample[]=[]; private interactions:InteractionSample[]=[]; private vitals:VitalsSnapshot=emptyVitals(); private inspection:InspectionSnapshot|null=null; private listeners=new Set<()=>void>(); private history:HistorySnapshot[]=[];
+ subscribe=(f:()=>void)=>{this.listeners.add(f);return()=>this.listeners.delete(f)}; private emit(){for(const f of this.listeners)f()} private push<T>(a:T[],v:T){a.push(v);if(a.length>MAX)a.splice(0,a.length-MAX);this.emit()}
+ recordRender(v:RenderSample){this.push(this.renders,v)} recordNetwork(v:NetworkSample){this.push(this.network,v)} recordError(v:RuntimeErrorSample){this.push(this.errors,v)} recordConsole(v:ConsoleSample){this.push(this.console,v)} recordLongTask(v:LongTaskSample){this.longTasks.push(v);if(this.longTasks.length>MAX)this.longTasks.shift();this.vitals.longTasks=[...this.longTasks];this.emit()} recordMount(v:MountSample){this.push(this.mounts,v)} recordInteraction(v:InteractionSample){this.push(this.interactions,v)}
+ setLcp(value:number,detail?:string){this.vitals={...this.vitals,lcp:{value,detail,at:Date.now()}};this.emit()} addCls(value:number,detail?:string){this.vitals={...this.vitals,cls:{value:this.vitals.cls.value+value,detail,at:Date.now()}};this.emit()} setInp(value:number,detail?:string){if(!this.vitals.inp||value>this.vitals.inp.value)this.vitals={...this.vitals,inp:{value,detail,at:Date.now()}};this.emit()} setInspection(v:InspectionSnapshot|null){this.inspection=v;this.emit()}
+ reset(){this.startedAt=Date.now();this.renders=[];this.network=[];this.errors=[];this.console=[];this.longTasks=[];this.mounts=[];this.interactions=[];this.vitals=emptyVitals();this.inspection=null;this.emit()}
+ snapshot():RuntimeSnapshot{return{startedAt:this.startedAt,renders:[...this.renders],network:[...this.network],errors:[...this.errors],console:[...this.console],longTasks:[...this.longTasks],mounts:[...this.mounts],interactions:[...this.interactions],vitals:{...this.vitals,longTasks:[...this.vitals.longTasks]},inspection:this.inspection,domNodes:typeof document==='undefined'?0:document.getElementsByTagName('*').length,route:typeof location==='undefined'?'':location.pathname+location.search,environment:env(this.startedAt)}}
+ saveHistory(label='Snapshot'){const report=this.snapshot();const item={id:String(Date.now()),label,at:Date.now(),report,findings:this.findings(report)};this.history=[...this.history,item].slice(-20);this.emit();return item} getHistory(){return[...this.history]} clearHistory(){this.history=[];this.emit()}
+ findings(s=this.snapshot()):DiagnosticFinding[]{const out:DiagnosticFinding[]=[];const groups=new Map<string,RenderSample[]>();for(const x of s.renders){const g=groups.get(x.name)||[];g.push(x);groups.set(x.name,g)}for(const[name,a]of groups){const slow=a.filter(x=>x.actualDurationMs>=50);if(slow.length){const worst=Math.max(...slow.map(x=>x.actualDurationMs));out.push(f(worst>=150?'critical':'warning','Performance',`${name} has expensive React commits`,`${slow.length}/${a.length} commits took ≥50ms`,`worst ${worst.toFixed(1)}ms`,'Inspect this boundary for expensive render work, unstable props, large lists, or synchronous child work.'))}}
+ const slow=s.network.filter(x=>x.durationMs>=1000);if(slow.length){const w=slow.reduce((a,b)=>a.durationMs>b.durationMs?a:b);out.push(f(w.durationMs>=3000?'critical':'warning','Network','Slow API calls detected',`${slow.length} request(s) exceeded 1s`,`${w.method} ${short(w.url)} ${w.durationMs.toFixed(0)}ms`,'Check backend latency, request waterfalls, caching and whether the request is necessary on this route.'))}
+ const failed=s.network.filter(x=>x.ok===false||((x.status||0)>=400));if(failed.length)out.push(f('critical','Network','Failed network requests observed',`${failed.length} request(s) failed`,failed.slice(-3).map(x=>`${x.status||'ERR'} ${short(x.url)}`).join(' | '),'Inspect the request payload/auth/RLS/API response and the user flow that initiated it.'));
+ const repeats=new Map<string,NetworkSample[]>();for(const x of s.network){if(!['GET','HEAD'].includes(x.method))continue;const k=x.method+' '+norm(x.url);const g=repeats.get(k)||[];g.push(x);repeats.set(k,g)}for(const[k,a]of repeats){if(a.length>=4&&a[a.length-1].at-a[0].at<=10000)out.push(f('warning','Network','Repeated request burst',`${a.length} equivalent requests occurred within 10s`,k,'Look for duplicated effects, remount-triggered fetching, missing request dedupe or unstable query keys.'))}
+ if(s.errors.length){const e=s.errors[s.errors.length-1];out.push(f('critical','Errors','Runtime errors observed',`${s.errors.length} error/rejection event(s) captured`,e.message,'Inspect the latest stack. The observability tool only observes errors and does not suppress them.'))}
+ const cErr=s.console.filter(x=>x.level==='error').length,cWarn=s.console.filter(x=>x.level==='warn').length;if(cErr)out.push(f('warning','Console','Console errors present',`${cErr} console.error call(s) captured`,s.console.filter(x=>x.level==='error').slice(-1)[0]?.message||'','Remove unexpected runtime errors and noisy failure paths.'));else if(cWarn>=10)out.push(f('warning','Console','High console warning volume',`${cWarn} warnings captured`,'warning volume','Repeated warnings often reveal loops, deprecated paths, failed resources or noisy retries.'));
+ const recent=s.longTasks.filter(x=>Date.now()-x.at<=30000);if(recent.length>=3){const total=recent.reduce((n,x)=>n+x.durationMs,0);out.push(f(total>=1000?'critical':'warning','Vitals','Main thread repeatedly blocked',`${recent.length} long tasks in the last 30s`,`${total.toFixed(0)}ms total`,'Correlate the timestamps with React commits and interactions; split or defer heavy synchronous work.'))}
+ if(s.vitals.lcp&&s.vitals.lcp.value>=4000)out.push(f('critical','Vitals','Poor LCP',`Largest Contentful Paint is ${s.vitals.lcp.value.toFixed(0)}ms`,s.vitals.lcp.detail||'','Optimize the LCP element, blocking data, images and critical rendering path.'));if(s.vitals.cls.value>=.25)out.push(f('critical','Vitals','High layout shift',`CLS is ${s.vitals.cls.value.toFixed(3)}`,s.vitals.cls.detail||'','Reserve space for late content/images and avoid layout-changing inserts above visible content.'));if(s.vitals.inp&&s.vitals.inp.value>=500)out.push(f('critical','Vitals','Poor interaction responsiveness',`Worst observed interaction is ${s.vitals.inp.value.toFixed(0)}ms`,s.vitals.inp.detail||'','Correlate the interaction with long tasks and expensive React commits.'));
+ const byName=new Map<string,MountSample[]>();for(const x of s.mounts){const g=byName.get(x.name)||[];g.push(x);byName.set(x.name,g)}for(const[name,a]of byName){const recent=a.filter(x=>Date.now()-x.at<=5000);const m=recent.filter(x=>x.action==='mount').length,u=recent.filter(x=>x.action==='unmount').length;if(m>=4&&u>=4)out.push(f('warning','Lifecycle',`${name} is rapidly remounting`,`${m} mounts + ${u} unmounts within 5s`,'mount/unmount churn','Check keys, conditional trees, route boundaries and parent state that recreates this subtree.'))}
+ if(s.domNodes>=5000)out.push(f(s.domNodes>=10000?'critical':'warning','DOM','Large DOM detected',`${s.domNodes.toLocaleString()} DOM nodes are currently present`,'DOM size','Virtualize large collections and avoid rendering hidden/unused subtrees.'));
+ return out.sort((a,b)=>rank(b.severity)-rank(a.severity))}
 }
-
-function rank(severity: DiagnosticFinding["severity"]) {
-  return severity === "critical" ? 3 : severity === "warning" ? 2 : 1;
-}
-
-function normalizeUrl(url: string) {
-  try {
-    const parsed = new URL(url, typeof location === "undefined" ? "http://local" : location.href);
-    parsed.searchParams.sort();
-    return `${parsed.origin}${parsed.pathname}?${parsed.searchParams.toString()}`;
-  } catch {
-    return url;
-  }
-}
-
-function shortUrl(url: string) {
-  try {
-    const parsed = new URL(url, typeof location === "undefined" ? "http://local" : location.href);
-    return `${parsed.pathname}${parsed.search}`.slice(0, 110);
-  } catch {
-    return url.slice(0, 110);
-  }
-}
-
-function rapidRemountFindings(mounts: MountSample[]): DiagnosticFinding[] {
-  const byName = new Map<string, MountSample[]>();
-  for (const sample of mounts) {
-    const group = byName.get(sample.name) ?? [];
-    group.push(sample);
-    byName.set(sample.name, group);
-  }
-
-  const findings: DiagnosticFinding[] = [];
-  for (const [name, samples] of byName) {
-    if (samples.length < 8) continue;
-    const recent = samples.filter((sample) => Date.now() - sample.at <= 5000);
-    const unmounts = recent.filter((sample) => sample.action === "unmount").length;
-    const mountsCount = recent.filter((sample) => sample.action === "mount").length;
-    if (mountsCount >= 4 && unmounts >= 4) {
-      findings.push({
-        severity: "warning",
-        title: `${name} is rapidly remounting`,
-        detail: "This is rate-based evidence of mount/unmount churn, not a cumulative component-count heuristic.",
-        evidence: `${mountsCount} mounts + ${unmounts} unmounts in 5s`,
-      });
-    }
-  }
-  return findings;
-}
-
-export const runtimeObservabilityStore = new RuntimeObservabilityStore();
+const f=(severity:DiagnosticFinding['severity'],category:string,title:string,detail:string,evidence:string,recommendation:string):DiagnosticFinding=>({severity,category,title,detail,evidence,recommendation});const rank=(x:DiagnosticFinding['severity'])=>x==='critical'?3:x==='warning'?2:1;
+function env(startedAt:number){const n:any=typeof navigator==='undefined'?{}:navigator;const c:any=n.connection;return{url:typeof location==='undefined'?'':location.href,userAgent:n.userAgent||'',viewport:typeof innerWidth==='undefined'?'':`${innerWidth}x${innerHeight} @${devicePixelRatio||1}x`,cpuCores:n.hardwareConcurrency||'unknown',deviceMemoryGB:n.deviceMemory||'unknown',connection:c?`${c.effectiveType||''} ${c.downlink||''}Mbps ${c.rtt||''}ms`:undefined,startedAt}}
+function norm(u:string){try{const x=new URL(u,location.href);x.searchParams.sort();return x.origin+x.pathname+'?'+x.searchParams.toString()}catch{return u}}function short(u:string){try{const x=new URL(u,location.href);return(x.pathname+x.search).slice(0,100)}catch{return u.slice(0,100)}}
+export const runtimeObservabilityStore=new Store();
