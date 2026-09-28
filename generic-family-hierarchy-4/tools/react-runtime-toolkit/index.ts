@@ -6,3 +6,5 @@ export {default as RuntimeProfiler} from './react/RuntimeProfiler';
 export {RuntimeErrorBoundary} from './react/RuntimeErrorBoundary';
 export {startElementInspector} from './react/inspector';
 export type * from './core/types';
+export {health,pinpoint,report,fixTable,html,claudePrompt} from './core/reporting';
+export type {PinpointIssue,InvestigationReport} from './core/reporting';
