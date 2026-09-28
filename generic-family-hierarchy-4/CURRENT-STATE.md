@@ -113,17 +113,31 @@ The reusable Network OS architecture remains protected. New work should prefer A
 
 No broad architecture-convergence program is current unless repeated pilot requirements or concrete reliability/performance evidence justify it.
 
-## Immediate evidence needed
+## FCA-L1 current checkpoint
 
-Use targeted proof only:
+Branch `fca-l1-mpf-pilot` now contains a source candidate that:
 
-1. confirm the remaining FCA-L1 blocker list against current source/runtime rather than re-fixing already-closed issues;
-2. make MPF Pune East representative/full-fidelity enough for a President/member pilot journey;
-3. validate the smallest critical MPF paths needed for real use;
-4. validate Majestique Marbella only where real/pilot use exposes a blocker;
-5. collect real-user reaction/usage evidence and re-select the portfolio.
+- source-audits the seven observed FCA-L1 blockers as resolved by current implementation;
+- aligns the Family Community Playground to the canonical 20-family / 67-person launch dataset instead of the older generic Association sample;
+- makes Community detail, Funds and Member Decisions genuinely read-only in Playground mode rather than falling through to connected RPCs;
+- gives the anonymous Family Community Playground a deterministic representative/household for Me & My Family;
+- preserves live-network exact deep links while using the valid public Playground URL for demo sharing;
+- adds a dedicated FCA-L1 source gate, which is authored but **not yet executed**.
 
-Do not automatically run broad QA/workflows.
+Canonical validation contract: `docs/product/FCA-L1-MPF-PILOT-VALIDATION.md`.
+
+### Immediate evidence needed
+
+Do targeted runtime proof only:
+
+1. manually validate the anonymous Discovery → Family Community → MPF Pune East Playground journey;
+2. confirm one event attendee-detail and one group-member-detail path;
+3. confirm Me, Directory, Funds and Member Decisions are coherent/read-only in Playground;
+4. validate mobile More / small-screen / dark signed-out behavior;
+5. on an intentionally selected connected environment, verify the minimum President/member journey after confirming required database contracts are present;
+6. then show the product to a small real MPF group and collect evidence.
+
+Do not automatically run broad QA/workflows or apply migrations for this checkpoint.
 
 ## Operating constraints
 

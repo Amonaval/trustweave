@@ -8,13 +8,14 @@ import ResponsiveSectionTabs from "./ResponsiveSectionTabs";
 
 const money=(v:number)=>`₹${Number(v||0).toLocaleString("en-IN",{maximumFractionDigits:2})}`;
 type FundsSection="overview"|"manage"|"dues"|"transactions";
-export default function NetworkFundsPanel({onNotify}:{onNotify:(s:string)=>void}){
+export default function NetworkFundsPanel({onNotify,previewData,readOnly=false}:{onNotify:(s:string)=>void;previewData?:NetworkFundsSnapshot|null;readOnly?:boolean}){
  const {t}=useLanguage();
- const [data,setData]=useState<NetworkFundsSnapshot|null>(null),[busy,setBusy]=useState(false),[section,setSection]=useState<FundsSection>("overview");
+ const emptyPreview:NetworkFundsSnapshot={is_admin:false,visibility_mode:"members",funds:[],transactions:[],membership_dues:[],events:[]};
+ const [data,setData]=useState<NetworkFundsSnapshot|null>(previewData||(readOnly?emptyPreview:null)),[busy,setBusy]=useState(false),[section,setSection]=useState<FundsSection>("overview");
  const [fund,setFund]=useState({name:"",fundKind:"general",purpose:"",targetAmount:"",openingBalance:"",visibility:"members",membershipYearId:"",activityId:""});
  const [tx,setTx]=useState({fundId:"",transactionKind:"collection",amount:"",sourceEntityId:"",membershipYearId:"",paymentMethod:"bank",reference:"",note:"",visibility:"members"});
- const load=async()=>{try{setData(await fetchNetworkFundsSnapshot())}catch(e:any){onNotify(e.message||t("E6CouldNotSaveTxt"))}};
- useEffect(()=>{void load()},[]);
+ const load=async()=>{if(readOnly){setData(previewData||emptyPreview);return}if(previewData){setData(previewData);return}try{setData(await fetchNetworkFundsSnapshot())}catch(e:any){onNotify(e.message||t("E6CouldNotSaveTxt"))}};
+ useEffect(()=>{void load()},[previewData,readOnly]);
  const totals=useMemo(()=>{const funds=data?.funds||[];return {balance:funds.reduce((n,f)=>n+Number(f.balance||0),0),collected:funds.reduce((n,f)=>n+Number(f.collected||0),0),spent:funds.reduce((n,f)=>n+Number(f.spent||0),0),active:funds.filter(f=>f.status==="active").length}},[data]);
  const run=async(fn:()=>Promise<any>,message:string)=>{setBusy(true);try{await fn();onNotify(message);await load()}catch(e:any){onNotify(e.message||t("E6CouldNotSaveTxt"))}finally{setBusy(false)}};
  if(!data)return <NetworkEmpty title={t("E6FundsCollectionsTxt")} description={t("E6FundsDescTxt")}/>;

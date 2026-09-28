@@ -3,7 +3,7 @@ import type {NetworkActivity,NetworkActivityType} from "../../core/network-os/co
 import {fetchEntityMediaAssets} from "../../lib/storage";
 import {requestPushDelivery} from "../../lib/push";
 function required(){if(!supabase)throw new Error("Shared Supabase mode is required for network activity.");return supabase}
-export type NetworkGroup={id:string;name:string;groupType:string;description?:string|null;memberCount:number;myMember?:boolean};
+export type NetworkGroup={id:string;name:string;groupType:string;description?:string|null;memberCount:number;myMember?:boolean;previewMembers?:NetworkGroupMember[]};
 export type NetworkGroupMember={userId:string;memberLabel:string;role:"member"|"lead";joinedAt:string};
 export async function fetchNetworkActivities(type?:NetworkActivityType){
  const s=required();const [{data,error},flagsResult]=await Promise.all([s.rpc("get_network_activities",{p_activity_type:type||null}),s.rpc("get_network_activity_social_flags")]);if(error)throw error;

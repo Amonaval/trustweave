@@ -21,16 +21,17 @@ const housingElectionSteps=[
  "Constitute the committee and complete the separate office-bearer election/process."
 ];
 
-export default function NetworkVotingPanel({onNotify,kind}:{onNotify:(s:string)=>void;kind?:VotingContextKind}){
+export default function NetworkVotingPanel({onNotify,kind,previewData,readOnly=false}:{onNotify:(s:string)=>void;kind?:VotingContextKind;previewData?:BallotsSnapshot|null;readOnly?:boolean}){
  const {t}=useLanguage();
  const housing=kind==="housing-society";
  const community=kind==="family-association"||kind==="association";
- const [data,setData]=useState<BallotsSnapshot|null>(null),[busy,setBusy]=useState(false),[selected,setSelected]=useState<Record<string,string[]>>({}),[section,setSection]=useState<VotingSection>("ballots");
+ const emptyPreview:BallotsSnapshot={is_admin:false,people:[],ballots:[]};
+ const [data,setData]=useState<BallotsSnapshot|null>(previewData||(readOnly?emptyPreview:null)),[busy,setBusy]=useState(false),[selected,setSelected]=useState<Record<string,string[]>>({}),[section,setSection]=useState<VotingSection>("ballots");
  const [draft,setDraft]=useState({ballotType:"election",title:"",description:"",eligibilityMode:"members",maxChoices:"1",secretBallot:true,allowNominations:true,opensAt:"",closesAt:""});
  const [option,setOption]=useState({ballotId:"",label:"",description:"",candidateEntityId:""});
  const [nomination,setNomination]=useState({ballotId:"",nomineeEntityId:"",statement:""});
- const load=async()=>{try{setData(await fetchNetworkBallots())}catch(e:any){onNotify(e.message||t("E7CouldNotSaveTxt"))}};
- useEffect(()=>{void load()},[]);
+ const load=async()=>{if(readOnly){setData(previewData||emptyPreview);return}if(previewData){setData(previewData);return}try{setData(await fetchNetworkBallots())}catch(e:any){onNotify(e.message||t("E7CouldNotSaveTxt"))}};
+ useEffect(()=>{void load()},[previewData,readOnly]);
  const run=async(fn:()=>Promise<any>,message:string)=>{setBusy(true);try{const result=await fn();onNotify(result&&typeof result==="string"&&message.includes("{receipt}")?message.replace("{receipt}",result):message);await load()}catch(e:any){onNotify(e.message||t("E7CouldNotSaveTxt"))}finally{setBusy(false)}};
  const openCount=useMemo(()=>data?.ballots.filter(b=>b.status==="open").length||0,[data]);
  const pendingNominations=useMemo(()=>data?.ballots.reduce((n,b)=>n+b.nominations.filter(x=>x.status==="pending").length,0)||0,[data]);

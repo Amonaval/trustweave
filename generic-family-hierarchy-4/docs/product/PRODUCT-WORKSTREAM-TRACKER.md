@@ -71,7 +71,23 @@ Founder usage on 2026-09-22 supplied stronger evidence than the original screens
 
 These are observed alpha/pilot blockers and are allowed to override the earlier "no feature expansion" rule. They **do not** authorize broader Residential development, a new election-compliance product, performance work, or a generalized seed architecture.
 
-**Lean stop condition:** validate these observed blockers locally on the existing Family Community + Residential journeys, then complete one public MPF East proof pack / real-user feedback cycle. After that, stop and re-select from the portfolio.
+### 2026-09-23 FCA-L1 source checkpoint
+
+The seven recorded blockers are now source-resolved by the current implementation. FCA-L1 additionally found and corrected a pilot-proof mismatch: the public Family Community Playground was still using the older generic 10-family/30-person Association sample despite richer MPF data existing elsewhere.
+
+The candidate branch now:
+- derives the actual Playground from the canonical 20-family / 67-person launch dataset;
+- reuses the existing generic Family Community engine;
+- keeps read-only event/group details local;
+- supplies read-only Funds and Member Decisions snapshots through optional generic config contracts;
+- gives Me & My Family a deterministic demo representative/household;
+- prevents Playground sharing from generating fake sample-network routes.
+
+See `FCA-L1-MPF-PILOT-VALIDATION.md`.
+
+**Evidence boundary:** implementation/source review only. The FCA-L1 source gate is authored but not executed; build/browser/connected validation remain pending.
+
+**Lean stop condition:** perform the targeted anonymous + minimum connected President/member validation, then complete one public MPF East proof / real-user feedback cycle. After that, stop and re-select from the portfolio.
 
 ## Network Activation alpha finish line
 
