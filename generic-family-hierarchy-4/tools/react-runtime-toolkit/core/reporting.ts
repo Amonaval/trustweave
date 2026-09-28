@@ -25,7 +25,7 @@ export function health(s:RuntimeSnapshot,findings:Finding[]){
     dimension('Responsiveness',100-Math.min(blocking*12,50)-((s.vitals.inpMs||0)>=500?30:0),s.loafs.length+' LoAF(s), '+s.longTasks.length+' long task(s)'),
     dimension('React',100-Math.min(expensive*8,40)-Math.min(churn*2,30),expensive+' expensive sample(s), '+churn+' ref-churn signal(s)'),
     dimension('Network',100-Math.min(failed*18,50)-Math.min(slow*5,30),failed+' failed, '+slow+' slow request(s)'),
-    dimension('DOM / memory',100-(dom?.nodes>=10000?35:dom?.nodes>=5000?18:0)-Math.min((dom?.detachedSuspects||0)*2,30),(dom?.nodes||0)+' nodes, '+(dom?.detachedSuspects||0)+' detached suspect(s), '+(mem?.jsHeapUsedMB!=null?mem.jsHeapUsedMB+'MB heap':'heap n/a')),
+    dimension('DOM / memory',100-((dom?.nodes||0)>=10000?35:(dom?.nodes||0)>=5000?18:0)-Math.min((dom?.detachedSuspects||0)*2,30),(dom?.nodes||0)+' nodes, '+(dom?.detachedSuspects||0)+' detached suspect(s), '+(mem?.jsHeapUsedMB!=null?mem.jsHeapUsedMB+'MB heap':'heap n/a')),
   ];
   const score=Math.max(0,Math.min(100,Math.round(dimensions.reduce((n,x)=>n+x.score,0)/dimensions.length)));
   return {score,grade:score>=85?'A':score>=70?'B':score>=55?'C':score>=40?'D':'F',dimensions};
