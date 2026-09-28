@@ -20,6 +20,8 @@
     "lib/**/*.tsx",
     "templates/**/*.ts",
     "templates/**/*.tsx",
+    "tools/**/*.ts",
+    "tools/**/*.tsx",
     "verticals/**/*.ts",
     "verticals/**/*.tsx",
     "TemplateNetworkApp.tsx"
