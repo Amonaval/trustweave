@@ -3,7 +3,7 @@ import {existsSync, readFileSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-const PIN='de8d01ead5c75054a613a483c3830917b9bc8ace';
+const PIN='0825192ee6bee5be8a85f280397106906e10353b';
 const TARGET=`github:Amonaval/runtime-intelligence#${PIN}`;
 const npmArgs=['install','--no-save','--package-lock=false',TARGET];
 const scriptDir=path.dirname(fileURLToPath(import.meta.url));
