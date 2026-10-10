@@ -8,7 +8,7 @@ const layout=read('app/layout.tsx');
 const page=read('app/page.tsx');
 const installer=read('scripts/install-runtime-intelligence.mjs');
 
-const R5_PIN='de8d01ead5c75054a613a483c3830917b9bc8ace';
+const R5_1_PIN='0825192ee6bee5be8a85f280397106906e10353b';
 const failures=[];
 if(!runtime.includes("from 'runtime-intelligence/react'"))failures.push('TrustWeaveRuntime must consume runtime-intelligence/react');
 if(!runtime.includes("from 'runtime-intelligence/panel'"))failures.push('TrustWeaveRuntime must consume runtime-intelligence/panel');
@@ -18,10 +18,10 @@ if(page.includes('react-runtime-toolkit'))failures.push('Home still imports the 
 if(!runtime.includes("process.env.NODE_ENV==='development'"))failures.push('Runtime intelligence must remain development-only');
 if(!runtime.includes('source={ROOT_SOURCE}'))failures.push('Root profiler source attribution is missing');
 if(!page.includes('source="components/NetworkApp.tsx"'))failures.push('NetworkApp profiler source attribution is missing');
-if(!installer.includes(R5_PIN))failures.push('Dogfood installer is not pinned to the R5 canonical runtime commit');
+if(!installer.includes(R5_1_PIN))failures.push('Dogfood installer is not pinned to the R5.1 canonical runtime commit');
 
 if(failures.length){
   console.error('Runtime Intelligence source gate failed:\n- '+failures.join('\n- '));
   process.exit(1);
 }
-console.log('Runtime Intelligence source gate passed. TrustWeave consumes the canonical R5 react + panel surfaces with explicit profiling sources.');
+console.log('Runtime Intelligence source gate passed. TrustWeave consumes the canonical R5.1 react + actionable panel surfaces with explicit profiling sources.');
