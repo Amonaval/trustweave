@@ -1,6 +1,6 @@
-# TrustWeave Runtime Intelligence dogfood
+# TrustWeave Runtime Intelligence — R5.6 dogfood
 
-Pinned R5.5 runtime: `3e094b1bd5109f69991cb9fb285836018e1f711f`.
+Pinned canonical runtime: `ec86b2d944c4144b69f78a9cfc9251dd101d762a`.
 
 ```bash
 node scripts/install-runtime-intelligence.mjs
@@ -8,10 +8,24 @@ node scripts/runtime-intelligence-source-gate.mjs
 npm run dev
 ```
 
-## What should now work
+## What to expect
 
-The React app uses the same mature Runtime Intelligence product UI and core as Lit. Shared browser collectors populate Summary, Network, Vitals, Console/Errors, Events and Slow API. React profiler owners populate Perf/Memory/source attribution. Shared advisors feed Pinpoint and the existing Intelligence presentation.
+This is now the mature Runtime Intelligence product, not the discarded lightweight React panel. The same panel exposes Summary, ✨ Intelligence, Pinpoint, Vitals, Network, Perf, Errors, Console, Events, Slow API, Memory, History/compare/export and Environment. App-specific Falcor remains relevant only where the app uses Falcor.
 
-R5.5 additionally provides bounded interaction context: click/change/submit can be correlated with subsequent React renders, tracked state and network completion inside a short window. EvidenceGraph labels those links correlation/temporal-inference; they are not claimed as causes. The shared intelligence pipeline uses EvidenceGraph, RootCauseGrouper, incident recording and evidence capsules and publishes the existing `__LDS_INTELLIGENCE__` contract.
+TrustWeave intentionally disables timing on the structural `TrustWeave.Root` provider to avoid double-counting the same commits. Meaningful Perf boundaries include `TrustWeave.NetworkApp`, `TrustWeave.AnalyticsPanel`, `TrustWeave.TimelineView` and `TrustWeave.UpcomingWidget` when those surfaces render.
 
-R5.6 is the final parity-hardening pass: source/package checks, noise reduction, capability audit, TrustWeave-targeted profiler coverage and closure documentation.
+Shared browser collectors provide Network/Vitals/Console/errors/interactions. Shared advisers provide DOM duplication, virtualization, paint, worker, idle, sequential API and update-budget signals. React adds source-attributed profiler ownership plus optional tracked state/effect/resource evidence. The Intelligence engine uses the shared evidence graph/root-cause grouping/incident capsule stack and labels temporal relationships as correlation, never automatic causality.
+
+## Tomorrow's browser checkpoint
+
+Exercise initial load, navigation, Timeline filters, Analytics load, directory/tree-heavy flows, search/filter changes and a few modals. Check:
+
+1. Mature panel appears with the original full tab set plus ✨ Intelligence.
+2. Perf shows meaningful component boundaries rather than Root/NetworkApp duplicates.
+3. Network/Vitals/Console/Events populate from normal use.
+4. Pinpoint shows shared advisor findings only when evidence exists.
+5. Intelligence says Possible/Strongest signal for temporal correlation, not Confirmed/Likely cause unless evidence supports it.
+6. Source paths point back to TrustWeave files.
+7. The application behaves normally with `?twdebug=0` and with diagnostics enabled.
+
+If something fails, share the panel output plus browser console error; the mission chain is now narrow enough that any remaining defect should be a targeted hardening fix, not another architecture rewrite.

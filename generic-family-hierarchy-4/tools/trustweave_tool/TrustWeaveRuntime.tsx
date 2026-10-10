@@ -52,6 +52,7 @@ export default function TrustWeaveRuntime({children}:{children:ReactNode}){
     source={ROOT_SOURCE}
     enabled={enabled}
     profilingEnabled
+    profileRoot={false}
   >
     <CanonicalRuntimePanel/>
     {children}

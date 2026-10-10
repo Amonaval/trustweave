@@ -1,1 +1,32 @@
-import fs from 'node:fs';import path from 'node:path';const root=process.cwd();const read=p=>fs.readFileSync(path.join(root,p),'utf8');const runtime=read('tools/trustweave_tool/TrustWeaveRuntime.tsx');const layout=read('app/layout.tsx');const page=read('app/page.tsx');const installer=read('scripts/install-runtime-intelligence.mjs');const R5_5_PIN='3e094b1bd5109f69991cb9fb285836018e1f711f';const failures=[];if(!runtime.includes("from 'runtime-intelligence/react'"))failures.push('TrustWeaveRuntime must consume runtime-intelligence/react');if(!runtime.includes("from 'runtime-intelligence/panel'"))failures.push('TrustWeaveRuntime must consume canonical mature panel');if(!runtime.includes('mountRuntimeIntelligencePanel'))failures.push('Canonical panel mount missing');if(runtime.includes('react-runtime-toolkit'))failures.push('Legacy copied toolkit still active');if(layout.includes('TrustWeaveRuntimePreload'))failures.push('Legacy preload active');if(page.includes('react-runtime-toolkit'))failures.push('Home imports legacy profiler');if(!runtime.includes("process.env.NODE_ENV==='development'"))failures.push('Runtime intelligence must remain development-only');if(!runtime.includes('source={ROOT_SOURCE}'))failures.push('Root source attribution missing');if(!page.includes('source="components/NetworkApp.tsx"'))failures.push('NetworkApp source attribution missing');if(!installer.includes(R5_5_PIN))failures.push('Installer not pinned to R5.5');if(failures.length){console.error('Runtime Intelligence source gate failed:\n- '+failures.join('\n- '));process.exit(1);}console.log('Runtime Intelligence source gate passed. TrustWeave consumes R5.5 shared correlation/intelligence through the canonical panel.');
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root=process.cwd();
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const runtime=read('tools/trustweave_tool/TrustWeaveRuntime.tsx');
+const layout=read('app/layout.tsx');
+const page=read('app/page.tsx');
+const analytics=read('components/AnalyticsPanel.tsx');
+const timeline=read('components/TimelineView.tsx');
+const upcoming=read('components/UpcomingWidget.tsx');
+const installer=read('scripts/install-runtime-intelligence.mjs');
+
+const R5_6_PIN='ec86b2d944c4144b69f78a9cfc9251dd101d762a';
+const failures=[];
+if(!runtime.includes("from 'runtime-intelligence/react'"))failures.push('Runtime React entry missing');
+if(!runtime.includes("from 'runtime-intelligence/panel'"))failures.push('Canonical mature panel entry missing');
+if(!runtime.includes('mountRuntimeIntelligencePanel'))failures.push('Canonical panel mount missing');
+if(!runtime.includes('profileRoot={false}'))failures.push('Root profiler de-duplication mode missing');
+if(runtime.includes('react-runtime-toolkit')||page.includes('react-runtime-toolkit'))failures.push('Legacy copied toolkit still active');
+if(layout.includes('TrustWeaveRuntimePreload'))failures.push('Legacy preload active');
+if(!page.includes('source="components/NetworkApp.tsx"'))failures.push('NetworkApp boundary/source missing');
+for(const [name,text] of [['AnalyticsPanel',analytics],['TimelineView',timeline],['UpcomingWidget',upcoming]]){
+  if(!text.includes('withRuntimeIntelligence'))failures.push(`${name} strategic boundary missing`);
+}
+if(!installer.includes(R5_6_PIN))failures.push('Installer not pinned to R5.6');
+
+if(failures.length){
+  console.error('Runtime Intelligence source gate failed:\n- '+failures.join('\n- '));
+  process.exit(1);
+}
+console.log('Runtime Intelligence source gate passed. TrustWeave consumes R5.6 canonical panel + shared intelligence with strategic React boundaries.');

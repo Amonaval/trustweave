@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
+import { withRuntimeIntelligence } from "runtime-intelligence/react";
 import {
   Baby,
   BriefcaseBusiness,
@@ -40,7 +41,7 @@ const icon = (type: string) =>
     <Milestone size={16} />
   );
 
-export default function TimelineView({
+function TimelineViewImpl({
   events,
   members,
   network,
@@ -201,3 +202,8 @@ export default function TimelineView({
     </section>
   );
 }
+
+export default withRuntimeIntelligence(TimelineViewImpl,{
+  name:"TrustWeave.TimelineView",
+  source:"components/TimelineView.tsx",
+});
