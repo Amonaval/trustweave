@@ -1,15 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-
-const root=process.cwd();
-const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const runtime=read('tools/trustweave_tool/TrustWeaveRuntime.tsx');
-const layout=read('app/layout.tsx');
-const page=read('app/page.tsx');
-const installer=read('scripts/install-runtime-intelligence.mjs');
-
-const R5_3_PIN='d051810f4a29fb932be5a27a99b852e987d76be8';
-const failures=[];
+const root=process.cwd();const read=p=>fs.readFileSync(path.join(root,p),'utf8');const runtime=read('tools/trustweave_tool/TrustWeaveRuntime.tsx');const layout=read('app/layout.tsx');const page=read('app/page.tsx');const installer=read('scripts/install-runtime-intelligence.mjs');
+const R5_4_PIN='9b707e0b5eaf5a527e868011784c3aa93f1a11cc';const failures=[];
 if(!runtime.includes("from 'runtime-intelligence/react'"))failures.push('TrustWeaveRuntime must consume runtime-intelligence/react');
 if(!runtime.includes("from 'runtime-intelligence/panel'"))failures.push('TrustWeaveRuntime must consume the canonical mature panel entry');
 if(!runtime.includes('mountRuntimeIntelligencePanel'))failures.push('Canonical mature panel mount is missing');
@@ -19,6 +11,5 @@ if(page.includes('react-runtime-toolkit'))failures.push('Home still imports the 
 if(!runtime.includes("process.env.NODE_ENV==='development'"))failures.push('Runtime intelligence must remain development-only');
 if(!runtime.includes('source={ROOT_SOURCE}'))failures.push('Root profiler source attribution is missing');
 if(!page.includes('source="components/NetworkApp.tsx"'))failures.push('NetworkApp profiler source attribution is missing');
-if(!installer.includes(R5_3_PIN))failures.push('Dogfood installer is not pinned to R5.3');
-if(failures.length){console.error('Runtime Intelligence source gate failed:\n- '+failures.join('\n- '));process.exit(1);}
-console.log('Runtime Intelligence source gate passed. TrustWeave mounts the canonical panel and consumes R5.3 shared browser runtime surfaces.');
+if(!installer.includes(R5_4_PIN))failures.push('Dogfood installer is not pinned to R5.4');
+if(failures.length){console.error('Runtime Intelligence source gate failed:\n- '+failures.join('\n- '));process.exit(1);}console.log('Runtime Intelligence source gate passed. TrustWeave consumes R5.4 React ownership intelligence through the canonical mature panel.');

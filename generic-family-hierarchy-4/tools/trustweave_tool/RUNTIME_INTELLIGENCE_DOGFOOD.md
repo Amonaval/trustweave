@@ -2,11 +2,9 @@
 
 Canonical product source: `Amonaval/runtime-intelligence`.
 
-Pinned R5.3 baseline: `d051810f4a29fb932be5a27a99b852e987d76be8`.
+Pinned R5.4 baseline: `9b707e0b5eaf5a527e868011784c3aa93f1a11cc`.
 
 ## Install
-
-From `generic-family-hierarchy-4`:
 
 ```bash
 node scripts/install-runtime-intelligence.mjs
@@ -14,13 +12,14 @@ node scripts/runtime-intelligence-source-gate.mjs
 npm run dev
 ```
 
-## Current architecture
+## Current product path
 
-- One mature panel: `LdsDebugPanel` via `runtime-intelligence/panel`.
-- React runtime emits normalized UREP evidence; no parallel React dashboard exists.
-- Shared browser collectors now activate Network, Core Web Vitals, Console, window errors/unhandled rejections and privacy-safe interaction observations.
-- Existing DOM duplication, virtualization, paint, worker, idle and update-budget advisers remain shared.
-- Network observations are also emitted into UREP for later cross-signal intelligence.
-- `TrustWeave.Root` is attributed to `app/layout.tsx#RootLayout` and `TrustWeave.NetworkApp` to `components/NetworkApp.tsx`.
+- One mature `LdsDebugPanel`; no React-specific dashboard.
+- Shared browser surfaces populate Network, Vitals, Console/Errors, Events and Slow API.
+- React profiler boundaries populate mature Perf and Memory.
+- React Runtime Intelligence now has nearest-owner hierarchy plus opt-in tracked state/effect/resource hooks.
+- Tracked state changes feed the existing Perf render-reason drill-down and property-thrash Pinpoint path.
+- Unreleased tracked resources become lifecycle violations in the existing Pinpoint workflow.
+- Evidence remains explicit: uninstrumented hook causality is not guessed.
 
-Expected visible product surfaces now include the mature Summary, Network, Vitals, Console/Errors, Events, Slow API, profiler/perf and adviser-backed Pinpoint/Intelligence areas. R5.4 deepens React component/effect/resource ownership.
+R5.5 adds cross-signal correlation and investigation intelligence; R5.6 hardens the TrustWeave dogfood and closes practical parity gaps.
