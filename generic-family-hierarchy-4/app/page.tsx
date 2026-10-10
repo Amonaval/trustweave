@@ -1,7 +1,7 @@
 import NetworkApp from "../components/NetworkApp";
 import PlatformDesignProvider from "../components/PlatformDesignProvider";
-import RuntimeProfiler from "../tools/react-runtime-toolkit/react/RuntimeProfiler";
+import {TrustWeaveRuntimeProfiler} from "../tools/trustweave_tool/TrustWeaveRuntime";
 
 export default function Home() {
-  return <PlatformDesignProvider><RuntimeProfiler name="TrustWeave.NetworkApp"><NetworkApp /></RuntimeProfiler></PlatformDesignProvider>;
+  return <PlatformDesignProvider><TrustWeaveRuntimeProfiler name="TrustWeave.NetworkApp"><NetworkApp /></TrustWeaveRuntimeProfiler></PlatformDesignProvider>;
 }
