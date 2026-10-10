@@ -3,7 +3,7 @@ import {existsSync, readFileSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-const PIN='d83c417734e866a3bcd06a9ab8b9a12a7b39cbb6';
+const PIN='3a903eafa55df9697238aed0c1be110c6241a057';
 const TARGET=`github:Amonaval/runtime-intelligence#${PIN}`;
 const npmArgs=['install','--no-save','--package-lock=false',TARGET];
 const scriptDir=path.dirname(fileURLToPath(import.meta.url));
@@ -16,12 +16,7 @@ function log(label,value=''){
 function run(command,args,label){
   log(`${label} command`,`${command} ${args.join(' ')}`);
   const started=Date.now();
-  const result=spawnSync(command,args,{
-    cwd:appDir,
-    encoding:'utf8',
-    env:process.env,
-    windowsHide:true,
-  });
+  const result=spawnSync(command,args,{cwd:appDir,encoding:'utf8',env:process.env,windowsHide:true});
   log(`${label} finished`,`${Date.now()-started}ms`);
   log(`${label} exit status`,String(result.status));
   log(`${label} signal`,String(result.signal));
@@ -29,24 +24,16 @@ function run(command,args,label){
   if(result.stdout?.trim()){
     console.log(`[runtime-intelligence] ${label} stdout:`);
     console.log(result.stdout.trim());
-  }else{
-    log(`${label} stdout`,'<empty>');
-  }
+  }else log(`${label} stdout`,'<empty>');
   if(result.stderr?.trim()){
     console.error(`[runtime-intelligence] ${label} stderr:`);
     console.error(result.stderr.trim());
-  }else{
-    log(`${label} stderr`,'<empty>');
-  }
+  }else log(`${label} stderr`,'<empty>');
   return result;
 }
 
 function resolveProbe(specifier){
-  const probe=spawnSync(
-    process.execPath,
-    ['--input-type=module','-e',`import('${specifier}').then(()=>console.log('RESOLVE_OK')).catch(error=>{console.error(error?.stack||error);process.exit(1)})`],
-    {cwd:appDir,encoding:'utf8',env:process.env,windowsHide:true}
-  );
+  const probe=spawnSync(process.execPath,['--input-type=module','-e',`import('${specifier}').then(()=>console.log('RESOLVE_OK')).catch(error=>{console.error(error?.stack||error);process.exit(1)})`],{cwd:appDir,encoding:'utf8',env:process.env,windowsHide:true});
   log(`resolve ${specifier}`,probe.status===0?'OK':'FAILED');
   if(probe.stdout?.trim()) console.log(probe.stdout.trim());
   if(probe.stderr?.trim()) console.error(probe.stderr.trim());
@@ -59,11 +46,9 @@ function installRuntimeIntelligence(){
     log('npm execution strategy','node + npm_execpath');
     log('npm_execpath',npmExecPath);
     const result=run(process.execPath,[npmExecPath,...npmArgs],'npm install');
-    if(!result.error&&result.status===0) return result;
+    if(!result.error&&result.status===0)return result;
     log('primary npm execution failed','falling back to shell invocation');
-  }else{
-    log('npm_execpath','<missing or unavailable>');
-  }
+  }else log('npm_execpath','<missing or unavailable>');
 
   if(process.platform==='win32'){
     const comspec=process.env.ComSpec||process.env.COMSPEC||'cmd.exe';
@@ -91,13 +76,10 @@ try{
   const pkg=JSON.parse(readFileSync(path.join(appDir,'package.json'),'utf8'));
   log('app package',`${pkg.name||'unknown'}@${pkg.version||'unknown'}`);
   log('declared runtime-intelligence dependency',String(Boolean(pkg.dependencies?.['runtime-intelligence']||pkg.devDependencies?.['runtime-intelligence'])));
-}catch(error){
-  log('package.json read failed',error?.message||String(error));
-}
+}catch(error){log('package.json read failed',error?.message||String(error));}
 
 log('starting npm install');
 const result=installRuntimeIntelligence();
-
 const packageJsonPath=path.join(appDir,'node_modules','runtime-intelligence','package.json');
 log('installed package.json exists',String(existsSync(packageJsonPath)));
 if(existsSync(packageJsonPath)){
@@ -105,20 +87,13 @@ if(existsSync(packageJsonPath)){
     const installed=JSON.parse(readFileSync(packageJsonPath,'utf8'));
     log('installed package',`${installed.name||'unknown'}@${installed.version||'unknown'}`);
     log('installed exports',JSON.stringify(installed.exports||{}));
-  }catch(error){
-    log('installed package.json read failed',error?.message||String(error));
-  }
+  }catch(error){log('installed package.json read failed',error?.message||String(error));}
 }
 
-if(result.status!==0||result.error){
-  log('installer failed','npm install did not complete successfully');
-  process.exit(result.status??1);
-}
+if(result.status!==0||result.error){log('installer failed','npm install did not complete successfully');process.exit(result.status??1);}
 
 const reactOk=resolveProbe('runtime-intelligence/react');
-if(!reactOk){
-  log('installer failed','React entry point does not resolve');
-  process.exit(2);
-}
+const panelOk=resolveProbe('runtime-intelligence/panel');
+if(!reactOk||!panelOk){log('installer failed','React or canonical panel entry point does not resolve');process.exit(2);}
 
 log('installer completed successfully');

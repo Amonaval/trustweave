@@ -2,38 +2,26 @@
 
 Canonical product source: `Amonaval/runtime-intelligence`.
 
-Pinned cleaned R5 baseline: `d83c417734e866a3bcd06a9ab8b9a12a7b39cbb6`.
+Pinned R5.2 baseline: `3a903eafa55df9697238aed0c1be110c6241a057`.
 
-## Install for dogfood
+## Install
 
 From `generic-family-hierarchy-4`:
 
 ```bash
 node scripts/install-runtime-intelligence.mjs
-```
-
-The installer intentionally uses `--no-save --package-lock=false` while package/distribution work is deferred.
-
-## Current runtime behavior
-
-- Development only. Production returns the application unchanged.
-- Enabled by default in development.
-- `?twdebug=0` disables it for the browser session.
-- `?twdebug=1` re-enables it.
-- `TrustWeave.Root` is profiled at the app boundary and attributed to `app/layout.tsx#RootLayout`.
-- `TrustWeave.NetworkApp` is a nested profiled owner and attributed to `components/NetworkApp.tsx`.
-- React evidence is emitted through the canonical Runtime Intelligence React adapter/runtime.
-- The temporary lightweight React panel has been removed from active dogfood. It was a parallel product direction and is not part of the target architecture.
-- The existing mature `LdsDebugPanel` remains the canonical Runtime Intelligence product UI. R5.2 will adapt its delivery/data boundary so React consumes the same mature product rather than a second panel.
-
-The old `tools/react-runtime-toolkit` tree remains only as historical/transitional code on this branch and is not imported by the active app path.
-
-## Validate source wiring
-
-```bash
 node scripts/runtime-intelligence-source-gate.mjs
+npm run dev
 ```
 
-## Next direction
+## R5.2 architecture
 
-R5.2–R5.6 target 80–90% practical parity with the Lit product by reusing the mature panel, shared collectors and shared intelligence core, while adding only the React-specific evidence translation needed for framework semantics.
+- Development only; production returns the app unchanged.
+- `?twdebug=0` disables and `?twdebug=1` enables for the browser session.
+- React profiler/runtime emits normalized UREP evidence.
+- TrustWeave mounts the existing mature `LdsDebugPanel` through `runtime-intelligence/panel`.
+- A thin compatibility bridge translates UREP evidence into the panel's established report structures. There is no second React dashboard.
+- `TrustWeave.Root` is attributed to `app/layout.tsx#RootLayout`.
+- `TrustWeave.NetworkApp` is attributed to `components/NetworkApp.tsx`.
+
+R5.3+ will progressively activate shared browser/runtime collectors and deeper React ownership/correlation while preserving the same mature panel UI.
