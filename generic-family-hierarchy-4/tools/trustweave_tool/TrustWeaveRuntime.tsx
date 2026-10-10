@@ -5,9 +5,7 @@ import type {RuntimeSource} from 'runtime-intelligence/react';
 import {
   RuntimeIntelligenceProfiler,
   RuntimeIntelligenceProvider,
-  useRuntimeIntelligence,
 } from 'runtime-intelligence/react';
-import {mountRuntimeIntelligencePanel} from 'runtime-intelligence/panel';
 
 const KEY='trustweave-runtime-observability';
 const DEV_ONLY=process.env.NODE_ENV==='development';
@@ -20,24 +18,6 @@ function resolveEnabled(){
   if(value==='1')sessionStorage.setItem(KEY,'1');
   if(value==='0')sessionStorage.setItem(KEY,'0');
   return sessionStorage.getItem(KEY)!=='0';
-}
-
-function TrustWeaveRuntimePanel(){
-  const context=useRuntimeIntelligence();
-  const enabled=context?.enabled;
-  const store=context?.store;
-  const adapter=context?.adapter;
-  useEffect(()=>{
-    if(!DEV_ONLY||!enabled||!store)return;
-    const mounted=mountRuntimeIntelligencePanel({
-      store,
-      adapter,
-      title:'TrustWeave Runtime Intelligence',
-      collapsed:true,
-    });
-    return()=>mounted.destroy();
-  },[enabled,store,adapter]);
-  return null;
 }
 
 export function TrustWeaveRuntimeProfiler({children,name,source}:{children:ReactNode;name:string;source?:RuntimeSource}){
@@ -57,7 +37,6 @@ export default function TrustWeaveRuntime({children}:{children:ReactNode}){
     enabled={enabled}
     profilingEnabled
   >
-    <TrustWeaveRuntimePanel/>
     {children}
   </RuntimeIntelligenceProvider>;
 }

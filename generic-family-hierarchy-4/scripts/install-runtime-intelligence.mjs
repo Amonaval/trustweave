@@ -3,7 +3,7 @@ import {existsSync, readFileSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-const PIN='0825192ee6bee5be8a85f280397106906e10353b';
+const PIN='d83c417734e866a3bcd06a9ab8b9a12a7b39cbb6';
 const TARGET=`github:Amonaval/runtime-intelligence#${PIN}`;
 const npmArgs=['install','--no-save','--package-lock=false',TARGET];
 const scriptDir=path.dirname(fileURLToPath(import.meta.url));
@@ -116,9 +116,8 @@ if(result.status!==0||result.error){
 }
 
 const reactOk=resolveProbe('runtime-intelligence/react');
-const panelOk=resolveProbe('runtime-intelligence/panel');
-if(!reactOk||!panelOk){
-  log('installer failed','package installed but one or more subpath imports do not resolve');
+if(!reactOk){
+  log('installer failed','React entry point does not resolve');
   process.exit(2);
 }
 
