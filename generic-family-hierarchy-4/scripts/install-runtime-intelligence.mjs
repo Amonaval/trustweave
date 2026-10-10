@@ -41,13 +41,14 @@ function run(command,args,label){
   return result;
 }
 
-function resolveProbe(specifier){
+function apiProbe(specifier,requiredExports){
+  const script=`import(${JSON.stringify(specifier)}).then(mod=>{const required=${JSON.stringify(requiredExports)};const missing=required.filter(name=>typeof mod[name]!=='function');if(missing.length){console.error('MISSING_EXPORTS:'+missing.join(','));process.exit(2)}console.log('API_OK:'+required.join(','))}).catch(error=>{console.error(error?.stack||error);process.exit(1)})`;
   const probe=spawnSync(
     process.execPath,
-    ['--input-type=module','-e',`import('${specifier}').then(()=>console.log('RESOLVE_OK')).catch(error=>{console.error(error?.stack||error);process.exit(1)})`],
+    ['--input-type=module','-e',script],
     {cwd:appDir,encoding:'utf8',env:process.env,windowsHide:true}
   );
-  log(`resolve ${specifier}`,probe.status===0?'OK':'FAILED');
+  log(`API ${specifier}`,probe.status===0?'OK':'FAILED');
   if(probe.stdout?.trim()) console.log(probe.stdout.trim());
   if(probe.stderr?.trim()) console.error(probe.stderr.trim());
   return probe.status===0;
@@ -115,10 +116,16 @@ if(result.status!==0||result.error){
   process.exit(result.status??1);
 }
 
-const reactOk=resolveProbe('runtime-intelligence/react');
-const panelOk=resolveProbe('runtime-intelligence/panel');
+const reactOk=apiProbe('runtime-intelligence/react',[
+  'RuntimeIntelligenceProvider',
+  'RuntimeIntelligenceProfiler',
+  'withRuntimeIntelligence',
+]);
+const panelOk=apiProbe('runtime-intelligence/panel',[
+  'mountRuntimeIntelligencePanel',
+]);
 if(!reactOk||!panelOk){
-  log('installer failed','React or canonical panel entry point does not resolve');
+  log('installer failed','Installed package does not expose the pinned R5.6 React/panel API. Stop Next, remove stale node_modules/runtime-intelligence and .next, then rerun this installer.');
   process.exit(2);
 }
 

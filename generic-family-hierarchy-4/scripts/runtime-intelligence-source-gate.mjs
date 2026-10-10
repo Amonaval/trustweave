@@ -24,9 +24,11 @@ for(const [name,text] of [['AnalyticsPanel',analytics],['TimelineView',timeline]
   if(!text.includes('withRuntimeIntelligence'))failures.push(`${name} strategic boundary missing`);
 }
 if(!installer.includes(R5_6_PIN))failures.push('Installer not pinned to R5.6');
+if(!installer.includes("'withRuntimeIntelligence'"))failures.push('Installer does not verify the R5.6 React HOC export');
+if(!installer.includes("'mountRuntimeIntelligencePanel'"))failures.push('Installer does not verify the canonical panel mount export');
 
 if(failures.length){
   console.error('Runtime Intelligence source gate failed:\n- '+failures.join('\n- '));
   process.exit(1);
 }
-console.log('Runtime Intelligence source gate passed. TrustWeave consumes R5.6 canonical panel + shared intelligence with strategic React boundaries.');
+console.log('Runtime Intelligence source gate passed. TrustWeave consumes R5.6 canonical panel + shared intelligence with strategic React boundaries and strict installed-API verification.');
