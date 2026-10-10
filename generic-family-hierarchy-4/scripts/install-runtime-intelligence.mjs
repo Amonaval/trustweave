@@ -5,8 +5,7 @@ import {fileURLToPath} from 'node:url';
 
 const PIN='de8d01ead5c75054a613a483c3830917b9bc8ace';
 const TARGET=`github:Amonaval/runtime-intelligence#${PIN}`;
-const npmCommand=process.platform==='win32'?'npm.cmd':'npm';
-const args=['install','--no-save','--package-lock=false',TARGET];
+const npmArgs=['install','--no-save','--package-lock=false',TARGET];
 const scriptDir=path.dirname(fileURLToPath(import.meta.url));
 const appDir=path.resolve(scriptDir,'..');
 
@@ -14,16 +13,67 @@ function log(label,value=''){
   console.log(`[runtime-intelligence] ${label}${value===''?'':`: ${value}`}`);
 }
 
+function run(command,args,label){
+  log(`${label} command`,`${command} ${args.join(' ')}`);
+  const started=Date.now();
+  const result=spawnSync(command,args,{
+    cwd:appDir,
+    encoding:'utf8',
+    env:process.env,
+    windowsHide:true,
+  });
+  log(`${label} finished`,`${Date.now()-started}ms`);
+  log(`${label} exit status`,String(result.status));
+  log(`${label} signal`,String(result.signal));
+  if(result.error) console.error(`[runtime-intelligence] ${label} spawn error:`,result.error);
+  if(result.stdout?.trim()){
+    console.log(`[runtime-intelligence] ${label} stdout:`);
+    console.log(result.stdout.trim());
+  }else{
+    log(`${label} stdout`,'<empty>');
+  }
+  if(result.stderr?.trim()){
+    console.error(`[runtime-intelligence] ${label} stderr:`);
+    console.error(result.stderr.trim());
+  }else{
+    log(`${label} stderr`,'<empty>');
+  }
+  return result;
+}
+
 function resolveProbe(specifier){
   const probe=spawnSync(
     process.execPath,
     ['--input-type=module','-e',`import('${specifier}').then(()=>console.log('RESOLVE_OK')).catch(error=>{console.error(error?.stack||error);process.exit(1)})`],
-    {cwd:appDir,encoding:'utf8'}
+    {cwd:appDir,encoding:'utf8',env:process.env,windowsHide:true}
   );
   log(`resolve ${specifier}`,probe.status===0?'OK':'FAILED');
   if(probe.stdout?.trim()) console.log(probe.stdout.trim());
   if(probe.stderr?.trim()) console.error(probe.stderr.trim());
   return probe.status===0;
+}
+
+function installRuntimeIntelligence(){
+  const npmExecPath=process.env.npm_execpath;
+  if(npmExecPath&&existsSync(npmExecPath)){
+    log('npm execution strategy','node + npm_execpath');
+    log('npm_execpath',npmExecPath);
+    const result=run(process.execPath,[npmExecPath,...npmArgs],'npm install');
+    if(!result.error&&result.status===0) return result;
+    log('primary npm execution failed','falling back to shell invocation');
+  }else{
+    log('npm_execpath','<missing or unavailable>');
+  }
+
+  if(process.platform==='win32'){
+    const comspec=process.env.ComSpec||process.env.COMSPEC||'cmd.exe';
+    log('npm execution strategy','Windows cmd.exe fallback');
+    log('ComSpec',comspec);
+    return run(comspec,['/d','/s','/c','npm',...npmArgs],'npm install fallback');
+  }
+
+  log('npm execution strategy','direct npm fallback');
+  return run('npm',npmArgs,'npm install fallback');
 }
 
 log('installer started');
@@ -33,10 +83,8 @@ log('appDir',appDir);
 log('node',process.version);
 log('node executable',process.execPath);
 log('platform',`${process.platform}/${process.arch}`);
-log('npm command',npmCommand);
 log('pin',PIN);
 log('target',TARGET);
-log('command',`${npmCommand} ${args.join(' ')}`);
 log('package.json exists',String(existsSync(path.join(appDir,'package.json'))));
 
 try{
@@ -48,29 +96,7 @@ try{
 }
 
 log('starting npm install');
-const started=Date.now();
-const result=spawnSync(npmCommand,args,{
-  cwd:appDir,
-  encoding:'utf8',
-  env:process.env,
-});
-
-log('npm install finished',`${Date.now()-started}ms`);
-log('exit status',String(result.status));
-log('signal',String(result.signal));
-if(result.error) console.error('[runtime-intelligence] spawn error:',result.error);
-if(result.stdout?.trim()){
-  console.log('[runtime-intelligence] npm stdout:');
-  console.log(result.stdout.trim());
-}else{
-  log('npm stdout','<empty>');
-}
-if(result.stderr?.trim()){
-  console.error('[runtime-intelligence] npm stderr:');
-  console.error(result.stderr.trim());
-}else{
-  log('npm stderr','<empty>');
-}
+const result=installRuntimeIntelligence();
 
 const packageJsonPath=path.join(appDir,'node_modules','runtime-intelligence','package.json');
 log('installed package.json exists',String(existsSync(packageJsonPath)));
@@ -84,7 +110,7 @@ if(existsSync(packageJsonPath)){
   }
 }
 
-if(result.status!==0){
+if(result.status!==0||result.error){
   log('installer failed','npm install did not complete successfully');
   process.exit(result.status??1);
 }
