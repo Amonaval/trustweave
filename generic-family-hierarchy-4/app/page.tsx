@@ -3,5 +3,5 @@ import PlatformDesignProvider from "../components/PlatformDesignProvider";
 import {TrustWeaveRuntimeProfiler} from "../tools/trustweave_tool/TrustWeaveRuntime";
 
 export default function Home() {
-  return <PlatformDesignProvider><TrustWeaveRuntimeProfiler name="TrustWeave.NetworkApp"><NetworkApp /></TrustWeaveRuntimeProfiler></PlatformDesignProvider>;
+  return <PlatformDesignProvider><TrustWeaveRuntimeProfiler name="TrustWeave.NetworkApp" source="components/NetworkApp.tsx"><NetworkApp /></TrustWeaveRuntimeProfiler></PlatformDesignProvider>;
 }

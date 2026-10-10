@@ -1,6 +1,7 @@
 'use client';
 
 import {useEffect,useState,type ReactNode} from 'react';
+import type {RuntimeSource} from 'runtime-intelligence/react';
 import {
   RuntimeIntelligenceProfiler,
   RuntimeIntelligenceProvider,
@@ -10,6 +11,7 @@ import {mountRuntimeIntelligencePanel} from 'runtime-intelligence/panel';
 
 const KEY='trustweave-runtime-observability';
 const DEV_ONLY=process.env.NODE_ENV==='development';
+const ROOT_SOURCE=Object.freeze({file:'app/layout.tsx',functionName:'RootLayout'});
 
 function resolveEnabled(){
   if(!DEV_ONLY||typeof window==='undefined')return false;
@@ -22,22 +24,25 @@ function resolveEnabled(){
 
 function TrustWeaveRuntimePanel(){
   const context=useRuntimeIntelligence();
+  const enabled=context?.enabled;
+  const store=context?.store;
+  const adapter=context?.adapter;
   useEffect(()=>{
-    if(!DEV_ONLY||!context?.enabled)return;
+    if(!DEV_ONLY||!enabled||!store)return;
     const mounted=mountRuntimeIntelligencePanel({
-      store:context.store,
-      adapter:context.adapter,
+      store,
+      adapter,
       title:'TrustWeave Runtime Intelligence',
       collapsed:true,
     });
     return()=>mounted.destroy();
-  },[context]);
+  },[enabled,store,adapter]);
   return null;
 }
 
-export function TrustWeaveRuntimeProfiler({children,name}:{children:ReactNode;name:string}){
+export function TrustWeaveRuntimeProfiler({children,name,source}:{children:ReactNode;name:string;source?:RuntimeSource}){
   if(!DEV_ONLY)return <>{children}</>;
-  return <RuntimeIntelligenceProfiler name={name}>{children}</RuntimeIntelligenceProfiler>;
+  return <RuntimeIntelligenceProfiler name={name} source={source}>{children}</RuntimeIntelligenceProfiler>;
 }
 
 export default function TrustWeaveRuntime({children}:{children:ReactNode}){
@@ -48,6 +53,7 @@ export default function TrustWeaveRuntime({children}:{children:ReactNode}){
 
   return <RuntimeIntelligenceProvider
     name="TrustWeave.Root"
+    source={ROOT_SOURCE}
     enabled={enabled}
     profilingEnabled
   >
