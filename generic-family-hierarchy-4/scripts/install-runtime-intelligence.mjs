@@ -3,7 +3,7 @@ import {existsSync, readFileSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-const PIN='ec86b2d944c4144b69f78a9cfc9251dd101d762a';
+const PIN='0908f7c8d90d81745db788913a17e6292d2147a0';
 const TARGET=`github:Amonaval/runtime-intelligence#${PIN}`;
 const npmArgs=['install','--no-save','--package-lock=false',TARGET];
 const scriptDir=path.dirname(fileURLToPath(import.meta.url));
@@ -123,9 +123,11 @@ const reactOk=apiProbe('runtime-intelligence/react',[
 ]);
 const panelOk=apiProbe('runtime-intelligence/panel',[
   'mountRuntimeIntelligencePanel',
+  'createRuntimeReport',
+  'downloadRuntimeReports',
 ]);
 if(!reactOk||!panelOk){
-  log('installer failed','Installed package does not expose the pinned R5.6 React/panel API. Stop Next, remove stale node_modules/runtime-intelligence and .next, then rerun this installer.');
+  log('installer failed','Installed package does not expose the pinned R5.7.4 React/panel/report API. Stop Next, remove stale node_modules/runtime-intelligence and .next, then rerun this installer.');
   process.exit(2);
 }
 

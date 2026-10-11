@@ -1,40 +1,7 @@
-# R5.6 TrustWeave validation checklist
+# Historical R5.6 validation checklist
 
-## Architecture gates
+This checklist is retained for history. The active final React closure checklist is:
 
-- [ ] `node scripts/install-runtime-intelligence.mjs` resolves both `/react` and `/panel`.
-- [ ] `node scripts/runtime-intelligence-source-gate.mjs` passes.
-- [ ] No active import from `tools/react-runtime-toolkit`.
-- [ ] Production behavior unchanged; diagnostics remain development-only.
+`tools/trustweave_tool/RUNTIME_INTELLIGENCE_R5_7_4_REAL_WORLD_VALIDATION.md`
 
-## Mature product surfaces
-
-- [ ] Summary health/environment renders.
-- [ ] ✨ Intelligence tab is present.
-- [ ] Pinpoint/Fix workflow opens findings and source paths.
-- [ ] Network + Slow API collect requests.
-- [ ] Vitals collect available browser metrics.
-- [ ] Console/Errors capture without breaking host console.
-- [ ] Events show UREP/interaction activity.
-- [ ] Perf shows NetworkApp plus strategic inner boundaries.
-- [ ] Memory shows owner lifecycle without duplicate root timing.
-- [ ] History/export/compare remain functional.
-
-## Evidence honesty
-
-- [ ] Interaction→render/network links are presented as correlation.
-- [ ] Network→state remains temporal correlation.
-- [ ] No React `UPDATE_CAUSE` is claimed from timing proximity.
-- [ ] No uninstrumented hook dependency is called causal.
-- [ ] Resource lifetime violation appears only for explicitly tracked resources that outlive an owner.
-
-## TrustWeave flows
-
-- [ ] Initial hydration/load.
-- [ ] Network switch/navigation.
-- [ ] Timeline filter changes.
-- [ ] Analytics open/load.
-- [ ] Directory/search/filter.
-- [ ] Tree-heavy view.
-- [ ] Modal/profile open-close.
-- [ ] `?twdebug=0` clean disable / `?twdebug=1` re-enable.
+R5.7.4 supersedes this checkpoint with the first-class Opportunities tab, normalized JSON/HTML exports, React presentation hardening, expanded fault-lab coverage, sequential API fixes, semantic deduplication, synthetic provenance guarantees and stricter evidence-language rules.
