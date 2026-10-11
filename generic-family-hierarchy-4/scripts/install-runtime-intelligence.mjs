@@ -3,14 +3,17 @@ import {existsSync, readFileSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-const PIN='a465a67bc7378bba9b605f39bb41c1efb3b8b3bc';
+const PIN='4ed24b2f5278cba75b25c9c61c25155ff69ec3c8';
 const TARGET=`github:Amonaval/runtime-intelligence#${PIN}`;
 const npmArgs=['install','--no-save','--package-lock=false',TARGET];
 const scriptDir=path.dirname(fileURLToPath(import.meta.url));
 const appDir=path.resolve(scriptDir,'..');
-const provenanceFiles=[
+const requiredRuntimeFiles=[
   'lit/src/core/source-provenance.js',
   'lit/src/panel/pinpoint-source-enrichment.js',
+  'lit/src/react/react-source-provenance.js',
+  'lit/src/react/RuntimeIntelligenceReact.js',
+  'lit/src/adapter/react/ReactAdapter.js',
 ];
 
 function log(label,value=''){
@@ -81,6 +84,11 @@ function installRuntimeIntelligence(){
   return run('npm',npmArgs,'npm install fallback');
 }
 
+function readInstalled(relativePath){
+  const absolute=path.join(packageRoot,relativePath);
+  return existsSync(absolute)?readFileSync(absolute,'utf8'):'';
+}
+
 log('installer started');
 log('script',fileURLToPath(import.meta.url));
 log('cwd',process.cwd());
@@ -121,8 +129,21 @@ if(result.status!==0||result.error){
   process.exit(result.status??1);
 }
 
-const provenanceMissing=provenanceFiles.filter(file=>!existsSync(path.join(packageRoot,file)));
-log('P0.1 provenance files',provenanceMissing.length===0?'OK':`MISSING ${provenanceMissing.join(', ')}`);
+const missingRuntimeFiles=requiredRuntimeFiles.filter(file=>!existsSync(path.join(packageRoot,file)));
+log('P0.2 provenance files',missingRuntimeFiles.length===0?'OK':`MISSING ${missingRuntimeFiles.join(', ')}`);
+
+const sourceProvenance=readInstalled('lit/src/core/source-provenance.js');
+const reactProvenance=readInstalled('lit/src/react/react-source-provenance.js');
+const reactRuntime=readInstalled('lit/src/react/RuntimeIntelligenceReact.js');
+const reactAdapter=readInstalled('lit/src/adapter/react/ReactAdapter.js');
+
+const implementationFailures=[];
+if(!sourceProvenance.includes('COMPONENT_REGISTRATION'))implementationFailures.push('component-registration provenance kind');
+if(!reactProvenance.includes('captureReactRegistrationSource'))implementationFailures.push('React registration source capture');
+if(!reactProvenance.includes('captureReactInvocationSource'))implementationFailures.push('React invocation source capture');
+if(!reactRuntime.includes('captureReactInvocationSource'))implementationFailures.push('tracked React update invocation wiring');
+if(!reactAdapter.includes('sourceProvenance'))implementationFailures.push('React adapter provenance propagation');
+log('P0.2 implementation markers',implementationFailures.length===0?'OK':`MISSING ${implementationFailures.join(', ')}`);
 
 const reactOk=apiProbe('runtime-intelligence/react',[
   'RuntimeIntelligenceProvider',
@@ -134,9 +155,9 @@ const panelOk=apiProbe('runtime-intelligence/panel',[
   'createRuntimeReport',
   'downloadRuntimeReports',
 ]);
-if(!reactOk||!panelOk||provenanceMissing.length){
-  log('installer failed','Installed package does not expose the pinned P0.1 React/panel/report + universal source provenance baseline. Stop Next, remove stale node_modules/runtime-intelligence and .next, then rerun this installer.');
+if(!reactOk||!panelOk||missingRuntimeFiles.length||implementationFailures.length){
+  log('installer failed','Installed package does not expose the pinned P0.2 React source-provenance + canonical panel/report baseline. Stop Next, remove stale node_modules/runtime-intelligence and .next, then rerun this installer.');
   process.exit(2);
 }
 
-log('installer completed successfully','P0.1 universal source provenance baseline installed');
+log('installer completed successfully','P0.2 exact React source-attribution baseline installed');
