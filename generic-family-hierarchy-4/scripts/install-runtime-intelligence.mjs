@@ -3,11 +3,15 @@ import {existsSync, readFileSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-const PIN='0908f7c8d90d81745db788913a17e6292d2147a0';
+const PIN='a465a67bc7378bba9b605f39bb41c1efb3b8b3bc';
 const TARGET=`github:Amonaval/runtime-intelligence#${PIN}`;
 const npmArgs=['install','--no-save','--package-lock=false',TARGET];
 const scriptDir=path.dirname(fileURLToPath(import.meta.url));
 const appDir=path.resolve(scriptDir,'..');
+const provenanceFiles=[
+  'lit/src/core/source-provenance.js',
+  'lit/src/panel/pinpoint-source-enrichment.js',
+];
 
 function log(label,value=''){
   console.log(`[runtime-intelligence] ${label}${value===''?'':`: ${value}`}`);
@@ -99,7 +103,8 @@ try{
 log('starting npm install');
 const result=installRuntimeIntelligence();
 
-const packageJsonPath=path.join(appDir,'node_modules','runtime-intelligence','package.json');
+const packageRoot=path.join(appDir,'node_modules','runtime-intelligence');
+const packageJsonPath=path.join(packageRoot,'package.json');
 log('installed package.json exists',String(existsSync(packageJsonPath)));
 if(existsSync(packageJsonPath)){
   try{
@@ -116,6 +121,9 @@ if(result.status!==0||result.error){
   process.exit(result.status??1);
 }
 
+const provenanceMissing=provenanceFiles.filter(file=>!existsSync(path.join(packageRoot,file)));
+log('P0.1 provenance files',provenanceMissing.length===0?'OK':`MISSING ${provenanceMissing.join(', ')}`);
+
 const reactOk=apiProbe('runtime-intelligence/react',[
   'RuntimeIntelligenceProvider',
   'RuntimeIntelligenceProfiler',
@@ -126,9 +134,9 @@ const panelOk=apiProbe('runtime-intelligence/panel',[
   'createRuntimeReport',
   'downloadRuntimeReports',
 ]);
-if(!reactOk||!panelOk){
-  log('installer failed','Installed package does not expose the pinned R5.7.4 React/panel/report API. Stop Next, remove stale node_modules/runtime-intelligence and .next, then rerun this installer.');
+if(!reactOk||!panelOk||provenanceMissing.length){
+  log('installer failed','Installed package does not expose the pinned P0.1 React/panel/report + universal source provenance baseline. Stop Next, remove stale node_modules/runtime-intelligence and .next, then rerun this installer.');
   process.exit(2);
 }
 
-log('installer completed successfully');
+log('installer completed successfully','P0.1 universal source provenance baseline installed');
