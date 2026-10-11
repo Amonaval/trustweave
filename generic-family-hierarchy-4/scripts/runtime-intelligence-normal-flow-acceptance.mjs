@@ -1,0 +1,104 @@
+/** Read-only Playground + isolated local-network acceptance. No injected runtime faults. */
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { spawn } from 'node:child_process';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const { chromium } = require(process.env.RI_PLAYWRIGHT_MODULE || 'playwright');
+const output = path.resolve(process.env.RI_ACCEPTANCE_OUTPUT || '.runtime-acceptance');
+const port = process.env.RI_ACCEPTANCE_PORT || '3100';
+const base = `http://127.0.0.1:${port}`;
+let browser;
+const checks = [];
+const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'dev', '-p', port, '-H', '127.0.0.1'], { env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1' } });
+await fs.mkdir(output, { recursive: true });
+const log = await fs.open(path.join(output, 'next.log'), 'w');
+server.stdout.on('data', data => log.write(data));
+server.stderr.on('data', data => log.write(data));
+const check = (name, evidence = {}) => checks.push({ name, status: 'passed', ...evidence });
+try {
+  await new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error('Next startup timeout')), 60000);
+    server.stdout.on('data', data => { if (data.toString().includes('Ready')) { clearTimeout(timer); resolve(); } });
+    server.once('exit', code => { clearTimeout(timer); reject(new Error(`Next exited ${code}`)); });
+  });
+  browser = await chromium.launch({ headless: true, ...(process.env.RI_CHROMIUM_PATH ? { executablePath: process.env.RI_CHROMIUM_PATH } : {}), args: JSON.parse(process.env.RI_CHROMIUM_ARGS || '[]') });
+  const context = await browser.newContext({ viewport: { width: 1440, height: 1100 }, acceptDownloads: true });
+  const page = await context.newPage();
+  page.setDefaultTimeout(30000);
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  const panel = '[data-runtime-intelligence-panel="canonical"]';
+  const open = async url => { await page.goto(url, { timeout: 120000 }); await page.getByTestId('qa-vertical-shell-family').waitFor({ timeout: 120000 }); };
+  const nav = async name => { const button = page.getByTestId(`qa-nav-${name}`); if (!(await button.isVisible())) await page.locator('.family-nav-more > summary').click(); await button.click(); };
+  await open(`${base}/?playground=family&twdebug=1`);
+  assert.equal(await page.locator(panel).count(), 1);
+  check('Playground loads with one canonical panel');
+  await nav('timeline');
+  await page.locator('.filters select').first().selectOption('birth');
+  await page.locator('.filters select').first().selectOption('all');
+  check('Timeline filtering');
+  await nav('directory');
+  const name = (await page.locator('.person-name').first().innerText()).trim();
+  await page.locator('.search-bar input').fill(name);
+  await page.locator('.person-card .card-actions button.primary').first().click();
+  await page.locator('aside.drawer[role="dialog"]').waitFor();
+  await page.getByRole('button', { name: /close profile/i }).click();
+  check('Directory search and profile open/close');
+  await nav('tree');
+  await page.locator('.react-flow').waitFor();
+  check('Family tree navigation');
+  const snapshot = await page.evaluate(() => window.__LDS_EVIDENCE_STORE__.snapshot());
+  const owners = [...new Set(snapshot.map(e => e.owner?.name).filter(Boolean))].sort();
+  assert(owners.includes('TrustWeave.NetworkApp'));
+  assert(owners.includes('TrustWeave.TimelineView'));
+  check('Normal-flow strategic boundaries', { owners });
+  for (const [method, filename] of [['_download', 'report.json'], ['_downloadHtml', 'report.html']]) {
+    const pending = page.waitForEvent('download');
+    await page.locator(panel).evaluate((element, method) => element[method](), method);
+    await (await pending).saveAs(path.join(output, filename));
+    const content = await fs.readFile(path.join(output, filename), 'utf8');
+    assert(!/"callStack"\s*:/.test(content), 'Raw console/network stack leaked');
+    assert(!content.includes(process.cwd()), 'Local absolute path leaked');
+  }
+  check('Canonical JSON and HTML downloads omit raw callStack and workspace paths');
+  await open(`${base}/?playground=family&twdebug=0`);
+  assert.equal(await page.locator(panel).count(), 0);
+  assert.equal(await page.evaluate(() => window.__LDS_INTELLIGENCE_ENABLED__ === true), false);
+  check('Disabled runtime has no panel or enabled flag');
+  await open(`${base}/?playground=family&twdebug=1`);
+  assert.equal(await page.locator(panel).count(), 1);
+  check('Re-enable mounts one panel');
+  // A separate, clean context prevents all local test data from reaching an existing session.
+  const local = await browser.newContext({ viewport: { width: 1440, height: 1100 } });
+  const setup = await local.newPage();
+  setup.setDefaultTimeout(30000);
+  await setup.goto(`${base}/?twdebug=1`, { timeout: 120000 });
+  await setup.getByTestId('qa-cloud-auth-not-configured').waitFor();
+  await setup.getByTestId('qa-entry-create-family').click();
+  await setup.getByTestId('qa-family-name').fill('Local normal-flow acceptance');
+  await setup.getByTestId('qa-choose-how-start').click();
+  await setup.getByTestId('qa-start-empty').click();
+  await setup.getByTestId('qa-nav-admin').waitFor();
+  if (!(await setup.getByTestId('qa-nav-admin').isVisible())) await setup.locator('.family-nav-more > summary').click();
+  await setup.getByTestId('qa-nav-admin').click();
+  await setup.locator('.legacy-admin-details > summary').click();
+  await setup.getByRole('button', { name: /Data & submissions/i }).click();
+  await setup.getByText(/Analytics are available in shared mode/i).waitFor();
+  const analytics = await setup.evaluate(() => window.__LDS_EVIDENCE_STORE__.snapshot().some(e => e.owner?.name === 'TrustWeave.AnalyticsPanel'));
+  assert(analytics);
+  check('Local AnalyticsPanel boundary mounts; shared data unavailable');
+  assert.deepEqual(errors, []);
+  check('No uncaught Playground browser errors');
+  const receipt = { status: 'local-normal-flow-passed-connected-pending', runtimePin: 'db9a3ee4e805118076e27c37d1a82e84888ad50f', syntheticFaults: false, checks, connectedAcceptance: { status: 'not-run', reason: 'Supabase environment and authenticated private network unavailable', remaining: ['Authenticated network load and real API evidence', 'Shared analytics data', 'Natural network failure/source attribution if observed'] } };
+  await fs.writeFile(path.join(output, 'receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
+  console.log(JSON.stringify(receipt, null, 2));
+} catch (error) {
+  await fs.writeFile(path.join(output, 'receipt.json'), JSON.stringify({ status: 'incomplete', checks, failure: error.message, syntheticFaults: false, connectedAcceptance: 'NOT EXECUTED' }, null, 2) + '\n');
+  throw error;
+} finally {
+  await browser?.close();
+  server.kill();
+  await log.close();
+}

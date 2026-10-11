@@ -1,10 +1,10 @@
-# Runtime Intelligence P0.2 — TrustWeave Source Pinpoint Validation
+# Runtime Intelligence P0.4 — TrustWeave Source Pinpoint Validation
 
-Runtime Intelligence is pinned to the P0.2 exact React source-attribution baseline for real-world React dogfood.
+Runtime Intelligence is pinned to the P0.4 browser-accepted source-attribution baseline for real-world React dogfood.
 
 ## Runtime pin
 
-`4ed24b2f5278cba75b25c9c61c25155ff69ec3c8`
+`db9a3ee4e805118076e27c37d1a82e84888ad50f`
 
 This validation is intentionally performed against normal TrustWeave behavior. **Do not add synthetic faults to TrustWeave.**
 
@@ -106,3 +106,11 @@ The closure bar is real TrustWeave use:
 > From an unfamiliar real finding, a developer should be able to use the displayed application file/line/provenance and immediately reach the relevant TrustWeave code without manually searching the repository.
 
 Record any case that still requires repository search; that is input for the remaining P0.3 work.
+
+## P0.4 console/export acceptance
+
+The pinned package captures warning/error invocation stacks into UREP and releases subscribers on teardown. Verify any naturally occurring console messages have application source where supported. Do not inject a warning/error to make this real-consumer gate pass.
+
+Raw collector `callStack` values are omitted from JSON/HTML exports. UREP retains bounded application provenance. Generated module coordinates are not original TSX coordinates; Pinpoint must label them.
+
+Current mission evidence and pending connected checks are recorded in `RUNTIME_INTELLIGENCE_P0_4_NORMAL_FLOW_ACCEPTANCE.md`.
