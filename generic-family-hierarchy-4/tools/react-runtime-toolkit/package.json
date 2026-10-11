@@ -1,0 +1,7 @@
+{
+  "name": "react-runtime-toolkit",
+  "version": "0.3.0",
+  "private": true,
+  "sideEffects": false,
+  "peerDependencies": { "react": ">=18", "react-dom": ">=18" }
+}

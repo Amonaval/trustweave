@@ -1,5 +1,6 @@
 "use client";
 import { CalendarHeart } from "lucide-react";
+import { withRuntimeIntelligence } from "runtime-intelligence/react";
 import { LifeEvent, Member } from "../lib/types";
 import { useLanguage } from "../lib/i18n";
 
@@ -9,7 +10,8 @@ export type UpcomingMilestone = {
   nextDate: Date;
   daysAway: number;
 };
-export default function UpcomingWidget({
+
+function UpcomingWidgetImpl({
   items,
   onSelect,
 }: {
@@ -18,7 +20,7 @@ export default function UpcomingWidget({
 }) {
  const {t:tr}=useLanguage();
   const { language } = useLanguage();
-  const copy = language === "hi" ? { title:"आने वाले दिन", subtitle:"अगले 30 दिनों के पारिवारिक अवसर", birthday:"जन्मदिन", today:"आज", days:"दिन" } : language === "mr" ? { title:"लवकरच", subtitle:"पुढील 30 दिवसांतील कौटुंबिक प्रसंग", birthday:"वाढदिवस", today:"आज", days:"दिवस" } : { title:tr("ComingUpTxt"), subtitle:tr("FamilyMilestonesInTheNext30DaysTxt"), birthday:"Birthday", today:"today", days:"d" };
+  const copy = language === "hi" ? { title:"आने वाले दिन", subtitle:"अगले 30 दिनों के पारिवारिक अवसर", birthday:"जन्मदिन", today:"आज", days:"दिन" } : language === "mr" ? { title:"लवकरच", subtitle:"पुढील 30 दिवसांतील कौटुंबिक प्रसंग", birthday:"वाढदिवस", today:"आज",days:"दिवस" } : { title:tr("ComingUpTxt"), subtitle:tr("FamilyMilestonesInTheNext30DaysTxt"), birthday:"Birthday", today:"today", days:"d" };
   if (!items.length) return null;
   return (
     <div className="card upcoming-widget">
@@ -64,3 +66,8 @@ export default function UpcomingWidget({
     </div>
   );
 }
+
+export default withRuntimeIntelligence(UpcomingWidgetImpl,{
+  name:"TrustWeave.UpcomingWidget",
+  source:"components/UpcomingWidget.tsx",
+});

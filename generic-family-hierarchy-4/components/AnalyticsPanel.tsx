@@ -1,11 +1,12 @@
 "use client";
 import {useLanguage} from "../lib/i18n";
 import {useEffect,useState} from 'react';
+import {withRuntimeIntelligence} from 'runtime-intelligence/react';
 import {BarChart3,MapPinned,Users,Heart,CalendarDays,Download,Printer} from 'lucide-react';
 import {NetworkAnalytics} from '../lib/types';
 import {getNetworkRepository} from '../lib/repository';
 
-export default function AnalyticsPanel({onNotify}:{onNotify:(x:string)=>void}){
+function AnalyticsPanelImpl({onNotify}:{onNotify:(x:string)=>void}){
  const {t:tr}=useLanguage();
  const repo=getNetworkRepository(); const [a,setA]=useState<NetworkAnalytics|null>(null); const [geo,setGeo]=useState<any[]>([]); const [busy,setBusy]=useState(true);
  useEffect(()=>{(async()=>{try{setA(await repo.fetchNetworkAnalytics());setGeo(await repo.fetchGeographySummary())}catch(e:any){onNotify(e.message||'Could not load analytics.')}finally{setBusy(false)}})()},[]);
@@ -19,3 +20,8 @@ export default function AnalyticsPanel({onNotify}:{onNotify:(x:string)=>void}){
   <div className="card-actions"><button className="btn" onClick={()=>window.print()}><Printer size={14}/> {tr("PrintSaveAsPDFTxt")}</button><button className="btn" onClick={()=>{const blob=new Blob([JSON.stringify({analytics:a,geography:geo},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const el=document.createElement('a');el.href=url;el.download='network-analytics.json';el.click();URL.revokeObjectURL(url)}}><Download size={14}/> {tr("ExportAnalyticsJSONTxt")}</button></div>
  </div>
 }
+
+export default withRuntimeIntelligence(AnalyticsPanelImpl,{
+ name:'TrustWeave.AnalyticsPanel',
+ source:'components/AnalyticsPanel.tsx',
+});
